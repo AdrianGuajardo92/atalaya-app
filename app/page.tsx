@@ -98,6 +98,7 @@ export default function Home() {
                 question={question}
                 paragraphs={atalayaData.paragraphs}
                 lsmText={lsmData[question.number]}
+                sectionLsmText={lsmData[`section-${question.number}`]}
                 onLSMUpdate={handleLSMUpdate}
               />
             ))}
@@ -111,6 +112,7 @@ export default function Home() {
               question={atalayaData.questions[currentQuestionIndex]}
               paragraphs={atalayaData.paragraphs}
               lsmText={lsmData[atalayaData.questions[currentQuestionIndex].number]}
+              sectionLsmText={lsmData[`section-${atalayaData.questions[currentQuestionIndex].number}`]}
               onLSMUpdate={handleLSMUpdate}
             />
 
