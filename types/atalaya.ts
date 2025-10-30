@@ -3,6 +3,7 @@ export interface Question {
   textEs: string; // Pregunta en español
   textLSM?: string; // Pregunta en LSM (se agregará después)
   paragraphs: number[]; // Números de párrafos relacionados
+  section?: string; // Subtítulo de sección (opcional) - se muestra antes de la pregunta
 }
 
 export interface Paragraph {

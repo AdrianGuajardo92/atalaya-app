@@ -22,7 +22,8 @@ export const atalayaData: AtalayaStudy = {
       number: "5",
       textEs: "¿Qué quiere Satanás que creamos? Pon un ejemplo.",
       textLSM: "",
-      paragraphs: [5]
+      paragraphs: [5],
+      section: "POR QUÉ ES TAN IMPORTANTE CONVENCERNOS DE QUE JEHOVÁ NOS HA PERDONADO"
     },
     {
       number: "6",
@@ -34,7 +35,8 @@ export const atalayaData: AtalayaStudy = {
       number: "7, 8",
       textEs: "¿Cómo se describió Jehová en Éxodo 34:6, 7, y qué seguridad nos da eso?",
       textLSM: "",
-      paragraphs: [7, 8]
+      paragraphs: [7, 8],
+      section: "¿QUÉ TE PUEDE AYUDAR A CONVENCERTE DE QUE JEHOVÁ TE HA PERDONADO?"
     },
     {
       number: "9",
@@ -52,7 +54,8 @@ export const atalayaData: AtalayaStudy = {
       number: "12, 13",
       textEs: "Según Salmo 103:14, ¿de qué se acuerda Jehová y qué se siente impulsado a hacer?",
       textLSM: "",
-      paragraphs: [12, 13]
+      paragraphs: [12, 13],
+      section: "RECUERDA SOLO LO QUE JEHOVÁ RECUERDA"
     },
     {
       number: "14",
@@ -76,7 +79,8 @@ export const atalayaData: AtalayaStudy = {
       number: "17",
       textEs: "¿Por qué tenemos que seguir convenciendo a nuestro corazón de que Jehová nos quiere y nos perdona?",
       textLSM: "",
-      paragraphs: [17]
+      paragraphs: [17],
+      section: "SIGUE CONVENCIENDO A TU CORAZÓN"
     },
     {
       number: "18",

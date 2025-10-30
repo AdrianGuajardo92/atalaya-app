@@ -82,9 +82,21 @@ export default function QuestionCard({ question, paragraphs, lsmText, onLSMUpdat
   const currentLSMText = lsmText || question.textLSM;
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-      {/* Número de pregunta */}
-      <div className="flex items-start gap-4 mb-4">
+    <>
+      {/* Subtítulo de sección (si existe) */}
+      {question.section && (
+        <div className="mb-6 mt-8">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold text-center uppercase tracking-wide">
+              {question.section}
+            </h2>
+          </div>
+        </div>
+      )}
+
+      <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+        {/* Número de pregunta */}
+        <div className="flex items-start gap-4 mb-4">
         <span className="text-2xl font-bold text-gray-700 min-w-[60px]">
           {question.number}.
         </span>
@@ -179,5 +191,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, onLSMUpdat
         )}
       </div>
     </div>
+    </>
   );
 }
