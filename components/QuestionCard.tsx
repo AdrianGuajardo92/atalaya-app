@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import FlashCards from './FlashCards';
+import BiblicalCards from './BiblicalCards';
 
 interface QuestionCardProps {
   question: Question;
@@ -394,6 +395,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="mt-4" onClick={(e) => e.stopPropagation()}>
                 {/* Mostrar tarjetas siempre (sin botón) */}
                 <FlashCards cards={question.flashcards} />
+              </div>
+            )}
+
+            {/* Tarjetas de Textos Bíblicos - Después de las flashcards */}
+            {(isExpanded || isNavigationMode) && question.biblicalCards && question.biblicalCards.length > 0 && (
+              <div className="mt-4" onClick={(e) => e.stopPropagation()}>
+                {/* Mostrar tarjetas bíblicas siempre (sin botón) */}
+                <BiblicalCards cards={question.biblicalCards} />
               </div>
             )}
           </div>

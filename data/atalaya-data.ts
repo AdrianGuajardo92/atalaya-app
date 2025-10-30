@@ -22,6 +22,38 @@ export const atalayaData: AtalayaStudy = {
           question: "¿Qué hace Jehová con el pecado cuando nos perdona?",
           answer: "Lo borra por completo, como si nunca lo hubiéramos cometido"
         }
+      ],
+      biblicalCards: [
+        {
+          reference: "2 Samuel 12:13",
+          purpose: "David confesó su pecado y Jehová lo perdonó",
+          text: "Entonces David le dijo a Natán: \"He pecado contra Jehová\". Natán le dijo a David: \"Jehová, por su parte, te perdona tu pecado. No morirás\"."
+        },
+        {
+          reference: "Salmo 32:1",
+          purpose: "David se sintió feliz cuando fue perdonado",
+          text: "Feliz es aquel cuya transgresión es perdonada, cuyo pecado queda cubierto."
+        },
+        {
+          reference: "Proverbios 28:13",
+          purpose: "Hay que confesar los pecados y abandonarlos para recibir misericordia",
+          text: "El que encubre sus transgresiones no tendrá éxito, pero al que las confiesa y las abandona se le mostrará misericordia."
+        },
+        {
+          reference: "Hechos 26:20",
+          purpose: "El arrepentimiento debe verse en nuestras acciones",
+          text: "Más bien, tanto a los de Damasco primero como a los de Jerusalén, y por toda la región de Judea, y a las naciones, les anuncié que debían arrepentirse y volverse a Dios haciendo obras propias del arrepentimiento."
+        },
+        {
+          reference: "1 Juan 1:9",
+          purpose: "Si confesamos, Dios nos perdona y nos limpia",
+          text: "Si confesamos nuestros pecados, él es fiel y justo para perdonarnos los pecados y limpiarnos de toda injusticia."
+        },
+        {
+          reference: "Ezequiel 33:16",
+          purpose: "Dios borra los pecados y no los recuerda más",
+          text: "No se recordará ninguno de los pecados que cometió. Ha hecho lo que es justo y correcto. Sin falta seguirá viviendo."
+        }
       ]
     },
     {

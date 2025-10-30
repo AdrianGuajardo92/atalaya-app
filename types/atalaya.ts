@@ -11,6 +11,11 @@ export interface Question {
     question: string; // Pregunta de la tarjeta didáctica
     answer: string; // Respuesta de la tarjeta
   }>;
+  biblicalCards?: Array<{
+    reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
+    purpose: string; // Por qué está este texto / para qué sirve
+    text: string; // Texto completo de la Traducción del Nuevo Mundo
+  }>;
 }
 
 export interface Paragraph {

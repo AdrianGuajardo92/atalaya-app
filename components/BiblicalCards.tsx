@@ -2,16 +2,17 @@
 
 import { useState } from 'react';
 
-interface FlashCard {
-  question: string;
-  answer: string;
+interface BiblicalCard {
+  reference: string;
+  purpose: string;
+  text: string;
 }
 
-interface FlashCardsProps {
-  cards: FlashCard[];
+interface BiblicalCardsProps {
+  cards: BiblicalCard[];
 }
 
-export default function FlashCards({ cards }: FlashCardsProps) {
+export default function BiblicalCards({ cards }: BiblicalCardsProps) {
   // Estado para controlar qué tarjetas están volteadas (por índice)
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
 
@@ -30,11 +31,11 @@ export default function FlashCards({ cards }: FlashCardsProps) {
   };
 
   return (
-    <div className="mt-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 border-2 border-amber-300">
+    <div className="mt-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border-2 border-purple-300">
       <div className="flex items-center justify-between mb-4">
-        <div className="text-xs font-semibold text-amber-700">🎴 Tarjetas Didácticas</div>
-        <div className="text-xs text-amber-600 font-medium">
-          {cards.length} {cards.length === 1 ? 'tarjeta' : 'tarjetas'}
+        <div className="text-xs font-semibold text-purple-700">📖 Textos Bíblicos</div>
+        <div className="text-xs text-purple-600 font-medium">
+          {cards.length} {cards.length === 1 ? 'texto' : 'textos'}
         </div>
       </div>
 
@@ -57,32 +58,34 @@ export default function FlashCards({ cards }: FlashCardsProps) {
                   transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                 }}
               >
-                {/* Frente de la tarjeta (Pregunta) */}
+                {/* Frente de la tarjeta (Referencia + Propósito) */}
                 <div
-                  className="absolute w-full h-full bg-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center border-2 border-amber-200"
+                  className="absolute w-full h-full bg-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center border-2 border-purple-200"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                   }}
                 >
-                  <div className="text-xs text-amber-600 font-semibold mb-2">❓ Pregunta</div>
-                  <p className="text-center text-gray-800 font-medium leading-relaxed text-sm">
-                    {card.question}
+                  <p className="text-center text-purple-800 font-bold text-lg mb-4">
+                    {card.reference}
+                  </p>
+                  <p className="text-center text-gray-700 text-sm leading-relaxed">
+                    {card.purpose}
                   </p>
                 </div>
 
-                {/* Reverso de la tarjeta (Respuesta) */}
+                {/* Reverso de la tarjeta (Texto completo TNM) */}
                 <div
-                  className="absolute w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-lg p-4 flex flex-col items-center justify-center border-2 border-blue-700"
+                  className="absolute w-full h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg shadow-lg p-4 flex flex-col items-center justify-center border-2 border-purple-800 overflow-y-auto"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                   }}
                 >
-                  <div className="text-xs text-white font-semibold mb-2">💬 Respuesta</div>
-                  <p className="text-center text-white font-bold leading-relaxed">
-                    {card.answer}
+                  <div className="text-xs text-purple-100 font-semibold mb-2">{card.reference}</div>
+                  <p className="text-center text-white font-medium text-sm leading-relaxed">
+                    "{card.text}"
                   </p>
                 </div>
               </div>
