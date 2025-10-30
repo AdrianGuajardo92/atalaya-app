@@ -5,318 +5,293 @@ import { useState } from 'react';
 export default function InstructionsButton() {
   const [showCopied, setShowCopied] = useState(false);
 
-  const promptInstructions = `# Instrucciones para trabajar con la aplicación Atalaya
+  const promptInstructions = `# Instrucciones - Aplicación Atalaya
 
-## 📋 Contexto de la aplicación
+## ¿Qué es esta aplicación?
 
-Esta es una aplicación Next.js para dirigir estudios de La Atalaya con soporte bilingüe (Español y LSM - Lengua de Señas Mexicana).
+Una app Next.js para dirigir el estudio de La Atalaya. Tiene soporte bilingüe: **Español y LSM** (Lengua de Señas Mexicana).
 
-## 🗂️ Estructura de archivos
+## 🗂️ Archivos importantes
 
-**ARCHIVO PRINCIPAL A MODIFICAR CADA SEMANA:**
-- \`data/atalaya-data.ts\` - ÚNICO archivo que se modifica semanalmente con el contenido del nuevo estudio
+**ARCHIVO QUE CAMBIAS CADA SEMANA:**
+- \`data/atalaya-data.ts\` - Aquí va el contenido del nuevo estudio
 
-**ARCHIVOS QUE NUNCA SE MODIFICAN:**
-- \`components/QuestionCard.tsx\` - Componente de preguntas (diseño Tarjetas Compactas)
-- \`components/ReviewQuestionCard.tsx\` - Componente de preguntas de repaso
+**ARCHIVOS QUE NUNCA MODIFICAS:**
+- \`components/QuestionCard.tsx\` - Muestra las preguntas con diseño de tarjetas
+- \`components/ReviewQuestionCard.tsx\` - Muestra las preguntas de repaso
+- \`components/FlashCards.tsx\` - Tarjetas didácticas amarillas
+- \`components/BiblicalCards.tsx\` - Tarjetas de textos bíblicos moradas
 - \`components/StudyHeader.tsx\` - Encabezado del estudio
-- \`components/Timer.tsx\` - Temporizador flotante arrastrable
-- \`app/page.tsx\` - Página principal con lógica de navegación
-- \`types/atalaya.ts\` - Definición de tipos TypeScript
-- \`app/api/lsm/route.ts\` - API para guardar traducciones LSM en Vercel KV
+- \`components/Timer.tsx\` - Temporizador flotante
+- \`app/page.tsx\` - Página principal
+- \`types/atalaya.ts\` - Tipos de TypeScript
+- \`app/api/lsm/route.ts\` - Guarda traducciones LSM en Vercel KV
 
-## 📝 Cómo actualizar el contenido semanal
+## 📝 Cómo actualizar el estudio cada semana
 
-### Paso 1: Abrir el archivo de datos
-Abre el archivo: \`data/atalaya-data.ts\`
+### Paso 1: Abre el archivo de datos
+Abre: \`data/atalaya-data.ts\`
 
-### Paso 2: Actualizar la información del estudio
-Modifica el objeto \`atalayaData\` con la nueva información:
+### Paso 2: Cambia el contenido
+Actualiza el objeto \`atalayaData\` con la información del nuevo estudio:
 
 \`\`\`typescript
 export const atalayaData: AtalayaStudy = {
-  // 1. CANCIÓN INICIAL
-  song: "Canción XXX",
+  song: "Canción 123",
+  title: "Título del estudio",
+  biblicalText: "\"Texto bíblico\" (Referencia)",
+  theme: "Tema del estudio",
 
-  // 2. TÍTULO DEL ESTUDIO
-  title: "Título completo del estudio",
-
-  // 3. TEXTO BÍBLICO (las referencias bíblicas se resaltan automáticamente)
-  biblicalText: "\"Texto entre comillas\" (REFERENCIA BÍBLICA)",
-
-  // 4. TEMA
-  theme: "Texto del tema completo",
-
-  // 5. PREGUNTAS (Array de preguntas)
   questions: [
     {
-      number: "1, 2",              // Número(s) de pregunta
-      textEs: "¿Pregunta completa en español?",
-      textLSM: "",                  // Dejar vacío, se llena en la app
-      paragraphs: [1, 2],           // Números de párrafos relacionados
-      section: "SUBTÍTULO OPCIONAL", // Solo si hay subtítulo
-      sectionLSM: "",               // Dejar vacío, se llena en la app
-      answer: "Respuesta en lenguaje sencillo basada en los párrafos",
-      answerBullets: "• Punto clave 1\\n• Punto clave 2\\n• Punto clave 3",
-      flashcards: [                 // Tarjetas didácticas (OPCIONAL - agregar conforme se estudia)
-        {
-          question: "¿Pregunta sobre dato específico del párrafo?",
-          answer: "Respuesta breve y directa"
-        }
-      ]
-    },
-    // ... más preguntas
+      number: "1, 2",
+      textEs: "¿Pregunta en español?",
+      textLSM: "",              // Dejar VACÍO - se traduce en la app
+      paragraphs: [1, 2],
+      answer: "Respuesta directa en lenguaje sencillo",
+      answerBullets: "• Punto 1\\n• Punto 2\\n• Punto 3"
+    }
   ],
 
-  // 6. PÁRRAFOS (Array de párrafos completos)
   paragraphs: [
     {
       number: 1,
-      content: "Contenido completo del párrafo con referencias bíblicas (LIBRO 1:1)."
-    },
-    // ... más párrafos
+      content: "Contenido completo del párrafo..."
+    }
   ],
 
-  // 7. PREGUNTAS DE REPASO (Array de preguntas finales)
   reviewQuestions: [
     {
-      question: "¿Pregunta de repaso en español?",
-      questionLSM: ""  // Dejar vacío, se llena en la app
-    },
-    // ... más preguntas de repaso
+      question: "¿Pregunta de repaso?"
+    }
   ],
 
-  // 8. CANCIÓN FINAL
-  finalSong: "Canción XXX y oración"
+  finalSong: "Canción 45 y oración"
 };
 \`\`\`
 
-### Paso 3: Formato especial para preguntas
+## 🔤 Campos LSM (Lengua de Señas Mexicana)
 
-**Preguntas simples:**
-\`\`\`typescript
-{
-  number: "3",
-  textEs: "¿Pregunta?",
-  textLSM: "",
-  paragraphs: [3]
-}
-\`\`\`
+Hay campos LSM en la app que se traducen desde la interfaz:
 
-**Preguntas múltiples (mismo párrafo):**
-\`\`\`typescript
-{
-  number: "4, 5",
-  textEs: "¿Primera pregunta y segunda pregunta?",
-  textLSM: "",
-  paragraphs: [4]
-}
-\`\`\`
+1. **\`textLSM\`** - Traducción de preguntas principales
+2. **\`sectionLSM\`** - Traducción de subtítulos de sección (cuando existen)
 
-**Pregunta con subtítulo de sección:**
+**IMPORTANTE:**
+- Siempre déjalos vacíos (\`""\`) en el archivo de datos
+- Se traducen haciendo click en el área LSM azul en la interfaz
+- Las traducciones se guardan automáticamente en Vercel KV
+- El texto LSM siempre se muestra en MAYÚSCULAS
+
+## 📖 Preguntas con subtítulos
+
+Algunas preguntas tienen subtítulos de sección:
+
 \`\`\`typescript
 {
   number: "6",
   textEs: "¿Pregunta?",
   textLSM: "",
   paragraphs: [6],
-  section: "SUBTÍTULO EN MAYÚSCULAS",  // Aparece antes de la pregunta
-  sectionLSM: ""                       // Se traduce en la app
+  section: "SUBTÍTULO EN MAYÚSCULAS",
+  sectionLSM: ""              // Se traduce en la app
 }
 \`\`\`
 
-### Paso 4: Respuestas y puntos clave
+## 💬 Respuestas: dos niveles
 
-**Respuesta simple:**
+Cada pregunta tiene dos tipos de respuesta:
+
+**1. Respuesta directa (\`answer\`):**
 \`\`\`typescript
-answer: "Explicación directa en lenguaje sencillo de lo que responde la pregunta"
+answer: "Explicación sencilla que responde la pregunta directamente"
 \`\`\`
 
-**Puntos clave (bullets):**
+**2. Puntos clave (\`answerBullets\`):**
 \`\`\`typescript
-answerBullets: "**Subtítulo opcional**\\n• Punto 1\\n• Punto 2\\n• Punto 3"
+answerBullets: "**Título opcional**\\n• Punto 1\\n• Punto 2\\n• Punto 3"
 \`\`\`
 
-### Paso 5: Tarjetas didácticas (Flashcards)
+## 🎴 Tarjetas didácticas (Flashcards)
 
-Las flashcards son **OPCIONALES** y se agregan **conforme se estudia**, no todas de golpe:
+Las flashcards son **OPCIONALES** - se agregan conforme se estudia cada párrafo.
 
 **Características:**
-- Aparecen **debajo de las respuestas**
-- Ocultas por defecto en modo scroll (botón para mostrar/ocultar)
-- Siempre visibles en modo navegación
-- Estilo flip card (click para voltear)
-
-**Cuándo agregar:**
-- Solo cuando el usuario lo pida
-- Conforme se estudian los párrafos
-- No generar todas automáticamente
+- Color amarillo
+- Se muestran después de las respuestas
+- Grid de 2 columnas (desktop) o 1 columna (móvil)
+- Click para voltear (frente = pregunta, reverso = respuesta)
 
 **Qué incluir:**
-✅ Referencias bíblicas importantes
-✅ Datos específicos relevantes
 ✅ Conceptos clave del párrafo
+✅ Datos específicos importantes
 ✅ Información que ayude a recordar puntos principales
 
 **Qué NO incluir:**
-❌ Nombres de ejemplos personales (ej: "Jennifer")
-❌ Detalles sin importancia
-❌ Información obvia
+❌ Preguntas sobre "¿en qué texto viene...?" o referencias bíblicas
+❌ Nombres de ejemplos personales
+❌ Información obvia o poco importante
 
 **Ejemplo:**
 \`\`\`typescript
 flashcards: [
   {
-    question: "¿Qué significa la palabra hebrea 'perdonar' en Salmo 32:5?",
-    answer: "También significa 'levantar' o 'llevar'"
+    question: "¿Cuáles son las 3 condiciones para que Jehová nos perdone?",
+    answer: "Arrepentirnos de verdad, confesar nuestros pecados, y no volverlos a cometer"
   },
   {
-    question: "¿Cuáles son las 3 condiciones para que Jehová nos perdone?",
-    answer: "Arrepentirnos, confesar y no volver a cometer el pecado"
+    question: "¿Qué hace Jehová con el pecado cuando nos perdona?",
+    answer: "Lo borra por completo, como si nunca lo hubiéramos cometido"
   }
 ]
 \`\`\`
 
-**Lenguaje:**
+**Reglas de lenguaje:**
 - Preguntas claras y directas
 - Respuestas breves (1-2 oraciones máximo)
-- Lenguaje sencillo y fácil de entender
+- Lenguaje sencillo
 
-### Paso 6: Párrafos con referencias bíblicas
-Las referencias bíblicas entre paréntesis se resaltan automáticamente en azul:
+## 📖 Tarjetas de textos bíblicos
 
+Las tarjetas bíblicas se muestran **después de las flashcards**.
+
+**Características:**
+- Color morado/púrpura
+- Grid de 2 columnas (desktop) o 1 columna (móvil)
+- Frente: referencia + propósito
+- Reverso: referencia + texto completo TNM
+- Click para voltear
+
+**Estructura:**
 \`\`\`typescript
-{
-  number: 5,
-  content: "Texto del párrafo que menciona (Salmo 32:5) y también (1 Juan 1:9). Todo esto se resalta automáticamente."
-}
+biblicalCards: [
+  {
+    reference: "2 Samuel 12:13",
+    purpose: "David confesó su pecado y Jehová lo perdonó",
+    text: "Entonces David le dijo a Natán: \\"He pecado contra Jehová\\". Natán le dijo a David: \\"Jehová, por su parte, te perdona tu pecado. No morirás\\"."
+  }
+]
 \`\`\`
 
-## 🎨 Características de la aplicación
+**IMPORTANTE - Cómo escribir el propósito:**
+- ✅ Lenguaje simple y directo
+- ✅ Fácil de escanear rápido al dirigir
+- ✅ Una frase corta (máximo 10-12 palabras)
+- ❌ NO usar: "Muestra que...", "Nos enseña que...", "Explica que..."
+- ✅ SÍ usar: "David confesó y fue perdonado", "Hay que confesar y abandonar"
 
-### Modos de visualización:
-1. **Modo Scroll** - Ver todas las preguntas en una página
-2. **Modo Navegación** - Ver una pregunta a la vez con botones Anterior/Siguiente
+**Textos bíblicos:**
+- SIEMPRE de la Traducción del Nuevo Mundo (TNM)
+- Texto completo y exacto
+- Incluir TODOS los textos mencionados en el párrafo
+
+## 🎨 Cómo funciona la interfaz
+
+### Dos modos de visualización:
+1. **Modo Scroll** - Todas las preguntas en una página
+2. **Modo Navegación** - Una pregunta a la vez con botones Anterior/Siguiente
 
 ### Funcionalidades:
-- ✅ Edición de texto LSM (click en área LSM para editar)
-- ✅ Guardado automático en Vercel KV
-- ✅ Sincronización entre localhost y producción
-- ✅ Temporizador flotante y arrastrable
-- ✅ Ver párrafos completos (click en círculo azul con número)
-- ✅ **Respuestas con dos niveles**: explicación simple + puntos clave
-- ✅ **Tarjetas didácticas (flashcards)**: flip cards para repasar datos importantes
-- ✅ Atajos de teclado:
-  - Enter: Guardar LSM
-  - Escape: Cancelar edición
-  - Shift+Enter: Nueva línea en textarea
+- Click en el **círculo azul** con el número → abre modal con los párrafos
+- Click en **área LSM** (azul) → editar traducción LSM
+- **Enter** → guardar traducción LSM
+- **Escape** → cancelar edición LSM o cerrar modal de párrafos
+- **Shift+Enter** → nueva línea en el editor LSM
+- **Temporizador** flotante y arrastrable
+- Las traducciones LSM se guardan automáticamente en Vercel KV
 
-### Diseño "Tarjetas Compactas":
-- Círculo azul con número (clickeable para ver párrafos)
-- Español en caja gris
-- LSM en caja azul (más grande y destacado)
-- Todo el texto LSM se muestra automáticamente en MAYÚSCULAS
+### Diseño de tarjetas:
+- Círculo azul con número (clickeable)
+- Pregunta en español: caja gris
+- Pregunta en LSM: caja azul (más grande y destacado)
+- Respuestas: fondo verde claro
+- Flashcards: amarillas con flip al hacer click
+- Tarjetas bíblicas: moradas con flip al hacer click
 
 ## 🔄 Flujo de trabajo semanal
 
-1. **Obtener el nuevo estudio** de jw.org
-2. **Abrir**: \`data/atalaya-data.ts\`
-3. **Reemplazar** todo el contenido con el nuevo estudio
-4. **Verificar** que la estructura sea correcta
-5. **Probar** en localhost: \`npm run dev\`
-6. **Traducir** las preguntas a LSM usando la interfaz
-7. **Hacer commit** cuando esté listo
-8. **Hacer push** para desplegar en Vercel
+1. Obtén el nuevo estudio de jw.org
+2. Abre \`data/atalaya-data.ts\`
+3. Reemplaza el contenido con el nuevo estudio
+4. Deja vacíos los campos LSM (\`textLSM\`, \`sectionLSM\`)
+5. Prueba en localhost: \`npm run dev\`
+6. Traduce a LSM usando la interfaz (click en áreas azules)
+7. Las traducciones se guardan automáticamente en Vercel KV
 
-## ⚠️ IMPORTANTE
-
-- **NUNCA modificar** componentes ni archivos de configuración
-- **SOLO modificar** \`data/atalaya-data.ts\` cada semana
-- **Dejar vacíos** los campos \`textLSM\`, \`sectionLSM\`, \`questionLSM\` - se llenan en la interfaz
-- **Las traducciones LSM se guardan** automáticamente en Vercel KV con clave única: \`atalaya-lsm-data\`
-- **Los commits los hace el usuario**, nunca automáticos
+**NOTA:** El usuario maneja git manualmente cuando esté listo (add, commit, push).
 
 ## 🗄️ Base de datos
 
-- **Vercel KV** (Redis): biblioteca-db
+- **Vercel KV** (Redis)
+- **Nombre**: biblioteca-db
 - **Clave única**: \`atalaya-lsm-data\`
-- **Sincronización**: localhost y producción usan la misma BD
-- **Credenciales**: en \`.env.local\` (no en git)
+- **Sincronización**: localhost y producción usan la misma base de datos
+- **Credenciales**: en \`.env.local\` (no se sube a git)
 
-## 📦 Comandos útiles
+## 📦 Comandos
 
 \`\`\`bash
-npm run dev          # Iniciar desarrollo (localhost:3000)
+npm run dev          # Desarrollo (localhost:9000)
 npm run build        # Construir para producción
-npm run start        # Iniciar producción local
-git add .            # Agregar cambios
-git commit -m "msg"  # Hacer commit
-git push             # Desplegar a Vercel
+npm run start        # Producción local
 \`\`\`
+
+## ⚠️ Reglas importantes
+
+- **NUNCA modificar** componentes ni archivos de configuración
+- **SOLO modificar** \`data/atalaya-data.ts\` cada semana
+- **Dejar vacíos** los campos LSM (\`textLSM\`, \`sectionLSM\`) - se traducen en la app
+- Las traducciones LSM se guardan en Vercel KV automáticamente
+- El usuario hace commits manualmente
 
 ## 💡 Tips
 
-- Si necesitas agregar un nuevo estudio, **solo copia y pega** el contenido en el formato mostrado arriba
-- Los subtítulos son **opcionales**, solo agrégalos si el estudio los tiene
-- Las preguntas de repaso están **separadas** de las preguntas normales
-- El navegador **cachea** las traducciones LSM, así que si actualizas verás tus traducciones anteriores
+- Los subtítulos de sección son opcionales
+- Las preguntas de repaso van separadas al final
+- Las referencias bíblicas entre paréntesis se resaltan automáticamente en azul
+- Las flashcards y tarjetas bíblicas son opcionales - agrégalas según sea necesario
 
 ---
 
-## 📚 FUNCIÓN ADICIONAL: Ayuda para estudiar el artículo
+## 📚 FUNCIÓN ADICIONAL: Ayuda para estudiar
 
-Además de mantener la aplicación, también puedes pedirme que te ayude a **estudiar el artículo párrafo por párrafo**.
+También puedes pedir ayuda para estudiar el artículo párrafo por párrafo.
 
-### Cómo funciona:
-
-Cuando el usuario diga algo como:
+### Qué decir:
 - "Ayúdame a estudiar el artículo"
-- "Vamos a estudiar párrafo por párrafo"
-- "Dame las respuestas a las preguntas"
+- "Vamos párrafo por párrafo"
+- "Dame las respuestas"
 
-**Debes hacer lo siguiente:**
+### Qué recibirás:
+1. La pregunta del estudio
+2. Respuesta directa en lenguaje sencillo
+3. Basada solo en los párrafos correspondientes
+4. Concisa (2-4 oraciones máximo)
 
-1. **Ir párrafo por párrafo** (o grupo de párrafos según las preguntas)
-2. **Mostrar la pregunta** del estudio
-3. **Dar la respuesta directa** basándote en el contenido de los párrafos
-4. **Usar lenguaje sencillo y fácil de entender**
-5. **Ser conciso** - solo la respuesta directa a lo que se pregunta
-6. **Esperar confirmación** del usuario antes de continuar al siguiente grupo de párrafos
-
-### Ejemplo de formato:
+### Ejemplo:
 
 \`\`\`
 ## 📖 Párrafos 1, 2
 
-**Pregunta:** ¿Qué hace Jehová cuando nos arrepentimos, y cómo nos hace sentir eso?
+**Pregunta:** ¿Qué hace Jehová cuando nos arrepentimos?
 
 **Respuesta:**
-Cuando nos arrepentimos de verdad, Jehová nos perdona completamente. Es como si borrara nuestros pecados y nunca los hubiéramos cometido. Esto nos hace sentir felices y aliviados, igual que se sintió el rey David cuando fue perdonado.
+Cuando nos arrepentimos de verdad, Jehová nos perdona completamente.
+Es como si borrara nuestros pecados. Esto nos hace sentir felices y
+aliviados, igual que David.
 
 ---
-
-¿Listo para continuar con los párrafos 3, 4? 😊
+¿Listo para continuar? 😊
 \`\`\`
 
-### Reglas importantes para las respuestas:
+### Reglas para respuestas:
+✅ Directas - solo lo que responde la pregunta
+✅ Lenguaje sencillo - fácil de entender
+✅ Basadas en los párrafos - no información extra
+✅ Concisas - máximo 2-4 oraciones
+✅ Claras - sin vocabulario complicado
 
-✅ **Respuesta directa** - No des información extra que no responda la pregunta
-✅ **Lenguaje sencillo** - Como si le hablaras a alguien que está aprendiendo
-✅ **Basada en los párrafos** - Usa solo la información de los párrafos correspondientes
-✅ **Concisa** - 2-4 oraciones máximo por respuesta
-✅ **Clara** - Evita vocabulario complicado o teológico innecesario
-
-### Ejemplo de cómo NO responder:
-
-❌ "Bueno, si analizamos el contexto histórico de David y consideramos las implicaciones teológicas del perdón divino en el marco del pacto mosaico..."
-
-### Ejemplo de cómo SÍ responder:
-
-✅ "Jehová nos perdona completamente cuando nos arrepentimos. Esto nos hace sentir felices y aliviados."
-
----
-
-**¿Necesitas ayuda?** Pregunta sobre cualquier parte de esta estructura y te ayudaré a mantener la consistencia del proyecto.`;
+**¿Necesitas ayuda?** Pregunta lo que necesites sobre la app.`;
 
   const handleCopy = async () => {
     try {
