@@ -70,6 +70,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, onLSMUpdat
     setIsEditingLSM(false);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Si presiona Enter sin Shift, guardar
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Evitar salto de línea
+      handleSaveLSM();
+    }
+    // Shift+Enter permite salto de línea normal
+  };
+
   const currentLSMText = lsmText || question.textLSM;
 
   return (
@@ -91,20 +100,22 @@ export default function QuestionCard({ question, paragraphs, lsmText, onLSMUpdat
 
           {/* Pregunta en LSM - Modo visualización o edición */}
           {isEditingLSM ? (
-            <div className="mt-3 p-3 bg-blue-50 rounded border-l-4 border-blue-500">
-              <p className="text-sm text-gray-600 mb-2 font-medium">Editar LSM:</p>
+            <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
+              <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar LSM (Enter para guardar, Shift+Enter para nueva línea):</p>
               <textarea
                 value={editedLSM}
                 onChange={(e) => setEditedLSM(e.target.value)}
-                className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                rows={3}
+                onKeyDown={handleKeyDown}
+                className="w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-xl font-semibold text-gray-900 bg-white shadow-inner"
+                rows={4}
                 placeholder="Escribe la pregunta en LSM..."
+                autoFocus
               />
               <div className="flex gap-2 mt-3">
                 <button
                   onClick={handleSaveLSM}
                   disabled={isSaving}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors font-medium"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors font-medium shadow-sm"
                 >
                   {isSaving ? 'Guardando...' : '💾 Guardar'}
                 </button>
@@ -120,14 +131,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, onLSMUpdat
           ) : (
             <>
               {currentLSMText ? (
-                <div className="mt-3 p-3 bg-blue-50 rounded border-l-4 border-blue-500 group relative">
-                  <p className="text-sm text-gray-600 mb-1 font-medium">LSM:</p>
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                <div className="mt-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500 shadow-sm group relative">
+                  <p className="text-sm text-blue-700 mb-2 font-semibold">🤟 LSM:</p>
+                  <p className="text-2xl font-bold text-gray-900 leading-relaxed">
                     {currentLSMText}
                   </p>
                   <button
                     onClick={() => setIsEditingLSM(true)}
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 font-medium shadow-sm"
                   >
                     ✏️ Editar
                   </button>

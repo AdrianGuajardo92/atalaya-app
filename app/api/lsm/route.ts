@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { kv } from '@vercel/kv';
 
-// Almacenamiento temporal en memoria (solo para desarrollo local)
-let localStore: Record<string, string> = {};
+// Ahora tanto desarrollo como producción usan la misma base de datos Vercel KV
+// Usamos una clave única para este proyecto: 'atalaya-lsm-data'
+const LSM_KEY = 'atalaya-lsm-data';
 
 export async function GET() {
   try {
-    // En desarrollo local, usar almacenamiento en memoria
-    if (process.env.NODE_ENV === 'development') {
-      return NextResponse.json(localStore);
-    }
-
-    // En producción, usar Vercel KV
-    const { kv } = await import('@vercel/kv');
-    const data = await kv.get('lsm-data') || {};
+    const data = await kv.get(LSM_KEY) || {};
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error reading LSM data:', error);
@@ -25,17 +20,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { questionNumber, lsmText } = body;
 
-    // En desarrollo local
-    if (process.env.NODE_ENV === 'development') {
-      localStore[questionNumber] = lsmText;
-      return NextResponse.json({ success: true, data: localStore });
-    }
-
-    // En producción, usar Vercel KV
-    const { kv } = await import('@vercel/kv');
-    const currentData: Record<string, string> = await kv.get('lsm-data') || {};
+    // Obtener datos actuales de Vercel KV
+    const currentData: Record<string, string> = await kv.get(LSM_KEY) || {};
     currentData[questionNumber] = lsmText;
-    await kv.set('lsm-data', currentData);
+    await kv.set(LSM_KEY, currentData);
 
     return NextResponse.json({ success: true, data: currentData });
   } catch (error) {
