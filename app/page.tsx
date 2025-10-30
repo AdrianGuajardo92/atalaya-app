@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
+import Timer from '@/components/Timer';
 import { atalayaData } from '@/data/atalaya-data';
 
 export default function Home() {
@@ -80,6 +81,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Temporizador flotante */}
+      <Timer />
+
       {/* Control de modo de navegación */}
       <div className="fixed top-4 right-4 z-10 bg-white rounded-lg shadow-lg p-2">
         <div className="flex gap-2">
