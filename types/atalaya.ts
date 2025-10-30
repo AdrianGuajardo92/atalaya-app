@@ -5,6 +5,12 @@ export interface Question {
   paragraphs: number[]; // Números de párrafos relacionados
   section?: string; // Subtítulo de sección en español (opcional)
   sectionLSM?: string; // Subtítulo de sección en LSM (opcional)
+  answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
+  answerBullets?: string; // Puntos clave de la respuesta en formato bullets
+  flashcards?: Array<{
+    question: string; // Pregunta de la tarjeta didáctica
+    answer: string; // Respuesta de la tarjeta
+  }>;
 }
 
 export interface Paragraph {

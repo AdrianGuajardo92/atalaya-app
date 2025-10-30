@@ -135,6 +135,7 @@ export default function Home() {
                   lsmText={lsmData[question.number]}
                   sectionLsmText={lsmData[`section-${question.number}`]}
                   onLSMUpdate={handleLSMUpdate}
+                  isNavigationMode={false}
                 />
               ))}
             </div>
@@ -180,6 +181,7 @@ export default function Home() {
                   lsmText={lsmData[atalayaData.questions[currentQuestionIndex].number]}
                   sectionLsmText={lsmData[`section-${atalayaData.questions[currentQuestionIndex].number}`]}
                   onLSMUpdate={handleLSMUpdate}
+                  isNavigationMode={true}
                 />
               </>
             ) : (

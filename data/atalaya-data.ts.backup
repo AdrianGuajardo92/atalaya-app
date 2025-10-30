@@ -12,17 +12,7 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [1, 2],
       answer: "Cuando nos arrepentimos de verdad, Jehová nos perdona completamente. Es como si borrara nuestros pecados y nunca los hubiéramos cometido. Esto nos hace sentir felices y aliviados, igual que se sintió el rey David cuando fue perdonado.",
-      answerBullets: "**¿Qué hace Jehová cuando nos arrepentimos?**\n• Jehová nos perdona completamente\n• Es como si borrara nuestros pecados y nunca los hubiéramos cometido\n\n**¿Cómo nos hace sentir eso?**\n• Nos hace sentir felices y aliviados\n• Igual que se sintió el rey David cuando fue perdonado",
-      flashcards: [
-        {
-          question: "¿Cuáles son las 3 condiciones para que Jehová nos perdone?",
-          answer: "Arrepentirnos de verdad, confesar nuestros pecados, y no volverlos a cometer"
-        },
-        {
-          question: "¿Qué hace Jehová con el pecado cuando nos perdona?",
-          answer: "Lo borra por completo, como si nunca lo hubiéramos cometido"
-        }
-      ]
+      answerBullets: "**¿Qué hace Jehová cuando nos arrepentimos?**\n• Jehová nos perdona completamente\n• Es como si borrara nuestros pecados y nunca los hubiéramos cometido\n\n**¿Cómo nos hace sentir eso?**\n• Nos hace sentir felices y aliviados\n• Igual que se sintió el rey David cuando fue perdonado"
     },
     {
       number: "3, 4",
@@ -144,35 +134,139 @@ export const atalayaData: AtalayaStudy = {
     },
     {
       number: 5,
-      content: "Si estamos convencidos de que Jehová nos ha perdonado, no caeremos en una de las trampas de Satanás. Recordemos que él hará cualquier cosa con tal de que dejemos de servir a Jehová. Por ejemplo, una de las trampas que utiliza es intentar hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar. Pensemos en el hombre de Corinto que fue culpable de inmoralidad sexual y como resultado fue sacado de la congregación (1 Cor. 5:1, 5, 13). Él después se arrepintió. Pero Satanás quería que los hermanos no lo perdonaran y no le permitieran regresar a la congregación. Si eso sucedía, Satanás tal vez conseguiría que el hombre creyera que lo que había hecho era imperdonable. Y entonces se sentiría tan \"abrumado por estar demasiado triste\" que dejaría de servir a Jehová. El Diablo no ha cambiado ni sus intenciones ni sus métodos. Lo bueno es que nosotros \"no desconocemos sus tácticas\" (2 Cor. 2:5-11)."
+      content: "Si estamos convencidos de que Jehová nos ha perdonado, no caeremos en una de las trampas de Satanás. Recordemos que él hará cualquier cosa con tal de que dejemos de servir a Jehová. Por ejemplo, una de las trampas que utiliza es intentar hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar. Pensemos en el hombre de Corinto que fue culpable de inmoralidad sexual y como resultado fue sacado de la congregación (1 Cor. 5:1, 5, 13). Él después se arrepintió. Pero Satanás quería que los hermanos no lo perdonaran y no le permitieran regresar a la congregación. Si eso sucedía, Satanás tal vez conseguiría que el hombre creyera que lo que había hecho era imperdonable. Y entonces se sentiría tan \"abrumado por estar demasiado triste\" que dejaría de servir a Jehová. El Diablo no ha cambiado ni sus intenciones ni sus métodos. Lo bueno es que nosotros \"no desconocemos sus tácticas\" (2 Cor. 2:5-11).",
+      flashcards: [
+        {
+          question: "¿Qué trampa utiliza Satanás para hacernos dejar de servir a Jehová?",
+          answer: "Intentar hacernos creer que hemos cometido un pecado imperdonable"
+        },
+        {
+          question: "¿Qué había hecho el hombre de Corinto mencionado en 1 Corintios 5?",
+          answer: "Fue culpable de inmoralidad sexual"
+        },
+        {
+          question: "¿Qué quería Satanás que hicieran los hermanos con el hombre de Corinto arrepentido?",
+          answer: "Que no lo perdonaran y no le permitieran regresar"
+        },
+        {
+          question: "Según 2 Corintios 2:5-11, ¿conocemos las tácticas de Satanás?",
+          answer: "Sí, no desconocemos sus tácticas"
+        }
+      ]
     },
     {
       number: 6,
-      content: "Si estamos convencidos de que Jehová nos ha perdonado, nos liberamos del peso de la culpa. Es natural que cuando pecamos nos sintamos mal (Sal. 51:17). Y eso es bueno, porque entonces la conciencia nos motivará a cambiar y a hacer lo que está bien (2 Cor. 7:10, 11). Sin embargo, si nos sentimos demasiado culpables incluso después de habernos arrepentido, podemos desanimarnos hasta el punto de querer darnos por vencidos. En cambio, cuando nos convencemos de que Jehová nos ha perdonado, podemos dejar la culpa atrás y pasar la página. De esa manera serviremos a Jehová como él quiere: con una conciencia tranquila y mucha alegría (Col. 1:10, 11; 2 Tim. 1:3). Veamos ahora qué nos ayudará a cada uno de nosotros a convencer a nuestro corazón de que Jehová nos ha perdonado."
+      content: "Si estamos convencidos de que Jehová nos ha perdonado, nos liberamos del peso de la culpa. Es natural que cuando pecamos nos sintamos mal (Sal. 51:17). Y eso es bueno, porque entonces la conciencia nos motivará a cambiar y a hacer lo que está bien (2 Cor. 7:10, 11). Sin embargo, si nos sentimos demasiado culpables incluso después de habernos arrepentido, podemos desanimarnos hasta el punto de querer darnos por vencidos. En cambio, cuando nos convencemos de que Jehová nos ha perdonado, podemos dejar la culpa atrás y pasar la página. De esa manera serviremos a Jehová como él quiere: con una conciencia tranquila y mucha alegría (Col. 1:10, 11; 2 Tim. 1:3). Veamos ahora qué nos ayudará a cada uno de nosotros a convencer a nuestro corazón de que Jehová nos ha perdonado.",
+      flashcards: [
+        {
+          question: "Según Salmo 51:17, ¿es natural sentirse mal cuando pecamos?",
+          answer: "Sí, es natural y eso es bueno"
+        },
+        {
+          question: "¿Qué puede pasar si nos sentimos demasiado culpables incluso después de arrepentirnos?",
+          answer: "Podemos desanimarnos hasta el punto de querer darnos por vencidos"
+        },
+        {
+          question: "De acuerdo con Colosenses 1:10, 11 y 2 Timoteo 1:3, ¿cómo quiere Jehová que le sirvamos?",
+          answer: "Con una conciencia tranquila y mucha alegría"
+        }
+      ]
     },
     {
       number: 7,
-      content: "Medita en cómo Jehová se describió a sí mismo. Fíjate, por ejemplo, en lo que le dijo a Moisés en el monte Sinaí (lee Éxodo 34:6, 7). De todas las cosas que Jehová pudo haber dicho de sí mismo, ¿en qué se centró? Eligió presentarse como \"un Dios misericordioso y compasivo\". Entonces, ¿crees que se negaría a perdonar a alguien que lo ama y se ha arrepentido de corazón de un pecado? Es imposible que Jehová actúe de una manera tan fría y cruel."
+      content: "Medita en cómo Jehová se describió a sí mismo. Fíjate, por ejemplo, en lo que le dijo a Moisés en el monte Sinaí (lee Éxodo 34:6, 7). De todas las cosas que Jehová pudo haber dicho de sí mismo, ¿en qué se centró? Eligió presentarse como \"un Dios misericordioso y compasivo\". Entonces, ¿crees que se negaría a perdonar a alguien que lo ama y se ha arrepentido de corazón de un pecado? Es imposible que Jehová actúe de una manera tan fría y cruel.",
+      flashcards: [
+        {
+          question: "Según Éxodo 34:6, 7, ¿dónde se describió Jehová a sí mismo como misericordioso y compasivo?",
+          answer: "En el monte Sinaí, hablando con Moisés"
+        },
+        {
+          question: "De todas las cosas que Jehová pudo decir de sí mismo, ¿en qué se centró?",
+          answer: "En presentarse como un Dios misericordioso y compasivo"
+        },
+        {
+          question: "¿A quién se negaría Jehová a perdonar?",
+          answer: "A nadie que lo ame y se haya arrepentido de corazón"
+        }
+      ]
     },
     {
       number: 8,
-      content: "Cuando Jehová dice que es misericordioso, podemos creerle por completo, pues él siempre dice la verdad (Sal. 31:5). Por eso, si te cuesta creer que Jehová te ha perdonado, ¿por qué no piensas en lo siguiente? Si estás convencido de que Jehová es misericordioso y compasivo, y por tanto perdona a todos los que se arrepienten, puedes tener la total seguridad de que también te perdona a ti."
+      content: "Cuando Jehová dice que es misericordioso, podemos creerle por completo, pues él siempre dice la verdad (Sal. 31:5). Por eso, si te cuesta creer que Jehová te ha perdonado, ¿por qué no piensas en lo siguiente? Si estás convencido de que Jehová es misericordioso y compasivo, y por tanto perdona a todos los que se arrepienten, puedes tener la total seguridad de que también te perdona a ti.",
+      flashcards: [
+        {
+          question: "Según Salmo 31:5, ¿podemos creer lo que Jehová dice sobre sí mismo?",
+          answer: "Sí, porque él siempre dice la verdad"
+        },
+        {
+          question: "Si Jehová perdona a todos los que se arrepienten, ¿qué seguridad podemos tener?",
+          answer: "La total seguridad de que también nos perdona a nosotros"
+        }
+      ]
     },
     {
       number: 9,
-      content: "Medita en lo que Jehová nos enseña en la Biblia sobre su manera de perdonar. Por ejemplo, David le dijo a Jehová: \"Tú perdonaste mi error y mis pecados\" (lee Salmo 32:5). La expresión hebrea que en este versículo se traduce como \"perdonar\" también significa \"levantar\" o \"llevar\". Así que, cuando Jehová perdonó a David, fue como si levantara de sus hombros una carga pesada y se la llevara. Como resultado, David se sintió muy aliviado y feliz (Sal. 32:2-4). Si nos arrepentimos de verdad, podemos sentirnos igual que él. No tenemos que seguir cargando con nuestros pecados, porque en realidad ya no están; Jehová los ha levantado de nuestros hombros y se los ha llevado."
+      content: "Medita en lo que Jehová nos enseña en la Biblia sobre su manera de perdonar. Por ejemplo, David le dijo a Jehová: \"Tú perdonaste mi error y mis pecados\" (lee Salmo 32:5). La expresión hebrea que en este versículo se traduce como \"perdonar\" también significa \"levantar\" o \"llevar\". Así que, cuando Jehová perdonó a David, fue como si levantara de sus hombros una carga pesada y se la llevara. Como resultado, David se sintió muy aliviado y feliz (Sal. 32:2-4). Si nos arrepentimos de verdad, podemos sentirnos igual que él. No tenemos que seguir cargando con nuestros pecados, porque en realidad ya no están; Jehová los ha levantado de nuestros hombros y se los ha llevado.",
+      flashcards: [
+        {
+          question: "En Salmo 32:5, ¿qué otros significados tiene la palabra hebrea traducida como 'perdonar'?",
+          answer: "También significa 'levantar' o 'llevar'"
+        },
+        {
+          question: "¿Cómo se sintió David después de que Jehová lo perdonó, según Salmo 32:2-4?",
+          answer: "Muy aliviado y feliz"
+        },
+        {
+          question: "¿Qué ilustración se usa para explicar cómo perdona Jehová?",
+          answer: "Es como si levantara una carga pesada de nuestros hombros y se la llevara"
+        }
+      ]
     },
     {
       number: 10,
-      content: "(Lee Salmo 86:5). David dijo que Jehová está \"dispuesto a perdonar\". Según una obra de consulta bíblica, esta expresión indica que \"perdonar forma parte de la naturaleza de Dios\". ¿Por qué es tan bueno con los pecadores arrepentidos? El versículo sigue diciendo: \"Tu amor leal por todos los que te llaman es inmenso\". Como vimos en el artículo anterior, el amor leal que Jehová siente por sus siervos es un apego profundo y duradero. Y ese amor siempre lo motiva a perdonar generosamente a quienes se arrepienten (Is. 55:7). Si te resulta difícil estar convencido de que Jehová te ha perdonado, quizás te ayude razonar así: \"Sé que Jehová está dispuesto a perdonar a todos los que se arrepienten y le piden misericordia. Así que puedo estar seguro de que Jehová me ha perdonado a mí\"."
+      content: "(Lee Salmo 86:5). David dijo que Jehová está \"dispuesto a perdonar\". Según una obra de consulta bíblica, esta expresión indica que \"perdonar forma parte de la naturaleza de Dios\". ¿Por qué es tan bueno con los pecadores arrepentidos? El versículo sigue diciendo: \"Tu amor leal por todos los que te llaman es inmenso\". Como vimos en el artículo anterior, el amor leal que Jehová siente por sus siervos es un apego profundo y duradero. Y ese amor siempre lo motiva a perdonar generosamente a quienes se arrepienten (Is. 55:7). Si te resulta difícil estar convencido de que Jehová te ha perdonado, quizás te ayude razonar así: \"Sé que Jehová está dispuesto a perdonar a todos los que se arrepienten y le piden misericordia. Así que puedo estar seguro de que Jehová me ha perdonado a mí\".",
+      flashcards: [
+        {
+          question: "Según Salmo 86:5, ¿qué indica la expresión 'dispuesto a perdonar'?",
+          answer: "Que perdonar forma parte de la naturaleza de Dios"
+        },
+        {
+          question: "¿Qué tipo de amor motiva a Jehová a perdonar generosamente?",
+          answer: "Su amor leal, que es un apego profundo y duradero"
+        },
+        {
+          question: "De acuerdo con Isaías 55:7, ¿cómo perdona Jehová a quienes se arrepienten?",
+          answer: "Generosamente"
+        }
+      ]
     },
     {
       number: 11,
-      content: "Por otro lado, la Biblia también nos enseña que Jehová sabe cómo estamos formados y comprende que somos imperfectos, y eso nos consuela mucho (Sal. 139:1, 2). Profundicemos en esta idea analizando otro salmo de David, que nos ayudará a convencernos de que Jehová quiere perdonarnos."
+      content: "Por otro lado, la Biblia también nos enseña que Jehová sabe cómo estamos formados y comprende que somos imperfectos, y eso nos consuela mucho (Sal. 139:1, 2). Profundicemos en esta idea analizando otro salmo de David, que nos ayudará a convencernos de que Jehová quiere perdonarnos.",
+      flashcards: [
+        {
+          question: "Según Salmo 139:1, 2, ¿qué comprende Jehová sobre nosotros?",
+          answer: "Sabe cómo estamos formados y comprende que somos imperfectos"
+        },
+        {
+          question: "¿Qué salmo de David analizaremos para convencernos del perdón de Jehová?",
+          answer: "El Salmo 103"
+        }
+      ]
     },
     {
       number: 12,
-      content: "(Lee Salmo 103:14). David dijo que Jehová \"se acuerda de que somos polvo\". Con esas palabras, dio una de las razones por las que Dios está dispuesto a perdonarnos si nos arrepentimos: siempre tiene presente que somos imperfectos. Analicemos en más detalle este versículo."
+      content: "(Lee Salmo 103:14). David dijo que Jehová \"se acuerda de que somos polvo\". Con esas palabras, dio una de las razones por las que Dios está dispuesto a perdonarnos si nos arrepentimos: siempre tiene presente que somos imperfectos. Analicemos en más detalle este versículo.",
+      flashcards: [
+        {
+          question: "En Salmo 103:14, ¿de qué se acuerda Jehová según David?",
+          answer: "Se acuerda de que somos polvo"
+        },
+        {
+          question: "¿Por qué está dispuesto Jehová a perdonarnos si nos arrepentimos?",
+          answer: "Porque siempre tiene presente que somos imperfectos"
+        }
+      ]
     },
     {
       number: 13,

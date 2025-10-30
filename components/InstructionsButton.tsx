@@ -55,7 +55,15 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",                  // Dejar vacío, se llena en la app
       paragraphs: [1, 2],           // Números de párrafos relacionados
       section: "SUBTÍTULO OPCIONAL", // Solo si hay subtítulo
-      sectionLSM: ""                // Dejar vacío, se llena en la app
+      sectionLSM: "",               // Dejar vacío, se llena en la app
+      answer: "Respuesta en lenguaje sencillo basada en los párrafos",
+      answerBullets: "• Punto clave 1\\n• Punto clave 2\\n• Punto clave 3",
+      flashcards: [                 // Tarjetas didácticas (OPCIONAL - agregar conforme se estudia)
+        {
+          question: "¿Pregunta sobre dato específico del párrafo?",
+          answer: "Respuesta breve y directa"
+        }
+      ]
     },
     // ... más preguntas
   ],
@@ -117,7 +125,64 @@ export const atalayaData: AtalayaStudy = {
 }
 \`\`\`
 
-### Paso 4: Párrafos con referencias bíblicas
+### Paso 4: Respuestas y puntos clave
+
+**Respuesta simple:**
+\`\`\`typescript
+answer: "Explicación directa en lenguaje sencillo de lo que responde la pregunta"
+\`\`\`
+
+**Puntos clave (bullets):**
+\`\`\`typescript
+answerBullets: "**Subtítulo opcional**\\n• Punto 1\\n• Punto 2\\n• Punto 3"
+\`\`\`
+
+### Paso 5: Tarjetas didácticas (Flashcards)
+
+Las flashcards son **OPCIONALES** y se agregan **conforme se estudia**, no todas de golpe:
+
+**Características:**
+- Aparecen **debajo de las respuestas**
+- Ocultas por defecto en modo scroll (botón para mostrar/ocultar)
+- Siempre visibles en modo navegación
+- Estilo flip card (click para voltear)
+
+**Cuándo agregar:**
+- Solo cuando el usuario lo pida
+- Conforme se estudian los párrafos
+- No generar todas automáticamente
+
+**Qué incluir:**
+✅ Referencias bíblicas importantes
+✅ Datos específicos relevantes
+✅ Conceptos clave del párrafo
+✅ Información que ayude a recordar puntos principales
+
+**Qué NO incluir:**
+❌ Nombres de ejemplos personales (ej: "Jennifer")
+❌ Detalles sin importancia
+❌ Información obvia
+
+**Ejemplo:**
+\`\`\`typescript
+flashcards: [
+  {
+    question: "¿Qué significa la palabra hebrea 'perdonar' en Salmo 32:5?",
+    answer: "También significa 'levantar' o 'llevar'"
+  },
+  {
+    question: "¿Cuáles son las 3 condiciones para que Jehová nos perdone?",
+    answer: "Arrepentirnos, confesar y no volver a cometer el pecado"
+  }
+]
+\`\`\`
+
+**Lenguaje:**
+- Preguntas claras y directas
+- Respuestas breves (1-2 oraciones máximo)
+- Lenguaje sencillo y fácil de entender
+
+### Paso 6: Párrafos con referencias bíblicas
 Las referencias bíblicas entre paréntesis se resaltan automáticamente en azul:
 
 \`\`\`typescript
@@ -139,6 +204,8 @@ Las referencias bíblicas entre paréntesis se resaltan automáticamente en azul
 - ✅ Sincronización entre localhost y producción
 - ✅ Temporizador flotante y arrastrable
 - ✅ Ver párrafos completos (click en círculo azul con número)
+- ✅ **Respuestas con dos niveles**: explicación simple + puntos clave
+- ✅ **Tarjetas didácticas (flashcards)**: flip cards para repasar datos importantes
 - ✅ Atajos de teclado:
   - Enter: Guardar LSM
   - Escape: Cancelar edición
@@ -193,6 +260,59 @@ git push             # Desplegar a Vercel
 - Los subtítulos son **opcionales**, solo agrégalos si el estudio los tiene
 - Las preguntas de repaso están **separadas** de las preguntas normales
 - El navegador **cachea** las traducciones LSM, así que si actualizas verás tus traducciones anteriores
+
+---
+
+## 📚 FUNCIÓN ADICIONAL: Ayuda para estudiar el artículo
+
+Además de mantener la aplicación, también puedes pedirme que te ayude a **estudiar el artículo párrafo por párrafo**.
+
+### Cómo funciona:
+
+Cuando el usuario diga algo como:
+- "Ayúdame a estudiar el artículo"
+- "Vamos a estudiar párrafo por párrafo"
+- "Dame las respuestas a las preguntas"
+
+**Debes hacer lo siguiente:**
+
+1. **Ir párrafo por párrafo** (o grupo de párrafos según las preguntas)
+2. **Mostrar la pregunta** del estudio
+3. **Dar la respuesta directa** basándote en el contenido de los párrafos
+4. **Usar lenguaje sencillo y fácil de entender**
+5. **Ser conciso** - solo la respuesta directa a lo que se pregunta
+6. **Esperar confirmación** del usuario antes de continuar al siguiente grupo de párrafos
+
+### Ejemplo de formato:
+
+\`\`\`
+## 📖 Párrafos 1, 2
+
+**Pregunta:** ¿Qué hace Jehová cuando nos arrepentimos, y cómo nos hace sentir eso?
+
+**Respuesta:**
+Cuando nos arrepentimos de verdad, Jehová nos perdona completamente. Es como si borrara nuestros pecados y nunca los hubiéramos cometido. Esto nos hace sentir felices y aliviados, igual que se sintió el rey David cuando fue perdonado.
+
+---
+
+¿Listo para continuar con los párrafos 3, 4? 😊
+\`\`\`
+
+### Reglas importantes para las respuestas:
+
+✅ **Respuesta directa** - No des información extra que no responda la pregunta
+✅ **Lenguaje sencillo** - Como si le hablaras a alguien que está aprendiendo
+✅ **Basada en los párrafos** - Usa solo la información de los párrafos correspondientes
+✅ **Concisa** - 2-4 oraciones máximo por respuesta
+✅ **Clara** - Evita vocabulario complicado o teológico innecesario
+
+### Ejemplo de cómo NO responder:
+
+❌ "Bueno, si analizamos el contexto histórico de David y consideramos las implicaciones teológicas del perdón divino en el marco del pacto mosaico..."
+
+### Ejemplo de cómo SÍ responder:
+
+✅ "Jehová nos perdona completamente cuando nos arrepentimos. Esto nos hace sentir felices y aliviados."
 
 ---
 
