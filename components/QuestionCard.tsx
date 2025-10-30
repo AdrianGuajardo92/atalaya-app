@@ -129,15 +129,43 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       {/* Subtítulo de sección (si existe) */}
       {question.section && (
         <div className="mb-6 mt-8">
-          {/* Subtítulo en español */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-4 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-center uppercase tracking-wide">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-6 rounded-lg shadow-lg group relative">
+            {/* Subtítulo en español */}
+            <h2 className="text-2xl font-bold text-center uppercase tracking-wide mb-4">
               {question.section}
             </h2>
+
+            {/* Línea divisoria decorativa */}
+            <div className="w-20 h-1 bg-white/30 mx-auto mb-4"></div>
+
+            {/* Subtítulo en LSM - Modo visualización */}
+            {!isEditingSectionLSM && currentSectionLSMText ? (
+              <>
+                <div className="text-center">
+                  <p className="text-sm mb-2 font-semibold opacity-80">🤟 LSM</p>
+                  <h3 className="text-xl font-bold uppercase tracking-wide">
+                    {currentSectionLSMText}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setIsEditingSectionLSM(true)}
+                  className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-white text-blue-600 text-sm rounded-lg hover:bg-blue-50 font-medium shadow-sm"
+                >
+                  ✏️ Editar LSM
+                </button>
+              </>
+            ) : !isEditingSectionLSM ? (
+              <button
+                onClick={() => setIsEditingSectionLSM(true)}
+                className="w-full py-2 bg-white/10 border-2 border-dashed border-white/30 rounded-lg hover:bg-white/20 transition-colors text-white font-semibold text-sm"
+              >
+                ➕ Agregar subtítulo en LSM
+              </button>
+            ) : null}
           </div>
 
-          {/* Subtítulo en LSM - Modo edición o visualización */}
-          {isEditingSectionLSM ? (
+          {/* Modo edición LSM - Fuera del banner principal */}
+          {isEditingSectionLSM && (
             <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
               <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar Subtítulo LSM (Enter para guardar, Shift+Enter para nueva línea):</p>
               <textarea
@@ -166,30 +194,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </button>
               </div>
             </div>
-          ) : (
-            <>
-              {currentSectionLSMText ? (
-                <div className="mt-3 p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md group relative">
-                  <p className="text-sm mb-2 font-semibold opacity-90">🤟 LSM:</p>
-                  <h3 className="text-xl font-bold text-center uppercase tracking-wide">
-                    {currentSectionLSMText}
-                  </h3>
-                  <button
-                    onClick={() => setIsEditingSectionLSM(true)}
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-white text-blue-600 text-sm rounded-lg hover:bg-blue-50 font-medium shadow-sm"
-                  >
-                    ✏️ Editar
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={() => setIsEditingSectionLSM(true)}
-                  className="mt-3 w-full p-3 bg-blue-50 border-2 border-dashed border-blue-400 rounded-lg hover:bg-blue-100 transition-colors text-blue-700 font-semibold"
-                >
-                  ➕ Agregar subtítulo en LSM
-                </button>
-              )}
-            </>
           )}
         </div>
       )}
