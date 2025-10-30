@@ -208,56 +208,58 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-        {/* Número de pregunta y contenido unificado */}
-        <div className="flex items-start gap-4 mb-4">
-          <span className="text-2xl font-bold text-gray-700 min-w-[60px]">
-            {question.number}.
-          </span>
+      {/* OPCIÓN 2: Tarjetas Compactas */}
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
+        {/* Número flotante */}
+        <div className="flex items-start gap-4 p-6">
+          <div className="flex-shrink-0">
+            <button
+              onClick={() => setShowParagraphs(!showParagraphs)}
+              className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all cursor-pointer"
+              title={showParagraphs ? 'Ocultar párrafos' : 'Ver párrafos'}
+            >
+              <span className="text-white font-bold text-lg">{question.number}</span>
+            </button>
+          </div>
 
-          {/* Contenedor unificado de preguntas */}
-          <div className="flex-1">
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-5 border-l-4 border-blue-500 shadow-sm group relative">
-              {/* Pregunta en español */}
-              <div className="mb-3">
-                <p className="text-sm text-gray-600 mb-1 font-medium">Español</p>
-                <p className="text-xl font-semibold text-gray-800 leading-relaxed">
-                  {question.textEs}
-                </p>
-              </div>
+          {/* Contenido lado a lado */}
+          <div className="flex-1 space-y-4">
+            {/* Español */}
+            <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-gray-300 group relative">
+              <div className="text-xs font-semibold text-gray-500 mb-1">Español</div>
+              <p className="text-base text-gray-800 leading-relaxed">
+                {question.textEs}
+              </p>
+            </div>
 
-              {/* Línea divisoria */}
-              <div className="w-16 h-0.5 bg-blue-300 my-3"></div>
-
-              {/* Pregunta en LSM - Modo visualización */}
+            {/* LSM */}
+            <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 group relative">
               {!isEditingLSM && currentLSMText ? (
                 <>
-                  <div>
-                    <p className="text-sm text-blue-700 mb-2 font-semibold">🤟 LSM</p>
-                    <p className="text-2xl font-bold text-gray-900 leading-relaxed uppercase">
-                      {currentLSMText.toUpperCase()}
-                    </p>
-                  </div>
+                  <div className="text-xs font-semibold text-blue-700 mb-1">🤟 LSM</div>
+                  <p className="text-lg font-bold text-gray-900 leading-relaxed uppercase">
+                    {currentLSMText.toUpperCase()}
+                  </p>
                   <button
                     onClick={() => setIsEditingLSM(true)}
                     className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 font-medium shadow-sm"
                   >
-                    ✏️ Editar LSM
+                    ✏️ Editar
                   </button>
                 </>
               ) : !isEditingLSM ? (
                 <button
                   onClick={() => setIsEditingLSM(true)}
-                  className="w-full py-2 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg hover:bg-blue-100 transition-colors text-blue-600 font-medium text-sm"
+                  className="w-full py-2 bg-blue-100 border-2 border-dashed border-blue-300 rounded-lg hover:bg-blue-200 transition-colors text-blue-600 font-medium text-sm"
                 >
                   ➕ Agregar pregunta en LSM
                 </button>
               ) : null}
             </div>
 
-            {/* Modo edición LSM - Fuera del contenedor unificado */}
+            {/* Modo edición LSM */}
             {isEditingLSM && (
-              <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
+              <div className="p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
                 <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
                 <textarea
                   value={editedLSM}
@@ -288,37 +290,27 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             )}
           </div>
         </div>
-
-      {/* Botón discreto para mostrar párrafos */}
-      <div className="mt-4">
-        <button
-          onClick={() => setShowParagraphs(!showParagraphs)}
-          className="text-sm px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 transition-colors text-gray-600 hover:text-gray-800"
-        >
-          {showParagraphs ? '▼' : '▶'} Párrafos {question.paragraphs.join(', ')}
-        </button>
-
-        {/* Contenido de los párrafos */}
-        {showParagraphs && (
-          <div className="mt-4 space-y-4">
-            {relatedParagraphs.map((paragraph) => (
-              <div key={paragraph.number} className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-400">
-                {/* Número de párrafo destacado */}
-                <div className="flex items-start gap-3 mb-2">
-                  <span className="bg-blue-600 text-white font-bold text-sm w-7 h-7 flex items-center justify-center rounded-full flex-shrink-0">
-                    {paragraph.number}
-                  </span>
-                  {/* Contenido del párrafo */}
-                  <p className="text-base leading-relaxed text-gray-700 flex-1">
-                    {formatContent(paragraph.content)}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
-    </div>
+
+      {/* Contenido de los párrafos */}
+      {showParagraphs && (
+        <div className="mt-4 space-y-4">
+          {relatedParagraphs.map((paragraph) => (
+            <div key={paragraph.number} className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-400 shadow-sm">
+              {/* Número de párrafo destacado */}
+              <div className="flex items-start gap-3 mb-2">
+                <span className="bg-blue-600 text-white font-bold text-sm w-7 h-7 flex items-center justify-center rounded-full flex-shrink-0">
+                  {paragraph.number}
+                </span>
+                {/* Contenido del párrafo */}
+                <p className="text-base leading-relaxed text-gray-700 flex-1">
+                  {formatContent(paragraph.content)}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
