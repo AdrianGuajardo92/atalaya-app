@@ -30,7 +30,17 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [3, 4],
       answer: "Jennifer se sentía culpable porque había llevado una doble vida en su adolescencia. Aunque sabía que Jehová la había perdonado, su corazón no se dejaba convencer. En este artículo veremos por qué es importante estar convencidos de que Jehová nos ha perdonado y qué nos ayudará a lograrlo.",
-      answerBullets: "**¿Cómo se sentía Jennifer?**\n• Se sentía culpable por su doble vida en la adolescencia\n• Sabía que Jehová la había perdonado\n• Pero su corazón no se dejaba convencer\n\n**¿Qué veremos en este artículo?**\n• Por qué es importante estar convencidos del perdón de Jehová\n• Qué nos ayudará a lograrlo"
+      answerBullets: "**¿Cómo se sentía Jennifer?**\n• Se sentía culpable por su doble vida en la adolescencia\n• Sabía que Jehová la había perdonado\n• Pero su corazón no se dejaba convencer\n\n**¿Qué veremos en este artículo?**\n• Por qué es importante estar convencidos del perdón de Jehová\n• Qué nos ayudará a lograrlo",
+      flashcards: [
+        {
+          question: "¿Qué puede pasar aunque sepamos que Jehová nos ha perdonado?",
+          answer: "Nuestro corazón puede que no se deje convencer"
+        },
+        {
+          question: "¿Cuáles son los 2 temas principales que se verán en el artículo?",
+          answer: "Por qué es importante estar convencidos del perdón de Jehová y qué nos ayudará a lograrlo"
+        }
+      ]
     },
     {
       number: "5",
