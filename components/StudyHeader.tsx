@@ -13,12 +13,12 @@ export default function StudyHeader({ song, title, biblicalText, theme }: StudyH
     return parts.map((part, index) => {
       if (part.startsWith('"') && part.endsWith('"')) {
         return (
-          <span key={index} className="text-blue-600 font-medium">
+          <span key={index} className="text-blue-600 font-bold">
             {part}
           </span>
         );
       }
-      return <span key={index}>{part}</span>;
+      return <span key={index} className="text-gray-800 font-semibold">{part}</span>;
     });
   };
 

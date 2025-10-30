@@ -162,5 +162,17 @@ export const atalayaData: AtalayaStudy = {
       number: 18,
       content: "En el artículo anterior vimos lo que te puede ayudar a convencerte de que Jehová te quiere. Y en este hemos visto lo que puedes hacer para convencer a tu corazón de que Jehová te ha perdonado. Medita en cómo Jehová se describe a sí mismo y en lo que la Biblia enseña sobre su manera de perdonar. No olvides que él siempre tiene presente que eres imperfecto y te trata con misericordia. Y recuerda que Dios perdona de manera completa. Si haces todo esto, podrás decir con la misma confianza que David: \"¡Gracias, Jehová, por perdonar 'mi error y mis pecados'!\" (Sal. 32:5)."
     }
-  ]
+  ],
+  reviewQuestions: [
+    {
+      question: "¿Por qué es tan importante convencernos de que Jehová nos ha perdonado?"
+    },
+    {
+      question: "¿Qué te puede ayudar a convencerte de que Jehová te ha perdonado?"
+    },
+    {
+      question: "¿Por qué tenemos que seguir convenciendo a nuestro corazón de que Jehová nos perdona?"
+    }
+  ],
+  finalSong: "Canción 1: Las cualidades principales de Jehová"
 };

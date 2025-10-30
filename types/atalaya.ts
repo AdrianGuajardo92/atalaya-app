@@ -12,6 +12,11 @@ export interface Paragraph {
   content: string; // Contenido del párrafo con textos bíblicos
 }
 
+export interface ReviewQuestion {
+  question: string; // Pregunta de repaso en español
+  questionLSM?: string; // Pregunta de repaso en LSM
+}
+
 export interface AtalayaStudy {
   song: string;
   title: string;
@@ -19,4 +24,6 @@ export interface AtalayaStudy {
   theme: string;
   questions: Question[];
   paragraphs: Paragraph[];
+  reviewQuestions: ReviewQuestion[]; // Preguntas de repaso
+  finalSong: string; // Canción final
 }

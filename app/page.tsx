@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
+import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import { atalayaData } from '@/data/atalaya-data';
 
 export default function Home() {
   const [navigationMode, setNavigationMode] = useState<'scroll' | 'paginated'>('scroll');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(-1); // -1 significa que no estamos en preguntas de repaso
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,14 +28,31 @@ export default function Home() {
   }, []);
 
   const handlePrevious = () => {
-    if (currentQuestionIndex > 0) {
+    if (currentReviewIndex > 0) {
+      // Estamos en preguntas de repaso, retroceder en ellas
+      setCurrentReviewIndex(currentReviewIndex - 1);
+    } else if (currentReviewIndex === 0) {
+      // Estamos en la primera pregunta de repaso, volver a la última pregunta normal
+      setCurrentReviewIndex(-1);
+      setCurrentQuestionIndex(atalayaData.questions.length - 1);
+    } else if (currentQuestionIndex > 0) {
+      // Estamos en preguntas normales, retroceder
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
   const handleNext = () => {
-    if (currentQuestionIndex < atalayaData.questions.length - 1) {
+    if (currentReviewIndex >= 0) {
+      // Estamos en preguntas de repaso
+      if (currentReviewIndex < atalayaData.reviewQuestions.length - 1) {
+        setCurrentReviewIndex(currentReviewIndex + 1);
+      }
+    } else if (currentQuestionIndex < atalayaData.questions.length - 1) {
+      // Estamos en preguntas normales
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else if (currentQuestionIndex === atalayaData.questions.length - 1) {
+      // Estamos en la última pregunta normal, pasar a preguntas de repaso
+      setCurrentReviewIndex(0);
     }
   };
 
@@ -41,6 +60,13 @@ export default function Home() {
     setLsmData(prev => ({
       ...prev,
       [questionNumber]: text
+    }));
+  };
+
+  const handleReviewLSMUpdate = (index: number, text: string) => {
+    setLsmData(prev => ({
+      ...prev,
+      [`review-${index}`]: text
     }));
   };
 
@@ -91,38 +117,140 @@ export default function Home() {
 
         {/* Modo Scroll - Muestra todas las preguntas */}
         {navigationMode === 'scroll' && (
-          <div className="space-y-4">
-            {atalayaData.questions.map((question, index) => (
-              <QuestionCard
-                key={index}
-                question={question}
-                paragraphs={atalayaData.paragraphs}
-                lsmText={lsmData[question.number]}
-                sectionLsmText={lsmData[`section-${question.number}`]}
-                onLSMUpdate={handleLSMUpdate}
-              />
-            ))}
-          </div>
+          <>
+            <div className="space-y-4">
+              {atalayaData.questions.map((question, index) => (
+                <QuestionCard
+                  key={index}
+                  question={question}
+                  paragraphs={atalayaData.paragraphs}
+                  lsmText={lsmData[question.number]}
+                  sectionLsmText={lsmData[`section-${question.number}`]}
+                  onLSMUpdate={handleLSMUpdate}
+                />
+              ))}
+            </div>
+
+            {/* Preguntas de Repaso */}
+            <div className="mt-8">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-md p-6 mb-6">
+                <h2 className="text-2xl font-bold text-purple-800 text-center">
+                  ¿QUÉ RESPONDERÍAS?
+                </h2>
+              </div>
+              <div className="space-y-4">
+                {atalayaData.reviewQuestions.map((reviewQ, index) => (
+                  <ReviewQuestionCard
+                    key={index}
+                    reviewQuestion={reviewQ}
+                    index={index}
+                    lsmText={lsmData[`review-${index}`]}
+                    onLSMUpdate={handleReviewLSMUpdate}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Canción Final */}
+            <div className="mt-8 bg-gradient-to-b from-blue-50 to-white rounded-lg shadow-md p-8 text-center">
+              <p className="text-lg font-semibold text-gray-600">
+                {atalayaData.finalSong}
+              </p>
+            </div>
+          </>
         )}
 
         {/* Modo Paginado - Muestra una pregunta a la vez */}
         {navigationMode === 'paginated' && (
           <div>
-            <QuestionCard
-              question={atalayaData.questions[currentQuestionIndex]}
-              paragraphs={atalayaData.paragraphs}
-              lsmText={lsmData[atalayaData.questions[currentQuestionIndex].number]}
-              sectionLsmText={lsmData[`section-${atalayaData.questions[currentQuestionIndex].number}`]}
-              onLSMUpdate={handleLSMUpdate}
-            />
+            {currentReviewIndex === -1 ? (
+              /* Mostrar pregunta normal */
+              <>
+                <QuestionCard
+                  question={atalayaData.questions[currentQuestionIndex]}
+                  paragraphs={atalayaData.paragraphs}
+                  lsmText={lsmData[atalayaData.questions[currentQuestionIndex].number]}
+                  sectionLsmText={lsmData[`section-${atalayaData.questions[currentQuestionIndex].number}`]}
+                  onLSMUpdate={handleLSMUpdate}
+                />
+              </>
+            ) : (
+              /* Mostrar pregunta de repaso */
+              <>
+                <ReviewQuestionCard
+                  reviewQuestion={atalayaData.reviewQuestions[currentReviewIndex]}
+                  index={currentReviewIndex}
+                  lsmText={lsmData[`review-${currentReviewIndex}`]}
+                  onLSMUpdate={handleReviewLSMUpdate}
+                />
+
+                {/* Canción Final - Solo en la última pregunta de repaso */}
+                {currentReviewIndex === atalayaData.reviewQuestions.length - 1 && (
+                  <div className="mt-6 bg-gradient-to-b from-blue-50 to-white rounded-lg shadow-md p-8 text-center">
+                    <p className="text-lg font-semibold text-gray-600">
+                      {atalayaData.finalSong}
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* Vista previa de lo que viene */}
+            {currentReviewIndex === -1 ? (
+              /* Estamos en preguntas normales */
+              currentQuestionIndex < atalayaData.questions.length - 1 ? (
+                <div className="mt-6 bg-amber-50 border-l-4 border-amber-400 p-4 rounded-lg shadow-sm">
+                  <p className="text-sm font-semibold text-amber-800 mb-2">📋 Siguiente:</p>
+                  <div className="text-sm text-gray-700">
+                    {/* Si hay subtítulo, mostrarlo primero */}
+                    {atalayaData.questions[currentQuestionIndex + 1].section && (
+                      <div className="mb-3 pb-2 border-b border-amber-200">
+                        <p className="font-semibold text-blue-700 mb-1">
+                          Subtítulo:
+                        </p>
+                        <p className="text-gray-800 font-medium text-xs uppercase">
+                          {atalayaData.questions[currentQuestionIndex + 1].section}
+                        </p>
+                      </div>
+                    )}
+                    {/* Después mostrar solo los párrafos */}
+                    <p className="font-semibold text-gray-800">
+                      Párrafo{atalayaData.questions[currentQuestionIndex + 1].paragraphs.length > 1 ? 's' : ''}: {atalayaData.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                /* En la última pregunta normal, mostrar que vienen las preguntas de repaso */
+                <div className="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4 rounded-lg shadow-sm">
+                  <p className="text-sm font-semibold text-purple-800 mb-2">📋 Siguiente:</p>
+                  <div className="text-sm text-gray-700">
+                    <p className="font-semibold text-purple-700">
+                      ¿Qué responderías? ({atalayaData.reviewQuestions.length} preguntas de repaso)
+                    </p>
+                  </div>
+                </div>
+              )
+            ) : (
+              /* Estamos en preguntas de repaso */
+              currentReviewIndex < atalayaData.reviewQuestions.length - 1 && (
+                <div className="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4 rounded-lg shadow-sm">
+                  <p className="text-sm font-semibold text-purple-800 mb-2">📋 Siguiente:</p>
+                  <div className="text-sm text-gray-700">
+                    <p className="font-semibold text-purple-700">
+                      Pregunta de repaso {currentReviewIndex + 2}
+                    </p>
+                  </div>
+                </div>
+              )
+            )}
 
             {/* Controles de navegación */}
             <div className="flex justify-between items-center mt-6 bg-white rounded-lg shadow-md p-4">
               <button
                 onClick={handlePrevious}
-                disabled={currentQuestionIndex === 0}
+                disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
                 className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  currentQuestionIndex === 0
+                  currentQuestionIndex === 0 && currentReviewIndex === -1
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 text-white hover:bg-blue-700'
                 }`}
@@ -131,14 +259,18 @@ export default function Home() {
               </button>
 
               <div className="text-lg font-semibold text-gray-700">
-                Pregunta {currentQuestionIndex + 1} de {atalayaData.questions.length}
+                {currentReviewIndex === -1 ? (
+                  <>Pregunta {currentQuestionIndex + 1} de {atalayaData.questions.length}</>
+                ) : (
+                  <>Repaso {currentReviewIndex + 1} de {atalayaData.reviewQuestions.length}</>
+                )}
               </div>
 
               <button
                 onClick={handleNext}
-                disabled={currentQuestionIndex === atalayaData.questions.length - 1}
+                disabled={currentReviewIndex === atalayaData.reviewQuestions.length - 1}
                 className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  currentQuestionIndex === atalayaData.questions.length - 1
+                  currentReviewIndex === atalayaData.reviewQuestions.length - 1
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 text-white hover:bg-blue-700'
                 }`}

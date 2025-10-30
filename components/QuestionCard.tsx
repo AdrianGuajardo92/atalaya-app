@@ -80,6 +80,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       e.preventDefault(); // Evitar salto de línea
       handleSaveLSM();
     }
+    // Si presiona Escape, cancelar
+    else if (e.key === 'Escape') {
+      e.preventDefault();
+      handleCancelEdit();
+    }
     // Shift+Enter permite salto de línea normal
   };
 
@@ -119,6 +124,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       e.preventDefault();
       handleSaveSectionLSM();
     }
+    // Si presiona Escape, cancelar
+    else if (e.key === 'Escape') {
+      e.preventDefault();
+      handleCancelSectionEdit();
+    }
   };
 
   const currentLSMText = lsmText || question.textLSM;
@@ -144,7 +154,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <div className="text-center">
                   <p className="text-sm mb-2 font-semibold opacity-80">🤟 LSM</p>
                   <h3 className="text-xl font-bold uppercase tracking-wide">
-                    {currentSectionLSMText}
+                    {currentSectionLSMText.toUpperCase()}
                   </h3>
                 </div>
                 <button
@@ -167,7 +177,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           {/* Modo edición LSM - Fuera del banner principal */}
           {isEditingSectionLSM && (
             <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
-              <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar Subtítulo LSM (Enter para guardar, Shift+Enter para nueva línea):</p>
+              <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar Subtítulo LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
               <textarea
                 value={editedSectionLSM}
                 onChange={(e) => setEditedSectionLSM(e.target.value)}
@@ -199,78 +209,85 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       )}
 
       <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-        {/* Número de pregunta */}
+        {/* Número de pregunta y contenido unificado */}
         <div className="flex items-start gap-4 mb-4">
-        <span className="text-2xl font-bold text-gray-700 min-w-[60px]">
-          {question.number}.
-        </span>
+          <span className="text-2xl font-bold text-gray-700 min-w-[60px]">
+            {question.number}.
+          </span>
 
-        {/* Preguntas en español y LSM */}
-        <div className="flex-1">
-          {/* Pregunta en español */}
-          <div className="mb-2">
-            <p className="text-xl font-semibold text-gray-800 leading-relaxed">
-              {question.textEs}
-            </p>
-          </div>
-
-          {/* Pregunta en LSM - Modo visualización o edición */}
-          {isEditingLSM ? (
-            <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
-              <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar LSM (Enter para guardar, Shift+Enter para nueva línea):</p>
-              <textarea
-                value={editedLSM}
-                onChange={(e) => setEditedLSM(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-xl font-semibold text-gray-900 bg-white shadow-inner"
-                rows={4}
-                placeholder="Escribe la pregunta en LSM..."
-                autoFocus
-              />
-              <div className="flex gap-2 mt-3">
-                <button
-                  onClick={handleSaveLSM}
-                  disabled={isSaving}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors font-medium shadow-sm"
-                >
-                  {isSaving ? 'Guardando...' : '💾 Guardar'}
-                </button>
-                <button
-                  onClick={handleCancelEdit}
-                  disabled={isSaving}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium"
-                >
-                  ✖️ Cancelar
-                </button>
+          {/* Contenedor unificado de preguntas */}
+          <div className="flex-1">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-5 border-l-4 border-blue-500 shadow-sm group relative">
+              {/* Pregunta en español */}
+              <div className="mb-3">
+                <p className="text-sm text-gray-600 mb-1 font-medium">Español</p>
+                <p className="text-xl font-semibold text-gray-800 leading-relaxed">
+                  {question.textEs}
+                </p>
               </div>
-            </div>
-          ) : (
-            <>
-              {currentLSMText ? (
-                <div className="mt-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500 shadow-sm group relative">
-                  <p className="text-sm text-blue-700 mb-2 font-semibold">🤟 LSM:</p>
-                  <p className="text-2xl font-bold text-gray-900 leading-relaxed">
-                    {currentLSMText}
-                  </p>
+
+              {/* Línea divisoria */}
+              <div className="w-16 h-0.5 bg-blue-300 my-3"></div>
+
+              {/* Pregunta en LSM - Modo visualización */}
+              {!isEditingLSM && currentLSMText ? (
+                <>
+                  <div>
+                    <p className="text-sm text-blue-700 mb-2 font-semibold">🤟 LSM</p>
+                    <p className="text-2xl font-bold text-gray-900 leading-relaxed uppercase">
+                      {currentLSMText.toUpperCase()}
+                    </p>
+                  </div>
                   <button
                     onClick={() => setIsEditingLSM(true)}
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 font-medium shadow-sm"
+                    className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 font-medium shadow-sm"
                   >
-                    ✏️ Editar
+                    ✏️ Editar LSM
                   </button>
-                </div>
-              ) : (
+                </>
+              ) : !isEditingLSM ? (
                 <button
                   onClick={() => setIsEditingLSM(true)}
-                  className="mt-3 w-full p-3 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg hover:bg-blue-100 transition-colors text-blue-600 font-medium"
+                  className="w-full py-2 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg hover:bg-blue-100 transition-colors text-blue-600 font-medium text-sm"
                 >
                   ➕ Agregar pregunta en LSM
                 </button>
-              )}
-            </>
-          )}
+              ) : null}
+            </div>
+
+            {/* Modo edición LSM - Fuera del contenedor unificado */}
+            {isEditingLSM && (
+              <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
+                <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
+                <textarea
+                  value={editedLSM}
+                  onChange={(e) => setEditedLSM(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-xl font-semibold text-gray-900 bg-white shadow-inner"
+                  rows={4}
+                  placeholder="Escribe la pregunta en LSM..."
+                  autoFocus
+                />
+                <div className="flex gap-2 mt-3">
+                  <button
+                    onClick={handleSaveLSM}
+                    disabled={isSaving}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors font-medium shadow-sm"
+                  >
+                    {isSaving ? 'Guardando...' : '💾 Guardar'}
+                  </button>
+                  <button
+                    onClick={handleCancelEdit}
+                    disabled={isSaving}
+                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium"
+                  >
+                    ✖️ Cancelar
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
       {/* Botón discreto para mostrar párrafos */}
       <div className="mt-4">
@@ -285,10 +302,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         {showParagraphs && (
           <div className="mt-4 space-y-4">
             {relatedParagraphs.map((paragraph) => (
-              <div key={paragraph.number} className="border-l-4 border-gray-300 pl-4">
-                <p className="text-base leading-relaxed text-gray-700">
-                  {formatContent(paragraph.content)}
-                </p>
+              <div key={paragraph.number} className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-400">
+                {/* Número de párrafo destacado */}
+                <div className="flex items-start gap-3 mb-2">
+                  <span className="bg-blue-600 text-white font-bold text-sm w-7 h-7 flex items-center justify-center rounded-full flex-shrink-0">
+                    {paragraph.number}
+                  </span>
+                  {/* Contenido del párrafo */}
+                  <p className="text-base leading-relaxed text-gray-700 flex-1">
+                    {formatContent(paragraph.content)}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
