@@ -65,7 +65,6 @@ export default function FlashCards({ cards }: FlashCardsProps) {
                     WebkitBackfaceVisibility: 'hidden',
                   }}
                 >
-                  <div className="text-xs text-amber-600 font-semibold mb-2">❓ Pregunta</div>
                   <p className="text-center text-gray-800 font-medium leading-relaxed text-sm">
                     {card.question}
                   </p>

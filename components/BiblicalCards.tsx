@@ -76,17 +76,24 @@ export default function BiblicalCards({ cards }: BiblicalCardsProps) {
 
                 {/* Reverso de la tarjeta (Texto completo TNM) */}
                 <div
-                  className="absolute w-full h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg shadow-lg p-4 flex flex-col items-center justify-center border-2 border-purple-800 overflow-y-auto"
+                  className="absolute w-full h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg shadow-lg border-2 border-purple-800 overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                   }}
                 >
-                  <div className="text-xs text-purple-100 font-semibold mb-2">{card.reference}</div>
-                  <p className="text-center text-white font-medium text-sm leading-relaxed">
-                    "{card.text}"
-                  </p>
+                  {/* Referencia fija arriba */}
+                  <div className="text-xs text-purple-100 font-semibold text-center bg-purple-800/50 py-2 px-4 flex-shrink-0">
+                    {card.reference}
+                  </div>
+
+                  {/* Texto con scroll */}
+                  <div className="flex-1 overflow-y-auto px-4 py-3 hide-scrollbar">
+                    <p className="text-center text-white font-medium text-sm leading-relaxed">
+                      "{card.text}"
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

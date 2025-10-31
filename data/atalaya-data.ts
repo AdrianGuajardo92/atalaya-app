@@ -82,7 +82,33 @@ export const atalayaData: AtalayaStudy = {
       paragraphs: [5],
       section: "POR QUÉ ES TAN IMPORTANTE CONVENCERNOS DE QUE JEHOVÁ NOS HA PERDONADO",
       answer: "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar. Por ejemplo, intentó que los hermanos de Corinto no perdonaran a un hombre que se había arrepentido. Si hubiera tenido éxito, ese hombre habría creído que era imperdonable y habría dejado de servir a Jehová.",
-      answerBullets: "**¿Qué quiere Satanás que creamos?**\n• Que hemos cometido un pecado tan grave que Jehová nunca nos perdonará\n\n**Ejemplo:**\n• Intentó que los hermanos de Corinto no perdonaran a un hombre arrepentido\n• Quería que ese hombre creyera que era imperdonable\n• Su objetivo era que dejara de servir a Jehová"
+      answerBullets: "**¿Qué quiere Satanás que creamos?**\n• Que hemos cometido un pecado tan grave que Jehová nunca nos perdonará\n\n**Ejemplo:**\n• Intentó que los hermanos de Corinto no perdonaran a un hombre arrepentido\n• Quería que ese hombre creyera que era imperdonable\n• Su objetivo era que dejara de servir a Jehová",
+      flashcards: [
+        {
+          question: "¿Qué trampa usa Satanás para que dejemos de servir a Jehová?",
+          answer: "Hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos perdonará"
+        },
+        {
+          question: "¿Qué ejemplo muestra cómo Satanás intenta que nos sintamos imperdonables?",
+          answer: "El hombre de Corinto que se arrepintió, pero Satanás quería que los hermanos no lo perdonaran"
+        },
+        {
+          question: "¿Cuál es el objetivo de Satanás cuando nos hace sentir imperdonables?",
+          answer: "Que nos sintamos tan abrumados por la tristeza que dejemos de servir a Jehová"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "1 Corintios 5:1, 5, 13",
+          purpose: "Un hombre fue expulsado por inmoralidad sexual",
+          text: "En realidad se informa que hay inmoralidad sexual entre ustedes, y tal inmoralidad sexual como ni siquiera se da entre las naciones, que un hombre tenga a la esposa de su padre. Entreguen a ese hombre a Satanás para la destrucción de la carne, a fin de que el espíritu sea salvado en el día del Señor. Pero ahora les escribo que dejen de juntarse con cualquiera que, llamándose hermano, sea una persona sexualmente inmoral, o una persona codiciosa, o idólatra, o injuriador, o borracho, o extorsionador, y ni siquiera coman con tal hombre. Remuevan al hombre malvado de entre ustedes."
+        },
+        {
+          reference: "2 Corintios 2:5-11",
+          purpose: "Satanás quería que el hombre arrepentido no fuera perdonado",
+          text: "Ahora bien, si alguien ha causado tristeza, no me ha entristecido solo a mí, sino a todos ustedes hasta cierto grado, para no ser demasiado severo al decir esto. Esta reprensión dada por la mayoría es suficiente para tal hombre; ahora deben perdonarlo bondadosamente y consolarlo, para que de algún modo ese hombre no sea tragado por su excesiva tristeza. Por lo tanto, les exhorto a que confirmen su amor por él. Porque yo también les escribí con este propósito: para comprobar si ustedes son obedientes en todo. Si ustedes perdonan bondadosamente a alguien, yo también. De hecho, lo que yo haya perdonado bondadosamente, si he perdonado algo, ha sido por causa de ustedes delante de Cristo, para que no seamos vencidos por Satanás, pues no desconocemos sus tácticas."
+        }
+      ]
     },
     {
       number: "6",
@@ -90,7 +116,47 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [6],
       answer: "Convencernos de que Jehová nos ha perdonado nos ayudará a liberarnos del peso de la culpa. Cuando estamos seguros de su perdón, podemos dejar la culpa atrás y pasar la página. Así podremos servir a Jehová con una conciencia tranquila y mucha alegría.",
-      answerBullets: "• Convencernos de que Jehová nos ha perdonado\n• Estar seguros de su perdón\n• Dejar la culpa atrás y pasar la página\n• Servir a Jehová con conciencia tranquila\n• Servir con mucha alegría"
+      answerBullets: "• Convencernos de que Jehová nos ha perdonado\n• Estar seguros de su perdón\n• Dejar la culpa atrás y pasar la página\n• Servir a Jehová con conciencia tranquila\n• Servir con mucha alegría",
+      flashcards: [
+        {
+          question: "¿Qué texto muestra que es natural sentirse mal cuando pecamos?",
+          answer: "Salmo 51:17"
+        },
+        {
+          question: "Según 2 Corintios 7:10, 11, ¿por qué es bueno sentirse mal cuando pecamos?",
+          answer: "Porque nos motiva a cambiar y hacer lo que está bien"
+        },
+        {
+          question: "¿Qué puede pasar si nos sentimos demasiado culpables incluso después de habernos arrepentido?",
+          answer: "Podemos desanimarnos hasta el punto de querer darnos por vencidos"
+        },
+        {
+          question: "Según Colosenses 1:10, 11 y 2 Timoteo 1:3, ¿cómo quiere Jehová que le sirvamos?",
+          answer: "Con una conciencia tranquila y mucha alegría"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 51:17",
+          purpose: "Es natural sentirse mal cuando pecamos",
+          text: "Los sacrificios para Dios son un espíritu quebrantado. Oh Dios, tú no rechazarás un corazón quebrantado y aplastado."
+        },
+        {
+          reference: "2 Corintios 7:10, 11",
+          purpose: "La tristeza piadosa nos motiva a cambiar",
+          text: "Porque la tristeza de una manera piadosa obra arrepentimiento para salvación que no hay que lamentar; pero la tristeza del mundo produce muerte. Porque miren, este mismo hecho de que se entristecieran de una manera piadosa, ¡cuánta seriedad obró en ustedes!, sí, disculpándose, sí, indignación, sí, temor, sí, anhelo vehemente, sí, celo, sí, corrección de la injusticia! En todo respecto ustedes demostraron ser castos en este asunto."
+        },
+        {
+          reference: "Colosenses 1:10, 11",
+          purpose: "Debemos servir con alegría",
+          text: "A fin de andar de una manera digna de Jehová para complacerle plenamente al ir llevando fruto en toda buena obra y aumentando en el conocimiento exacto de Dios, siendo hechos poderosos con todo poder al grado del poder de su gloria, para aguante y gran paciencia con gozo."
+        },
+        {
+          reference: "2 Timoteo 1:3",
+          purpose: "Servir con conciencia tranquila",
+          text: "Estoy agradecido a Dios, a quien desde mis antepasados estoy rindiendo servicio sagrado con una conciencia limpia, a medida que sin cesar tengo recuerdo acerca de ti en mis súplicas noche y día."
+        }
+      ]
     },
     {
       number: "7, 8",
@@ -99,7 +165,37 @@ export const atalayaData: AtalayaStudy = {
       paragraphs: [7, 8],
       section: "¿QUÉ TE PUEDE AYUDAR A CONVENCERTE DE QUE JEHOVÁ TE HA PERDONADO?",
       answer: "Jehová se describió como un Dios misericordioso y compasivo. Esto nos da la seguridad de que él nunca se negaría a perdonar a alguien que lo ama y se ha arrepentido de corazón. Cuando Jehová dice que es misericordioso, podemos creerle por completo porque él siempre dice la verdad.",
-      answerBullets: "**¿Cómo se describió Jehová?**\n• Como un Dios misericordioso y compasivo\n\n**¿Qué seguridad nos da eso?**\n• Nunca se negaría a perdonar a quien lo ama\n• Nunca se negaría a perdonar a quien se arrepiente de corazón\n• Podemos creerle completamente porque siempre dice la verdad"
+      answerBullets: "**¿Cómo se describió Jehová?**\n• Como un Dios misericordioso y compasivo\n\n**¿Qué seguridad nos da eso?**\n• Nunca se negaría a perdonar a quien lo ama\n• Nunca se negaría a perdonar a quien se arrepiente de corazón\n• Podemos creerle completamente porque siempre dice la verdad",
+      flashcards: [
+        {
+          question: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?",
+          answer: "Misericordioso, compasivo, y es el Dios de la verdad (nunca miente)"
+        },
+        {
+          question: "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?",
+          answer: "Me ayuda a confiar completamente en lo que Jehová dice sobre el perdón"
+        },
+        {
+          question: "Si Jehová eligió presentarse como misericordioso y compasivo, ¿qué te dice eso sobre su personalidad?",
+          answer: "Que estas cualidades son lo más importante de su forma de ser, y nunca actuará de manera fría o cruel"
+        },
+        {
+          question: "¿Por qué podemos estar seguros de que Jehová nos perdona personalmente?",
+          answer: "Porque si perdona a todos los que se arrepienten, también nos perdona a nosotros"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Éxodo 34:6, 7",
+          purpose: "Jehová se describe como misericordioso y compasivo",
+          text: "Jehová pasó delante de él y proclamó: 'Jehová, Jehová, un Dios misericordioso y compasivo, tardo para la cólera y abundante en amor leal y verdad, que muestra amor leal a miles, que perdona error, transgresión y pecado, pero de ninguna manera dejará impune al culpable, sino que hace venir el castigo por el error de los padres sobre los hijos y sobre los nietos, sobre la tercera generación y sobre la cuarta generación'."
+        },
+        {
+          reference: "Salmo 31:5",
+          purpose: "Jehová siempre dice la verdad",
+          text: "En tu mano encomiendo mi espíritu. Tú me has redimido, oh Jehová el Dios de la verdad."
+        }
+      ]
     },
     {
       number: "9",
@@ -107,7 +203,37 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [9],
       answer: "El Salmo 32:5 nos enseña que cuando Jehová nos perdona, es como si levantara una carga pesada de nuestros hombros y se la llevara. Ya no tenemos que seguir cargando con nuestros pecados, porque en realidad ya no están. Jehová los ha levantado y se los ha llevado.",
-      answerBullets: "• Es como si levantara una carga pesada de nuestros hombros\n• Es como si se llevara esa carga lejos\n• Ya no tenemos que seguir cargando con nuestros pecados\n• En realidad ya no están\n• Jehová los ha levantado y se los ha llevado"
+      answerBullets: "• Es como si levantara una carga pesada de nuestros hombros\n• Es como si se llevara esa carga lejos\n• Ya no tenemos que seguir cargando con nuestros pecados\n• En realidad ya no están\n• Jehová los ha levantado y se los ha llevado",
+      flashcards: [
+        {
+          question: "¿Qué 3 significados tiene la palabra hebrea para 'perdonar' en Salmo 32:5?",
+          answer: "Perdonar, levantar y llevar"
+        },
+        {
+          question: "¿Cómo te ayuda la ilustración de la carga pesada a entender el perdón de Jehová?",
+          answer: "Me ayuda a ver que Jehová no solo perdona, sino que se lleva completamente mis pecados, como si quitara una carga de mis hombros"
+        },
+        {
+          question: "Según Salmo 32:2-4, ¿cómo se sintió David después de que Jehová lo perdonó?",
+          answer: "Se sintió muy aliviado y feliz"
+        },
+        {
+          question: "Si Jehová levanta y se lleva nuestros pecados, ¿qué significa que 'ya no están'?",
+          answer: "Que Jehová no solo los perdona, sino que los elimina completamente, como si nunca hubieran existido"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 32:5",
+          purpose: "La palabra hebrea para perdonar significa levantar y llevar",
+          text: "Mi pecado te confesé, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
+        },
+        {
+          reference: "Salmo 32:2-4",
+          purpose: "David se sintió aliviado y feliz cuando fue perdonado",
+          text: "Feliz es el hombre a quien Jehová no le imputa error, y en cuyo espíritu no hay engaño. Cuando callé, mis huesos se desgastaron por mi gemir todo el día. Porque día y noche tu mano pesaba sobre mí. Mi vitalidad se cambió como en el calor del verano."
+        }
+      ]
     },
     {
       number: "10, 11",

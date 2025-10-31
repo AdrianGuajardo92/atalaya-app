@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export default function InstructionsButton() {
   const [showCopied, setShowCopied] = useState(false);
+  const [showCopiedStudy, setShowCopiedStudy] = useState(false);
 
   const promptInstructions = `# Instrucciones - Aplicación Atalaya
 
@@ -142,34 +143,125 @@ Las flashcards son **OPCIONALES** - se agregan conforme se estudia cada párrafo
 - Grid de 2 columnas (desktop) o 1 columna (móvil)
 - Click para voltear (frente = pregunta, reverso = respuesta)
 
+**🚨 REGLA MÁS IMPORTANTE: ANALIZAR PROFUNDAMENTE**
+
+Antes de crear flashcards:
+1. **Leer cuidadosamente** el contenido completo de los párrafos
+2. **Analizar los textos bíblicos** citados y su contenido específico
+3. **Identificar detalles específicos**: listas, cualidades, números, nombres
+4. **Buscar información adicional** que NO esté en la pregunta ni en la respuesta directa
+
+**Ejemplo de análisis profundo:**
+Párrafos 7, 8 → Éxodo 34:6, 7 (misericordioso, compasivo) + Salmo 31:5 (Dios de la verdad) = 3 cualidades
+Flashcard: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?"
+
+**Después del análisis:**
+❌ **NUNCA parafrasear o reformular la pregunta principal del párrafo**
+❌ **NUNCA repetir lo que ya está en la respuesta directa**
+✅ **SIEMPRE enfocarse en detalles ADICIONALES específicos que NO están en la pregunta ni en la respuesta directa**
+
 **Qué incluir:**
-✅ Conceptos clave del párrafo
-✅ Datos específicos importantes
-✅ Información que ayude a recordar puntos principales
+✅ Detalles ADICIONALES específicos del párrafo (números, datos, listas)
+✅ **Cualidades, características o atributos mencionados** (muy importante)
+✅ Conceptos técnicos o vocabulario importante
+✅ Relaciones causa-efecto mencionadas en el párrafo
+✅ Nombres específicos, lugares, o eventos del párrafo
+✅ Información que NO esté mencionada en la respuesta directa
 
 **Qué NO incluir:**
+❌ Reformulaciones de la pregunta principal del párrafo
+❌ Información que ya está en la respuesta directa
 ❌ Preguntas sobre "¿en qué texto viene...?" o referencias bíblicas
-❌ Nombres de ejemplos personales
+❌ Nombres de ejemplos personales de la actualidad
 ❌ Información obvia o poco importante
 
-**Ejemplo:**
+**Ejemplo 1:**
+
+**Pregunta:** "¿Qué quiere Satanás que creamos?"
+**Respuesta directa:** "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos perdonará..."
+
+**❌ MALO - Parafrasea la pregunta:**
+- "¿Qué trampa usa Satanás?" ← Esto es lo mismo que la pregunta
+
+**❌ MALO - Repite la respuesta directa:**
+- "¿Qué quiere Satanás que creamos sobre nuestros pecados?" ← Ya está en la respuesta
+
+**✅ BUENO - Detalles adicionales específicos:**
+- "¿Qué le pasó al hombre de Corinto mencionado en 1 Corintios 5?"
+- "¿Qué significa estar 'abrumado por estar demasiado triste' según 2 Corintios 2?"
+- "¿Qué frase usa Pablo sobre las tácticas de Satanás en 2 Corintios 2:11?"
+
+**Ejemplo 2:**
+
+**Pregunta:** "¿Qué nos ayudará a liberarnos del peso de la culpa?"
+**Respuesta directa:** "Convencernos de que Jehová nos ha perdonado... dejar la culpa atrás y pasar la página..."
+
+**❌ MALO - Repite la respuesta directa:**
+- "¿Qué logramos cuando nos convencemos de que Jehová nos perdonó?" ← Ya está en la respuesta
+
+**✅ BUENO - Detalles adicionales:**
+- "¿Qué texto muestra que es natural sentirse mal cuando pecamos?"
+- "¿Por qué es bueno sentirse mal cuando pecamos?"
+- "¿Qué puede pasar si nos sentimos demasiado culpables después de arrepentirnos?"
+
+**Ejemplo 3 - Análisis profundo:**
+
+**Pregunta:** "¿Cómo se describió Jehová en Éxodo 34:6, 7?"
+**Análisis profundo de párrafos 7, 8:**
+- Éxodo 34:6, 7 → Jehová es "misericordioso y compasivo"
+- Salmo 31:5 → Jehová es el "Dios de la verdad"
+- Total: 3 cualidades de Jehová mencionadas
+
+**✅ BUENO - Basado en análisis profundo:**
+- "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?"
+- "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?"
+- "Si Jehová eligió presentarse como misericordioso, ¿qué te dice eso sobre su personalidad?"
+
+**Ejemplo completo:**
 \`\`\`typescript
 flashcards: [
   {
-    question: "¿Cuáles son las 3 condiciones para que Jehová nos perdone?",
+    question: "¿Cuáles son las 3 condiciones específicas para que Jehová nos perdone?",
     answer: "Arrepentirnos de verdad, confesar nuestros pecados, y no volverlos a cometer"
   },
   {
-    question: "¿Qué hace Jehová con el pecado cuando nos perdona?",
-    answer: "Lo borra por completo, como si nunca lo hubiéramos cometido"
+    question: "Según Ezequiel 33:16, ¿qué pasa con los pecados confesados?",
+    answer: "No se recordará ninguno de ellos, como si nunca hubieran existido"
   }
 ]
 \`\`\`
 
 **Reglas de lenguaje:**
-- Preguntas claras y directas
+- 🚨 **LENGUAJE SENCILLO Y FÁCIL DE ENTENDER** - Las preguntas deben ser claras
+- Preguntas claras y directas sobre DETALLES
 - Respuestas breves (1-2 oraciones máximo)
-- Lenguaje sencillo
+- Evitar términos complicados o construcciones confusas
+- Incluir referencias cuando sea relevante
+
+**Ejemplos de lenguaje:**
+- ❌ Complicado: "¿Para qué sirve que la conciencia nos haga sentir mal?"
+- ✅ Sencillo: "¿Por qué es bueno sentirse mal cuando pecamos?"
+
+**🚨 REGLA CRÍTICA: PREGUNTAS QUE INVITEN A LA REFLEXIÓN**
+
+Las flashcards NO deben ser preguntas de trivia bíblica. Deben invitar a la **reflexión personal y aplicación práctica** para que el auditorio pueda participar mejor.
+
+**❌ EVITAR preguntas tipo trivia:**
+- "¿Qué texto muestra que Jehová siempre dice la verdad?" → Solo memorización
+- "¿En qué salmo dice que Jehová es misericordioso?" → Solo buscar referencias
+- "¿Cuántas veces se menciona el perdón en el párrafo?" → Sin valor espiritual
+
+**✅ USAR preguntas de reflexión y aplicación:**
+- "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?"
+- "¿Qué aprendemos de Jehová en Éxodo 34:6?"
+- "Si Jehová eligió presentarse como misericordioso, ¿qué te dice eso sobre su personalidad?"
+- "¿Cómo te ayuda personalmente saber que Jehová perdona completamente?"
+
+**Tipos de preguntas efectivas:**
+1. **"¿Cómo te ayuda [texto] a...?"** → Aplicación personal
+2. **"Según [texto], ¿qué aprendemos sobre...?"** → Reflexión
+3. **"¿Qué te dice esto sobre...?"** → Análisis
+4. **"¿Por qué podemos estar seguros de que...?"** → Razonamiento
 
 ## 📖 Tarjetas de textos bíblicos
 
@@ -273,45 +365,529 @@ npm run start        # Producción local
 
 ---
 
-## 📚 FUNCIÓN ADICIONAL: Ayuda para estudiar
+---
 
-También puedes pedir ayuda para estudiar el artículo párrafo por párrafo.
+# 📚 PROTOCOLO COMPLETO DE ESTUDIO PÁRRAFO POR PÁRRAFO
 
-### Qué decir:
+## 🎯 Objetivo
+Estudiar cada párrafo del artículo de La Atalaya de forma sistemática, generando automáticamente respuestas, flashcards y textos bíblicos para cada pregunta.
+
+## 🚀 Inicio de sesión de estudio
+
+### Paso 1: Activar modo estudio
+Di cualquiera de estas frases:
+- "Ayúdame a estudiar"
 - "Ayúdame a estudiar el artículo"
-- "Vamos párrafo por párrafo"
-- "Dame las respuestas"
+- "Vamos a estudiar"
+- "Comenzamos el estudio"
 
-### Qué recibirás:
-1. La pregunta del estudio
-2. Respuesta directa en lenguaje sencillo
-3. Basada solo en los párrafos correspondientes
-4. Concisa (2-4 oraciones máximo)
+### Paso 2: Indicar el párrafo
+Simplemente di el número del párrafo:
+- "párrafo 5"
+- "párrafos 3 y 4"
+- "siguiente" (para avanzar)
 
-### Ejemplo:
+## 📋 Lo que recibirás AUTOMÁTICAMENTE
 
+Para cada párrafo, recibirás:
+
+### 1. ❓ LA PREGUNTA
+La pregunta exacta del estudio tal como aparece en La Atalaya.
+
+### 2. ✅ RESPUESTA DIRECTA
+- Lenguaje sencillo y directo
+- 2-4 oraciones máximo
+- Basada SOLO en los párrafos correspondientes
+- Sin información extra
+
+### 3. 🔑 PUNTOS CLAVE
+- Formato con bullets
+- Estructura organizada
+- Títulos opcionales con **negrita**
+
+### 4. 🎴 FLASHCARDS SUGERIDAS (2-4 tarjetas)
+**CRITERIOS ESTRICTOS:**
+
+🚨 **REGLA CRÍTICA #1: ANALIZAR PROFUNDAMENTE EL CONTENIDO**
+Antes de crear flashcards, debes:
+1. **Leer cuidadosamente** el contenido completo de los párrafos
+2. **Analizar los textos bíblicos** citados y su contenido específico
+3. **Identificar detalles específicos**: listas, cualidades, números, nombres, ejemplos
+4. **Buscar información adicional** que NO esté en la pregunta ni en la respuesta directa
+
+**Ejemplo de análisis profundo:**
+Párrafos 7, 8 mencionan:
+- Éxodo 34:6, 7: Jehová es "misericordioso y compasivo"
+- Salmo 31:5: Jehová es el "Dios de la verdad"
+- Resultado: 3 cualidades de Jehová
+- Flashcard: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?"
+
+🚨 **REGLA CRÍTICA #2:**
+❌ Las flashcards NO deben parafrasear la pregunta principal
+❌ Las flashcards NO deben repetir lo que ya está en la respuesta directa
+
+✅ **SÍ crear flashcards sobre:**
+- Detalles ADICIONALES específicos del párrafo (números, listas, datos)
+- **Cualidades, características o atributos mencionados** (muy importante)
+- Eventos bíblicos mencionados con nombres específicos
+- Conceptos o vocabulario técnico del párrafo
+- Relaciones causa-efecto explicadas en el párrafo
+- Citas textuales importantes del párrafo o de textos bíblicos
+- Información que NO esté en la pregunta ni en la respuesta directa
+
+❌ **NO crear flashcards sobre:**
+- Reformulaciones de la pregunta principal
+- Información que ya está en la respuesta directa
+- Preguntas genéricas que parafrasean el título
+- Referencias bíblicas (esas van en tarjetas bíblicas)
+- Nombres de ejemplos modernos
+- Información obvia
+- **Detalles triviales sin valor espiritual** (ubicaciones geográficas, datos irrelevantes)
+- Preguntas que no aportan nada al entendimiento espiritual
+
+**Ejemplo 1 - Párrafo 5:**
+
+**Pregunta del párrafo:** "¿Qué quiere Satanás que creamos? Pon un ejemplo."
+**Respuesta directa:** "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar..."
+
+**❌ FLASHCARD MALA (parafrasea la pregunta):**
+- "¿Qué trampa usa Satanás para que dejemos de servir?" ← Esto es lo mismo que la pregunta
+
+**❌ FLASHCARD MALA (repite la respuesta directa):**
+- "¿Qué quiere Satanás que creamos sobre nuestros pecados?" ← Ya está en la respuesta directa
+
+**✅ FLASHCARDS BUENAS (detalles adicionales específicos):**
+- "¿Qué pecado cometió el hombre de Corinto según 1 Corintios 5:1?"
+- "Según 2 Corintios 2:7, ¿qué podría pasar si el hermano no es perdonado?"
+- "¿Qué frase usa Pablo en 2 Corintios 2:11 sobre las tácticas de Satanás?"
+
+**Ejemplo 2 - Párrafo 6:**
+
+**Pregunta del párrafo:** "¿Qué nos ayudará a liberarnos del peso de la culpa?"
+**Respuesta directa:** "Convencernos de que Jehová nos ha perdonado... dejar la culpa atrás y pasar la página..."
+
+**❌ FLASHCARD MALA (repite la respuesta directa):**
+- "¿Qué logramos hacer cuando nos convencemos de que Jehová nos ha perdonado?" ← Ya está en la respuesta
+
+**✅ FLASHCARDS BUENAS (detalles adicionales):**
+- "¿Qué texto muestra que es natural sentirse mal cuando pecamos?" (Salmo 51:17)
+- "¿Por qué es bueno sentirse mal cuando pecamos?" (2 Corintios 7:10, 11)
+- "¿Qué puede pasar si nos sentimos demasiado culpables después de arrepentirnos?"
+
+**🚨 REGLA DE LENGUAJE SENCILLO:**
+Las flashcards DEBEN ser **fáciles de entender**:
+- ✅ Preguntas claras y directas
+- ✅ Sin construcciones complicadas
+- ❌ Evitar términos confusos
+
+**Ejemplos:**
+- ❌ Complicado: "¿Para qué sirve que la conciencia nos haga sentir mal?"
+- ✅ Sencillo: "¿Por qué es bueno sentirse mal cuando pecamos?"
+
+**🚨 REGLA CRÍTICA: PREGUNTAS DE REFLEXIÓN, NO DE TRIVIA**
+
+Las flashcards deben invitar a la **reflexión personal y aplicación práctica**, NO ser preguntas de trivia bíblica.
+
+**❌ EVITAR preguntas tipo trivia:**
+- "¿Qué texto muestra que Jehová siempre dice la verdad?" → Solo memorización
+- "¿Dónde estaba Moisés cuando Jehová se describió?" → Detalle irrelevante
+
+**✅ USAR preguntas de reflexión:**
+- "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?"
+- "Si Jehová eligió presentarse como misericordioso, ¿qué te dice eso sobre su personalidad?"
+- "¿Cómo te ayuda personalmente saber que Jehová perdona completamente?"
+
+**Tipos de preguntas efectivas:**
+1. **"¿Cómo te ayuda [texto] a...?"** → Aplicación personal
+2. **"Según [texto], ¿qué aprendemos sobre...?"** → Reflexión
+3. **"¿Qué te dice esto sobre...?"** → Análisis
+4. **"¿Por qué podemos estar seguros de que...?"** → Razonamiento
+
+Estas preguntas permiten que el auditorio participe mejor con comentarios más profundos.
+
+### 5. 📖 TEXTOS BÍBLICOS SUGERIDOS
+
+**CRITERIOS:**
+✅ Incluir TODOS los textos citados en el párrafo
+✅ Incluir textos mencionados aunque no estén entre paréntesis
+✅ Texto completo de la Traducción del Nuevo Mundo (TNM)
+
+**Estructura de cada tarjeta:**
+\`\`\`typescript
+{
+  reference: "2 Corintios 2:5-11",
+  purpose: "Perdonar evita que Satanás nos venza",  // ← Máx 10-12 palabras, directo
+  text: "[Texto completo TNM]"
+}
 \`\`\`
-## 📖 Párrafos 1, 2
 
-**Pregunta:** ¿Qué hace Jehová cuando nos arrepentimos?
+**Formato del "purpose":**
+- ✅ Directo: "Perdonar evita que Satanás nos venza"
+- ✅ Específico: "David fue perdonado completamente"
+- ❌ Evitar: "Muestra que...", "Enseña que...", "Explica que..."
 
-**Respuesta:**
-Cuando nos arrepentimos de verdad, Jehová nos perdona completamente.
-Es como si borrara nuestros pecados. Esto nos hace sentir felices y
-aliviados, igual que David.
+## 🔄 Flujo de trabajo completo
+
+### Inicio
+\`\`\`
+Tú: "Ayúdame a estudiar"
+Claude: "✅ Modo estudio activado. ¿Qué párrafo quieres revisar?"
+\`\`\`
+
+### Por cada párrafo
+\`\`\`
+Tú: "párrafo 5"
+
+Claude:
+## 📖 Párrafo 5
+
+### ❓ PREGUNTA
+[La pregunta]
+
+### ✅ RESPUESTA DIRECTA
+[Respuesta en lenguaje sencillo]
+
+### 🔑 PUNTOS CLAVE
+[Bullets organizados]
+
+### 🎴 FLASHCARDS SUGERIDAS (3 tarjetas)
+[Lista de flashcards sobre DETALLES específicos]
+
+### 📖 TEXTOS BÍBLICOS SUGERIDOS (2 textos)
+[Lista de textos bíblicos del párrafo]
 
 ---
-¿Listo para continuar? 😊
+✅ Flashcards y textos agregados automáticamente
+---
+
+¿Qué párrafo revisamos ahora?
 \`\`\`
 
-### Reglas para respuestas:
-✅ Directas - solo lo que responde la pregunta
-✅ Lenguaje sencillo - fácil de entender
-✅ Basadas en los párrafos - no información extra
-✅ Concisas - máximo 2-4 oraciones
-✅ Claras - sin vocabulario complicado
+## ⚡ Automatización - MUY IMPORTANTE
+
+**🚨 REGLA CRÍTICA DE AUTOMATIZACIÓN:**
+
+Cuando el usuario dice **"sigamos con el párrafo X"** o **"párrafo X"**, Claude DEBE:
+
+1. ✅ Proporcionar la respuesta directa, flashcards y textos bíblicos
+2. ✅ **AGREGAR TODO AUTOMÁTICAMENTE** al archivo \`data/atalaya-data.ts\`
+3. ✅ **NO esperar aprobación del usuario**
+4. ✅ **NO preguntar** "¿quieres que los agregue?"
+
+**TODO se agrega automáticamente:**
+- ✅ Flashcards (2-4 tarjetas)
+- ✅ Textos bíblicos (todos los del párrafo)
+- ✅ Sin necesidad de aprobar
+- ✅ Inmediatamente después de presentar la información
+
+**Tú solo necesitas:**
+1. Decir "ayúdame a estudiar"
+2. Indicar el párrafo → Claude responde Y agrega automáticamente
+3. Avanzar al siguiente → Claude responde Y agrega automáticamente
+
+## 🎯 Comandos rápidos
+
+| Comando | Acción |
+|---------|--------|
+| \`ayúdame a estudiar\` | Inicia modo estudio |
+| \`párrafo 5\` | Estudia el párrafo 5 |
+| \`párrafos 3 y 4\` | Estudia párrafos 3 y 4 |
+| \`siguiente\` | Avanza al siguiente párrafo |
+| \`terminamos el estudio\` | Sale del modo estudio |
+
+## 📊 Ejemplo completo de sesión
+
+\`\`\`
+Tú: Ayúdame a estudiar
+
+Claude: ✅ Modo estudio activado. ¿Qué párrafo quieres revisar?
+
+Tú: párrafo 1
+
+Claude: [Presenta pregunta, respuesta, puntos clave, flashcards y textos]
+✅ Flashcards y textos agregados automáticamente
+¿Qué párrafo revisamos ahora?
+
+Tú: siguiente
+
+Claude: [Presenta párrafo 2...]
+
+... [continúa hasta terminar todos los párrafos]
+
+Tú: terminamos el estudio
+
+Claude: ✅ Estudio completado
+\`\`\`
+
+## 💡 Recordatorios importantes
+
+1. **Flashcards NO deben parafrasear la pregunta** - deben enfocarse en detalles
+2. **Textos bíblicos** - incluir TODOS los mencionados en el párrafo
+3. **Todo es automático** - no necesitas aprobar, solo revisar
+4. **Recarga localhost:9000** para ver los cambios en la app
+
+---
 
 **¿Necesitas ayuda?** Pregunta lo que necesites sobre la app.`;
+
+  const studyProtocol = `# 📚 PROTOCOLO COMPLETO DE ESTUDIO PÁRRAFO POR PÁRRAFO
+
+## 🎯 Objetivo
+Estudiar cada párrafo del artículo de La Atalaya de forma sistemática, generando automáticamente respuestas, flashcards y textos bíblicos para cada pregunta.
+
+## 🚀 Inicio de sesión de estudio
+
+### Paso 1: Activar modo estudio
+Di cualquiera de estas frases:
+- "Ayúdame a estudiar"
+- "Ayúdame a estudiar el artículo"
+- "Vamos a estudiar"
+- "Comenzamos el estudio"
+
+### Paso 2: Indicar el párrafo
+Simplemente di el número del párrafo:
+- "párrafo 5"
+- "párrafos 3 y 4"
+- "siguiente" (para avanzar)
+
+## 📋 Lo que recibirás AUTOMÁTICAMENTE
+
+Para cada párrafo, recibirás:
+
+### 1. ❓ LA PREGUNTA
+La pregunta exacta del estudio tal como aparece en La Atalaya.
+
+### 2. ✅ RESPUESTA DIRECTA
+- Lenguaje sencillo y directo
+- 2-4 oraciones máximo
+- Basada SOLO en los párrafos correspondientes
+- Sin información extra
+
+### 3. 🔑 PUNTOS CLAVE
+- Formato con bullets
+- Estructura organizada
+- Títulos opcionales con **negrita**
+
+### 4. 🎴 FLASHCARDS SUGERIDAS (2-4 tarjetas)
+**CRITERIOS ESTRICTOS:**
+
+🚨 **REGLA CRÍTICA #1: ANALIZAR PROFUNDAMENTE EL CONTENIDO**
+Antes de crear flashcards, debes:
+1. **Leer cuidadosamente** el contenido completo de los párrafos
+2. **Analizar los textos bíblicos** citados y su contenido específico
+3. **Identificar detalles específicos**: listas, cualidades, números, nombres, ejemplos
+4. **Buscar información adicional** que NO esté en la pregunta ni en la respuesta directa
+
+**Ejemplo de análisis profundo:**
+Párrafos 7, 8 mencionan:
+- Éxodo 34:6, 7: Jehová es "misericordioso y compasivo"
+- Salmo 31:5: Jehová es el "Dios de la verdad"
+- Resultado: 3 cualidades de Jehová
+- Flashcard: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?"
+
+🚨 **REGLA CRÍTICA #2:**
+❌ Las flashcards NO deben parafrasear la pregunta principal
+❌ Las flashcards NO deben repetir lo que ya está en la respuesta directa
+
+✅ **SÍ crear flashcards sobre:**
+- Detalles ADICIONALES específicos del párrafo (números, listas, datos)
+- **Cualidades, características o atributos mencionados** (muy importante)
+- Eventos bíblicos mencionados con nombres específicos
+- Conceptos o vocabulario técnico del párrafo
+- Relaciones causa-efecto explicadas en el párrafo
+- Citas textuales importantes del párrafo o de textos bíblicos
+- Información que NO esté en la pregunta ni en la respuesta directa
+
+❌ **NO crear flashcards sobre:**
+- Reformulaciones de la pregunta principal
+- Información que ya está en la respuesta directa
+- Preguntas genéricas que parafrasean el título
+- Referencias bíblicas (esas van en tarjetas bíblicas)
+- Nombres de ejemplos modernos
+- Información obvia
+- **Detalles triviales sin valor espiritual** (ubicaciones geográficas, datos irrelevantes)
+- Preguntas que no aportan nada al entendimiento espiritual
+
+**Ejemplo 1 - Párrafo 5:**
+
+**Pregunta del párrafo:** "¿Qué quiere Satanás que creamos? Pon un ejemplo."
+**Respuesta directa:** "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar..."
+
+**❌ FLASHCARD MALA (parafrasea la pregunta):**
+- "¿Qué trampa usa Satanás para que dejemos de servir?" ← Esto es lo mismo que la pregunta
+
+**❌ FLASHCARD MALA (repite la respuesta directa):**
+- "¿Qué quiere Satanás que creamos sobre nuestros pecados?" ← Ya está en la respuesta directa
+
+**✅ FLASHCARDS BUENAS (detalles adicionales específicos):**
+- "¿Qué pecado cometió el hombre de Corinto según 1 Corintios 5:1?"
+- "Según 2 Corintios 2:7, ¿qué podría pasar si el hermano no es perdonado?"
+- "¿Qué frase usa Pablo en 2 Corintios 2:11 sobre las tácticas de Satanás?"
+
+**Ejemplo 2 - Párrafo 6:**
+
+**Pregunta del párrafo:** "¿Qué nos ayudará a liberarnos del peso de la culpa?"
+**Respuesta directa:** "Convencernos de que Jehová nos ha perdonado... dejar la culpa atrás y pasar la página..."
+
+**❌ FLASHCARD MALA (repite la respuesta directa):**
+- "¿Qué logramos hacer cuando nos convencemos de que Jehová nos ha perdonado?" ← Ya está en la respuesta
+
+**✅ FLASHCARDS BUENAS (detalles adicionales):**
+- "¿Qué texto muestra que es natural sentirse mal cuando pecamos?" (Salmo 51:17)
+- "¿Por qué es bueno sentirse mal cuando pecamos?" (2 Corintios 7:10, 11)
+- "¿Qué puede pasar si nos sentimos demasiado culpables después de arrepentirnos?"
+
+**🚨 REGLA DE LENGUAJE SENCILLO:**
+Las flashcards DEBEN ser **fáciles de entender**:
+- ✅ Preguntas claras y directas
+- ✅ Sin construcciones complicadas
+- ❌ Evitar términos confusos
+
+**Ejemplos:**
+- ❌ Complicado: "¿Para qué sirve que la conciencia nos haga sentir mal?"
+- ✅ Sencillo: "¿Por qué es bueno sentirse mal cuando pecamos?"
+
+**🚨 REGLA CRÍTICA: PREGUNTAS DE REFLEXIÓN, NO DE TRIVIA**
+
+Las flashcards deben invitar a la **reflexión personal y aplicación práctica**, NO ser preguntas de trivia bíblica.
+
+**❌ EVITAR preguntas tipo trivia:**
+- "¿Qué texto muestra que Jehová siempre dice la verdad?" → Solo memorización
+- "¿Dónde estaba Moisés cuando Jehová se describió?" → Detalle irrelevante
+
+**✅ USAR preguntas de reflexión:**
+- "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?"
+- "Si Jehová eligió presentarse como misericordioso, ¿qué te dice eso sobre su personalidad?"
+- "¿Cómo te ayuda personalmente saber que Jehová perdona completamente?"
+
+**Tipos de preguntas efectivas:**
+1. **"¿Cómo te ayuda [texto] a...?"** → Aplicación personal
+2. **"Según [texto], ¿qué aprendemos sobre...?"** → Reflexión
+3. **"¿Qué te dice esto sobre...?"** → Análisis
+4. **"¿Por qué podemos estar seguros de que...?"** → Razonamiento
+
+Estas preguntas permiten que el auditorio participe mejor con comentarios más profundos.
+
+### 5. 📖 TEXTOS BÍBLICOS SUGERIDOS
+
+**CRITERIOS:**
+✅ Incluir TODOS los textos citados en el párrafo
+✅ Incluir textos mencionados aunque no estén entre paréntesis
+✅ Texto completo de la Traducción del Nuevo Mundo (TNM)
+
+**Estructura de cada tarjeta:**
+\`\`\`typescript
+{
+  reference: "2 Corintios 2:5-11",
+  purpose: "Perdonar evita que Satanás nos venza",  // ← Máx 10-12 palabras, directo
+  text: "[Texto completo TNM]"
+}
+\`\`\`
+
+**Formato del "purpose":**
+- ✅ Directo: "Perdonar evita que Satanás nos venza"
+- ✅ Específico: "David fue perdonado completamente"
+- ❌ Evitar: "Muestra que...", "Enseña que...", "Explica que..."
+
+## 🔄 Flujo de trabajo completo
+
+### Inicio
+\`\`\`
+Tú: "Ayúdame a estudiar"
+Claude: "✅ Modo estudio activado. ¿Qué párrafo quieres revisar?"
+\`\`\`
+
+### Por cada párrafo
+\`\`\`
+Tú: "párrafo 5"
+
+Claude:
+## 📖 Párrafo 5
+
+### ❓ PREGUNTA
+[La pregunta]
+
+### ✅ RESPUESTA DIRECTA
+[Respuesta en lenguaje sencillo]
+
+### 🔑 PUNTOS CLAVE
+[Bullets organizados]
+
+### 🎴 FLASHCARDS SUGERIDAS (3 tarjetas)
+[Lista de flashcards sobre DETALLES específicos]
+
+### 📖 TEXTOS BÍBLICOS SUGERIDOS (2 textos)
+[Lista de textos bíblicos del párrafo]
+
+---
+✅ Flashcards y textos agregados automáticamente
+---
+
+¿Qué párrafo revisamos ahora?
+\`\`\`
+
+## ⚡ Automatización - MUY IMPORTANTE
+
+**🚨 REGLA CRÍTICA DE AUTOMATIZACIÓN:**
+
+Cuando el usuario dice **"sigamos con el párrafo X"** o **"párrafo X"**, Claude DEBE:
+
+1. ✅ Proporcionar la respuesta directa, flashcards y textos bíblicos
+2. ✅ **AGREGAR TODO AUTOMÁTICAMENTE** al archivo \`data/atalaya-data.ts\`
+3. ✅ **NO esperar aprobación del usuario**
+4. ✅ **NO preguntar** "¿quieres que los agregue?"
+
+**TODO se agrega automáticamente:**
+- ✅ Flashcards (2-4 tarjetas)
+- ✅ Textos bíblicos (todos los del párrafo)
+- ✅ Sin necesidad de aprobar
+- ✅ Inmediatamente después de presentar la información
+
+**Tú solo necesitas:**
+1. Decir "ayúdame a estudiar"
+2. Indicar el párrafo → Claude responde Y agrega automáticamente
+3. Avanzar al siguiente → Claude responde Y agrega automáticamente
+
+## 🎯 Comandos rápidos
+
+| Comando | Acción |
+|---------|--------|
+| \`ayúdame a estudiar\` | Inicia modo estudio |
+| \`párrafo 5\` | Estudia el párrafo 5 |
+| \`párrafos 3 y 4\` | Estudia párrafos 3 y 4 |
+| \`siguiente\` | Avanza al siguiente párrafo |
+| \`terminamos el estudio\` | Sale del modo estudio |
+
+## 📊 Ejemplo completo de sesión
+
+\`\`\`
+Tú: Ayúdame a estudiar
+
+Claude: ✅ Modo estudio activado. ¿Qué párrafo quieres revisar?
+
+Tú: párrafo 1
+
+Claude: [Presenta pregunta, respuesta, puntos clave, flashcards y textos]
+✅ Flashcards y textos agregados automáticamente
+¿Qué párrafo revisamos ahora?
+
+Tú: siguiente
+
+Claude: [Presenta párrafo 2...]
+
+... [continúa hasta terminar todos los párrafos]
+
+Tú: terminamos el estudio
+
+Claude: ✅ Estudio completado
+\`\`\`
+
+## 💡 Recordatorios importantes
+
+1. **Flashcards NO deben parafrasear la pregunta** - deben enfocarse en detalles
+2. **Textos bíblicos** - incluir TODOS los mencionados en el párrafo
+3. **Todo es automático** - no necesitas aprobar, solo revisar
+4. **Recarga localhost:9000** para ver los cambios en la app`;
 
   const handleCopy = async () => {
     try {
@@ -323,21 +899,51 @@ aliviados, igual que David.
     }
   };
 
-  return (
-    <div className="fixed bottom-4 left-4 z-10 hidden lg:block">
-      <button
-        onClick={handleCopy}
-        className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all font-medium text-sm flex items-center gap-2"
-        title="Copiar instrucciones para nueva conversación"
-      >
-        📋 Copiar Instrucciones
-      </button>
+  const handleCopyStudy = async () => {
+    try {
+      await navigator.clipboard.writeText(studyProtocol);
+      setShowCopiedStudy(true);
+      setTimeout(() => setShowCopiedStudy(false), 2000);
+    } catch (err) {
+      alert('Error al copiar. Intenta de nuevo.');
+    }
+  };
 
-      {showCopied && (
-        <div className="absolute bottom-full left-0 mb-2 bg-green-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
-          ✅ ¡Copiado al portapapeles!
-        </div>
-      )}
+  return (
+    <div className="fixed bottom-4 left-4 z-10 hidden lg:flex lg:flex-col lg:gap-2">
+      {/* Botón Copiar Instrucciones */}
+      <div className="relative">
+        <button
+          onClick={handleCopy}
+          className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all font-medium text-sm flex items-center gap-2 w-full"
+          title="Copiar instrucciones completas para nueva conversación"
+        >
+          📋 Copiar Instrucciones
+        </button>
+
+        {showCopied && (
+          <div className="absolute bottom-full left-0 mb-2 bg-green-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
+            ✅ ¡Copiado al portapapeles!
+          </div>
+        )}
+      </div>
+
+      {/* Botón Copiar Protocolo de Estudio */}
+      <div className="relative">
+        <button
+          onClick={handleCopyStudy}
+          className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all font-medium text-sm flex items-center gap-2 w-full"
+          title="Copiar solo el protocolo de estudio"
+        >
+          📚 Copiar Protocolo
+        </button>
+
+        {showCopiedStudy && (
+          <div className="absolute bottom-full left-0 mb-2 bg-blue-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
+            ✅ ¡Protocolo copiado!
+          </div>
+        )}
+      </div>
     </div>
   );
 }
