@@ -257,6 +257,7 @@ export const atalayaData: AtalayaStudy = {
       textEs: "a) ¿Qué nos enseña Salmo 103:12 sobre la manera de perdonar de Jehová? b) ¿Cómo muestra el ejemplo de David que el perdón de Jehová es completo?",
       textLSM: "",
       paragraphs: [14],
+      image: "https://i.imgur.com/tbCRsya.jpg",
       answer: "a) El Salmo 103:12 nos enseña que Jehová pone nuestros pecados tan lejos como está el este del oeste. No queda ni el más mínimo rastro del pecado que pueda traerlo de vuelta a su memoria. b) David fue perdonado completamente y Jehová nunca le echó en cara sus pecados del pasado.",
       answerBullets: "**a) ¿Qué nos enseña Salmo 103:12?**\n• Jehová pone nuestros pecados tan lejos como está el este del oeste\n• No queda ni el más mínimo rastro del pecado\n• No puede traerlo de vuelta a su memoria\n\n**b) Ejemplo de David:**\n• David fue perdonado completamente\n• Jehová nunca le echó en cara sus pecados del pasado"
     },
@@ -273,6 +274,7 @@ export const atalayaData: AtalayaStudy = {
       textEs: "¿Por qué es tan peligroso obsesionarse con los errores del pasado?",
       textLSM: "",
       paragraphs: [16],
+      image: "https://i.imgur.com/4cpYFS7.jpg",
       answer: "Es peligroso porque es como conducir un auto mirando siempre el espejo retrovisor. Si nos obsesionamos con los errores del pasado, nos sentiremos tan culpables que no podremos darle a Jehová lo mejor de nosotros. Debemos mantener la vista fija en el camino hacia el nuevo mundo.",
       answerBullets: "• Es como conducir un auto mirando siempre el espejo retrovisor\n• Nos sentiremos tan culpables\n• No podremos darle a Jehová lo mejor de nosotros\n• Debemos mantener la vista fija en el camino\n• El camino lleva al nuevo mundo"
     },
