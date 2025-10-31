@@ -66,6 +66,38 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     });
   };
 
+  // Función para formatear texto LSM con líneas divisorias
+  const formatLSMText = (text: string) => {
+    const lines = text.split('\n').filter(line => line.trim() !== '');
+
+    return lines.map((line, index) => (
+      <div key={index}>
+        <p className="text-lg font-bold text-gray-900 leading-relaxed uppercase mb-0">
+          {line}
+        </p>
+        {index < lines.length - 1 && (
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent my-3"></div>
+        )}
+      </div>
+    ));
+  };
+
+  // Función para formatear texto LSM de secciones con líneas divisorias
+  const formatSectionLSMText = (text: string) => {
+    const lines = text.split('\n').filter(line => line.trim() !== '');
+
+    return lines.map((line, index) => (
+      <div key={index}>
+        <h3 className="text-xl font-bold tracking-wide uppercase mb-0">
+          {line}
+        </h3>
+        {index < lines.length - 1 && (
+          <div className="w-24 h-px bg-white/40 mx-auto my-2"></div>
+        )}
+      </div>
+    ));
+  };
+
   const handleSaveLSM = async () => {
     setIsSaving(true);
     try {
@@ -175,10 +207,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {!isEditingSectionLSM && currentSectionLSMText ? (
               <>
                 <div className="text-center">
-                  <p className="text-sm mb-2 font-semibold opacity-80">🤟 LSM</p>
-                  <h3 className="text-xl font-bold uppercase tracking-wide">
-                    {currentSectionLSMText.toUpperCase()}
-                  </h3>
+                  <p className="text-sm mb-3 font-semibold opacity-80">🤟 LSM</p>
+                  <div>
+                    {formatSectionLSMText(currentSectionLSMText)}
+                  </div>
                 </div>
                 <button
                   onClick={() => setIsEditingSectionLSM(true)}
@@ -269,10 +301,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 group relative">
               {!isEditingLSM && currentLSMText ? (
                 <>
-                  <div className="text-xs font-semibold text-blue-700 mb-1">🤟 LSM</div>
-                  <p className="text-lg font-bold text-gray-900 leading-relaxed uppercase">
-                    {currentLSMText.toUpperCase()}
-                  </p>
+                  <div className="text-xs font-semibold text-blue-700 mb-3">🤟 LSM</div>
+                  <div>
+                    {formatLSMText(currentLSMText)}
+                  </div>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -325,6 +357,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     ✖️ Cancelar
                   </button>
                 </div>
+              </div>
+            )}
+
+            {/* IMAGEN ILUSTRATIVA - Si existe */}
+            {question.image && (
+              <div className="rounded-lg overflow-hidden shadow-md">
+                <img
+                  src={question.image}
+                  alt="Ilustración de la pregunta"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             )}
 

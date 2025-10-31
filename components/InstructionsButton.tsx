@@ -98,6 +98,26 @@ Algunas preguntas tienen subtítulos de sección:
 }
 \`\`\`
 
+## 🖼️ Imágenes ilustrativas (opcional)
+
+Puedes agregar imágenes a las preguntas para ilustrarlas:
+
+\`\`\`typescript
+{
+  number: "1, 2",
+  textEs: "¿Pregunta?",
+  textLSM: "",
+  paragraphs: [1, 2],
+  image: "https://i.imgur.com/xxxxx.jpg"  // URL directa de la imagen
+}
+\`\`\`
+
+**IMPORTANTE:**
+- Usa URLs directas de imágenes (que terminen en .jpg, .png, etc.)
+- Para imgur: usa \`https://i.imgur.com/xxxxx.jpg\` (no \`https://imgur.com/xxxxx\`)
+- Las imágenes se muestran después de las preguntas ES/LSM
+- Son opcionales, solo agrégalas cuando realmente aporten valor
+
 ## 💬 Respuestas: dos niveles
 
 Cada pregunta tiene dos tipos de respuesta:

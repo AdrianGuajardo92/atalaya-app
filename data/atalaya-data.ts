@@ -11,6 +11,7 @@ export const atalayaData: AtalayaStudy = {
       textEs: "¿Qué hace Jehová cuando nos arrepentimos, y cómo nos hace sentir eso?",
       textLSM: "",
       paragraphs: [1, 2],
+      image: "https://i.imgur.com/6xgfa4W.jpg",
       answer: "Cuando nos arrepentimos de verdad, Jehová nos perdona completamente. Es como si borrara nuestros pecados y nunca los hubiéramos cometido. Esto nos hace sentir felices y aliviados, igual que se sintió el rey David cuando fue perdonado.",
       answerBullets: "**¿Qué hace Jehová cuando nos arrepentimos?**\n• Jehová nos perdona completamente\n• Es como si borrara nuestros pecados y nunca los hubiéramos cometido\n\n**¿Cómo nos hace sentir eso?**\n• Nos hace sentir felices y aliviados\n• Igual que se sintió el rey David cuando fue perdonado",
       flashcards: [
