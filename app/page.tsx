@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
@@ -13,21 +13,42 @@ export default function Home() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1); // -1 significa que no estamos en preguntas de repaso
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
+  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+  const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // Cargar datos LSM al iniciar
+  // Referencia para hacer scroll al contenido
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Cargar datos LSM, favoritos y tarjetas ocultas al iniciar
   useEffect(() => {
-    fetch('/api/lsm')
-      .then(res => res.json())
-      .then(data => {
-        setLsmData(data);
+    Promise.all([
+      fetch('/api/lsm').then(res => res.json()),
+      fetch('/api/favorites').then(res => res.json()),
+      fetch('/api/hidden-cards').then(res => res.json())
+    ])
+      .then(([lsmDataResult, favoritesResult, hiddenCardsResult]) => {
+        setLsmData(lsmDataResult);
+        setFavorites(favoritesResult);
+        setHiddenCards(hiddenCardsResult);
         setIsLoading(false);
       })
       .catch(err => {
-        console.error('Error loading LSM data:', err);
+        console.error('Error loading data:', err);
         setIsLoading(false);
       });
   }, []);
+
+  // Hacer scroll al inicio cuando cambia la pregunta en modo paginado
+  useEffect(() => {
+    if (navigationMode === 'paginated' && contentRef.current) {
+      // Scroll suave hacia el principio del contenido
+      contentRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }, [currentQuestionIndex, currentReviewIndex, navigationMode]);
 
   const handlePrevious = () => {
     if (currentReviewIndex > 0) {
@@ -70,6 +91,69 @@ export default function Home() {
       ...prev,
       [`review-${index}`]: text
     }));
+  };
+
+  const handleToggleFavorite = async (favoriteId: string) => {
+    const isFavorite = !favorites[favoriteId];
+
+    // Actualizar estado local inmediatamente para mejor UX
+    setFavorites(prev => {
+      const newFavorites = { ...prev };
+      if (isFavorite) {
+        newFavorites[favoriteId] = true;
+      } else {
+        delete newFavorites[favoriteId];
+      }
+      return newFavorites;
+    });
+
+    // Guardar en backend
+    try {
+      await fetch('/api/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ favoriteId, isFavorite })
+      });
+    } catch (error) {
+      console.error('Error saving favorite:', error);
+      // Revertir cambio si falla
+      setFavorites(prev => {
+        const newFavorites = { ...prev };
+        if (!isFavorite) {
+          newFavorites[favoriteId] = true;
+        } else {
+          delete newFavorites[favoriteId];
+        }
+        return newFavorites;
+      });
+    }
+  };
+
+  const handleToggleHidden = async (cardId: string) => {
+    const isHidden = true; // Siempre ocultar cuando se hace clic
+
+    // Actualizar estado local inmediatamente
+    setHiddenCards(prev => ({
+      ...prev,
+      [cardId]: true
+    }));
+
+    // Guardar en backend
+    try {
+      await fetch('/api/hidden-cards', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cardId, isHidden })
+      });
+    } catch (error) {
+      console.error('Error hiding card:', error);
+      // Revertir cambio si falla
+      setHiddenCards(prev => {
+        const newHidden = { ...prev };
+        delete newHidden[cardId];
+        return newHidden;
+      });
+    }
   };
 
   if (isLoading) {
@@ -136,6 +220,11 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${question.number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={false}
+                  favorites={favorites}
+                  onToggleFavorite={handleToggleFavorite}
+                  allLsmData={lsmData}
+                  hiddenCards={hiddenCards}
+                  onToggleHidden={handleToggleHidden}
                 />
               ))}
             </div>
@@ -155,6 +244,12 @@ export default function Home() {
                     index={index}
                     lsmText={lsmData[`review-${index}`]}
                     onLSMUpdate={handleReviewLSMUpdate}
+                    favorites={favorites}
+                    onToggleFavorite={handleToggleFavorite}
+                    allLsmData={lsmData}
+                    hiddenCards={hiddenCards}
+                    onToggleHidden={handleToggleHidden}
+                    isNavigationMode={false}
                   />
                 ))}
               </div>
@@ -171,7 +266,7 @@ export default function Home() {
 
         {/* Modo Paginado - Muestra una pregunta a la vez */}
         {navigationMode === 'paginated' && (
-          <div>
+          <div ref={contentRef}>
             {currentReviewIndex === -1 ? (
               /* Mostrar pregunta normal */
               <>
@@ -182,6 +277,11 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${atalayaData.questions[currentQuestionIndex].number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={true}
+                  favorites={favorites}
+                  onToggleFavorite={handleToggleFavorite}
+                  allLsmData={lsmData}
+                  hiddenCards={hiddenCards}
+                  onToggleHidden={handleToggleHidden}
                 />
               </>
             ) : (
@@ -192,6 +292,12 @@ export default function Home() {
                   index={currentReviewIndex}
                   lsmText={lsmData[`review-${currentReviewIndex}`]}
                   onLSMUpdate={handleReviewLSMUpdate}
+                  favorites={favorites}
+                  onToggleFavorite={handleToggleFavorite}
+                  allLsmData={lsmData}
+                  hiddenCards={hiddenCards}
+                  onToggleHidden={handleToggleHidden}
+                  isNavigationMode={true}
                 />
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}

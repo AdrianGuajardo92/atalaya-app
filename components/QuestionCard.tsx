@@ -12,9 +12,14 @@ interface QuestionCardProps {
   sectionLsmText?: string;
   onLSMUpdate?: (questionNumber: string, text: string) => void;
   isNavigationMode?: boolean; // Nueva prop para saber si estamos en modo navegación
+  favorites: Record<string, boolean>; // Estado de favoritos
+  onToggleFavorite: (favoriteId: string) => void; // Callback para marcar/desmarcar favorito
+  allLsmData: Record<string, string>; // Todos los datos LSM (incluye flashcards)
+  hiddenCards: Record<string, boolean>; // Tarjetas ocultas
+  onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
 }
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [showFlashcards, setShowFlashcards] = useState(isNavigationMode); // Flashcards visibles en navegación
@@ -437,7 +442,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {(isExpanded || isNavigationMode) && question.flashcards && question.flashcards.length > 0 && (
               <div className="mt-4" onClick={(e) => e.stopPropagation()}>
                 {/* Mostrar tarjetas siempre (sin botón) */}
-                <FlashCards cards={question.flashcards} />
+                <FlashCards
+                  cards={question.flashcards}
+                  questionNumber={question.number}
+                  favorites={favorites}
+                  onToggleFavorite={onToggleFavorite}
+                  lsmData={allLsmData}
+                  onLSMUpdate={onLSMUpdate || (() => {})}
+                  hiddenCards={hiddenCards}
+                  onToggleHidden={onToggleHidden}
+                />
               </div>
             )}
 
@@ -445,7 +459,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {(isExpanded || isNavigationMode) && question.biblicalCards && question.biblicalCards.length > 0 && (
               <div className="mt-4" onClick={(e) => e.stopPropagation()}>
                 {/* Mostrar tarjetas bíblicas siempre (sin botón) */}
-                <BiblicalCards cards={question.biblicalCards} />
+                <BiblicalCards
+                  cards={question.biblicalCards}
+                  questionNumber={question.number}
+                  favorites={favorites}
+                  onToggleFavorite={onToggleFavorite}
+                  hiddenCards={hiddenCards}
+                  onToggleHidden={onToggleHidden}
+                />
               </div>
             )}
           </div>

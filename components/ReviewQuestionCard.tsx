@@ -2,18 +2,38 @@
 
 import { useState } from 'react';
 import { ReviewQuestion } from '@/types/atalaya';
+import FlashCards from './FlashCards';
+import BiblicalCards from './BiblicalCards';
 
 interface ReviewQuestionCardProps {
   reviewQuestion: ReviewQuestion;
   index: number;
   lsmText?: string;
   onLSMUpdate?: (index: number, text: string) => void;
+  favorites?: Record<string, boolean>;
+  onToggleFavorite?: (favoriteId: string) => void;
+  allLsmData?: Record<string, string>;
+  hiddenCards?: Record<string, boolean>;
+  onToggleHidden?: (cardId: string) => void;
+  isNavigationMode?: boolean; // Para saber si está en modo paginado o scroll
 }
 
-export default function ReviewQuestionCard({ reviewQuestion, index, lsmText, onLSMUpdate }: ReviewQuestionCardProps) {
+export default function ReviewQuestionCard({
+  reviewQuestion,
+  index,
+  lsmText,
+  onLSMUpdate,
+  favorites = {},
+  onToggleFavorite = () => {},
+  allLsmData = {},
+  hiddenCards = {},
+  onToggleHidden = () => {},
+  isNavigationMode = false
+}: ReviewQuestionCardProps) {
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || reviewQuestion.questionLSM || '');
   const [isSaving, setIsSaving] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo paginado
 
   const handleSaveLSM = async () => {
     setIsSaving(true);
@@ -62,6 +82,21 @@ export default function ReviewQuestionCard({ reviewQuestion, index, lsmText, onL
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-4 border-l-4 border-purple-500">
+      {/* Botón para expandir/colapsar (solo en modo scroll) */}
+      {!isNavigationMode && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full mb-4 flex items-center justify-between px-4 py-3 bg-purple-100 hover:bg-purple-200 rounded-lg transition-colors"
+        >
+          <span className="font-semibold text-purple-800">
+            {isExpanded ? '▼ Ocultar contenido' : '▶ Mostrar contenido'}
+          </span>
+          <span className="text-sm text-purple-600">
+            {isExpanded ? 'Colapsar' : 'Expandir'}
+          </span>
+        </button>
+      )}
+
       {/* Contenedor unificado de pregunta de repaso */}
       <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 shadow-sm group relative">
         {/* Pregunta en español */}
@@ -131,6 +166,62 @@ export default function ReviewQuestionCard({ reviewQuestion, index, lsmText, onL
             </button>
           </div>
         </div>
+      )}
+
+      {/* Contenido expandible - solo se muestra si isExpanded es true */}
+      {isExpanded && (
+        <>
+          {/* Respuesta */}
+          {reviewQuestion.answer && (
+            <div className="mt-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+              <p className="text-sm font-semibold text-green-700 mb-2">💡 Respuesta:</p>
+              <p className="text-gray-800 leading-relaxed">{reviewQuestion.answer}</p>
+            </div>
+          )}
+
+          {/* Puntos clave */}
+          {reviewQuestion.answerBullets && (
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+              <p className="text-sm font-semibold text-blue-700 mb-2">📌 Puntos clave:</p>
+              <div className="text-gray-800 leading-relaxed whitespace-pre-line">
+                {reviewQuestion.answerBullets}
+              </div>
+            </div>
+          )}
+
+          {/* Tarjetas didácticas */}
+          {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (
+            <FlashCards
+              cards={reviewQuestion.flashcards}
+              questionNumber={`review-${index}`}
+              favorites={favorites}
+              onToggleFavorite={onToggleFavorite}
+              lsmData={allLsmData}
+              onLSMUpdate={(key, text) => {
+                // Guardar directamente en la API
+                fetch('/api/lsm', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ questionNumber: key, lsmText: text })
+                });
+              }}
+              hiddenCards={hiddenCards}
+              onToggleHidden={onToggleHidden}
+            />
+          )}
+
+          {/* Textos bíblicos */}
+          {reviewQuestion.biblicalCards && reviewQuestion.biblicalCards.length > 0 && (
+            <BiblicalCards
+              cards={reviewQuestion.biblicalCards}
+              questionNumber={`review-${index}`}
+              favorites={favorites}
+              onToggleFavorite={onToggleFavorite}
+              hiddenCards={hiddenCards}
+              onToggleHidden={onToggleHidden}
+            />
+          )}
+        </>
       )}
     </div>
   );

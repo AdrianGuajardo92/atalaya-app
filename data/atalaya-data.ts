@@ -241,7 +241,42 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [10, 11],
       answer: "El Salmo 86:5 nos enseña que Jehová está dispuesto a perdonar, porque perdonar forma parte de su naturaleza. Su amor leal por nosotros siempre lo motiva a perdonar generosamente a quienes se arrepienten. También comprende que somos imperfectos porque sabe cómo estamos formados.",
-      answerBullets: "• Jehová está dispuesto a perdonar\n• Perdonar forma parte de su naturaleza\n• Su amor leal lo motiva a perdonar generosamente\n• Perdona a quienes se arrepienten\n• Comprende que somos imperfectos\n• Sabe cómo estamos formados"
+      answerBullets: "• Jehová está dispuesto a perdonar\n• Perdonar forma parte de su naturaleza\n• Su amor leal lo motiva a perdonar generosamente\n• Perdona a quienes se arrepienten\n• Comprende que somos imperfectos\n• Sabe cómo estamos formados",
+      flashcards: [
+        {
+          question: "¿Qué significa que perdonar forma parte de la naturaleza de Jehová?",
+          answer: "Que perdonar no es solo algo que Jehová hace, sino parte de lo que él es"
+        },
+        {
+          question: "¿Por qué el amor leal de Jehová siempre lo motiva a perdonar?",
+          answer: "Porque su amor leal es un apego profundo y duradero que nunca cambia"
+        },
+        {
+          question: "Según Isaías 55:7, ¿cómo perdona Jehová?",
+          answer: "Perdona en gran manera"
+        },
+        {
+          question: "Si Jehová perdona a todos los que se arrepienten, ¿qué podemos estar seguros?",
+          answer: "Que también nos ha perdonado a nosotros"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 86:5",
+          purpose: "Jehová está dispuesto a perdonar",
+          text: "Porque tú, oh Jehová, eres bueno y estás dispuesto a perdonar, y tu amor leal por todos los que te llaman es inmenso."
+        },
+        {
+          reference: "Isaías 55:7",
+          purpose: "Jehová perdona en gran manera",
+          text: "Que el malvado deje su camino y el hombre dañino sus pensamientos, y que regrese a Jehová, quien tendrá misericordia de él, a nuestro Dios, porque él perdonará en gran manera."
+        },
+        {
+          reference: "Salmo 139:1, 2",
+          purpose: "Jehová sabe cómo estamos formados",
+          text: "Oh Jehová, tú me has examinado, y bien me conoces. Tú mismo sabes cuándo me siento y cuándo me levanto. Desde lejos comprendes mi pensamiento."
+        }
+      ]
     },
     {
       number: "12, 13",
@@ -250,7 +285,42 @@ export const atalayaData: AtalayaStudy = {
       paragraphs: [12, 13],
       section: "RECUERDA SOLO LO QUE JEHOVÁ RECUERDA",
       answer: "Jehová se acuerda de que somos imperfectos y tenemos limitaciones. No solo lo tiene en la mente, sino que se siente impulsado a tratarnos con misericordia y perdonarnos cuando nos arrepentimos. Comprende que a veces cometeremos errores.",
-      answerBullets: "**¿De qué se acuerda Jehová?**\n• Se acuerda de que somos imperfectos\n• Se acuerda de que tenemos limitaciones\n• No solo lo tiene en la mente\n\n**¿Qué se siente impulsado a hacer?**\n• Tratarnos con misericordia\n• Perdonarnos cuando nos arrepentimos\n• Comprende que a veces cometeremos errores"
+      answerBullets: "**¿De qué se acuerda Jehová?**\n• Se acuerda de que somos imperfectos\n• Se acuerda de que tenemos limitaciones\n• No solo lo tiene en la mente\n\n**¿Qué se siente impulsado a hacer?**\n• Tratarnos con misericordia\n• Perdonarnos cuando nos arrepentimos\n• Comprende que a veces cometeremos errores",
+      flashcards: [
+        {
+          question: "¿Qué significa que Jehová 'se acuerda' de que somos polvo?",
+          answer: "No solo lo tiene en la mente, sino que se siente impulsado a tratarnos con misericordia"
+        },
+        {
+          question: "¿Por qué Jehová comprende que a veces cometeremos errores?",
+          answer: "Porque sabe bien cómo estamos formados y que somos imperfectos"
+        },
+        {
+          question: "Si Jehová formó a los humanos del polvo, ¿qué implica eso sobre nuestras limitaciones?",
+          answer: "Que tenemos limitaciones naturales y necesidades que Jehová comprende perfectamente"
+        },
+        {
+          question: "¿Por qué el hecho de que 'somos polvo' hace que Jehová nos trate con más misericordia?",
+          answer: "Porque entiende que nuestra imperfección es parte de nuestra naturaleza humana, no solo maldad"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 103:14",
+          purpose: "Jehová se acuerda de que somos polvo",
+          text: "Porque él sabe bien cómo estamos formados, se acuerda de que somos polvo."
+        },
+        {
+          reference: "Génesis 2:7",
+          purpose: "Jehová formó a Adán del polvo",
+          text: "Y Jehová Dios procedió a formar al hombre del polvo del suelo y a soplar en sus narices el aliento de vida, y el hombre vino a ser alma viviente."
+        },
+        {
+          reference: "Salmo 78:38, 39",
+          purpose: "Jehová comprende nuestras limitaciones",
+          text: "Pero él era misericordioso; cubría el error y no causaba ruina. Y muchas veces hizo retornar su cólera, y no despertó toda su furia. De modo que se acordó de que ellos eran carne, un viento que va y no vuelve."
+        }
+      ]
     },
     {
       number: "14",
@@ -259,7 +329,42 @@ export const atalayaData: AtalayaStudy = {
       paragraphs: [14],
       image: "https://i.imgur.com/tbCRsya.jpg",
       answer: "a) El Salmo 103:12 nos enseña que Jehová pone nuestros pecados tan lejos como está el este del oeste. No queda ni el más mínimo rastro del pecado que pueda traerlo de vuelta a su memoria. b) David fue perdonado completamente y Jehová nunca le echó en cara sus pecados del pasado.",
-      answerBullets: "**a) ¿Qué nos enseña Salmo 103:12?**\n• Jehová pone nuestros pecados tan lejos como está el este del oeste\n• No queda ni el más mínimo rastro del pecado\n• No puede traerlo de vuelta a su memoria\n\n**b) Ejemplo de David:**\n• David fue perdonado completamente\n• Jehová nunca le echó en cara sus pecados del pasado"
+      answerBullets: "**a) ¿Qué nos enseña Salmo 103:12?**\n• Jehová pone nuestros pecados tan lejos como está el este del oeste\n• No queda ni el más mínimo rastro del pecado\n• No puede traerlo de vuelta a su memoria\n\n**b) Ejemplo de David:**\n• David fue perdonado completamente\n• Jehová nunca le echó en cara sus pecados del pasado",
+      flashcards: [
+        {
+          question: "¿Qué distancia usa David para describir cuán lejos pone Jehová nuestros pecados?",
+          answer: "Tan lejos como está el este del oeste"
+        },
+        {
+          question: "Según el biblista citado, ¿qué desaparece cuando el pecado es llevado tan lejos?",
+          answer: "Todo rastro del pecado, incluso su recuerdo"
+        },
+        {
+          question: "¿Qué ilustración usa el párrafo para explicar cómo quedan borrados los pecados?",
+          answer: "Ni siquiera un leve olor queda que pueda despertar el recuerdo"
+        },
+        {
+          question: "¿Qué nunca hará Jehová con nuestros pecados perdonados?",
+          answer: "Nunca nos los echará en cara"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 103:12",
+          purpose: "Jehová aleja nuestros pecados completamente",
+          text: "Tan lejos como está el este del oeste, así de lejos ha puesto de nosotros nuestras transgresiones."
+        },
+        {
+          reference: "Ezequiel 18:21, 22",
+          purpose: "Jehová no recuerda los pecados perdonados",
+          text: "En cuanto al inicuo, en caso de que se vuelva de todos sus pecados que ha cometido y realmente guarde todos mis estatutos y ejecute derecho y justicia, positivamente seguirá viviendo. No morirá. Todas sus transgresiones que cometió... no serán recordadas contra él. Por su justicia que ha hecho seguirá viviendo."
+        },
+        {
+          reference: "Hechos 3:19",
+          purpose: "Arrepentirse para que los pecados sean borrados",
+          text: "Por eso, arrepiéntanse y vuélvanse para que sean borrados sus pecados, para que vengan tiempos de refrigerio de parte de la persona de Jehová."
+        }
+      ]
     },
     {
       number: "15",
@@ -267,7 +372,28 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [15],
       answer: "Debemos meditar en el Salmo 103 y preguntarnos: Si Jehová recuerda que soy imperfecto y está dispuesto a perdonarme, ¿no debería recordarlo yo también? Si Jehová decide olvidar mis pecados del pasado, ¿no debería olvidarlos yo también? Una vez convencidos de que Jehová nos ha perdonado, lograremos perdonarnos a nosotros mismos.",
-      answerBullets: "• Meditar en el Salmo 103\n• Preguntarnos: Si Jehová recuerda que soy imperfecto, ¿no debería recordarlo yo también?\n• Preguntarnos: Si Jehová decide olvidar mis pecados, ¿no debería olvidarlos yo también?\n• Convencernos de que Jehová nos ha perdonado\n• Lograr perdonarnos a nosotros mismos"
+      answerBullets: "• Meditar en el Salmo 103\n• Preguntarnos: Si Jehová recuerda que soy imperfecto, ¿no debería recordarlo yo también?\n• Preguntarnos: Si Jehová decide olvidar mis pecados, ¿no debería olvidarlos yo también?\n• Convencernos de que Jehová nos ha perdonado\n• Lograr perdonarnos a nosotros mismos",
+      flashcards: [
+        {
+          question: "¿Por qué es ilógico seguir recordando pecados que Jehová ya olvidó?",
+          answer: "Porque si Jehová mismo no los recuerda, nosotros tampoco deberíamos seguir pensando en ellos"
+        },
+        {
+          question: "Si Jehová recuerda que somos imperfectos, ¿por qué también nosotros debemos recordarlo?",
+          answer: "Para ser realistas y no exigirnos más de lo que Jehová nos exige"
+        },
+        {
+          question: "Según Salmo 130:3, ¿qué pasaría si Jehová llevara cuenta de todos nuestros errores?",
+          answer: "Nadie podría mantenerse en pie ante él"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 130:3",
+          purpose: "Si Jehová llevara cuenta de errores, nadie sería aceptable",
+          text: "Si errores vigilaras tú, oh Jah, oh Jehová, ¿quién podría estar de pie?"
+        }
+      ]
     },
     {
       number: "16",
@@ -276,7 +402,37 @@ export const atalayaData: AtalayaStudy = {
       paragraphs: [16],
       image: "https://i.imgur.com/4cpYFS7.jpg",
       answer: "Es peligroso porque es como conducir un auto mirando siempre el espejo retrovisor. Si nos obsesionamos con los errores del pasado, nos sentiremos tan culpables que no podremos darle a Jehová lo mejor de nosotros. Debemos mantener la vista fija en el camino hacia el nuevo mundo.",
-      answerBullets: "• Es como conducir un auto mirando siempre el espejo retrovisor\n• Nos sentiremos tan culpables\n• No podremos darle a Jehová lo mejor de nosotros\n• Debemos mantener la vista fija en el camino\n• El camino lleva al nuevo mundo"
+      answerBullets: "• Es como conducir un auto mirando siempre el espejo retrovisor\n• Nos sentiremos tan culpables\n• No podremos darle a Jehová lo mejor de nosotros\n• Debemos mantener la vista fija en el camino\n• El camino lleva al nuevo mundo",
+      flashcards: [
+        {
+          question: "¿Qué ilustración muestra por qué es peligroso obsesionarse con los errores del pasado?",
+          answer: "Conducir un auto mirando siempre el espejo retrovisor"
+        },
+        {
+          question: "¿Para qué es bueno mirar el espejo retrovisor de vez en cuando?",
+          answer: "Para ver si hay algún peligro detrás y poder evitarlo"
+        },
+        {
+          question: "Si nos obsesionamos con los errores del pasado, ¿qué consecuencia tendrá?",
+          answer: "Nos sentiremos tan culpables que no podremos darle a Jehová lo mejor de nosotros"
+        },
+        {
+          question: "Según Isaías 65:17, ¿qué pasará con las cosas malas del pasado en el nuevo mundo?",
+          answer: "No serán recordadas"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Isaías 65:17",
+          purpose: "Las cosas malas del pasado no serán recordadas",
+          text: "Porque estoy creando nuevos cielos y una nueva tierra; y las cosas anteriores no serán recordadas, ni se les ocurrirán."
+        },
+        {
+          reference: "Proverbios 4:25",
+          purpose: "Mantener la vista fija en lo que tenemos delante",
+          text: "Tus ojos deben mirar directamente al frente, sí, tu propia mirada radiante debe estar fija en lo que está adelante de ti."
+        }
+      ]
     },
     {
       number: "17",
@@ -285,7 +441,37 @@ export const atalayaData: AtalayaStudy = {
       paragraphs: [17],
       section: "SIGUE CONVENCIENDO A TU CORAZÓN",
       answer: "Porque Satanás seguirá intentando convencernos de que Dios no nos quiere y nunca nos perdonará. Su objetivo es que dejemos de servir a Jehová. Como sabe que le queda poco tiempo, cada vez lo intentará con más ganas. Por eso no debemos darle ni la más mínima oportunidad.",
-      answerBullets: "• Satanás seguirá intentando convencernos de que Dios no nos quiere\n• Intentará convencernos de que nunca nos perdonará\n• Su objetivo es que dejemos de servir a Jehová\n• Sabe que le queda poco tiempo\n• Cada vez lo intentará con más ganas\n• No debemos darle ni la más mínima oportunidad"
+      answerBullets: "• Satanás seguirá intentando convencernos de que Dios no nos quiere\n• Intentará convencernos de que nunca nos perdonará\n• Su objetivo es que dejemos de servir a Jehová\n• Sabe que le queda poco tiempo\n• Cada vez lo intentará con más ganas\n• No debemos darle ni la más mínima oportunidad",
+      flashcards: [
+        {
+          question: "¿Qué seguirá intentando hacer Satanás con nosotros?",
+          answer: "Convencernos de que Dios no nos quiere y nunca nos perdonará"
+        },
+        {
+          question: "¿Cuál es el objetivo de Satanás cuando intenta que dudemos del perdón de Jehová?",
+          answer: "Que dejemos de servir a Jehová"
+        },
+        {
+          question: "¿Por qué Satanás cada vez intenta con más ganas?",
+          answer: "Porque sabe que le queda poco tiempo"
+        },
+        {
+          question: "Si Satanás sigue intentando convencernos, ¿qué debemos hacer nosotros?",
+          answer: "Seguir convenciendo a nuestro corazón de que Jehová nos quiere y nos perdona"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "1 Juan 3:19",
+          purpose: "Para convencer a nuestro corazón sobre el amor de Jehová",
+          text: "De esta manera sabremos que estamos en la verdad, y tranquilizaremos nuestro corazón delante de él."
+        },
+        {
+          reference: "Apocalipsis 12:12",
+          purpose: "Satanás sabe que le queda poco tiempo",
+          text: "¡Ay de la tierra y del mar!, porque el Diablo ha descendido a ustedes con gran furia, sabiendo que tiene un corto período de tiempo."
+        }
+      ]
     },
     {
       number: "18",
@@ -293,7 +479,32 @@ export const atalayaData: AtalayaStudy = {
       textLSM: "",
       paragraphs: [18],
       answer: "Puedes meditar en cómo Jehová se describe a sí mismo y en lo que la Biblia enseña sobre su manera de perdonar. No olvides que él siempre tiene presente que eres imperfecto y te trata con misericordia. Recuerda que Dios perdona de manera completa. Si haces todo esto, podrás decir con confianza: ¡Gracias, Jehová, por perdonar mis pecados!",
-      answerBullets: "• Meditar en cómo Jehová se describe a sí mismo\n• Meditar en lo que la Biblia enseña sobre su manera de perdonar\n• No olvidar que él siempre tiene presente que eres imperfecto\n• Recordar que te trata con misericordia\n• Recordar que Dios perdona de manera completa\n• Decir con confianza: ¡Gracias, Jehová, por perdonar mis pecados!"
+      answerBullets: "• Meditar en cómo Jehová se describe a sí mismo\n• Meditar en lo que la Biblia enseña sobre su manera de perdonar\n• No olvidar que él siempre tiene presente que eres imperfecto\n• Recordar que te trata con misericordia\n• Recordar que Dios perdona de manera completa\n• Decir con confianza: ¡Gracias, Jehová, por perdonar mis pecados!",
+      flashcards: [
+        {
+          question: "¿Cuáles son los 2 temas principales que se vieron en estos artículos?",
+          answer: "Cómo convencernos de que Jehová nos quiere, y cómo convencernos de que nos ha perdonado"
+        },
+        {
+          question: "¿En qué 2 cosas debemos meditar para convencernos del perdón de Jehová?",
+          answer: "En cómo Jehová se describe a sí mismo y en lo que la Biblia enseña sobre su manera de perdonar"
+        },
+        {
+          question: "¿Qué 2 cosas no debemos olvidar según el párrafo?",
+          answer: "Que Jehová siempre tiene presente que somos imperfectos y que nos trata con misericordia"
+        },
+        {
+          question: "Si hacemos todo lo que dice el párrafo, ¿qué podremos decir con confianza?",
+          answer: "¡Gracias, Jehová, por perdonar mi error y mis pecados!"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Salmo 32:5",
+          purpose: "Podemos agradecer a Jehová por perdonar nuestros pecados",
+          text: "Mi pecado te confesé, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
+        }
+      ]
     }
   ],
   paragraphs: [
@@ -372,13 +583,144 @@ export const atalayaData: AtalayaStudy = {
   ],
   reviewQuestions: [
     {
-      question: "¿Por qué es tan importante convencernos de que Jehová nos ha perdonado?"
+      question: "¿Por qué es tan importante convencernos de que Jehová nos ha perdonado?",
+      answer: "Es importante por dos razones principales: Primera, para no caer en la trampa de Satanás, quien quiere hacernos creer que somos imperdonables para que dejemos de servir a Jehová. Segunda, para liberarnos del peso de la culpa y poder servir a Jehová con una conciencia tranquila y mucha alegría.",
+      answerBullets: "• Para no caer en la trampa de Satanás\n• Satanás quiere hacernos creer que somos imperdonables\n• Su objetivo es que dejemos de servir a Jehová\n• Para liberarnos del peso de la culpa\n• Para poder dejar la culpa atrás y pasar la página\n• Para servir a Jehová con una conciencia tranquila\n• Para servir con mucha alegría",
+      flashcards: [
+        {
+          question: "¿Cuáles son las 2 razones principales por las que es importante convencernos del perdón de Jehová?",
+          answer: "Para no caer en la trampa de Satanás, y para liberarnos del peso de la culpa"
+        },
+        {
+          question: "¿Qué trampa usa Satanás relacionada con el perdón?",
+          answer: "Hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos perdonará"
+        },
+        {
+          question: "Si nos sentimos demasiado culpables después de arrepentirnos, ¿qué puede pasar?",
+          answer: "Podemos desanimarnos hasta el punto de querer darnos por vencidos"
+        },
+        {
+          question: "Cuando nos convencemos de que Jehová nos ha perdonado, ¿cómo podemos servir a Jehová?",
+          answer: "Con una conciencia tranquila y mucha alegría"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "2 Corintios 2:5-11",
+          purpose: "Satanás quería que el hombre arrepentido no fuera perdonado",
+          text: "Ahora bien, si alguien ha causado tristeza, no me ha entristecido solo a mí, sino a todos ustedes hasta cierto grado, para no ser demasiado severo al decir esto. Esta reprensión dada por la mayoría es suficiente para tal hombre; ahora deben perdonarlo bondadosamente y consolarlo, para que de algún modo ese hombre no sea tragado por su excesiva tristeza. Por lo tanto, les exhorto a que confirmen su amor por él. Porque yo también les escribí con este propósito: para comprobar si ustedes son obedientes en todo. Si ustedes perdonan bondadosamente a alguien, yo también. De hecho, lo que yo haya perdonado bondadosamente, si he perdonado algo, ha sido por causa de ustedes delante de Cristo, para que no seamos vencidos por Satanás, pues no desconocemos sus tácticas."
+        },
+        {
+          reference: "Salmo 51:17",
+          purpose: "Es natural sentirse mal cuando pecamos",
+          text: "Los sacrificios para Dios son un espíritu quebrantado. Oh Dios, tú no rechazarás un corazón quebrantado y aplastado."
+        },
+        {
+          reference: "2 Corintios 7:10, 11",
+          purpose: "La tristeza piadosa nos motiva a cambiar",
+          text: "Porque la tristeza de una manera piadosa obra arrepentimiento para salvación que no hay que lamentar; pero la tristeza del mundo produce muerte. Porque miren, este mismo hecho de que se entristecieran de una manera piadosa, ¡cuánta seriedad obró en ustedes!, sí, disculpándose, sí, indignación, sí, temor, sí, anhelo vehemente, sí, celo, sí, corrección de la injusticia! En todo respecto ustedes demostraron ser castos en este asunto."
+        }
+      ]
     },
     {
-      question: "¿Qué te puede ayudar a convencerte de que Jehová te ha perdonado?"
+      question: "¿Qué te puede ayudar a convencerte de que Jehová te ha perdonado?",
+      answer: "Tres cosas principales nos ayudan: Primera, meditar en cómo Jehová se describe a sí mismo (misericordioso, compasivo y el Dios de la verdad). Segunda, meditar en lo que la Biblia enseña sobre su manera de perdonar (levanta y se lleva nuestros pecados). Tercera, recordar que Jehová se acuerda de que somos imperfectos y pone nuestros pecados tan lejos como está el este del oeste.",
+      answerBullets: "• Meditar en cómo Jehová se describe a sí mismo\n• Jehová es misericordioso y compasivo\n• Jehová siempre dice la verdad\n• Perdonar forma parte de la naturaleza de Jehová\n• Su amor leal lo motiva a perdonar generosamente\n• Jehová levanta y se lleva nuestros pecados\n• Se acuerda de que somos polvo (imperfectos)\n• Pone nuestros pecados tan lejos como está el este del oeste\n• No queda ni el más mínimo rastro del pecado\n• Si Jehová decide olvidar, nosotros también deberíamos olvidar",
+      flashcards: [
+        {
+          question: "¿Cuáles son las 3 cosas principales que nos ayudan a convencernos del perdón de Jehová?",
+          answer: "Meditar en cómo se describe a sí mismo, meditar en lo que la Biblia enseña sobre su manera de perdonar, y recordar que él se acuerda de que somos imperfectos"
+        },
+        {
+          question: "Según Éxodo 34:6, 7, ¿cómo eligió presentarse Jehová?",
+          answer: "Como un Dios misericordioso y compasivo"
+        },
+        {
+          question: "¿Qué significa la palabra hebrea para 'perdonar' en Salmo 32:5?",
+          answer: "Perdonar, levantar y llevar"
+        },
+        {
+          question: "Según Salmo 103:12, ¿qué distancia usa David para describir cuán lejos pone Jehová nuestros pecados?",
+          answer: "Tan lejos como está el este del oeste"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "Éxodo 34:6, 7",
+          purpose: "Jehová se describe como misericordioso y compasivo",
+          text: "Jehová pasó delante de él y proclamó: 'Jehová, Jehová, un Dios misericordioso y compasivo, tardo para la cólera y abundante en amor leal y verdad, que muestra amor leal a miles, que perdona error, transgresión y pecado, pero de ninguna manera dejará impune al culpable, sino que hace venir el castigo por el error de los padres sobre los hijos y sobre los nietos, sobre la tercera generación y sobre la cuarta generación'."
+        },
+        {
+          reference: "Salmo 31:5",
+          purpose: "Jehová siempre dice la verdad",
+          text: "En tu mano encomiendo mi espíritu. Tú me has redimido, oh Jehová el Dios de la verdad."
+        },
+        {
+          reference: "Salmo 32:5",
+          purpose: "La palabra hebrea para perdonar significa levantar y llevar",
+          text: "Mi pecado te confesé, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
+        },
+        {
+          reference: "Salmo 86:5",
+          purpose: "Jehová está dispuesto a perdonar",
+          text: "Porque tú, oh Jehová, eres bueno y estás dispuesto a perdonar, y tu amor leal por todos los que te llaman es inmenso."
+        },
+        {
+          reference: "Isaías 55:7",
+          purpose: "Jehová perdona en gran manera",
+          text: "Que el malvado deje su camino y el hombre dañino sus pensamientos, y que regrese a Jehová, quien tendrá misericordia de él, a nuestro Dios, porque él perdonará en gran manera."
+        },
+        {
+          reference: "Salmo 103:14",
+          purpose: "Jehová se acuerda de que somos polvo",
+          text: "Porque él sabe bien cómo estamos formados, se acuerda de que somos polvo."
+        },
+        {
+          reference: "Salmo 103:12",
+          purpose: "Jehová aleja nuestros pecados completamente",
+          text: "Tan lejos como está el este del oeste, así de lejos ha puesto de nosotros nuestras transgresiones."
+        },
+        {
+          reference: "Salmo 130:3",
+          purpose: "Si Jehová llevara cuenta de errores, nadie sería aceptable",
+          text: "Si errores vigilaras tú, oh Jah, oh Jehová, ¿quién podría estar de pie?"
+        }
+      ]
     },
     {
-      question: "¿Por qué tenemos que seguir convenciendo a nuestro corazón de que Jehová nos perdona?"
+      question: "¿Por qué tenemos que seguir convenciendo a nuestro corazón de que Jehová nos perdona?",
+      answer: "Porque Satanás no se rendirá. Él seguirá intentando convencernos de que Dios no nos quiere y nunca nos perdonará. Su objetivo es que dejemos de servir a Jehová. Como sabe que le queda poco tiempo, cada vez lo intentará con más ganas. Por eso tenemos que seguir convenciendo a nuestro corazón y no darle a Satanás ni la más mínima oportunidad.",
+      answerBullets: "• Satanás no se rendirá en sus ataques\n• Seguirá intentando convencernos de que Dios no nos quiere\n• Seguirá intentando convencernos de que nunca nos perdonará\n• Su objetivo final es que dejemos de servir a Jehová\n• Sabe que le queda poco tiempo\n• Por eso cada vez lo intentará con más ganas\n• Tenemos que seguir convenciendo a nuestro corazón constantemente\n• No debemos darle a Satanás ni la más mínima oportunidad\n• Es una batalla continua, no algo de una sola vez",
+      flashcards: [
+        {
+          question: "¿Por qué Satanás sigue atacándonos incluso después de que Jehová nos ha perdonado?",
+          answer: "Porque su objetivo es que dejemos de servir a Jehová, y sabe que le queda poco tiempo"
+        },
+        {
+          question: "¿Qué dos mentiras principales intenta Satanás que creamos sobre el perdón?",
+          answer: "Que Dios no nos quiere y que nunca nos perdonará"
+        },
+        {
+          question: "Si Satanás cada vez lo intenta con más ganas, ¿qué debemos hacer nosotros?",
+          answer: "Seguir convenciendo a nuestro corazón constantemente y no darle ni la más mínima oportunidad"
+        },
+        {
+          question: "Según 1 Juan 3:19, ¿para qué sirve convencer a nuestro corazón?",
+          answer: "Para tranquilizar nuestro corazón delante de Jehová"
+        }
+      ],
+      biblicalCards: [
+        {
+          reference: "1 Juan 3:19",
+          purpose: "Para tranquilizar nuestro corazón",
+          text: "De esta manera sabremos que estamos en la verdad, y tranquilizaremos nuestro corazón delante de él."
+        },
+        {
+          reference: "Apocalipsis 12:12",
+          purpose: "Satanás sabe que le queda poco tiempo",
+          text: "¡Ay de la tierra y del mar!, porque el Diablo ha descendido a ustedes con gran furia, sabiendo que tiene un corto período de tiempo."
+        }
+      ]
     }
   ],
   finalSong: "Canción 1: Las cualidades principales de Jehová"

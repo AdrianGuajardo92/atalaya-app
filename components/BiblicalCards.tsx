@@ -10,13 +10,26 @@ interface BiblicalCard {
 
 interface BiblicalCardsProps {
   cards: BiblicalCard[];
+  questionNumber: string; // Para identificar a qué pregunta pertenecen estas tarjetas
+  favorites: Record<string, boolean>; // Estado de favoritos
+  onToggleFavorite: (favoriteId: string) => void; // Callback para marcar/desmarcar favorito
+  hiddenCards: Record<string, boolean>; // Tarjetas ocultas
+  onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
 }
 
-export default function BiblicalCards({ cards }: BiblicalCardsProps) {
+export default function BiblicalCards({ cards, questionNumber, favorites, onToggleFavorite, hiddenCards, onToggleHidden }: BiblicalCardsProps) {
   // Estado para controlar qué tarjetas están volteadas (por índice)
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
 
   if (!cards || cards.length === 0) return null;
+
+  // Filtrar tarjetas ocultas
+  const visibleCards = cards.filter((_, index) => {
+    const cardId = `biblical-${questionNumber}-${index}`;
+    return !hiddenCards[cardId];
+  });
+
+  if (visibleCards.length === 0) return null;
 
   const handleFlip = (index: number) => {
     setFlippedCards((prev) => {
@@ -35,22 +48,61 @@ export default function BiblicalCards({ cards }: BiblicalCardsProps) {
       <div className="flex items-center justify-between mb-4">
         <div className="text-xs font-semibold text-purple-700">📖 Textos Bíblicos</div>
         <div className="text-xs text-purple-600 font-medium">
-          {cards.length} {cards.length === 1 ? 'texto' : 'textos'}
+          {visibleCards.length} {visibleCards.length === 1 ? 'texto' : 'textos'}
         </div>
       </div>
 
       {/* Cuadrícula de tarjetas */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {cards.map((card, index) => {
+        {cards.map((card, originalIndex) => {
+          const cardId = `biblical-${questionNumber}-${originalIndex}`;
+          if (hiddenCards[cardId]) return null; // No mostrar tarjetas ocultas
+
+          const index = originalIndex; // Mantener el índice original para los IDs
           const isFlipped = flippedCards.has(index);
+          const favoriteId = `biblical-${questionNumber}-${index}`;
+          const isFavorite = favorites[favoriteId] || false;
 
           return (
             <div
               key={index}
-              className="relative h-48 cursor-pointer"
+              className="relative h-48 cursor-pointer group"
               style={{ perspective: '1000px' }}
               onClick={() => handleFlip(index)}
             >
+              {/* Botones de control */}
+              <div className="absolute top-2 right-2 z-10 flex gap-1">
+                {/* Botón de favorito */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleFavorite(favoriteId);
+                  }}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
+                    isFavorite
+                      ? 'bg-yellow-400 hover:bg-yellow-500 scale-110'
+                      : 'bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100'
+                  }`}
+                  title={isFavorite ? 'Quitar de favoritos' : 'Marcar como favorito'}
+                >
+                  <span className="text-lg">{isFavorite ? '⭐' : '☆'}</span>
+                </button>
+
+                {/* Botón de borrar */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (confirm('¿Estás seguro de que quieres ocultar este texto bíblico?')) {
+                      onToggleHidden(cardId);
+                    }
+                  }}
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md bg-white/80 hover:bg-red-500 hover:text-white opacity-0 group-hover:opacity-100"
+                  title="Ocultar texto bíblico"
+                >
+                  <span className="text-lg">🗑️</span>
+                </button>
+              </div>
+
               <div
                 className="relative w-full h-full transition-transform duration-500"
                 style={{
@@ -60,7 +112,9 @@ export default function BiblicalCards({ cards }: BiblicalCardsProps) {
               >
                 {/* Frente de la tarjeta (Referencia + Propósito) */}
                 <div
-                  className="absolute w-full h-full bg-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center border-2 border-purple-200"
+                  className={`absolute w-full h-full bg-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center ${
+                    isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-purple-200'
+                  }`}
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
@@ -76,7 +130,9 @@ export default function BiblicalCards({ cards }: BiblicalCardsProps) {
 
                 {/* Reverso de la tarjeta (Texto completo TNM) */}
                 <div
-                  className="absolute w-full h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg shadow-lg border-2 border-purple-800 overflow-hidden flex flex-col"
+                  className={`absolute w-full h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg shadow-lg overflow-hidden flex flex-col ${
+                    isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-purple-800'
+                  }`}
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',

@@ -11,6 +11,8 @@ export interface Question {
   flashcards?: Array<{
     question: string; // Pregunta de la tarjeta didáctica
     answer: string; // Respuesta de la tarjeta
+    questionLSM?: string; // Pregunta en LSM
+    answerLSM?: string; // Respuesta en LSM
   }>;
   biblicalCards?: Array<{
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
@@ -27,6 +29,19 @@ export interface Paragraph {
 export interface ReviewQuestion {
   question: string; // Pregunta de repaso en español
   questionLSM?: string; // Pregunta de repaso en LSM
+  answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
+  answerBullets?: string; // Puntos clave de la respuesta en formato bullets
+  flashcards?: Array<{
+    question: string; // Pregunta de la tarjeta didáctica
+    answer: string; // Respuesta de la tarjeta
+    questionLSM?: string; // Pregunta en LSM
+    answerLSM?: string; // Respuesta en LSM
+  }>;
+  biblicalCards?: Array<{
+    reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
+    purpose: string; // Por qué está este texto / para qué sirve
+    text: string; // Texto completo de la Traducción del Nuevo Mundo
+  }>;
 }
 
 export interface AtalayaStudy {
