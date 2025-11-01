@@ -30,11 +30,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [isSaving, setIsSaving] = useState(false);
   const [isSavingSection, setIsSavingSection] = useState(false);
 
-  // Sincronizar isExpanded y showFlashcards cuando cambia el modo de navegación
+  // Sincronizar estados cuando cambia la pregunta o el modo de navegación
   useEffect(() => {
+    setEditedLSM(lsmText || question.textLSM || '');
+    setEditedSectionLSM(sectionLsmText || question.sectionLSM || '');
     setIsExpanded(isNavigationMode);
     setShowFlashcards(isNavigationMode);
-  }, [isNavigationMode]);
+  }, [question.number, lsmText, sectionLsmText, isNavigationMode, question.textLSM, question.sectionLSM]);
 
   // Cerrar modal con tecla Escape
   useEffect(() => {
