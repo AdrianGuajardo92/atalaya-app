@@ -12,7 +12,9 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nAgregar soporte para secciones con subtítulos destacados\n\n- Modificar tipos para incluir campo ''section'' en preguntas\n- Actualizar QuestionCard para mostrar subtítulos visuales\n- Agregar 4 secciones al contenido del estudio:\n  * \"POR QUÉ ES TAN IMPORTANTE CONVENCERNOS...\"\n  * \"¿QUÉ TE PUEDE AYUDAR A CONVENCERTE...\"\n  * \"RECUERDA SOLO LO QUE JEHOVÁ RECUERDA\"\n  * \"SIGUE CONVENCIENDO A TU CORAZÓN\"\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit -m \"$(cat <<''EOF''\nAgregar soporte para editar subtítulos de sección en LSM\n\n- Modificar tipos para incluir campo ''sectionLSM''\n- Agregar estados y funciones para editar subtítulos LSM\n- Implementar UI de edición con Enter para guardar\n- Los subtítulos LSM se guardan con clave ''section-{número}''\n- Mostrar subtítulos LSM con diseño destacado en azul\n- Sincronizar entre localhost y Vercel\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(node -e:*)",
+      "Bash(tasklist:*)"
     ],
     "deny": [],
     "ask": []

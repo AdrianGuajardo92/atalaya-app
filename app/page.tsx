@@ -6,12 +6,20 @@ import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
-import { atalayaData } from '@/data/atalaya-data';
+import { atalayaDatabase, getArticleById, getMonthArticles } from '@/data/atalaya-data';
+import { ArticleData } from '@/types/atalaya';
 
 export default function Home() {
+  // Estado para manejo de artículos
+  const [currentMonth] = useState<string>("2025-08"); // Mes actual
+  const [currentArticleId, setCurrentArticleId] = useState<string>("2025-08-article-35"); // Artículo por defecto
+  const [currentArticle, setCurrentArticle] = useState<ArticleData | null>(null);
+  const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
+
+  // Estados existentes
   const [navigationMode, setNavigationMode] = useState<'scroll' | 'paginated'>('scroll');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentReviewIndex, setCurrentReviewIndex] = useState(-1); // -1 significa que no estamos en preguntas de repaso
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>({});
@@ -20,24 +28,52 @@ export default function Home() {
   // Referencia para hacer scroll al contenido
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Cargar datos LSM, favoritos y tarjetas ocultas al iniciar
+  // Cargar artículos del mes al iniciar
   useEffect(() => {
+    console.log('🔍 Cargando artículos del mes:', currentMonth);
+    const articles = getMonthArticles(currentMonth);
+    console.log('📚 Artículos encontrados:', articles.length);
+    setMonthArticles(articles);
+
+    // Cargar artículo actual
+    console.log('🔍 Buscando artículo ID:', currentArticleId);
+    const article = getArticleById(currentArticleId);
+    console.log('📄 Artículo encontrado:', article ? article.title : 'NO ENCONTRADO');
+    if (article) {
+      setCurrentArticle(article);
+    } else {
+      // Si no se encuentra el artículo, desactivar loading para mostrar error
+      console.error('❌ No se encontró el artículo con ID:', currentArticleId);
+      setIsLoading(false);
+    }
+  }, [currentMonth, currentArticleId]);
+
+  // Cargar datos LSM, favoritos y tarjetas ocultas cuando cambia el artículo
+  useEffect(() => {
+    if (!currentArticleId) {
+      console.log('⚠️ No hay currentArticleId, saltando carga de datos');
+      return;
+    }
+
+    console.log('🔄 Iniciando carga de datos para artículo:', currentArticleId);
+    setIsLoading(true);
     Promise.all([
-      fetch('/api/lsm').then(res => res.json()),
-      fetch('/api/favorites').then(res => res.json()),
-      fetch('/api/hidden-cards').then(res => res.json())
+      fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.json()),
+      fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.json()),
+      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json())
     ])
       .then(([lsmDataResult, favoritesResult, hiddenCardsResult]) => {
+        console.log('✅ Datos cargados exitosamente');
         setLsmData(lsmDataResult);
         setFavorites(favoritesResult);
         setHiddenCards(hiddenCardsResult);
         setIsLoading(false);
       })
       .catch(err => {
-        console.error('Error loading data:', err);
+        console.error('❌ Error loading data:', err);
         setIsLoading(false);
       });
-  }, []);
+  }, [currentArticleId]);
 
   // Hacer scroll al inicio cuando cambia la pregunta en modo paginado
   useEffect(() => {
@@ -50,14 +86,23 @@ export default function Home() {
     }
   }, [currentQuestionIndex, currentReviewIndex, navigationMode]);
 
+  // Función para cambiar de artículo
+  const handleArticleChange = (articleId: string) => {
+    setCurrentArticleId(articleId);
+    setCurrentQuestionIndex(0);
+    setCurrentReviewIndex(-1);
+  };
+
   const handlePrevious = () => {
+    if (!currentArticle) return;
+
     if (currentReviewIndex > 0) {
       // Estamos en preguntas de repaso, retroceder en ellas
       setCurrentReviewIndex(currentReviewIndex - 1);
     } else if (currentReviewIndex === 0) {
       // Estamos en la primera pregunta de repaso, volver a la última pregunta normal
       setCurrentReviewIndex(-1);
-      setCurrentQuestionIndex(atalayaData.questions.length - 1);
+      setCurrentQuestionIndex(currentArticle.questions.length - 1);
     } else if (currentQuestionIndex > 0) {
       // Estamos en preguntas normales, retroceder
       setCurrentQuestionIndex(currentQuestionIndex - 1);
@@ -65,15 +110,17 @@ export default function Home() {
   };
 
   const handleNext = () => {
+    if (!currentArticle) return;
+
     if (currentReviewIndex >= 0) {
       // Estamos en preguntas de repaso
-      if (currentReviewIndex < atalayaData.reviewQuestions.length - 1) {
+      if (currentReviewIndex < currentArticle.reviewQuestions.length - 1) {
         setCurrentReviewIndex(currentReviewIndex + 1);
       }
-    } else if (currentQuestionIndex < atalayaData.questions.length - 1) {
+    } else if (currentQuestionIndex < currentArticle.questions.length - 1) {
       // Estamos en preguntas normales
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else if (currentQuestionIndex === atalayaData.questions.length - 1) {
+    } else if (currentQuestionIndex === currentArticle.questions.length - 1) {
       // Estamos en la última pregunta normal, pasar a preguntas de repaso
       setCurrentReviewIndex(0);
     }
@@ -107,12 +154,12 @@ export default function Home() {
       return newFavorites;
     });
 
-    // Guardar en backend
+    // Guardar en backend con articleId
     try {
       await fetch('/api/favorites', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ favoriteId, isFavorite })
+        body: JSON.stringify({ articleId: currentArticleId, favoriteId, isFavorite })
       });
     } catch (error) {
       console.error('Error saving favorite:', error);
@@ -138,12 +185,12 @@ export default function Home() {
       [cardId]: true
     }));
 
-    // Guardar en backend
+    // Guardar en backend con articleId
     try {
       await fetch('/api/hidden-cards', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cardId, isHidden })
+        body: JSON.stringify({ articleId: currentArticleId, cardId, isHidden })
       });
     } catch (error) {
       console.error('Error hiding card:', error);
@@ -156,7 +203,7 @@ export default function Home() {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || !currentArticle) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-xl text-gray-600">Cargando...</div>
@@ -201,21 +248,28 @@ export default function Home() {
       {/* Contenido principal */}
       <div className="max-w-5xl mx-auto px-6 py-8">
         <StudyHeader
-          song={atalayaData.song}
-          title={atalayaData.title}
-          biblicalText={atalayaData.biblicalText}
-          theme={atalayaData.theme}
+          song={currentArticle.song}
+          title={currentArticle.title}
+          biblicalText={currentArticle.biblicalText}
+          theme={currentArticle.theme}
+          articleNumber={currentArticle.metadata.articleNumber}
+          week={currentArticle.metadata.week}
+          month={currentArticle.metadata.month}
+          year={currentArticle.metadata.year}
+          articles={monthArticles}
+          currentArticleId={currentArticleId}
+          onArticleChange={handleArticleChange}
         />
 
         {/* Modo Scroll - Muestra todas las preguntas */}
         {navigationMode === 'scroll' && (
           <>
             <div className="space-y-4">
-              {atalayaData.questions.map((question, index) => (
+              {currentArticle.questions.map((question, index) => (
                 <QuestionCard
                   key={index}
                   question={question}
-                  paragraphs={atalayaData.paragraphs}
+                  paragraphs={currentArticle.paragraphs}
                   lsmText={lsmData[question.number]}
                   sectionLsmText={lsmData[`section-${question.number}`]}
                   onLSMUpdate={handleLSMUpdate}
@@ -237,7 +291,7 @@ export default function Home() {
                 </h2>
               </div>
               <div className="space-y-4">
-                {atalayaData.reviewQuestions.map((reviewQ, index) => (
+                {currentArticle.reviewQuestions.map((reviewQ, index) => (
                   <ReviewQuestionCard
                     key={index}
                     reviewQuestion={reviewQ}
@@ -258,7 +312,7 @@ export default function Home() {
             {/* Canción Final */}
             <div className="mt-8 bg-gradient-to-b from-blue-50 to-white rounded-lg shadow-md p-8 text-center">
               <p className="text-lg font-semibold text-gray-600">
-                {atalayaData.finalSong}
+                {currentArticle.finalSong}
               </p>
             </div>
           </>
@@ -271,10 +325,10 @@ export default function Home() {
               /* Mostrar pregunta normal */
               <>
                 <QuestionCard
-                  question={atalayaData.questions[currentQuestionIndex]}
-                  paragraphs={atalayaData.paragraphs}
-                  lsmText={lsmData[atalayaData.questions[currentQuestionIndex].number]}
-                  sectionLsmText={lsmData[`section-${atalayaData.questions[currentQuestionIndex].number}`]}
+                  question={currentArticle.questions[currentQuestionIndex]}
+                  paragraphs={currentArticle.paragraphs}
+                  lsmText={lsmData[currentArticle.questions[currentQuestionIndex].number]}
+                  sectionLsmText={lsmData[`section-${currentArticle.questions[currentQuestionIndex].number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={true}
                   favorites={favorites}
@@ -288,7 +342,7 @@ export default function Home() {
               /* Mostrar pregunta de repaso */
               <>
                 <ReviewQuestionCard
-                  reviewQuestion={atalayaData.reviewQuestions[currentReviewIndex]}
+                  reviewQuestion={currentArticle.reviewQuestions[currentReviewIndex]}
                   index={currentReviewIndex}
                   lsmText={lsmData[`review-${currentReviewIndex}`]}
                   onLSMUpdate={handleReviewLSMUpdate}
@@ -301,10 +355,10 @@ export default function Home() {
                 />
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}
-                {currentReviewIndex === atalayaData.reviewQuestions.length - 1 && (
+                {currentReviewIndex === currentArticle.reviewQuestions.length - 1 && (
                   <div className="mt-6 bg-gradient-to-b from-blue-50 to-white rounded-lg shadow-md p-8 text-center">
                     <p className="text-lg font-semibold text-gray-600">
-                      {atalayaData.finalSong}
+                      {currentArticle.finalSong}
                     </p>
                   </div>
                 )}
@@ -314,24 +368,24 @@ export default function Home() {
             {/* Vista previa de lo que viene */}
             {currentReviewIndex === -1 ? (
               /* Estamos en preguntas normales */
-              currentQuestionIndex < atalayaData.questions.length - 1 ? (
+              currentQuestionIndex < currentArticle.questions.length - 1 ? (
                 <div className="mt-6 bg-amber-50 border-l-4 border-amber-400 p-4 rounded-lg shadow-sm">
                   <p className="text-sm font-semibold text-amber-800 mb-2">📋 Siguiente:</p>
                   <div className="text-sm text-gray-700">
                     {/* Si hay subtítulo, mostrarlo primero */}
-                    {atalayaData.questions[currentQuestionIndex + 1].section && (
+                    {currentArticle.questions[currentQuestionIndex + 1].section && (
                       <div className="mb-3 pb-2 border-b border-amber-200">
                         <p className="font-semibold text-blue-700 mb-1">
                           Subtítulo:
                         </p>
                         <p className="text-gray-800 font-medium text-xs uppercase">
-                          {atalayaData.questions[currentQuestionIndex + 1].section}
+                          {currentArticle.questions[currentQuestionIndex + 1].section}
                         </p>
                       </div>
                     )}
                     {/* Después mostrar solo los párrafos */}
                     <p className="font-semibold text-gray-800">
-                      Párrafo{atalayaData.questions[currentQuestionIndex + 1].paragraphs.length > 1 ? 's' : ''}: {atalayaData.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
+                      Párrafo{currentArticle.questions[currentQuestionIndex + 1].paragraphs.length > 1 ? 's' : ''}: {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
                     </p>
                   </div>
                 </div>
@@ -341,14 +395,14 @@ export default function Home() {
                   <p className="text-sm font-semibold text-purple-800 mb-2">📋 Siguiente:</p>
                   <div className="text-sm text-gray-700">
                     <p className="font-semibold text-purple-700">
-                      ¿Qué responderías? ({atalayaData.reviewQuestions.length} preguntas de repaso)
+                      ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
                     </p>
                   </div>
                 </div>
               )
             ) : (
               /* Estamos en preguntas de repaso */
-              currentReviewIndex < atalayaData.reviewQuestions.length - 1 && (
+              currentReviewIndex < currentArticle.reviewQuestions.length - 1 && (
                 <div className="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4 rounded-lg shadow-sm">
                   <p className="text-sm font-semibold text-purple-800 mb-2">📋 Siguiente:</p>
                   <div className="text-sm text-gray-700">
@@ -376,17 +430,17 @@ export default function Home() {
 
               <div className="text-lg font-semibold text-gray-700">
                 {currentReviewIndex === -1 ? (
-                  <>Pregunta {currentQuestionIndex + 1} de {atalayaData.questions.length}</>
+                  <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
                 ) : (
-                  <>Repaso {currentReviewIndex + 1} de {atalayaData.reviewQuestions.length}</>
+                  <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
                 )}
               </div>
 
               <button
                 onClick={handleNext}
-                disabled={currentReviewIndex === atalayaData.reviewQuestions.length - 1}
+                disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
                 className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  currentReviewIndex === atalayaData.reviewQuestions.length - 1
+                  currentReviewIndex === currentArticle.reviewQuestions.length - 1
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 text-white hover:bg-blue-700'
                 }`}

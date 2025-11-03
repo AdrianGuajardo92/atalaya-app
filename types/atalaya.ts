@@ -24,6 +24,8 @@ export interface Question {
 export interface Paragraph {
   number: number;
   content: string; // Contenido del párrafo con textos bíblicos
+  image?: string; // URL de imagen ilustrativa (opcional)
+  imageCaption?: string; // Leyenda de la imagen (opcional)
 }
 
 export interface ReviewQuestion {
@@ -53,4 +55,27 @@ export interface AtalayaStudy {
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[]; // Preguntas de repaso
   finalSong: string; // Canción final
+}
+
+// Metadatos de un artículo de estudio
+export interface ArticleMetadata {
+  articleNumber: number; // Número de artículo (ej: 34, 35)
+  week: string; // Semana (ej: "4-10 Nov")
+  month: string; // Mes (ej: "Noviembre")
+  year: number; // Año (ej: 2025)
+}
+
+// Artículo completo con metadatos
+export interface ArticleData extends AtalayaStudy {
+  metadata: ArticleMetadata;
+}
+
+// Datos de un mes (contiene múltiples artículos)
+export interface MonthData {
+  articles: ArticleData[];
+}
+
+// Base de datos completa de artículos organizados por año-mes
+export interface AtalayaDatabase {
+  [yearMonth: string]: MonthData; // Clave: "2025-08", "2025-09", etc.
 }

@@ -1,727 +1,349 @@
-import { AtalayaStudy } from '@/types/atalaya';
+import { AtalayaDatabase, ArticleData } from '@/types/atalaya';
 
-export const atalayaData: AtalayaStudy = {
-  song: "Canción 3: Tú me das fuerza, confianza y valor",
-  title: "Convéncete de que Jehová te ha perdonado",
-  biblicalText: "\"Tú perdonaste mi error y mis pecados\" (SAL. 32:5).",
-  theme: "Cómo nos asegura la Biblia que Jehová perdona a los pecadores que se arrepienten y por qué es tan importante que estemos convencidos de ello.",
-  questions: [
-    {
-      number: "1, 2",
-      textEs: "¿Qué hace Jehová cuando nos arrepentimos, y cómo nos hace sentir eso?",
-      textLSM: "",
-      paragraphs: [1, 2],
-      image: "https://i.imgur.com/6xgfa4W.jpg",
-      answer: "Cuando nos arrepentimos de verdad, Jehová nos perdona completamente. Es como si borrara nuestros pecados y nunca los hubiéramos cometido. Esto nos hace sentir felices y aliviados, igual que se sintió el rey David cuando fue perdonado.",
-      answerBullets: "**¿Qué hace Jehová cuando nos arrepentimos?**\n• Jehová nos perdona completamente\n• Es como si borrara nuestros pecados y nunca los hubiéramos cometido\n\n**¿Cómo nos hace sentir eso?**\n• Nos hace sentir felices y aliviados\n• Igual que se sintió el rey David cuando fue perdonado",
-      flashcards: [
-        {
-          question: "¿Cuáles son las 3 condiciones para que Jehová nos perdone?",
-          answer: "Arrepentirnos de verdad, confesar nuestros pecados, y no volverlos a cometer"
-        },
-        {
-          question: "¿Qué hace Jehová con el pecado cuando nos perdona?",
-          answer: "Lo borra por completo, como si nunca lo hubiéramos cometido"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "2 Samuel 12:13",
-          purpose: "David confesó su pecado y Jehová lo perdonó",
-          text: "Entonces David le dijo a Natán: \"He pecado contra Jehová\". Natán le dijo a David: \"Jehová, por su parte, te perdona tu pecado. No morirás\"."
-        },
-        {
-          reference: "Salmo 32:1",
-          purpose: "David se sintió feliz cuando fue perdonado",
-          text: "Feliz es aquel cuya transgresión es perdonada, cuyo pecado queda cubierto."
-        },
-        {
-          reference: "Proverbios 28:13",
-          purpose: "Hay que confesar los pecados y abandonarlos para recibir misericordia",
-          text: "El que encubre sus transgresiones no tendrá éxito, pero al que las confiesa y las abandona se le mostrará misericordia."
-        },
-        {
-          reference: "Hechos 26:20",
-          purpose: "El arrepentimiento debe verse en nuestras acciones",
-          text: "Más bien, tanto a los de Damasco primero como a los de Jerusalén, y por toda la región de Judea, y a las naciones, les anuncié que debían arrepentirse y volverse a Dios haciendo obras propias del arrepentimiento."
-        },
-        {
-          reference: "1 Juan 1:9",
-          purpose: "Si confesamos, Dios nos perdona y nos limpia",
-          text: "Si confesamos nuestros pecados, él es fiel y justo para perdonarnos los pecados y limpiarnos de toda injusticia."
-        },
-        {
-          reference: "Ezequiel 33:16",
-          purpose: "Dios borra los pecados y no los recuerda más",
-          text: "No se recordará ninguno de los pecados que cometió. Ha hecho lo que es justo y correcto. Sin falta seguirá viviendo."
-        }
-      ]
-    },
-    {
-      number: "3, 4",
-      textEs: "¿Cómo se sentía Jennifer? ¿Qué veremos en este artículo?",
-      textLSM: "",
-      paragraphs: [3, 4],
-      answer: "Jennifer se sentía culpable porque había llevado una doble vida en su adolescencia. Aunque sabía que Jehová la había perdonado, su corazón no se dejaba convencer. En este artículo veremos por qué es importante estar convencidos de que Jehová nos ha perdonado y qué nos ayudará a lograrlo.",
-      answerBullets: "**¿Cómo se sentía Jennifer?**\n• Se sentía culpable por su doble vida en la adolescencia\n• Sabía que Jehová la había perdonado\n• Pero su corazón no se dejaba convencer\n\n**¿Qué veremos en este artículo?**\n• Por qué es importante estar convencidos del perdón de Jehová\n• Qué nos ayudará a lograrlo",
-      flashcards: [
-        {
-          question: "¿Qué puede pasar aunque sepamos que Jehová nos ha perdonado?",
-          answer: "Nuestro corazón puede que no se deje convencer"
-        },
-        {
-          question: "¿Cuáles son los 2 temas principales que se verán en el artículo?",
-          answer: "Por qué es importante estar convencidos del perdón de Jehová y qué nos ayudará a lograrlo"
-        }
-      ]
-    },
-    {
-      number: "5",
-      textEs: "¿Qué quiere Satanás que creamos? Pon un ejemplo.",
-      textLSM: "",
-      paragraphs: [5],
-      section: "POR QUÉ ES TAN IMPORTANTE CONVENCERNOS DE QUE JEHOVÁ NOS HA PERDONADO",
-      answer: "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar. Por ejemplo, intentó que los hermanos de Corinto no perdonaran a un hombre que se había arrepentido. Si hubiera tenido éxito, ese hombre habría creído que era imperdonable y habría dejado de servir a Jehová.",
-      answerBullets: "**¿Qué quiere Satanás que creamos?**\n• Que hemos cometido un pecado tan grave que Jehová nunca nos perdonará\n\n**Ejemplo:**\n• Intentó que los hermanos de Corinto no perdonaran a un hombre arrepentido\n• Quería que ese hombre creyera que era imperdonable\n• Su objetivo era que dejara de servir a Jehová",
-      flashcards: [
-        {
-          question: "¿Qué trampa usa Satanás para que dejemos de servir a Jehová?",
-          answer: "Hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos perdonará"
-        },
-        {
-          question: "¿Qué ejemplo muestra cómo Satanás intenta que nos sintamos imperdonables?",
-          answer: "El hombre de Corinto que se arrepintió, pero Satanás quería que los hermanos no lo perdonaran"
-        },
-        {
-          question: "¿Cuál es el objetivo de Satanás cuando nos hace sentir imperdonables?",
-          answer: "Que nos sintamos tan abrumados por la tristeza que dejemos de servir a Jehová"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "1 Corintios 5:1, 5, 13",
-          purpose: "Un hombre fue expulsado por inmoralidad sexual",
-          text: "En realidad se informa que hay inmoralidad sexual entre ustedes, y tal inmoralidad sexual como ni siquiera se da entre las naciones, que un hombre tenga a la esposa de su padre. Entreguen a ese hombre a Satanás para la destrucción de la carne, a fin de que el espíritu sea salvado en el día del Señor. Pero ahora les escribo que dejen de juntarse con cualquiera que, llamándose hermano, sea una persona sexualmente inmoral, o una persona codiciosa, o idólatra, o injuriador, o borracho, o extorsionador, y ni siquiera coman con tal hombre. Remuevan al hombre malvado de entre ustedes."
-        },
-        {
-          reference: "2 Corintios 2:5-11",
-          purpose: "Satanás quería que el hombre arrepentido no fuera perdonado",
-          text: "Ahora bien, si alguien ha causado tristeza, no me ha entristecido solo a mí, sino a todos ustedes hasta cierto grado, para no ser demasiado severo al decir esto. Esta reprensión dada por la mayoría es suficiente para tal hombre; ahora deben perdonarlo bondadosamente y consolarlo, para que de algún modo ese hombre no sea tragado por su excesiva tristeza. Por lo tanto, les exhorto a que confirmen su amor por él. Porque yo también les escribí con este propósito: para comprobar si ustedes son obedientes en todo. Si ustedes perdonan bondadosamente a alguien, yo también. De hecho, lo que yo haya perdonado bondadosamente, si he perdonado algo, ha sido por causa de ustedes delante de Cristo, para que no seamos vencidos por Satanás, pues no desconocemos sus tácticas."
-        }
-      ]
-    },
-    {
-      number: "6",
-      textEs: "¿Qué nos ayudará a liberarnos del peso de la culpa?",
-      textLSM: "",
-      paragraphs: [6],
-      answer: "Convencernos de que Jehová nos ha perdonado nos ayudará a liberarnos del peso de la culpa. Cuando estamos seguros de su perdón, podemos dejar la culpa atrás y pasar la página. Así podremos servir a Jehová con una conciencia tranquila y mucha alegría.",
-      answerBullets: "• Convencernos de que Jehová nos ha perdonado\n• Estar seguros de su perdón\n• Dejar la culpa atrás y pasar la página\n• Servir a Jehová con conciencia tranquila\n• Servir con mucha alegría",
-      flashcards: [
-        {
-          question: "¿Qué texto muestra que es natural sentirse mal cuando pecamos?",
-          answer: "Salmo 51:17"
-        },
-        {
-          question: "Según 2 Corintios 7:10, 11, ¿por qué es bueno sentirse mal cuando pecamos?",
-          answer: "Porque nos motiva a cambiar y hacer lo que está bien"
-        },
-        {
-          question: "¿Qué puede pasar si nos sentimos demasiado culpables incluso después de habernos arrepentido?",
-          answer: "Podemos desanimarnos hasta el punto de querer darnos por vencidos"
-        },
-        {
-          question: "Según Colosenses 1:10, 11 y 2 Timoteo 1:3, ¿cómo quiere Jehová que le sirvamos?",
-          answer: "Con una conciencia tranquila y mucha alegría"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 51:17",
-          purpose: "Es natural sentirse mal cuando pecamos",
-          text: "Los sacrificios para Dios son un espíritu quebrantado. Oh Dios, tú no rechazarás un corazón quebrantado y aplastado."
-        },
-        {
-          reference: "2 Corintios 7:10, 11",
-          purpose: "La tristeza piadosa nos motiva a cambiar",
-          text: "Porque la tristeza de una manera piadosa obra arrepentimiento para salvación que no hay que lamentar; pero la tristeza del mundo produce muerte. Porque miren, este mismo hecho de que se entristecieran de una manera piadosa, ¡cuánta seriedad obró en ustedes!, sí, disculpándose, sí, indignación, sí, temor, sí, anhelo vehemente, sí, celo, sí, corrección de la injusticia! En todo respecto ustedes demostraron ser castos en este asunto."
-        },
-        {
-          reference: "Colosenses 1:10, 11",
-          purpose: "Debemos servir con alegría",
-          text: "A fin de andar de una manera digna de Jehová para complacerle plenamente al ir llevando fruto en toda buena obra y aumentando en el conocimiento exacto de Dios, siendo hechos poderosos con todo poder al grado del poder de su gloria, para aguante y gran paciencia con gozo."
-        },
-        {
-          reference: "2 Timoteo 1:3",
-          purpose: "Servir con conciencia tranquila",
-          text: "Estoy agradecido a Dios, a quien desde mis antepasados estoy rindiendo servicio sagrado con una conciencia limpia, a medida que sin cesar tengo recuerdo acerca de ti en mis súplicas noche y día."
-        }
-      ]
-    },
-    {
-      number: "7, 8",
-      textEs: "¿Cómo se describió Jehová en Éxodo 34:6, 7, y qué seguridad nos da eso?",
-      textLSM: "",
-      paragraphs: [7, 8],
-      section: "¿QUÉ TE PUEDE AYUDAR A CONVENCERTE DE QUE JEHOVÁ TE HA PERDONADO?",
-      answer: "Jehová se describió como un Dios misericordioso y compasivo. Esto nos da la seguridad de que él nunca se negaría a perdonar a alguien que lo ama y se ha arrepentido de corazón. Cuando Jehová dice que es misericordioso, podemos creerle por completo porque él siempre dice la verdad.",
-      answerBullets: "**¿Cómo se describió Jehová?**\n• Como un Dios misericordioso y compasivo\n\n**¿Qué seguridad nos da eso?**\n• Nunca se negaría a perdonar a quien lo ama\n• Nunca se negaría a perdonar a quien se arrepiente de corazón\n• Podemos creerle completamente porque siempre dice la verdad",
-      flashcards: [
-        {
-          question: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?",
-          answer: "Misericordioso, compasivo, y es el Dios de la verdad (nunca miente)"
-        },
-        {
-          question: "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?",
-          answer: "Me ayuda a confiar completamente en lo que Jehová dice sobre el perdón"
-        },
-        {
-          question: "Si Jehová eligió presentarse como misericordioso y compasivo, ¿qué te dice eso sobre su personalidad?",
-          answer: "Que estas cualidades son lo más importante de su forma de ser, y nunca actuará de manera fría o cruel"
-        },
-        {
-          question: "¿Por qué podemos estar seguros de que Jehová nos perdona personalmente?",
-          answer: "Porque si perdona a todos los que se arrepienten, también nos perdona a nosotros"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Éxodo 34:6, 7",
-          purpose: "Jehová se describe como misericordioso y compasivo",
-          text: "Jehová pasó delante de él y proclamó: 'Jehová, Jehová, un Dios misericordioso y compasivo, tardo para la cólera y abundante en amor leal y verdad, que muestra amor leal a miles, que perdona error, transgresión y pecado, pero de ninguna manera dejará impune al culpable, sino que hace venir el castigo por el error de los padres sobre los hijos y sobre los nietos, sobre la tercera generación y sobre la cuarta generación'."
-        },
-        {
-          reference: "Salmo 31:5",
-          purpose: "Jehová siempre dice la verdad",
-          text: "En tu mano encomiendo mi espíritu. Tú me has redimido, oh Jehová el Dios de la verdad."
-        }
-      ]
-    },
-    {
-      number: "9",
-      textEs: "¿Qué nos enseña Salmo 32:5 sobre la manera de perdonar de Jehová?",
-      textLSM: "",
-      paragraphs: [9],
-      answer: "El Salmo 32:5 nos enseña que cuando Jehová nos perdona, es como si levantara una carga pesada de nuestros hombros y se la llevara. Ya no tenemos que seguir cargando con nuestros pecados, porque en realidad ya no están. Jehová los ha levantado y se los ha llevado.",
-      answerBullets: "• Es como si levantara una carga pesada de nuestros hombros\n• Es como si se llevara esa carga lejos\n• Ya no tenemos que seguir cargando con nuestros pecados\n• En realidad ya no están\n• Jehová los ha levantado y se los ha llevado",
-      flashcards: [
-        {
-          question: "¿Qué 3 significados tiene la palabra hebrea para 'perdonar' en Salmo 32:5?",
-          answer: "Perdonar, levantar y llevar"
-        },
-        {
-          question: "¿Cómo te ayuda la ilustración de la carga pesada a entender el perdón de Jehová?",
-          answer: "Me ayuda a ver que Jehová no solo perdona, sino que se lleva completamente mis pecados, como si quitara una carga de mis hombros"
-        },
-        {
-          question: "Según Salmo 32:2-4, ¿cómo se sintió David después de que Jehová lo perdonó?",
-          answer: "Se sintió muy aliviado y feliz"
-        },
-        {
-          question: "Si Jehová levanta y se lleva nuestros pecados, ¿qué significa que 'ya no están'?",
-          answer: "Que Jehová no solo los perdona, sino que los elimina completamente, como si nunca hubieran existido"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 32:5",
-          purpose: "La palabra hebrea para perdonar significa levantar y llevar",
-          text: "Mi pecado te confesé, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
-        },
-        {
-          reference: "Salmo 32:2-4",
-          purpose: "David se sintió aliviado y feliz cuando fue perdonado",
-          text: "Feliz es el hombre a quien Jehová no le imputa error, y en cuyo espíritu no hay engaño. Cuando callé, mis huesos se desgastaron por mi gemir todo el día. Porque día y noche tu mano pesaba sobre mí. Mi vitalidad se cambió como en el calor del verano."
-        }
-      ]
-    },
-    {
-      number: "10, 11",
-      textEs: "¿Qué nos enseña Salmo 86:5 sobre Jehová?",
-      textLSM: "",
-      paragraphs: [10, 11],
-      answer: "El Salmo 86:5 nos enseña que Jehová está dispuesto a perdonar, porque perdonar forma parte de su naturaleza. Su amor leal por nosotros siempre lo motiva a perdonar generosamente a quienes se arrepienten. También comprende que somos imperfectos porque sabe cómo estamos formados.",
-      answerBullets: "• Jehová está dispuesto a perdonar\n• Perdonar forma parte de su naturaleza\n• Su amor leal lo motiva a perdonar generosamente\n• Perdona a quienes se arrepienten\n• Comprende que somos imperfectos\n• Sabe cómo estamos formados",
-      flashcards: [
-        {
-          question: "¿Qué significa que perdonar forma parte de la naturaleza de Jehová?",
-          answer: "Que perdonar no es solo algo que Jehová hace, sino parte de lo que él es"
-        },
-        {
-          question: "¿Por qué el amor leal de Jehová siempre lo motiva a perdonar?",
-          answer: "Porque su amor leal es un apego profundo y duradero que nunca cambia"
-        },
-        {
-          question: "Según Isaías 55:7, ¿cómo perdona Jehová?",
-          answer: "Perdona en gran manera"
-        },
-        {
-          question: "Si Jehová perdona a todos los que se arrepienten, ¿qué podemos estar seguros?",
-          answer: "Que también nos ha perdonado a nosotros"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 86:5",
-          purpose: "Jehová está dispuesto a perdonar",
-          text: "Porque tú, oh Jehová, eres bueno y estás dispuesto a perdonar, y tu amor leal por todos los que te llaman es inmenso."
-        },
-        {
-          reference: "Isaías 55:7",
-          purpose: "Jehová perdona en gran manera",
-          text: "Que el malvado deje su camino y el hombre dañino sus pensamientos, y que regrese a Jehová, quien tendrá misericordia de él, a nuestro Dios, porque él perdonará en gran manera."
-        },
-        {
-          reference: "Salmo 139:1, 2",
-          purpose: "Jehová sabe cómo estamos formados",
-          text: "Oh Jehová, tú me has examinado, y bien me conoces. Tú mismo sabes cuándo me siento y cuándo me levanto. Desde lejos comprendes mi pensamiento."
-        }
-      ]
-    },
-    {
-      number: "12, 13",
-      textEs: "Según Salmo 103:14, ¿de qué se acuerda Jehová y qué se siente impulsado a hacer?",
-      textLSM: "",
-      paragraphs: [12, 13],
-      section: "RECUERDA SOLO LO QUE JEHOVÁ RECUERDA",
-      answer: "Jehová se acuerda de que somos imperfectos y tenemos limitaciones. No solo lo tiene en la mente, sino que se siente impulsado a tratarnos con misericordia y perdonarnos cuando nos arrepentimos. Comprende que a veces cometeremos errores.",
-      answerBullets: "**¿De qué se acuerda Jehová?**\n• Se acuerda de que somos imperfectos\n• Se acuerda de que tenemos limitaciones\n• No solo lo tiene en la mente\n\n**¿Qué se siente impulsado a hacer?**\n• Tratarnos con misericordia\n• Perdonarnos cuando nos arrepentimos\n• Comprende que a veces cometeremos errores",
-      flashcards: [
-        {
-          question: "¿Qué significa que Jehová 'se acuerda' de que somos polvo?",
-          answer: "No solo lo tiene en la mente, sino que se siente impulsado a tratarnos con misericordia"
-        },
-        {
-          question: "¿Por qué Jehová comprende que a veces cometeremos errores?",
-          answer: "Porque sabe bien cómo estamos formados y que somos imperfectos"
-        },
-        {
-          question: "Si Jehová formó a los humanos del polvo, ¿qué implica eso sobre nuestras limitaciones?",
-          answer: "Que tenemos limitaciones naturales y necesidades que Jehová comprende perfectamente"
-        },
-        {
-          question: "¿Por qué el hecho de que 'somos polvo' hace que Jehová nos trate con más misericordia?",
-          answer: "Porque entiende que nuestra imperfección es parte de nuestra naturaleza humana, no solo maldad"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 103:14",
-          purpose: "Jehová se acuerda de que somos polvo",
-          text: "Porque él sabe bien cómo estamos formados, se acuerda de que somos polvo."
-        },
-        {
-          reference: "Génesis 2:7",
-          purpose: "Jehová formó a Adán del polvo",
-          text: "Y Jehová Dios procedió a formar al hombre del polvo del suelo y a soplar en sus narices el aliento de vida, y el hombre vino a ser alma viviente."
-        },
-        {
-          reference: "Salmo 78:38, 39",
-          purpose: "Jehová comprende nuestras limitaciones",
-          text: "Pero él era misericordioso; cubría el error y no causaba ruina. Y muchas veces hizo retornar su cólera, y no despertó toda su furia. De modo que se acordó de que ellos eran carne, un viento que va y no vuelve."
-        }
-      ]
-    },
-    {
-      number: "14",
-      textEs: "a) ¿Qué nos enseña Salmo 103:12 sobre la manera de perdonar de Jehová? b) ¿Cómo muestra el ejemplo de David que el perdón de Jehová es completo?",
-      textLSM: "",
-      paragraphs: [14],
-      image: "https://i.imgur.com/tbCRsya.jpg",
-      answer: "a) El Salmo 103:12 nos enseña que Jehová pone nuestros pecados tan lejos como está el este del oeste. No queda ni el más mínimo rastro del pecado que pueda traerlo de vuelta a su memoria. b) David fue perdonado completamente y Jehová nunca le echó en cara sus pecados del pasado.",
-      answerBullets: "**a) ¿Qué nos enseña Salmo 103:12?**\n• Jehová pone nuestros pecados tan lejos como está el este del oeste\n• No queda ni el más mínimo rastro del pecado\n• No puede traerlo de vuelta a su memoria\n\n**b) Ejemplo de David:**\n• David fue perdonado completamente\n• Jehová nunca le echó en cara sus pecados del pasado",
-      flashcards: [
-        {
-          question: "¿Qué distancia usa David para describir cuán lejos pone Jehová nuestros pecados?",
-          answer: "Tan lejos como está el este del oeste"
-        },
-        {
-          question: "Según el biblista citado, ¿qué desaparece cuando el pecado es llevado tan lejos?",
-          answer: "Todo rastro del pecado, incluso su recuerdo"
-        },
-        {
-          question: "¿Qué ilustración usa el párrafo para explicar cómo quedan borrados los pecados?",
-          answer: "Ni siquiera un leve olor queda que pueda despertar el recuerdo"
-        },
-        {
-          question: "¿Qué nunca hará Jehová con nuestros pecados perdonados?",
-          answer: "Nunca nos los echará en cara"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 103:12",
-          purpose: "Jehová aleja nuestros pecados completamente",
-          text: "Tan lejos como está el este del oeste, así de lejos ha puesto de nosotros nuestras transgresiones."
-        },
-        {
-          reference: "Ezequiel 18:21, 22",
-          purpose: "Jehová no recuerda los pecados perdonados",
-          text: "En cuanto al inicuo, en caso de que se vuelva de todos sus pecados que ha cometido y realmente guarde todos mis estatutos y ejecute derecho y justicia, positivamente seguirá viviendo. No morirá. Todas sus transgresiones que cometió... no serán recordadas contra él. Por su justicia que ha hecho seguirá viviendo."
-        },
-        {
-          reference: "Hechos 3:19",
-          purpose: "Arrepentirse para que los pecados sean borrados",
-          text: "Por eso, arrepiéntanse y vuélvanse para que sean borrados sus pecados, para que vengan tiempos de refrigerio de parte de la persona de Jehová."
-        }
-      ]
-    },
-    {
-      number: "15",
-      textEs: "¿Qué podemos hacer si nos seguimos sintiendo culpables por pecados del pasado?",
-      textLSM: "",
-      paragraphs: [15],
-      answer: "Debemos meditar en el Salmo 103 y preguntarnos: Si Jehová recuerda que soy imperfecto y está dispuesto a perdonarme, ¿no debería recordarlo yo también? Si Jehová decide olvidar mis pecados del pasado, ¿no debería olvidarlos yo también? Una vez convencidos de que Jehová nos ha perdonado, lograremos perdonarnos a nosotros mismos.",
-      answerBullets: "• Meditar en el Salmo 103\n• Preguntarnos: Si Jehová recuerda que soy imperfecto, ¿no debería recordarlo yo también?\n• Preguntarnos: Si Jehová decide olvidar mis pecados, ¿no debería olvidarlos yo también?\n• Convencernos de que Jehová nos ha perdonado\n• Lograr perdonarnos a nosotros mismos",
-      flashcards: [
-        {
-          question: "¿Por qué es ilógico seguir recordando pecados que Jehová ya olvidó?",
-          answer: "Porque si Jehová mismo no los recuerda, nosotros tampoco deberíamos seguir pensando en ellos"
-        },
-        {
-          question: "Si Jehová recuerda que somos imperfectos, ¿por qué también nosotros debemos recordarlo?",
-          answer: "Para ser realistas y no exigirnos más de lo que Jehová nos exige"
-        },
-        {
-          question: "Según Salmo 130:3, ¿qué pasaría si Jehová llevara cuenta de todos nuestros errores?",
-          answer: "Nadie podría mantenerse en pie ante él"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 130:3",
-          purpose: "Si Jehová llevara cuenta de errores, nadie sería aceptable",
-          text: "Si errores vigilaras tú, oh Jah, oh Jehová, ¿quién podría estar de pie?"
-        }
-      ]
-    },
-    {
-      number: "16",
-      textEs: "¿Por qué es tan peligroso obsesionarse con los errores del pasado?",
-      textLSM: "",
-      paragraphs: [16],
-      image: "https://i.imgur.com/4cpYFS7.jpg",
-      answer: "Es peligroso porque es como conducir un auto mirando siempre el espejo retrovisor. Si nos obsesionamos con los errores del pasado, nos sentiremos tan culpables que no podremos darle a Jehová lo mejor de nosotros. Debemos mantener la vista fija en el camino hacia el nuevo mundo.",
-      answerBullets: "• Es como conducir un auto mirando siempre el espejo retrovisor\n• Nos sentiremos tan culpables\n• No podremos darle a Jehová lo mejor de nosotros\n• Debemos mantener la vista fija en el camino\n• El camino lleva al nuevo mundo",
-      flashcards: [
-        {
-          question: "¿Qué ilustración muestra por qué es peligroso obsesionarse con los errores del pasado?",
-          answer: "Conducir un auto mirando siempre el espejo retrovisor"
-        },
-        {
-          question: "¿Para qué es bueno mirar el espejo retrovisor de vez en cuando?",
-          answer: "Para ver si hay algún peligro detrás y poder evitarlo"
-        },
-        {
-          question: "Si nos obsesionamos con los errores del pasado, ¿qué consecuencia tendrá?",
-          answer: "Nos sentiremos tan culpables que no podremos darle a Jehová lo mejor de nosotros"
-        },
-        {
-          question: "Según Isaías 65:17, ¿qué pasará con las cosas malas del pasado en el nuevo mundo?",
-          answer: "No serán recordadas"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Isaías 65:17",
-          purpose: "Las cosas malas del pasado no serán recordadas",
-          text: "Porque estoy creando nuevos cielos y una nueva tierra; y las cosas anteriores no serán recordadas, ni se les ocurrirán."
-        },
-        {
-          reference: "Proverbios 4:25",
-          purpose: "Mantener la vista fija en lo que tenemos delante",
-          text: "Tus ojos deben mirar directamente al frente, sí, tu propia mirada radiante debe estar fija en lo que está adelante de ti."
-        }
-      ]
-    },
-    {
-      number: "17",
-      textEs: "¿Por qué tenemos que seguir convenciendo a nuestro corazón de que Jehová nos quiere y nos perdona?",
-      textLSM: "",
-      paragraphs: [17],
-      section: "SIGUE CONVENCIENDO A TU CORAZÓN",
-      answer: "Porque Satanás seguirá intentando convencernos de que Dios no nos quiere y nunca nos perdonará. Su objetivo es que dejemos de servir a Jehová. Como sabe que le queda poco tiempo, cada vez lo intentará con más ganas. Por eso no debemos darle ni la más mínima oportunidad.",
-      answerBullets: "• Satanás seguirá intentando convencernos de que Dios no nos quiere\n• Intentará convencernos de que nunca nos perdonará\n• Su objetivo es que dejemos de servir a Jehová\n• Sabe que le queda poco tiempo\n• Cada vez lo intentará con más ganas\n• No debemos darle ni la más mínima oportunidad",
-      flashcards: [
-        {
-          question: "¿Qué seguirá intentando hacer Satanás con nosotros?",
-          answer: "Convencernos de que Dios no nos quiere y nunca nos perdonará"
-        },
-        {
-          question: "¿Cuál es el objetivo de Satanás cuando intenta que dudemos del perdón de Jehová?",
-          answer: "Que dejemos de servir a Jehová"
-        },
-        {
-          question: "¿Por qué Satanás cada vez intenta con más ganas?",
-          answer: "Porque sabe que le queda poco tiempo"
-        },
-        {
-          question: "Si Satanás sigue intentando convencernos, ¿qué debemos hacer nosotros?",
-          answer: "Seguir convenciendo a nuestro corazón de que Jehová nos quiere y nos perdona"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "1 Juan 3:19",
-          purpose: "Para convencer a nuestro corazón sobre el amor de Jehová",
-          text: "De esta manera sabremos que estamos en la verdad, y tranquilizaremos nuestro corazón delante de él."
-        },
-        {
-          reference: "Apocalipsis 12:12",
-          purpose: "Satanás sabe que le queda poco tiempo",
-          text: "¡Ay de la tierra y del mar!, porque el Diablo ha descendido a ustedes con gran furia, sabiendo que tiene un corto período de tiempo."
-        }
-      ]
-    },
-    {
-      number: "18",
-      textEs: "¿Qué puedes hacer para convencerte de que Jehová te quiere y te ha perdonado?",
-      textLSM: "",
-      paragraphs: [18],
-      answer: "Puedes meditar en cómo Jehová se describe a sí mismo y en lo que la Biblia enseña sobre su manera de perdonar. No olvides que él siempre tiene presente que eres imperfecto y te trata con misericordia. Recuerda que Dios perdona de manera completa. Si haces todo esto, podrás decir con confianza: ¡Gracias, Jehová, por perdonar mis pecados!",
-      answerBullets: "• Meditar en cómo Jehová se describe a sí mismo\n• Meditar en lo que la Biblia enseña sobre su manera de perdonar\n• No olvidar que él siempre tiene presente que eres imperfecto\n• Recordar que te trata con misericordia\n• Recordar que Dios perdona de manera completa\n• Decir con confianza: ¡Gracias, Jehová, por perdonar mis pecados!",
-      flashcards: [
-        {
-          question: "¿Cuáles son los 2 temas principales que se vieron en estos artículos?",
-          answer: "Cómo convencernos de que Jehová nos quiere, y cómo convencernos de que nos ha perdonado"
-        },
-        {
-          question: "¿En qué 2 cosas debemos meditar para convencernos del perdón de Jehová?",
-          answer: "En cómo Jehová se describe a sí mismo y en lo que la Biblia enseña sobre su manera de perdonar"
-        },
-        {
-          question: "¿Qué 2 cosas no debemos olvidar según el párrafo?",
-          answer: "Que Jehová siempre tiene presente que somos imperfectos y que nos trata con misericordia"
-        },
-        {
-          question: "Si hacemos todo lo que dice el párrafo, ¿qué podremos decir con confianza?",
-          answer: "¡Gracias, Jehová, por perdonar mi error y mis pecados!"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Salmo 32:5",
-          purpose: "Podemos agradecer a Jehová por perdonar nuestros pecados",
-          text: "Mi pecado te confesé, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
-        }
-      ]
-    }
-  ],
-  paragraphs: [
-    {
-      number: 1,
-      content: "EL REY David se sintió muy culpable por errores que había cometido en el pasado (Sal. 40:12; 51:3; encabezamiento). Sin embargo, se arrepintió de corazón y Jehová lo perdonó (2 Sam. 12:13). Cuando David comprendió que Dios le había concedido su perdón, se sintió muy feliz y aliviado (Sal. 32:1)."
-    },
-    {
-      number: 2,
-      content: "Nosotros también podemos experimentar esos mismos sentimientos de felicidad y alivio. Nos tranquiliza saber que Jehová nos perdona —incluso si cometemos pecados graves— siempre y cuando nos arrepintamos de verdad, confesemos nuestros pecados y hagamos todo lo posible por no volverlos a cometer (Prov. 28:13; Hech. 26:20; 1 Juan 1:9). Y nos consuela muchísimo saber que, cuando nos perdona un pecado, lo borra por completo y es como si nunca lo hubiéramos cometido (Ezeq. 33:16)."
-    },
-    {
-      number: 3,
-      content: "Sin embargo, puede que a veces nos cueste creer que Jehová nos ha perdonado. Veamos el caso de Jennifer. Ella se había criado en la verdad, pero durante la adolescencia se desvió y comenzó a llevar una doble vida. Años después, regresó a Jehová y con el tiempo pudo bautizarse. Cuenta: \"Llevaba una vida materialista e inmoral. También bebía mucho y tenía un carácter terrible. Mi mente sabía que, como ya había pedido perdón y me había arrepentido, el sacrificio de Cristo me había limpiado. Pero mi corazón no se dejaba convencer\"."
-    },
-    {
-      number: 4,
-      content: "¿Te cuesta a ti también a veces convencer a tu corazón de que Jehová te ha perdonado por algún error del pasado? Recuerda que Jehová quiere que estemos tan seguros como David de que él nos muestra misericordia y nos perdona. En este artículo veremos por qué es tan importante estar convencidos de que Jehová nos ha perdonado y qué nos ayudará a lograrlo."
-    },
-    {
-      number: 5,
-      content: "Si estamos convencidos de que Jehová nos ha perdonado, no caeremos en una de las trampas de Satanás. Recordemos que él hará cualquier cosa con tal de que dejemos de servir a Jehová. Por ejemplo, una de las trampas que utiliza es intentar hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar. Pensemos en el hombre de Corinto que fue culpable de inmoralidad sexual y como resultado fue sacado de la congregación (1 Cor. 5:1, 5, 13). Él después se arrepintió. Pero Satanás quería que los hermanos no lo perdonaran y no le permitieran regresar a la congregación. Si eso sucedía, Satanás tal vez conseguiría que el hombre creyera que lo que había hecho era imperdonable. Y entonces se sentiría tan \"abrumado por estar demasiado triste\" que dejaría de servir a Jehová. El Diablo no ha cambiado ni sus intenciones ni sus métodos. Lo bueno es que nosotros \"no desconocemos sus tácticas\" (2 Cor. 2:5-11)."
-    },
-    {
-      number: 6,
-      content: "Si estamos convencidos de que Jehová nos ha perdonado, nos liberamos del peso de la culpa. Es natural que cuando pecamos nos sintamos mal (Sal. 51:17). Y eso es bueno, porque entonces la conciencia nos motivará a cambiar y a hacer lo que está bien (2 Cor. 7:10, 11). Sin embargo, si nos sentimos demasiado culpables incluso después de habernos arrepentido, podemos desanimarnos hasta el punto de querer darnos por vencidos. En cambio, cuando nos convencemos de que Jehová nos ha perdonado, podemos dejar la culpa atrás y pasar la página. De esa manera serviremos a Jehová como él quiere: con una conciencia tranquila y mucha alegría (Col. 1:10, 11; 2 Tim. 1:3). Veamos ahora qué nos ayudará a cada uno de nosotros a convencer a nuestro corazón de que Jehová nos ha perdonado."
-    },
-    {
-      number: 7,
-      content: "Medita en cómo Jehová se describió a sí mismo. Fíjate, por ejemplo, en lo que le dijo a Moisés en el monte Sinaí (lee Éxodo 34:6, 7). De todas las cosas que Jehová pudo haber dicho de sí mismo, ¿en qué se centró? Eligió presentarse como \"un Dios misericordioso y compasivo\". Entonces, ¿crees que se negaría a perdonar a alguien que lo ama y se ha arrepentido de corazón de un pecado? Es imposible que Jehová actúe de una manera tan fría y cruel."
-    },
-    {
-      number: 8,
-      content: "Cuando Jehová dice que es misericordioso, podemos creerle por completo, pues él siempre dice la verdad (Sal. 31:5). Por eso, si te cuesta creer que Jehová te ha perdonado, ¿por qué no piensas en lo siguiente? Si estás convencido de que Jehová es misericordioso y compasivo, y por tanto perdona a todos los que se arrepienten, puedes tener la total seguridad de que también te perdona a ti."
-    },
-    {
-      number: 9,
-      content: "Medita en lo que Jehová nos enseña en la Biblia sobre su manera de perdonar. Por ejemplo, David le dijo a Jehová: \"Tú perdonaste mi error y mis pecados\" (lee Salmo 32:5). La expresión hebrea que en este versículo se traduce como \"perdonar\" también significa \"levantar\" o \"llevar\". Así que, cuando Jehová perdonó a David, fue como si levantara de sus hombros una carga pesada y se la llevara. Como resultado, David se sintió muy aliviado y feliz (Sal. 32:2-4). Si nos arrepentimos de verdad, podemos sentirnos igual que él. No tenemos que seguir cargando con nuestros pecados, porque en realidad ya no están; Jehová los ha levantado de nuestros hombros y se los ha llevado."
-    },
-    {
-      number: 10,
-      content: "(Lee Salmo 86:5). David dijo que Jehová está \"dispuesto a perdonar\". Según una obra de consulta bíblica, esta expresión indica que \"perdonar forma parte de la naturaleza de Dios\". ¿Por qué es tan bueno con los pecadores arrepentidos? El versículo sigue diciendo: \"Tu amor leal por todos los que te llaman es inmenso\". Como vimos en el artículo anterior, el amor leal que Jehová siente por sus siervos es un apego profundo y duradero. Y ese amor siempre lo motiva a perdonar generosamente a quienes se arrepienten (Is. 55:7). Si te resulta difícil estar convencido de que Jehová te ha perdonado, quizás te ayude razonar así: \"Sé que Jehová está dispuesto a perdonar a todos los que se arrepienten y le piden misericordia. Así que puedo estar seguro de que Jehová me ha perdonado a mí\"."
-    },
-    {
-      number: 11,
-      content: "Por otro lado, la Biblia también nos enseña que Jehová sabe cómo estamos formados y comprende que somos imperfectos, y eso nos consuela mucho (Sal. 139:1, 2). Profundicemos en esta idea analizando otro salmo de David, que nos ayudará a convencernos de que Jehová quiere perdonarnos."
-    },
-    {
-      number: 12,
-      content: "(Lee Salmo 103:14). David dijo que Jehová \"se acuerda de que somos polvo\". Con esas palabras, dio una de las razones por las que Dios está dispuesto a perdonarnos si nos arrepentimos: siempre tiene presente que somos imperfectos. Analicemos en más detalle este versículo."
-    },
-    {
-      number: 13,
-      content: "David escribió que Jehová \"sabe bien cómo estamos formados\". Él formó a Adán \"del polvo del suelo\", y sabe lo que eso implica: los seres humanos, incluso siendo perfectos, tienen limitaciones y necesidades, como respirar, comer y dormir (Gén. 2:7). Pero, desde que Adán y Eva pecaron, el hecho de que \"somos polvo\" implica algo más: todos sus descendientes hemos heredado la imperfección y la tendencia a hacer cosas malas. Pues bien, David no solo dijo que Jehová sabe que somos imperfectos, sino que además \"se acuerda\" de ello. La palabra hebrea que en Salmo 103:14 se traduce \"se acuerda\" no solo significa que Jehová lo tiene en la mente, sino también que se siente impulsado a hacer algo bueno. Así pues, dicho sencillamente, ese versículo significa que Jehová comprende que a veces cometeremos errores, pero si nos arrepentimos él se sentirá impulsado a tratarnos con misericordia y perdonarnos (Sal. 78:38, 39)."
-    },
-    {
-      number: 14,
-      content: "¿Qué más nos enseña el Salmo 103 sobre la manera de perdonar de Jehová? (Lee Salmo 103:12). David dijo que, cuando Jehová nos perdona, pone los pecados muy lejos de nosotros, \"tan lejos como está el este del oeste\". En cierto sentido, podría decirse que el este y el oeste están infinitamente lejos entre sí. ¿Qué aprendemos de esto? Un biblista explica: \"Si el pecado es llevado tan lejos, podemos estar seguros de que todo rastro del mismo, incluso su recuerdo, habrá desaparecido\" (El tesoro de David, de Charles Spurgeon, volumen 2, traducción de Samuel Vila). A veces basta con algo tan pequeño como un olor para despertar un recuerdo. Pero, cuando Jehová nos perdona un pecado, no queda ni el más mínimo rastro, ni siquiera un leve olor, que pueda traerlo de vuelta a su memoria para echárnoslo en cara (Ezeq. 18:21, 22; Hech. 3:19)."
-    },
-    {
-      number: 15,
-      content: "Si te sigues sintiendo culpable por pecados del pasado, meditar en el Salmo 103 te ayudará a convencerte de que Dios te ha perdonado. Pregúntate: \"Si Jehová recuerda que soy imperfecto y está dispuesto a perdonarme porque estoy arrepentido, ¿no debería recordarlo yo también? Por otro lado, si Jehová decide olvidar mis pecados del pasado y nunca me los echa en cara, ¿no debería olvidarlos yo también?\". Él no sigue pensando en los pecados que te ha perdonado, entonces ¿por qué hacerlo tú? (Sal. 130:3). Una vez que te convenzas de que Jehová te ha perdonado, tú también lograrás perdonarte a ti mismo y pasar la página."
-    },
-    {
-      number: 16,
-      content: "Recuerda que vivir dando vueltas constantemente a los errores del pasado es como conducir un auto mirando constantemente el espejo retrovisor. Es bueno que lo mires de vez en cuando para ver si hay algún peligro detrás y así poder evitarlo. Pero, si quieres conducir de forma segura, debes mantener la vista en lo que tienes delante. De manera parecida, es bueno que de vez en cuando pienses en los errores que cometiste para aprender de ellos y esforzarte por no repetirlos. Pero, si te obsesionas con ellos, te sentirás tan culpable que no podrás darle a Jehová lo mejor de ti. Así que mantén la vista fija en lo que tienes delante: el camino que lleva al nuevo mundo, donde las cosas malas del pasado \"no serán recordadas\" (Is. 65:17; Prov. 4:25)."
-    },
-    {
-      number: 17,
-      content: "Todos tenemos que seguir convenciendo a nuestro corazón de que Jehová nos quiere y siempre está dispuesto a perdonarnos (1 Juan 3:19, nota). ¿Por qué? Porque Satanás seguirá intentando convencernos de que Dios no nos quiere y nunca nos perdonará. Su objetivo es que dejemos de servir a Jehová. Es más, como sabe que le queda poco tiempo, cada vez lo intentará con más ganas (Apoc. 12:12). ¡No le demos ni la más mínima oportunidad!"
-    },
-    {
-      number: 18,
-      content: "En el artículo anterior vimos lo que te puede ayudar a convencerte de que Jehová te quiere. Y en este hemos visto lo que puedes hacer para convencer a tu corazón de que Jehová te ha perdonado. Medita en cómo Jehová se describe a sí mismo y en lo que la Biblia enseña sobre su manera de perdonar. No olvides que él siempre tiene presente que eres imperfecto y te trata con misericordia. Y recuerda que Dios perdona de manera completa. Si haces todo esto, podrás decir con la misma confianza que David: \"¡Gracias, Jehová, por perdonar 'mi error y mis pecados'!\" (Sal. 32:5)."
-    }
-  ],
-  reviewQuestions: [
-    {
-      question: "¿Por qué es tan importante convencernos de que Jehová nos ha perdonado?",
-      answer: "Es importante por dos razones principales: Primera, para no caer en la trampa de Satanás, quien quiere hacernos creer que somos imperdonables para que dejemos de servir a Jehová. Segunda, para liberarnos del peso de la culpa y poder servir a Jehová con una conciencia tranquila y mucha alegría.",
-      answerBullets: "• Para no caer en la trampa de Satanás\n• Satanás quiere hacernos creer que somos imperdonables\n• Su objetivo es que dejemos de servir a Jehová\n• Para liberarnos del peso de la culpa\n• Para poder dejar la culpa atrás y pasar la página\n• Para servir a Jehová con una conciencia tranquila\n• Para servir con mucha alegría",
-      flashcards: [
-        {
-          question: "¿Cuáles son las 2 razones principales por las que es importante convencernos del perdón de Jehová?",
-          answer: "Para no caer en la trampa de Satanás, y para liberarnos del peso de la culpa"
-        },
-        {
-          question: "¿Qué trampa usa Satanás relacionada con el perdón?",
-          answer: "Hacernos creer que hemos cometido un pecado tan grave que Jehová nunca nos perdonará"
-        },
-        {
-          question: "Si nos sentimos demasiado culpables después de arrepentirnos, ¿qué puede pasar?",
-          answer: "Podemos desanimarnos hasta el punto de querer darnos por vencidos"
-        },
-        {
-          question: "Cuando nos convencemos de que Jehová nos ha perdonado, ¿cómo podemos servir a Jehová?",
-          answer: "Con una conciencia tranquila y mucha alegría"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "2 Corintios 2:5-11",
-          purpose: "Satanás quería que el hombre arrepentido no fuera perdonado",
-          text: "Ahora bien, si alguien ha causado tristeza, no me ha entristecido solo a mí, sino a todos ustedes hasta cierto grado, para no ser demasiado severo al decir esto. Esta reprensión dada por la mayoría es suficiente para tal hombre; ahora deben perdonarlo bondadosamente y consolarlo, para que de algún modo ese hombre no sea tragado por su excesiva tristeza. Por lo tanto, les exhorto a que confirmen su amor por él. Porque yo también les escribí con este propósito: para comprobar si ustedes son obedientes en todo. Si ustedes perdonan bondadosamente a alguien, yo también. De hecho, lo que yo haya perdonado bondadosamente, si he perdonado algo, ha sido por causa de ustedes delante de Cristo, para que no seamos vencidos por Satanás, pues no desconocemos sus tácticas."
-        },
-        {
-          reference: "Salmo 51:17",
-          purpose: "Es natural sentirse mal cuando pecamos",
-          text: "Los sacrificios para Dios son un espíritu quebrantado. Oh Dios, tú no rechazarás un corazón quebrantado y aplastado."
-        },
-        {
-          reference: "2 Corintios 7:10, 11",
-          purpose: "La tristeza piadosa nos motiva a cambiar",
-          text: "Porque la tristeza de una manera piadosa obra arrepentimiento para salvación que no hay que lamentar; pero la tristeza del mundo produce muerte. Porque miren, este mismo hecho de que se entristecieran de una manera piadosa, ¡cuánta seriedad obró en ustedes!, sí, disculpándose, sí, indignación, sí, temor, sí, anhelo vehemente, sí, celo, sí, corrección de la injusticia! En todo respecto ustedes demostraron ser castos en este asunto."
-        }
-      ]
-    },
-    {
-      question: "¿Qué te puede ayudar a convencerte de que Jehová te ha perdonado?",
-      answer: "Tres cosas principales nos ayudan: Primera, meditar en cómo Jehová se describe a sí mismo (misericordioso, compasivo y el Dios de la verdad). Segunda, meditar en lo que la Biblia enseña sobre su manera de perdonar (levanta y se lleva nuestros pecados). Tercera, recordar que Jehová se acuerda de que somos imperfectos y pone nuestros pecados tan lejos como está el este del oeste.",
-      answerBullets: "• Meditar en cómo Jehová se describe a sí mismo\n• Jehová es misericordioso y compasivo\n• Jehová siempre dice la verdad\n• Perdonar forma parte de la naturaleza de Jehová\n• Su amor leal lo motiva a perdonar generosamente\n• Jehová levanta y se lleva nuestros pecados\n• Se acuerda de que somos polvo (imperfectos)\n• Pone nuestros pecados tan lejos como está el este del oeste\n• No queda ni el más mínimo rastro del pecado\n• Si Jehová decide olvidar, nosotros también deberíamos olvidar",
-      flashcards: [
-        {
-          question: "¿Cuáles son las 3 cosas principales que nos ayudan a convencernos del perdón de Jehová?",
-          answer: "Meditar en cómo se describe a sí mismo, meditar en lo que la Biblia enseña sobre su manera de perdonar, y recordar que él se acuerda de que somos imperfectos"
-        },
-        {
-          question: "Según Éxodo 34:6, 7, ¿cómo eligió presentarse Jehová?",
-          answer: "Como un Dios misericordioso y compasivo"
-        },
-        {
-          question: "¿Qué significa la palabra hebrea para 'perdonar' en Salmo 32:5?",
-          answer: "Perdonar, levantar y llevar"
-        },
-        {
-          question: "Según Salmo 103:12, ¿qué distancia usa David para describir cuán lejos pone Jehová nuestros pecados?",
-          answer: "Tan lejos como está el este del oeste"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "Éxodo 34:6, 7",
-          purpose: "Jehová se describe como misericordioso y compasivo",
-          text: "Jehová pasó delante de él y proclamó: 'Jehová, Jehová, un Dios misericordioso y compasivo, tardo para la cólera y abundante en amor leal y verdad, que muestra amor leal a miles, que perdona error, transgresión y pecado, pero de ninguna manera dejará impune al culpable, sino que hace venir el castigo por el error de los padres sobre los hijos y sobre los nietos, sobre la tercera generación y sobre la cuarta generación'."
-        },
-        {
-          reference: "Salmo 31:5",
-          purpose: "Jehová siempre dice la verdad",
-          text: "En tu mano encomiendo mi espíritu. Tú me has redimido, oh Jehová el Dios de la verdad."
-        },
-        {
-          reference: "Salmo 32:5",
-          purpose: "La palabra hebrea para perdonar significa levantar y llevar",
-          text: "Mi pecado te confesé, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
-        },
-        {
-          reference: "Salmo 86:5",
-          purpose: "Jehová está dispuesto a perdonar",
-          text: "Porque tú, oh Jehová, eres bueno y estás dispuesto a perdonar, y tu amor leal por todos los que te llaman es inmenso."
-        },
-        {
-          reference: "Isaías 55:7",
-          purpose: "Jehová perdona en gran manera",
-          text: "Que el malvado deje su camino y el hombre dañino sus pensamientos, y que regrese a Jehová, quien tendrá misericordia de él, a nuestro Dios, porque él perdonará en gran manera."
-        },
-        {
-          reference: "Salmo 103:14",
-          purpose: "Jehová se acuerda de que somos polvo",
-          text: "Porque él sabe bien cómo estamos formados, se acuerda de que somos polvo."
-        },
-        {
-          reference: "Salmo 103:12",
-          purpose: "Jehová aleja nuestros pecados completamente",
-          text: "Tan lejos como está el este del oeste, así de lejos ha puesto de nosotros nuestras transgresiones."
-        },
-        {
-          reference: "Salmo 130:3",
-          purpose: "Si Jehová llevara cuenta de errores, nadie sería aceptable",
-          text: "Si errores vigilaras tú, oh Jah, oh Jehová, ¿quién podría estar de pie?"
-        }
-      ]
-    },
-    {
-      question: "¿Por qué tenemos que seguir convenciendo a nuestro corazón de que Jehová nos perdona?",
-      answer: "Porque Satanás no se rendirá. Él seguirá intentando convencernos de que Dios no nos quiere y nunca nos perdonará. Su objetivo es que dejemos de servir a Jehová. Como sabe que le queda poco tiempo, cada vez lo intentará con más ganas. Por eso tenemos que seguir convenciendo a nuestro corazón y no darle a Satanás ni la más mínima oportunidad.",
-      answerBullets: "• Satanás no se rendirá en sus ataques\n• Seguirá intentando convencernos de que Dios no nos quiere\n• Seguirá intentando convencernos de que nunca nos perdonará\n• Su objetivo final es que dejemos de servir a Jehová\n• Sabe que le queda poco tiempo\n• Por eso cada vez lo intentará con más ganas\n• Tenemos que seguir convenciendo a nuestro corazón constantemente\n• No debemos darle a Satanás ni la más mínima oportunidad\n• Es una batalla continua, no algo de una sola vez",
-      flashcards: [
-        {
-          question: "¿Por qué Satanás sigue atacándonos incluso después de que Jehová nos ha perdonado?",
-          answer: "Porque su objetivo es que dejemos de servir a Jehová, y sabe que le queda poco tiempo"
-        },
-        {
-          question: "¿Qué dos mentiras principales intenta Satanás que creamos sobre el perdón?",
-          answer: "Que Dios no nos quiere y que nunca nos perdonará"
-        },
-        {
-          question: "Si Satanás cada vez lo intenta con más ganas, ¿qué debemos hacer nosotros?",
-          answer: "Seguir convenciendo a nuestro corazón constantemente y no darle ni la más mínima oportunidad"
-        },
-        {
-          question: "Según 1 Juan 3:19, ¿para qué sirve convencer a nuestro corazón?",
-          answer: "Para tranquilizar nuestro corazón delante de Jehová"
-        }
-      ],
-      biblicalCards: [
-        {
-          reference: "1 Juan 3:19",
-          purpose: "Para tranquilizar nuestro corazón",
-          text: "De esta manera sabremos que estamos en la verdad, y tranquilizaremos nuestro corazón delante de él."
-        },
-        {
-          reference: "Apocalipsis 12:12",
-          purpose: "Satanás sabe que le queda poco tiempo",
-          text: "¡Ay de la tierra y del mar!, porque el Diablo ha descendido a ustedes con gran furia, sabiendo que tiene un corto período de tiempo."
-        }
-      ]
-    }
-  ],
-  finalSong: "Canción 1: Las cualidades principales de Jehová"
+// Base de datos completa con todos los artículos organizados por mes
+export const atalayaDatabase: AtalayaDatabase = {
+  "2025-08": {
+    articles: [
+      // Artículo 34 (Placeholder - agregar contenido después)
+      {
+        metadata: {
+          articleNumber: 34,
+          week: "27 Oct - 2 Nov",
+          month: "Agosto",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      },
+
+      // Artículo 35 (Artículo actual - completo)
+      {
+        metadata: {
+          articleNumber: 35,
+          week: "4-10 Nov",
+          month: "Agosto",
+          year: 2025
+        },
+        song: "Canción 121: Necesitamos autodominio",
+        title: "Cómo ganar la batalla contra los malos deseos",
+        biblicalText: "\"No dejen que el pecado siga reinando en sus cuerpos mortales de modo que tengan que obedecer sus deseos\" (ROM. 6:12).",
+        theme: "Qué nos ayudará a no desanimarnos cuando tengamos malos deseos y a rechazar las tentaciones.",
+        questions: [
+          {
+            number: "1",
+            textEs: "¿Qué lucha tenemos todos?",
+            textLSM: "",
+            paragraphs: [1]
+          },
+          {
+            number: "2",
+            textEs: "¿Qué tentaciones quizás estén enfrentando algunos cristianos y estudiantes de la Biblia?",
+            textLSM: "",
+            paragraphs: [2]
+          },
+          {
+            number: "3",
+            textEs: "¿Qué puede empezar a sentir alguien que está luchando una y otra vez contra el mismo mal deseo?",
+            textLSM: "",
+            paragraphs: [3]
+          },
+          {
+            number: "4",
+            textEs: "a) ¿Qué quiere Satanás que pensemos? b) ¿Por qué estamos seguros de que tenemos las fuerzas para resistir los malos deseos?",
+            textLSM: "",
+            paragraphs: [4],
+            section: "CÓMO QUIERE SATANÁS QUE NOS SINTAMOS"
+          },
+          {
+            number: "5",
+            textEs: "¿Cómo sabemos que Jehová está seguro de que podemos vencer en la batalla contra los malos deseos?",
+            textLSM: "",
+            paragraphs: [5]
+          },
+          {
+            number: "6, 7",
+            textEs: "¿Qué otra cosa quiere Satanás que creamos?",
+            textLSM: "",
+            paragraphs: [6, 7]
+          },
+          {
+            number: "8",
+            textEs: "¿Qué otra cosa nos puede hacer creer que no tenemos la aprobación de Dios o las fuerzas para resistir los malos deseos?",
+            textLSM: "",
+            paragraphs: [8],
+            section: "CÓMO NOS PUEDE HACER SENTIR EL PECADO HEREDADO"
+          },
+          {
+            number: "9, 10",
+            textEs: "a) ¿Cómo se sintieron Adán y Eva cuando se convirtieron en seres imperfectos? b) ¿Cómo nos sentimos nosotros debido a la imperfección?",
+            textLSM: "",
+            paragraphs: [9, 10]
+          },
+          {
+            number: "11",
+            textEs: "Si sentimos que no tenemos las fuerzas para resistir los malos deseos, ¿qué nos recuerda Romanos 6:12?",
+            textLSM: "",
+            paragraphs: [11]
+          },
+          {
+            number: "12",
+            textEs: "¿Qué debemos hacer si sentimos que Jehová no nos va a dar su aprobación, y por qué?",
+            textLSM: "",
+            paragraphs: [12]
+          },
+          {
+            number: "13, 14",
+            textEs: "¿Por qué sabemos que Jehová no nos quita su aprobación solo por tener un mal deseo?",
+            textLSM: "",
+            paragraphs: [13, 14]
+          },
+          {
+            number: "15",
+            textEs: "Si queremos ganar la batalla contra los malos deseos, ¿por qué tenemos que ser honestos con nosotros mismos?",
+            textLSM: "",
+            paragraphs: [15],
+            section: "CÓMO GANAR LA BATALLA"
+          },
+          {
+            number: "16",
+            textEs: "¿Cómo puede fortalecer su determinación de hacer lo que es correcto?",
+            textLSM: "",
+            paragraphs: [16]
+          },
+          {
+            number: "17",
+            textEs: "¿Qué aprendemos de José?",
+            textLSM: "",
+            paragraphs: [17]
+          },
+          {
+            number: "18",
+            textEs: "¿Qué más puede hacer para ganar su batalla contra los malos deseos?",
+            textLSM: "",
+            paragraphs: [18],
+            section: "\"SIGAN EXAMINÁNDOSE\""
+          },
+          {
+            number: "19",
+            textEs: "¿Por qué es muy importante que evitemos tomar malas decisiones en cosas aparentemente pequeñas?",
+            textLSM: "",
+            paragraphs: [19]
+          },
+          {
+            number: "20",
+            textEs: "¿Qué pasará en el futuro con nuestros malos deseos, y con qué ayuda contamos ahora?",
+            textLSM: "",
+            paragraphs: [20]
+          }
+        ],
+        paragraphs: [
+          {
+            number: 1,
+            content: "¿HA SENTIDO alguna vez un fuerte deseo de hacer algo que a Jehová no le gusta? Si es así, quizás piense que es el único al que le pasa, y por eso se sienta desanimado. Pero la Biblia dice: \"A ustedes no se les ha presentado ninguna tentación que no sea común a todas las personas\" (1 Cor. 10:13). Eso significa que usted no es el único; hay otros hermanos que también están luchando contra deseos similares. Y no olvide que en su lucha cuenta con la ayuda de Jehová, así que puede ganar esta batalla."
+          },
+          {
+            number: 2,
+            content: "La Biblia también menciona: \"Cada uno es probado al ser atraído y seducido por su propio deseo\" (Sant. 1:14). En otras palabras, no todas las personas se ven tentadas por las mismas cosas. Por ejemplo, algunos cristianos y estudiantes de la Biblia quizás sienten el deseo de cometer actos inmorales con alguien de diferente sexo o con alguien del mismo sexo. Otros tal vez han dejado de ver pornografía pero sienten ganas de retomar este hábito. Y hay quienes sienten el impulso de volver a consumir drogas o beber en exceso. En cualquier caso, es probable que todos nos hayamos sentido en algún momento como el apóstol Pablo, que escribió: \"Cuando deseo hacer lo que es correcto, lo que es malo está conmigo\" (Rom. 7:21).",
+            image: "https://i.imgur.com/0MaQXT8.png",
+            imageCaption: "Una tentación puede aparecer en cualquier momento y en cualquier lugar. (Vea el párrafo 2)."
+          },
+          {
+            number: 3,
+            content: "Si usted está luchando una y otra vez contra el mismo mal deseo, quizás sienta que no tiene las fuerzas para rechazarlo y que solo por tener ese mal deseo no tiene la aprobación de Jehová. ¡Pero nada más lejos de la realidad! Para ver por qué afirmamos eso, en este artículo vamos a responder dos preguntas: 1) ¿cuál es el verdadero origen de esos sentimientos negativos? y 2) ¿cómo podemos ganar nuestra batalla contra los malos deseos?"
+          },
+          {
+            number: 4,
+            content: "Cuando estamos ante una tentación, Satanás quiere que pensemos que no tenemos las fuerzas para rechazarla. Por eso Jesús nos enseñó a pedirle a Jehová: \"No nos dejes caer en la tentación, sino líbranos del Maligno\" (Mat. 6:13). De hecho, Satanás afirma que los seres humanos, ante la tentación de hacer algo malo, optarán por desobedecer a Jehová (Job 2:4, 5). Pero qué irónico que diga eso, cuando precisamente fue él quien no tuvo fuerza de voluntad, se dejó llevar por sus malos deseos y decidió desobedecer a Dios. Por lo visto, cree que somos como él. Y no solo eso: ¡hasta pensó que el Hijo de Dios, que era perfecto, caería en la tentación de hacer algo malo! (Mat. 4:8, 9). Pero ¿de verdad no tenemos las fuerzas para resistir los malos deseos? Claro que las tenemos, pues como dijo el apóstol Pablo: \"Tengo fuerzas para todo gracias a aquel que me da poder\" (Filip. 4:13)."
+          },
+          {
+            number: 5,
+            content: "Jehová es muy diferente a Satanás: él está totalmente seguro de que somos capaces de vencer en la batalla contra los malos deseos. ¿Cómo lo sabemos? Porque Jehová predijo que una gran muchedumbre de personas fieles sobreviviría a la gran tribulación. ¿Nos damos cuenta de lo que eso significa? Jehová, que no puede mentir, asegura que muchísimas personas —no solo unas pocas— entrarán en el nuevo mundo vestidas \"con túnicas largas blancas\", lo que simboliza que están limpias a sus ojos (Apoc. 7:9, 13, 14). Está claro que Jehová sabe que tenemos las fuerzas para luchar contra los malos deseos."
+          },
+          {
+            number: 6,
+            content: "Por otro lado, Satanás también quiere que creamos que solo por tener malos deseos no podemos conseguir la aprobación de Jehová ni la vida eterna. De nuevo, qué irónico que Satanás intente esto, cuando precisamente es él quien no tiene ninguna esperanza de recibir la aprobación de Jehová ni de vivir para siempre, pues ya ha sido juzgado y condenado (Gén. 3:15; Apoc. 20:10). Como nosotros podemos conseguir algo que está totalmente fuera de su alcance, nos tiene envidia y quiere que nos sintamos como él: sin esperanza. Pero la Biblia nos asegura que Jehová quiere ayudarnos para que tengamos su aprobación y vivamos para siempre. Él \"no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse\" (2 Ped. 3:9). Así que nuestra situación no se parece en nada a la del Diablo. ¡Nosotros sí tenemos esperanza!"
+          },
+          {
+            number: 7,
+            content: "Como vemos, es Satanás quien quiere que creamos que no tenemos las fuerzas para resistir los malos deseos o que solo por tenerlos no contamos con la aprobación de Jehová. Tenga esto siempre muy presente, y así podrá luchar contra esos sentimientos negativos. ¡No deje que Satanás se salga con la suya! (1 Ped. 5:8, 9)."
+          },
+          {
+            number: 8,
+            content: "Además de Satanás, hay otro factor que nos puede hacer creer que no tenemos las fuerzas para resistir los malos deseos o que no contamos con la aprobación de Jehová. ¿A qué nos referimos? Al pecado que hemos heredado de Adán y Eva (Job 14:4; lea Salmo 51:5)."
+          },
+          {
+            number: 9,
+            content: "Pensemos en cómo se sintieron Adán y Eva cuando pecaron y se convirtieron en seres imperfectos. Después de desobedecer a Jehová, se escondieron y trataron de cubrir sus cuerpos. ¿Por qué reaccionaron así? El libro Perspicacia para comprender las Escrituras explica: \"El pecado introdujo en ellos sentimientos de culpabilidad, ansiedad, inseguridad y vergüenza\". Es como si la imperfección fuera una casa cerrada con llave y cada uno de esos cuatro sentimientos fuera una habitación. Adán y Eva podían moverse de una habitación a otra, pero no podían escapar de la casa. Estaban atrapados en su imperfección, no había ninguna salida para ellos.",
+            image: "https://i.imgur.com/M5qH1K9.png",
+            imageCaption: "Después de que Adán y Eva pecaron, sintieron culpabilidad, ansiedad, inseguridad y vergüenza. (Vea el párrafo 9)."
+          },
+          {
+            number: 10,
+            content: "Claro está, nosotros no estamos exactamente en la misma situación que Adán y Eva. A diferencia de ellos, nosotros sí tenemos una salida: el rescate, que nos permite recibir el perdón de nuestros pecados y tener una conciencia limpia (1 Cor. 6:11). Aun así, como hemos heredado la imperfección, no es de extrañar que también sintamos culpabilidad, ansiedad, inseguridad y vergüenza. De hecho, la Biblia dice que el pecado continúa ejerciendo una fuerte influencia sobre todos los seres humanos, incluso sobre los que no han pecado \"de la misma manera en la que pecó Adán\" (Rom. 5:14). Pero no debemos dejar que eso nos haga sentir que no tendremos las fuerzas para hacer lo correcto y que nunca podremos conseguir la aprobación de Jehová. ¿Qué nos ayudará a librarnos de estos sentimientos negativos?"
+          },
+          {
+            number: 11,
+            content: "A veces, la imperfección puede ser como una voz dentro de nuestra cabeza que nos dice: \"No vas a ser capaz de vencer los malos deseos, no tienes las fuerzas para rechazarlos\". ¡No escuchemos esa voz! Recordemos que la Biblia enseña que no debemos dejar que el pecado siga \"reinando\" sobre nosotros (lea Romanos 6:12). Esto significa que no tenemos por qué llevar a cabo los malos deseos; podemos decidir no hacerlo (Gál. 5:16). Jehová sabe que somos capaces de resistir las tentaciones. De lo contrario, no nos lo pediría (Deut. 30:11-14; Rom. 6:6; 1 Tes. 4:3). No hay duda: tenemos las fuerzas para ganar la batalla contra los malos deseos."
+          },
+          {
+            number: 12,
+            content: "En otras ocasiones, podemos oír la voz de la imperfección diciéndonos: \"Como tienes este mal deseo, Jehová no te va a dar su aprobación\". ¡No le hagamos caso! Recordemos que la Biblia enseña que Jehová comprende que nacemos siendo imperfectos (Sal. 103:13, 14). Él \"lo sabe todo\" sobre nosotros, incluido cómo el pecado heredado ha hecho que cada uno de nosotros tenga ciertas malas inclinaciones (1 Juan 3:19, 20). Mientras sigamos luchando contra los malos deseos y no los llevemos a cabo, estaremos limpios a los ojos de Jehová. ¿Por qué podemos estar seguros de esto?"
+          },
+          {
+            number: 13,
+            content: "La Biblia enseña que hay una gran diferencia entre tener un mal deseo y llevar a la práctica ese mal deseo. Y es que no siempre podemos controlar lo que deseamos, pero sí podemos controlar lo que hacemos. Por ejemplo, antes de ser cristianos, algunos corintios habían practicado la homosexualidad. El apóstol Pablo dijo: \"Algunos de ustedes eran eso\". Entonces, ¿nunca más volvieron a sentir el deseo de realizar actos homosexuales? Sería poco realista pensar así, porque estos deseos suelen estar muy arraigados dentro de la persona. Pero los cristianos que mostraban autocontrol y no llevaban a cabo sus malos deseos habían sido \"lavados\" y tenían la aprobación de Jehová (1 Cor. 6:9-11). Lo mismo puede decirse de usted."
+          },
+          {
+            number: 14,
+            content: "Sin importar cuál sea el deseo contra el que lucha, puede estar seguro de que podrá rechazarlo. Aun si no logra que desaparezca, sí puede mostrar autocontrol y negarse a hacer \"la voluntad de la carne\" y de sus \"pensamientos\" (Efes. 2:3). Entonces, ¿cómo puede ganar su batalla contra los malos deseos? Veamos."
+          },
+          {
+            number: 15,
+            content: "Si quiere ganar su batalla contra los malos deseos, para empezar tendrá que ser honesto consigo mismo y reconocer sus debilidades. Tenga cuidado para no engañarse con \"razonamientos falsos\" (Sant. 1:22). Por ejemplo, tal vez alguien razone \"Otros beben más que yo\" o culpe a otros diciendo \"Si mi esposa fuera más cariñosa, yo no sentiría la tentación de ver pornografía\". Pero quien piense así está minimizando el problema, y eso solo logra que sea más fácil caer en la tentación. Así que no busque excusas para justificarse, ni siquiera para sus adentros. Asuma su propia responsabilidad (Gál. 6:7)."
+          },
+          {
+            number: 16,
+            content: "Además de ser honesto consigo mismo, fortalezca su determinación de no ceder a sus debilidades (1 Cor. 9:26, 27; 1 Tes. 4:4; 1 Ped. 1:15, 16). Tenga claro cuáles son las situaciones y las cosas que hacen que usted sea más vulnerable. Quizás a cierta hora del día sea más probable que caiga en la tentación, por ejemplo cuando es tarde en la noche o está cansado. Anticípese a la tentación y ensaye en su mente cómo la rechazaría. Como vemos, una clave para luchar contra las tentaciones es prepararse antes (Prov. 22:3)."
+          },
+          {
+            number: 17,
+            content: "Pensemos en cómo reaccionó José cuando la esposa de Potifar intentó seducirlo: le dijo que no de inmediato y con decisión (lea Génesis 39:7-9). Esa reacción indica que, antes de que ella tratara de seducirlo, él ya tenía decidido que no se iba a acostar con la esposa de otro hombre. ¿Qué puede aprender de José? Que lo mejor es que fortalezca su determinación de hacer lo correcto antes de que se presente la tentación. Así, cuando aparezca, se le hará más fácil rechazarla porque ya decidió cómo va a reaccionar.",
+            image: "https://i.imgur.com/KVM09rR.png",
+            imageCaption: "Rechace la tentación de inmediato, tal como hizo José. (Vea el párrafo 17)."
+          },
+          {
+            number: 18,
+            content: "Para ganar su batalla contra los malos deseos, también tendrá que examinarse con frecuencia (lea 2 Corintios 13:5). Eso le permitirá ver si tiene que hacer algún cambio en su manera de pensar o actuar. Por ejemplo, después de haber resistido una tentación, puede preguntarse: \"¿Cuánto tiempo me tomó rechazarla?\". Si no la rechazó de inmediato, no se desanime, pero tome medidas para reaccionar más rápido la próxima vez. Hágase preguntas como estas: \"¿Puedo sacar de mi mente más rápido los malos pensamientos? ¿Me está haciendo más difícil la lucha el entretenimiento que escojo? ¿Aparto la mirada al instante cuando aparecen escenas inmorales? ¿Tengo siempre claro que obedecer todas las normas de Jehová es lo mejor para mí, aunque en algunos casos necesite mostrar mucho autocontrol?\" (Sal. 101:3)."
+          },
+          {
+            number: 19,
+            content: "Recuerde también que \"el corazón es más traicionero que cualquier otra cosa y es desesperado\" (Jer. 17:9). Y Jesús dijo que \"del corazón salen razonamientos malvados\" (Mat. 15:19). Así que no deje que su corazón lo engañe con explicaciones supuestamente \"lógicas\". Por ejemplo, alguien que ha dejado de ver pornografía podría empezar a pensar con el tiempo que no es peligroso ver imágenes provocativas mientras no aparezca nadie desnudo. O tal vez piense: \"No hay nada de malo en tener fantasías sexuales siempre y cuando no las lleve a cabo\". Ese tipo de razonamientos indican que, por decirlo así, su corazón está \"haciendo planes para satisfacer los deseos de la carne\" (Rom. 13:14). ¿Qué puede hacer usted para no caer en esa trampa? Recuerde que tomar malas decisiones en cosas aparentemente pequeñas puede llevarlo a tomar malas decisiones en asuntos mucho más serios. Evite todos los \"razonamientos malvados\" que le hagan restarles importancia a las malas acciones."
+          },
+          {
+            number: 20,
+            content: "Como hemos visto, Jehová nos da las fuerzas para resistir las tentaciones. Además, gracias al rescate, tenemos la esperanza de vivir para siempre en el nuevo mundo. ¡Qué felices seremos de servir a Jehová sin tener que luchar con nuestros malos deseos! Hasta que llegue ese día, recordemos que, si ponemos todo nuestro empeño en luchar contra las tentaciones, Jehová nos bendecirá y ganaremos la batalla."
+          }
+        ],
+        reviewQuestions: [
+          {
+            question: "¿Qué nos ayudará si sentimos que no tenemos las fuerzas para resistir los malos deseos o que no contamos con la aprobación de Jehová?"
+          },
+          {
+            question: "¿Cómo podemos ganar la batalla contra los malos deseos?"
+          },
+          {
+            question: "¿Cómo podemos seguir examinándonos?"
+          }
+        ],
+        finalSong: "Canción 122: ¡Mantengámonos firmes, inmovibles!"
+      },
+
+      // Artículo 36 (Placeholder)
+      {
+        metadata: {
+          articleNumber: 36,
+          week: "11-17 Nov",
+          month: "Agosto",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      },
+
+      // Artículo 37 (Placeholder)
+      {
+        metadata: {
+          articleNumber: 37,
+          week: "18-24 Nov",
+          month: "Agosto",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      },
+
+      // Artículo 38 (Placeholder)
+      {
+        metadata: {
+          articleNumber: 38,
+          week: "25 Nov - 1 Dic",
+          month: "Agosto",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      }
+    ]
+  }
 };
+
+// Helper para obtener un artículo específico por ID
+export function getArticleById(articleId: string): ArticleData | undefined {
+  // ID format: "2025-08-article-35"
+  const parts = articleId.split('-');
+  if (parts.length < 4) return undefined;
+
+  const yearMonth = `${parts[0]}-${parts[1]}`; // "2025-08"
+  const articleNum = parts[3]; // "35"
+
+  const month = atalayaDatabase[yearMonth];
+  if (!month) return undefined;
+
+  const articleNumber = parseInt(articleNum);
+  return month.articles.find(a => a.metadata.articleNumber === articleNumber);
+}
+
+// Helper para obtener el ID de un artículo
+export function getArticleId(article: ArticleData): string {
+  // Mapa de nombres de meses a números
+  const monthMap: Record<string, string> = {
+    "Enero": "01",
+    "Febrero": "02",
+    "Marzo": "03",
+    "Abril": "04",
+    "Mayo": "05",
+    "Junio": "06",
+    "Julio": "07",
+    "Agosto": "08",
+    "Septiembre": "09",
+    "Octubre": "10",
+    "Noviembre": "11",
+    "Diciembre": "12"
+  };
+
+  const monthNum = monthMap[article.metadata.month] || "01";
+  return `${article.metadata.year}-${monthNum}-article-${article.metadata.articleNumber}`;
+}
+
+// Helper para listar todos los artículos de un mes
+export function getMonthArticles(yearMonth: string): ArticleData[] {
+  return atalayaDatabase[yearMonth]?.articles || [];
+}
+
+// Export temporal para retrocompatibilidad (se puede eliminar después)
+// Por defecto, exporta el artículo 35
+export const atalayaData = atalayaDatabase["2025-08"].articles[1];

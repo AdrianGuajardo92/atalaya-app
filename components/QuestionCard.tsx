@@ -378,6 +378,28 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </div>
             )}
 
+            {/* IMÁGENES DE LOS PÁRRAFOS RELACIONADOS */}
+            {relatedParagraphs.filter(p => p.image).length > 0 && (
+              <div className="space-y-4">
+                {relatedParagraphs
+                  .filter(p => p.image)
+                  .map((paragraph) => (
+                    <div key={paragraph.number} className="rounded-lg overflow-hidden shadow-md bg-gray-50 p-4">
+                      <img
+                        src={paragraph.image}
+                        alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
+                        className="w-full h-auto object-cover rounded-lg"
+                      />
+                      {paragraph.imageCaption && (
+                        <p className="text-sm text-gray-600 italic mt-3 text-center">
+                          {paragraph.imageCaption}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            )}
+
             {/* RESPUESTA - Colapsable solo en modo scroll */}
             {!isNavigationMode && (
               <div
@@ -517,9 +539,26 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                       {paragraph.number}
                     </span>
                     {/* Contenido del párrafo */}
-                    <p className="text-base leading-relaxed text-gray-700 flex-1">
-                      {formatContent(paragraph.content)}
-                    </p>
+                    <div className="flex-1">
+                      <p className="text-base leading-relaxed text-gray-700">
+                        {formatContent(paragraph.content)}
+                      </p>
+                      {/* Imagen del párrafo (si existe) */}
+                      {paragraph.image && (
+                        <div className="mt-4">
+                          <img
+                            src={paragraph.image}
+                            alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
+                            className="w-full rounded-lg shadow-md"
+                          />
+                          {paragraph.imageCaption && (
+                            <p className="text-sm text-gray-600 italic mt-2 text-center">
+                              {paragraph.imageCaption}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

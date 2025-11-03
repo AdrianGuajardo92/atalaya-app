@@ -14,8 +14,8 @@ Una app Next.js para dirigir el estudio de La Atalaya. Tiene soporte bilingüe: 
 
 ## 🗂️ Archivos importantes
 
-**ARCHIVO QUE CAMBIAS CADA SEMANA:**
-- \`data/atalaya-data.ts\` - Aquí va el contenido del nuevo estudio
+**ARCHIVO QUE CAMBIAS MENSUALMENTE:**
+- \`data/atalaya-data.ts\` - Contiene la base de datos con múltiples artículos organizados por mes
 
 **ARCHIVOS QUE NUNCA MODIFICAS:**
 - \`components/QuestionCard.tsx\` - Muestra las preguntas con diseño de tarjetas
@@ -28,16 +28,46 @@ Una app Next.js para dirigir el estudio de La Atalaya. Tiene soporte bilingüe: 
 - \`types/atalaya.ts\` - Tipos de TypeScript
 - \`app/api/lsm/route.ts\` - Guarda traducciones LSM en Vercel KV
 
-## 📝 Cómo actualizar el estudio cada semana
+## 📝 Organización de artículos
 
-### Paso 1: Abre el archivo de datos
-Abre: \`data/atalaya-data.ts\`
+La app ahora maneja **múltiples artículos por mes** (típicamente 5 artículos, uno por semana).
 
-### Paso 2: Cambia el contenido
-Actualiza el objeto \`atalayaData\` con la información del nuevo estudio:
+### Estructura de la base de datos:
 
 \`\`\`typescript
-export const atalayaData: AtalayaStudy = {
+export const atalayaDatabase: AtalayaDatabase = {
+  "2025-08": {  // Año-Mes
+    articles: [
+      // Artículo 34
+      {
+        metadata: {
+          articleNumber: 34,
+          week: "27 Oct - 2 Nov",
+          month: "Agosto",
+          year: 2025
+        },
+        song: "...",
+        title: "...",
+        // ... contenido del artículo
+      },
+      // Artículo 35, 36, 37, 38...
+    ]
+  }
+};
+\`\`\`
+
+### Cómo agregar un nuevo artículo:
+
+Agrega un nuevo objeto al array \`articles\` del mes correspondiente:
+
+\`\`\`typescript
+{
+  metadata: {
+    articleNumber: 35,
+    week: "4-10 Nov",
+    month: "Agosto",
+    year: 2025
+  },
   song: "Canción 123",
   title: "Título del estudio",
   biblicalText: "\"Texto bíblico\" (Referencia)",
@@ -68,8 +98,20 @@ export const atalayaData: AtalayaStudy = {
   ],
 
   finalSong: "Canción 45 y oración"
-};
+}
 \`\`\`
+
+### Selector de artículos:
+
+En la interfaz verás un **dropdown en el header** para seleccionar entre los artículos del mes. Muestra:
+- Número de artículo
+- Título del artículo
+- Semana correspondiente
+
+Al cambiar de artículo, se cargan automáticamente:
+- Las traducciones LSM específicas de ese artículo
+- Los favoritos de ese artículo
+- Las tarjetas ocultas de ese artículo
 
 ## 🔤 Campos LSM (Lengua de Señas Mexicana)
 
@@ -322,13 +364,57 @@ biblicalCards: [
 
 ## 🔄 Flujo de trabajo semanal
 
+### 🚨 PASO INICIAL - CUANDO RECIBES UN NUEVO ARTÍCULO
+
+**IMPORTANTE:** Ya no se borra contenido anterior. Los artículos se mantienen organizados por mes.
+
+**Agregar un nuevo artículo**
+
+Cuando el usuario proporciona un nuevo artículo de La Atalaya:
+
+1. Identifica el mes correcto en \`atalayaDatabase\` (ej: "2025-08")
+2. Agrega el nuevo artículo al array \`articles\` de ese mes
+3. Si el mes no existe, créalo primero
+
+SOLO debes agregar:
+
+✅ **Estructura básica de preguntas normales:**
+- number
+- textEs
+- paragraphs
+- section (si existe)
+- image (si existe)
+- textLSM: "" (siempre vacío)
+
+✅ **Estructura básica de párrafos:**
+- number
+- content
+
+✅ **Estructura básica de preguntas de repaso:**
+- question (solo este campo)
+
+❌ **NO agregar en este paso inicial:**
+- answer
+- answerBullets
+- flashcards
+- biblicalCards
+- questionLSM en reviewQuestions
+- sectionLSM (siempre vacío)
+
+**Razón:** Estos campos se agregarán después, durante la fase de estudio párrafo por párrafo.
+
+### Flujo semanal normal:
+
 1. Obtén el nuevo estudio de jw.org
 2. Abre \`data/atalaya-data.ts\`
-3. Reemplaza el contenido con el nuevo estudio
-4. Deja vacíos los campos LSM (\`textLSM\`, \`sectionLSM\`)
-5. Prueba en localhost: \`npm run dev\`
-6. Traduce a LSM usando la interfaz (click en áreas azules)
-7. Las traducciones se guardan automáticamente en Vercel KV
+3. **PRIMERA VEZ:** Agrega el artículo al array del mes con metadata (número, semana, mes, año)
+4. Agrega solo preguntas y párrafos (estructura básica)
+5. Deja vacíos los campos LSM (\`textLSM\`, \`sectionLSM\`)
+6. Prueba en localhost: \`npm run dev\`
+7. Selecciona el artículo en el dropdown del header
+8. **FASE DE ESTUDIO:** Agrega answer, flashcards y biblicalCards párrafo por párrafo
+9. Traduce a LSM usando la interfaz (click en áreas azules)
+10. Las traducciones se guardan automáticamente en Vercel KV con clave por artículo
 
 **NOTA:** El usuario maneja git manualmente cuando esté listo (add, commit, push).
 
@@ -336,9 +422,13 @@ biblicalCards: [
 
 - **Vercel KV** (Redis)
 - **Nombre**: biblioteca-db
-- **Clave única**: \`atalaya-lsm-data\`
+- **Claves por artículo**:
+  - LSM: \`atalaya-lsm-data:{articleId}\` (ej: \`atalaya-lsm-data:2025-08-article-35\`)
+  - Favoritos: \`atalaya-favorites-data:{articleId}\`
+  - Ocultos: \`atalaya-hidden-cards:{articleId}\`
 - **Sincronización**: localhost y producción usan la misma base de datos
 - **Credenciales**: en \`.env.local\` (no se sube a git)
+- **Separación**: Cada artículo tiene sus propios datos LSM, favoritos y tarjetas ocultas
 
 ## 📦 Comandos
 
@@ -351,9 +441,10 @@ npm run start        # Producción local
 ## ⚠️ Reglas importantes
 
 - **NUNCA modificar** componentes ni archivos de configuración
-- **SOLO modificar** \`data/atalaya-data.ts\` cada semana
+- **SOLO modificar** \`data/atalaya-data.ts\` para agregar/actualizar artículos
 - **Dejar vacíos** los campos LSM (\`textLSM\`, \`sectionLSM\`) - se traducen en la app
-- Las traducciones LSM se guardan en Vercel KV automáticamente
+- Las traducciones LSM se guardan en Vercel KV automáticamente por artículo
+- Cada artículo tiene datos separados (LSM, favoritos, ocultos)
 - El usuario hace commits manualmente
 
 ## 💡 Tips
@@ -631,6 +722,53 @@ Claude: ✅ Estudio completado
 **¿Necesitas ayuda?** Pregunta lo que necesites sobre la app.`;
 
   const studyProtocol = `# 📚 PROTOCOLO COMPLETO DE ESTUDIO PÁRRAFO POR PÁRRAFO
+
+## 🚨 PASO INICIAL - CUANDO RECIBES UN NUEVO ARTÍCULO
+
+**IMPORTANTE:** Ya no se borra contenido anterior. Los artículos se mantienen organizados por mes en \`atalayaDatabase\`.
+
+**Agregar un nuevo artículo**
+
+Cuando el usuario proporciona un nuevo artículo de La Atalaya:
+
+1. Identifica el mes correcto en \`atalayaDatabase\` (ej: "2025-08" para Agosto 2025)
+2. Agrega el nuevo artículo al array \`articles\` de ese mes
+3. Si el mes no existe, créalo primero con su estructura
+
+Cada artículo debe incluir \`metadata\` con:
+- articleNumber (número del artículo)
+- week (semana correspondiente)
+- month (nombre del mes)
+- year (año)
+
+SOLO debes agregar:
+
+✅ **Estructura básica de preguntas normales:**
+- number
+- textEs
+- paragraphs
+- section (si existe)
+- image (si existe)
+- textLSM: "" (siempre vacío)
+
+✅ **Estructura básica de párrafos:**
+- number
+- content
+
+✅ **Estructura básica de preguntas de repaso:**
+- question (solo este campo)
+
+❌ **NO agregar en este paso inicial:**
+- answer
+- answerBullets
+- flashcards
+- biblicalCards
+- questionLSM en reviewQuestions
+- sectionLSM (siempre vacío)
+
+**Razón:** Estos campos se agregarán después, durante la fase de estudio párrafo por párrafo que se describe a continuación.
+
+---
 
 ## 🎯 Objetivo
 Estudiar cada párrafo del artículo de La Atalaya de forma sistemática, generando automáticamente respuestas, flashcards y textos bíblicos para cada pregunta.

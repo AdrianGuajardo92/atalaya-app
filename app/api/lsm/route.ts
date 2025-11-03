@@ -1,16 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { kv } from '@vercel/kv';
 
-// Ahora tanto desarrollo como producción usan la misma base de datos Vercel KV
-// Usamos una clave única para este proyecto: 'atalaya-lsm-data'
-const LSM_KEY = 'atalaya-lsm-data';
+// Base key para LSM data - se concatena con el articleId
+const LSM_KEY_PREFIX = 'atalaya-lsm-data';
 
-export async function GET() {
+// Función helper para construir la clave
+function getLSMKey(articleId?: string): string {
+  if (!articleId) {
+    // Retrocompatibilidad: si no hay articleId, usar clave legacy
+    return LSM_KEY_PREFIX;
+  }
+  return `${LSM_KEY_PREFIX}:${articleId}`;
+}
+
+export async function GET(request: NextRequest) {
   try {
-    const data = await kv.get(LSM_KEY) || {};
+    console.log('🔍 LSM API: GET request received');
+    // Obtener articleId de query params
+    const searchParams = request.nextUrl.searchParams;
+    const articleId = searchParams.get('articleId') || undefined;
+    console.log('📝 LSM API: articleId =', articleId);
+
+    const key = getLSMKey(articleId);
+    console.log('🔑 LSM API: key =', key);
+
+    console.log('🔄 LSM API: Calling kv.get()...');
+    const data = await kv.get(key) || {};
+    console.log('✅ LSM API: Data retrieved successfully', data);
+
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading LSM data:', error);
+    console.error('❌ LSM API: Error reading LSM data:', error);
     return NextResponse.json({});
   }
 }
@@ -18,12 +38,22 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { questionNumber, lsmText } = body;
+    const { articleId, questionNumber, lsmText } = body;
 
-    // Obtener datos actuales de Vercel KV
-    const currentData: Record<string, string> = await kv.get(LSM_KEY) || {};
+    // Validar que se proporcione articleId
+    if (!articleId) {
+      return NextResponse.json(
+        { success: false, error: 'articleId is required' },
+        { status: 400 }
+      );
+    }
+
+    const key = getLSMKey(articleId);
+
+    // Obtener datos actuales de Vercel KV para este artículo
+    const currentData: Record<string, string> = await kv.get(key) || {};
     currentData[questionNumber] = lsmText;
-    await kv.set(LSM_KEY, currentData);
+    await kv.set(key, currentData);
 
     return NextResponse.json({ success: true, data: currentData });
   } catch (error) {
