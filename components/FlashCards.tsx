@@ -101,10 +101,10 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
   };
 
   return (
-    <div className="mt-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 border-2 border-amber-300">
+    <div className="mt-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border-2 border-orange-300">
       <div className="flex items-center justify-between mb-4">
-        <div className="text-xs font-semibold text-amber-700">🎴 Tarjetas Didácticas</div>
-        <div className="text-xs text-amber-600 font-medium">
+        <div className="text-xs font-semibold text-orange-700">🎴 Tarjetas Didácticas</div>
+        <div className="text-xs text-orange-600 font-medium">
           {visibleCards.length} {visibleCards.length === 1 ? 'tarjeta' : 'tarjetas'}
         </div>
       </div>
@@ -167,7 +167,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                 </div>
 
                 <div
-                  className="relative w-full h-full transition-transform duration-500"
+                  className="relative w-full h-full transition-transform duration-700 ease-in-out"
                   style={{
                     transformStyle: 'preserve-3d',
                     transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
@@ -176,7 +176,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                   {/* Frente de la tarjeta (Pregunta) */}
                   <div
                     className={`absolute w-full min-h-[250px] bg-white rounded-lg shadow-lg p-4 flex flex-col ${
-                      isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-amber-200'
+                      isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-orange-200'
                     }`}
                     style={{
                       backfaceVisibility: 'hidden',
@@ -185,14 +185,14 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                   >
                     {/* Contenido de la pregunta */}
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      <p className="text-center text-gray-800 font-medium leading-relaxed text-sm">
+                      <p className="text-center text-slate-800 font-medium leading-relaxed text-sm">
                         {card.question}
                       </p>
                       {/* Mostrar LSM de pregunta si existe y no está editando */}
                       {questionLSM && !isEditingQuestion && (
                         <>
-                          <div className="w-12 h-px bg-gray-300 my-2"></div>
-                          <p className="text-center text-blue-600 font-bold text-base uppercase">
+                          <div className="w-12 h-px bg-slate-300 my-2"></div>
+                          <p className="text-center text-indigo-600 font-bold text-base uppercase">
                             🤟 {questionLSM}
                           </p>
                         </>
@@ -201,15 +201,15 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingQuestion && (
-                      <div className="mt-3 p-2 bg-blue-50 rounded border-2 border-blue-400" onClick={(e) => e.stopPropagation()}>
-                        <p className="text-xs text-blue-700 mb-1 font-semibold">
+                      <div className="mt-3 p-2 bg-indigo-50 rounded border-2 border-indigo-400" onClick={(e) => e.stopPropagation()}>
+                        <p className="text-xs text-indigo-700 mb-1 font-semibold">
                           ✍️ LSM (Enter: guardar | Esc: cancelar)
                         </p>
                         <textarea
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="w-full p-2 border border-blue-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm font-semibold text-gray-900 bg-white"
+                          className="w-full p-2 border border-indigo-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500 text-sm font-semibold text-slate-900 bg-white"
                           rows={2}
                           placeholder="Escribe en LSM..."
                           autoFocus
@@ -221,7 +221,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                               handleSaveLSM();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 disabled:bg-gray-400 font-medium"
+                            className="px-2 py-1 bg-indigo-600 text-white text-xs rounded hover:bg-indigo-700 disabled:bg-slate-400 font-medium"
                           >
                             {isSaving ? '...' : '💾'}
                           </button>
@@ -231,7 +231,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                               handleCancelEdit();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 bg-gray-300 text-gray-700 text-xs rounded hover:bg-gray-400 font-medium"
+                            className="px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
                           >
                             ✖️
                           </button>
@@ -243,7 +243,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                     {!isEditingQuestion && (
                       <button
                         onClick={(e) => handleStartEdit(index, 'question', e)}
-                        className="mt-2 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs rounded-lg font-medium transition-colors opacity-0 group-hover:opacity-100"
+                        className="mt-2 py-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 text-xs rounded-lg font-medium transition-colors opacity-0 group-hover:opacity-100"
                       >
                         {questionLSM ? '✏️ Editar LSM' : '➕ Agregar LSM'}
                       </button>
@@ -252,8 +252,8 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
                   {/* Reverso de la tarjeta (Respuesta) */}
                   <div
-                    className={`absolute w-full min-h-[250px] bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-lg p-4 flex flex-col ${
-                      isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-blue-700'
+                    className={`absolute w-full min-h-[250px] bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg shadow-lg p-4 flex flex-col ${
+                      isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-indigo-800'
                     }`}
                     style={{
                       backfaceVisibility: 'hidden',
@@ -288,7 +288,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="w-full p-2 border border-blue-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-300 text-sm font-semibold text-gray-900 bg-white"
+                          className="w-full p-2 border border-indigo-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-300 text-sm font-semibold text-slate-900 bg-white"
                           rows={2}
                           placeholder="Escribe en LSM..."
                           autoFocus
@@ -300,7 +300,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                               handleSaveLSM();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 bg-white text-blue-600 text-xs rounded hover:bg-blue-50 disabled:bg-gray-400 font-medium"
+                            className="px-2 py-1 bg-white text-indigo-600 text-xs rounded hover:bg-indigo-50 disabled:bg-slate-400 font-medium"
                           >
                             {isSaving ? '...' : '💾'}
                           </button>

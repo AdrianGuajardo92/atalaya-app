@@ -205,14 +205,14 @@ export default function Home() {
 
   if (isLoading || !currentArticle) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-        <div className="text-xl text-gray-600">Cargando...</div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="text-xl text-slate-600">Cargando...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Temporizador flotante */}
       <Timer />
 
@@ -226,8 +226,8 @@ export default function Home() {
             onClick={() => setNavigationMode('scroll')}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
               navigationMode === 'scroll'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-slate-700 text-white'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             📜 Scroll
@@ -236,8 +236,8 @@ export default function Home() {
             onClick={() => setNavigationMode('paginated')}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
               navigationMode === 'paginated'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-slate-700 text-white'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             ⏮️⏭️ Navegación
@@ -246,7 +246,7 @@ export default function Home() {
       </div>
 
       {/* Contenido principal */}
-      <div className="max-w-5xl mx-auto px-6 py-8">
+      <div className="max-w-5xl mx-auto px-6 py-12">
         <StudyHeader
           song={currentArticle.song}
           title={currentArticle.title}
@@ -264,7 +264,7 @@ export default function Home() {
         {/* Modo Scroll - Muestra todas las preguntas */}
         {navigationMode === 'scroll' && (
           <>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {currentArticle.questions.map((question, index) => (
                 <QuestionCard
                   key={index}
@@ -284,13 +284,13 @@ export default function Home() {
             </div>
 
             {/* Preguntas de Repaso */}
-            <div className="mt-8">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-md p-6 mb-6">
-                <h2 className="text-2xl font-bold text-purple-800 text-center">
+            <div className="mt-12">
+              <div className="bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg shadow-md p-8 mb-8">
+                <h2 className="text-2xl font-bold text-violet-800 text-center">
                   ¿QUÉ RESPONDERÍAS?
                 </h2>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {currentArticle.reviewQuestions.map((reviewQ, index) => (
                   <ReviewQuestionCard
                     key={index}
@@ -310,8 +310,8 @@ export default function Home() {
             </div>
 
             {/* Canción Final */}
-            <div className="mt-8 bg-gradient-to-b from-blue-50 to-white rounded-lg shadow-md p-8 text-center">
-              <p className="text-lg font-semibold text-gray-600">
+            <div className="mt-10 bg-gradient-to-b from-slate-50 to-white rounded-lg shadow-md p-8 text-center border border-slate-200">
+              <p className="text-lg font-semibold text-slate-700">
                 {currentArticle.finalSong}
               </p>
             </div>
@@ -356,8 +356,8 @@ export default function Home() {
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}
                 {currentReviewIndex === currentArticle.reviewQuestions.length - 1 && (
-                  <div className="mt-6 bg-gradient-to-b from-blue-50 to-white rounded-lg shadow-md p-8 text-center">
-                    <p className="text-lg font-semibold text-gray-600">
+                  <div className="mt-6 bg-gradient-to-b from-slate-50 to-white rounded-lg shadow-md p-8 text-center border border-slate-200">
+                    <p className="text-lg font-semibold text-slate-700">
                       {currentArticle.finalSong}
                     </p>
                   </div>
@@ -369,32 +369,32 @@ export default function Home() {
             {currentReviewIndex === -1 ? (
               /* Estamos en preguntas normales */
               currentQuestionIndex < currentArticle.questions.length - 1 ? (
-                <div className="mt-6 bg-amber-50 border-l-4 border-amber-400 p-4 rounded-lg shadow-sm">
-                  <p className="text-sm font-semibold text-amber-800 mb-2">📋 Siguiente:</p>
-                  <div className="text-sm text-gray-700">
+                <div className="mt-6 bg-orange-50 border-l-2 border-orange-400 p-4 rounded-lg shadow-sm">
+                  <p className="text-sm font-semibold text-orange-800 mb-2">📋 Siguiente:</p>
+                  <div className="text-sm text-slate-700">
                     {/* Si hay subtítulo, mostrarlo primero */}
                     {currentArticle.questions[currentQuestionIndex + 1].section && (
-                      <div className="mb-3 pb-2 border-b border-amber-200">
-                        <p className="font-semibold text-blue-700 mb-1">
+                      <div className="mb-3 pb-2 border-b border-orange-200">
+                        <p className="font-semibold text-indigo-700 mb-1">
                           Subtítulo:
                         </p>
-                        <p className="text-gray-800 font-medium text-xs uppercase">
+                        <p className="text-slate-800 font-medium text-xs uppercase">
                           {currentArticle.questions[currentQuestionIndex + 1].section}
                         </p>
                       </div>
                     )}
                     {/* Después mostrar solo los párrafos */}
-                    <p className="font-semibold text-gray-800">
+                    <p className="font-semibold text-slate-800">
                       Párrafo{currentArticle.questions[currentQuestionIndex + 1].paragraphs.length > 1 ? 's' : ''}: {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
                     </p>
                   </div>
                 </div>
               ) : (
                 /* En la última pregunta normal, mostrar que vienen las preguntas de repaso */
-                <div className="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4 rounded-lg shadow-sm">
-                  <p className="text-sm font-semibold text-purple-800 mb-2">📋 Siguiente:</p>
-                  <div className="text-sm text-gray-700">
-                    <p className="font-semibold text-purple-700">
+                <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
+                  <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
+                  <div className="text-sm text-slate-700">
+                    <p className="font-semibold text-violet-700">
                       ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
                     </p>
                   </div>
@@ -403,10 +403,10 @@ export default function Home() {
             ) : (
               /* Estamos en preguntas de repaso */
               currentReviewIndex < currentArticle.reviewQuestions.length - 1 && (
-                <div className="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4 rounded-lg shadow-sm">
-                  <p className="text-sm font-semibold text-purple-800 mb-2">📋 Siguiente:</p>
-                  <div className="text-sm text-gray-700">
-                    <p className="font-semibold text-purple-700">
+                <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
+                  <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
+                  <div className="text-sm text-slate-700">
+                    <p className="font-semibold text-violet-700">
                       Pregunta de repaso {currentReviewIndex + 2}
                     </p>
                   </div>
@@ -415,20 +415,20 @@ export default function Home() {
             )}
 
             {/* Controles de navegación */}
-            <div className="flex justify-between items-center mt-6 bg-white rounded-lg shadow-md p-4">
+            <div className="flex justify-between items-center mt-8 bg-white rounded-lg shadow-md p-5 border border-slate-200">
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
                   currentQuestionIndex === 0 && currentReviewIndex === -1
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                    : 'bg-slate-700 text-white hover:bg-slate-800'
                 }`}
               >
                 ⬅️ Anterior
               </button>
 
-              <div className="text-lg font-semibold text-gray-700">
+              <div className="text-lg font-semibold text-slate-700">
                 {currentReviewIndex === -1 ? (
                   <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
                 ) : (
@@ -439,10 +439,10 @@ export default function Home() {
               <button
                 onClick={handleNext}
                 disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
                   currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                    : 'bg-slate-700 text-white hover:bg-slate-800'
                 }`}
               >
                 Siguiente ➡️

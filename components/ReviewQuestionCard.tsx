@@ -81,47 +81,47 @@ export default function ReviewQuestionCard({
   const currentLSMText = lsmText || reviewQuestion.questionLSM;
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4 border-l-4 border-purple-500">
+    <div className="bg-white rounded-lg shadow-md p-6 mb-4 border-l-2 border-violet-500">
       {/* Botón para expandir/colapsar (solo en modo scroll) */}
       {!isNavigationMode && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full mb-4 flex items-center justify-between px-4 py-3 bg-purple-100 hover:bg-purple-200 rounded-lg transition-colors"
+          className="w-full mb-4 flex items-center justify-between px-4 py-3 bg-violet-50 hover:bg-violet-100 rounded-lg transition-colors"
         >
-          <span className="font-semibold text-purple-800">
+          <span className="font-semibold text-violet-800">
             {isExpanded ? '▼ Ocultar contenido' : '▶ Mostrar contenido'}
           </span>
-          <span className="text-sm text-purple-600">
+          <span className="text-sm text-violet-600">
             {isExpanded ? 'Colapsar' : 'Expandir'}
           </span>
         </button>
       )}
 
       {/* Contenedor unificado de pregunta de repaso */}
-      <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 shadow-sm group relative">
+      <div className="bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg p-5 shadow-sm group relative">
         {/* Pregunta en español */}
         <div className="mb-3">
-          <p className="text-sm text-purple-700 mb-1 font-medium">Pregunta de Repaso</p>
-          <p className="text-xl font-semibold text-gray-800 leading-relaxed">
+          <p className="text-sm text-violet-700 mb-1 font-medium">Pregunta de Repaso</p>
+          <p className="text-xl font-semibold text-slate-800 leading-relaxed">
             {reviewQuestion.question}
           </p>
         </div>
 
         {/* Línea divisoria */}
-        <div className="w-16 h-0.5 bg-purple-300 my-3"></div>
+        <div className="w-16 h-0.5 bg-violet-300 my-3"></div>
 
         {/* Pregunta en LSM - Modo visualización */}
         {!isEditingLSM && currentLSMText ? (
           <>
             <div>
-              <p className="text-sm text-purple-700 mb-2 font-semibold">🤟 LSM</p>
-              <p className="text-2xl font-bold text-gray-900 leading-relaxed uppercase">
+              <p className="text-sm text-violet-700 mb-2 font-semibold">🤟 LSM</p>
+              <p className="text-2xl font-bold text-slate-900 leading-relaxed uppercase">
                 {currentLSMText.toUpperCase()}
               </p>
             </div>
             <button
               onClick={() => setIsEditingLSM(true)}
-              className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 font-medium shadow-sm"
+              className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-violet-600 text-white text-sm rounded-lg hover:bg-violet-700 font-medium shadow-sm"
             >
               ✏️ Editar LSM
             </button>
@@ -129,7 +129,7 @@ export default function ReviewQuestionCard({
         ) : !isEditingLSM ? (
           <button
             onClick={() => setIsEditingLSM(true)}
-            className="w-full py-2 bg-purple-50 border-2 border-dashed border-purple-300 rounded-lg hover:bg-purple-100 transition-colors text-purple-600 font-medium text-sm"
+            className="w-full py-2 bg-violet-50 border-2 border-dashed border-violet-300 rounded-lg hover:bg-violet-100 transition-colors text-violet-600 font-medium text-sm"
           >
             ➕ Agregar pregunta en LSM
           </button>
@@ -138,13 +138,13 @@ export default function ReviewQuestionCard({
 
       {/* Modo edición LSM - Fuera del contenedor unificado */}
       {isEditingLSM && (
-        <div className="mt-3 p-4 bg-purple-50 rounded-lg border-2 border-purple-500 shadow-sm">
-          <p className="text-sm text-purple-700 mb-2 font-semibold">✍️ Editar LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
+        <div className="mt-3 p-4 bg-violet-50 rounded-lg border-2 border-violet-400 shadow-sm">
+          <p className="text-sm text-violet-700 mb-2 font-semibold">✍️ Editar LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
           <textarea
             value={editedLSM}
             onChange={(e) => setEditedLSM(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="w-full p-4 border-2 border-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xl font-semibold text-gray-900 bg-white shadow-inner"
+            className="w-full p-4 border-2 border-violet-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 text-xl font-semibold text-slate-900 bg-white shadow-inner"
             rows={4}
             placeholder="Escribe la pregunta en LSM..."
             autoFocus
@@ -153,14 +153,14 @@ export default function ReviewQuestionCard({
             <button
               onClick={handleSaveLSM}
               disabled={isSaving}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-gray-400 transition-colors font-medium shadow-sm"
+              className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 disabled:bg-slate-400 transition-colors font-medium shadow-sm"
             >
               {isSaving ? 'Guardando...' : '💾 Guardar'}
             </button>
             <button
               onClick={handleCancelEdit}
               disabled={isSaving}
-              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium"
+              className="px-4 py-2 bg-slate-300 text-slate-700 rounded-lg hover:bg-slate-400 transition-colors font-medium"
             >
               ✖️ Cancelar
             </button>
@@ -173,17 +173,17 @@ export default function ReviewQuestionCard({
         <>
           {/* Respuesta */}
           {reviewQuestion.answer && (
-            <div className="mt-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-              <p className="text-sm font-semibold text-green-700 mb-2">💡 Respuesta:</p>
-              <p className="text-gray-800 leading-relaxed">{reviewQuestion.answer}</p>
+            <div className="mt-4 p-4 bg-emerald-50 rounded-lg border-l-2 border-emerald-500">
+              <p className="text-sm font-semibold text-emerald-700 mb-2">💡 Respuesta:</p>
+              <p className="text-slate-800 leading-relaxed">{reviewQuestion.answer}</p>
             </div>
           )}
 
           {/* Puntos clave */}
           {reviewQuestion.answerBullets && (
-            <div className="mt-4 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-              <p className="text-sm font-semibold text-blue-700 mb-2">📌 Puntos clave:</p>
-              <div className="text-gray-800 leading-relaxed whitespace-pre-line">
+            <div className="mt-4 p-4 bg-indigo-50 rounded-lg border-l-2 border-indigo-500">
+              <p className="text-sm font-semibold text-indigo-700 mb-2">📌 Puntos clave:</p>
+              <div className="text-slate-800 leading-relaxed whitespace-pre-line">
                 {reviewQuestion.answerBullets}
               </div>
             </div>

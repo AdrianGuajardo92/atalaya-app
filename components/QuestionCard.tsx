@@ -55,7 +55,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     question.paragraphs.includes(p.number)
   );
 
-  // Función para formatear el contenido con textos bíblicos en azul
+  // Función para formatear el contenido con textos bíblicos
   const formatContent = (text: string) => {
     // Buscar patrones de referencias bíblicas entre paréntesis
     const parts = text.split(/(\([^)]+\))/g);
@@ -64,7 +64,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       // Si es una referencia bíblica (está entre paréntesis)
       if (part.startsWith('(') && part.endsWith(')')) {
         return (
-          <span key={index} className="text-blue-600 font-medium">
+          <span key={index} className="text-slate-700 font-medium">
             {part}
           </span>
         );
@@ -79,11 +79,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
     return lines.map((line, index) => (
       <div key={index}>
-        <p className="text-lg font-bold text-gray-900 leading-relaxed uppercase mb-0">
+        <p className="text-lg font-semibold text-slate-900 leading-relaxed uppercase mb-0">
           {line}
         </p>
         {index < lines.length - 1 && (
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent my-3"></div>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent my-3"></div>
         )}
       </div>
     ));
@@ -201,7 +201,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       {/* Subtítulo de sección (si existe) */}
       {question.section && (
         <div className="mb-6 mt-8">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-6 rounded-lg shadow-lg group relative">
+          <div className="bg-gradient-to-r from-slate-700 to-slate-900 text-white px-6 py-6 rounded-lg shadow-lg group relative">
             {/* Subtítulo en español */}
             <h2 className="text-2xl font-bold text-center uppercase tracking-wide mb-4">
               {question.section}
@@ -221,7 +221,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </div>
                 <button
                   onClick={() => setIsEditingSectionLSM(true)}
-                  className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-white text-blue-600 text-sm rounded-lg hover:bg-blue-50 font-medium shadow-sm"
+                  className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-white text-slate-700 text-sm rounded-lg hover:bg-slate-50 font-medium shadow-sm"
                 >
                   ✏️ Editar LSM
                 </button>
@@ -238,13 +238,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
           {/* Modo edición LSM - Fuera del banner principal */}
           {isEditingSectionLSM && (
-            <div className="mt-3 p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm">
-              <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar Subtítulo LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
+            <div className="mt-3 p-4 bg-indigo-50 rounded-lg border-2 border-indigo-400 shadow-sm">
+              <p className="text-sm text-indigo-700 mb-2 font-semibold">✍️ Editar Subtítulo LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
               <textarea
                 value={editedSectionLSM}
                 onChange={(e) => setEditedSectionLSM(e.target.value)}
                 onKeyDown={handleSectionKeyDown}
-                className="w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-xl font-semibold text-gray-900 bg-white shadow-inner"
+                className="w-full p-4 border-2 border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 text-xl font-semibold text-slate-900 bg-white shadow-inner"
                 rows={3}
                 placeholder="Escribe el subtítulo en LSM..."
                 autoFocus
@@ -253,14 +253,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <button
                   onClick={handleSaveSectionLSM}
                   disabled={isSavingSection}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors font-medium shadow-sm"
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-slate-400 transition-colors font-medium shadow-sm"
                 >
                   {isSavingSection ? 'Guardando...' : '💾 Guardar'}
                 </button>
                 <button
                   onClick={handleCancelSectionEdit}
                   disabled={isSavingSection}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium"
+                  className="px-4 py-2 bg-slate-300 text-slate-700 rounded-lg hover:bg-slate-400 transition-colors font-medium"
                 >
                   ✖️ Cancelar
                 </button>
@@ -287,28 +287,28 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 e.stopPropagation();
                 setShowParagraphsModal(true);
               }}
-              className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all cursor-pointer"
+              className="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full flex items-center justify-center shadow-md hover:from-slate-700 hover:to-slate-800 transition-all cursor-pointer"
               title="Ver párrafos"
             >
-              <span className="text-white font-bold text-lg">{question.number}</span>
+              <span className="text-white font-semibold text-lg">{question.number}</span>
             </button>
           </div>
 
           {/* Contenido lado a lado */}
           <div className="flex-1 space-y-4">
             {/* Español - SIEMPRE VISIBLE */}
-            <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-gray-300 group relative">
-              <div className="text-xs font-semibold text-gray-500 mb-1">Español</div>
-              <p className="text-base text-gray-800 leading-relaxed">
+            <div className="bg-slate-50 rounded-lg p-4 border-l-2 border-slate-300 group relative">
+              <div className="text-xs font-medium text-slate-500 mb-1.5">Español</div>
+              <p className="text-base text-slate-800 leading-relaxed">
                 {question.textEs}
               </p>
             </div>
 
             {/* LSM - SIEMPRE VISIBLE */}
-            <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 group relative">
+            <div className="bg-indigo-50 rounded-lg p-4 border-l-2 border-indigo-400 group relative">
               {!isEditingLSM && currentLSMText ? (
                 <>
-                  <div className="text-xs font-semibold text-blue-700 mb-3">🤟 LSM</div>
+                  <div className="text-xs font-semibold text-indigo-700 mb-3">🤟 LSM</div>
                   <div>
                     {formatLSMText(currentLSMText)}
                   </div>
@@ -317,7 +317,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                       e.stopPropagation();
                       setIsEditingLSM(true);
                     }}
-                    className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 font-medium shadow-sm"
+                    className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1.5 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 font-medium shadow-sm"
                   >
                     ✏️ Editar
                   </button>
@@ -328,7 +328,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     e.stopPropagation();
                     setIsEditingLSM(true);
                   }}
-                  className="w-full py-2 bg-blue-100 border-2 border-dashed border-blue-300 rounded-lg hover:bg-blue-200 transition-colors text-blue-600 font-medium text-sm"
+                  className="w-full py-2 bg-indigo-50 border-2 border-dashed border-indigo-300 rounded-lg hover:bg-indigo-100 transition-colors text-indigo-600 font-medium text-sm"
                 >
                   ➕ Agregar pregunta en LSM
                 </button>
@@ -337,13 +337,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
             {/* Modo edición LSM */}
             {isEditingLSM && (
-              <div className="p-4 bg-blue-50 rounded-lg border-2 border-blue-500 shadow-sm" onClick={(e) => e.stopPropagation()}>
-                <p className="text-sm text-blue-700 mb-2 font-semibold">✍️ Editar LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
+              <div className="p-4 bg-indigo-50 rounded-lg border-2 border-indigo-400 shadow-sm" onClick={(e) => e.stopPropagation()}>
+                <p className="text-sm text-indigo-700 mb-2 font-semibold">✍️ Editar LSM (Enter: guardar | Esc: cancelar | Shift+Enter: nueva línea):</p>
                 <textarea
                   value={editedLSM}
                   onChange={(e) => setEditedLSM(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-xl font-semibold text-gray-900 bg-white shadow-inner"
+                  className="w-full p-4 border-2 border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 text-xl font-semibold text-slate-900 bg-white shadow-inner"
                   rows={4}
                   placeholder="Escribe la pregunta en LSM..."
                   autoFocus
@@ -352,14 +352,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   <button
                     onClick={handleSaveLSM}
                     disabled={isSaving}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-colors font-medium shadow-sm"
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-slate-400 transition-colors font-medium shadow-sm"
                   >
                     {isSaving ? 'Guardando...' : '💾 Guardar'}
                   </button>
                   <button
                     onClick={handleCancelEdit}
                     disabled={isSaving}
-                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium"
+                    className="px-4 py-2 bg-slate-300 text-slate-700 rounded-lg hover:bg-slate-400 transition-colors font-medium"
                   >
                     ✖️ Cancelar
                   </button>
@@ -384,14 +384,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {relatedParagraphs
                   .filter(p => p.image)
                   .map((paragraph) => (
-                    <div key={paragraph.number} className="rounded-lg overflow-hidden shadow-md bg-gray-50 p-4">
+                    <div key={paragraph.number} className="rounded-lg overflow-hidden shadow-md bg-slate-50 p-4">
                       <img
                         src={paragraph.image}
                         alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
                         className="w-full h-auto object-cover rounded-lg"
                       />
                       {paragraph.imageCaption && (
-                        <p className="text-sm text-gray-600 italic mt-3 text-center">
+                        <p className="text-sm text-slate-600 italic mt-3 text-center">
                           {paragraph.imageCaption}
                         </p>
                       )}
@@ -406,7 +406,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 className="cursor-pointer"
                 onClick={() => setIsExpanded(!isExpanded)}
               >
-                <div className="text-sm text-gray-600 flex items-center gap-2 mb-2">
+                <div className="text-sm text-slate-600 flex items-center gap-2 mb-2">
                   <span>{isExpanded ? '▼' : '▶'}</span>
                   <span className="font-medium">
                     {isExpanded ? 'Ocultar respuesta' : 'Ver respuesta'}
@@ -417,12 +417,12 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
             {/* Contenido de la respuesta */}
             {(isExpanded || isNavigationMode) && (question.answer || question.answerBullets) && (
-              <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
-                <div className="text-xs font-semibold text-green-700 mb-3">💡 Respuesta</div>
+              <div className="bg-emerald-50 rounded-lg p-4 border-l-2 border-emerald-500">
+                <div className="text-xs font-semibold text-emerald-700 mb-3">💡 Respuesta</div>
 
                 {/* Respuesta en lenguaje sencillo */}
                 {question.answer && (
-                  <p className="text-base text-gray-800 leading-relaxed mb-4">
+                  <p className="text-base text-slate-800 leading-relaxed mb-4">
                     {question.answer}
                   </p>
                 )}
@@ -430,15 +430,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {/* Puntos clave en bullets */}
                 {question.answerBullets && (
                   <>
-                    <div className="border-t border-green-200 pt-3 mt-3">
-                      <div className="text-xs font-semibold text-green-700 mb-2">🔑 Puntos Clave</div>
-                      <div className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">
+                    <div className="border-t border-emerald-200 pt-3 mt-3">
+                      <div className="text-xs font-semibold text-emerald-700 mb-2">🔑 Puntos Clave</div>
+                      <div className="text-sm text-slate-800 leading-relaxed whitespace-pre-line">
                         {question.answerBullets.split('\n').map((line, idx) => {
                           // Detectar líneas con negrita (entre **)
                           if (line.includes('**')) {
                             const parts = line.split(/(\*\*.*?\*\*)/g);
                             return (
-                              <div key={idx} className="mb-2 font-semibold text-gray-900">
+                              <div key={idx} className="mb-2 font-semibold text-slate-900">
                                 {parts.map((part, partIdx) => {
                                   if (part.startsWith('**') && part.endsWith('**')) {
                                     return (
@@ -513,12 +513,12 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header del modal */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-t-xl flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-slate-700 to-slate-900 text-white p-6 rounded-t-xl flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-bold">
                   Párrafo{relatedParagraphs.length > 1 ? 's' : ''} {question.paragraphs.join(', ')}
                 </h3>
-                <p className="text-sm text-blue-100 mt-1">Pregunta {question.number}</p>
+                <p className="text-sm text-slate-300 mt-1">Pregunta {question.number}</p>
               </div>
               <button
                 onClick={() => setShowParagraphsModal(false)}
@@ -532,15 +532,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {/* Contenido de los párrafos */}
             <div className="p-6 space-y-6">
               {relatedParagraphs.map((paragraph) => (
-                <div key={paragraph.number} className="bg-gray-50 rounded-lg p-5 border-l-4 border-blue-400">
+                <div key={paragraph.number} className="bg-slate-50 rounded-lg p-5 border-l-2 border-indigo-400">
                   {/* Número de párrafo */}
                   <div className="flex items-start gap-4">
-                    <span className="bg-blue-600 text-white font-bold text-base w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0">
+                    <span className="bg-gradient-to-br from-slate-600 to-slate-700 text-white font-bold text-base w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0">
                       {paragraph.number}
                     </span>
                     {/* Contenido del párrafo */}
                     <div className="flex-1">
-                      <p className="text-base leading-relaxed text-gray-700">
+                      <p className="text-base leading-relaxed text-slate-700">
                         {formatContent(paragraph.content)}
                       </p>
                       {/* Imagen del párrafo (si existe) */}
@@ -552,7 +552,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             className="w-full rounded-lg shadow-md"
                           />
                           {paragraph.imageCaption && (
-                            <p className="text-sm text-gray-600 italic mt-2 text-center">
+                            <p className="text-sm text-slate-600 italic mt-2 text-center">
                               {paragraph.imageCaption}
                             </p>
                           )}
@@ -565,10 +565,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             </div>
 
             {/* Footer del modal */}
-            <div className="sticky bottom-0 bg-gray-50 p-4 rounded-b-xl border-t border-gray-200 text-center">
+            <div className="sticky bottom-0 bg-slate-50 p-4 rounded-b-xl border-t border-slate-200 text-center">
               <button
                 onClick={() => setShowParagraphsModal(false)}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-medium shadow-sm"
               >
                 Cerrar
               </button>
