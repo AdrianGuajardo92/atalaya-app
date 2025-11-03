@@ -30,7 +30,13 @@ Una app Next.js para dirigir el estudio de La Atalaya. Tiene soporte bilingüe: 
 
 ## 📝 Organización de artículos
 
-La app ahora maneja **múltiples artículos por mes** (típicamente 5 artículos, uno por semana).
+⚡ **IMPORTANTE: NO HAY LÍMITES** ⚡
+
+La app puede manejar **CUALQUIER cantidad de artículos** que agregues:
+- ✅ Puedes agregar 5, 10, 50, 100+ artículos por mes
+- ✅ Puedes agregar todos los meses que necesites (2025, 2026, 2027...)
+- ✅ El dropdown automáticamente mostrará TODOS los artículos
+- ✅ Cada artículo tiene su propia data LSM, favoritos y tarjetas ocultas
 
 ### Estructura de la base de datos:
 

@@ -298,7 +298,101 @@ export const atalayaDatabase: AtalayaDatabase = {
         finalSong: ""
       }
     ]
+  },
+
+  // ========================================
+  // PUEDES AGREGAR TANTOS MESES COMO QUIERAS
+  // ========================================
+
+  // Ejemplo: Septiembre 2025
+  "2025-09": {
+    articles: [
+      // Artículo 39 (Placeholder - puedes agregar el contenido cuando lo necesites)
+      {
+        metadata: {
+          articleNumber: 39,
+          week: "2-8 Dic",
+          month: "Septiembre",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      },
+
+      // Artículo 40 (Placeholder)
+      {
+        metadata: {
+          articleNumber: 40,
+          week: "9-15 Dic",
+          month: "Septiembre",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      }
+      // Puedes agregar cuantos artículos necesites aquí...
+    ]
+  },
+
+  // Ejemplo: Octubre 2025
+  "2025-10": {
+    articles: [
+      // Artículo 41 (Placeholder)
+      {
+        metadata: {
+          articleNumber: 41,
+          week: "16-22 Dic",
+          month: "Octubre",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      },
+
+      // Artículo 42 (Placeholder)
+      {
+        metadata: {
+          articleNumber: 42,
+          week: "23-29 Dic",
+          month: "Octubre",
+          year: 2025
+        },
+        song: "",
+        title: "",
+        biblicalText: "",
+        theme: "",
+        questions: [],
+        paragraphs: [],
+        reviewQuestions: [],
+        finalSong: ""
+      }
+      // Agrega más artículos si lo necesitas...
+    ]
   }
+
+  // PUEDES SEGUIR AGREGANDO MÁS MESES:
+  // "2025-11": { articles: [...] },
+  // "2025-12": { articles: [...] },
+  // "2026-01": { articles: [...] },
+  // ... y así sucesivamente, SIN LÍMITE
 };
 
 // Helper para obtener un artículo específico por ID
@@ -342,6 +436,20 @@ export function getArticleId(article: ArticleData): string {
 // Helper para listar todos los artículos de un mes
 export function getMonthArticles(yearMonth: string): ArticleData[] {
   return atalayaDatabase[yearMonth]?.articles || [];
+}
+
+// Helper para obtener todos los meses disponibles
+export function getAvailableMonths(): string[] {
+  return Object.keys(atalayaDatabase).sort();
+}
+
+// Helper para obtener el total de artículos en toda la base de datos
+export function getTotalArticles(): number {
+  let total = 0;
+  for (const month in atalayaDatabase) {
+    total += atalayaDatabase[month].articles.length;
+  }
+  return total;
 }
 
 // Export temporal para retrocompatibilidad (se puede eliminar después)
