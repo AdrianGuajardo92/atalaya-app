@@ -11,8 +11,8 @@ import { ArticleData } from '@/types/atalaya';
 
 export default function Home() {
   // Estado para manejo de artículos
-  const [currentMonth] = useState<string>("2025-08"); // Mes actual
-  const [currentArticleId, setCurrentArticleId] = useState<string>("2025-08-article-35"); // Artículo por defecto
+  const [currentMonth] = useState<string>("2025-09"); // Mes actual - SEPTIEMBRE 2025
+  const [currentArticleId, setCurrentArticleId] = useState<string>("2025-09-article-35"); // Artículo por defecto - Artículo 35
   const [currentArticle, setCurrentArticle] = useState<ArticleData | null>(null);
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
