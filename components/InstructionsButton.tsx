@@ -1059,14 +1059,14 @@ Claude: ✅ Estudio completado
       <div className="relative">
         <button
           onClick={handleCopy}
-          className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition-all font-medium text-sm flex items-center gap-2 w-full"
+          className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-4 py-2 rounded-lg shadow-lg hover:from-emerald-700 hover:to-emerald-800 transition-all font-medium text-sm flex items-center gap-2 w-full"
           title="Copiar instrucciones completas para nueva conversación"
         >
           📋 Copiar Instrucciones
         </button>
 
         {showCopied && (
-          <div className="absolute bottom-full left-0 mb-2 bg-green-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
+          <div className="absolute bottom-full left-0 mb-2 bg-emerald-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
             ✅ ¡Copiado al portapapeles!
           </div>
         )}
@@ -1076,14 +1076,14 @@ Claude: ✅ Estudio completado
       <div className="relative">
         <button
           onClick={handleCopyStudy}
-          className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all font-medium text-sm flex items-center gap-2 w-full"
+          className="bg-gradient-to-r from-slate-600 to-slate-700 text-white px-4 py-2 rounded-lg shadow-lg hover:from-slate-700 hover:to-slate-800 transition-all font-medium text-sm flex items-center gap-2 w-full"
           title="Copiar solo el protocolo de estudio"
         >
           📚 Copiar Protocolo
         </button>
 
         {showCopiedStudy && (
-          <div className="absolute bottom-full left-0 mb-2 bg-blue-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
+          <div className="absolute bottom-full left-0 mb-2 bg-slate-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
             ✅ ¡Protocolo copiado!
           </div>
         )}

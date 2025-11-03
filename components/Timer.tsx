@@ -6,8 +6,21 @@ export default function Timer() {
   const [totalSeconds, setTotalSeconds] = useState(60 * 60); // 60 minutos por defecto
   const [isRunning, setIsRunning] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [delayMinutes, setDelayMinutes] = useState('0');
-  const [position, setPosition] = useState({ x: 20, y: 20 });
+  const [delayMinutes, setDelayMinutes] = useState('1');
+  const [position, setPosition] = useState(() => {
+    // Cargar posición guardada desde localStorage
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('atalaya-timer-position');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch {
+          return { x: 20, y: 20 };
+        }
+      }
+    }
+    return { x: 20, y: 20 };
+  });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const timerRef = useRef<HTMLDivElement>(null);
@@ -63,6 +76,10 @@ export default function Timer() {
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    // Guardar posición en localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('atalaya-timer-position', JSON.stringify(position));
+    }
   };
 
   // Manejar drag con touch (tableta/móvil)
@@ -91,6 +108,10 @@ export default function Timer() {
 
   const handleTouchEnd = () => {
     setIsDragging(false);
+    // Guardar posición en localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('atalaya-timer-position', JSON.stringify(position));
+    }
   };
 
   useEffect(() => {
@@ -121,40 +142,47 @@ export default function Timer() {
       }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
-      className="bg-gray-800 text-white rounded-lg shadow-2xl p-3 min-w-[140px] select-none"
+      className="bg-slate-800 text-white rounded-lg shadow-2xl p-3 min-w-[140px] select-none"
     >
       {isEditing ? (
         <div className="flex flex-col gap-2" onClick={e => e.stopPropagation()}>
-          <div className="text-xs text-gray-300 text-center mb-1">
+          <div className="text-xs text-slate-300 text-center mb-1">
             Retraso (min)
           </div>
-          <input
-            type="number"
+          <select
             value={delayMinutes}
             onChange={(e) => setDelayMinutes(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleTimeChange();
               if (e.key === 'Escape') setIsEditing(false);
             }}
-            className="bg-gray-700 text-white px-2 py-1 rounded text-center text-sm w-full"
-            placeholder="0"
-            min="0"
-            max="60"
+            className="bg-slate-700 text-white px-2 py-1 rounded text-center text-sm w-full cursor-pointer"
             autoFocus
-          />
-          <div className="text-xs text-gray-400 text-center">
+          >
+            <option value="1">1 min</option>
+            <option value="2">2 min</option>
+            <option value="3">3 min</option>
+            <option value="4">4 min</option>
+            <option value="5">5 min</option>
+            <option value="6">6 min</option>
+            <option value="7">7 min</option>
+            <option value="8">8 min</option>
+            <option value="9">9 min</option>
+            <option value="10">10 min</option>
+          </select>
+          <div className="text-xs text-slate-400 text-center">
             Iniciar: {Math.max(0, 60 - (parseInt(delayMinutes) || 0))} min
           </div>
           <div className="flex gap-1">
             <button
               onClick={handleTimeChange}
-              className="flex-1 bg-green-600 hover:bg-green-700 px-2 py-1 rounded text-xs"
+              className="flex-1 bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded text-xs"
             >
               ✓
             </button>
             <button
               onClick={() => setIsEditing(false)}
-              className="flex-1 bg-red-600 hover:bg-red-700 px-2 py-1 rounded text-xs"
+              className="flex-1 bg-slate-600 hover:bg-slate-700 px-2 py-1 rounded text-xs"
             >
               ✕
             </button>
@@ -175,7 +203,7 @@ export default function Timer() {
           <div className="flex gap-1 justify-center" onClick={e => e.stopPropagation()}>
             <button
               onClick={() => setIsRunning(!isRunning)}
-              className="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-xs font-medium"
+              className="bg-slate-700 hover:bg-slate-800 px-3 py-1 rounded text-xs font-medium shadow-sm"
             >
               {isRunning ? '⏸' : '▶'}
             </button>
@@ -184,16 +212,16 @@ export default function Timer() {
                 setIsRunning(false);
                 setTotalSeconds(60 * 60);
               }}
-              className="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-xs font-medium"
+              className="bg-slate-600 hover:bg-slate-700 px-3 py-1 rounded text-xs font-medium shadow-sm"
             >
               ↻
             </button>
             <button
               onClick={() => {
-                setDelayMinutes('0');
+                setDelayMinutes('1');
                 setIsEditing(true);
               }}
-              className="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-xs font-medium"
+              className="bg-slate-600 hover:bg-slate-700 px-3 py-1 rounded text-xs font-medium shadow-sm"
             >
               ⚙
             </button>

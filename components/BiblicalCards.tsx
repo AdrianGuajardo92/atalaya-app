@@ -44,10 +44,10 @@ export default function BiblicalCards({ cards, questionNumber, favorites, onTogg
   };
 
   return (
-    <div className="mt-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border-2 border-purple-300">
+    <div className="mt-4 bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg p-4 border-2 border-violet-300">
       <div className="flex items-center justify-between mb-4">
-        <div className="text-xs font-semibold text-purple-700">📖 Textos Bíblicos</div>
-        <div className="text-xs text-purple-600 font-medium">
+        <div className="text-xs font-semibold text-violet-700">📖 Textos Bíblicos</div>
+        <div className="text-xs text-violet-600 font-medium">
           {visibleCards.length} {visibleCards.length === 1 ? 'texto' : 'textos'}
         </div>
       </div>
@@ -104,7 +104,7 @@ export default function BiblicalCards({ cards, questionNumber, favorites, onTogg
               </div>
 
               <div
-                className="relative w-full h-full transition-transform duration-500"
+                className="relative w-full h-full transition-transform duration-700 ease-in-out"
                 style={{
                   transformStyle: 'preserve-3d',
                   transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
@@ -113,25 +113,25 @@ export default function BiblicalCards({ cards, questionNumber, favorites, onTogg
                 {/* Frente de la tarjeta (Referencia + Propósito) */}
                 <div
                   className={`absolute w-full h-full bg-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center ${
-                    isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-purple-200'
+                    isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-violet-200'
                   }`}
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                   }}
                 >
-                  <p className="text-center text-purple-800 font-bold text-lg mb-4">
+                  <p className="text-center text-violet-800 font-bold text-lg mb-4">
                     {card.reference}
                   </p>
-                  <p className="text-center text-gray-700 text-sm leading-relaxed">
+                  <p className="text-center text-slate-700 text-sm leading-relaxed">
                     {card.purpose}
                   </p>
                 </div>
 
                 {/* Reverso de la tarjeta (Texto completo TNM) */}
                 <div
-                  className={`absolute w-full h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg shadow-lg overflow-hidden flex flex-col ${
-                    isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-purple-800'
+                  className={`absolute w-full h-full bg-gradient-to-br from-violet-600 to-violet-700 rounded-lg shadow-lg overflow-hidden flex flex-col ${
+                    isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-violet-800'
                   }`}
                   style={{
                     backfaceVisibility: 'hidden',
@@ -140,7 +140,7 @@ export default function BiblicalCards({ cards, questionNumber, favorites, onTogg
                   }}
                 >
                   {/* Referencia fija arriba */}
-                  <div className="text-xs text-purple-100 font-semibold text-center bg-purple-800/50 py-2 px-4 flex-shrink-0">
+                  <div className="text-xs text-violet-100 font-semibold text-center bg-violet-800/50 py-2 px-4 flex-shrink-0">
                     {card.reference}
                   </div>
 

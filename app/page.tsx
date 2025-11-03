@@ -24,6 +24,8 @@ export default function Home() {
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>({});
   const [isLoading, setIsLoading] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
   // Referencia para hacer scroll al contenido
   const contentRef = useRef<HTMLDivElement>(null);
@@ -85,6 +87,36 @@ export default function Home() {
       });
     }
   }, [currentQuestionIndex, currentReviewIndex, navigationMode]);
+
+  // Detectar scroll y calcular progreso (solo en modo scroll)
+  useEffect(() => {
+    if (navigationMode !== 'scroll') return;
+
+    let hideTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const scrollableHeight = documentHeight - windowHeight;
+      const progress = scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0;
+
+      setScrollProgress(Math.min(Math.round(progress), 100));
+      setShowScrollIndicator(true);
+
+      // Ocultar después de 2 segundos sin scroll
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        setShowScrollIndicator(false);
+      }, 2000);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(hideTimeout);
+    };
+  }, [navigationMode]);
 
   // Función para cambiar de artículo
   const handleArticleChange = (articleId: string) => {
@@ -218,6 +250,14 @@ export default function Home() {
 
       {/* Botón de instrucciones */}
       <InstructionsButton />
+
+      {/* Indicador de progreso de scroll (solo en modo scroll) */}
+      {navigationMode === 'scroll' && showScrollIndicator && (
+        <div className="fixed top-20 right-4 z-10 bg-slate-800 text-white rounded-lg shadow-lg px-4 py-2 transition-opacity duration-300">
+          <div className="text-xs font-medium text-slate-300 mb-1">Progreso</div>
+          <div className="text-2xl font-bold">{scrollProgress}%</div>
+        </div>
+      )}
 
       {/* Control de modo de navegación */}
       <div className="fixed top-4 right-4 z-10 bg-white rounded-lg shadow-lg p-2">
@@ -369,24 +409,34 @@ export default function Home() {
             {currentReviewIndex === -1 ? (
               /* Estamos en preguntas normales */
               currentQuestionIndex < currentArticle.questions.length - 1 ? (
-                <div className="mt-6 bg-orange-50 border-l-2 border-orange-400 p-4 rounded-lg shadow-sm">
-                  <p className="text-sm font-semibold text-orange-800 mb-2">📋 Siguiente:</p>
-                  <div className="text-sm text-slate-700">
-                    {/* Si hay subtítulo, mostrarlo primero */}
+                <div className="mt-6 bg-white rounded-lg shadow-md border-2 border-orange-400 overflow-hidden">
+                  {/* Header con color sólido */}
+                  <div className="bg-orange-500 px-5 py-2.5">
+                    <p className="text-sm font-bold text-white flex items-center gap-2">
+                      <span>⏭️</span> Próxima pregunta
+                    </p>
+                  </div>
+
+                  <div className="p-5 space-y-3">
+                    {/* SUBTÍTULO muy destacado con fondo de énfasis */}
                     {currentArticle.questions[currentQuestionIndex + 1].section && (
-                      <div className="mb-3 pb-2 border-b border-orange-200">
-                        <p className="font-semibold text-indigo-700 mb-1">
-                          Subtítulo:
+                      <div className="bg-slate-50 border-l-4 border-slate-700 pl-4 py-3 rounded-r">
+                        <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+                          Sección
                         </p>
-                        <p className="text-slate-800 font-medium text-xs uppercase">
+                        <h3 className="text-xl font-extrabold text-slate-900 uppercase leading-tight">
                           {currentArticle.questions[currentQuestionIndex + 1].section}
-                        </p>
+                        </h3>
                       </div>
                     )}
-                    {/* Después mostrar solo los párrafos */}
-                    <p className="font-semibold text-slate-800">
-                      Párrafo{currentArticle.questions[currentQuestionIndex + 1].paragraphs.length > 1 ? 's' : ''}: {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
-                    </p>
+
+                    {/* PÁRRAFOS muy discreto */}
+                    <div className="text-xs text-slate-500 px-1">
+                      <span className="font-medium">Párrafos del artículo: </span>
+                      <span className="font-bold text-slate-700">
+                        {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -415,38 +465,65 @@ export default function Home() {
             )}
 
             {/* Controles de navegación */}
-            <div className="flex justify-between items-center mt-8 bg-white rounded-lg shadow-md p-5 border border-slate-200">
-              <button
-                onClick={handlePrevious}
-                disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
-                className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
-                  currentQuestionIndex === 0 && currentReviewIndex === -1
-                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                    : 'bg-slate-700 text-white hover:bg-slate-800'
-                }`}
-              >
-                ⬅️ Anterior
-              </button>
+            <div className="mt-8 bg-white rounded-lg shadow-md p-5 border border-slate-200">
+              {/* Contador y barra de progreso */}
+              <div className="mb-4">
+                <div className="flex justify-between items-center mb-2">
+                  <div className="text-lg font-semibold text-slate-700">
+                    {currentReviewIndex === -1 ? (
+                      <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
+                    ) : (
+                      <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
+                    )}
+                  </div>
+                  <div className="text-sm text-slate-500 font-medium">
+                    {currentReviewIndex === -1 ? (
+                      <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
+                    ) : (
+                      <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
+                    )}
+                  </div>
+                </div>
 
-              <div className="text-lg font-semibold text-slate-700">
-                {currentReviewIndex === -1 ? (
-                  <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
-                ) : (
-                  <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
-                )}
+                {/* Barra de progreso */}
+                <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 transition-all duration-300 ease-out"
+                    style={{
+                      width: currentReviewIndex === -1
+                        ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
+                        : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`
+                    }}
+                  ></div>
+                </div>
               </div>
 
-              <button
-                onClick={handleNext}
-                disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
-                className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
-                  currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                    : 'bg-slate-700 text-white hover:bg-slate-800'
-                }`}
-              >
-                Siguiente ➡️
-              </button>
+              {/* Botones */}
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={handlePrevious}
+                  disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
+                    currentQuestionIndex === 0 && currentReviewIndex === -1
+                      ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                      : 'bg-slate-700 text-white hover:bg-slate-800'
+                  }`}
+                >
+                  ⬅️ Anterior
+                </button>
+
+                <button
+                  onClick={handleNext}
+                  disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
+                    currentReviewIndex === currentArticle.reviewQuestions.length - 1
+                      ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                      : 'bg-slate-700 text-white hover:bg-slate-800'
+                  }`}
+                >
+                  Siguiente ➡️
+                </button>
+              </div>
             </div>
           </div>
         )}
