@@ -14,7 +14,8 @@
       "Bash(git commit:*)",
       "Bash(npm run dev:*)",
       "Bash(node -e:*)",
-      "Bash(tasklist:*)"
+      "Bash(tasklist:*)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

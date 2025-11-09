@@ -49,6 +49,7 @@ export interface ReviewQuestion {
 export interface AtalayaStudy {
   song: string;
   title: string;
+  titleLSM?: string; // Título en LSM (se agregará después)
   biblicalText: string; // Texto bíblico principal
   theme: string;
   questions: Question[];

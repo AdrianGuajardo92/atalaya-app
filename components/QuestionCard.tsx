@@ -17,9 +17,10 @@ interface QuestionCardProps {
   allLsmData: Record<string, string>; // Todos los datos LSM (incluye flashcards)
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
   onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
+  articleId: string; // ID del artículo actual
 }
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [showFlashcards, setShowFlashcards] = useState(isNavigationMode); // Flashcards visibles en navegación
@@ -112,6 +113,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          articleId: articleId,
           questionNumber: question.number,
           lsmText: editedLSM
         })
@@ -157,6 +159,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          articleId: articleId,
           questionNumber: `section-${question.number}`,
           lsmText: editedSectionLSM
         })

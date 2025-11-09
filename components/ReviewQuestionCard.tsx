@@ -16,6 +16,7 @@ interface ReviewQuestionCardProps {
   hiddenCards?: Record<string, boolean>;
   onToggleHidden?: (cardId: string) => void;
   isNavigationMode?: boolean; // Para saber si está en modo paginado o scroll
+  articleId: string; // ID del artículo actual
 }
 
 export default function ReviewQuestionCard({
@@ -28,7 +29,8 @@ export default function ReviewQuestionCard({
   allLsmData = {},
   hiddenCards = {},
   onToggleHidden = () => {},
-  isNavigationMode = false
+  isNavigationMode = false,
+  articleId
 }: ReviewQuestionCardProps) {
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || reviewQuestion.questionLSM || '');
@@ -42,6 +44,7 @@ export default function ReviewQuestionCard({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          articleId: articleId,
           questionNumber: `review-${index}`,
           lsmText: editedLSM
         })

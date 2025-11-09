@@ -7,12 +7,13 @@ import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import { atalayaDatabase, getArticleById, getMonthArticles } from '@/data/atalaya-data';
+import { articlesConfig, getDefaultArticleId } from '@/data/articles-config';
 import { ArticleData } from '@/types/atalaya';
 
 export default function Home() {
-  // Estado para manejo de artículos
-  const [currentMonth] = useState<string>("2025-09"); // Mes actual - SEPTIEMBRE 2025
-  const [currentArticleId, setCurrentArticleId] = useState<string>("2025-09-article-35"); // Artículo por defecto - Artículo 35
+  // Estado para manejo de artículos (usa la configuración centralizada)
+  const [currentMonth] = useState<string>(articlesConfig.defaultMonth);
+  const [currentArticleId, setCurrentArticleId] = useState<string>(getDefaultArticleId());
   const [currentArticle, setCurrentArticle] = useState<ArticleData | null>(null);
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
@@ -172,6 +173,25 @@ export default function Home() {
     }));
   };
 
+  const handleTitleLSMUpdate = async (text: string) => {
+    const newLsmData = {
+      ...lsmData,
+      'title': text
+    };
+    setLsmData(newLsmData);
+
+    // Guardar en backend
+    try {
+      await fetch('/api/lsm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId: currentArticleId, questionNumber: 'title', text })
+      });
+    } catch (error) {
+      console.error('Error saving title LSM:', error);
+    }
+  };
+
   const handleToggleFavorite = async (favoriteId: string) => {
     const isFavorite = !favorites[favoriteId];
 
@@ -299,6 +319,8 @@ export default function Home() {
           articles={monthArticles}
           currentArticleId={currentArticleId}
           onArticleChange={handleArticleChange}
+          titleLSM={lsmData['title']}
+          onTitleLSMUpdate={handleTitleLSMUpdate}
         />
 
         {/* Modo Scroll - Muestra todas las preguntas */}
@@ -319,6 +341,7 @@ export default function Home() {
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
+                  articleId={currentArticleId}
                 />
               ))}
             </div>
@@ -344,6 +367,7 @@ export default function Home() {
                     hiddenCards={hiddenCards}
                     onToggleHidden={handleToggleHidden}
                     isNavigationMode={false}
+                    articleId={currentArticleId}
                   />
                 ))}
               </div>
@@ -376,6 +400,7 @@ export default function Home() {
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
+                  articleId={currentArticleId}
                 />
               </>
             ) : (
@@ -392,6 +417,7 @@ export default function Home() {
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
                   isNavigationMode={true}
+                  articleId={currentArticleId}
                 />
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}

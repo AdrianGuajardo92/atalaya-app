@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface FlashCard {
   question: string;
@@ -27,6 +27,22 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
   const [editedText, setEditedText] = useState('');
   // Estado de guardado
   const [isSaving, setIsSaving] = useState(false);
+  // Estado para controlar qué botón de borrar está en modo de confirmación
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+
+  // Efecto para resetear confirmación de borrado al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (deleteConfirm) {
+        setDeleteConfirm(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [deleteConfirm]);
 
   if (!cards || cards.length === 0) return null;
 
@@ -131,7 +147,13 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
               <div
                 className="relative min-h-[250px] cursor-pointer group"
                 style={{ perspective: '1000px' }}
-                onClick={() => !isEditingThisCard && handleFlip(index)}
+                onClick={() => {
+                  if (!isEditingThisCard) {
+                    handleFlip(index);
+                    // Resetear confirmación de borrado al hacer clic en la tarjeta
+                    if (deleteConfirm) setDeleteConfirm(null);
+                  }
+                }}
               >
                 {/* Botones de control */}
                 <div className="absolute top-2 right-2 z-10 flex gap-1">
@@ -151,18 +173,27 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                     <span className="text-lg">{isFavorite ? '⭐' : '☆'}</span>
                   </button>
 
-                  {/* Botón de borrar */}
+                  {/* Botón de borrar con confirmación de doble clic */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (confirm('¿Estás seguro de que quieres ocultar esta tarjeta?')) {
+                      if (deleteConfirm === cardId) {
+                        // Segundo clic - borrar
                         onToggleHidden(cardId);
+                        setDeleteConfirm(null);
+                      } else {
+                        // Primer clic - activar modo confirmación
+                        setDeleteConfirm(cardId);
                       }
                     }}
-                    className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md bg-white/80 hover:bg-red-500 hover:text-white opacity-0 group-hover:opacity-100"
-                    title="Ocultar tarjeta"
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
+                      deleteConfirm === cardId
+                        ? 'bg-red-500 scale-110 opacity-100'
+                        : 'bg-slate-300 hover:bg-slate-400 opacity-0 group-hover:opacity-100'
+                    }`}
+                    title={deleteConfirm === cardId ? 'Clic de nuevo para confirmar' : 'Ocultar tarjeta'}
                   >
-                    <span className="text-lg">🗑️</span>
+                    <span className={`text-lg ${deleteConfirm === cardId ? 'filter brightness-0 invert' : ''}`}>🗑️</span>
                   </button>
                 </div>
 
