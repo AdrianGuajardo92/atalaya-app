@@ -16,9 +16,10 @@ interface FlashCardsProps {
   onLSMUpdate: (key: string, text: string) => void; // Callback para actualizar LSM
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
   onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
+  articleId: string; // ID del artículo actual
 }
 
-export default function FlashCards({ cards, questionNumber, favorites, onToggleFavorite, lsmData, onLSMUpdate, hiddenCards, onToggleHidden }: FlashCardsProps) {
+export default function FlashCards({ cards, questionNumber, favorites, onToggleFavorite, lsmData, onLSMUpdate, hiddenCards, onToggleHidden, articleId }: FlashCardsProps) {
   // Estado para controlar qué tarjetas están volteadas (por índice)
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   // Estado para controlar qué tarjeta está siendo editada
@@ -84,6 +85,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          articleId: articleId,
           questionNumber: key,
           lsmText: editedText
         })
@@ -92,6 +94,9 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
       if (response.ok) {
         onLSMUpdate(key, editedText);
         setEditingCard(null);
+      } else {
+        const responseData = await response.json();
+        alert('Error al guardar: ' + (responseData.error || 'Error desconocido'));
       }
     } catch (error) {
       console.error('Error saving LSM:', error);

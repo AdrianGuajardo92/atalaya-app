@@ -124,6 +124,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         if (onLSMUpdate) {
           onLSMUpdate(question.number, editedLSM);
         }
+      } else {
+        const responseData = await response.json();
+        alert('Error al guardar: ' + (responseData.error || 'Error desconocido'));
       }
     } catch (error) {
       console.error('Error saving LSM:', error);
@@ -170,6 +173,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         if (onLSMUpdate) {
           onLSMUpdate(`section-${question.number}`, editedSectionLSM);
         }
+      } else {
+        const responseData = await response.json();
+        alert('Error al guardar: ' + (responseData.error || 'Error desconocido'));
       }
     } catch (error) {
       console.error('Error saving section LSM:', error);
@@ -478,6 +484,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   onLSMUpdate={onLSMUpdate || (() => {})}
                   hiddenCards={hiddenCards}
                   onToggleHidden={onToggleHidden}
+                  articleId={articleId}
                 />
               </div>
             )}

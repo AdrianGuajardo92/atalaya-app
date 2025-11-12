@@ -55,6 +55,9 @@ export default function ReviewQuestionCard({
         if (onLSMUpdate) {
           onLSMUpdate(index, editedLSM);
         }
+      } else {
+        const responseData = await response.json();
+        alert('Error al guardar: ' + (responseData.error || 'Error desconocido'));
       }
     } catch (error) {
       console.error('Error saving LSM:', error);
@@ -205,11 +208,12 @@ export default function ReviewQuestionCard({
                 fetch('/api/lsm', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ questionNumber: key, lsmText: text })
+                  body: JSON.stringify({ articleId: articleId, questionNumber: key, lsmText: text })
                 });
               }}
               hiddenCards={hiddenCards}
               onToggleHidden={onToggleHidden}
+              articleId={articleId}
             />
           )}
 

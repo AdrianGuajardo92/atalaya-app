@@ -15,7 +15,13 @@
       "Bash(npm run dev:*)",
       "Bash(node -e:*)",
       "Bash(tasklist:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(if [ -f .env.local ])",
+      "Bash(then echo \"✅ .env.local existe\")",
+      "Bash(cat:*)",
+      "Bash(else echo \"❌ .env.local NO existe\")",
+      "Bash(fi)",
+      "Bash(vercel env:*)"
     ],
     "deny": [],
     "ask": []

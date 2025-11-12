@@ -185,7 +185,7 @@ export default function Home() {
       await fetch('/api/lsm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ articleId: currentArticleId, questionNumber: 'title', text })
+        body: JSON.stringify({ articleId: currentArticleId, questionNumber: 'title', lsmText: text })
       });
     } catch (error) {
       console.error('Error saving title LSM:', error);
