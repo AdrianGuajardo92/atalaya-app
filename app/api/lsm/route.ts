@@ -16,18 +16,28 @@ function getLSMKey(articleId?: string): string {
 export async function GET(request: NextRequest) {
   try {
     console.log('🔍 LSM API: GET request received');
-    // Obtener articleId de query params
+    // Obtener articleId y questionNumber de query params
     const searchParams = request.nextUrl.searchParams;
     const articleId = searchParams.get('articleId') || undefined;
+    const questionNumber = searchParams.get('questionNumber') || undefined;
     console.log('📝 LSM API: articleId =', articleId);
+    console.log('📝 LSM API: questionNumber =', questionNumber);
 
     const key = getLSMKey(articleId);
     console.log('🔑 LSM API: key =', key);
 
     console.log('🔄 LSM API: Calling kv.get()...');
-    const data = await kv.get(key) || {};
+    const data: Record<string, string> = await kv.get(key) || {};
     console.log('✅ LSM API: Data retrieved successfully', data);
 
+    // Si se proporciona questionNumber, devolver solo ese campo
+    if (questionNumber) {
+      const lsmText = data[questionNumber];
+      console.log(`📤 LSM API: Returning specific field '${questionNumber}':`, lsmText);
+      return NextResponse.json({ lsmText });
+    }
+
+    // Si no se proporciona questionNumber, devolver todo el objeto
     return NextResponse.json(data);
   } catch (error) {
     console.error('❌ LSM API: Error reading LSM data:', error);

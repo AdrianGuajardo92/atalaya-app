@@ -103,38 +103,304 @@ export const atalayaDatabase: AtalayaDatabase = {
             number: "1",
             textEs: "¿Cómo ha demostrado Jehová que quiere mucho a todas sus ovejas?",
             textLSM: "",
-            paragraphs: [1]
+            paragraphs: [1],
+            answer: "Jehová demostró su amor comprando a sus ovejas con la sangre de Jesús. Además, les encargó a los ancianos que las cuiden con mucho cariño y las protejan de los peligros espirituales.",
+            answerBullets: [
+              "Jehová compró a sus ovejas con la sangre de Jesús",
+              "Encargó a los ancianos el cuidado de las ovejas",
+              "Los ancianos deben tratarlas con mucho cariño",
+              "Siguen las instrucciones de Jesús, cabeza de la congregación",
+              "Dos funciones principales: Animan al rebaño y protegen de los peligros espirituales"
+            ],
+            flashcards: [
+              "Según este párrafo, ¿quién es la cabeza de la congregación?",
+              "¿Qué dos funciones principales realizan los ancianos al seguir las instrucciones de Jesús?",
+              "¿Cómo te ayuda personalmente saber que Jehová compró a sus ovejas con la sangre de Jesús?"
+            ],
+            biblicalCards: [
+              {
+                reference: "Hechos 20:28",
+                purpose: "Jehová compró a sus ovejas con la sangre de Jesús",
+                text: "Presten atención a sí mismos y a todo el rebaño, en medio del cual el espíritu santo los ha nombrado supervisores para pastorear la congregación de Dios, que él compró con la sangre de su propio Hijo."
+              },
+              {
+                reference: "Isaías 32:1, 2",
+                purpose: "Los ancianos protegen y animan al rebaño",
+                text: "Miren, un rey reinará por la causa de la justicia, y los príncipes gobernarán por la causa de la justicia. Cada uno será como un escondite contra el viento, como un refugio contra la tormenta de lluvia, como corrientes de agua en tierra seca, como la sombra de una roca pesada en tierra agotada."
+              }
+            ]
           },
           {
             number: "2",
             textEs: "¿Por quiénes se interesa Jehová en especial?",
             textLSM: "",
-            paragraphs: [2]
+            paragraphs: [2],
+            answer: "Jehová se interesa profundamente por todas sus ovejas, pero tiene especial interés por las que están sufriendo. Utiliza a los ancianos para ayudar a las que están sufriendo en sentido espiritual. Cuando necesitamos ayuda, debemos orar a Dios y también acudir a los pastores y maestros de la congregación.",
+            answerBullets: [
+              "Jehová se interesa profundamente por todas sus ovejas",
+              "Tiene especial interés por las que están sufriendo",
+              "Utiliza a los ancianos para ayudar a las que sufren espiritualmente",
+              "Dios quiere que le oremos cuando necesitamos ayuda",
+              "También debemos acudir a los \"pastores y maestros\" de la congregación",
+              "Los ancianos son instrumentos que Jehová usa para cuidarnos"
+            ],
+            flashcards: [
+              {
+                question: "Según Ezequiel 34:15, 16, ¿qué tres cosas hace Jehová por sus ovejas que sufren?",
+                answer: "Buscar a la perdida, traer de vuelta a la extraviada, y vendar a la herida"
+              },
+              {
+                question: "¿Qué dos acciones debemos tomar cuando necesitamos ayuda espiritual?",
+                answer: "Orar a Jehová y acudir a los ancianos de la congregación"
+              },
+              {
+                question: "Según Efesios 4:11, 12, ¿cómo llama la Biblia a los ancianos?",
+                answer: "Pastores y maestros"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Ezequiel 34:15, 16",
+                purpose: "Jehová cuida especialmente a sus ovejas que sufren",
+                text: "'Yo mismo apacentaré a mis ovejas y yo mismo haré que se echen', dice el Señor Soberano Jehová. 'Buscaré a la oveja perdida, traeré de vuelta a la que se haya extraviado, vendaré a la que esté herida y fortaleceré a la que esté enferma, pero eliminaré a la gorda y a la fuerte. Las apacentaré con justicia'."
+              },
+              {
+                reference: "Efesios 4:11, 12",
+                purpose: "Los ancianos son pastores y maestros dados por Dios",
+                text: "Y dio algunos como apóstoles, algunos como profetas, algunos como evangelizadores, algunos como pastores y maestros, con el fin de preparar a los santos para la obra de servicio, para edificar el cuerpo de Cristo."
+              }
+            ],
+            reflectionQuestions: [
+              "¿Cómo me hace sentir saber que Jehová tiene especial interés por los que sufren?",
+              "Si estoy pasando por dificultades espirituales, ¿he pensado en acudir a los ancianos o solo en orar?",
+              "¿Qué me impide buscar ayuda de los ancianos cuando la necesito?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a orar a Jehová por cualquier lucha espiritual que esté enfrentando",
+              "Si estoy sufriendo espiritualmente, voy a acercarme a un anciano de confianza esta semana",
+              "Voy a recordar que los ancianos no son solo para disciplina, sino para ayudarme cuando sufro"
+            ]
           },
           {
             number: "3",
             textEs: "¿Por qué este artículo nos beneficiará a todos?",
             textLSM: "",
-            paragraphs: [3]
+            paragraphs: [3],
+            answer: "Este artículo beneficiará a todos porque responderá tres preguntas importantes: cuándo debemos acudir a los ancianos, por qué debemos hacerlo y cómo nos ayudan. Incluso los que están espiritualmente fuertes se beneficiarán porque aprenderán a valorar más la ayuda que Dios da por medio de los ancianos y sabrán qué hacer si en el futuro necesitan acudir a ellos.",
+            answerBullets: [
+              "El artículo responde tres preguntas clave sobre los ancianos",
+              "Primera pregunta: ¿Cuándo debemos acudir a los ancianos?",
+              "Segunda pregunta: ¿Por qué debemos acudir a ellos?",
+              "Tercera pregunta: ¿Cómo nos ayudan los ancianos?",
+              "Beneficia incluso a quienes están espiritualmente fuertes ahora",
+              "Nos enseña a valorar más la ayuda que Dios da por medio de los ancianos",
+              "Nos prepara para saber qué hacer si en el futuro necesitamos su ayuda"
+            ],
+            flashcards: [
+              {
+                question: "¿Cuáles son las tres preguntas que responde este artículo sobre los ancianos?",
+                answer: "Cuándo acudir, por qué hacerlo, y cómo nos ayudan"
+              },
+              {
+                question: "¿Por qué este artículo beneficia incluso a los que están espiritualmente fuertes?",
+                answer: "Porque les enseña a valorar más la ayuda de los ancianos y los prepara para el futuro"
+              },
+              {
+                question: "¿Cómo se vale Jehová de los ancianos para ayudarnos espiritualmente?",
+                answer: "Los usa como instrumentos para cuidar y ayudar a sus ovejas"
+              }
+            ],
+            reflectionQuestions: [
+              "Si estoy espiritualmente fuerte ahora, ¿he pensado en prepararme para saber qué hacer si en el futuro necesito ayuda?",
+              "¿Valoro realmente la ayuda que Jehová da por medio de los ancianos, o solo los veo como figuras de autoridad?",
+              "¿Estoy dispuesto a aprender de este artículo aunque ahora me sienta fuerte espiritualmente?"
+            ],
+            practicalApplications: [
+              "Voy a leer este artículo con mente abierta, pensando en cómo puede ayudarme ahora o en el futuro",
+              "Esta semana voy a reflexionar sobre cómo valoro a los ancianos de mi congregación",
+              "Voy a guardar las respuestas a estas tres preguntas para tenerlas presentes cuando las necesite"
+            ]
           },
           {
             number: "4",
             textEs: "¿Cómo sabemos que Santiago 5:14-16, 19, 20 se refiere a alguien enfermo en sentido espiritual? (Mira también las imágenes).",
             textLSM: "",
             paragraphs: [4],
-            section: "CUÁNDO \"LLAMAR\" A LOS ANCIANOS"
+            section: "CUÁNDO \"LLAMAR\" A LOS ANCIANOS",
+            answer: "Sabemos que Santiago se refiere a enfermedad espiritual por el contexto. Primero, Santiago no le dice al enfermo que llame a un médico, sino a los ancianos. Segundo, explica que la persona se sana cuando se le perdonan los pecados. Así como acudimos al médico cuando nos enfermamos físicamente, debemos acudir a los ancianos cuando nos enfermamos espiritualmente.",
+            answerBullets: [
+              "Santiago dice \"que llame a los ancianos\", no a un médico",
+              "La sanación se relaciona con el perdón de pecados",
+              "El contexto muestra que habla de enfermedad espiritual",
+              "Hay muchos parecidos entre enfermedad física y espiritual",
+              "Con el médico: explicamos síntomas y seguimos instrucciones",
+              "Con los ancianos: explicamos la situación y seguimos consejos bíblicos",
+              "Ambos casos requieren que busquemos ayuda activamente"
+            ],
+            flashcards: [
+              {
+                question: "Según el párrafo, ¿cuáles son las dos evidencias del contexto que demuestran que Santiago habla de enfermedad espiritual?",
+                answer: "No dice que llame a un médico sino a los ancianos, y la sanación se da cuando se perdonan los pecados"
+              },
+              {
+                question: "¿Qué tres pasos seguimos cuando vamos al médico que son similares a acudir a un anciano?",
+                answer: "Acudimos a él, explicamos nuestros síntomas/situación, y seguimos sus instrucciones/consejos"
+              },
+              {
+                question: "¿Por qué es importante que Santiago diga \"que llame\" en lugar de \"que espere\" a los ancianos?",
+                answer: "Porque muestra que la iniciativa debe ser nuestra, debemos buscar activamente la ayuda"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Santiago 5:14-16",
+                purpose: "Los ancianos ayudan a sanar espiritualmente",
+                text: "¿Hay alguien enfermo entre ustedes? Que llame a los ancianos de la congregación, y que ellos oren por él y lo unjan con aceite en el nombre de Jehová. Y la oración de fe hará que el enfermo se ponga bien, y Jehová lo levantará. Además, si ha cometido pecados, se le perdonarán. Por lo tanto, confiésense abiertamente sus pecados unos a otros y oren unos por otros, para que sean sanados. La súplica del justo, cuando está en acción, tiene mucho poder."
+              },
+              {
+                reference: "Santiago 5:19, 20",
+                purpose: "Ayudar al pecador salva su alma",
+                text: "Hermanos míos, si alguno de ustedes se ha extraviado de la verdad y otro lo hace volver, sepan esto: el que hace volver a un pecador del error de su camino salvará su alma de la muerte y cubrirá una multitud de pecados."
+              }
+            ],
+            reflectionQuestions: [
+              "¿Me cuesta tanto acudir a los ancianos como me costaría no ir al médico si estuviera muy enfermo físicamente?",
+              "Cuando tengo problemas espirituales, ¿espero a que los ancianos me busquen o tomo la iniciativa de llamarlos como dice Santiago?",
+              "¿Veo a los ancianos como \"médicos espirituales\" que quieren ayudarme, o solo como figuras que disciplinan?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a reflexionar si tengo algún síntoma de \"enfermedad espiritual\" que deba atender antes de que empeore",
+              "Si identifico alguna debilidad espiritual, voy a tomar la iniciativa de hablar con un anciano en lugar de esperar",
+              "Voy a cambiar mi perspectiva: la próxima vez que necesite ayuda espiritual, voy a recordar que es como ir al médico, algo normal y necesario"
+            ]
           },
           {
             number: "5",
             textEs: "¿Cómo podemos revisar nuestro estado de salud espiritual?",
             textLSM: "",
-            paragraphs: [5]
+            paragraphs: [5],
+            answer: "Podemos revisar nuestra salud espiritual comparando el entusiasmo que tenemos ahora con el que teníamos cuando nos bautizamos. Debemos hacernos preguntas sobre nuestra lectura y meditación de la Biblia, asistencia y preparación para las reuniones, importancia de la predicación, y el lugar que ocupan las diversiones y cosas materiales en nuestra vida.",
+            answerBullets: [
+              "No debemos esperar a que la relación con Dios se haya dañado",
+              "La Biblia advierte que podemos engañarnos sobre nuestra condición espiritual",
+              "Los cristianos de Sardis creían estar saludables pero no era así",
+              "Comparar el entusiasmo actual con el que teníamos al bautizarnos",
+              "Pregunta clave 1: ¿Disfruto como antes al leer la Biblia y meditar?",
+              "Pregunta clave 2: ¿Sigo asistiendo y preparándome bien para las reuniones?",
+              "Pregunta clave 3: ¿Sigue siendo la predicación igual de importante?",
+              "Pregunta clave 4: ¿Han ganado protagonismo las diversiones y cosas materiales?",
+              "Las respuestas indican si hay debilidades que pueden empeorar",
+              "Si no logramos corregir la debilidad solos, debemos acudir a los ancianos"
+            ],
+            flashcards: [
+              {
+                question: "Según Santiago 1:22, ¿de qué manera podemos engañarnos a nosotros mismos espiritualmente?",
+                answer: "Pensando que nuestra amistad con Jehová está mejor de lo que realmente está"
+              },
+              {
+                question: "¿Qué les dijo Jesús a los cristianos de Sardis en Apocalipsis 3:1, 2 sobre su condición espiritual?",
+                answer: "Que creían estar saludables pero no era así, tenían nombre de que vivían pero estaban muertos"
+              },
+              {
+                question: "El párrafo menciona 4 preguntas de autoevaluación espiritual, ¿cuáles son?",
+                answer: "Disfrute al leer la Biblia, asistencia y preparación para reuniones, importancia de la predicación, y lugar de diversiones/cosas materiales"
+              },
+              {
+                question: "¿Cuál es el punto de comparación que sugiere el párrafo para evaluar nuestra salud espiritual?",
+                answer: "El entusiasmo que teníamos cuando nos bautizamos comparado con el actual"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Santiago 1:22",
+                purpose: "Podemos engañarnos sobre nuestra condición espiritual",
+                text: "Sin embargo, háganse hacedores de la palabra y no solo oyentes, engañándose a sí mismos con falsos razonamientos."
+              },
+              {
+                reference: "Apocalipsis 3:1, 2",
+                purpose: "Los cristianos de Sardis creían estar bien pero no era así",
+                text: "Esto es lo que dice el que tiene los siete espíritus de Dios y las siete estrellas: 'Conozco tus obras, que tienes nombre de que vives, pero estás muerto. Despierta y fortalece las cosas que quedan, que están a punto de morir, porque no he hallado tus obras plenamente realizadas delante de mi Dios'."
+              },
+              {
+                reference: "Apocalipsis 2:4, 5",
+                purpose: "Jesús advierte sobre perder el primer amor",
+                text: "Sin embargo, tengo esto contra ti: que has dejado el amor que tenías al principio. Así que recuerda de dónde has caído, y arrepiéntete y haz las obras que hacías al principio. De lo contrario, vendré a ti y quitaré tu candelabro de su lugar, a menos que te arrepientas."
+              }
+            ],
+            reflectionQuestions: [
+              "Si comparo mi entusiasmo espiritual actual con el que tenía cuando me bauticé, ¿qué diferencias noto y por qué han ocurrido?",
+              "¿He sido honesto conmigo mismo al responder estas cuatro preguntas de autoevaluación, o he intentado justificar mi condición actual?",
+              "Si identifico que algo ha cambiado negativamente en mi vida espiritual, ¿estoy dispuesto a buscar ayuda antes de que empeore?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a tomarme 30 minutos para responder honestamente las 4 preguntas de autoevaluación y anotar mis respuestas",
+              "Voy a buscar una foto o recuerdo de mi bautismo y reflexionar sobre el entusiasmo que tenía en ese momento comparado con ahora",
+              "Si descubro alguna debilidad al hacer esta autoevaluación, voy a hablar con un anciano esta misma semana antes de que empeore"
+            ]
           },
           {
             number: "6",
             textEs: "¿Qué debe hacer alguien que ha cometido un pecado grave?",
             textLSM: "",
-            paragraphs: [6]
+            paragraphs: [6],
+            answer: "Alguien que ha cometido un pecado grave debe hablar con un anciano de inmediato, porque necesita ayuda espiritual para reparar su amistad con Jehová. El arrepentimiento genuino no es solo sentir pesar, sino demostrarlo con \"obras\" concretas, y una de esas obras esenciales es confesar el pecado grave a los ancianos para recibir la ayuda necesaria.",
+            answerBullets: [
+              "Si alguien comete un pecado grave que podría llevarlo a ser expulsado, tiene que hablar con un anciano",
+              "La persona necesita ayuda para reparar su amistad con Dios",
+              "Jehová solo nos perdonará si demostramos con \"obras\" que estamos verdaderamente arrepentidos (Hechos 26:20)",
+              "Confesarles a los ancianos que hemos cometido un pecado grave es una de esas \"obras\" requeridas",
+              "La expulsión es una posibilidad real si no se busca ayuda a tiempo (1 Corintios 5:11-13)",
+              "El arrepentimiento genuino va más allá del simple pesar emocional",
+              "Los ancianos están capacitados para brindar ayuda espiritual en momentos de crisis moral",
+              "La confesión a los ancianos no es opcional cuando se trata de pecados graves",
+              "Buscar ayuda pronto demuestra humildad y deseo genuino de restaurar la relación con Jehová",
+              "El silencio o la demora en buscar ayuda puede poner en peligro nuestra salvación"
+            ],
+            flashcards: [
+              {
+                question: "Según 1 Corintios 5:11-13, ¿qué puede suceder si alguien comete un pecado grave y no busca ayuda?",
+                answer: "Podría ser sacado de la congregación (expulsado)"
+              },
+              {
+                question: "¿Qué dice Hechos 26:20 que debemos hacer para que Jehová nos perdone?",
+                answer: "Demostrar con \"obras\" que estamos realmente arrepentidos"
+              },
+              {
+                question: "¿Por qué necesita ayuda alguien que ha cometido un pecado grave?",
+                answer: "Para reparar su amistad con Dios"
+              },
+              {
+                question: "¿Cuál es una de las \"obras\" esenciales que debe hacer alguien que cometió un pecado grave?",
+                answer: "Confesarles a los ancianos que ha cometido el pecado grave"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Corintios 5:11-13",
+                purpose: "Muestra que los pecados graves pueden llevar a ser expulsado de la congregación",
+                text: "Pero ahora les escribo que dejen de juntarse con cualquiera que, llamándose hermano, sea fornicador, codicioso, idólatra, injuriador, borracho o ladrón, y ni siquiera coman con tal hombre. Pues, ¿acaso tengo algo que ver con juzgar a los de afuera? ¿No juzgan ustedes a los de adentro, mientras Dios juzga a los de afuera? 'Saquen al hombre malvado de entre ustedes.'"
+              },
+              {
+                reference: "Hechos 26:20",
+                purpose: "Explica que el verdadero arrepentimiento se demuestra con obras",
+                text: "Sino que, tanto a los de Damasco primero como a los de Jerusalén, y por todo el país de Judea, y también a las naciones, les enseñé que se arrepintieran y se volvieran a Dios haciendo obras propias del arrepentimiento."
+              },
+              {
+                reference: "Santiago 5:14, 15",
+                purpose: "Muestra el papel de los ancianos en ayudar espiritualmente a los que están en problemas",
+                text: "¿Hay alguno enfermo entre ustedes? Que llame a los ancianos de la congregación, y que ellos oren por él, aplicándole aceite en el nombre de Jehová. Y la oración de fe sanará al indispuesto, y Jehová lo levantará. También, si hubiera cometido pecados, se le perdonará."
+              }
+            ],
+            reflectionQuestions: [
+              "Si yo cometiera un pecado grave, ¿tendría el valor de hablar inmediatamente con un anciano, o me sentiría tentado a ocultarlo esperando que \"se me pase\" el sentimiento de culpa?",
+              "¿Realmente creo que los ancianos están ahí para ayudarme y no solo para juzgarme? ¿Qué me impediría buscar su ayuda si la necesitara?",
+              "¿Entiendo claramente la diferencia entre sentir pesar por un pecado y demostrar arrepentimiento genuino con \"obras\"? ¿Qué obras concretas demostraría mi arrepentimiento?"
+            ],
+            practicalApplications: [
+              "Voy a cultivar una relación de confianza con al menos un anciano de la congregación ahora, antes de necesitar ayuda urgentemente, para que sea más fácil acudir a él si alguna vez enfrento una crisis espiritual.",
+              "Esta semana voy a meditar en Hechos 26:20 y hacer una lista personal de qué \"obras\" concretas demostraría si necesitara arrepentirme de algo grave.",
+              "Voy a orar específicamente por tener humildad y valor para buscar ayuda inmediatamente si alguna vez cometo un error grave, en lugar de intentar ocultarlo o manejarlo solo."
+            ]
           },
           {
             number: "7",

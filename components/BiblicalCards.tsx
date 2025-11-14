@@ -20,6 +20,8 @@ interface BiblicalCardsProps {
 export default function BiblicalCards({ cards, questionNumber, favorites, onToggleFavorite, hiddenCards, onToggleHidden }: BiblicalCardsProps) {
   // Estado para controlar qué tarjetas están volteadas (por índice)
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+  // Estado para mostrar feedback de copiado
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   if (!cards || cards.length === 0) return null;
 
@@ -41,6 +43,18 @@ export default function BiblicalCards({ cards, questionNumber, favorites, onTogg
       }
       return newSet;
     });
+  };
+
+  const handleCopyWithContext = async (card: BiblicalCard, index: number) => {
+    const textToCopy = `Dame mas contexto de este texto biblico: ${card.reference}\n\n"${card.text}"`;
+
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000);
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
   };
 
   return (
@@ -86,6 +100,22 @@ export default function BiblicalCards({ cards, questionNumber, favorites, onTogg
                   title={isFavorite ? 'Quitar de favoritos' : 'Marcar como favorito'}
                 >
                   <span className="text-lg">{isFavorite ? '⭐' : '☆'}</span>
+                </button>
+
+                {/* Botón de copiar con contexto */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopyWithContext(card, index);
+                  }}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
+                    copiedIndex === index
+                      ? 'bg-green-500 text-white scale-110'
+                      : 'bg-white/80 hover:bg-blue-500 hover:text-white opacity-0 group-hover:opacity-100'
+                  }`}
+                  title="Copiar texto bíblico con pregunta de contexto"
+                >
+                  <span className="text-lg">{copiedIndex === index ? '✓' : '📋'}</span>
                 </button>
 
                 {/* Botón de borrar */}

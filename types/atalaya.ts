@@ -7,18 +7,21 @@ export interface Question {
   sectionLSM?: string; // Subtítulo de sección en LSM (opcional)
   image?: string; // URL de imagen ilustrativa (opcional)
   answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
-  answerBullets?: string; // Puntos clave de la respuesta en formato bullets
-  flashcards?: Array<{
+  answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
+  answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
+  flashcards?: string[] | Array<{
     question: string; // Pregunta de la tarjeta didáctica
     answer: string; // Respuesta de la tarjeta
     questionLSM?: string; // Pregunta en LSM
     answerLSM?: string; // Respuesta en LSM
-  }>;
+  }>; // Puede ser array de strings o array de objetos (para retrocompatibilidad)
   biblicalCards?: Array<{
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
     purpose: string; // Por qué está este texto / para qué sirve
     text: string; // Texto completo de la Traducción del Nuevo Mundo
   }>;
+  reflectionQuestions?: string[]; // Preguntas de reflexión personal
+  practicalApplications?: string[]; // Aplicaciones prácticas concretas
 }
 
 export interface Paragraph {
@@ -32,18 +35,21 @@ export interface ReviewQuestion {
   question: string; // Pregunta de repaso en español
   questionLSM?: string; // Pregunta de repaso en LSM
   answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
-  answerBullets?: string; // Puntos clave de la respuesta en formato bullets
-  flashcards?: Array<{
+  answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
+  answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
+  flashcards?: string[] | Array<{
     question: string; // Pregunta de la tarjeta didáctica
     answer: string; // Respuesta de la tarjeta
     questionLSM?: string; // Pregunta en LSM
     answerLSM?: string; // Respuesta en LSM
-  }>;
+  }>; // Puede ser array de strings o array de objetos (para retrocompatibilidad)
   biblicalCards?: Array<{
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
     purpose: string; // Por qué está este texto / para qué sirve
     text: string; // Texto completo de la Traducción del Nuevo Mundo
   }>;
+  reflectionQuestions?: string[]; // Preguntas de reflexión personal
+  practicalApplications?: string[]; // Aplicaciones prácticas concretas
 }
 
 export interface AtalayaStudy {
