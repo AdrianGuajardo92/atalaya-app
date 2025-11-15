@@ -195,7 +195,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             const originalFlashcards = question.flashcards || [];
             // Normalizar al formato de objetos
             const normalized = Array.isArray(originalFlashcards) && typeof originalFlashcards[0] === 'string'
-              ? originalFlashcards.map((q: string) => ({ question: q, answer: '' }))
+              ? (originalFlashcards as string[]).map((q: string) => ({ question: q, answer: '' }))
               : originalFlashcards as Array<{question: string; answer: string}>;
             setCustomFlashcards(normalized);
           }
@@ -204,7 +204,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         console.error('Error loading custom flashcards:', error);
         const originalFlashcards = question.flashcards || [];
         const normalized = Array.isArray(originalFlashcards) && typeof originalFlashcards[0] === 'string'
-          ? originalFlashcards.map((q: string) => ({ question: q, answer: '' }))
+          ? (originalFlashcards as string[]).map((q: string) => ({ question: q, answer: '' }))
           : originalFlashcards as Array<{question: string; answer: string}>;
         setCustomFlashcards(normalized);
       }
@@ -427,27 +427,35 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   };
 
   const toggleBulletType = async (index: number) => {
-    const currentType = bulletTypes[index];
-    let newType: 'direct' | 'interlaced' | undefined;
+    // Usar función de actualización para evitar race conditions
+    let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
 
-    // Ciclo: sin marca → directo → entrelazado → sin marca
-    if (!currentType) {
-      newType = 'direct';
-    } else if (currentType === 'direct') {
-      newType = 'interlaced';
-    } else {
-      newType = undefined;
-    }
+    setBulletTypes(prevTypes => {
+      const currentType = prevTypes[index];
+      let newType: 'direct' | 'interlaced' | undefined;
 
-    const newTypes = { ...bulletTypes };
-    if (newType === undefined) {
-      delete newTypes[index];
-    } else {
-      newTypes[index] = newType;
-    }
+      // Ciclo: sin marca → directo → entrelazado → sin marca
+      if (!currentType) {
+        newType = 'direct';
+      } else if (currentType === 'direct') {
+        newType = 'interlaced';
+      } else {
+        newType = undefined;
+      }
 
-    setBulletTypes(newTypes);
-    await saveBulletTypesToKV(newTypes);
+      const newTypes = { ...prevTypes };
+      if (newType === undefined) {
+        delete newTypes[index];
+      } else {
+        newTypes[index] = newType;
+      }
+
+      newTypesResult = newTypes;
+      return newTypes;
+    });
+
+    // Guardar después de actualizar el estado
+    await saveBulletTypesToKV(newTypesResult);
   };
 
   const handleStartEditBullet = (index: number, text: string, e: React.MouseEvent) => {
@@ -483,6 +491,23 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     const success = await saveBulletsToKV(newBullets);
     if (success) {
       setCustomBullets(newBullets);
+
+      // Reajustar los índices de bulletTypes
+      const newTypes: Record<number, 'direct' | 'interlaced'> = {};
+      Object.keys(bulletTypes).forEach(key => {
+        const oldIndex = parseInt(key);
+        if (oldIndex < index) {
+          // Los índices menores al eliminado se mantienen igual
+          newTypes[oldIndex] = bulletTypes[oldIndex];
+        } else if (oldIndex > index) {
+          // Los índices mayores al eliminado se mueven una posición hacia atrás
+          newTypes[oldIndex - 1] = bulletTypes[oldIndex];
+        }
+        // El índice eliminado simplemente no se copia
+      });
+
+      setBulletTypes(newTypes);
+      await saveBulletTypesToKV(newTypes);
     }
   };
 
@@ -967,7 +992,22 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         </button>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        {customBullets.map((line, idx) => {
+                        {/* Ordenar bullets: primero "direct", luego "interlaced", luego sin tipo */}
+                        {customBullets.map((line, idx) => ({ line, idx }))
+                          .sort((a, b) => {
+                            const typeA = bulletTypes[a.idx];
+                            const typeB = bulletTypes[b.idx];
+
+                            // Prioridad: direct (1) > interlaced (2) > sin tipo (3)
+                            const getPriority = (type: 'direct' | 'interlaced' | undefined) => {
+                              if (type === 'direct') return 1;
+                              if (type === 'interlaced') return 2;
+                              return 3;
+                            };
+
+                            return getPriority(typeA) - getPriority(typeB);
+                          })
+                          .map(({ line, idx }) => {
                           // Limpiar línea vacía
                           if (!line.trim()) return null;
 

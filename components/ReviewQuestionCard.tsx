@@ -198,7 +198,11 @@ export default function ReviewQuestionCard({
           {/* Tarjetas didácticas */}
           {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (
             <FlashCards
-              cards={reviewQuestion.flashcards}
+              cards={
+                typeof reviewQuestion.flashcards[0] === 'string'
+                  ? (reviewQuestion.flashcards as string[]).map((q) => ({ question: q, answer: '' }))
+                  : reviewQuestion.flashcards as Array<{question: string; answer: string; questionLSM?: string; answerLSM?: string}>
+              }
               questionNumber={`review-${index}`}
               favorites={favorites}
               onToggleFavorite={onToggleFavorite}

@@ -406,70 +406,675 @@ export const atalayaDatabase: AtalayaDatabase = {
             number: "7",
             textEs: "¿Quiénes necesitan también la ayuda de los ancianos?",
             textLSM: "",
-            paragraphs: [7]
+            paragraphs: [7],
+            answer: "No solo los que han cometido un pecado grave necesitan ayuda de los ancianos. También los que están débiles espiritualmente deben acudir a ellos. Por ejemplo, si estás luchando contra algún mal deseo y sientes que vas a perder la batalla, un anciano puede escucharte, darte consejos prácticos y recordarte que cuentas con la aprobación de Jehová mientras no cedas.",
+            answerBullets: [
+              "Los ancianos no solo ayudan a quienes han cometido un pecado grave",
+              "**También ayudan a quienes están débiles espiritualmente**",
+              "Ejemplos de luchas: drogas, pornografía o vida inmoral del pasado",
+              "No estás solo en tu lucha contra los malos deseos",
+              "Puedes desahogarte con un anciano que te escuchará con atención",
+              "Los ancianos te darán consejos prácticos",
+              "Te recordarán que cuentas con la aprobación de Jehová mientras no cedas a los malos deseos",
+              "Si te sientes desanimado por seguir teniendo malos deseos, los ancianos pueden ayudarte",
+              "Tener malos deseos demuestra que te tomas en serio tu amistad con Jehová",
+              "También demuestra que no confías en tus propias fuerzas"
+            ],
+            flashcards: [
+              {
+                question: "Según este párrafo, ¿qué tres luchas específicas del pasado pueden hacer más dura la batalla contra los malos deseos?",
+                answer: "Drogas, pornografía o vida inmoral"
+              },
+              {
+                question: "Según Eclesiastés 4:12, ¿cómo te ayuda tener a un anciano de tu lado cuando luchas contra malos deseos?",
+                answer: "Un cordón triple no se rompe tan rápido - no estás solo"
+              },
+              {
+                question: "Si te sientes desanimado porque sigues teniendo malos deseos, ¿qué dos cosas positivas demuestran esos deseos según este párrafo?",
+                answer: "Que te tomas en serio tu amistad con Jehová y que no confías en tus propias fuerzas"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente saber que seguirás contando con la aprobación de Jehová mientras no cedas a los malos deseos?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Hechos 20:35",
+                purpose: "Los ancianos ayudan a los débiles espiritualmente",
+                text: "En todas las cosas les he mostrado que trabajando duro de este modo tienen que ayudar a los que son débiles, y tienen que tener presentes las palabras del Señor Jesús, cuando él mismo dijo: 'Hay más felicidad en dar que en recibir'."
+              },
+              {
+                reference: "Eclesiastés 4:12",
+                purpose: "No estás solo en tu lucha contra malos deseos",
+                text: "Y, si alguien pudiera vencer a uno solo, dos juntos podrían hacer frente a él. Y un cordón triple no se rompe tan rápido."
+              },
+              {
+                reference: "1 Corintios 10:12",
+                purpose: "No confiar en nuestras propias fuerzas es bueno",
+                text: "Así que el que piensa que está en pie, tenga cuidado de no caer."
+              }
+            ],
+            reflectionQuestions: [
+              "Si estoy luchando contra algún mal deseo del pasado, ¿he considerado desahogarme con un anciano de confianza?",
+              "¿Cómo me hace sentir saber que seguir teniendo malos deseos no significa que he perdido la aprobación de Jehová?",
+              "¿Qué me impide buscar ayuda de los ancianos cuando me siento débil espiritualmente: vergüenza, orgullo o pensar que puedo solo?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a identificar cualquier lucha espiritual que tenga y considerar seriamente hablar con un anciano sobre ella",
+              "Voy a recordar que tener malos deseos no me descalifica, sino que muestra que me tomo en serio mi amistad con Jehová",
+              "Si me siento débil espiritualmente, voy a desahogarme con un anciano esta semana en lugar de luchar solo"
+            ]
           },
           {
             number: "8",
             textEs: "¿Qué tipo de errores no es necesario contarles a los ancianos?",
             textLSM: "",
-            paragraphs: [8]
+            paragraphs: [8],
+            answer: "No es necesario contarles a los ancianos cada error que cometemos. Por ejemplo, si le dijiste algo hiriente a un hermano o te enojaste mucho, puedes seguir el consejo de Jesús sobre hacer las paces y buscar información en las publicaciones sobre apacibilidad, paciencia y autocontrol. Pero si ves que no has podido solucionar el problema por ti mismo, entonces podrías pedirle ayuda a un anciano.",
+            answerBullets: [
+              "No es necesario contarles a los ancianos cada error que cometemos",
+              "Ejemplo: decir algo hiriente a un hermano o enojarte muchísimo",
+              "En lugar de hablar con un anciano, puedes seguir el consejo de Jesús sobre hacer las paces",
+              "También puedes buscar información en las publicaciones sobre apacibilidad, paciencia y autocontrol",
+              "Si aun así ves que no has podido solucionar el problema, podrías pedirle ayuda a un anciano",
+              "Pablo le dijo a un hermano que ayudara a Evodia y a Síntique a resolver sus diferencias",
+              "Un anciano puede hacer lo mismo por ti si tienes un problema con otro hermano"
+            ],
+            flashcards: [
+              {
+                question: "Según Mateo 5:23, 24, ¿qué tres pasos debes dar si ofendiste a un hermano?",
+                answer: "Dejar tu ofrenda, ir primero a hacer las paces, y luego volver a presentar tu ofrenda"
+              },
+              {
+                question: "En Filipenses 4:2, 3, ¿qué dos hermanas tenían diferencias que necesitaban resolver?",
+                answer: "Evodia y Síntique"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente saber que hay problemas que puedes resolver tú mismo sin necesidad de involucrar a los ancianos?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Mateo 5:23, 24",
+                purpose: "Cómo hacer las paces con un hermano",
+                text: "Por lo tanto, si estás llevando tu ofrenda al altar y allí recuerdas que tu hermano tiene algo contra ti, deja tu ofrenda allí delante del altar y vete. Primero haz las paces con tu hermano, y luego, cuando vuelvas, presenta tu ofrenda."
+              },
+              {
+                reference: "Filipenses 4:2, 3",
+                purpose: "Un anciano puede ayudar a resolver diferencias",
+                text: "Le ruego a Evodia y también le ruego a Síntique que se pongan de acuerdo en el Señor. Sí, y a ti también, verdadero compañero, te pido que ayudes a estas mujeres que se han esforzado conmigo promoviendo las buenas noticias junto con Clemente y los demás colaboradores míos, cuyos nombres están en el libro de la vida."
+              }
+            ],
+            reflectionQuestions: [
+              "¿Tengo algún problema sin resolver con un hermano que necesito arreglar directamente antes de buscar ayuda de un anciano?",
+              "¿Cuándo fue la última vez que busqué información en nuestras publicaciones sobre cómo mejorar una cualidad que me falta?",
+              "¿Tiendo a acudir demasiado rápido a los ancianos en lugar de intentar resolver problemas menores por mí mismo?"
+            ],
+            practicalApplications: [
+              "Si tengo algún problema con un hermano, voy a seguir Mateo 5:23, 24 esta semana e ir directamente a hacer las paces",
+              "Voy a buscar un artículo en JW Library sobre apacibilidad, paciencia o autocontrol para trabajar en áreas donde necesito mejorar",
+              "Antes de acudir a un anciano por un problema, voy a intentar resolverlo yo mismo aplicando principios bíblicos, y solo buscaré ayuda si no lo logro"
+            ]
           },
           {
             number: "9",
             textEs: "Aunque nos dé vergüenza hablar con los ancianos, ¿por qué debemos hacerlo? (Proverbios 28:13).",
             textLSM: "",
             paragraphs: [9],
-            section: "POR QUÉ \"LLAMAR\" A LOS ANCIANOS"
+            section: "POR QUÉ \"LLAMAR\" A LOS ANCIANOS",
+            answer: "Debemos superar la vergüenza porque Jehová nos dio a los ancianos específicamente para ayudarnos a estar fuertes y sanos espiritualmente. Al acudir a ellos demostramos que confiamos en Dios y en sus instrucciones. Además, confiamos en que Jehová nos ayudará en nuestra lucha y que, si confesamos y abandonamos nuestros pecados, recibiremos su misericordia y su perdón.",
+            answerBullets: [
+              "Puede que necesitemos fe y valor para hablar con los ancianos",
+              "No debemos dejar que la vergüenza nos impida acudir a ellos",
+              "**Jehová nos los ha dado para ayudarnos a estar fuertes y sanos espiritualmente**",
+              "Al acudir a ellos demostramos que confiamos en Dios",
+              "También demostramos que confiamos en las instrucciones de Dios",
+              "Confiamos en que Jehová nos ayudará en nuestra lucha",
+              "Si confesamos y abandonamos nuestros pecados, recibiremos su misericordia y su perdón",
+              "La vergüenza no debe ser una barrera para buscar ayuda espiritual"
+            ],
+            flashcards: [
+              {
+                question: "Según Salmo 94:18, ¿cómo nos ayuda Jehová cuando sentimos que vamos a caer en nuestra lucha espiritual?",
+                answer: "Su amor leal nos sigue sosteniendo"
+              },
+              {
+                question: "Según Proverbios 28:13, ¿qué dos acciones específicas debemos tomar con nuestros pecados para recibir misericordia?",
+                answer: "Confesarlos y abandonarlos"
+              },
+              {
+                question: "¿Qué dos cosas demostramos cuando acudimos a los ancianos a pesar de sentir vergüenza?",
+                answer: "Que confiamos en Dios y en sus instrucciones"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente recordar que Jehová nos dio a los ancianos específicamente para ayudarnos espiritualmente, no para juzgarnos?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 94:18",
+                purpose: "Jehová nos sostiene cuando sentimos que vamos a caer",
+                text: "Cuando yo decía: 'Mi pie está resbalando', tu amor leal, oh Jehová, me seguía sosteniendo."
+              },
+              {
+                reference: "Proverbios 28:13",
+                purpose: "Confesar y abandonar pecados lleva a misericordia",
+                text: "El que encubre sus transgresiones no tendrá éxito, pero al que las confiesa y las abandona se le mostrará misericordia."
+              }
+            ],
+            reflectionQuestions: [
+              "¿Qué me da más vergüenza: admitir un error a los ancianos o permanecer en una situación que daña mi amistad con Jehová?",
+              "Si la vergüenza me impide buscar ayuda, ¿estoy confiando más en mi orgullo que en las instrucciones de Jehová?",
+              "¿Cómo cambiaría mi perspectiva si viera a los ancianos como un regalo de Jehová para mi bienestar espiritual y no como jueces?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a meditar en Proverbios 28:13 y recordar que confesar y abandonar pecados lleva a misericordia, no a condenación",
+              "Voy a orar específicamente pidiendo fe y valor para superar la vergüenza si necesito hablar con un anciano sobre alguna lucha",
+              "Voy a cambiar mi perspectiva sobre los ancianos: no son jueces que me condenarán, sino ayudantes que Jehová me ha dado para mi bienestar espiritual"
+            ]
           },
           {
             number: "10",
             textEs: "¿Qué puede pasar si intentamos esconder nuestros pecados?",
             textLSM: "",
-            paragraphs: [10]
+            paragraphs: [10],
+            answer: "Si intentamos esconder nuestros pecados, podemos perjudicarnos de muchas maneras. El ejemplo del rey David muestra que cuando ocultó sus errores, sufrió espiritual, emocional e incluso físicamente. Los problemas espirituales son como lesiones físicas: si no se tratan, van de mal en peor. Por eso Jehová nos invita a acudir a los ancianos y arreglar las cosas.",
+            answerBullets: [
+              "Pedirles ayuda a los ancianos nos beneficia de muchas maneras",
+              "Si intentamos esconder nuestros pecados, podemos perjudicarnos",
+              "El rey David ocultó sus errores",
+              "**David sufrió de tres maneras: espiritualmente, emocionalmente e incluso físicamente**",
+              "Los problemas espirituales son como lesiones físicas",
+              "Si no se tratan, van de mal en peor",
+              "Jehová sabe que los problemas empeoran si no se tratan",
+              "Jehová nos invita a acudir a los ancianos",
+              "Jehová nos invita a \"arreglar las cosas\""
+            ],
+            flashcards: [
+              {
+                question: "Según Salmo 32:3-5, ¿de qué tres maneras específicas sufrió David cuando ocultó sus errores?",
+                answer: "Espiritualmente, emocionalmente e incluso físicamente"
+              },
+              {
+                question: "¿Con qué compara este párrafo los problemas espirituales no tratados, y qué les pasa si no se atienden?",
+                answer: "Con lesiones físicas, y van de mal en peor"
+              },
+              {
+                question: "Según Isaías 1:5, 6, 18, ¿qué invitación específica nos hace Jehová cuando tenemos problemas espirituales?",
+                answer: "Vengan ahora y arreglemos las cosas entre nosotros"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente la comparación de que los problemas espirituales son como lesiones físicas que empeoran si no se tratan?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 32:3-5",
+                purpose: "David sufrió al ocultar sus pecados",
+                text: "Cuando me quedaba callado, mis huesos se iban consumiendo por mi gemido todo el día. Porque de día y de noche tu mano pesaba sobre mí. Mis fuerzas se agotaban como en el calor seco del verano. Por fin te confesé mi pecado, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
+              },
+              {
+                reference: "Isaías 1:5, 6, 18",
+                purpose: "Jehová nos invita a arreglar las cosas",
+                text: "¿Por qué seguir recibiendo más golpes? ¿Por qué siguen rebelándose? Toda la cabeza está enferma y todo el corazón desfallece. Desde la planta del pie hasta la cabeza no hay en él nada sano, solo heridas, moretones y llagas supurantes. No han sido tratadas ni vendadas, y no se les ha aplicado aceite. 'Vengan ahora y arreglemos las cosas entre nosotros', dice Jehová."
+              }
+            ],
+            reflectionQuestions: [
+              "¿He experimentado alguna vez sufrimiento espiritual, emocional o incluso físico al intentar ocultar algo? ¿Qué me enseñó esa experiencia?",
+              "Si un problema espiritual sin tratar es como una lesión física que empeora, ¿qué 'lesión espiritual' necesito tratar ahora antes de que empeore?",
+              "¿Por qué a veces prefiero sufrir en silencio como David en lugar de aceptar la invitación de Jehová de 'arreglar las cosas'?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a meditar en la experiencia de David en Salmo 32:3-5 y reflexionar sobre las graves consecuencias físicas, emocionales y espirituales de ocultar pecados",
+              "Si tengo algún problema espiritual 'sin tratar' como una lesión sin atender, voy a acudir a un anciano esta semana antes de que empeore",
+              "Voy a aceptar la invitación personal de Jehová en Isaías 1:18 de 'arreglar las cosas' y no dejar que el orgullo o la vergüenza me impidan buscar ayuda"
+            ]
           },
           {
             number: "11",
             textEs: "¿Qué más puede pasar cuando se esconden pecados graves?",
             textLSM: "",
-            paragraphs: [11]
+            paragraphs: [11],
+            answer: "Cuando se esconden pecados graves, no solo nos perjudicamos a nosotros mismos, sino también a otras personas. Podemos provocar que el espíritu de Dios deje de fluir libremente en la congregación y que la paz se vea amenazada. Además, si sabemos de un pecado grave de otro hermano y lo ocultamos, nos hacemos culpables también. Por eso, nuestro amor a Jehová debe impulsarnos a ayudar a esa persona para que hable con los ancianos.",
+            answerBullets: [
+              "Si escondemos nuestros pecados, también podemos perjudicar a otras personas",
+              "**Podemos provocar que el espíritu de Dios deje de fluir libremente en la congregación**",
+              "La paz de la congregación se puede ver amenazada",
+              "Si nos enteramos de que alguien ha cometido un pecado grave, debemos aconsejarle que hable con los ancianos",
+              "Ocultar el pecado de otro nos haría culpables a nosotros también",
+              "Nuestro amor a Jehová debe impulsarnos a dar el paso de contar la verdad",
+              "Así contribuiremos a mantener limpia la congregación",
+              "Así ayudamos a que la persona recupere su buena relación con Dios"
+            ],
+            flashcards: [
+              {
+                question: "Según Efesios 4:30, ¿qué dos cosas pueden pasar en la congregación cuando se esconden pecados graves?",
+                answer: "El espíritu de Dios deja de fluir libremente y la paz se ve amenazada"
+              },
+              {
+                question: "Según Levítico 5:1, ¿qué nos pasa si sabemos del pecado grave de otro hermano y lo ocultamos?",
+                answer: "Nos hacemos culpables también"
+              },
+              {
+                question: "¿Qué dos beneficios específicos se logran cuando ayudamos a alguien a hablar con los ancianos sobre un pecado grave?",
+                answer: "Mantener limpia la congregación y ayudar a que la persona recupere su relación con Dios"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente entender que tu amor a Jehová debe ser más fuerte que una lealtad mal entendida hacia un hermano que ha pecado?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Efesios 4:30",
+                purpose: "Ocultar pecados entristece el espíritu santo",
+                text: "Además, no entristezcan el espíritu santo de Dios, con el que ustedes fueron sellados para el día de la liberación por rescate."
+              },
+              {
+                reference: "Levítico 5:1",
+                purpose: "Ocultar el pecado de otro nos hace culpables",
+                text: "'Si alguien peca porque, aunque es testigo, se niega a declarar sobre algo que ha visto u oído, tendrá que responder por su error."
+              }
+            ],
+            reflectionQuestions: [
+              "Si sé que alguien ha cometido un pecado grave, ¿soy más leal a esa persona o a Jehová y al bienestar de la congregación?",
+              "¿Cómo me afecta personalmente saber que ocultar el pecado de otro me hace culpable también ante Jehová?",
+              "¿Entiendo que ayudar a alguien a hablar con los ancianos no es traición ni chisme, sino amor verdadero que busca su recuperación espiritual?"
+            ],
+            practicalApplications: [
+              "Si sé de alguien que ha cometido un pecado grave, voy a aconsejarle con amor esta semana que hable con los ancianos, explicándole que es para su bien y el de la congregación",
+              "Voy a meditar en Efesios 4:30 y recordar que mi silencio ante pecados graves puede entristecer el espíritu santo de Jehová en la congregación",
+              "Voy a entender que mantener limpia la congregación es responsabilidad de todos, no solo de los ancianos, y actuaré en consecuencia con amor"
+            ]
           },
           {
             number: "12",
             textEs: "¿Cómo apoyan los ancianos a los que están débiles en sentido espiritual?",
             textLSM: "",
             paragraphs: [12],
-            section: "CÓMO NOS AYUDAN LOS ANCIANOS"
+            section: "CÓMO NOS AYUDAN LOS ANCIANOS",
+            answer: "Los ancianos apoyan a los débiles haciendo preguntas bien pensadas que ayudan a sacar lo que piensan y sienten. No sacan conclusiones apresuradas, sino que escuchan con atención y se hacen un cuadro completo antes de dar consejo. Ellos saben que pastorear al rebaño toma tiempo y que algunas situaciones no se resuelven con una sola conversación. Podemos facilitarles su labor expresándonos abiertamente, sin preocuparnos si no controlamos perfectamente lo que decimos.",
+            answerBullets: [
+              "La Biblia les dice a los ancianos que apoyen a los débiles espiritualmente",
+              "**Hacen preguntas bien pensadas para ayudarte a sacar lo que piensas y sientes**",
+              "Puedes facilitarles su labor expresándote abiertamente",
+              "Puede costarte expresarte por tu cultura, personalidad o vergüenza",
+              "No te preocupes si no eres capaz de controlar todo lo que dices o cómo lo dices",
+              "Los ancianos no sacarán conclusiones apresuradas",
+              "Se esforzarán por escucharte con atención",
+              "Se harán un cuadro completo antes de darte consejo",
+              "Saben que pastorear al rebaño toma tiempo",
+              "Saben que algunas situaciones no se resuelven con una sola conversación"
+            ],
+            flashcards: [
+              {
+                question: "Según Proverbios 20:5, ¿cómo compara la Biblia los pensamientos del corazón, y qué necesitas para sacarlos?",
+                answer: "Como aguas profundas, y necesitas entendimiento para sacarlos"
+              },
+              {
+                question: "Según Proverbios 18:13, ¿qué debe hacer un anciano antes de dar consejo, y qué es si no lo hace?",
+                answer: "Debe oír el asunto completo, de lo contrario es una tontería y una humillación"
+              },
+              {
+                question: "Según Job 6:3, ¿por qué las palabras de Job fueron imprudentes cuando estaba sufriendo?",
+                answer: "Porque su sufrimiento pesaba más que la arena de los mares"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente saber que los ancianos entienden que algunas situaciones requieren varias conversaciones y no se resuelven de inmediato?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Tesalonicenses 5:14",
+                purpose: "Los ancianos deben apoyar a los débiles",
+                text: "Por otro lado, hermanos, los instamos a amonestar a los desordenados, a consolar a los deprimidos, a apoyar a los débiles y a ser pacientes con todos."
+              },
+              {
+                reference: "Proverbios 20:5",
+                purpose: "Preguntas bien pensadas sacan lo que piensas",
+                text: "El consejo en el corazón del hombre es como aguas profundas, pero el hombre de entendimiento lo saca."
+              },
+              {
+                reference: "Job 6:3",
+                purpose: "No controlar lo que dices cuando sufres",
+                text: "Ahora pesarían más que la arena de los mares. Por eso he hablado imprudentemente."
+              },
+              {
+                reference: "Proverbios 18:13",
+                purpose: "Escuchar antes de sacar conclusiones",
+                text: "Responder a un asunto antes de oírlo es una tontería y una humillación."
+              }
+            ],
+            reflectionQuestions: [
+              "¿He sido completamente abierto con los ancianos cuando he necesitado ayuda, o he guardado información por vergüenza o miedo a ser juzgado?",
+              "¿Cómo me hace sentir saber que los ancianos no sacarán conclusiones apresuradas sino que me escucharán con paciencia y atención?",
+              "¿Entiendo que expresar lo que pienso y siento sin filtros, incluso si mis palabras no son perfectas, puede ser parte del proceso de sanación espiritual?"
+            ],
+            practicalApplications: [
+              "Si necesito hablar con un anciano, voy a prepararme mentalmente para expresarme abiertamente esta semana, sin guardar información por vergüenza o miedo",
+              "Voy a confiar en que los ancianos se tomarán el tiempo necesario para entenderme completamente y no me juzgarán apresuradamente",
+              "No voy a esperar que mi situación se resuelva en una sola conversación; voy a ser paciente, confiar en el proceso de pastoreo y estar dispuesto a tener varias conversaciones si es necesario"
+            ]
           },
           {
             number: "13",
             textEs: "¿Qué más harán los ancianos para ayudarnos? (Mira también las imágenes).",
             textLSM: "",
-            paragraphs: [13]
+            paragraphs: [13],
+            answer: "Los ancianos procurarán no hacer nada que te haga sentir más culpable. En cambio, orarán por ti, y esas oraciones pueden tener un \"efecto poderoso\" en tu ánimo. También te aplicarán \"aceite en el nombre de Jehová\", que es la verdad de la Palabra de Dios, usando con habilidad la Biblia para aliviarte, consolarte y ayudarte a recuperar tu relación con Jehová. Por medio de ellos oirás la voz de Jehová diciéndote: \"Este es el camino. Anda en él\".",
+            answerBullets: [
+              "Los ancianos procurarán no hacer nada que te haga sentir más culpable",
+              "Orarán por ti",
+              "Esas oraciones pueden tener un \"efecto poderoso\" en tu ánimo",
+              "Te ayudarán aplicándote \"aceite en el nombre de Jehová\"",
+              "**Este \"aceite\" es la verdad de la Palabra de Dios**",
+              "Usarán con habilidad la Biblia para aliviarte",
+              "Usarán con habilidad la Biblia para consolarte",
+              "Usarán con habilidad la Biblia para ayudarte a recuperar tu relación con Jehová",
+              "Sus consejos bíblicos te darán las fuerzas para seguir haciendo lo correcto",
+              "Por medio de ellos oirás la voz de Jehová diciéndote: \"Este es el camino. Anda en él\""
+            ],
+            flashcards: [
+              {
+                question: "Según Santiago 5:14-16, ¿qué representa el 'aceite en el nombre de Jehová' que los ancianos aplican cuando ayudan espiritualmente?",
+                answer: "La verdad de la Palabra de Dios"
+              },
+              {
+                question: "Según Isaías 57:18, ¿qué tres cosas específicas hace Jehová por medio de los ancianos cuando usan su Palabra?",
+                answer: "Sanar, guiar y dar pleno consuelo"
+              },
+              {
+                question: "Según Isaías 30:21, ¿qué mensaje específico oirás por medio de los ancianos cuando te están guiando espiritualmente?",
+                answer: "Este es el camino. Anda en él"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente saber que los ancianos orarán por ti y que esas oraciones pueden tener un 'efecto poderoso' en tu ánimo?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Santiago 5:14-16",
+                purpose: "Aplicar aceite espiritual (la verdad de Dios)",
+                text: "¿Hay alguien enfermo entre ustedes? Que llame a los ancianos de la congregación, y que ellos oren por él y le apliquen aceite en el nombre de Jehová. Y la oración de fe hará que el enfermo se ponga bien, y Jehová lo levantará. Además, si ha cometido pecados, se le perdonará. Por lo tanto, confiesen abiertamente sus pecados unos a otros y oren unos por otros, para que sean sanados. La súplica del justo, cuando está en acción, tiene mucho poder."
+              },
+              {
+                reference: "Isaías 57:18",
+                purpose: "Aliviar, consolar y recuperar",
+                text: "He visto sus caminos, pero lo sanaré. Lo guiaré y le daré pleno consuelo, a él y a los que están de duelo por él."
+              },
+              {
+                reference: "Isaías 30:21",
+                purpose: "Oír la voz de Jehová por medio de los ancianos",
+                text: "Y tus propios oídos oirán una palabra detrás de ti que dice: 'Este es el camino. Anda en él', en caso de que ustedes vayan a la derecha o en caso de que vayan a la izquierda."
+              }
+            ],
+            reflectionQuestions: [
+              "¿He experimentado alguna vez el 'efecto poderoso' de las oraciones de los ancianos en mi ánimo cuando he pasado por dificultades?",
+              "¿Cómo me ayuda saber que el objetivo de los ancianos no es hacerme sentir más culpable, sino aliviarme, consolarme y ayudarme a recuperarme?",
+              "¿Puedo ver a los ancianos como instrumentos por medio de los cuales Jehová me habla, me guía y me dice: 'Este es el camino. Anda en él'?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a pedirle específicamente a un anciano que ore por mí si estoy pasando por alguna dificultad espiritual, confiando en el 'efecto poderoso' de esas oraciones",
+              "Voy a meditar en Isaías 30:21 y recordar que cuando los ancianos me aconsejan con la Biblia, es Jehová quien me está diciendo: 'Este es el camino. Anda en él'",
+              "Voy a ver los consejos bíblicos de los ancianos no como críticas que me hacen sentir peor, sino como 'aceite' sanador que Jehová aplica para mi recuperación y alivio espiritual"
+            ]
           },
           {
             number: "14",
             textEs: "Según Gálatas 6:1, ¿cómo ayudan los ancianos a quien da \"un paso en falso\"? (Mira también las imágenes).",
             textLSM: "",
-            paragraphs: [14]
+            paragraphs: [14],
+            answer: "Los ancianos ayudan a quien da \"un paso en falso\" corrigiéndolo \"con espíritu apacible\", impulsados por el amor. La palabra griega para \"corregir\" significa reajustar, como cuando un médico recoloca un hueso dislocado causando el mínimo dolor posible. Los ancianos tratan al hermano con mucha bondad y compasión para no causarle más dolor. También se vigilan a sí mismos, siendo humildes y no tratando al hermano con actitud crítica o superior.",
+            answerBullets: [
+              "Dar \"un paso en falso\" significa no actuar de acuerdo con las normas de Dios",
+              "Puede ser un simple error de juicio o una grave violación",
+              "El amor impulsa a los ancianos a corregir",
+              "Corrigen \"con espíritu apacible\"",
+              "**La palabra \"corregir\" significa reajustar, como recolocar un hueso dislocado**",
+              "Como un médico que recoloca un hueso causando el mínimo dolor posible",
+              "Tratan de corregir con mucha bondad para no causar más dolor",
+              "Cada anciano debe \"vigilarse a sí mismo\" cuando aconseja",
+              "Los ancianos también son imperfectos y pueden dar pasos en falso",
+              "No tratan al hermano con actitud crítica o superior",
+              "Se esfuerzan por ser humildes",
+              "Muestran compasión"
+            ],
+            flashcards: [
+              {
+                question: "Según Gálatas 6:1, ¿con qué espíritu específico deben los ancianos corregir a quien da un paso en falso?",
+                answer: "Con espíritu apacible"
+              },
+              {
+                question: "¿Con qué acción médica específica compara este párrafo el trabajo de 'corregir' o 'reajustar' a un hermano?",
+                answer: "Recolocar un hueso dislocado para evitar una lesión permanente"
+              },
+              {
+                question: "Según Gálatas 6:1, ¿qué debe hacer cada anciano consigo mismo cuando aconseja a otros, y por qué?",
+                answer: "Vigilarse a sí mismo, porque también es imperfecto y puede dar pasos en falso"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente la comparación de que corregir es como recolocar un hueso dislocado con el mínimo dolor posible?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Gálatas 6:1",
+                purpose: "Corregir con espíritu apacible y vigilarse",
+                text: "Hermanos, aunque un hombre dé un paso en falso antes de darse cuenta, ustedes, los que tienen cualidades espirituales, traten de corregir a ese hombre con espíritu apacible. Pero vigílate a ti mismo para que tú también no seas tentado."
+              },
+              {
+                reference: "1 Pedro 3:8",
+                purpose: "Ser humilde y mostrar compasión",
+                text: "Por último, todos ustedes sean de una misma mente, mostrando compasión, teniendo cariño fraternal, siendo tiernos en sus sentimientos y humildes en su manera de pensar."
+              }
+            ],
+            reflectionQuestions: [
+              "Si alguna vez he necesitado corrección, ¿he visto a los ancianos como médicos espirituales que me reajustan con cuidado y amor, o como jueces críticos?",
+              "¿Cómo me ayuda saber que los ancianos también son imperfectos y pueden dar pasos en falso, igual que yo, y por eso deben vigilarse a sí mismos?",
+              "¿Puedo confiar en que los ancianos me tratarán con bondad, humildad y compasión en lugar de con actitud crítica o sintiéndose superiores?"
+            ],
+            practicalApplications: [
+              "Si alguna vez me corrigen los ancianos, voy a recordar que su objetivo es 'reajustarme' espiritualmente con el mínimo dolor posible, como un médico cuida a su paciente, no lastimarme más",
+              "Voy a apreciar la humildad de los ancianos que se vigilan a sí mismos cuando me aconsejan, sabiendo que también son imperfectos y vulnerables",
+              "Si necesito corrección, voy a enfocarme en el amor y la compasión detrás de la corrección, no en el dolor temporal del momento, confiando en que es para evitar una lesión espiritual permanente"
+            ]
           },
           {
             number: "15",
             textEs: "¿Qué podemos hacer si tenemos un problema?",
             textLSM: "",
-            paragraphs: [15]
+            paragraphs: [15],
+            answer: "Si tenemos un problema, podemos acudir a cualquier anciano de la congregación porque podemos confiar en ellos. Ellos saben que no deben revelar asuntos confidenciales y han sido capacitados para basar sus consejos en la Biblia en lugar de en sus opiniones personales. Aunque tienen personalidades diferentes y algunos tienen más experiencia que otros, todos están preparados para ayudarnos a llevar nuestras cargas. Sin embargo, no debemos ir de anciano en anciano buscando que nos digan lo que queremos oír.",
+            answerBullets: [
+              "Podemos confiar en los ancianos de la congregación",
+              "Ellos saben que no deben revelar asuntos confidenciales",
+              "Han recibido capacitación para basar sus consejos en la Biblia, no en opiniones personales",
+              "Siguen pendientes de ayudarnos a llevar nuestras cargas",
+              "Los ancianos tienen personalidades diferentes",
+              "Algunos tienen más experiencia que otros",
+              "**Podemos hablar con cualquiera de ellos si tenemos un problema**",
+              "No debemos ir de anciano en anciano pidiendo consejo hasta que uno nos diga lo que queremos oír",
+              "No queremos que \"nos regalen los oídos\"",
+              "Preferimos aprender la \"enseñanza sana\" de la Palabra de Dios",
+              "Un anciano puede preguntar si ya hablaste con otros ancianos",
+              "Por modestia, un anciano puede pedir la opinión de otro anciano"
+            ],
+            flashcards: [
+              {
+                question: "Según Proverbios 11:13, ¿qué característica específica de los ancianos nos da confianza para hablar con ellos sobre asuntos personales?",
+                answer: "Son dignos de confianza y guardan secretos"
+              },
+              {
+                question: "Según Gálatas 6:2, ¿qué responsabilidad continua tienen los ancianos hacia nosotros cuando tenemos problemas?",
+                answer: "Seguir llevando nuestras cargas"
+              },
+              {
+                question: "Según 2 Timoteo 4:3, ¿qué actitud incorrecta debemos evitar cuando buscamos consejo de los ancianos?",
+                answer: "Acumular maestros para que nos regalen los oídos en lugar de aceptar la enseñanza sana"
+              },
+              {
+                question: "Según Proverbios 13:10, ¿qué cualidad impulsa a un anciano a pedir la opinión de otro anciano?",
+                answer: "La modestia o humildad"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 11:13",
+                purpose: "Los ancianos no revelan asuntos confidenciales",
+                text: "El que anda chismeando revela información confidencial, pero el que es digno de confianza guarda un secreto."
+              },
+              {
+                reference: "Gálatas 6:2",
+                purpose: "Ayudar a llevar las cargas",
+                text: "Sigan llevando las cargas los unos de los otros, y así cumplan la ley del Cristo."
+              },
+              {
+                reference: "2 Timoteo 4:3",
+                purpose: "No buscar que nos regalen los oídos",
+                text: "Porque habrá un período en que no soportarán la enseñanza sana, sino que según sus propios deseos acumularán maestros para sí mismos, para que les regalen los oídos."
+              },
+              {
+                reference: "Proverbios 13:10",
+                purpose: "La modestia impulsa a buscar consejo",
+                text: "El orgullo solo lleva a peleas, pero la sabiduría está con los que aceptan consejo."
+              }
+            ],
+            reflectionQuestions: [
+              "Cuando busco consejo de los ancianos, ¿estoy buscando honestamente la 'enseñanza sana' de la Biblia o solo quiero que me digan lo que me hace sentir mejor?",
+              "¿Confío plenamente en que los ancianos mantendrán la confidencialidad de mis asuntos privados, o ese temor infundado me impide buscar ayuda cuando la necesito?",
+              "¿Aprecio que los ancianos tengan personalidades diferentes, viendo eso como una ventaja que me permite conectar mejor con diferentes personas, en lugar de verlo como un problema?"
+            ],
+            practicalApplications: [
+              "Si tengo un problema esta semana, voy a acudir con plena confianza a un anciano, sabiendo que mantendrá la confidencialidad y me dará consejo basado en la Biblia, no en opiniones personales",
+              "Voy a comprometer mi corazón desde ahora a aceptar la 'enseñanza sana' de la Biblia aunque no sea lo que quiero oír, en lugar de buscar ancianos que 'me regalen los oídos'",
+              "Voy a apreciar que los ancianos tienen personalidades y experiencias diferentes, reconociendo que puedo hablar con cualquiera de ellos porque todos han sido capacitados para ayudarme"
+            ]
           },
           {
             number: "16",
             textEs: "¿Qué responsabilidad tenemos?",
             textLSM: "",
             paragraphs: [16],
-            section: "QUÉ RESPONSABILIDAD TENEMOS CADA UNO"
+            section: "QUÉ RESPONSABILIDAD TENEMOS CADA UNO",
+            answer: "Cada uno de nosotros tenemos la responsabilidad de demostrarle a Jehová cada día, con lo que decimos y hacemos, que lo amamos y queremos agradarle. Los ancianos nos cuidan y dan consejos, pero no nos dicen lo que tenemos que hacer. Ellos usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos, y luego dejan que tomemos nuestra propia decisión. Esto nos permite entrenar nuestra \"capacidad de discernimiento\".",
+            answerBullets: [
+              "Los ancianos nos cuidan y nos dan consejos",
+              "Pero no nos dicen lo que tenemos que hacer",
+              "**Cada uno tenemos la responsabilidad de demostrarle a Jehová cada día que lo amamos**",
+              "Lo demostramos con lo que decimos y hacemos",
+              "Queremos agradarle",
+              "Renderemos cuentas a Dios",
+              "Él nos ayudará a tomar buenas decisiones",
+              "Él nos ayudará a serle fieles",
+              "Los ancianos usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos",
+              "Luego dejan que tomemos nuestra propia decisión",
+              "Esto nos permite entrenar nuestra \"capacidad de discernimiento\""
+            ],
+            flashcards: [
+              {
+                question: "Según Romanos 14:12, ¿ante quién tenemos que rendir cuentas de nuestras decisiones espirituales?",
+                answer: "Ante Dios"
+              },
+              {
+                question: "Según Hebreos 5:14, ¿qué capacidad entrenamos cuando tomamos nuestras propias decisiones después de entender los principios bíblicos?",
+                answer: "La capacidad de discernimiento"
+              },
+              {
+                question: "¿Qué dos cosas usan los ancianos para ayudarnos, y qué dejan que hagamos después?",
+                answer: "Usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos, y luego dejan que tomemos nuestra propia decisión"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente entender que los ancianos no te dicen qué hacer, sino que te ayudan a entender los principios bíblicos para que tú decidas?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Romanos 14:12",
+                purpose: "Renderemos cuentas a Dios",
+                text: "Así que cada uno de nosotros rendirá cuentas de sí mismo a Dios."
+              },
+              {
+                reference: "Hebreos 5:14",
+                purpose: "Entrenar la capacidad de discernimiento",
+                text: "Pero el alimento sólido es para las personas maduras, para los que tienen la capacidad de discernimiento entrenada por el uso para distinguir tanto lo correcto como lo incorrecto."
+              }
+            ],
+            reflectionQuestions: [
+              "¿Asumo la plena responsabilidad de mis propias decisiones espirituales, o espero que los ancianos me digan exactamente qué hacer en cada situación?",
+              "¿Estoy entrenando activamente mi 'capacidad de discernimiento' al tomar decisiones basadas en principios bíblicos, o prefiero que otros decidan por mí para no asumir responsabilidad?",
+              "¿Demuestro realmente cada día con lo que digo y hago que amo a Jehová y quiero agradarle, sabiendo que renderé cuentas directamente a él?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a tomar una decisión importante usando principios bíblicos que entienda, recordando que renderé cuentas a Jehová, no a los ancianos",
+              "Voy a entrenar mi 'capacidad de discernimiento' estudiando cómo ve Jehová los asuntos y aplicándolo a situaciones reales, en lugar de esperar que siempre me digan exactamente qué hacer",
+              "Cada día voy a demostrar conscientemente con mis palabras y acciones que amo a Jehová y quiero agradarle, asumiendo mi responsabilidad personal ante él"
+            ]
           },
           {
             number: "17",
             textEs: "¿A qué debemos estar decididos?",
             textLSM: "",
-            paragraphs: [17]
+            paragraphs: [17],
+            answer: "Debemos estar decididos a aprovechar al máximo el regalo que Jehová nos ha dado por medio de los ancianos. Jehová cumplió su promesa de darnos pastores que actúan de acuerdo con su voluntad y nos alimentan con conocimiento y entendimiento. Por eso, si estamos débiles o enfermos en sentido espiritual, no debemos dudar en \"llamar\" a los ancianos para pedirles ayuda. Es un privilegio ser ovejas de Jehová y contar con Jesús como \"el pastor excelente\" y con los ancianos como pastores de la congregación.",
+            answerBullets: [
+              "Es un privilegio ser ovejas de Jehová",
+              "Jehová envió a Jesús, \"el pastor excelente\", para rescatarnos",
+              "Jesús nos dio la oportunidad de vivir para siempre",
+              "Jehová cumplió su promesa de darnos pastores (ancianos)",
+              "Estos pastores actúan de acuerdo con su voluntad",
+              "Nos alimentan con conocimiento y entendimiento",
+              "**Si estamos débiles o enfermos espiritualmente, no debemos dudar en \"llamar\" a los ancianos**",
+              "Debemos estar decididos a aprovechar al máximo este regalo de Jehová",
+              "Los ancianos son un regalo que Jehová nos ha dado"
+            ],
+            flashcards: [
+              {
+                question: "Según Juan 10:11, ¿cómo llama la Biblia a Jesús en relación con su cuidado por las ovejas?",
+                answer: "El pastor excelente"
+              },
+              {
+                question: "Según Jeremías 3:15, ¿con qué dos cosas específicas alimentan los pastores (ancianos) que Jehová nos da?",
+                answer: "Con conocimiento y entendimiento"
+              },
+              {
+                question: "¿Cuál es la decisión específica a la que nos insta el párrafo final del artículo?",
+                answer: "Estar decididos a aprovechar al máximo el regalo de los ancianos que Jehová nos ha dado"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente ver a los ancianos como un 'regalo' que Jehová nos ha dado en lugar de verlos de otra manera?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Juan 10:11",
+                purpose: "Jesús es el pastor excelente que nos rescató",
+                text: "Yo soy el pastor excelente. El pastor excelente entrega su vida por las ovejas."
+              },
+              {
+                reference: "Jeremías 3:15",
+                purpose: "Pastores que alimentan con conocimiento",
+                text: "Y les daré pastores que actúen de acuerdo con mi voluntad, y ellos los alimentarán con conocimiento y entendimiento."
+              }
+            ],
+            reflectionQuestions: [
+              "¿Veo realmente a los ancianos como un 'regalo' de Jehová que debo aprovechar, o los veo como una carga, una amenaza o algo opcional?",
+              "Si estoy débil o enfermo espiritualmente en este momento, ¿estoy decidido a no dudar en 'llamar' a los ancianos como dice Santiago 5:14, o sigo resistiéndome por orgullo, vergüenza o desconfianza?",
+              "¿Aprecio profundamente el privilegio de ser una oveja de Jehová con Jesús como mi pastor excelente que dio su vida por mí y los ancianos como pastores de la congregación?"
+            ],
+            practicalApplications: [
+              "Esta semana voy a agradecer específicamente a Jehová en oración por el regalo de los ancianos, cambiando mi perspectiva sobre ellos si he sido negativo o desconfiado",
+              "Voy a estar firmemente decidido desde hoy a 'llamar' a los ancianos sin dudarlo si alguna vez estoy débil o enfermo espiritualmente, sin dejar que el orgullo, la vergüenza o el temor me lo impidan",
+              "Voy a aprovechar al máximo este regalo buscando consejo y ayuda de los ancianos cuando lo necesite, recordando que actúan de acuerdo con la voluntad de Jehová y me alimentan con conocimiento y entendimiento bíblico"
+            ]
           }
         ],
         paragraphs: [
