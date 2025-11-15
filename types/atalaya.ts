@@ -5,6 +5,7 @@ export interface Question {
   paragraphs: number[]; // Números de párrafos relacionados
   section?: string; // Subtítulo de sección en español (opcional)
   sectionLSM?: string; // Subtítulo de sección en LSM (opcional)
+  readText?: string; // Texto bíblico a leer (ej: "LEE Ezequiel 34:15, 16") (opcional)
   image?: string; // URL de imagen ilustrativa (opcional)
   answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
