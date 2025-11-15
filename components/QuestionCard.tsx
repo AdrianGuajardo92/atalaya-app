@@ -426,21 +426,49 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }
   };
 
-  const toggleBulletType = async (index: number) => {
-    // Usar función de actualización para evitar race conditions
+  const toggleDirectType = async (index: number) => {
+    // Función para marcar/desmarcar como respuesta directa
     let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
 
     setBulletTypes(prevTypes => {
       const currentType = prevTypes[index];
       let newType: 'direct' | 'interlaced' | undefined;
 
-      // Ciclo: sin marca → directo → entrelazado → sin marca
-      if (!currentType) {
-        newType = 'direct';
-      } else if (currentType === 'direct') {
-        newType = 'interlaced';
-      } else {
+      // Si es directa, desmarcar. Si no es directa, marcar como directa
+      if (currentType === 'direct') {
         newType = undefined;
+      } else {
+        newType = 'direct';
+      }
+
+      const newTypes = { ...prevTypes };
+      if (newType === undefined) {
+        delete newTypes[index];
+      } else {
+        newTypes[index] = newType;
+      }
+
+      newTypesResult = newTypes;
+      return newTypes;
+    });
+
+    // Guardar después de actualizar el estado
+    await saveBulletTypesToKV(newTypesResult);
+  };
+
+  const toggleInterlacedType = async (index: number) => {
+    // Función para marcar/desmarcar como entrelazado
+    let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
+
+    setBulletTypes(prevTypes => {
+      const currentType = prevTypes[index];
+      let newType: 'direct' | 'interlaced' | undefined;
+
+      // Si es entrelazado, desmarcar. Si no es entrelazado, marcar como entrelazado
+      if (currentType === 'interlaced') {
+        newType = undefined;
+      } else {
+        newType = 'interlaced';
       }
 
       const newTypes = { ...prevTypes };
@@ -850,6 +878,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <p className="text-base text-slate-800 leading-relaxed">
                 {question.textEs}
               </p>
+              {question.readText && (
+                <div className="mt-3 pt-3 border-t border-slate-200">
+                  <p className="text-sm font-bold text-blue-700 uppercase">
+                    📖 {question.readText}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* LSM - SIEMPRE VISIBLE */}
@@ -1037,24 +1072,30 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                     <button
                                       onClick={(e) => {
                                         e.stopPropagation();
-                                        toggleBulletType(idx);
+                                        toggleDirectType(idx);
                                       }}
                                       className={`px-2 py-1 text-white rounded text-xs font-medium ${
                                         isDirect
-                                          ? 'bg-green-500 hover:bg-green-600'
-                                          : isInterlaced
-                                          ? 'bg-orange-500 hover:bg-orange-600'
-                                          : 'bg-slate-400 hover:bg-slate-500'
+                                          ? 'bg-green-600 hover:bg-green-700'
+                                          : 'bg-slate-400 hover:bg-green-500'
                                       }`}
-                                      title={
-                                        !bulletType
-                                          ? 'Marcar como Respuesta Directa'
-                                          : isDirect
-                                          ? 'Marcar como Entrelazado'
-                                          : 'Quitar marca'
-                                      }
+                                      title={isDirect ? 'Quitar marca de Respuesta Directa' : 'Marcar como Respuesta Directa'}
                                     >
-                                      {isDirect ? '✓' : isInterlaced ? '🔗' : '○'}
+                                      {isDirect ? '✓' : '○'}
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleInterlacedType(idx);
+                                      }}
+                                      className={`px-2 py-1 text-white rounded text-xs font-medium ${
+                                        isInterlaced
+                                          ? 'bg-orange-600 hover:bg-orange-700'
+                                          : 'bg-slate-400 hover:bg-orange-500'
+                                      }`}
+                                      title={isInterlaced ? 'Quitar marca de Entrelazado' : 'Marcar como Entrelazado'}
+                                    >
+                                      {isInterlaced ? '🔗' : '🔗'}
                                     </button>
                                     <button
                                       onClick={(e) => handleStartEditBullet(idx, line, e)}

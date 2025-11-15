@@ -404,8 +404,6 @@ SOLO debes agregar:
 - answerBullets
 - flashcards
 - biblicalCards
-- reflectionQuestions (nuevo campo opcional para reflexión personal)
-- practicalApplications (nuevo campo opcional para aplicaciones prácticas)
 - questionLSM en reviewQuestions
 - sectionLSM (siempre vacío)
 
@@ -492,6 +490,7 @@ Para cada párrafo, recibirás:
 
 ### 1. ❓ LA PREGUNTA
 La pregunta exacta del estudio tal como aparece en La Atalaya.
+- Si el párrafo tiene un texto para leer, aparecerá: **📖 LEE [referencia bíblica]** en azul
 
 ### 2. ✅ RESPUESTA DIRECTA
 - Lenguaje sencillo y directo
@@ -500,12 +499,13 @@ La pregunta exacta del estudio tal como aparece en La Atalaya.
 - Sin información extra
 
 ### 3. 🔑 PUNTOS CLAVE
-- Formato con bullets organizados en tarjetas pequeñas
+- Formato visual con tarjetas individuales en grid responsivo
 - Estructura: primeros 2-3 puntos = respuesta directa, resto = información entrelazada
 - Títulos opcionales con **negrita**
-- **Sistema de marcado manual:**
-  - El usuario puede marcar cada punto como "Respuesta Directa" (badge verde ✓) o "Entrelazado" (badge naranja 🔗)
-  - Botón que cicla: sin marca → Respuesta Directa → Entrelazado → sin marca
+- **Sistema de marcado con botones independientes:**
+  - Botón ✓ verde: Marca/desmarca como "Respuesta Directa"
+  - Botón 🔗 naranja: Marca/desmarca como "Entrelazado"
+  - Un punto puede tener ambas marcas, una, o ninguna
   - Las marcas se guardan automáticamente en Vercel KV
 - Se pueden editar, agregar y eliminar puntos individuales
 - Click en el punto para marcarlo como completado durante el estudio
@@ -631,56 +631,6 @@ Estas preguntas permiten que el auditorio participe mejor con comentarios más p
 - ✅ Específico: "David fue perdonado completamente"
 - ❌ Evitar: "Muestra que...", "Enseña que...", "Explica que..."
 
-### 6. 💭 PREGUNTAS DE REFLEXIÓN PERSONAL (3 preguntas)
-
-**NUEVO CAMPO OPCIONAL** - Se agrega para profundizar el estudio personal
-
-**Características:**
-- 3 preguntas que invitan a la reflexión personal profunda
-- No son preguntas de la publicación, son adicionales
-- Badge púrpura que indica "Preguntas de Reflexión Personal"
-- Se pueden agregar, editar y eliminar desde la interfaz
-- Se guardan automáticamente en Vercel KV
-
-**Estructura:**
-\`\`\`typescript
-reflectionQuestions: [
-  "¿Cómo me hace sentir saber que Jehová tiene especial interés por los que sufren?",
-  "Si estoy pasando por dificultades espirituales, ¿he pensado en acudir a los ancianos o solo en orar?",
-  "¿Qué me impide buscar ayuda de los ancianos cuando la necesito?"
-]
-\`\`\`
-
-**Objetivo:**
-- Ayudar al usuario a aplicar personalmente el contenido
-- Promover la introspección y el análisis personal
-- Conectar emocionalmente con las enseñanzas
-
-### 7. 💡 APLICACIONES PRÁCTICAS (3 acciones)
-
-**NUEVO CAMPO OPCIONAL** - Se agrega para traducir el estudio en acciones concretas
-
-**Características:**
-- 3 aplicaciones prácticas específicas y accionables
-- Cada una es algo concreto que se puede hacer esta semana
-- Badge azul que indica "Aplicaciones Prácticas"
-- Se pueden agregar, editar y eliminar desde la interfaz
-- Se guardan automáticamente en Vercel KV
-
-**Estructura:**
-\`\`\`typescript
-practicalApplications: [
-  "Esta semana voy a orar a Jehová por cualquier lucha espiritual que esté enfrentando",
-  "Si estoy sufriendo espiritualmente, voy a acercarme a un anciano de confianza esta semana",
-  "Voy a recordar que los ancianos no son solo para disciplina, sino para ayudarme cuando sufro"
-]
-\`\`\`
-
-**Objetivo:**
-- Traducir el conocimiento en acción
-- Crear compromisos concretos y medibles
-- Fortalecer la aplicación práctica del estudio
-
 ## 🔄 Flujo de trabajo completo
 
 ### Inicio
@@ -702,20 +652,14 @@ Claude:
 ### ✅ RESPUESTA DIRECTA
 [Respuesta en lenguaje sencillo]
 
-### 🔑 PUNTOS CLAVE
-[Bullets organizados - sin marcar tipos, el usuario los marca después]
+### 🔑 PUNTOS CLAVE (En tarjetas visuales)
+[Puntos organizados en tarjetas - con botones ✓ y 🔗 para marcar]
 
 ### 🎴 FLASHCARDS SUGERIDAS (3 tarjetas)
 [Lista de flashcards sobre DETALLES específicos]
 
 ### 📖 TEXTOS BÍBLICOS SUGERIDOS (2 textos)
 [Lista de textos bíblicos del párrafo]
-
-### 💭 PREGUNTAS DE REFLEXIÓN PERSONAL (3 preguntas)
-[3 preguntas que invitan a la reflexión personal profunda]
-
-### 💡 APLICACIONES PRÁCTICAS (3 acciones)
-[3 acciones concretas que se pueden realizar esta semana]
 
 ---
 ✅ Todo agregado automáticamente al archivo
@@ -737,11 +681,10 @@ Cuando el usuario dice **"sigamos con el párrafo X"** o **"párrafo X"**, Claud
 
 **TODO se agrega automáticamente:**
 - ✅ Respuesta directa
-- ✅ Puntos clave (sin marcar tipos - el usuario los marca después)
+- ✅ Puntos clave (en tarjetas visuales, con botones ✓ y 🔗 para marcar)
 - ✅ Flashcards (2-4 tarjetas)
 - ✅ Textos bíblicos (todos los del párrafo)
-- ✅ Preguntas de Reflexión Personal (3 preguntas)
-- ✅ Aplicaciones Prácticas (3 acciones concretas)
+- ✅ Textos con "LEE" cuando aplique
 - ✅ Sin necesidad de aprobar
 - ✅ Inmediatamente después de presentar la información
 
@@ -788,11 +731,9 @@ Claude: ✅ Estudio completado
 
 1. **Flashcards NO deben parafrasear la pregunta** - deben enfocarse en detalles
 2. **Textos bíblicos** - incluir TODOS los mencionados en el párrafo
-3. **Preguntas de Reflexión** - 3 preguntas que inviten a la introspección personal
-4. **Aplicaciones Prácticas** - 3 acciones concretas y específicas para esta semana
-5. **Puntos Clave** - NO marcar tipos al agregar, el usuario los marca después en la interfaz
-6. **Todo es automático** - no necesitas aprobar, solo revisar
-7. **Recarga localhost:9000** para ver los cambios en la app
+3. **Puntos Clave** - NO marcar tipos al agregar, el usuario los marca después en la interfaz
+4. **Todo es automático** - no necesitas aprobar, solo revisar
+5. **Recarga localhost:9000** para ver los cambios en la app
 
 ---
 
@@ -871,6 +812,7 @@ Para cada párrafo, recibirás:
 
 ### 1. ❓ LA PREGUNTA
 La pregunta exacta del estudio tal como aparece en La Atalaya.
+- Si el párrafo tiene un texto para leer, aparecerá: **📖 LEE [referencia bíblica]** en azul
 
 ### 2. ✅ RESPUESTA DIRECTA
 - Lenguaje sencillo y directo
@@ -879,12 +821,13 @@ La pregunta exacta del estudio tal como aparece en La Atalaya.
 - Sin información extra
 
 ### 3. 🔑 PUNTOS CLAVE
-- Formato con bullets organizados en tarjetas pequeñas
+- Formato visual con tarjetas individuales en grid responsivo
 - Estructura: primeros 2-3 puntos = respuesta directa, resto = información entrelazada
 - Títulos opcionales con **negrita**
-- **Sistema de marcado manual:**
-  - El usuario puede marcar cada punto como "Respuesta Directa" (badge verde ✓) o "Entrelazado" (badge naranja 🔗)
-  - Botón que cicla: sin marca → Respuesta Directa → Entrelazado → sin marca
+- **Sistema de marcado con botones independientes:**
+  - Botón ✓ verde: Marca/desmarca como "Respuesta Directa"
+  - Botón 🔗 naranja: Marca/desmarca como "Entrelazado"
+  - Un punto puede tener ambas marcas, una, o ninguna
   - Las marcas se guardan automáticamente en Vercel KV
 - Se pueden editar, agregar y eliminar puntos individuales
 - Click en el punto para marcarlo como completado durante el estudio
@@ -1010,56 +953,6 @@ Estas preguntas permiten que el auditorio participe mejor con comentarios más p
 - ✅ Específico: "David fue perdonado completamente"
 - ❌ Evitar: "Muestra que...", "Enseña que...", "Explica que..."
 
-### 6. 💭 PREGUNTAS DE REFLEXIÓN PERSONAL (3 preguntas)
-
-**NUEVO CAMPO OPCIONAL** - Se agrega para profundizar el estudio personal
-
-**Características:**
-- 3 preguntas que invitan a la reflexión personal profunda
-- No son preguntas de la publicación, son adicionales
-- Badge púrpura que indica "Preguntas de Reflexión Personal"
-- Se pueden agregar, editar y eliminar desde la interfaz
-- Se guardan automáticamente en Vercel KV
-
-**Estructura:**
-\`\`\`typescript
-reflectionQuestions: [
-  "¿Cómo me hace sentir saber que Jehová tiene especial interés por los que sufren?",
-  "Si estoy pasando por dificultades espirituales, ¿he pensado en acudir a los ancianos o solo en orar?",
-  "¿Qué me impide buscar ayuda de los ancianos cuando la necesito?"
-]
-\`\`\`
-
-**Objetivo:**
-- Ayudar al usuario a aplicar personalmente el contenido
-- Promover la introspección y el análisis personal
-- Conectar emocionalmente con las enseñanzas
-
-### 7. 💡 APLICACIONES PRÁCTICAS (3 acciones)
-
-**NUEVO CAMPO OPCIONAL** - Se agrega para traducir el estudio en acciones concretas
-
-**Características:**
-- 3 aplicaciones prácticas específicas y accionables
-- Cada una es algo concreto que se puede hacer esta semana
-- Badge azul que indica "Aplicaciones Prácticas"
-- Se pueden agregar, editar y eliminar desde la interfaz
-- Se guardan automáticamente en Vercel KV
-
-**Estructura:**
-\`\`\`typescript
-practicalApplications: [
-  "Esta semana voy a orar a Jehová por cualquier lucha espiritual que esté enfrentando",
-  "Si estoy sufriendo espiritualmente, voy a acercarme a un anciano de confianza esta semana",
-  "Voy a recordar que los ancianos no son solo para disciplina, sino para ayudarme cuando sufro"
-]
-\`\`\`
-
-**Objetivo:**
-- Traducir el conocimiento en acción
-- Crear compromisos concretos y medibles
-- Fortalecer la aplicación práctica del estudio
-
 ## 🔄 Flujo de trabajo completo
 
 ### Inicio
@@ -1081,20 +974,14 @@ Claude:
 ### ✅ RESPUESTA DIRECTA
 [Respuesta en lenguaje sencillo]
 
-### 🔑 PUNTOS CLAVE
-[Bullets organizados - sin marcar tipos, el usuario los marca después]
+### 🔑 PUNTOS CLAVE (En tarjetas visuales)
+[Puntos organizados en tarjetas - con botones ✓ y 🔗 para marcar]
 
 ### 🎴 FLASHCARDS SUGERIDAS (3 tarjetas)
 [Lista de flashcards sobre DETALLES específicos]
 
 ### 📖 TEXTOS BÍBLICOS SUGERIDOS (2 textos)
 [Lista de textos bíblicos del párrafo]
-
-### 💭 PREGUNTAS DE REFLEXIÓN PERSONAL (3 preguntas)
-[3 preguntas que invitan a la reflexión personal profunda]
-
-### 💡 APLICACIONES PRÁCTICAS (3 acciones)
-[3 acciones concretas que se pueden realizar esta semana]
 
 ---
 ✅ Todo agregado automáticamente al archivo
@@ -1116,11 +1003,10 @@ Cuando el usuario dice **"sigamos con el párrafo X"** o **"párrafo X"**, Claud
 
 **TODO se agrega automáticamente:**
 - ✅ Respuesta directa
-- ✅ Puntos clave (sin marcar tipos - el usuario los marca después)
+- ✅ Puntos clave (en tarjetas visuales, con botones ✓ y 🔗 para marcar)
 - ✅ Flashcards (2-4 tarjetas)
 - ✅ Textos bíblicos (todos los del párrafo)
-- ✅ Preguntas de Reflexión Personal (3 preguntas)
-- ✅ Aplicaciones Prácticas (3 acciones concretas)
+- ✅ Textos con "LEE" cuando aplique
 - ✅ Sin necesidad de aprobar
 - ✅ Inmediatamente después de presentar la información
 
@@ -1163,15 +1049,24 @@ Tú: terminamos el estudio
 Claude: ✅ Estudio completado
 \`\`\`
 
+## 📝 PREGUNTAS DE REPASO
+
+Al final del estudio, hay **3 preguntas de repaso** que resumen los puntos principales:
+- Cada pregunta tiene su **respuesta directa** y **puntos clave en tarjetas visuales**
+- Las respuestas se muestran **expandidas por defecto** (no necesitas hacer clic)
+- Los puntos clave aparecen como **tarjetas individuales** con formato visual
+- Puedes agregar y editar la versión en LSM de las preguntas
+
 ## 💡 Recordatorios importantes
 
 1. **Flashcards NO deben parafrasear la pregunta** - deben enfocarse en detalles
 2. **Textos bíblicos** - incluir TODOS los mencionados en el párrafo
-3. **Preguntas de Reflexión** - 3 preguntas que inviten a la introspección personal
-4. **Aplicaciones Prácticas** - 3 acciones concretas y específicas para esta semana
-5. **Puntos Clave** - NO marcar tipos al agregar, el usuario los marca después en la interfaz
-6. **Todo es automático** - no necesitas aprobar, solo revisar
-7. **Recarga localhost:9000** para ver los cambios en la app`;
+3. **Puntos Clave** - Se muestran como tarjetas visuales en grid
+4. **Marcado independiente** - Botones separados para "Respuesta Directa" y "Entrelazado"
+5. **Textos con LEE** - Se muestran automáticamente en azul bajo la pregunta
+6. **Preguntas de repaso** - Al final, con respuestas y puntos clave expandidos
+7. **Todo es automático** - no necesitas aprobar, solo revisar
+8. **Recarga localhost:9000** para ver los cambios en la app`;
 
   const handleCopy = async () => {
     try {

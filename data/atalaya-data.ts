@@ -135,6 +135,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por quiénes se interesa Jehová en especial?",
             textLSM: "",
             paragraphs: [2],
+            readText: "LEE Ezequiel 34:15, 16",
             answer: "Jehová se interesa profundamente por todas sus ovejas, pero tiene especial interés por las que están sufriendo. Utiliza a los ancianos para ayudar a las que están sufriendo en sentido espiritual. Cuando necesitamos ayuda, debemos orar a Dios y también acudir a los pastores y maestros de la congregación.",
             answerBullets: [
               "Jehová se interesa profundamente por todas sus ovejas",
@@ -227,6 +228,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [4],
             section: "CUÁNDO \"LLAMAR\" A LOS ANCIANOS",
+            readText: "LEE Santiago 5:14-16, 19, 20",
             answer: "Sabemos que Santiago se refiere a enfermedad espiritual por el contexto. Primero, Santiago no le dice al enfermo que llame a un médico, sino a los ancianos. Segundo, explica que la persona se sana cuando se le perdonan los pecados. Así como acudimos al médico cuando nos enfermamos físicamente, debemos acudir a los ancianos cuando nos enfermamos espiritualmente.",
             answerBullets: [
               "Santiago dice \"que llame a los ancianos\", no a un médico",
@@ -524,6 +526,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [9],
             section: "POR QUÉ \"LLAMAR\" A LOS ANCIANOS",
+            readText: "LEE Proverbios 28:13",
             answer: "Debemos superar la vergüenza porque Jehová nos dio a los ancianos específicamente para ayudarnos a estar fuertes y sanos espiritualmente. Al acudir a ellos demostramos que confiamos en Dios y en sus instrucciones. Además, confiamos en que Jehová nos ayudará en nuestra lucha y que, si confesamos y abandonamos nuestros pecados, recibiremos su misericordia y su perdón.",
             answerBullets: [
               "Puede que necesitemos fe y valor para hablar con los ancianos",
@@ -830,6 +833,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "Según Gálatas 6:1, ¿cómo ayudan los ancianos a quien da \"un paso en falso\"? (Mira también las imágenes).",
             textLSM: "",
             paragraphs: [14],
+            readText: "LEE Gálatas 6:1",
             answer: "Los ancianos ayudan a quien da \"un paso en falso\" corrigiéndolo \"con espíritu apacible\", impulsados por el amor. La palabra griega para \"corregir\" significa reajustar, como cuando un médico recoloca un hueso dislocado causando el mínimo dolor posible. Los ancianos tratan al hermano con mucha bondad y compasión para no causarle más dolor. También se vigilan a sí mismos, siendo humildes y no tratando al hermano con actitud crítica o superior.",
             answerBullets: [
               "Dar \"un paso en falso\" significa no actuar de acuerdo con las normas de Dios",
@@ -1155,13 +1159,53 @@ export const atalayaDatabase: AtalayaDatabase = {
         ],
         reviewQuestions: [
           {
-            question: "¿Cuándo debemos \"llamar\" a los ancianos?"
+            question: "¿Cuándo debemos \"llamar\" a los ancianos?",
+            answer: "Debemos llamar a los ancianos cuando estamos enfermos espiritualmente, cuando pasamos por situaciones difíciles que afectan nuestra espiritualidad, cuando sentimos que nuestra fe se está debilitando o cuando necesitamos ánimo y fortaleza espiritual. También cuando enfrentamos tentaciones fuertes o cuando hemos cometido un pecado grave y necesitamos ayuda para recuperarnos.",
+            answerBullets: [
+              "**Situaciones para llamar a los ancianos:**",
+              "Cuando estamos enfermos espiritualmente",
+              "Cuando nuestra fe se está debilitando",
+              "Cuando pasamos por situaciones difíciles",
+              "Cuando necesitamos ánimo y fortaleza espiritual",
+              "Cuando enfrentamos tentaciones fuertes",
+              "Cuando hemos cometido un pecado grave",
+              "Cuando necesitamos ayuda para recuperarnos espiritualmente",
+              "Cuando nos sentimos desanimados o deprimidos",
+              "Cuando tenemos dudas o preguntas profundas"
+            ]
           },
           {
-            question: "¿Por qué debemos \"llamar\" a los ancianos?"
+            question: "¿Por qué debemos \"llamar\" a los ancianos?",
+            answer: "Porque Jehová los ha designado como pastores para cuidar de sus ovejas con amor. Ellos siguen las instrucciones de Jesús, el pastor excelente, y tienen la responsabilidad de alimentarnos espiritualmente y protegernos de los peligros. Además, Jehová cumple su promesa de darnos pastores que actúan según su voluntad y nos alimentan con conocimiento y entendimiento.",
+            answerBullets: [
+              "**Razones para llamar a los ancianos:**",
+              "Jehová los ha designado como pastores",
+              "Siguen las instrucciones de Jesús, el pastor excelente",
+              "Tienen la responsabilidad de cuidar las ovejas",
+              "Son un regalo de Jehová para ayudarnos",
+              "Actúan según la voluntad de Dios",
+              "Nos alimentan con conocimiento y entendimiento",
+              "Tienen experiencia y sabiduría bíblica",
+              "Muestran el amor de Jehová por nosotros",
+              "Cumplen la promesa de Jeremías 3:15"
+            ]
           },
           {
-            question: "¿Cómo nos ayudan los ancianos?"
+            question: "¿Cómo nos ayudan los ancianos?",
+            answer: "Los ancianos nos ayudan orando con nosotros y por nosotros, animándonos con textos bíblicos específicos para nuestra situación, dándonos consejos prácticos basados en las Escrituras y su experiencia. También nos protegen de peligros espirituales, nos fortalecen cuando estamos débiles, nos corrigen con amor cuando es necesario y nos muestran el cariño que Jehová siente por nosotros.",
+            answerBullets: [
+              "**Formas en que los ancianos nos ayudan:**",
+              "Oran con nosotros y por nosotros",
+              "Nos animan con textos bíblicos específicos",
+              "Dan consejos prácticos basados en las Escrituras",
+              "Comparten su experiencia personal",
+              "Nos protegen de peligros espirituales",
+              "Nos fortalecen cuando estamos débiles",
+              "Nos corrigen con amor cuando es necesario",
+              "Muestran el cariño de Jehová por nosotros",
+              "Nos visitan cuando estamos enfermos",
+              "Nos ayudan a recuperar el gozo"
+            ]
           }
         ],
         finalSong: "Canción 31: Camina siempre con Jehová"

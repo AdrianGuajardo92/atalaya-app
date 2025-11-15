@@ -35,7 +35,7 @@ export default function ReviewQuestionCard({
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || reviewQuestion.questionLSM || '');
   const [isSaving, setIsSaving] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo paginado
+  const [isExpanded, setIsExpanded] = useState(true); // Expandido por defecto siempre
 
   const handleSaveLSM = async () => {
     setIsSaving(true);
@@ -185,12 +185,45 @@ export default function ReviewQuestionCard({
             </div>
           )}
 
-          {/* Puntos clave */}
+          {/* Puntos clave como tarjetas pequeñas */}
           {reviewQuestion.answerBullets && (
-            <div className="mt-4 p-4 bg-indigo-50 rounded-lg border-l-2 border-indigo-500">
-              <p className="text-sm font-semibold text-indigo-700 mb-2">📌 Puntos clave:</p>
-              <div className="text-slate-800 leading-relaxed whitespace-pre-line">
-                {reviewQuestion.answerBullets}
+            <div className="mt-4 p-4 bg-emerald-50 rounded-lg border-l-2 border-emerald-500">
+              <div className="border-t border-emerald-200 pt-3">
+                <div className="text-xs font-semibold text-emerald-700 mb-3">🔑 Puntos Clave</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {(Array.isArray(reviewQuestion.answerBullets)
+                    ? reviewQuestion.answerBullets
+                    : reviewQuestion.answerBullets.split('\n').filter(b => b.trim())
+                  ).map((bullet, idx) => {
+                    // Limpiar línea vacía
+                    if (!bullet.trim()) return null;
+
+                    return (
+                      <div
+                        key={idx}
+                        className="border rounded-lg p-3 transition-all bg-emerald-50 border-emerald-200 hover:bg-emerald-100"
+                      >
+                        <div className="flex items-start gap-2">
+                          <span className="text-emerald-600 text-xs flex-shrink-0 mt-0.5 font-bold">●</span>
+                          <p className="text-xs text-slate-800 leading-relaxed font-semibold">
+                            {bullet.split(/(\*\*.*?\*\*)/g).map((part, partIdx) => {
+                              if (part.startsWith('**') && part.endsWith('**')) {
+                                return (
+                                  <strong key={partIdx} className="font-bold text-slate-900 block mb-1">
+                                    {part.slice(2, -2)}
+                                  </strong>
+                                );
+                              }
+                              // Quitar el bullet point si existe al principio
+                              const cleanedPart = part.replace(/^[•·]\s*/, '');
+                              return <span key={partIdx}>{cleanedPart}</span>;
+                            })}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
