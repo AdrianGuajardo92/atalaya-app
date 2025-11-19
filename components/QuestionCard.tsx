@@ -58,7 +58,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [isSavingApplications, setIsSavingApplications] = useState(false);
 
   // Estado para flashcards personalizadas
-  const [customFlashcards, setCustomFlashcards] = useState<Array<{question: string; answer: string}>>([]);
+  const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string }>>([]);
 
   // Estado para puntos clave completados
   const [completedBullets, setCompletedBullets] = useState<Record<string, boolean>>(() => {
@@ -196,7 +196,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             // Normalizar al formato de objetos
             const normalized = Array.isArray(originalFlashcards) && typeof originalFlashcards[0] === 'string'
               ? (originalFlashcards as string[]).map((q: string) => ({ question: q, answer: '' }))
-              : originalFlashcards as Array<{question: string; answer: string}>;
+              : originalFlashcards as Array<{ question: string; answer: string }>;
             setCustomFlashcards(normalized);
           }
         }
@@ -205,7 +205,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         const originalFlashcards = question.flashcards || [];
         const normalized = Array.isArray(originalFlashcards) && typeof originalFlashcards[0] === 'string'
           ? (originalFlashcards as string[]).map((q: string) => ({ question: q, answer: '' }))
-          : originalFlashcards as Array<{question: string; answer: string}>;
+          : originalFlashcards as Array<{ question: string; answer: string }>;
         setCustomFlashcards(normalized);
       }
     };
@@ -741,7 +741,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   };
 
   // Funciones para manejar flashcards
-  const saveFlashcardsToKV = async (flashcards: Array<{question: string; answer: string}>) => {
+  const saveFlashcardsToKV = async (flashcards: Array<{ question: string; answer: string }>) => {
     try {
       const response = await fetch('/api/lsm', {
         method: 'POST',
@@ -1043,154 +1043,152 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             return getPriority(typeA) - getPriority(typeB);
                           })
                           .map(({ line, idx }) => {
-                          // Limpiar línea vacía
-                          if (!line.trim()) return null;
+                            // Limpiar línea vacía
+                            if (!line.trim()) return null;
 
-                          const bulletId = `q${question.number}-bullet${idx}`;
-                          const isCompleted = completedBullets[bulletId];
-                          const isEditingThisBullet = editingBulletIndex === idx;
-                          const bulletType = bulletTypes[idx]; // undefined, 'direct', o 'interlaced'
-                          const isDirect = bulletType === 'direct';
-                          const isInterlaced = bulletType === 'interlaced';
+                            const bulletId = `q${question.number}-bullet${idx}`;
+                            const isCompleted = completedBullets[bulletId];
+                            const isEditingThisBullet = editingBulletIndex === idx;
+                            const bulletType = bulletTypes[idx]; // undefined, 'direct', o 'interlaced'
+                            const isDirect = bulletType === 'direct';
+                            const isInterlaced = bulletType === 'interlaced';
 
-                          return (
-                            <div
-                              key={idx}
-                              className={`
+                            return (
+                              <div
+                                key={idx}
+                                className={`
                                 border rounded-lg p-3 transition-all group relative
                                 ${isEditingThisBullet ? 'ring-2 ring-emerald-500' : ''}
                                 ${isCompleted
-                                  ? 'bg-emerald-100 border-emerald-300 opacity-60'
-                                  : 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100'
-                                }
+                                    ? 'bg-emerald-100 border-emerald-300 opacity-60'
+                                    : 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100'
+                                  }
                               `}
-                            >
-                              {!isEditingThisBullet ? (
-                                <>
-                                  {/* Botones de control */}
-                                  <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button
+                              >
+                                {!isEditingThisBullet ? (
+                                  <>
+                                    {/* Botones de control */}
+                                    <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          toggleDirectType(idx);
+                                        }}
+                                        className={`px-2 py-1 text-white rounded text-xs font-medium ${isDirect
+                                            ? 'bg-green-600 hover:bg-green-700'
+                                            : 'bg-slate-400 hover:bg-green-500'
+                                          }`}
+                                        title={isDirect ? 'Quitar marca de Respuesta Directa' : 'Marcar como Respuesta Directa'}
+                                      >
+                                        {isDirect ? '✓' : '○'}
+                                      </button>
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          toggleInterlacedType(idx);
+                                        }}
+                                        className={`px-2 py-1 text-white rounded text-xs font-medium ${isInterlaced
+                                            ? 'bg-orange-600 hover:bg-orange-700'
+                                            : 'bg-slate-400 hover:bg-orange-500'
+                                          }`}
+                                        title={isInterlaced ? 'Quitar marca de Entrelazado' : 'Marcar como Entrelazado'}
+                                      >
+                                        {isInterlaced ? '🔗' : '🔗'}
+                                      </button>
+                                      <button
+                                        onClick={(e) => handleStartEditBullet(idx, line, e)}
+                                        className="w-6 h-6 bg-blue-500 hover:bg-blue-600 text-white rounded flex items-center justify-center text-xs"
+                                        title="Editar"
+                                      >
+                                        ✏️
+                                      </button>
+                                      <button
+                                        onClick={(e) => handleDeleteBullet(idx, e)}
+                                        className="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded flex items-center justify-center text-xs"
+                                        title="Eliminar"
+                                      >
+                                        🗑️
+                                      </button>
+                                    </div>
+
+                                    {/* Badges */}
+                                    {(isDirect || isInterlaced) && (
+                                      <div className="mb-2">
+                                        {isDirect && (
+                                          <span className="inline-block px-2 py-0.5 bg-green-100 border border-green-300 text-green-700 text-xs rounded-full font-semibold">
+                                            ✓ Respuesta Directa
+                                          </span>
+                                        )}
+                                        {isInterlaced && (
+                                          <span className="inline-block px-2 py-0.5 bg-orange-100 border border-orange-300 text-orange-700 text-xs rounded-full font-semibold">
+                                            🔗 Entrelazado
+                                          </span>
+                                        )}
+                                      </div>
+                                    )}
+
+                                    {/* Contenido de la tarjeta */}
+                                    <div
                                       onClick={(e) => {
                                         e.stopPropagation();
-                                        toggleDirectType(idx);
+                                        toggleBulletCompleted(bulletId);
                                       }}
-                                      className={`px-2 py-1 text-white rounded text-xs font-medium ${
-                                        isDirect
-                                          ? 'bg-green-600 hover:bg-green-700'
-                                          : 'bg-slate-400 hover:bg-green-500'
-                                      }`}
-                                      title={isDirect ? 'Quitar marca de Respuesta Directa' : 'Marcar como Respuesta Directa'}
+                                      className="cursor-pointer"
                                     >
-                                      {isDirect ? '✓' : '○'}
-                                    </button>
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        toggleInterlacedType(idx);
-                                      }}
-                                      className={`px-2 py-1 text-white rounded text-xs font-medium ${
-                                        isInterlaced
-                                          ? 'bg-orange-600 hover:bg-orange-700'
-                                          : 'bg-slate-400 hover:bg-orange-500'
-                                      }`}
-                                      title={isInterlaced ? 'Quitar marca de Entrelazado' : 'Marcar como Entrelazado'}
-                                    >
-                                      {isInterlaced ? '🔗' : '🔗'}
-                                    </button>
-                                    <button
-                                      onClick={(e) => handleStartEditBullet(idx, line, e)}
-                                      className="w-6 h-6 bg-blue-500 hover:bg-blue-600 text-white rounded flex items-center justify-center text-xs"
-                                      title="Editar"
-                                    >
-                                      ✏️
-                                    </button>
-                                    <button
-                                      onClick={(e) => handleDeleteBullet(idx, e)}
-                                      className="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded flex items-center justify-center text-xs"
-                                      title="Eliminar"
-                                    >
-                                      🗑️
-                                    </button>
-                                  </div>
-
-                                  {/* Badges */}
-                                  {(isDirect || isInterlaced) && (
-                                    <div className="mb-2">
-                                      {isDirect && (
-                                        <span className="inline-block px-2 py-0.5 bg-green-100 border border-green-300 text-green-700 text-xs rounded-full font-semibold">
-                                          ✓ Respuesta Directa
-                                        </span>
-                                      )}
-                                      {isInterlaced && (
-                                        <span className="inline-block px-2 py-0.5 bg-orange-100 border border-orange-300 text-orange-700 text-xs rounded-full font-semibold">
-                                          🔗 Entrelazado
-                                        </span>
-                                      )}
+                                      <div className="flex items-start gap-2">
+                                        {isCompleted ? (
+                                          <span className="text-emerald-600 text-sm flex-shrink-0">✓</span>
+                                        ) : (
+                                          <span className="text-emerald-600 text-xs flex-shrink-0 mt-0.5 font-bold">●</span>
+                                        )}
+                                        <p className={`text-xs text-slate-800 leading-relaxed font-semibold ${isCompleted ? 'line-through' : ''}`}>
+                                          {line.split(/(\*\*.*?\*\*)/g).map((part, partIdx) => {
+                                            if (part.startsWith('**') && part.endsWith('**')) {
+                                              return (
+                                                <strong key={partIdx} className="font-bold text-slate-900">
+                                                  {part.slice(2, -2)}
+                                                </strong>
+                                              );
+                                            }
+                                            return <span key={partIdx}>{part}</span>;
+                                          })}
+                                        </p>
+                                      </div>
                                     </div>
-                                  )}
-
-                                  {/* Contenido de la tarjeta */}
-                                  <div
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      toggleBulletCompleted(bulletId);
-                                    }}
-                                    className="cursor-pointer"
-                                  >
-                                    <div className="flex items-start gap-2">
-                                      {isCompleted ? (
-                                        <span className="text-emerald-600 text-sm flex-shrink-0">✓</span>
-                                      ) : (
-                                        <span className="text-emerald-600 text-xs flex-shrink-0 mt-0.5 font-bold">●</span>
-                                      )}
-                                      <p className={`text-xs text-slate-800 leading-relaxed font-semibold ${isCompleted ? 'line-through' : ''}`}>
-                                        {line.split(/(\*\*.*?\*\*)/g).map((part, partIdx) => {
-                                          if (part.startsWith('**') && part.endsWith('**')) {
-                                            return (
-                                              <strong key={partIdx} className="font-bold text-slate-900">
-                                                {part.slice(2, -2)}
-                                              </strong>
-                                            );
-                                          }
-                                          return <span key={partIdx}>{part}</span>;
-                                        })}
-                                      </p>
+                                  </>
+                                ) : (
+                                  /* Modo edición */
+                                  <div onClick={(e) => e.stopPropagation()}>
+                                    <input
+                                      type="text"
+                                      value={editedBulletText}
+                                      onChange={(e) => setEditedBulletText(e.target.value)}
+                                      onKeyDown={handleBulletKeyDown}
+                                      className="w-full p-2 border-2 border-emerald-400 rounded text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                      placeholder="Editar punto clave..."
+                                      autoFocus
+                                    />
+                                    <div className="flex gap-1 mt-2">
+                                      <button
+                                        onClick={handleSaveBullet}
+                                        disabled={isSavingBullets}
+                                        className="flex-1 px-2 py-1 bg-emerald-600 text-white text-xs rounded hover:bg-emerald-700 disabled:bg-slate-400 font-medium"
+                                      >
+                                        {isSavingBullets ? '...' : '💾'}
+                                      </button>
+                                      <button
+                                        onClick={handleCancelEditBullet}
+                                        disabled={isSavingBullets}
+                                        className="flex-1 px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
+                                      >
+                                        ✖️
+                                      </button>
                                     </div>
                                   </div>
-                                </>
-                              ) : (
-                                /* Modo edición */
-                                <div onClick={(e) => e.stopPropagation()}>
-                                  <input
-                                    type="text"
-                                    value={editedBulletText}
-                                    onChange={(e) => setEditedBulletText(e.target.value)}
-                                    onKeyDown={handleBulletKeyDown}
-                                    className="w-full p-2 border-2 border-emerald-400 rounded text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                                    placeholder="Editar punto clave..."
-                                    autoFocus
-                                  />
-                                  <div className="flex gap-1 mt-2">
-                                    <button
-                                      onClick={handleSaveBullet}
-                                      disabled={isSavingBullets}
-                                      className="flex-1 px-2 py-1 bg-emerald-600 text-white text-xs rounded hover:bg-emerald-700 disabled:bg-slate-400 font-medium"
-                                    >
-                                      {isSavingBullets ? '...' : '💾'}
-                                    </button>
-                                    <button
-                                      onClick={handleCancelEditBullet}
-                                      disabled={isSavingBullets}
-                                      className="flex-1 px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
-                                    >
-                                      ✖️
-                                    </button>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
+                                )}
+                              </div>
+                            );
+                          })}
 
                         {/* Tarjeta para agregar nuevo punto */}
                         {isAddingBullet && (
@@ -1247,7 +1245,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   favorites={favorites}
                   onToggleFavorite={onToggleFavorite}
                   lsmData={allLsmData}
-                  onLSMUpdate={onLSMUpdate || (() => {})}
+                  onLSMUpdate={onLSMUpdate || (() => { })}
                   hiddenCards={hiddenCards}
                   onToggleHidden={onToggleHidden}
                   articleId={articleId}

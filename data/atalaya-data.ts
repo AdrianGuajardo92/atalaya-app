@@ -1228,20 +1228,134 @@ export const atalayaDatabase: AtalayaDatabase = {
             number: "1, 2",
             textEs: "¿Cómo reaccionan muchas personas ante las injusticias, y qué es posible que nos preguntemos?",
             textLSM: "",
-            paragraphs: [1, 2]
+            paragraphs: [1, 2],
+            answer: "Muchas personas reaccionan con indignación y se unen a movimientos sociales, campañas o manifestaciones para intentar cambiar las cosas. Sin embargo, los cristianos nos preguntamos cómo debemos reaccionar ante estas situaciones y si hay algo que podamos hacer ahora mismo para mejorar la situación, sabiendo que el Reino de Dios es la solución definitiva.",
+            answerBullets: [
+              "Muchas personas se indignan al ver injusticias",
+              "Se unen a movimientos sociales para cambiar las cosas",
+              "Apoyan campañas, manifestaciones y líderes políticos",
+              "Los cristianos sabemos que no debemos ser parte del mundo",
+              "Nos duele y enoja ver a personas sufriendo",
+              "**Nos preguntamos: ¿Cómo debo reaccionar?**",
+              "**Nos preguntamos: ¿Hay algo que pueda hacer ahora?**"
+            ],
+            flashcards: [
+              {
+                question: "Según el párrafo 1, ¿cuáles son las 5 razones mencionadas por las que se trata injustamente a las personas?",
+                answer: "Posición económica, sexo, cultura, lugar de origen y raza"
+              },
+              {
+                question: "¿Qué dos tipos de personas menciona el párrafo 1 que toman decisiones egoístas que dañan al planeta?",
+                answer: "Gobernantes y empresarios"
+              },
+              {
+                question: "Según Juan 17:16, ¿cuál es la postura fundamental del cristiano ante los movimientos del mundo?",
+                answer: "No ser parte del mundo"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Juan 17:16",
+                purpose: "Los cristianos no son parte del mundo",
+                text: "Ellos no son parte del mundo, igual que yo no soy parte del mundo."
+              }
+            ]
           },
           {
             number: "3",
             textEs: "¿Por qué es natural que nos sintamos indignados ante las injusticias? (Isaías 5:7).",
             textLSM: "",
             paragraphs: [3],
-            section: "JEHOVÁ Y JESÚS ODIAN LAS INJUSTICIAS"
+            section: "JEHOVÁ Y JESÚS ODIAN LAS INJUSTICIAS",
+            readText: "LEE Isaías 5:7",
+            answer: "Es natural sentirnos indignados porque fuimos creados a la imagen de Jehová, y él \"ama la rectitud y la justicia\". Dios nunca comete injusticias y odia ver que otros las cometan. Por ejemplo, en tiempos de Isaías, Jehová escuchó el \"grito de angustia\" de los israelitas maltratados y castigó a quienes desobedecían su Ley tratando injustamente a los demás.",
+            answerBullets: [
+              "Fuimos creados a la imagen de Jehová",
+              "**Jehová \"ama la rectitud y la justicia\"**",
+              "Dios nunca comete injusticias",
+              "No quiere que nadie cometa injusticias",
+              "Jehová escuchó el \"grito de angustia\" de los israelitas",
+              "Castigó a quienes trataban injustamente a los demás",
+              "Es natural que nos sintamos como nuestro Creador"
+            ],
+            flashcards: [
+              {
+                question: "Según Deuteronomio 32:4, ¿qué cualidad de Jehová garantiza que nunca cometerá una injusticia?",
+                answer: "Es la Roca y todas sus obras son perfectas"
+              },
+              {
+                question: "Según Miqueas 6:8, ¿qué tres cosas pide Jehová de nosotros en relación con la justicia?",
+                answer: "Practicar la justicia, amar la lealtad y andar con modestia junto a Dios"
+              },
+              {
+                question: "En Isaías 5:7, ¿qué esperaba Jehová de su pueblo y qué encontró en su lugar?",
+                answer: "Esperaba justicia pero hubo injusticia; esperaba rectitud pero hubo un grito de angustia"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Isaías 5:7",
+                purpose: "Jehová esperaba justicia de su pueblo",
+                text: "Porque la viña de Jehová de los ejércitos es la casa de Israel; los hombres de Judá son la plantación que él amaba. Él esperaba justicia, pero resultó que hubo injusticia; esperaba rectitud, pero resultó que hubo un grito de angustia."
+              },
+              {
+                reference: "Salmo 33:5",
+                purpose: "Jehová ama la rectitud y la justicia",
+                text: "Él ama la rectitud y la justicia. La tierra está llena del amor leal de Jehová."
+              },
+              {
+                reference: "Deuteronomio 32:3, 4",
+                purpose: "Todas las obras de Dios son perfectas",
+                text: "Porque yo proclamaré el nombre de Jehová. ¡Engrandezcan a nuestro Dios! La Roca, todas sus obras son perfectas, porque todos sus caminos son justicia. Dios de fidelidad, que nunca comete injusticias; él es justo y recto."
+              },
+              {
+                reference: "Miqueas 6:8",
+                purpose: "Jehová pide que practiquemos la justicia",
+                text: "Él te ha dicho, oh hombre, lo que es bueno. ¿Y qué es lo que Jehová pide de ti? ¡Solo que practiques la justicia, ames la lealtad y andes con modestia junto a tu Dios!"
+              },
+              {
+                reference: "Zacarías 7:9",
+                purpose: "Juzgar con verdadera justicia",
+                text: "Esto es lo que dice Jehová de los ejércitos: 'Juzguen con verdadera justicia y traten a los demás con amor leal y misericordia'."
+              }
+            ]
           },
           {
             number: "4",
             textEs: "¿Qué nos enseña sobre Jesús el relato del hombre que tenía una mano paralizada?",
             textLSM: "",
-            paragraphs: [4]
+            paragraphs: [4],
+            answer: "Nos enseña que Jesús, al igual que Jehová, ama la justicia y odia las injusticias. Él se compadeció del hombre y lo curó, pero se sintió muy dolido e indignado al ver la dureza de corazón de los líderes religiosos, a quienes les importaba más cumplir sus reglas inflexibles que ayudar a alguien que sufría.",
+            answerBullets: [
+              "Jesús ama la justicia y odia las injusticias",
+              "Siente lo mismo que Jehová",
+              "Se compadeció del hombre y lo curó",
+              "Los líderes religiosos se enojaron",
+              "A ellos les importaban más sus reglas inflexibles",
+              "Jesús se sintió **\"muy dolido\"** por su dureza de corazón",
+              "Su reacción combina compasión por la víctima e indignación por la injusticia"
+            ],
+            flashcards: [
+              {
+                question: "Según Marcos 3:5, ¿qué dos sentimientos experimentó Jesús al ver la actitud de los fariseos?",
+                answer: "Indignación y profunda tristeza (dolor)"
+              },
+              {
+                question: "¿Qué era más importante para los líderes religiosos que ayudar a un hombre que sufría?",
+                answer: "Cumplir con su interpretación inflexible de la ley del sábado"
+              },
+              {
+                question: "¿Qué nos enseña este relato sobre cómo ve Jesús la falta de compasión disfrazada de religiosidad?",
+                answer: "Que le causa dolor y lo considera dureza de corazón"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Marcos 3:1-6",
+                purpose: "Jesús sana en sábado y se duele por la dureza de corazón",
+                text: "Entró otra vez en una sinagoga, y había allí un hombre que tenía una mano paralizada. Así que ellos estaban observando a Jesús con atención para ver si curaba al hombre en sábado y tener de qué acusarlo. Él le dijo al hombre que tenía la mano paralizada: 'Levántate y ponte ahí en medio'. Luego les dijo a ellos: '¿Qué está permitido en sábado: hacer un buen acto, o uno malo? ¿Salvar una vida, o matarla?'. Pero ellos se quedaron callados. Entonces él los miró a todos con indignación, muy dolido al ver que tenían el corazón tan duro, y le dijo al hombre: 'Extiende la mano'. Él la extendió, y la mano se le curó. En cuanto los fariseos salieron, se pusieron a conspirar con los partidarios de Herodes contra Jesús para matarlo."
+              }
+            ]
           },
           {
             number: "5",

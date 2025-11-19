@@ -17,7 +17,7 @@ export const articlesConfig = {
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    36,  // "Que llame a los ancianos" (10-16 Nov)
+    // 36,  // "Que llame a los ancianos" (10-16 Nov)
     37,  // "La mejor manera de reaccionar ante las injusticias" (17-23 Nov)
     38,  // "Mostremos que respetamos a los demás" (24-30 Nov)
     39,  // "Ayudemos de inmediato a quienes tienen 'la actitud correcta'" (1-7 Dic)
@@ -27,7 +27,7 @@ export const articlesConfig = {
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 36,
+  defaultArticleNumber: 37,
 };
 
 /**
