@@ -1361,27 +1361,302 @@ export const atalayaDatabase: AtalayaDatabase = {
             number: "5",
             textEs: "¿Qué debemos recordar si nos enojamos por una injusticia?",
             textLSM: "",
-            paragraphs: [5]
+            paragraphs: [5],
+            answer: "Debemos recordar que nuestro enfado, aunque esté justificado, no eliminará la injusticia. Si sentimos ira durante mucho tiempo o no la controlamos, podemos perjudicar nuestra salud emocional y física. Por eso es importante analizar el ejemplo de Jesús para saber cómo debemos reaccionar.",
+            answerBullets: [
+              "No está mal enojarse por una injusticia (Jehová y Jesús también se enojan)",
+              "**Nuestro enfado —aunque esté justificado— no eliminará esa injusticia**",
+              "Sentir ira durante mucho tiempo perjudica nuestra salud emocional",
+              "No controlar la ira perjudica nuestra salud física",
+              "Debemos analizar el ejemplo de Jesús para saber cómo reaccionar"
+            ],
+            flashcards: [
+              {
+                question: "Según Efesios 4:26, ¿está mal enojarse cuando vemos una injusticia?",
+                answer: "No, no está mal, ya que Jehová y Jesús también se enojan ante las injusticias"
+              },
+              {
+                question: "¿Qué debemos recordar sobre nuestro enfado aunque esté justificado?",
+                answer: "Que no eliminará esa injusticia"
+              },
+              {
+                question: "Según Salmo 37:1, 8 y Santiago 1:20, ¿qué puede pasar si sentimos ira durante mucho tiempo o no la controlamos?",
+                answer: "Podemos perjudicar nuestra salud emocional y física"
+              },
+              {
+                question: "¿A quién debemos imitar para saber cómo reaccionar ante las injusticias?",
+                answer: "A Jesús"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Efesios 4:26",
+                purpose: "No está mal enojarse por una injusticia",
+                text: "Cuando se enojen, no pequen. Que no se ponga el sol estando ustedes todavía enojados."
+              },
+              {
+                reference: "Salmo 37:1, 8",
+                purpose: "La ira prolongada nos hace daño",
+                text: "No te inquietes por los malvados ni envidies a los que hacen el mal... Deja la ira y abandona la furia; no te inquietes, pues eso solo conduce al mal."
+              },
+              {
+                reference: "Santiago 1:20",
+                purpose: "La ira del hombre no logra lo que Dios quiere",
+                text: "Porque la ira del hombre no produce lo que es justo ante Dios."
+              }
+            ]
           },
           {
             number: "6",
             textEs: "¿Qué injusticias vio Jesús cuando estuvo en la Tierra?",
             textLSM: "",
             paragraphs: [6],
-            section: "CÓMO REACCIONÓ JESÚS ANTE LAS INJUSTICIAS"
+            section: "CÓMO REACCIONÓ JESÚS ANTE LAS INJUSTICIAS",
+            answer: "Jesús vio que los líderes religiosos le hacían la vida imposible a la gente con un sinfín de reglas. También era consciente de lo mal que las autoridades romanas trataban al pueblo. A pesar de ver estas injusticias, no lideró ni apoyó ningún movimiento social a favor del cambio.",
+            answerBullets: [
+              "Los líderes religiosos le hacían la vida imposible a la gente",
+              "Imponían un sinfín de reglas injustas",
+              "Las autoridades romanas trataban mal al pueblo",
+              "Muchos judíos querían independencia de Roma",
+              "Los zelotes estaban dispuestos a combatir por la independencia",
+              "**Jesús no lideró ni apoyó ningún movimiento social**",
+              "Cuando querían hacerlo rey, se fue enseguida"
+            ],
+            flashcards: [
+              {
+                question: "Según Mateo 23:2-4, ¿cómo le hacían la vida imposible los líderes religiosos a la gente?",
+                answer: "Con un sinfín de reglas y cargas pesadas que ponían sobre sus hombros"
+              },
+              {
+                question: "Además de los líderes religiosos, ¿qué otro grupo maltrataba al pueblo judío en tiempos de Jesús?",
+                answer: "Las autoridades romanas"
+              },
+              {
+                question: "¿Cómo se llamaba el grupo de judíos que estaba dispuesto a combatir por la independencia de Roma?",
+                answer: "Los zelotes"
+              },
+              {
+                question: "¿Cuál fue la postura de Jesús frente a los movimientos sociales que buscaban un cambio político o la independencia?",
+                answer: "No lideró ni apoyó ningún movimiento social a favor del cambio"
+              },
+              {
+                question: "Según Juan 6:15, ¿qué hizo Jesús cuando se enteró de que la gente quería hacerlo rey?",
+                answer: "Se fue enseguida y se retiró a la montaña él solo"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Mateo 23:2-4",
+                purpose: "Los líderes religiosos imponían cargas pesadas",
+                text: "Los maestros de la Ley y los fariseos se han sentado en el asiento de Moisés. Así que hagan y obedezcan todo lo que ellos les digan, pero no los imiten, porque ellos no practican lo que dicen. Atan cargas pesadas y las ponen sobre los hombros de la gente, pero ellos no las quieren mover ni siquiera con un dedo."
+              },
+              {
+                reference: "Juan 6:15",
+                purpose: "Jesús rechazó ser hecho rey",
+                text: "Entonces Jesús, al darse cuenta de que estaban a punto de venir y llevárselo a la fuerza para hacerlo rey, se retiró otra vez a la montaña él solo."
+              }
+            ]
           },
           {
             number: "7, 8",
             textEs: "¿Por qué no intentó Jesús acabar con las injusticias de su tiempo? (Juan 18:36).",
             textLSM: "",
-            paragraphs: [7, 8]
+            paragraphs: [7, 8],
+            readText: "LEE Juan 18:36",
+            answer: "Jesús no intentó acabar con las injusticias porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse. Tampoco pueden eliminar las verdaderas causas de las injusticias: Satanás y la imperfección. Jesús sabía que únicamente el Reino de Dios podrá eliminar de raíz estas causas, por eso dedicó su tiempo a predicar las buenas noticias del Reino.",
+            answerBullets: [
+              "Jesús no participó en asuntos políticos para acabar con las injusticias",
+              "Los seres humanos no tienen el derecho ni la capacidad de gobernarse",
+              "**Las dos verdaderas causas de las injusticias son: Satanás y la imperfección**",
+              "Satanás controla este mundo y hace que la gente sea cruel",
+              "La imperfección nos impide actuar siempre de manera justa",
+              "**Solo el Reino de Dios puede eliminar de raíz las causas de las injusticias**",
+              "Jesús dedicó su tiempo a predicar las buenas noticias del Reino",
+              "Les aseguró a quienes tienen \"hambre y sed de justicia\" que las injusticias desaparecerían",
+              "El Reino de Dios \"no es parte de este mundo\""
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué motivo principal Jesús no participó en los asuntos políticos de su tiempo?",
+                answer: "Porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse a sí mismos"
+              },
+              {
+                question: "Según el texto, ¿qué dos cosas les faltan a los seres humanos para poder gobernarse?",
+                answer: "Les falta derecho y la capacidad"
+              },
+              {
+                question: "¿Qué dos referencias bíblicas se citan para apoyar la idea de que los humanos no pueden gobernarse?",
+                answer: "Salmo 146:3 y Jeremías 10:23"
+              },
+              {
+                question: "Además de la incapacidad humana, ¿qué no pueden eliminar los humanos para acabar con la injusticia?",
+                answer: "Las verdaderas causas de las injusticias"
+              },
+              {
+                question: "El texto identifica a _____ como la primera causa de las injusticias, ya que controla este mundo.",
+                answer: "Satanás"
+              },
+              {
+                question: "¿Cómo usa Satanás su autoridad, según el texto?",
+                answer: "La usa para hacer que la gente sea tan cruel como él"
+              },
+              {
+                question: "¿Qué dos versículos se usan para demostrar la influencia de Satanás en el mundo?",
+                answer: "Juan 8:44 y Efesios 2:2"
+              },
+              {
+                question: "¿Cuál es la segunda causa de las injusticias que se menciona en el texto?",
+                answer: "La imperfección humana"
+              },
+              {
+                question: "Según Eclesiastés 7:20, ¿qué nos impide actuar siempre de manera justa?",
+                answer: "La imperfección"
+              },
+              {
+                question: "¿Qué sabía Jesús que era lo único que podría eliminar de raíz las causas de las injusticias?",
+                answer: "El Reino de Dios"
+              },
+              {
+                question: "¿Cuál es la mejor manera en la que Jesús decidió usar su tiempo y sus energías?",
+                answer: "Predicando y anunciando las buenas noticias del Reino de Dios"
+              },
+              {
+                question: "¿Qué escritura describe la principal actividad de Jesús como la predicación del Reino de Dios?",
+                answer: "Lucas 8:1"
+              },
+              {
+                question: "¿A quiénes les aseguró Jesús que la corrupción y las injusticias desaparecerían para siempre?",
+                answer: "A quienes tenían \"hambre y sed de justicia\""
+              },
+              {
+                question: "¿Qué referencia bíblica se da para la promesa a los que tienen \"hambre y sed de justicia\"?",
+                answer: "Mateo 5:6"
+              },
+              {
+                question: "¿Mediante qué se conseguirá la eliminación de las injusticias, en contraste con los gobiernos humanos?",
+                answer: "Gracias al Reino de Dios"
+              },
+              {
+                question: "El Reino de Dios \"no es parte de _____\", según Juan 18:36.",
+                answer: "este mundo"
+              },
+              {
+                question: "¿Qué escritura se cita para demostrar que el Reino de Dios no es un gobierno terrenal?",
+                answer: "Juan 18:36"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 146:3",
+                purpose: "No confíes en los humanos para salvación",
+                text: "No confíen en los nobles ni en nadie nacido de humano, que no puede ofrecer salvación."
+              },
+              {
+                reference: "Jeremías 10:23",
+                purpose: "El hombre no puede dirigir sus pasos",
+                text: "Bien sé, oh Jehová, que el camino del hombre no es suyo. No le corresponde al hombre que está andando dirigir sus pasos."
+              },
+              {
+                reference: "Juan 8:44",
+                purpose: "Satanás es mentiroso y asesino",
+                text: "Ustedes proceden de su padre el Diablo, y quieren hacer los deseos de su padre. Ese fue un asesino cuando comenzó, y no permaneció firme en la verdad, porque la verdad no está en él. Cuando dice una mentira, habla según su propia disposición, porque es mentiroso y el padre de la mentira."
+              },
+              {
+                reference: "Efesios 2:2",
+                purpose: "Satanás controla este mundo",
+                text: "En los cuales en algún tiempo anduvieron conforme a la índole de este mundo, conforme al gobernante de la autoridad del aire, el espíritu que ahora está operando en los hijos de la desobediencia."
+              },
+              {
+                reference: "Eclesiastés 7:20",
+                purpose: "No hay hombre justo en la tierra",
+                text: "Porque no hay hombre justo en la tierra que siempre haga el bien y nunca peque."
+              },
+              {
+                reference: "Lucas 8:1",
+                purpose: "Jesús predicaba el Reino de Dios",
+                text: "Poco después, él recorría ciudades y aldeas predicando y anunciando las buenas noticias del Reino de Dios. Y los Doce iban con él."
+              },
+              {
+                reference: "Mateo 5:6",
+                purpose: "Los que tienen hambre de justicia serán saciados",
+                text: "Felices son los que tienen hambre y sed de justicia, porque ellos serán saciados."
+              },
+              {
+                reference: "Lucas 18:7, 8",
+                purpose: "Dios hará justicia a los que claman",
+                text: "Entonces, ¿no hará justicia Dios a los que él ha elegido y que le claman día y noche, aunque parezca que tarda en ayudarlos? Les digo que hará justicia a ellos sin demora. Sin embargo, cuando el Hijo del Hombre llegue, ¿encontrará realmente esta fe en la tierra?"
+              },
+              {
+                reference: "Juan 18:36",
+                purpose: "El Reino de Jesús no es de este mundo",
+                text: "Jesús contestó: 'Mi Reino no es parte de este mundo. Si mi Reino fuera parte de este mundo, mis sirvientes habrían peleado para que yo no fuera entregado a los judíos. Pero mi Reino no es de aquí'."
+              }
+            ]
           },
           {
             number: "9",
             textEs: "¿Por qué está usted convencido de que solo el Reino de Dios eliminará las injusticias?",
             textLSM: "",
             paragraphs: [9],
-            section: "ANTE UNA INJUSTICIA, IMITEMOS A JESÚS"
+            section: "ANTE UNA INJUSTICIA, IMITEMOS A JESÚS",
+            answer: "Estamos convencidos porque las causas de las injusticias siguen siendo las mismas que en tiempos de Jesús: Satanás y las personas imperfectas que lo imitan. Al igual que Jesús, sabemos que solo el Reino de Dios eliminará de raíz estas verdaderas causas. Los esfuerzos humanos no funcionan, como lo experimentó Stacy, quien se preguntaba si estaba defendiendo la mejor solución al participar en protestas.",
+            answerBullets: [
+              "Vivimos en \"los últimos días\" y vemos más injusticias que Jesús",
+              "**Las causas siguen siendo las mismas: Satanás y las personas imperfectas**",
+              "Solo el Reino de Dios eliminará de raíz las verdaderas causas",
+              "El Reino de Dios es el único gobierno que apoyamos",
+              "No participamos en protestas, manifestaciones ni iniciativas sociales",
+              "Stacy participaba en actividades a favor del cambio social antes de la verdad",
+              "Empezó a preguntarse si estaba defendiendo la mejor solución",
+              "**Ahora está convencida de que Jehová hará más de lo que ella jamás podría**"
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué vemos todavía más injusticias que las que vio Jesús?",
+                answer: "Porque vivimos en \"los últimos días\""
+              },
+              {
+                question: "Según 2 Timoteo 3:1-5, 13 y Apocalipsis 12:12, ¿cuáles son las causas de las injusticias hoy en día?",
+                answer: "Satanás y las personas imperfectas que lo imitan"
+              },
+              {
+                question: "¿Qué es lo único que eliminará de raíz las verdaderas causas de las injusticias?",
+                answer: "El Reino de Dios"
+              },
+              {
+                question: "Como el Reino de Dios es el único gobierno que apoyamos, ¿en qué no participamos?",
+                answer: "En protestas, manifestaciones ni otros tipos de iniciativas que pretenden luchar contra las injusticias"
+              },
+              {
+                question: "¿Qué hacía la hermana Stacy antes de conocer la verdad?",
+                answer: "Participaba en actividades a favor del cambio social"
+              },
+              {
+                question: "¿Qué se preguntaba Stacy cuando estaba en las protestas?",
+                answer: "Si estaba defendiendo la mejor solución"
+              },
+              {
+                question: "Según Salmo 72:1, 4, ¿de qué está convencida Stacy ahora?",
+                answer: "De que Jehová hará por los desfavorecidos mucho más de lo que ella jamás podría"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "2 Timoteo 3:1-5, 13",
+                purpose: "En los últimos días habrá tiempos difíciles",
+                text: "Pero ten presente esto: en los últimos días vendrán tiempos difíciles de manejar. Porque los hombres serán amantes de sí mismos, amantes del dinero, presumidos, arrogantes, blasfemos, desobedientes a los padres, desagradecidos, desleales, sin cariño natural, inflexibles, calumniadores, sin autocontrol, violentos, sin amor por la bondad, traicioneros, testarudos, hinchados de orgullo, amantes de los placeres más bien que amantes de Dios, teniendo una apariencia de devoción a Dios pero demostrando ser falsos respecto a su poder; y de estos apártate... Pero los hombres malvados e impostores avanzarán de mal en peor, extraviando a otros y siendo extraviados."
+              },
+              {
+                reference: "Apocalipsis 12:12",
+                purpose: "Satanás tiene gran ira en los últimos días",
+                text: "Por esto alégrense, cielos, y los que residen en ellos. ¡Ay de la tierra y del mar!, porque el Diablo ha descendido a ustedes, teniendo gran ira, sabiendo que tiene un corto período de tiempo."
+              },
+              {
+                reference: "Salmo 72:1, 4",
+                purpose: "El Rey de Dios defenderá a los pobres",
+                text: "Oh Dios, dale al rey tus propias decisiones judiciales, y tu justicia al hijo del rey. Que juzgue a tu pueblo con justicia y a tus afligidos con decisiones judiciales justas... Él defenderá a los afligidos del pueblo, salvará a los hijos del pobre y aplastará al defraudador."
+              }
+            ]
           },
           {
             number: "10",
