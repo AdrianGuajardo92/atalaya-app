@@ -1662,19 +1662,142 @@ export const atalayaDatabase: AtalayaDatabase = {
             number: "10",
             textEs: "Según Mateo 5:43-48, ¿por qué no intentamos promover cambios sociales?",
             textLSM: "",
-            paragraphs: [10]
+            paragraphs: [10],
+            readText: "LEE Mateo 5:43-48",
+            answer: "No intentamos promover cambios sociales porque muchos de estos grupos tienen una actitud rebelde y conflictiva que va en contra de lo que hizo y enseñó Jesús. En lugar de eso, Jesús nos enseña a tratar con amor a todas las personas, incluidas las que no piensan como nosotros o nos persiguen, y nosotros nos esforzamos por seguir su ejemplo en todo aspecto de la vida.",
+            answerBullets: [
+              "Muchos grupos sociales tienen actitud rebelde y conflictiva",
+              "Esto va en contra de lo que hizo y dijo Jesús (Efesios 4:31)",
+              "Jeffrey: \"Protestas pacíficas pueden volverse violentas en segundos\"",
+              "**Jesús nos enseña a tratar con amor a TODAS las personas**",
+              "Incluye a quienes no piensan como nosotros",
+              "Incluye a quienes nos persiguen",
+              "Los cristianos seguimos fielmente el ejemplo de Jesús",
+              "Lo aplicamos en todo aspecto de la vida"
+            ],
+            flashcards: [
+              {
+                question: "Según Efesios 4:31, ¿qué actitudes deben eliminarse que muchos grupos sociales muestran?",
+                answer: "Enojo, ira, gritos y lenguaje ofensivo"
+              },
+              {
+                question: "¿Qué observó el hermano Jeffrey sobre las protestas que empiezan siendo pacíficas?",
+                answer: "Pueden dar paso en cuestión de segundos a la violencia y los saqueos"
+              },
+              {
+                question: "Según Mateo 5:43-48, ¿a quiénes debemos amar, incluso cuando es difícil?",
+                answer: "A todas las personas, incluidas las que no piensan como nosotros o nos persiguen"
+              },
+              {
+                question: "¿Cómo te ayuda personalmente el mandato de Jesús de amar incluso a quienes te persiguen cuando enfrentas injusticias?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Efesios 4:31",
+                purpose: "Actitudes que debemos eliminar",
+                text: "Eliminen de ustedes todo enojo, ira, gritos y lenguaje ofensivo, junto con toda forma de maldad."
+              },
+              {
+                reference: "Mateo 5:43-48",
+                purpose: "Jesús enseña a amar a todos, incluso enemigos",
+                text: "Ustedes oyeron que se dijo: 'Tienes que amar a tu prójimo y odiar a tu enemigo'. Sin embargo, yo les digo: Sigan amando a sus enemigos y orando por los que los persiguen, para que demuestren ser hijos de su Padre que está en los cielos, ya que él hace que salga el sol sobre malos y buenos y hace que llueva sobre justos e injustos. Porque, si aman a los que los aman, ¿qué recompensa tienen? ¿No hacen eso mismo los recaudadores de impuestos? Y, si saludan solo a sus hermanos, ¿qué están haciendo de extraordinario? ¿No hacen eso mismo las personas de las naciones? Por lo tanto, tienen que ser perfectos, como su Padre celestial es perfecto."
+              }
+            ]
           },
           {
             number: "11",
             textEs: "¿Por qué a veces nos puede resultar difícil seguir el ejemplo de Jesús?",
             textLSM: "",
-            paragraphs: [11]
+            paragraphs: [11],
+            answer: "A veces resulta difícil seguir el ejemplo de Jesús cuando nos tratan de manera injusta porque es natural sentir rabia, tristeza y deseos de que los culpables paguen. Como le pasó a Janiya, podemos sentirnos tentados a buscar soluciones humanas y apoyar grupos que protestan contra las injusticias, pero debemos recordar confiar en Jehová y mantener nuestra neutralidad en asuntos sociales y políticos.",
+            answerBullets: [
+              "Aunque sabemos que el Reino acabará con las injusticias, puede ser difícil seguir a Jesús cuando nos tratan injustamente",
+              "**Ejemplo de Janiya:** Fue discriminada por su color de piel",
+              "Se sentía muy triste y enojada",
+              "Quería que los culpables pagaran por lo que le hicieron",
+              "Pensó en apoyar un grupo que protestaba contra el racismo",
+              "Creía que sería una buena manera de canalizar su rabia",
+              "**Se dio cuenta:** Otros estaban influyendo en ella",
+              "**Cambió su enfoque:** En vez de confiar en Jehová, confiaba en soluciones humanas",
+              "Decidió cortar todo contacto con ese grupo",
+              "Es normal sentir rabia ante injusticias",
+              "No debemos perder nuestra neutralidad en asuntos sociales y políticos"
+            ],
+            flashcards: [
+              {
+                question: "¿Qué tipo de injusticia sufrió la hermana Janiya?",
+                answer: "Fue discriminada por el color de su piel"
+              },
+              {
+                question: "¿Qué sentía Janiya hacia los culpables de la discriminación?",
+                answer: "Quería que pagaran por lo que le habían hecho"
+              },
+              {
+                question: "¿Qué se dio cuenta Janiya sobre su forma de pensar?",
+                answer: "Que otros estaban influyendo en ella y estaba empezando a confiar en soluciones humanas en vez de en Jehová"
+              },
+              {
+                question: "¿Qué acción tomó Janiya después de darse cuenta de su error?",
+                answer: "Decidió cortar todo contacto con el grupo que protestaba"
+              },
+              {
+                question: "¿Cómo te ayuda el ejemplo de Janiya cuando sientes rabia por una injusticia que sufriste?",
+                answer: ""
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Juan 15:19",
+                purpose: "Los cristianos no son parte del mundo",
+                text: "Si ustedes fueran parte del mundo, el mundo sentiría cariño por lo que es suyo. Ahora bien, porque ustedes no son parte del mundo, sino que yo los he escogido del mundo, por esto el mundo los odia."
+              }
+            ]
           },
           {
             number: "12",
             textEs: "¿Por qué debemos elegir con cuidado lo que vemos, leemos o escuchamos?",
             textLSM: "",
-            paragraphs: [12]
+            paragraphs: [12],
+            answer: "Debemos elegir con cuidado lo que consumimos en medios porque las redes sociales están llenas de historias exageradas para alarmarnos, y los reporteros a menudo presentan noticias influidos por su propia opinión. Si pasamos mucho tiempo viendo, leyendo o escuchando noticias sobre injusticias, podríamos frustrarnos, desanimarnos cada vez más y olvidar que el Reino de Dios es la única solución.",
+            answerBullets: [
+              "Una cosa que ayuda a mantener la calma: elegir con cuidado lo que vemos, leemos o escuchamos",
+              "**Redes sociales:** Llenas de historias exageradas para alarmar",
+              "Muchas se quejan de líderes políticos",
+              "**Reporteros:** A menudo no son objetivos",
+              "Presentan noticias influidos por su propia opinión",
+              "Incluso si la información es correcta, ¿de qué sirve darle vueltas?",
+              "**Si pasamos mucho tiempo en noticias sobre injusticias:**",
+              "Podemos frustrarnos más y más",
+              "Podemos desanimarnos cada vez más (Proverbios 24:10)",
+              "**Lo peor:** Podríamos olvidar la única solución: el Reino de Dios"
+            ],
+            flashcards: [
+              {
+                question: "Según el párrafo, ¿qué tipo de historias están llenas las redes sociales?",
+                answer: "Historias exageradas para alarmar a la gente y quejarse de los líderes políticos"
+              },
+              {
+                question: "¿Qué problema menciona el párrafo sobre los reporteros de noticias?",
+                answer: "A menudo no son objetivos, sino que presentan las noticias influidos por su propia opinión"
+              },
+              {
+                question: "Según Proverbios 24:10, ¿qué puede pasar si pasamos mucho tiempo viendo noticias sobre injusticias?",
+                answer: "Podemos frustrarnos o desanimarnos más y más"
+              },
+              {
+                question: "¿Qué es lo peor que podríamos olvidar si nos enfocamos demasiado en noticias sobre injusticias?",
+                answer: "Que el Reino de Dios es la única solución a las injusticias"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 24:10",
+                purpose: "Desanimarse en tiempos difíciles muestra debilidad",
+                text: "Si te desanimas en tiempos de angustia, tu fuerza es poca."
+              }
+            ]
           },
           {
             number: "13",
