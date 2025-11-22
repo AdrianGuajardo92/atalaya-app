@@ -1814,7 +1814,43 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cómo nos ayuda la lectura diaria de la Biblia?",
             textLSM: "",
             paragraphs: [13],
-            image: "/images/infografia-parrafo-13.png"
+            image: "/images/infografia-parrafo-13.png",
+            answer: "La lectura diaria de la Biblia nos ayuda a mantener la perspectiva correcta cuando vemos injusticias. Al leer y meditar en las Escrituras, nos recordamos que es Jehová quien solucionará estos problemas. La Biblia nos asegura que nadie puede esconderse de Jehová y que solo él tiene un sentido perfecto de la justicia.",
+            answerBullets: [
+              "Otra cosa que ayuda: leer la Biblia todos los días",
+              "También meditar en lo que leemos",
+              "**Ejemplo de Alia:** Se sintió indignada al ver maltrato sin castigo",
+              "Tuvo que recordarse: Jehová va a solucionar estos problemas",
+              "Leyó Job 34:22-29",
+              "**Lo que aprendió:** Nadie puede esconderse de Jehová",
+              "**Solo Jehová** tiene un sentido perfecto de la justicia",
+              "Solo él puede solucionar las cosas"
+            ],
+            flashcards: [
+              {
+                question: "¿Qué texto leyó la hermana Alia cuando se sintió indignada por las injusticias?",
+                answer: "Job 34:22-29"
+              },
+              {
+                question: "Según Job 34:22-29, ¿qué nos asegura sobre los culpables de injusticias?",
+                answer: "Que nadie puede esconderse de Jehová"
+              },
+              {
+                question: "¿Por qué solo Jehová puede solucionar las injusticias de manera perfecta?",
+                answer: "Porque solo él tiene un sentido perfecto de la justicia"
+              },
+              {
+                question: "Además de leer la Biblia, ¿qué más debemos hacer con lo que leemos?",
+                answer: "Meditar en ello"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 34:22-29",
+                purpose: "Nadie puede esconderse de Jehová",
+                text: "No hay oscuridad ni sombra espesa donde puedan ocultarse los que hacen lo malo. Pues Dios no tiene que seguir observando al hombre para llevarlo a juicio. Destroza a los poderosos sin investigar y pone a otros en su lugar. Por eso conoce bien sus obras y los derrota de noche, y quedan aplastados. Los golpea por su maldad donde todos puedan verlo, porque se apartaron de seguirlo y no le prestaron atención a ninguno de sus caminos. Hicieron que la angustia del pobre llegara hasta él para que oyera el grito de los afligidos. Pero, si él se queda callado, ¿quién podrá condenarlo? Y, si oculta su rostro, ¿quién podrá verlo? Sin embargo, él está sobre una nación o sobre un hombre."
+              }
+            ]
           },
           {
             number: "14",
@@ -1822,25 +1858,196 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [14],
             section: "¿QUÉ PODEMOS HACER AHORA?",
-            image: "/images/infografia-parrafo-14.png"
+            readText: "LEE Colosenses 3:10, 11",
+            image: "/images/infografia-parrafo-14.png",
+            answer: "Podemos decidir cómo tratamos a los demás. Imitando a Jesús, demostramos amor y tratamos con respeto a todas las personas, incluidas las que actúan injustamente. Jehová se siente feliz cuando somos amables y justos con todos.",
+            answerBullets: [
+              "No podemos impedir que otros cometan injusticias",
+              "**Sí podemos decidir** cómo vamos a tratar a los demás",
+              "Imitamos a Jesús demostrando amor",
+              "Ese amor nos impulsa a tratar con respeto a **todas las personas**",
+              "Incluidas las que actúan injustamente",
+              "Jehová se siente feliz cuando somos amables y justos con todos"
+            ],
+            flashcards: [
+              {
+                question: "Según Mateo 7:12, ¿qué principio nos ayuda a saber cómo tratar a los demás?",
+                answer: "La regla de oro: tratar a otros como queremos que nos traten"
+              },
+              {
+                question: "Según Romanos 12:17, ¿cómo debemos reaccionar cuando alguien nos trata injustamente?",
+                answer: "No devolver mal por mal a nadie"
+              },
+              {
+                question: "En Colosenses 3:10, 11, ¿qué diferencias ya no importan entre los cristianos?",
+                answer: "Origen, raza, nacionalidad o posición social"
+              },
+              {
+                question: "¿Cómo se siente Jehová cuando somos amables y justos con todos?",
+                answer: "Feliz"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Mateo 7:12",
+                purpose: "La regla de oro para tratar a otros",
+                text: "Por lo tanto, todo lo que quieran que los hombres les hagan a ustedes, háganlo también ustedes a ellos. Esto, de hecho, es lo que significan la Ley y los Profetas."
+              },
+              {
+                reference: "Romanos 12:17",
+                purpose: "No devolver mal por mal",
+                text: "No devuelvan mal por mal a nadie. Procuren hacer lo que es bueno ante todos los hombres."
+              },
+              {
+                reference: "Colosenses 3:10, 11",
+                purpose: "Las diferencias no importan entre cristianos",
+                text: "Y vístanse de la nueva personalidad, que mediante conocimiento exacto va haciéndose nueva según la imagen de Aquel que la creó, donde no hay ni griego ni judío, circuncisión ni incircuncisión, extranjero, escita, esclavo, libre, sino que Cristo es todas las cosas y está en todos."
+              }
+            ]
           },
           {
             number: "15",
             textEs: "¿Qué conseguimos al predicar?",
             textLSM: "",
-            paragraphs: [15]
+            paragraphs: [15],
+            image: "https://i.imgur.com/u2WkTO7.png",
+            answer: "La mejor manera de luchar contra las injusticias es predicando el mensaje de la Biblia. El conocimiento de Jehová puede transformar a las personas, haciendo que alguien agresivo y violento llegue a ser amable y pacífico. Cada persona que se deja transformar por la Biblia es una persona menos que contribuye a las injusticias del mundo.",
+            answerBullets: [
+              "**La mejor manera de luchar contra las injusticias:** predicar el mensaje de la Biblia",
+              "El \"conocimiento de Jehová\" puede transformar a las personas",
+              "Alguien agresivo y violento puede llegar a ser amable y pacífico",
+              "**Ejemplo de Jemal:** Se unió a un grupo rebelde contra el gobierno",
+              "**Su conclusión:** \"No se puede cambiar a la gente usando la fuerza, pero sí usando la Biblia\"",
+              "Lo que aprendía al estudiar la Biblia lo motivó a abandonar la lucha",
+              "Cada persona transformada por la Biblia = una persona menos que contribuye a las injusticias"
+            ],
+            flashcards: [
+              {
+                question: "Según Isaías 11:6, 7, 9, ¿qué efecto puede tener el \"conocimiento de Jehová\" en una persona?",
+                answer: "Puede transformar a alguien agresivo y violento en alguien amable y pacífico"
+              },
+              {
+                question: "¿A qué tipo de grupo se unió Jemal antes de conocer la verdad?",
+                answer: "A un grupo rebelde que luchaba contra el gobierno"
+              },
+              {
+                question: "Según las palabras de Jemal, ¿cuál es la única forma efectiva de cambiar a las personas?",
+                answer: "Usando la Biblia, no la fuerza"
+              },
+              {
+                question: "¿Qué beneficio tiene para la sociedad que una persona sea transformada por la Biblia?",
+                answer: "Es una persona menos que contribuye a las injusticias del mundo"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Isaías 11:6, 7, 9",
+                purpose: "El conocimiento de Jehová transforma a las personas",
+                text: "El lobo residirá por un tiempo con el cordero, y el leopardo se echará con el cabrito, y el becerro y el león melado y el animal bien alimentado todos juntos; y un simple muchacho será guía sobre ellos. La vaca y la osa mismas pacerán; sus crías se echarán juntas. Y hasta el león comerá paja justamente como el toro. No harán daño ni causarán ruina en toda mi santa montaña; porque la tierra ciertamente estará llena del conocimiento de Jehová como las aguas cubren el mismísimo mar."
+              }
+            ]
           },
           {
             number: "16",
             textEs: "¿Por qué quiere usted predicar el mensaje del Reino?",
             textLSM: "",
-            paragraphs: [16]
+            paragraphs: [16],
+            image: "https://i.imgur.com/xtd8CEp.png",
+            answer: "Predicamos porque deseamos darles esperanza a quienes han sufrido injusticias, contándoles que el Reino de Dios es la única solución permanente. Al conocer las promesas de la Biblia, podemos consolar a las personas y ayudarlas a sobrellevar lo que han vivido. Cuanto más convencidos estemos del Reino, más fácil nos resultará hablar con tacto de este tema.",
+            answerBullets: [
+              "Igual que Jesús, deseamos contar a las personas sobre el Reino",
+              "**El Reino de Dios:** la única solución permanente a las injusticias",
+              "Podemos dar esperanza a quienes han sufrido injusticias",
+              "**Stacy explica:** \"Conocer la verdad me ha ayudado a sobrellevar las injusticias\"",
+              "\"Mediante la Biblia, Jehová nos consuela\"",
+              "Para consolar a otros, tenemos que prepararnos bien",
+              "Cuanto más convencidos estemos del Reino, más fácil hablar con tacto del tema",
+              "Podemos hablar de esto en la escuela o el trabajo"
+            ],
+            flashcards: [
+              {
+                question: "Según Jeremías 29:11, ¿qué dos cosas tiene Jehová para nosotros?",
+                answer: "Pensamientos de paz y un futuro lleno de esperanza"
+              },
+              {
+                question: "¿Qué ha ayudado a Stacy a sobrellevar las injusticias que ha visto y vivido?",
+                answer: "Conocer la verdad de la Biblia"
+              },
+              {
+                question: "¿Qué debemos hacer para poder consolar a las personas con las promesas de la Biblia?",
+                answer: "Prepararnos bien"
+              },
+              {
+                question: "¿Qué nos facilita hablar con tacto sobre las injusticias en la escuela o el trabajo?",
+                answer: "Estar más convencidos de que el Reino de Dios acabará con todas las injusticias"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Jeremías 29:11",
+                purpose: "Jehová tiene pensamientos de paz para darnos esperanza",
+                text: "\"'Porque yo mismo bien conozco los pensamientos que estoy pensando para con ustedes', es la expresión de Jehová, 'pensamientos de paz, y no de calamidad, para darles un futuro y una esperanza'.\""
+              }
+            ]
           },
           {
             number: "17",
             textEs: "¿Cómo nos ayuda Jehová a sobrellevar las injusticias de este mundo?",
             textLSM: "",
-            paragraphs: [17]
+            paragraphs: [17],
+            image: "https://i.imgur.com/uavL2kC.png",
+            answer: "Jehová nos ayuda prometiendo que pronto Satanás será echado afuera. En la Biblia nos explica por qué existen las injusticias y nos asegura que le duele vernos sufrir. Por medio de Jesús, nos enseña cómo reaccionar ante las injusticias y cómo su Reino acabará con ellas de una vez por todas.",
+            answerBullets: [
+              "Mientras Satanás sea \"el gobernante de este mundo\", continuarán las injusticias",
+              "Jehová nos va a ayudar",
+              "**Promete:** pronto Satanás \"será echado afuera\"",
+              "En la Biblia nos explica por qué hay tantas injusticias",
+              "Nos asegura que le duele vernos sufrir",
+              "Por medio de Jesús nos enseña cómo reaccionar",
+              "Su Reino acabará con las injusticias de una vez por todas",
+              "Sigamos predicando con entusiasmo las buenas noticias",
+              "Esperemos con anhelo el día en que **\"la justicia y la rectitud\"** llenen la Tierra"
+            ],
+            flashcards: [
+              {
+                question: "Según Juan 12:31, ¿qué le pasará pronto a Satanás?",
+                answer: "Será echado afuera"
+              },
+              {
+                question: "Según Salmo 34:17-19, ¿cómo se siente Jehová cuando ve nuestro sufrimiento?",
+                answer: "Le duele vernos sufrir y está cerca de los de corazón quebrantado"
+              },
+              {
+                question: "Según 2 Pedro 3:13, ¿qué dos cosas estaremos esperando donde morará la justicia?",
+                answer: "Nuevos cielos y nueva tierra"
+              },
+              {
+                question: "Según Isaías 9:7, ¿qué dos cosas llenarán la Tierra bajo el gobierno del Reino?",
+                answer: "La justicia y la rectitud"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Juan 12:31",
+                purpose: "Satanás será echado afuera",
+                text: "Ahora se somete a juicio a este mundo; ahora el gobernante de este mundo será echado afuera."
+              },
+              {
+                reference: "Salmo 34:17-19",
+                purpose: "Jehová está cerca de los de corazón quebrantado",
+                text: "Los justos clamaron, y Jehová mismo oyó, y de todas sus angustias los libró. Jehová está cerca de los que están quebrantados de corazón; y salva a los que están aplastados en espíritu. Muchas son las calamidades del justo, pero de todas ellas lo libra Jehová."
+              },
+              {
+                reference: "2 Pedro 3:13",
+                purpose: "Nuevos cielos y nueva tierra con justicia",
+                text: "Pero hay nuevos cielos y una nueva tierra que esperamos según su promesa, y en estos la justicia habrá de morar."
+              },
+              {
+                reference: "Isaías 9:7",
+                purpose: "La justicia y la rectitud llenarán la Tierra",
+                text: "Para la abundancia del gobierno principesco y la paz no habrá fin, sobre el trono de David y sobre su reino a fin de establecerlo firmemente y sustentarlo por medio de la justicia y por medio de la rectitud, desde ahora en adelante y hasta tiempo indefinido. El mismísimo celo de Jehová de los ejércitos hará esto."
+              }
+            ]
           }
         ],
         paragraphs: [
@@ -1921,13 +2128,86 @@ export const atalayaDatabase: AtalayaDatabase = {
         ],
         reviewQuestions: [
           {
-            question: "¿Por qué nos indignan tanto las injusticias?"
+            question: "¿Por qué nos indignan tanto las injusticias?",
+            answerBullets: [
+              "Fuimos creados a la imagen de Jehová, quien \"ama la rectitud y la justicia\"",
+              "Jehová nunca comete injusticias y no quiere que nadie las cometa",
+              "En la época del profeta Isaías, Jehová escuchó el \"grito de angustia\" de muchos israelitas que estaban siendo maltratados",
+              "Castigó a aquellas personas que se empeñaban en desobedecer su Ley y en tratar injustamente a los demás",
+              "Al igual que Jehová, Jesús ama la justicia y odia las injusticias",
+              "Un día vio a un hombre que tenía una mano paralizada y se compadeció de él y se la curó",
+              "Cuando los líderes religiosos lo vieron, se enojaron",
+              "Para aquellos hombres insensibles, era más importante cumplir con su interpretación inflexible de la ley del sábado que ayudar a un hombre que estaba sufriendo",
+              "Cuando Jesús vio su reacción, se sintió \"muy dolido al ver que tenían el corazón tan duro\"",
+              "Dado que Jehová y Jesús se enojan cuando ven una injusticia, no está mal que nosotros sintamos lo mismo",
+              "Es natural que nos sintamos como nuestro Creador",
+              "Sin embargo, debemos recordar que nuestro enfado —aunque esté justificado— no eliminará esa injusticia",
+              "De hecho, si sentimos ira durante mucho tiempo o no la controlamos, podemos perjudicar nuestra salud emocional y física"
+            ]
           },
           {
-            question: "¿Por qué no apoyamos las iniciativas humanas que pretenden luchar contra las injusticias?"
+            question: "¿Por qué no apoyamos las iniciativas humanas que pretenden luchar contra las injusticias?",
+            answerBullets: [
+              "Jesús vio muchas injusticias cuando estuvo en la Tierra, pero no lideró ni apoyó ningún movimiento social a favor del cambio",
+              "Cuando se enteró de que la gente quería hacerlo rey, se fue enseguida",
+              "Jesús no participó en los asuntos políticos porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse",
+              "Los seres humanos no pueden eliminar las verdaderas causas de las injusticias",
+              "**Primera causa:** Satanás controla este mundo y usa su autoridad para hacer que la gente sea tan cruel como él",
+              "**Segunda causa:** La imperfección nos impide actuar siempre de manera justa por muy buenas que sean nuestras intenciones",
+              "Jesús sabía que únicamente el Reino de Dios podrá eliminar de raíz las verdaderas causas de las injusticias",
+              "Por eso decidió que la mejor manera de usar su tiempo y sus energías era predicando y anunciando las buenas noticias del Reino de Dios",
+              "El Reino de Dios \"no es parte de este mundo\"",
+              "Como vivimos en \"los últimos días\", vemos todavía más injusticias que las que vio Jesús",
+              "Pero las causas siguen siendo las mismas: Satanás y las personas imperfectas que lo imitan",
+              "Al igual que Jesús, sabemos que solo el Reino de Dios eliminará de raíz las verdaderas causas de las injusticias",
+              "Como ese es el único gobierno que apoyamos, no participamos en protestas, manifestaciones ni otros tipos de iniciativas que pretenden luchar contra las injusticias",
+              "**Ejemplo de Stacy:** Antes de conocer la verdad, participaba en actividades a favor del cambio social, pero con el tiempo tuvo dudas sobre si servía para algo",
+              "Ella dice: \"Cuando estaba en las protestas, me preguntaba si estaba defendiendo la mejor solución. Ahora que apoyo el Reino de Dios, sé que estoy defendiendo la mejor solución\"",
+              "Muchos de los grupos que se forman para promover cambios sociales tienen una actitud rebelde y conflictiva, que va en contra de lo que hizo y dijo Jesús",
+              "Algunas protestas que empiezan siendo pacíficas pueden dar paso en cuestión de segundos a la violencia y los saqueos",
+              "Jesús nos enseña a tratar con amor a todas las personas, incluidas las que no piensan como nosotros o nos persiguen",
+              "**Ejemplo de Janiya:** Fue discriminada por el color de su piel y pensó en apoyar un grupo que protestaba contra el racismo",
+              "Con el tiempo se dio cuenta de que otros estaban influyendo en ella y que en vez de confiar en Jehová estaba empezando a confiar en las soluciones humanas",
+              "Decidió cortar todo contacto con ese grupo",
+              "No debemos permitir que la rabia por una injusticia nos lleve a perder nuestra neutralidad en los asuntos sociales y políticos de este mundo"
+            ]
           },
           {
-            question: "¿Qué podemos hacer ahora ante una injusticia?"
+            question: "¿Qué podemos hacer ahora ante una injusticia?",
+            answerBullets: [
+              "**Elegir con cuidado lo que vemos, leemos o escuchamos**",
+              "Algunas redes sociales están llenas de historias exageradas para alarmar a la gente y quejarse de los líderes políticos",
+              "Los reporteros a menudo no son objetivos, sino que presentan las noticias influidos por su propia opinión",
+              "Si pasamos mucho tiempo viendo, leyendo o escuchando noticias sobre injusticias, es posible que acabemos frustrándonos o desanimándonos más y más",
+              "Podríamos olvidar cuál es la única solución a las injusticias: el Reino de Dios",
+              "**Leer la Biblia todos los días y meditar en lo que leemos**",
+              "**Ejemplo de Alia:** Se sintió profundamente indignada al ver que se maltrataba a algunas personas y que no se castigaba a los culpables",
+              "Tuvo que recordarse a sí misma que es Jehová quien va a solucionar estos problemas",
+              "Leyó Job 34:22-29, que nos asegura que nadie puede esconderse de Jehová",
+              "Solo él tiene un sentido perfecto de la justicia y solo él puede solucionar las cosas",
+              "**Decidir cómo vamos a tratar a los demás**",
+              "No podemos impedir que otros cometan injusticias, pero sí está en nuestra mano decidir cómo vamos a tratar a los demás",
+              "Imitamos a Jesús demostrando amor",
+              "Ese amor nos impulsa a tratar con respeto a todas las personas, incluidas las que actúan injustamente",
+              "Jehová se siente feliz cuando ve que somos amables y justos con todos",
+              "**Predicar el mensaje de la Biblia**",
+              "La mejor manera de luchar contra las injusticias es predicando el mensaje de la Biblia",
+              "El \"conocimiento de Jehová\" puede hacer que alguien agresivo y violento cambie y llegue a ser amable y pacífico",
+              "**Ejemplo de Jemal:** Se unió a un grupo rebelde que luchaba contra un Gobierno que le parecía opresivo",
+              "Él dice: \"No se puede cambiar a la gente usando la fuerza, pero sí usando la Biblia. Eso es lo que me hizo cambiar a mí\"",
+              "Cada persona que se deja transformar por la Biblia es una persona menos que contribuye a las injusticias de este mundo",
+              "**Darles esperanza a quienes han sufrido injusticias**",
+              "Deseamos contarles a las personas que el Reino de Dios es la única solución permanente a las injusticias",
+              "Podemos consolar a las personas con las promesas de la Biblia",
+              "Para poder consolar a otros, tenemos que prepararnos bien",
+              "Cuanto más convencidos estemos de que el Reino de Dios acabará con todas las injusticias, más fácil nos resultará hablar con tacto de este tema",
+              "**Confiar en que Jehová nos va a ayudar**",
+              "Jehová nos promete que pronto Satanás \"será echado afuera\"",
+              "En la Biblia nos explica por qué hay tantas injusticias y nos asegura que le duele vernos sufrir",
+              "Por medio de su Hijo nos enseña cómo debemos reaccionar ante las injusticias de este mundo",
+              "Sigamos predicando con entusiasmo las buenas noticias del Reino",
+              "Esperemos con anhelo que llegue el día en que \"la justicia y la rectitud\" llenen la Tierra"
+            ]
           }
         ],
         finalSong: "Canción 158: Danos paciencia"
