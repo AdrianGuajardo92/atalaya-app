@@ -1229,6 +1229,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cómo reaccionan muchas personas ante las injusticias, y qué es posible que nos preguntemos?",
             textLSM: "",
             paragraphs: [1, 2],
+            image: "/images/infografia-parrafos-1-2.png",
             answer: "Muchas personas reaccionan con indignación y se unen a movimientos sociales, campañas o manifestaciones para intentar cambiar las cosas. Sin embargo, los cristianos nos preguntamos cómo debemos reaccionar ante estas situaciones y si hay algo que podamos hacer ahora mismo para mejorar la situación, sabiendo que el Reino de Dios es la solución definitiva.",
             answerBullets: [
               "Muchas personas se indignan al ver injusticias",
@@ -1268,6 +1269,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [3],
             section: "JEHOVÁ Y JESÚS ODIAN LAS INJUSTICIAS",
             readText: "LEE Isaías 5:7",
+            image: "/images/infografia-parrafo-3.png",
             answer: "Es natural sentirnos indignados porque fuimos creados a la imagen de Jehová, y él \"ama la rectitud y la justicia\". Dios nunca comete injusticias y odia ver que otros las cometan. Por ejemplo, en tiempos de Isaías, Jehová escuchó el \"grito de angustia\" de los israelitas maltratados y castigó a quienes desobedecían su Ley tratando injustamente a los demás.",
             answerBullets: [
               "Fuimos creados a la imagen de Jehová",
@@ -1325,6 +1327,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué nos enseña sobre Jesús el relato del hombre que tenía una mano paralizada?",
             textLSM: "",
             paragraphs: [4],
+            image: "/images/infografia-parrafo-4.png",
             answer: "Nos enseña que Jesús, al igual que Jehová, ama la justicia y odia las injusticias. Él se compadeció del hombre y lo curó, pero se sintió muy dolido e indignado al ver la dureza de corazón de los líderes religiosos, a quienes les importaba más cumplir sus reglas inflexibles que ayudar a alguien que sufría.",
             answerBullets: [
               "Jesús ama la justicia y odia las injusticias",
@@ -1362,6 +1365,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué debemos recordar si nos enojamos por una injusticia?",
             textLSM: "",
             paragraphs: [5],
+            image: "/images/infografia-parrafo-5.png",
             answer: "Debemos recordar que nuestro enfado, aunque esté justificado, no eliminará la injusticia. Si sentimos ira durante mucho tiempo o no la controlamos, podemos perjudicar nuestra salud emocional y física. Por eso es importante analizar el ejemplo de Jesús para saber cómo debemos reaccionar.",
             answerBullets: [
               "No está mal enojarse por una injusticia (Jehová y Jesús también se enojan)",
@@ -1412,6 +1416,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [6],
             section: "CÓMO REACCIONÓ JESÚS ANTE LAS INJUSTICIAS",
+            image: "/images/infografia-parrafo-6.png",
             answer: "Jesús vio que los líderes religiosos le hacían la vida imposible a la gente con un sinfín de reglas. También era consciente de lo mal que las autoridades romanas trataban al pueblo. A pesar de ver estas injusticias, no lideró ni apoyó ningún movimiento social a favor del cambio.",
             answerBullets: [
               "Los líderes religiosos le hacían la vida imposible a la gente",
@@ -1463,6 +1468,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [7, 8],
             readText: "LEE Juan 18:36",
+            image: "/images/infografia-parrafos-7-8.png",
             answer: "Jesús no intentó acabar con las injusticias porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse. Tampoco pueden eliminar las verdaderas causas de las injusticias: Satanás y la imperfección. Jesús sabía que únicamente el Reino de Dios podrá eliminar de raíz estas causas, por eso dedicó su tiempo a predicar las buenas noticias del Reino.",
             answerBullets: [
               "Jesús no participó en asuntos políticos para acabar con las injusticias",
@@ -1599,6 +1605,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [9],
             section: "ANTE UNA INJUSTICIA, IMITEMOS A JESÚS",
+            image: "/images/infografia-parrafo-9.png",
             answer: "Estamos convencidos porque las causas de las injusticias siguen siendo las mismas que en tiempos de Jesús: Satanás y las personas imperfectas que lo imitan. Al igual que Jesús, sabemos que solo el Reino de Dios eliminará de raíz estas verdaderas causas. Los esfuerzos humanos no funcionan, como lo experimentó Stacy, quien se preguntaba si estaba defendiendo la mejor solución al participar en protestas.",
             answerBullets: [
               "Vivimos en \"los últimos días\" y vemos más injusticias que Jesús",
@@ -1664,6 +1671,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [10],
             readText: "LEE Mateo 5:43-48",
+            image: "/images/infografia-parrafo-10.png",
             answer: "No intentamos promover cambios sociales porque muchos de estos grupos tienen una actitud rebelde y conflictiva que va en contra de lo que hizo y enseñó Jesús. En lugar de eso, Jesús nos enseña a tratar con amor a todas las personas, incluidas las que no piensan como nosotros o nos persiguen, y nosotros nos esforzamos por seguir su ejemplo en todo aspecto de la vida.",
             answerBullets: [
               "Muchos grupos sociales tienen actitud rebelde y conflictiva",
@@ -1711,6 +1719,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué a veces nos puede resultar difícil seguir el ejemplo de Jesús?",
             textLSM: "",
             paragraphs: [11],
+            image: "/images/infografia-parrafo-11.png",
             answer: "A veces resulta difícil seguir el ejemplo de Jesús cuando nos tratan de manera injusta porque es natural sentir rabia, tristeza y deseos de que los culpables paguen. Como le pasó a Janiya, podemos sentirnos tentados a buscar soluciones humanas y apoyar grupos que protestan contra las injusticias, pero debemos recordar confiar en Jehová y mantener nuestra neutralidad en asuntos sociales y políticos.",
             answerBullets: [
               "Aunque sabemos que el Reino acabará con las injusticias, puede ser difícil seguir a Jesús cuando nos tratan injustamente",
@@ -1760,6 +1769,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué debemos elegir con cuidado lo que vemos, leemos o escuchamos?",
             textLSM: "",
             paragraphs: [12],
+            image: "/images/infografia-parrafo-12.png",
             answer: "Debemos elegir con cuidado lo que consumimos en medios porque las redes sociales están llenas de historias exageradas para alarmarnos, y los reporteros a menudo presentan noticias influidos por su propia opinión. Si pasamos mucho tiempo viendo, leyendo o escuchando noticias sobre injusticias, podríamos frustrarnos, desanimarnos cada vez más y olvidar que el Reino de Dios es la única solución.",
             answerBullets: [
               "Una cosa que ayuda a mantener la calma: elegir con cuidado lo que vemos, leemos o escuchamos",
@@ -1803,14 +1813,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             number: "13",
             textEs: "¿Cómo nos ayuda la lectura diaria de la Biblia?",
             textLSM: "",
-            paragraphs: [13]
+            paragraphs: [13],
+            image: "/images/infografia-parrafo-13.png"
           },
           {
             number: "14",
             textEs: "¿Cuál es una de las cosas que podemos hacer ahora? (Colosenses 3:10, 11).",
             textLSM: "",
             paragraphs: [14],
-            section: "¿QUÉ PODEMOS HACER AHORA?"
+            section: "¿QUÉ PODEMOS HACER AHORA?",
+            image: "/images/infografia-parrafo-14.png"
           },
           {
             number: "15",
