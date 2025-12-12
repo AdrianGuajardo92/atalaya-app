@@ -2488,6 +2488,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué nos enseña la creación sobre Jehová? (Mira también las imágenes).",
             textLSM: "",
             paragraphs: [3],
+            image: "https://i.imgur.com/pSYxoHm.png",
+            imageCaption: "La creación nos enseña que Jehová siempre ha sido feliz y quiere que nosotros también lo seamos. (Vea el párrafo 3).",
             answer: "La creación nos enseña que Jehová siempre ha sido feliz y quiere que nosotros también lo seamos. Por eso ha creado tantas cosas que nos llenan de alegría: nuestro hermoso planeta, una inmensa variedad de colores, deliciosos alimentos y animales que nos hacen reír con sus juegos. Sin duda, Jehová nos ama y desea que disfrutemos de la vida.",
             answerBullets: [
               "**Jehová siempre ha sido feliz** - Y quiere que nosotros también lo seamos",
@@ -2588,6 +2590,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué tenemos que hacer para sentirnos realmente felices?",
             textLSM: "",
             paragraphs: [7],
+            image: "https://i.imgur.com/I1i4eNg.png",
+            imageCaption: "Para sentirnos realmente felices debemos acercarnos cada vez más a Jehová. (Vea el párrafo 7).",
             answer: "Para sentirnos realmente felices debemos acercarnos cada vez más a Jehová. Cuanto más tiempo pasemos aprendiendo de él, mejor lo imitaremos y más felices seremos. Hacer su voluntad y saber que contamos con su aprobación también nos llena de alegría. Aunque a veces sintamos que hemos perdido la alegría, eso no significa que hayamos perdido la aprobación de Dios. Jehová entiende que somos imperfectos.",
             answerBullets: [
               "**Acercarnos cada vez más a Jehová** - Cuanto más tiempo aprendamos de él, más felices seremos",
@@ -2886,6 +2890,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué seremos felices si hacemos cosas por otros? (Mira también las imágenes).",
             textLSM: "",
             paragraphs: [16],
+            image: "https://i.imgur.com/ICyhoBS.png",
+            imageCaption: "Hay más felicidad en dar que en recibir. (Vea el párrafo 16).",
             answer: "Jesús nos enseñó que «hay más felicidad en dar que en recibir». Cuanto más pensamos en otros, menos pensamos en nosotros mismos, y eso nos hace felices. Podemos: animar a alguien que pasa por dificultades, escucharlo con empatía, demostrarle compasión, recordarle que puede desahogarse con Jehová, asegurarle que Jehová no lo ha abandonado, prepararle algo de comer, dar un paseo con él, o invitarlo a predicar. Al concentrarnos en otros, somos una herramienta en manos de Jehová.",
             answerBullets: [
               "**Hay más felicidad en dar** - Jesús lo enseñó (Hech. 20:35)",
