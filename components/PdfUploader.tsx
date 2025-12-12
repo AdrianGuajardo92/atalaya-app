@@ -24,6 +24,7 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFileWithName[]>([]);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [viewingPdf, setViewingPdf] = useState<PdfFile | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Cargar lista de PDFs al abrir
@@ -241,10 +242,14 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
                     key={pdf.filename}
                     className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200"
                   >
-                    <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setViewingPdf(pdf)}
+                      className="flex items-center gap-2 hover:bg-slate-100 rounded-lg px-2 py-1 -mx-2 -my-1 transition-colors"
+                      title="Ver PDF"
+                    >
                       <span className="text-red-600 text-xl">📄</span>
-                      <span className="font-medium text-slate-800">{pdf.name}</span>
-                    </div>
+                      <span className="font-medium text-slate-800 hover:text-blue-600 transition-colors">{pdf.name}</span>
+                    </button>
                     <button
                       onClick={() => handleDelete(pdf.filename)}
                       className="px-3 py-1 text-sm text-red-600 hover:bg-red-100 rounded-lg transition-colors"
@@ -270,6 +275,36 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
           </div>
         </div>
       </div>
+
+      {/* Modal Visor de PDF */}
+      {viewingPdf && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-5xl h-[90vh] flex flex-col overflow-hidden">
+            {/* Header del visor */}
+            <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white p-4 flex justify-between items-center shrink-0">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📄</span>
+                <h2 className="text-lg font-bold">{viewingPdf.name}</h2>
+              </div>
+              <button
+                onClick={() => setViewingPdf(null)}
+                className="text-white/80 hover:text-white text-2xl font-bold hover:bg-white/10 rounded-lg w-10 h-10 flex items-center justify-center transition-colors"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Contenido del PDF */}
+            <div className="flex-1 bg-slate-200">
+              <iframe
+                src={`/api/pdfs/${viewingPdf.filename}`}
+                className="w-full h-full border-0"
+                title={`Visor de ${viewingPdf.name}`}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
