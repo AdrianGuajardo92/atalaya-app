@@ -35,7 +35,7 @@ export default function ReviewQuestionCard({
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || reviewQuestion.questionLSM || '');
   const [isSaving, setIsSaving] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(true); // Expandido por defecto siempre
+  const [isExpanded, setIsExpanded] = useState(false); // Colapsado por defecto
 
   const handleSaveLSM = async () => {
     setIsSaving(true);
@@ -106,7 +106,7 @@ export default function ReviewQuestionCard({
           className="w-full mb-4 flex items-center justify-between px-4 py-3 bg-violet-50 hover:bg-violet-100 rounded-lg transition-colors"
         >
           <span className="font-semibold text-violet-800">
-            {isExpanded ? '▼ Ocultar contenido' : '▶ Mostrar contenido'}
+            {isExpanded ? '▼ Ocultar respuesta' : '▶ Ver respuesta'}
           </span>
           <span className="text-sm text-violet-600">
             {isExpanded ? 'Colapsar' : 'Expandir'}

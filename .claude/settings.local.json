@@ -23,8 +23,9 @@
       "Bash(fi)",
       "Bash(vercel env:*)",
       "Bash(npm run build:*)",
-      "Bash(tree:*)",
-      "Bash(npm install:*)"
+      "Bash(vercel:*)",
+      "WebFetch(domain:imgur.com)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

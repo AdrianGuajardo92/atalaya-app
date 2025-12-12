@@ -112,7 +112,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       }
     };
     loadCustomBullets();
-  }, [articleId, question.number, question.answerBullets]);
+  }, [articleId, question.number]); // FIXED: Removida dependencia question.answerBullets
 
   // Cargar tipos de bullets (directo/entrelazado) desde Vercel KV
   useEffect(() => {
@@ -436,7 +436,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   const saveBulletTypesToKV = async (types: Record<number, 'direct' | 'interlaced'>) => {
     try {
-      await fetch('/api/lsm', {
+      const response = await fetch('/api/lsm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -445,69 +445,72 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           lsmText: JSON.stringify(types)
         })
       });
+
+      if (!response.ok) {
+        console.error('Error saving bullet types: HTTP', response.status);
+        return false;
+      }
+      return true;
     } catch (error) {
       console.error('Error saving bullet types:', error);
+      return false;
     }
   };
 
   const toggleDirectType = async (index: number) => {
     // Función para marcar/desmarcar como respuesta directa
-    let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
+    const currentType = bulletTypes[index];
+    let newType: 'direct' | 'interlaced' | undefined;
 
-    setBulletTypes(prevTypes => {
-      const currentType = prevTypes[index];
-      let newType: 'direct' | 'interlaced' | undefined;
+    // Si es directa, desmarcar. Si no es directa, marcar como directa
+    if (currentType === 'direct') {
+      newType = undefined;
+    } else {
+      newType = 'direct';
+    }
 
-      // Si es directa, desmarcar. Si no es directa, marcar como directa
-      if (currentType === 'direct') {
-        newType = undefined;
-      } else {
-        newType = 'direct';
-      }
+    const newTypes = { ...bulletTypes };
+    if (newType === undefined) {
+      delete newTypes[index];
+    } else {
+      newTypes[index] = newType;
+    }
 
-      const newTypes = { ...prevTypes };
-      if (newType === undefined) {
-        delete newTypes[index];
-      } else {
-        newTypes[index] = newType;
-      }
-
-      newTypesResult = newTypes;
-      return newTypes;
-    });
-
-    // Guardar después de actualizar el estado
-    await saveBulletTypesToKV(newTypesResult);
+    // Guardar PRIMERO en KV, LUEGO actualizar el estado solo si fue exitoso
+    const success = await saveBulletTypesToKV(newTypes);
+    if (success) {
+      setBulletTypes(newTypes);
+    } else {
+      alert('Error al guardar el tipo de bullet. Por favor, intenta de nuevo.');
+    }
   };
 
   const toggleInterlacedType = async (index: number) => {
     // Función para marcar/desmarcar como entrelazado
-    let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
+    const currentType = bulletTypes[index];
+    let newType: 'direct' | 'interlaced' | undefined;
 
-    setBulletTypes(prevTypes => {
-      const currentType = prevTypes[index];
-      let newType: 'direct' | 'interlaced' | undefined;
+    // Si es entrelazado, desmarcar. Si no es entrelazado, marcar como entrelazado
+    if (currentType === 'interlaced') {
+      newType = undefined;
+    } else {
+      newType = 'interlaced';
+    }
 
-      // Si es entrelazado, desmarcar. Si no es entrelazado, marcar como entrelazado
-      if (currentType === 'interlaced') {
-        newType = undefined;
-      } else {
-        newType = 'interlaced';
-      }
+    const newTypes = { ...bulletTypes };
+    if (newType === undefined) {
+      delete newTypes[index];
+    } else {
+      newTypes[index] = newType;
+    }
 
-      const newTypes = { ...prevTypes };
-      if (newType === undefined) {
-        delete newTypes[index];
-      } else {
-        newTypes[index] = newType;
-      }
-
-      newTypesResult = newTypes;
-      return newTypes;
-    });
-
-    // Guardar después de actualizar el estado
-    await saveBulletTypesToKV(newTypesResult);
+    // Guardar PRIMERO en KV, LUEGO actualizar el estado solo si fue exitoso
+    const success = await saveBulletTypesToKV(newTypes);
+    if (success) {
+      setBulletTypes(newTypes);
+    } else {
+      alert('Error al guardar el tipo de bullet. Por favor, intenta de nuevo.');
+    }
   };
 
   const handleStartEditBullet = (index: number, text: string, e: React.MouseEvent) => {
