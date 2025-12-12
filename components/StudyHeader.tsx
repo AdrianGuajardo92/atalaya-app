@@ -57,6 +57,15 @@ export default function StudyHeader({
       handleSaveTitleLSM();
     }
   };
+
+  // Guardar al perder foco (clic fuera)
+  const handleBlurTitleLSM = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (relatedTarget && (relatedTarget.tagName === 'BUTTON')) {
+      return; // No guardar si se hizo clic en un botón
+    }
+    handleSaveTitleLSM();
+  };
   // Función para formatear el texto bíblico
   const formatBiblicalText = (text: string) => {
     const parts = text.split(/(".*?")/g);
@@ -167,6 +176,7 @@ export default function StudyHeader({
                 value={titleLSMEdit}
                 onChange={(e) => setTitleLSMEdit(e.target.value)}
                 onKeyPress={handleKeyPressTitleLSM}
+                onBlur={handleBlurTitleLSM}
                 placeholder="Escribe el título en LSM y presiona Enter para guardar..."
                 className="w-full px-4 py-3 border-2 border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 text-xl lg:text-2xl font-bold text-blue-900 resize-none uppercase"
                 rows={3}

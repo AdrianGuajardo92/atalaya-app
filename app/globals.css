@@ -67,3 +67,29 @@ body {
 .hide-scrollbar {
   -ms-overflow-style: none;
 }
+
+/* Estilos de impresión */
+@media print {
+  /* Ocultar elementos no imprimibles */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Evitar cortes en tarjetas de resumen */
+  .summary-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Fondo blanco para impresión */
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ajustar márgenes de página */
+  @page {
+    margin: 1.5cm;
+  }
+}

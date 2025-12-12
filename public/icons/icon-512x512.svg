@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#3b82f6" rx="51.2"/>
+  <g transform="translate(102.4, 76.8)">
+    <!-- Libro abierto -->
+    <path d="M153.6 51.2 
+             L153.6 281.6 
+             Q76.8 256 0 281.6
+             L0 51.2
+             Q76.8 25.6 153.6 51.2Z" 
+          fill="white" opacity="0.95"/>
+    <path d="M153.6 51.2 
+             L153.6 281.6 
+             Q230.4 256 307.2 281.6
+             L307.2 51.2
+             Q230.4 25.6 153.6 51.2Z" 
+          fill="white" opacity="0.9"/>
+    <!-- Líneas del libro -->
+    <line x1="25.6" y1="102.4" x2="128" y2="92.16" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+    <line x1="25.6" y1="153.6" x2="128" y2="143.36" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+    <line x1="25.6" y1="204.8" x2="128" y2="194.56" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+    <line x1="179.2" y1="92.16" x2="281.6" y2="102.4" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+    <line x1="179.2" y1="143.36" x2="281.6" y2="153.6" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+    <line x1="179.2" y1="194.56" x2="281.6" y2="204.8" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+  </g>
+</svg>

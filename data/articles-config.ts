@@ -13,7 +13,7 @@
 
 export const articlesConfig = {
   // Mes actual que se mostrará por defecto
-  defaultMonth: "2025-09", // Septiembre 2025
+  defaultMonth: "2025-10", // Octubre 2025
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
@@ -21,13 +21,15 @@ export const articlesConfig = {
     37,  // "La mejor manera de reaccionar ante las injusticias" (17-23 Nov)
     38,  // "Mostremos que respetamos a los demás" (24-30 Nov)
     39,  // "Ayudemos de inmediato a quienes tienen 'la actitud correcta'" (1-7 Dic)
-    // 40,
-    // 41,
+    40,  // "Jehová es nuestra 'máxima alegría'" (8-14 Dic)
+    41,  // "El amor de Dios dura para siempre" (15-21 Dic)
+    42,  // "Cómo mejorar las oraciones" (22-28 Dic)
+    43,  // "No nos olvidemos de orar por otros" (29 Dic - 4 Ene)
   ],
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 37,
+  defaultArticleNumber: 40,
 };
 
 /**

@@ -336,6 +336,19 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     // Shift+Enter permite salto de línea normal
   };
 
+  // Guardar al perder foco (clic fuera)
+  const handleBlurLSM = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    // Verificar que el nuevo elemento con foco no sea un botón dentro del mismo contenedor
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (relatedTarget && (relatedTarget.tagName === 'BUTTON')) {
+      return; // No guardar si se hizo clic en un botón (Guardar o Cancelar)
+    }
+    // Guardar automáticamente
+    if (!isSaving) {
+      handleSaveLSM();
+    }
+  };
+
   const handleSaveSectionLSM = async () => {
     setIsSavingSection(true);
     try {
@@ -380,6 +393,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     else if (e.key === 'Escape') {
       e.preventDefault();
       handleCancelSectionEdit();
+    }
+  };
+
+  // Guardar sección al perder foco (clic fuera)
+  const handleBlurSectionLSM = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (relatedTarget && (relatedTarget.tagName === 'BUTTON')) {
+      return;
+    }
+    if (!isSavingSection) {
+      handleSaveSectionLSM();
     }
   };
 
@@ -820,6 +844,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 value={editedSectionLSM}
                 onChange={(e) => setEditedSectionLSM(e.target.value)}
                 onKeyDown={handleSectionKeyDown}
+                onBlur={handleBlurSectionLSM}
                 className="w-full p-4 border-2 border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 text-xl font-semibold text-slate-900 bg-white shadow-inner"
                 rows={3}
                 placeholder="Escribe el subtítulo en LSM..."
@@ -926,6 +951,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   value={editedLSM}
                   onChange={(e) => setEditedLSM(e.target.value)}
                   onKeyDown={handleKeyDown}
+                  onBlur={handleBlurLSM}
                   className="w-full p-4 border-2 border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 text-xl font-semibold text-slate-900 bg-white shadow-inner"
                   rows={4}
                   placeholder="Escribe la pregunta en LSM..."

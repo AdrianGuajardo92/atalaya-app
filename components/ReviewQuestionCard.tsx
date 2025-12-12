@@ -84,6 +84,17 @@ export default function ReviewQuestionCard({
     }
   };
 
+  // Guardar al perder foco (clic fuera)
+  const handleBlurLSM = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (relatedTarget && (relatedTarget.tagName === 'BUTTON')) {
+      return; // No guardar si se hizo clic en un botón
+    }
+    if (!isSaving) {
+      handleSaveLSM();
+    }
+  };
+
   const currentLSMText = lsmText || reviewQuestion.questionLSM;
 
   return (
@@ -150,6 +161,7 @@ export default function ReviewQuestionCard({
             value={editedLSM}
             onChange={(e) => setEditedLSM(e.target.value)}
             onKeyDown={handleKeyDown}
+            onBlur={handleBlurLSM}
             className="w-full p-4 border-2 border-violet-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-violet-600 text-xl font-semibold text-slate-900 bg-white shadow-inner"
             rows={4}
             placeholder="Escribe la pregunta en LSM..."

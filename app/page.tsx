@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
+import SummaryView from '@/components/SummaryView';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
+import PdfUploader from '@/components/PdfUploader';
 import { atalayaDatabase, getArticleById, getMonthArticles } from '@/data/atalaya-data';
 import { articlesConfig, getDefaultArticleId } from '@/data/articles-config';
 import { ArticleData } from '@/types/atalaya';
@@ -18,6 +20,7 @@ export default function Home() {
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
   // Estados existentes
+  const [viewMode, setViewMode] = useState<'study' | 'summary'>('study');
   const [navigationMode, setNavigationMode] = useState<'scroll' | 'paginated'>('scroll');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
@@ -27,6 +30,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [showPdfUploader, setShowPdfUploader] = useState(false);
 
   // Referencia para hacer scroll al contenido
   const contentRef = useRef<HTMLDivElement>(null);
@@ -271,6 +275,21 @@ export default function Home() {
       {/* Botón de instrucciones */}
       <InstructionsButton />
 
+      {/* Botón de gestión de PDFs */}
+      <button
+        onClick={() => setShowPdfUploader(true)}
+        className="fixed bottom-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
+        title="Gestionar PDFs"
+      >
+        <span className="text-xl">📁</span>
+      </button>
+
+      {/* Modal de gestión de PDFs */}
+      <PdfUploader
+        isOpen={showPdfUploader}
+        onClose={() => setShowPdfUploader(false)}
+      />
+
       {/* Indicador de progreso de scroll (solo en modo scroll) */}
       {navigationMode === 'scroll' && showScrollIndicator && (
         <div className="fixed top-20 right-4 z-10 bg-slate-800 text-white rounded-lg shadow-lg px-4 py-2 transition-opacity duration-300">
@@ -279,52 +298,84 @@ export default function Home() {
         </div>
       )}
 
-      {/* Control de modo de navegación */}
+      {/* Control de modo de vista y navegación */}
       <div className="fixed top-4 right-4 z-10 bg-white rounded-lg shadow-lg p-2">
-        <div className="flex gap-2">
+        {/* Selector de vista principal */}
+        <div className="flex gap-2 mb-2">
           <button
-            onClick={() => setNavigationMode('scroll')}
+            onClick={() => setViewMode('study')}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
-              navigationMode === 'scroll'
-                ? 'bg-slate-700 text-white'
+              viewMode === 'study'
+                ? 'bg-blue-600 text-white'
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            📜 Scroll
+            Estudio
           </button>
           <button
-            onClick={() => setNavigationMode('paginated')}
+            onClick={() => setViewMode('summary')}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
-              navigationMode === 'paginated'
-                ? 'bg-slate-700 text-white'
+              viewMode === 'summary'
+                ? 'bg-blue-600 text-white'
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            ⏮️⏭️ Navegación
+            Resumen
           </button>
         </div>
+
+        {/* Selector de navegación (solo en modo estudio) */}
+        {viewMode === 'study' && (
+          <div className="flex gap-2 pt-2 border-t border-slate-200">
+            <button
+              onClick={() => setNavigationMode('scroll')}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                navigationMode === 'scroll'
+                  ? 'bg-slate-700 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Scroll
+            </button>
+            <button
+              onClick={() => setNavigationMode('paginated')}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                navigationMode === 'paginated'
+                  ? 'bg-slate-700 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Paginado
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Contenido principal */}
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <StudyHeader
-          song={currentArticle.song}
-          title={currentArticle.title}
-          biblicalText={currentArticle.biblicalText}
-          theme={currentArticle.theme}
-          articleNumber={currentArticle.metadata.articleNumber}
-          week={currentArticle.metadata.week}
-          month={currentArticle.metadata.month}
-          year={currentArticle.metadata.year}
-          articles={monthArticles}
-          currentArticleId={currentArticleId}
-          onArticleChange={handleArticleChange}
-          titleLSM={lsmData['title']}
-          onTitleLSMUpdate={handleTitleLSMUpdate}
-        />
+        {/* Vista de Resumen */}
+        {viewMode === 'summary' ? (
+          <SummaryView article={currentArticle} lsmData={lsmData} />
+        ) : (
+          <>
+            <StudyHeader
+              song={currentArticle.song}
+              title={currentArticle.title}
+              biblicalText={currentArticle.biblicalText}
+              theme={currentArticle.theme}
+              articleNumber={currentArticle.metadata.articleNumber}
+              week={currentArticle.metadata.week}
+              month={currentArticle.metadata.month}
+              year={currentArticle.metadata.year}
+              articles={monthArticles}
+              currentArticleId={currentArticleId}
+              onArticleChange={handleArticleChange}
+              titleLSM={lsmData['title']}
+              onTitleLSMUpdate={handleTitleLSMUpdate}
+            />
 
-        {/* Modo Scroll - Muestra todas las preguntas */}
-        {navigationMode === 'scroll' && (
+            {/* Modo Scroll - Muestra todas las preguntas */}
+            {navigationMode === 'scroll' && (
           <>
             <div className="space-y-6">
               {currentArticle.questions.map((question, index) => (
@@ -552,6 +603,8 @@ export default function Home() {
               </div>
             </div>
           </div>
+        )}
+          </>
         )}
       </div>
     </div>
