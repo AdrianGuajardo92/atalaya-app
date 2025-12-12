@@ -23,9 +23,16 @@
       "Bash(fi)",
       "Bash(vercel env:*)",
       "Bash(npm run build:*)",
+<<<<<<< Updated upstream
       "Bash(vercel:*)",
       "WebFetch(domain:imgur.com)",
       "Bash(node:*)"
+=======
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
+>>>>>>> Stashed changes
     ],
     "deny": [],
     "ask": []
