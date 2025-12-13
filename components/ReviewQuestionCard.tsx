@@ -1,9 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ReviewQuestion } from '@/types/atalaya';
-import FlashCards from './FlashCards';
-import BiblicalCards from './BiblicalCards';
 
 interface ReviewQuestionCardProps {
   reviewQuestion: ReviewQuestion;
@@ -24,11 +22,6 @@ export default function ReviewQuestionCard({
   index,
   lsmText,
   onLSMUpdate,
-  favorites = {},
-  onToggleFavorite = () => {},
-  allLsmData = {},
-  hiddenCards = {},
-  onToggleHidden = () => {},
   isNavigationMode = false,
   articleId
 }: ReviewQuestionCardProps) {
@@ -36,6 +29,139 @@ export default function ReviewQuestionCard({
   const [editedLSM, setEditedLSM] = useState(lsmText || reviewQuestion.questionLSM || '');
   const [isSaving, setIsSaving] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true); // Expandido por defecto siempre
+
+  // Estado para oraciones de respuesta completadas (comentadas en la reunión)
+  const [completedSentences, setCompletedSentences] = useState<Record<string, boolean>>({});
+
+  // Estado para notas personales
+  const [personalNotes, setPersonalNotes] = useState<string[]>([]);
+  const [isAddingNote, setIsAddingNote] = useState(false);
+  const [editingNoteIndex, setEditingNoteIndex] = useState<number | null>(null);
+  const [currentNoteText, setCurrentNoteText] = useState('');
+  const [confirmingDeleteNote, setConfirmingDeleteNote] = useState<number | null>(null);
+
+  // Cargar estado de oraciones completadas desde localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(`completed-sentences-${articleId}`);
+      if (saved) {
+        setCompletedSentences(JSON.parse(saved));
+      }
+    }
+  }, [articleId]);
+
+  // Guardar oraciones completadas en localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined' && Object.keys(completedSentences).length > 0) {
+      localStorage.setItem(`completed-sentences-${articleId}`, JSON.stringify(completedSentences));
+    }
+  }, [completedSentences, articleId]);
+
+  // Cargar notas personales desde localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(`review-notes-${articleId}`);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          const notes = parsed[`review-${index}`];
+          if (Array.isArray(notes)) {
+            setPersonalNotes(notes);
+          }
+        } catch (e) {
+          console.error('Error parsing review notes:', e);
+        }
+      }
+    }
+  }, [articleId, index]);
+
+  // Guardar notas personales en localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(`review-notes-${articleId}`);
+      const allNotes = saved ? JSON.parse(saved) : {};
+      allNotes[`review-${index}`] = personalNotes;
+      localStorage.setItem(`review-notes-${articleId}`, JSON.stringify(allNotes));
+    }
+  }, [personalNotes, articleId, index]);
+
+  // Función para dividir la respuesta en oraciones
+  const splitAnswerIntoSentences = (answer: string): string[] => {
+    if (!answer) return [];
+    const sentences = answer
+      .split(/(?<=[.!?])\s+/)
+      .map(s => s.trim())
+      .filter(s => s.length > 10);
+    return sentences;
+  };
+
+  // Toggle para marcar oración como completada
+  const toggleSentenceCompleted = (sentenceId: string) => {
+    setCompletedSentences(prev => ({
+      ...prev,
+      [sentenceId]: !prev[sentenceId]
+    }));
+  };
+
+  // Funciones para notas personales
+  const handleAddNote = () => {
+    if (currentNoteText.trim()) {
+      setPersonalNotes(prev => [...prev, currentNoteText.trim()]);
+      setCurrentNoteText('');
+      setIsAddingNote(false);
+    }
+  };
+
+  const handleStartEditNote = (idx: number) => {
+    setEditingNoteIndex(idx);
+    setCurrentNoteText(personalNotes[idx]);
+  };
+
+  const handleSaveEditedNote = () => {
+    if (editingNoteIndex === null) return;
+    if (currentNoteText.trim()) {
+      setPersonalNotes(prev => {
+        const newNotes = [...prev];
+        newNotes[editingNoteIndex] = currentNoteText.trim();
+        return newNotes;
+      });
+    }
+    setEditingNoteIndex(null);
+    setCurrentNoteText('');
+  };
+
+  const handleCancelNote = () => {
+    setIsAddingNote(false);
+    setEditingNoteIndex(null);
+    setCurrentNoteText('');
+    setConfirmingDeleteNote(null);
+  };
+
+  const handleDeleteNoteClick = (idx: number) => {
+    if (confirmingDeleteNote === idx) {
+      setPersonalNotes(prev => prev.filter((_, i) => i !== idx));
+      setConfirmingDeleteNote(null);
+    } else {
+      setConfirmingDeleteNote(idx);
+      setTimeout(() => {
+        setConfirmingDeleteNote(prev => prev === idx ? null : prev);
+      }, 3000);
+    }
+  };
+
+  const handleNoteKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>, isEditing: boolean) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (isEditing) {
+        handleSaveEditedNote();
+      } else {
+        handleAddNote();
+      }
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      handleCancelNote();
+    }
+  };
 
   const handleSaveLSM = async () => {
     setIsSaving(true);
@@ -189,94 +315,159 @@ export default function ReviewQuestionCard({
       {/* Contenido expandible - solo se muestra si isExpanded es true */}
       {isExpanded && (
         <>
-          {/* Respuesta */}
+          {/* Respuesta en oraciones numeradas */}
           {reviewQuestion.answer && (
             <div className="mt-4 p-4 bg-emerald-50 rounded-lg border-l-2 border-emerald-500">
-              <p className="text-sm font-semibold text-emerald-700 mb-2">💡 Respuesta:</p>
-              <p className="text-slate-800 leading-relaxed">{reviewQuestion.answer}</p>
-            </div>
-          )}
+              <div className="text-xs font-semibold text-emerald-700 mb-3">💡 Respuesta</div>
 
-          {/* Puntos clave como tarjetas pequeñas */}
-          {reviewQuestion.answerBullets && (
-            <div className="mt-4 p-4 bg-emerald-50 rounded-lg border-l-2 border-emerald-500">
-              <div className="border-t border-emerald-200 pt-3">
-                <div className="text-xs font-semibold text-emerald-700 mb-3">🔑 Puntos Clave</div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                  {(Array.isArray(reviewQuestion.answerBullets)
-                    ? reviewQuestion.answerBullets
-                    : reviewQuestion.answerBullets.split('\n').filter(b => b.trim())
-                  ).map((bullet, idx) => {
-                    // Limpiar línea vacía
-                    if (!bullet.trim()) return null;
+              <div className="space-y-2">
+                {splitAnswerIntoSentences(reviewQuestion.answer).map((sentence, idx) => {
+                  const sentenceId = `review-${index}-sentence${idx}`;
+                  const isCommented = completedSentences[sentenceId];
 
-                    return (
-                      <div
-                        key={idx}
-                        className="border rounded-lg p-3 transition-all bg-emerald-50 border-emerald-200 hover:bg-emerald-100"
-                      >
-                        <div className="flex items-start gap-2">
-                          <span className="text-emerald-600 text-xs flex-shrink-0 mt-0.5 font-bold">●</span>
-                          <p className="text-xs text-slate-800 leading-relaxed font-semibold">
-                            {bullet.split(/(\*\*.*?\*\*)/g).map((part, partIdx) => {
-                              if (part.startsWith('**') && part.endsWith('**')) {
-                                return (
-                                  <strong key={partIdx} className="font-bold text-slate-900 block mb-1">
-                                    {part.slice(2, -2)}
-                                  </strong>
-                                );
-                              }
-                              // Quitar el bullet point si existe al principio
-                              const cleanedPart = part.replace(/^[•·]\s*/, '');
-                              return <span key={partIdx}>{cleanedPart}</span>;
-                            })}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                  return (
+                    <div
+                      key={idx}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSentenceCompleted(sentenceId);
+                      }}
+                      className={`
+                        flex items-start gap-3 p-2 rounded-lg cursor-pointer transition-all
+                        ${isCommented
+                          ? 'bg-emerald-200/50 border border-emerald-300'
+                          : 'bg-white/50 border border-emerald-100 hover:bg-emerald-100/50'
+                        }
+                      `}
+                    >
+                      <span className={`
+                        flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs mt-0.5
+                        ${isCommented
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-emerald-100 text-emerald-600'
+                        }
+                      `}>
+                        {idx + 1}
+                      </span>
+                      <p className={`
+                        text-sm leading-relaxed flex-1
+                        ${isCommented
+                          ? 'text-emerald-800'
+                          : 'text-slate-700'
+                        }
+                      `}>
+                        {sentence}
+                      </p>
+                      {isCommented && (
+                        <span className="text-emerald-500 text-sm">✓</span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
 
-          {/* Tarjetas didácticas */}
-          {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (
-            <FlashCards
-              cards={
-                typeof reviewQuestion.flashcards[0] === 'string'
-                  ? (reviewQuestion.flashcards as string[]).map((q) => ({ question: q, answer: '' }))
-                  : reviewQuestion.flashcards as Array<{question: string; answer: string; questionLSM?: string; answerLSM?: string}>
-              }
-              questionNumber={`review-${index}`}
-              favorites={favorites}
-              onToggleFavorite={onToggleFavorite}
-              lsmData={allLsmData}
-              onLSMUpdate={(key, text) => {
-                // Guardar directamente en la API
-                fetch('/api/lsm', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ articleId: articleId, questionNumber: key, lsmText: text })
-                });
-              }}
-              hiddenCards={hiddenCards}
-              onToggleHidden={onToggleHidden}
-              articleId={articleId}
-            />
-          )}
+          {/* Sección de notas personales */}
+          <div className="mt-4 p-4 bg-amber-50 rounded-lg border-l-2 border-amber-400">
+            <div className="text-xs font-semibold text-amber-700 mb-3">📝 Mis Notas</div>
 
-          {/* Textos bíblicos */}
-          {reviewQuestion.biblicalCards && reviewQuestion.biblicalCards.length > 0 && (
-            <BiblicalCards
-              cards={reviewQuestion.biblicalCards}
-              questionNumber={`review-${index}`}
-              favorites={favorites}
-              onToggleFavorite={onToggleFavorite}
-              hiddenCards={hiddenCards}
-              onToggleHidden={onToggleHidden}
-            />
-          )}
+            {/* Lista de notas existentes */}
+            {personalNotes.length > 0 && (
+              <div className="space-y-2 mb-3">
+                {personalNotes.map((note, idx) => (
+                  <div key={idx} className="bg-white rounded-lg p-3 border border-amber-200 group/note">
+                    {editingNoteIndex === idx ? (
+                      <div>
+                        <textarea
+                          value={currentNoteText}
+                          onChange={(e) => setCurrentNoteText(e.target.value)}
+                          onKeyDown={(e) => handleNoteKeyDown(e, true)}
+                          className="w-full p-2 border border-amber-300 rounded focus:outline-none focus:ring-1 focus:ring-amber-500 text-sm text-slate-800"
+                          rows={2}
+                          autoFocus
+                        />
+                        <div className="flex gap-1 mt-2">
+                          <button
+                            onClick={handleSaveEditedNote}
+                            className="px-2 py-1 bg-amber-500 text-white text-xs rounded hover:bg-amber-600"
+                          >
+                            💾
+                          </button>
+                          <button
+                            onClick={handleCancelNote}
+                            className="px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400"
+                          >
+                            ✖️
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-start justify-between">
+                        <p className="text-sm text-slate-700 flex-1">{note}</p>
+                        <div className="flex gap-1 opacity-0 group-hover/note:opacity-100 transition-opacity ml-2">
+                          <button
+                            onClick={() => handleStartEditNote(idx)}
+                            className="p-1 text-amber-600 hover:bg-amber-100 rounded"
+                            title="Editar"
+                          >
+                            ✏️
+                          </button>
+                          <button
+                            onClick={() => handleDeleteNoteClick(idx)}
+                            className={`p-1 rounded transition-all ${
+                              confirmingDeleteNote === idx
+                                ? 'bg-red-500 text-white animate-pulse'
+                                : 'text-red-500 hover:bg-red-100'
+                            }`}
+                            title={confirmingDeleteNote === idx ? '¿Borrar?' : 'Eliminar'}
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Agregar nueva nota */}
+            {isAddingNote ? (
+              <div>
+                <textarea
+                  value={currentNoteText}
+                  onChange={(e) => setCurrentNoteText(e.target.value)}
+                  onKeyDown={(e) => handleNoteKeyDown(e, false)}
+                  className="w-full p-2 border border-amber-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500 text-sm text-slate-800"
+                  rows={2}
+                  placeholder="Escribe tu nota..."
+                  autoFocus
+                />
+                <div className="flex gap-1 mt-2">
+                  <button
+                    onClick={handleAddNote}
+                    className="px-3 py-1 bg-amber-500 text-white text-xs rounded hover:bg-amber-600"
+                  >
+                    💾 Guardar
+                  </button>
+                  <button
+                    onClick={handleCancelNote}
+                    className="px-3 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400"
+                  >
+                    ✖️ Cancelar
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsAddingNote(true)}
+                className="w-full py-2 bg-amber-100 border-2 border-dashed border-amber-300 rounded-lg hover:bg-amber-200 transition-colors text-amber-700 font-medium text-sm"
+              >
+                ➕ Agregar nota
+              </button>
+            )}
+          </div>
         </>
       )}
     </div>

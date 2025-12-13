@@ -2643,6 +2643,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 question: "¿Qué dice Proverbios 15:13 sobre cómo nos afectan los problemas?",
                 answer: "«Un corazón angustiado aplasta el ánimo». Los golpes de la vida pueden hundirnos física y emocionalmente."
+              },
+              {
+                question: "EXPERIENCIA: ¿Qué le pasó al anciano Babis y cómo se sentía?",
+                answer: "Perdió a su hermano y a sus padres en solo cuatro años. Sentía que estaba solo, que nadie podía ayudarlo, y le partía el corazón no poder pasar tanto tiempo con ellos como quería."
               }
             ],
             biblicalCards: [
@@ -2668,12 +2672,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué consejo les dio Jehová a los judíos desterrados en Babilonia?",
+                question: "HISTORIA BÍBLICA: ¿Qué consejo les dio Jehová a los judíos desterrados en Babilonia?",
                 answer: "Que trataran de aceptar la situación difícil y llevarla lo mejor posible (Jeremías 29:4-7, 10)."
               },
               {
                 question: "¿Qué podemos hacer para recuperar la alegría según el párrafo 9?",
                 answer: "Ser realistas, aceptar nuestras circunstancias, agradecer las cosas buenas y recordar que Jehová está a nuestro lado."
+              },
+              {
+                question: "EXPERIENCIA: ¿Qué le pasó a Efi y cómo mantiene una actitud positiva?",
+                answer: "Quedó paralítica a causa de un accidente. Dice que Jehová, su familia y la congregación la ayudaron muchísimo. Siente que rendirse sería una falta de gratitud, así que se esfuerza por mantener una actitud positiva y alegre."
               }
             ],
             biblicalCards: [
@@ -2775,6 +2783,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 question: "¿Por qué debemos adaptar nuestras metas a nuestras circunstancias?",
                 answer: "Porque si no son realistas podríamos desanimarnos. Las circunstancias pueden cambiar y es frustrante querer hacer cosas pero no poder lograrlas."
+              },
+              {
+                question: "EXPERIENCIA: ¿Qué le pasó a Holly, la precursora mencionada en el párrafo?",
+                answer: "Quería ir a la Escuela para Evangelizadores del Reino, servir en el extranjero y trabajar en construcción en Ramapo. Pero sus circunstancias cambiaron y no pudo alcanzar ninguna de esas metas, lo cual le dio una tristeza enorme."
               }
             ],
             biblicalCards: [
@@ -2810,6 +2822,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 question: "¿Qué hace que los siervos de Jehová seamos valiosos para él?",
                 answer: "No son las responsabilidades que tenemos, sino nuestras bonitas cualidades. Lo que somos por dentro pesa más que lo que hacemos."
+              },
+              {
+                question: "EXPERIENCIA: ¿Qué hace Holly cuando se siente desanimada?",
+                answer: "Se para a pensar y se recuerda a sí misma que tiene toda una eternidad por delante. Tiene reservadas algunas metas para el nuevo mundo, y confía en que Jehová la ayudará a cumplirlas."
               }
             ],
             biblicalCards: [
@@ -2846,6 +2862,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 question: "¿Qué promueven las redes sociales como clave de la felicidad?",
                 answer: "Viajar, ir de compras, dedicarte a tus hobbies y darte todos los caprichos que puedas."
+              },
+              {
+                question: "EXPERIENCIA: ¿Qué dice Eva, la precursora, sobre centrarse en uno mismo?",
+                answer: "«Cuando te centras solo en ti y en tus deseos, nunca tienes suficiente, siempre te quedas con ganas de más». Esa actitud produce tristeza y decepción."
               }
             ],
             biblicalCards: []
@@ -2864,7 +2884,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué experimento hizo el rey Salomón y cuál fue el resultado?",
+                question: "HISTORIA BÍBLICA: ¿Qué experimento hizo el rey Salomón y cuál fue el resultado?",
                 answer: "Se dedicó a satisfacer todos sus deseos personales (comida, música, lujos). Acabó tan decepcionado que escribió que «el ojo no se satisface con lo que ve»."
               },
               {
@@ -2907,6 +2927,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 question: "¿Qué cosas prácticas podemos hacer por otros para ser felices?",
                 answer: "Escucharlos con empatía, demostrar compasión, animarlos, prepararles comida, dar un paseo, invitarlos a predicar."
+              },
+              {
+                question: "EXPERIENCIA: ¿Qué hace el anciano Alekos para ser feliz?",
+                answer: "Se centra en hacer cosas sencillas por los demás. Dice: «Cuanto más pienso en otros, menos pienso en mí, y eso me hace feliz»."
               }
             ],
             biblicalCards: [
@@ -2985,13 +3009,16 @@ export const atalayaDatabase: AtalayaDatabase = {
         ],
         reviewQuestions: [
           {
-            question: "¿Por qué son felices Jehová y Jesús?"
+            question: "¿Por qué son felices Jehová y Jesús?",
+            answer: "Jehová es el «Dios feliz» porque sabe que el sufrimiento es temporal y él le ha puesto fecha de caducidad. No deja que el sufrimiento del mundo le robe la alegría. Jesús es la persona más feliz después de Jehová porque es «la imagen del Dios invisible», ha pasado más tiempo que nadie junto a Jehová, y siempre hace lo que su Padre quiere. Debido a su obediencia, cuenta con el favor y la aprobación de Jehová."
           },
           {
-            question: "¿Qué tres \"ladrones\" pueden robarnos la alegría?"
+            question: "¿Qué tres \"ladrones\" pueden robarnos la alegría?",
+            answer: "Los tres ladrones son: (1) Los problemas de la vida - persecución, desastres naturales, pobreza, enfermedad o edad avanzada pueden hundirnos física y emocionalmente. (2) Las expectativas que no se cumplen - metas no realistas pueden desanimarnos cuando nuestras circunstancias cambian. (3) Centrarte solo en ti y en tus deseos - las redes sociales promueven que la felicidad está en viajar, comprar y darte caprichos, pero esa actitud produce tristeza y decepción porque nunca tienes suficiente."
           },
           {
-            question: "¿Qué podemos hacer para recuperar la alegría?"
+            question: "¿Qué podemos hacer para recuperar la alegría?",
+            answer: "Para el ladrón 1 (los problemas de la vida): ser realistas, aceptar nuestras circunstancias, agradecer las cosas buenas y recordar que Jehová está a nuestro lado. Para el ladrón 2 (las expectativas que no se cumplen): recordar que Jehová no es exigente, lo que somos por dentro pesa más que lo que hacemos, y centrarnos en metas que sí están a nuestro alcance. Para el ladrón 3 (centrarte solo en ti): aplicar el principio de Jesús «hay más felicidad en dar que en recibir», hacer cosas sencillas por otros como escucharlos, animarlos, o invitarlos a predicar."
           }
         ],
         finalSong: "Canción 155: Mi mayor felicidad"
