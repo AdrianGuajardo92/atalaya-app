@@ -7,6 +7,12 @@ interface FlashCard {
   answer: string;
 }
 
+// Tarjeta personalizada del usuario (solo pregunta)
+interface CustomCard {
+  id: string;
+  question: string;
+}
+
 interface FlashCardsProps {
   cards: FlashCard[];
   questionNumber: string; // Para identificar a qué pregunta pertenecen estas tarjetas
@@ -35,6 +41,15 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
   const [editedContent, setEditedContent] = useState('');
   // Estado para almacenar contenido personalizado de las tarjetas
   const [customContent, setCustomContent] = useState<Record<string, string>>({});
+  // Estado para tarjetas personalizadas del usuario (solo pregunta)
+  const [customCards, setCustomCards] = useState<CustomCard[]>([]);
+  // Estado para mostrar formulario de agregar tarjeta
+  const [isAddingCard, setIsAddingCard] = useState(false);
+  // Estado para el texto de la nueva tarjeta
+  const [newCardQuestion, setNewCardQuestion] = useState('');
+  // Estado para editar tarjeta personalizada
+  const [editingCustomCard, setEditingCustomCard] = useState<string | null>(null);
+  const [editedCustomQuestion, setEditedCustomQuestion] = useState('');
 
   // Cargar contenido personalizado desde localStorage
   useEffect(() => {
@@ -47,8 +62,17 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
           console.error('Error parsing flashcard content:', e);
         }
       }
+      // Cargar tarjetas personalizadas
+      const savedCustomCards = localStorage.getItem(`custom-flashcards-${articleId}-${questionNumber}`);
+      if (savedCustomCards) {
+        try {
+          setCustomCards(JSON.parse(savedCustomCards));
+        } catch (e) {
+          console.error('Error parsing custom flashcards:', e);
+        }
+      }
     }
-  }, [articleId]);
+  }, [articleId, questionNumber]);
 
   // Guardar contenido personalizado en localStorage
   useEffect(() => {
@@ -56,6 +80,13 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
       localStorage.setItem(`flashcard-content-${articleId}`, JSON.stringify(customContent));
     }
   }, [customContent, articleId]);
+
+  // Guardar tarjetas personalizadas en localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`custom-flashcards-${articleId}-${questionNumber}`, JSON.stringify(customCards));
+    }
+  }, [customCards, articleId, questionNumber]);
 
   // Efecto para resetear confirmación de borrado al hacer clic fuera
   useEffect(() => {
@@ -187,12 +218,81 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
     return customContent[key] || original;
   };
 
+  // Funciones para tarjetas personalizadas
+  const handleAddCustomCard = () => {
+    if (!newCardQuestion.trim()) return;
+    const newCard: CustomCard = {
+      id: `custom-${Date.now()}`,
+      question: newCardQuestion.trim()
+    };
+    setCustomCards(prev => [...prev, newCard]);
+    setNewCardQuestion('');
+    setIsAddingCard(false);
+  };
+
+  const handleDeleteCustomCard = (cardId: string) => {
+    setCustomCards(prev => prev.filter(card => card.id !== cardId));
+    if (deleteConfirm === cardId) setDeleteConfirm(null);
+  };
+
+  const handleStartEditCustomCard = (card: CustomCard) => {
+    setEditingCustomCard(card.id);
+    setEditedCustomQuestion(card.question);
+  };
+
+  const handleSaveCustomCard = () => {
+    if (!editingCustomCard || !editedCustomQuestion.trim()) return;
+    setCustomCards(prev => prev.map(card =>
+      card.id === editingCustomCard
+        ? { ...card, question: editedCustomQuestion.trim() }
+        : card
+    ));
+    setEditingCustomCard(null);
+    setEditedCustomQuestion('');
+  };
+
+  const handleCancelEditCustomCard = () => {
+    setEditingCustomCard(null);
+    setEditedCustomQuestion('');
+  };
+
+  const handleAddCardKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleAddCustomCard();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setIsAddingCard(false);
+      setNewCardQuestion('');
+    }
+  };
+
+  const handleEditCustomKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSaveCustomCard();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      handleCancelEditCustomCard();
+    }
+  };
+
+  const totalCards = visibleCards.length + customCards.length;
+
   return (
     <div className="mt-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border-2 border-orange-300">
       <div className="flex items-center justify-between mb-4">
         <div className="text-xs font-semibold text-orange-700">🎴 Tarjetas Didácticas</div>
-        <div className="text-xs text-orange-600 font-medium">
-          {visibleCards.length} {visibleCards.length === 1 ? 'tarjeta' : 'tarjetas'}
+        <div className="flex items-center gap-2">
+          <div className="text-xs text-orange-600 font-medium">
+            {totalCards} {totalCards === 1 ? 'tarjeta' : 'tarjetas'}
+          </div>
+          <button
+            onClick={() => setIsAddingCard(true)}
+            className="text-xs bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 rounded-lg font-medium transition-colors flex items-center gap-1"
+          >
+            <span>+</span> Añadir
+          </button>
         </div>
       </div>
 
@@ -530,6 +630,161 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
             </div>
           );
         })}
+
+        {/* Tarjetas personalizadas del usuario */}
+        {customCards.map((customCard) => {
+          const isEditing = editingCustomCard === customCard.id;
+          const customFavoriteId = `custom-${questionNumber}-${customCard.id}`;
+          const isCustomFavorite = favorites[customFavoriteId] || false;
+
+          return (
+            <div key={customCard.id}>
+              <div
+                className="relative min-h-[250px] group"
+              >
+                {/* Botones de control */}
+                <div className="absolute top-2 right-2 z-10 flex gap-1">
+                  {/* Indicador de tarjeta personalizada */}
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-green-500 text-white shadow-md" title="Tarjeta personalizada">
+                    <span className="text-sm">👤</span>
+                  </div>
+
+                  {/* Botón de favorito */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onToggleFavorite(customFavoriteId);
+                    }}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
+                      isCustomFavorite
+                        ? 'bg-yellow-400 hover:bg-yellow-500 scale-110'
+                        : 'bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100'
+                    }`}
+                    title={isCustomFavorite ? 'Quitar de favoritos' : 'Marcar como favorito'}
+                  >
+                    <span className="text-lg">{isCustomFavorite ? '⭐' : '☆'}</span>
+                  </button>
+
+                  {/* Botón de editar */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleStartEditCustomCard(customCard);
+                    }}
+                    className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md bg-white/80 hover:bg-blue-100 opacity-0 group-hover:opacity-100"
+                    title="Editar tarjeta"
+                  >
+                    <span className="text-lg">✏️</span>
+                  </button>
+
+                  {/* Botón de borrar */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (deleteConfirm === customCard.id) {
+                        handleDeleteCustomCard(customCard.id);
+                      } else {
+                        setDeleteConfirm(customCard.id);
+                      }
+                    }}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
+                      deleteConfirm === customCard.id
+                        ? 'bg-red-500 scale-110 opacity-100'
+                        : 'bg-slate-300 hover:bg-slate-400 opacity-0 group-hover:opacity-100'
+                    }`}
+                    title={deleteConfirm === customCard.id ? 'Clic de nuevo para eliminar' : 'Eliminar tarjeta'}
+                  >
+                    <span className={`text-lg ${deleteConfirm === customCard.id ? 'filter brightness-0 invert' : ''}`}>🗑️</span>
+                  </button>
+                </div>
+
+                {/* Tarjeta personalizada (solo pregunta) */}
+                <div
+                  className={`w-full min-h-[250px] bg-white rounded-lg shadow-lg p-4 flex flex-col border-2 border-green-400 ${
+                    isCustomFavorite ? 'border-4 border-yellow-400' : ''
+                  }`}
+                >
+                  <div className="flex-1 flex flex-col items-center justify-center">
+                    {isEditing ? (
+                      <div className="w-full p-2 bg-green-50 rounded border-2 border-green-400">
+                        <p className="text-xs text-green-700 mb-1 font-semibold">
+                          ✏️ Editar pregunta (Enter: guardar | Esc: cancelar)
+                        </p>
+                        <textarea
+                          value={editedCustomQuestion}
+                          onChange={(e) => setEditedCustomQuestion(e.target.value)}
+                          onKeyDown={handleEditCustomKeyDown}
+                          className="w-full p-2 border border-green-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500 text-sm font-medium text-slate-900 bg-white"
+                          rows={4}
+                          placeholder="Escribe tu pregunta..."
+                          autoFocus
+                        />
+                        <div className="flex gap-1 mt-1">
+                          <button
+                            onClick={handleSaveCustomCard}
+                            className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 font-medium"
+                          >
+                            💾 Guardar
+                          </button>
+                          <button
+                            onClick={handleCancelEditCustomCard}
+                            className="px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
+                          >
+                            ✖️ Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-center text-slate-800 font-medium leading-relaxed text-sm">
+                        {customCard.question}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Formulario para agregar nueva tarjeta */}
+        {isAddingCard && (
+          <div className="min-h-[250px]">
+            <div className="w-full min-h-[250px] bg-white rounded-lg shadow-lg p-4 flex flex-col border-2 border-dashed border-green-400">
+              <div className="text-xs font-semibold text-green-700 mb-2">👤 Nueva tarjeta personalizada</div>
+              <div className="flex-1 flex flex-col">
+                <p className="text-xs text-slate-500 mb-2">
+                  Enter: guardar | Esc: cancelar
+                </p>
+                <textarea
+                  value={newCardQuestion}
+                  onChange={(e) => setNewCardQuestion(e.target.value)}
+                  onKeyDown={handleAddCardKeyDown}
+                  className="flex-1 w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm text-slate-900 bg-white resize-none"
+                  placeholder="Escribe tu pregunta para recordar..."
+                  autoFocus
+                />
+                <div className="flex gap-2 mt-3">
+                  <button
+                    onClick={handleAddCustomCard}
+                    disabled={!newCardQuestion.trim()}
+                    className="flex-1 px-3 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 disabled:bg-slate-300 disabled:cursor-not-allowed font-medium transition-colors"
+                  >
+                    💾 Guardar
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsAddingCard(false);
+                      setNewCardQuestion('');
+                    }}
+                    className="px-3 py-2 bg-slate-200 text-slate-700 text-sm rounded-lg hover:bg-slate-300 font-medium transition-colors"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
