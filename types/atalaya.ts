@@ -7,6 +7,7 @@ export interface Question {
   sectionLSM?: string; // Subtítulo de sección en LSM (opcional)
   readText?: string; // Texto bíblico a leer (ej: "LEE Ezequiel 34:15, 16") (opcional)
   image?: string; // URL de imagen ilustrativa (opcional)
+  imageCaption?: string; // Leyenda de la imagen (opcional)
   answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
@@ -23,6 +24,7 @@ export interface Question {
   }>;
   reflectionQuestions?: string[]; // Preguntas de reflexión personal
   practicalApplications?: string[]; // Aplicaciones prácticas concretas
+  infographic?: string; // URL de infografía relacionada con la pregunta (opcional)
 }
 
 export interface Paragraph {

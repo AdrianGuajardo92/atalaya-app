@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 interface FlashCard {
   question: string;
   answer: string;
+  isCustom?: boolean; // Para distinguir tarjetas personalizadas
 }
 
 interface FlashCardsProps {
@@ -17,9 +18,12 @@ interface FlashCardsProps {
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
   onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
   articleId: string; // ID del artículo actual
+  onAddCard?: (card: FlashCard) => void; // Callback para agregar tarjeta
+  onEditCard?: (index: number, card: FlashCard) => void; // Callback para editar tarjeta
+  onDeleteCard?: (index: number) => void; // Callback para eliminar tarjeta
 }
 
-export default function FlashCards({ cards, questionNumber, favorites, onToggleFavorite, lsmData, onLSMUpdate, hiddenCards, onToggleHidden, articleId }: FlashCardsProps) {
+export default function FlashCards({ cards, questionNumber, favorites, onToggleFavorite, lsmData, onLSMUpdate, hiddenCards, onToggleHidden, articleId, onAddCard, onEditCard, onDeleteCard }: FlashCardsProps) {
   // Estado para controlar qué tarjetas están volteadas (por índice)
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   // Estado para controlar qué tarjeta está siendo editada
@@ -30,6 +34,12 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
   const [isSaving, setIsSaving] = useState(false);
   // Estado para controlar qué botón de borrar está en modo de confirmación
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  // Estados para el modal de crear/editar tarjeta
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [newCardQuestion, setNewCardQuestion] = useState('');
+  const [newCardAnswer, setNewCardAnswer] = useState('');
+  const [editingCustomCard, setEditingCustomCard] = useState<number | null>(null);
+  const [isSavingCard, setIsSavingCard] = useState(false);
 
   // Efecto para resetear confirmación de borrado al hacer clic fuera
   useEffect(() => {
@@ -45,15 +55,14 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
     };
   }, [deleteConfirm]);
 
-  if (!cards || cards.length === 0) return null;
-
   // Filtrar tarjetas ocultas
-  const visibleCards = cards.filter((_, index) => {
+  const visibleCards = (cards || []).filter((_, index) => {
     const cardId = `flashcard-${questionNumber}-${index}`;
     return !hiddenCards[cardId];
   });
 
-  if (visibleCards.length === 0) return null;
+  // Si no hay tarjetas y no hay callback para agregar, no mostrar nada
+  if (visibleCards.length === 0 && !onAddCard) return null;
 
   const handleFlip = (index: number) => {
     setFlippedCards((prev) => {
@@ -121,12 +130,80 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
     }
   };
 
+  // Funciones para manejar el modal de crear/editar tarjeta
+  const handleOpenCreateModal = () => {
+    setNewCardQuestion('');
+    setNewCardAnswer('');
+    setEditingCustomCard(null);
+    setShowCreateModal(true);
+  };
+
+  const handleOpenEditModal = (index: number, card: FlashCard) => {
+    setNewCardQuestion(card.question);
+    setNewCardAnswer(card.answer);
+    setEditingCustomCard(index);
+    setShowCreateModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowCreateModal(false);
+    setNewCardQuestion('');
+    setNewCardAnswer('');
+    setEditingCustomCard(null);
+  };
+
+  const handleSaveCard = async () => {
+    if (!newCardQuestion.trim() || !newCardAnswer.trim()) {
+      alert('Por favor completa la pregunta y la respuesta');
+      return;
+    }
+
+    setIsSavingCard(true);
+
+    const newCard: FlashCard = {
+      question: newCardQuestion.trim(),
+      answer: newCardAnswer.trim(),
+      isCustom: true
+    };
+
+    try {
+      if (editingCustomCard !== null && onEditCard) {
+        await onEditCard(editingCustomCard, newCard);
+      } else if (onAddCard) {
+        await onAddCard(newCard);
+      }
+      handleCloseModal();
+    } catch (error) {
+      console.error('Error saving card:', error);
+      alert('Error al guardar la tarjeta');
+    } finally {
+      setIsSavingCard(false);
+    }
+  };
+
+  const handleDeleteCustomCard = async (index: number) => {
+    if (!confirm('¿Eliminar esta tarjeta?')) return;
+    if (onDeleteCard) {
+      await onDeleteCard(index);
+    }
+  };
+
   return (
     <div className="mt-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border-2 border-orange-300">
       <div className="flex items-center justify-between mb-4">
         <div className="text-xs font-semibold text-orange-700">🎴 Tarjetas Didácticas</div>
-        <div className="text-xs text-orange-600 font-medium">
-          {visibleCards.length} {visibleCards.length === 1 ? 'tarjeta' : 'tarjetas'}
+        <div className="flex items-center gap-3">
+          <div className="text-xs text-orange-600 font-medium">
+            {visibleCards.length} {visibleCards.length === 1 ? 'tarjeta' : 'tarjetas'}
+          </div>
+          {onAddCard && (
+            <button
+              onClick={handleOpenCreateModal}
+              className="px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs rounded-lg font-medium transition-colors shadow-sm flex items-center gap-1"
+            >
+              <span>+</span> Agregar
+            </button>
+          )}
         </div>
       </div>
 
@@ -160,8 +237,31 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                   }
                 }}
               >
+                {/* Indicador de tarjeta personalizada */}
+                {card.isCustom && (
+                  <div className="absolute top-2 left-2 z-10">
+                    <span className="bg-purple-500 text-white text-xs px-2 py-1 rounded-full font-medium shadow-md">
+                      ✨ Personal
+                    </span>
+                  </div>
+                )}
+
                 {/* Botones de control */}
                 <div className="absolute top-2 right-2 z-10 flex gap-1">
+                  {/* Botón de editar (solo para tarjetas personalizadas) */}
+                  {card.isCustom && onEditCard && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenEditModal(index, card);
+                      }}
+                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md bg-blue-500 hover:bg-blue-600 opacity-0 group-hover:opacity-100"
+                      title="Editar tarjeta"
+                    >
+                      <span className="text-sm">✏️</span>
+                    </button>
+                  )}
+
                   {/* Botón de favorito */}
                   <button
                     onClick={(e) => {
@@ -178,17 +278,26 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                     <span className="text-lg">{isFavorite ? '⭐' : '☆'}</span>
                   </button>
 
-                  {/* Botón de borrar con confirmación de doble clic */}
+                  {/* Botón de borrar - Para personalizadas elimina, para normales oculta */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (deleteConfirm === cardId) {
-                        // Segundo clic - borrar
-                        onToggleHidden(cardId);
-                        setDeleteConfirm(null);
+                      if (card.isCustom && onDeleteCard) {
+                        // Para tarjetas personalizadas, eliminar directamente con confirmación
+                        if (deleteConfirm === cardId) {
+                          handleDeleteCustomCard(index);
+                          setDeleteConfirm(null);
+                        } else {
+                          setDeleteConfirm(cardId);
+                        }
                       } else {
-                        // Primer clic - activar modo confirmación
-                        setDeleteConfirm(cardId);
+                        // Para tarjetas normales, ocultar
+                        if (deleteConfirm === cardId) {
+                          onToggleHidden(cardId);
+                          setDeleteConfirm(null);
+                        } else {
+                          setDeleteConfirm(cardId);
+                        }
                       }
                     }}
                     className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
@@ -196,7 +305,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                         ? 'bg-red-500 scale-110 opacity-100'
                         : 'bg-slate-300 hover:bg-slate-400 opacity-0 group-hover:opacity-100'
                     }`}
-                    title={deleteConfirm === cardId ? 'Clic de nuevo para confirmar' : 'Ocultar tarjeta'}
+                    title={deleteConfirm === cardId ? 'Clic de nuevo para confirmar' : (card.isCustom ? 'Eliminar tarjeta' : 'Ocultar tarjeta')}
                   >
                     <span className={`text-lg ${deleteConfirm === cardId ? 'filter brightness-0 invert' : ''}`}>🗑️</span>
                   </button>
@@ -370,6 +479,99 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
           );
         })}
       </div>
+
+      {/* Modal para crear/editar tarjeta */}
+      {showCreateModal && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)'
+          }}
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header del modal */}
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🎴</span>
+                <h3 className="text-lg font-bold">
+                  {editingCustomCard !== null ? 'Editar Tarjeta' : 'Crear Tarjeta Didáctica'}
+                </h3>
+              </div>
+              <button
+                onClick={handleCloseModal}
+                className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-all"
+                title="Cerrar"
+              >
+                <span className="text-xl font-bold">×</span>
+              </button>
+            </div>
+
+            {/* Contenido del modal */}
+            <div className="p-5 space-y-4">
+              {/* Campo de pregunta */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Pregunta (frente de la tarjeta)
+                </label>
+                <textarea
+                  value={newCardQuestion}
+                  onChange={(e) => setNewCardQuestion(e.target.value)}
+                  placeholder="Escribe la pregunta..."
+                  className="w-full p-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-orange-400 text-sm text-slate-800 resize-none"
+                  rows={3}
+                  autoFocus
+                />
+              </div>
+
+              {/* Campo de respuesta */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Respuesta (reverso de la tarjeta)
+                </label>
+                <textarea
+                  value={newCardAnswer}
+                  onChange={(e) => setNewCardAnswer(e.target.value)}
+                  placeholder="Escribe la respuesta..."
+                  className="w-full p-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-orange-400 text-sm text-slate-800 resize-none"
+                  rows={4}
+                />
+              </div>
+            </div>
+
+            {/* Footer del modal */}
+            <div className="bg-slate-50 p-4 flex justify-end gap-3 border-t border-slate-200">
+              <button
+                onClick={handleCloseModal}
+                className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-medium transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleSaveCard}
+                disabled={isSavingCard || !newCardQuestion.trim() || !newCardAnswer.trim()}
+                className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {isSavingCard ? (
+                  <>
+                    <span className="animate-spin">⏳</span>
+                    Guardando...
+                  </>
+                ) : (
+                  <>
+                    💾 {editingCustomCard !== null ? 'Guardar cambios' : 'Crear tarjeta'}
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

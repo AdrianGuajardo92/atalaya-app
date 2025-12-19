@@ -2481,7 +2481,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Explica por qué es difícil mantener la alegría en estos tiempos",
                 text: "Pero ten presente que en los últimos días habrá tiempos muy difíciles de soportar."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/TI9ifyw.png"
           },
           {
             number: "3",
@@ -3038,7 +3039,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Expresa cómo podemos sentirnos cuando dudamos del amor de Jehová",
                 text: "¿Hasta cuándo, oh, Jehová? ¿Me olvidarás para siempre? ¿Hasta cuándo me ocultarás tu rostro?"
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/TI9ifyw.png"
           },
           {
             number: "3",
@@ -3076,10 +3078,11 @@ export const atalayaDatabase: AtalayaDatabase = {
               },
               {
                 reference: "Éxodo 34:6, 7",
-                purpose: "Describe a Jehová como lleno de amor leal",
-                text: "Jehová, Jehová, un Dios compasivo y misericordioso, lento para la ira y lleno de amor leal y de verdad."
+                purpose: "Jehová está lleno de amor leal",
+                text: "Jehová, Jehová, un Dios compasivo y misericordioso, lento para la ira y lleno de amor leal y verdad, que muestra amor leal a miles, que perdona la culpa, la transgresión y el pecado."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/CGFEUcK.png"
           },
           {
             number: "4",
@@ -3115,7 +3118,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Enseñanza básica: la Tierra será un paraíso",
                 text: "Él les secará toda lágrima de los ojos, y la muerte ya no existirá, ni tampoco el luto, el llanto ni el dolor."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/mNJ130T.png"
           },
           {
             number: "5",
@@ -3150,7 +3154,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Derrumbar creencias falsas fuertemente atrincheradas",
                 text: "Las armas de nuestra guerra no son físicas, sino que tienen el poder de Dios para derrumbar cosas fuertemente atrincheradas."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/ebTIk3r.png"
           },
           {
             number: "6",
@@ -3180,7 +3185,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Inicio del salmo que repite 26 veces el amor leal",
                 text: "Denle gracias a Jehová porque él es bueno; su amor leal dura para siempre."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/iBy9Jl0.png"
           },
           {
             number: "7",
@@ -3220,7 +3226,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Conocer y creer en el amor de Dios",
                 text: "Y nosotros hemos llegado a conocer el amor que Dios nos tiene y creemos en ese amor. Dios es amor."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/61YOdDx.png"
           },
           {
             number: "8",
@@ -3250,7 +3257,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "El amor es la esencia de la personalidad de Dios",
                 text: "El que no ama no ha llegado a conocer a Dios, porque Dios es amor."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/2ZeP5d1.png"
           },
           {
             number: "9, 10",
@@ -3287,7 +3295,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Confianza de que Jehová escucha nuestras oraciones",
                 text: "Esta es la confianza que tenemos en él: que él nos oye sin importar lo que le pidamos conforme a su voluntad."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/MYEG431.png"
           },
           {
             number: "11",

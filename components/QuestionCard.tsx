@@ -22,6 +22,9 @@ interface QuestionCardProps {
 
 export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
+  const [showInfographicModal, setShowInfographicModal] = useState(false);
+  const [paragraphCopied, setParagraphCopied] = useState(false);
+  const [infographicCopied, setInfographicCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [showFlashcards, setShowFlashcards] = useState(isNavigationMode); // Flashcards visibles en navegación
   const [isEditingLSM, setIsEditingLSM] = useState(false);
@@ -58,7 +61,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [isSavingApplications, setIsSavingApplications] = useState(false);
 
   // Estado para flashcards personalizadas
-  const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string }>>([]);
+  const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string; isCustom?: boolean }>>([]);
 
   // Estado para puntos clave completados
   const [completedBullets, setCompletedBullets] = useState<Record<string, boolean>>(() => {
@@ -765,7 +768,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   };
 
   // Funciones para manejar flashcards
-  const saveFlashcardsToKV = async (flashcards: Array<{ question: string; answer: string }>) => {
+  const saveFlashcardsToKV = async (flashcards: Array<{ question: string; answer: string; isCustom?: boolean }>) => {
     try {
       const response = await fetch('/api/lsm', {
         method: 'POST',
@@ -787,6 +790,24 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   const handleDeleteFlashcard = async (index: number) => {
     const newFlashcards = customFlashcards.filter((_, i) => i !== index);
+    const success = await saveFlashcardsToKV(newFlashcards);
+    if (success) {
+      setCustomFlashcards(newFlashcards);
+    }
+  };
+
+  const handleAddFlashcard = async (card: { question: string; answer: string; isCustom?: boolean }) => {
+    const newCard = { question: card.question, answer: card.answer, isCustom: true };
+    const newFlashcards = [...customFlashcards, newCard];
+    const success = await saveFlashcardsToKV(newFlashcards);
+    if (success) {
+      setCustomFlashcards(newFlashcards);
+    }
+  };
+
+  const handleEditFlashcard = async (index: number, card: { question: string; answer: string; isCustom?: boolean }) => {
+    const newFlashcards = [...customFlashcards];
+    newFlashcards[index] = { question: card.question, answer: card.answer, isCustom: customFlashcards[index].isCustom };
     const success = await saveFlashcardsToKV(newFlashcards);
     if (success) {
       setCustomFlashcards(newFlashcards);
@@ -899,7 +920,23 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           <div className="flex-1 space-y-4">
             {/* Español - SIEMPRE VISIBLE */}
             <div className="bg-slate-50 rounded-lg p-4 border-l-2 border-slate-300 group relative">
-              <div className="text-xs font-medium text-slate-500 mb-1.5">Español</div>
+              <div className="flex items-center justify-between mb-1.5">
+                <div className="text-xs font-medium text-slate-500">Español</div>
+                {question.infographic && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowInfographicModal(true);
+                    }}
+                    className="w-7 h-7 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-all shadow-sm hover:shadow-md"
+                    title="Ver infografía"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                )}
+              </div>
               <p className="text-base text-slate-800 leading-relaxed">
                 {question.textEs}
               </p>
@@ -1257,16 +1294,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             )}
 
             {/* Tarjetas Didácticas - Después de las respuestas */}
-            {(isExpanded || isNavigationMode) && question.flashcards && question.flashcards.length > 0 && (
+            {(isExpanded || isNavigationMode) && (customFlashcards.length > 0 || (question.flashcards && question.flashcards.length > 0)) && (
               <div className="mt-4" onClick={(e) => e.stopPropagation()}>
                 {/* Mostrar tarjetas siempre (sin botón) */}
                 <FlashCards
-                  cards={
-                    // Normalizar flashcards: si es array de strings, convertir a objetos
-                    Array.isArray(question.flashcards) && typeof question.flashcards[0] === 'string'
-                      ? (question.flashcards as string[]).map((q) => ({ question: q, answer: '' }))
-                      : (question.flashcards as Array<{ question: string; answer: string }>)
-                  }
+                  cards={customFlashcards}
                   questionNumber={question.number}
                   favorites={favorites}
                   onToggleFavorite={onToggleFavorite}
@@ -1275,6 +1307,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   hiddenCards={hiddenCards}
                   onToggleHidden={onToggleHidden}
                   articleId={articleId}
+                  onAddCard={handleAddFlashcard}
+                  onEditCard={handleEditFlashcard}
+                  onDeleteCard={handleDeleteFlashcard}
                 />
               </div>
             )}
@@ -1550,13 +1585,41 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </h3>
                 <p className="text-sm text-slate-300 mt-1">Pregunta {question.number}</p>
               </div>
-              <button
-                onClick={() => setShowParagraphsModal(false)}
-                className="w-10 h-10 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full flex items-center justify-center transition-all"
-                title="Cerrar"
-              >
-                <span className="text-2xl font-bold">×</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={async () => {
+                    const textToCopy = relatedParagraphs.map(p =>
+                      `Párrafo ${p.number}\n\n${p.content}`
+                    ).join('\n\n---\n\n');
+                    const fullText = `Pregunta ${question.number}\n\n${textToCopy}`;
+
+                    await navigator.clipboard.writeText(fullText);
+                    setParagraphCopied(true);
+                    setTimeout(() => setParagraphCopied(false), 2000);
+                  }}
+                  className={`w-10 h-10 ${paragraphCopied ? 'bg-green-500 border-green-400' : 'bg-white/20 hover:bg-white/30 border-white/40'} rounded-lg flex items-center justify-center transition-all border shadow-sm`}
+                  title={paragraphCopied ? '¡Copiado!' : 'Copiar contenido'}
+                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' }}
+                >
+                  {paragraphCopied ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                </button>
+                <button
+                  onClick={() => setShowParagraphsModal(false)}
+                  className="w-10 h-10 bg-white/20 hover:bg-white/30 border border-white/40 rounded-lg flex items-center justify-center transition-all shadow-sm"
+                  title="Cerrar"
+                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' }}
+                >
+                  <span className="text-2xl font-bold text-white">×</span>
+                </button>
+              </div>
             </div>
 
             {/* Contenido de los párrafos */}
@@ -1599,6 +1662,85 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <button
                 onClick={() => setShowParagraphsModal(false)}
                 className="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors font-medium shadow-sm"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de infografía */}
+      {showInfographicModal && question.infographic && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+          onClick={() => setShowInfographicModal(false)}
+        >
+          <div
+            className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header del modal */}
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-t-xl flex items-center justify-between z-10">
+              <div className="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-lg font-bold">Infografía - Pregunta {question.number}</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={async () => {
+                    const textToCopy = `Infografía - Pregunta ${question.number}\n\n${question.textEs}\n\nURL: ${question.infographic}`;
+
+                    await navigator.clipboard.writeText(textToCopy);
+                    setInfographicCopied(true);
+                    setTimeout(() => setInfographicCopied(false), 2000);
+                  }}
+                  className={`w-10 h-10 ${infographicCopied ? 'bg-green-500 border-green-400' : 'bg-white/20 hover:bg-white/30 border-white/40'} rounded-lg flex items-center justify-center transition-all border shadow-sm`}
+                  title={infographicCopied ? '¡Copiado!' : 'Copiar enlace'}
+                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' }}
+                >
+                  {infographicCopied ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                </button>
+                <button
+                  onClick={() => setShowInfographicModal(false)}
+                  className="w-10 h-10 bg-white/20 hover:bg-white/30 border border-white/40 rounded-lg flex items-center justify-center transition-all shadow-sm"
+                  title="Cerrar"
+                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' }}
+                >
+                  <span className="text-2xl font-bold text-white">×</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Contenido - Imagen de la infografía */}
+            <div className="p-4">
+              <img
+                src={question.infographic}
+                alt={`Infografía para la pregunta ${question.number}`}
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+            </div>
+
+            {/* Footer del modal */}
+            <div className="sticky bottom-0 bg-slate-50 p-4 rounded-b-xl border-t border-slate-200 text-center">
+              <button
+                onClick={() => setShowInfographicModal(false)}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
               >
                 Cerrar
               </button>

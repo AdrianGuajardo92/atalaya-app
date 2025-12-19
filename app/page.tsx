@@ -15,7 +15,16 @@ import { ArticleData } from '@/types/atalaya';
 export default function Home() {
   // Estado para manejo de artículos (usa la configuración centralizada)
   const [currentMonth] = useState<string>(articlesConfig.defaultMonth);
-  const [currentArticleId, setCurrentArticleId] = useState<string>(getDefaultArticleId());
+  const [currentArticleId, setCurrentArticleId] = useState<string>(() => {
+    // Intentar recuperar el artículo guardado en localStorage
+    if (typeof window !== 'undefined') {
+      const savedArticleId = localStorage.getItem('atalaya_current_article');
+      if (savedArticleId) {
+        return savedArticleId;
+      }
+    }
+    return getDefaultArticleId();
+  });
   const [currentArticle, setCurrentArticle] = useState<ArticleData | null>(null);
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
@@ -128,6 +137,8 @@ export default function Home() {
     setCurrentArticleId(articleId);
     setCurrentQuestionIndex(0);
     setCurrentReviewIndex(-1);
+    // Guardar en localStorage para persistir entre recargas
+    localStorage.setItem('atalaya_current_article', articleId);
   };
 
   const handlePrevious = () => {
