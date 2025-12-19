@@ -330,7 +330,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                   >
                     {/* Contenido de la pregunta */}
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      <p className="text-center text-slate-800 font-medium leading-relaxed text-sm">
+                      <p className="text-center text-slate-800 font-medium leading-relaxed text-sm uppercase">
                         {card.question}
                       </p>
                       {/* Mostrar LSM de pregunta si existe y no está editando */}
@@ -408,8 +408,8 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                   >
                     {/* Contenido de la respuesta */}
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      <div className="text-xs text-white font-semibold mb-2">💬 Respuesta</div>
-                      <p className="text-center text-white font-bold leading-relaxed">
+                      <div className="text-xs text-white font-semibold mb-2">💬 RESPUESTA</div>
+                      <p className="text-center text-white font-bold leading-relaxed uppercase">
                         {card.answer}
                       </p>
                       {/* Mostrar LSM de respuesta si existe y no está editando */}
