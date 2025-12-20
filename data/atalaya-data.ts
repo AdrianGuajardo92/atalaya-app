@@ -3332,7 +3332,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Cómo oponernos al Diablo",
                 text: "Así que sométanse a Dios. Opónganse al Diablo, y él huirá de ustedes."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/V2Vg4Ok.png"
           },
           {
             number: "12, 13",
@@ -3372,7 +3373,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Jehová muestra amor leal a quienes lo aman",
                 text: "Oh, Jehová, Dios del cielo, el Dios grande e imponente que les muestra amor leal a los que lo aman y obedecen sus mandamientos."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/q6S23Xc.png"
           },
           {
             number: "14",
@@ -3413,7 +3415,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Liberación de la condición pecaminosa por medio de Cristo",
                 text: "¡Miserable de mí! ¿Quién me rescatará de este cuerpo que me lleva a la muerte? ¡Gracias a Dios, por medio de Jesucristo nuestro Señor!"
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/yC5rl42.png"
           },
           {
             number: "15, 16",
@@ -3449,7 +3452,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Aferrarnos a Jehová es elegir la vida",
                 text: "Escoge la vida para que vivas, tú y tu descendencia, amando a Jehová tu Dios, escuchando su voz y aferrándote a él."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/r46NTf1.png"
           }
         ],
         paragraphs: [
@@ -3472,13 +3476,19 @@ export const atalayaDatabase: AtalayaDatabase = {
         ],
         reviewQuestions: [
           {
-            question: "¿Por qué es bueno ver el amor de Jehová como una enseñanza básica de la Biblia?"
+            question: "¿Por qué es bueno ver el amor de Jehová como una enseñanza básica de la Biblia?",
+            textLSM: "BIBLIA AQUI ENSEÑARTE JAH A TI TE AMA, IMPORTANTE TENER EN MENTE ¿PORQUE?",
+            answer: "Porque nos ayuda a rechazar las dudas con firmeza. Las enseñanzas básicas son verdades fundamentales que, una vez que estamos convencidos de ellas, no dejamos que nada nos haga creer lo contrario. Si vemos el amor de Jehová de esa manera, será más fácil rechazar la idea de que él no se fija en nosotros. El Salmo 136 repite 26 veces \"su amor leal dura para siempre\", confirmando que es una verdad fundamental."
           },
           {
-            question: "¿Por qué el pecado heredado nos puede hacer dudar del amor de Jehová?"
+            question: "¿Por qué el pecado heredado nos puede hacer dudar del amor de Jehová?",
+            textLSM: "PECAR TENTARTE ¿QUE SIGNIFICA?",
+            answer: "Porque el pecado nos ha alejado de nuestro Creador y ha dañado nuestra mente, corazón y cuerpo. Ha tenido un efecto muy negativo en nuestras emociones: nos hace sentir culpabilidad, ansiedad, inseguridad y vergüenza. Somos como un vehículo con una rueda desinflada: no funcionamos a plena capacidad. Por eso a veces dudamos del amor de Jehová."
           },
           {
-            question: "¿Qué nos ayudará a dejar de dudar del amor de Jehová?"
+            question: "¿Qué nos ayudará a dejar de dudar del amor de Jehová?",
+            textLSM: "TU DUDAS NO, JEHOVA CONFIANZA EN EL ¿COMO?",
+            answer: "Pensar en el rescate nos ayuda, pues demuestra que Jehová nos ama aunque no lo merezcamos. Jesús vino para salvar a personas pecadoras, no perfectas (Rom. 5:8). También nos ayuda comparar lo que sentimos con lo que sabemos: aunque sintamos que no tenemos el amor de Dios, la Biblia nos enseña que él nos ama. Si le somos leales, podemos estar seguros de que él también lo será."
           }
         ],
         finalSong: "Canción 159: Demos gloria a Jehová"
