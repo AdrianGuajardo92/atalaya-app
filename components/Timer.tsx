@@ -142,12 +142,12 @@ export default function Timer() {
       }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
-      className="bg-slate-800 text-white rounded-lg shadow-2xl p-3 min-w-[140px] select-none"
+      className="bg-slate-800 text-white rounded-lg shadow-2xl p-1.5 sm:p-3 min-w-[90px] sm:min-w-[140px] select-none"
     >
       {isEditing ? (
-        <div className="flex flex-col gap-2" onClick={e => e.stopPropagation()}>
-          <div className="text-xs text-slate-300 text-center mb-1">
-            Retraso (min)
+        <div className="flex flex-col gap-1 sm:gap-2" onClick={e => e.stopPropagation()}>
+          <div className="text-[10px] sm:text-xs text-slate-300 text-center">
+            Retraso
           </div>
           <select
             value={delayMinutes}
@@ -156,7 +156,7 @@ export default function Timer() {
               if (e.key === 'Enter') handleTimeChange();
               if (e.key === 'Escape') setIsEditing(false);
             }}
-            className="bg-slate-700 text-white px-2 py-1 rounded text-center text-sm w-full cursor-pointer"
+            className="bg-slate-700 text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded text-center text-xs sm:text-sm w-full cursor-pointer"
             autoFocus
           >
             <option value="1">1 min</option>
@@ -170,29 +170,29 @@ export default function Timer() {
             <option value="9">9 min</option>
             <option value="10">10 min</option>
           </select>
-          <div className="text-xs text-slate-400 text-center">
+          <div className="hidden sm:block text-xs text-slate-400 text-center">
             Iniciar: {Math.max(0, 60 - (parseInt(delayMinutes) || 0))} min
           </div>
           <div className="flex gap-1">
             <button
               onClick={handleTimeChange}
-              className="flex-1 bg-emerald-600 hover:bg-emerald-700 px-2 py-1 rounded text-xs"
+              className="flex-1 bg-emerald-600 hover:bg-emerald-700 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs"
             >
               ✓
             </button>
             <button
               onClick={() => setIsEditing(false)}
-              className="flex-1 bg-slate-600 hover:bg-slate-700 px-2 py-1 rounded text-xs"
+              className="flex-1 bg-slate-600 hover:bg-slate-700 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs"
             >
               ✕
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1 sm:gap-2">
           {/* Tiempo */}
           <div
-            className={`text-2xl font-mono font-bold text-center ${
+            className={`text-base sm:text-2xl font-mono font-bold text-center ${
               totalSeconds <= 60 ? 'text-red-400' : 'text-white'
             }`}
           >
@@ -200,10 +200,10 @@ export default function Timer() {
           </div>
 
           {/* Controles */}
-          <div className="flex gap-1 justify-center" onClick={e => e.stopPropagation()}>
+          <div className="flex gap-0.5 sm:gap-1 justify-center" onClick={e => e.stopPropagation()}>
             <button
               onClick={() => setIsRunning(!isRunning)}
-              className="bg-slate-700 hover:bg-slate-800 px-3 py-1 rounded text-xs font-medium shadow-sm"
+              className="bg-slate-700 hover:bg-slate-800 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
             >
               {isRunning ? '⏸' : '▶'}
             </button>
@@ -212,7 +212,7 @@ export default function Timer() {
                 setIsRunning(false);
                 setTotalSeconds(60 * 60);
               }}
-              className="bg-slate-600 hover:bg-slate-700 px-3 py-1 rounded text-xs font-medium shadow-sm"
+              className="bg-slate-600 hover:bg-slate-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
             >
               ↻
             </button>
@@ -221,7 +221,7 @@ export default function Timer() {
                 setDelayMinutes('1');
                 setIsEditing(true);
               }}
-              className="bg-slate-600 hover:bg-slate-700 px-3 py-1 rounded text-xs font-medium shadow-sm"
+              className="bg-slate-600 hover:bg-slate-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
             >
               ⚙
             </button>

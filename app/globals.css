@@ -53,6 +53,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Deshabilitar scroll horizontal en móvil */
+@media (max-width: 640px) {
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
 /* Ocultar scrollbar en navegadores webkit (Chrome, Safari, Edge) */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

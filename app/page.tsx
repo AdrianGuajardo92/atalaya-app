@@ -273,10 +273,10 @@ export default function Home() {
       {/* Botón de instrucciones */}
       <InstructionsButton />
 
-      {/* Botón de gestión de PDFs */}
+      {/* Botón de gestión de PDFs - Solo visible en desktop */}
       <button
         onClick={() => setShowPdfUploader(true)}
-        className="fixed bottom-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
+        className="hidden lg:block fixed bottom-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
         title="Gestionar PDFs"
       >
         <span className="text-xl">📁</span>
@@ -297,53 +297,57 @@ export default function Home() {
       )}
 
       {/* Control de modo de vista y navegación */}
-      <div className="fixed top-4 right-4 z-10 bg-white rounded-lg shadow-lg p-2">
+      <div className="fixed top-4 right-4 z-10 bg-white rounded-lg shadow-lg p-1.5 sm:p-2">
         {/* Selector de vista principal */}
-        <div className="flex gap-2 mb-2">
+        <div className="flex gap-1 sm:gap-2 mb-1 sm:mb-2">
           <button
             onClick={() => setViewMode('study')}
-            className={`px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
               viewMode === 'study'
                 ? 'bg-blue-600 text-white'
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Estudio
+            <span className="text-sm sm:text-base">📖</span>
+            <span className="hidden sm:inline">Estudio</span>
           </button>
           <button
             onClick={() => setViewMode('summary')}
-            className={`px-4 py-2 rounded-lg font-medium transition-all ${
+            className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
               viewMode === 'summary'
                 ? 'bg-blue-600 text-white'
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            Resumen
+            <span className="text-sm sm:text-base">📋</span>
+            <span className="hidden sm:inline">Resumen</span>
           </button>
         </div>
 
         {/* Selector de navegación (solo en modo estudio) */}
         {viewMode === 'study' && (
-          <div className="flex gap-2 pt-2 border-t border-slate-200">
+          <div className="flex gap-1 sm:gap-2 pt-1 sm:pt-2 border-t border-slate-200">
             <button
               onClick={() => setNavigationMode('scroll')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+              className={`px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
                 navigationMode === 'scroll'
                   ? 'bg-slate-700 text-white'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Scroll
+              <span className="text-xs sm:text-sm">↕️</span>
+              <span className="hidden sm:inline">Scroll</span>
             </button>
             <button
               onClick={() => setNavigationMode('paginated')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+              className={`px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
                 navigationMode === 'paginated'
                   ? 'bg-slate-700 text-white'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Paginado
+              <span className="text-xs sm:text-sm">📄</span>
+              <span className="hidden sm:inline">Paginado</span>
             </button>
           </div>
         )}
