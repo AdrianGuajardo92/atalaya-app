@@ -190,11 +190,11 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
             {article.reviewQuestions.map((rq, index) => (
               <div key={index} className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                 <p className="text-slate-800 font-medium">{rq.question}</p>
-                {rq.textLSM && (
+                {rq.questionLSM && (
                   <>
                     <div className="w-12 h-px bg-amber-300 my-3"></div>
                     <p className="text-sm text-amber-700 mb-1 font-semibold">🤟 LSM</p>
-                    <p className="text-amber-900 font-bold uppercase">{rq.textLSM}</p>
+                    <p className="text-amber-900 font-bold uppercase">{rq.questionLSM}</p>
                   </>
                 )}
                 {rq.answer && (
