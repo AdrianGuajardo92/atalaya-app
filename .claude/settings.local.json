@@ -21,7 +21,11 @@
       "Bash(cat:*)",
       "Bash(tree:*)",
       "WebSearch",
-      "WebFetch(domain:imgur.com)"
+      "WebFetch(domain:imgur.com)",
+      "Bash(powershell -Command:*)",
+      "Bash(del \"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\")",
+      "Bash(cmd /c \"del \"\"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\"\"\")",
+      "Bash(cmd /c \"cd /d \"\"C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\"\" && del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\"\"\")"
     ],
     "deny": [],
     "ask": []
