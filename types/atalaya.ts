@@ -30,6 +30,7 @@ export interface Question {
 export interface Paragraph {
   number: number;
   content: string; // Contenido del párrafo con textos bíblicos
+  summary?: string; // Oraciones clave del párrafo para el conductor
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
 }

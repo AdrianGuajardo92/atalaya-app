@@ -1633,6 +1633,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     </span>
                     {/* Contenido del párrafo */}
                     <div className="flex-1">
+                      {/* Resumen / Oraciones clave */}
+                      {paragraph.summary && (
+                        <div className="mb-3 p-3 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
+                          <p className="text-sm font-bold text-amber-800 mb-1">📌 Ideas clave:</p>
+                          <p className="text-sm text-amber-900 font-medium">{paragraph.summary}</p>
+                        </div>
+                      )}
                       <p className="text-base leading-relaxed text-slate-700">
                         {formatContent(paragraph.content)}
                       </p>
