@@ -1089,7 +1089,7 @@ Al final del estudio, hay **3 preguntas de repaso** que resumen los puntos princ
   };
 
   return (
-    <div className="fixed bottom-4 left-4 z-10 hidden lg:flex lg:flex-col lg:gap-2">
+    <div className="fixed bottom-4 left-4 z-10 hidden xl:flex xl:flex-col xl:gap-2">
       {/* Botón Copiar Instrucciones */}
       <div className="relative">
         <button

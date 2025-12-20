@@ -276,7 +276,7 @@ export default function Home() {
       {/* Botón de gestión de PDFs - Solo visible en desktop */}
       <button
         onClick={() => setShowPdfUploader(true)}
-        className="hidden lg:block fixed bottom-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
+        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
         title="Gestionar PDFs"
       >
         <span className="text-xl">📁</span>
