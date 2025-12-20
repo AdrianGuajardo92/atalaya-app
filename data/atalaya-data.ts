@@ -3491,7 +3491,17 @@ export const atalayaDatabase: AtalayaDatabase = {
             answer: "Pensar en el rescate nos ayuda, pues demuestra que Jehová nos ama aunque no lo merezcamos. Jesús vino para salvar a personas pecadoras, no perfectas (Rom. 5:8). También nos ayuda comparar lo que sentimos con lo que sabemos: aunque sintamos que no tenemos el amor de Dios, la Biblia nos enseña que él nos ama. Si le somos leales, podemos estar seguros de que él también lo será."
           }
         ],
-        finalSong: "Canción 159: Demos gloria a Jehová"
+        finalSong: "Canción 159: Demos gloria a Jehová",
+        articleSummary: {
+          keyPoints: [
+            { order: 1, statement: "El pecado heredado puede hacernos dudar del amor de Jehová, haciéndonos sentir culpabilidad e inseguridad.", paragraphSource: 2 },
+            { order: 2, statement: "La Biblia nos da certezas, no posibilidades: Jehová nos ama y nos valora más que a muchos gorriones.", bibleReference: "Mateo 10:31", paragraphSource: 7 },
+            { order: 3, statement: "Meditar en textos como Isaías 41:10 fortalece nuestra convicción de que Jehová siempre nos ayudará.", bibleReference: "Isaías 41:10", paragraphSource: 7 },
+            { order: 4, statement: "Comparar lo que sentimos con lo que sabemos nos ayuda a no dejarnos engañar por nuestras emociones.", paragraphSource: 8 },
+            { order: 5, statement: "Si somos leales a Jehová, podemos estar seguros de que él también lo será con nosotros.", paragraphSource: 16 }
+          ],
+          centralIdea: "El amor de Jehová no es una posibilidad, es una certeza. Aunque nuestros sentimientos nos engañen, la Biblia siempre dice la verdad."
+        }
       },
 
       // Artículo 42: "Cómo mejorar las oraciones" (22-28 Dic)

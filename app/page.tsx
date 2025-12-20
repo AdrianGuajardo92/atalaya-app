@@ -8,6 +8,7 @@ import SummaryView from '@/components/SummaryView';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
+import { ArticleSummaryCard } from '@/components/ArticleSummaryCard';
 import { atalayaDatabase, getArticleById, getMonthArticles } from '@/data/atalaya-data';
 import { articlesConfig, getDefaultArticleId } from '@/data/articles-config';
 import { ArticleData } from '@/types/atalaya';
@@ -435,6 +436,14 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Resumen para el Comentario Final */}
+            {currentArticle.articleSummary && (
+              <ArticleSummaryCard
+                summary={currentArticle.articleSummary}
+                articleTitle={currentArticle.title}
+              />
+            )}
+
             {/* Canción Final */}
             <div className="mt-10 bg-gradient-to-b from-slate-50 to-white rounded-lg shadow-md p-8 text-center border border-slate-200">
               <p className="text-lg font-semibold text-slate-700">
@@ -481,6 +490,15 @@ export default function Home() {
                   isNavigationMode={true}
                   articleId={currentArticleId}
                 />
+
+                {/* Resumen para el Comentario Final - Solo en la última pregunta de repaso */}
+                {currentReviewIndex === currentArticle.reviewQuestions.length - 1 &&
+                 currentArticle.articleSummary && (
+                  <ArticleSummaryCard
+                    summary={currentArticle.articleSummary}
+                    articleTitle={currentArticle.title}
+                  />
+                )}
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}
                 {currentReviewIndex === currentArticle.reviewQuestions.length - 1 && (
