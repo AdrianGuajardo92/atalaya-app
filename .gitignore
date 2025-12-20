@@ -43,5 +43,5 @@ next-env.d.ts
 .vercel
 .env*.local
 
-# PDFs de La Atalaya (almacenados localmente)
-/pdfs/*.pdf
+# PDFs de La Atalaya (sincronizados con Git)
+# /pdfs/*.pdf
