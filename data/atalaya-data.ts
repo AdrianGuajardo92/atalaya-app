@@ -3040,7 +3040,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 text: "¿Hasta cuándo, oh, Jehová? ¿Me olvidarás para siempre? ¿Hasta cuándo me ocultarás tu rostro?"
               }
             ],
-            infographic: "https://i.imgur.com/TI9ifyw.png"
+            infographic: "https://i.imgur.com/TI9ifyw.png",
+            image: "https://i.imgur.com/3w6ZHbU.png"
           },
           {
             number: "3",
@@ -3048,6 +3049,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [3],
             readText: "LEE Salmo 31:7; 136:1",
+            image: "https://i.imgur.com/3w6ZHbU.png",
             answer: "El amor leal es un apego profundo y duradero que una persona le tiene a otra. Nadie muestra esta cualidad mejor que Jehová porque la Biblia dice que él está «lleno de amor leal» y que su amor leal por sus siervos «es inmenso». Esto significa que Jehová nunca abandona a sus siervos fieles. Recordar esto nos ayuda a mantener la estabilidad ante las tormentas de la vida.",
             answerBullets: [
               "**Amor leal = apego profundo y duradero** - Una persona lo tiene hacia otra",

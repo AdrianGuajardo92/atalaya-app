@@ -63,6 +63,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   // Estado para flashcards personalizadas
   const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string; isCustom?: boolean }>>([]);
 
+  // Estado para imagen editable
+  const [isEditingImage, setIsEditingImage] = useState(false);
+  const [editedImageUrl, setEditedImageUrl] = useState('');
+  const [isSavingImage, setIsSavingImage] = useState(false);
+
   // Estado para puntos clave completados
   const [completedBullets, setCompletedBullets] = useState<Record<string, boolean>>(() => {
     if (typeof window !== 'undefined') {
@@ -814,8 +819,71 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }
   };
 
+  // Funciones para manejar imagen
+  const handleSaveImage = async () => {
+    if (!editedImageUrl.trim()) return;
+
+    setIsSavingImage(true);
+    try {
+      const response = await fetch('/api/lsm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          articleId: articleId,
+          questionNumber: `image-${question.number}`,
+          lsmText: editedImageUrl.trim()
+        })
+      });
+
+      if (response.ok) {
+        setIsEditingImage(false);
+        if (onLSMUpdate) {
+          onLSMUpdate(`image-${question.number}`, editedImageUrl.trim());
+        }
+      } else {
+        alert('Error al guardar la imagen');
+      }
+    } catch (error) {
+      console.error('Error saving image:', error);
+      alert('Error al guardar. Intenta de nuevo.');
+    } finally {
+      setIsSavingImage(false);
+    }
+  };
+
+  const handleDeleteImage = async () => {
+    if (!confirm('¿Eliminar esta imagen?')) return;
+
+    setIsSavingImage(true);
+    try {
+      const response = await fetch('/api/lsm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          articleId: articleId,
+          questionNumber: `image-${question.number}`,
+          lsmText: ''
+        })
+      });
+
+      if (response.ok) {
+        setEditedImageUrl('');
+        if (onLSMUpdate) {
+          onLSMUpdate(`image-${question.number}`, '');
+        }
+      }
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    } finally {
+      setIsSavingImage(false);
+    }
+  };
+
   const currentLSMText = lsmText || question.textLSM;
   const currentSectionLSMText = sectionLsmText || question.sectionLSM;
+
+  // Imagen desde KV con fallback a question.image
+  const currentImage = allLsmData[`image-${question.number}`] || question.image;
 
   return (
     <>
@@ -1013,16 +1081,106 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </div>
             )}
 
-            {/* IMAGEN ILUSTRATIVA - Si existe */}
-            {question.image && (
-              <div className="rounded-lg overflow-hidden shadow-md">
-                <img
-                  src={question.image}
-                  alt="Ilustración de la pregunta"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            )}
+            {/* IMAGEN ILUSTRATIVA - Editable */}
+            <div className="group relative">
+              {currentImage && !isEditingImage ? (
+                <div className="rounded-lg overflow-hidden shadow-md relative">
+                  <img
+                    src={currentImage}
+                    alt="Ilustración de la pregunta"
+                    className="w-full h-auto object-cover"
+                  />
+                  {/* Botones de edición */}
+                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditedImageUrl(currentImage);
+                        setIsEditingImage(true);
+                      }}
+                      className="w-8 h-8 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg"
+                      title="Editar imagen"
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteImage();
+                      }}
+                      className="w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg"
+                      title="Eliminar imagen"
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                </div>
+              ) : !isEditingImage ? (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditedImageUrl('');
+                    setIsEditingImage(true);
+                  }}
+                  className="w-full py-3 bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg hover:bg-slate-200 transition-colors text-slate-600 font-medium text-sm flex items-center justify-center gap-2"
+                >
+                  🖼️ Agregar imagen (URL de imgur)
+                </button>
+              ) : null}
+
+              {/* Formulario de edición de imagen */}
+              {isEditingImage && (
+                <div className="p-4 bg-blue-50 rounded-lg border-2 border-blue-400 shadow-sm" onClick={(e) => e.stopPropagation()}>
+                  <p className="text-sm text-blue-700 mb-2 font-semibold">🖼️ URL de imagen (imgur):</p>
+                  <input
+                    type="text"
+                    value={editedImageUrl}
+                    onChange={(e) => setEditedImageUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSaveImage();
+                      } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        setIsEditingImage(false);
+                      }
+                    }}
+                    className="w-full p-3 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-slate-900 bg-white"
+                    placeholder="https://i.imgur.com/xxxxx.png"
+                    autoFocus
+                  />
+                  {/* Preview de la imagen */}
+                  {editedImageUrl && (
+                    <div className="mt-3 rounded-lg overflow-hidden">
+                      <img
+                        src={editedImageUrl}
+                        alt="Preview"
+                        className="w-full h-auto object-cover max-h-48"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                  <div className="flex gap-2 mt-3">
+                    <button
+                      onClick={handleSaveImage}
+                      disabled={isSavingImage || !editedImageUrl.trim()}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-slate-400 transition-colors font-medium shadow-sm"
+                    >
+                      {isSavingImage ? 'Guardando...' : '💾 Guardar'}
+                    </button>
+                    <button
+                      onClick={() => setIsEditingImage(false)}
+                      disabled={isSavingImage}
+                      className="px-4 py-2 bg-slate-300 text-slate-700 rounded-lg hover:bg-slate-400 transition-colors font-medium"
+                    >
+                      ✖️ Cancelar
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* IMÁGENES DE LOS PÁRRAFOS RELACIONADOS */}
             {relatedParagraphs.filter(p => p.image).length > 0 && (
