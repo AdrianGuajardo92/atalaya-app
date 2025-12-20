@@ -3016,6 +3016,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cómo se sienten muchos hermanos ante los golpes de la vida?",
             textLSM: "",
             paragraphs: [1, 2],
+            preview: "Por qué los problemas pueden hacernos dudar del amor de Jehová y qué significa «echar el ancla».",
             answer: "Los golpes de la vida pueden hacer que nuestras emociones suban y bajen, como un barco en una tempestad. Un día estamos convencidos de que Jehová nos ama, y al siguiente pensamos que ni siquiera se fija en nosotros. Aunque palabras de ánimo nos hacen sentir mejor por un tiempo, las dudas pueden regresar. Quizás hasta nos parezca que Jehová ya no se preocupa por nosotros. Necesitamos «echar el ancla» para no perder nunca la seguridad de que Jehová nos ama.",
             answerBullets: [
               "**Como un barco en tempestad** - Los golpes de la vida hacen que las emociones suban y bajen",
@@ -3049,6 +3050,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [3],
             readText: "LEE Salmo 31:7; 136:1",
+            preview: "Qué es el amor leal y por qué Jehová lo demuestra mejor que nadie.",
             image: "https://i.imgur.com/3w6ZHbU.png",
             answer: "El amor leal es un apego profundo y duradero que una persona le tiene a otra. Nadie muestra esta cualidad mejor que Jehová porque la Biblia dice que él está «lleno de amor leal» y que su amor leal por sus siervos «es inmenso». Esto significa que Jehová nunca abandona a sus siervos fieles. Recordar esto nos ayuda a mantener la estabilidad ante las tormentas de la vida.",
             answerBullets: [
@@ -3091,6 +3093,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cuáles son algunas enseñanzas básicas de la Biblia? ¿Por qué no dejamos que nada nos haga creer lo contrario?",
             textLSM: "",
             paragraphs: [4],
+            section: "VEAMOS EL AMOR DE JEHOVÁ COMO UNA ENSEÑANZA BÁSICA DE LA BIBLIA",
+            preview: "Por qué el amor de Jehová es una enseñanza básica tan importante como las demás verdades bíblicas.",
             answer: "Las enseñanzas básicas de la Biblia son verdades fundamentales: el nombre de Dios es Jehová, Jesús es su Hijo unigénito, los muertos están inconscientes, la Tierra será un paraíso y los humanos vivirán en ella para siempre. Una vez convencidos de que estas enseñanzas son ciertas porque están basadas en hechos y pruebas, ya no dejamos que nada nos haga creer lo contrario. Si vemos el amor de Jehová como una enseñanza básica, nos será más fácil rechazar la idea de que él no se fija en nosotros.",
             answerBullets: [
               "**El nombre de Dios es Jehová** - Verdad fundamental (Sal. 83:18)",
@@ -3128,6 +3132,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cómo llega una persona a rechazar las creencias falsas?",
             textLSM: "",
             paragraphs: [5],
+            preview: "Cómo usar el mismo método que usamos para dejar creencias falsas y aplicarlo a las dudas sobre el amor de Dios.",
             answer: "Cuando empezamos a estudiar la Biblia, comparamos lo que enseñaba nuestra religión con lo que enseña la Biblia. Si antes creíamos algo falso (por ejemplo, que Jesús es Dios), analizamos lo que dice la Biblia, nos dimos cuenta de que era falso, lo dejamos a un lado y aceptamos la verdad. Las enseñanzas falsas pueden estar «fuertemente atrincheradas», pero una vez que logramos dejarlas atrás, no permitimos que nada nos haga volver a ellas.",
             answerBullets: [
               "**Comparar con la Biblia** - Lo que enseñaba nuestra religión vs. lo que enseña la Biblia",
@@ -3164,6 +3169,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué en el Salmo 136 se repite tantas veces la frase \"su amor leal dura para siempre\"?",
             textLSM: "",
             paragraphs: [6],
+            preview: "Por qué el Salmo 136 repite 26 veces «su amor leal dura para siempre» y cómo aplicar esa verdad.",
             answer: "La frase «su amor leal dura para siempre» se repite 26 veces en el Salmo 136 porque el hecho de que Dios siente amor leal por su pueblo es una verdad bíblica tan fundamental como las otras enseñanzas básicas que llegamos a hacer nuestras. Si empezamos a pensar que Jehová no nos ama, debemos preguntarnos: «¿Es eso cierto?» y comparar nuestras dudas con lo que la Biblia enseña. La idea de que a Jehová no le importamos no es cierta, así que debemos rechazarla con firmeza.",
             answerBullets: [
               "**26 veces se repite** - «Su amor leal dura para siempre» en el Salmo 136",
@@ -3195,6 +3201,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cuáles son algunos textos que nos confirman que Jehová sí nos ama?",
             textLSM: "",
             paragraphs: [7],
+            preview: "Textos bíblicos que nos dan certeza (no solo posibilidad) de que Jehová nos ama.",
             answer: "Jesús dijo a sus discípulos: «Ustedes valen más que muchos gorriones» (Mat. 10:31) - no dijo «quizás valen más». Jehová dijo: «Yo te daré fuerzas. Sí, yo te ayudaré» (Is. 41:10) - no dijo «quizás te ayudaré». Estos textos no hablan de posibilidades, sino de certezas. Si al pasar por un problema dudamos del amor de Dios, debemos meditar en estos textos y hablarle a Jehová de nuestras dudas. Así podremos decir: «Hemos llegado a conocer el amor que Dios nos tiene y creemos en ese amor».",
             answerBullets: [
               "**«Ustedes valen más que muchos gorriones»** - Jesús lo dijo como certeza, no posibilidad (Mat. 10:31)",
@@ -3236,6 +3243,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué podemos hacer si seguimos dudando de que Jehová nos quiere?",
             textLSM: "",
             paragraphs: [8],
+            preview: "Cómo comparar lo que sentimos con lo que sabemos que es verdad según la Biblia.",
             answer: "Si nos siguen entrando dudas, debemos comparar lo que sentimos con lo que sabemos. Aunque sintamos que no tenemos el amor de Dios, sabemos que eso no es cierto porque la Biblia nos enseña que Jehová nos ama. La Biblia siempre dice la verdad; en cambio, los sentimientos nos pueden engañar. Si creyéramos que Dios no nos ama, estaríamos pasando por alto que el amor es la esencia de su personalidad.",
             answerBullets: [
               "**Comparar sentimientos con conocimiento** - Lo que sentimos vs. lo que sabemos",
@@ -3268,7 +3276,9 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [9, 10],
             readText: "LEE Juan 16:26, 27",
-            section: "¿QUÉ QUISO DECIR JESÚS?",
+            preview: "Qué quiso decir Jesús sobre la oración y por qué Jehová escucha personalmente nuestras peticiones.",
+            image: "https://i.imgur.com/tUOc2GQ.png",
+            section: "REFLEXIONEMOS EN QUE «EL PADRE MISMO» NOS QUIERE",
             answer: "Jesús estaba hablando de la oración. Les explicó a sus discípulos que debían orar al Padre en nombre de él, pero no a él. Los discípulos podrían haber pensado que, como eran muy amigos de Jesús, él escucharía sus peticiones y se las transmitiría al Padre. Pero Jesús dejó claro que «el Padre mismo» los quería y escucharía personalmente sus oraciones. Esta es una verdad básica sobre la oración: Jehová nos quiere tanto que se encarga personalmente de escucharnos.",
             answerBullets: [
               "**Jesús hablaba de la oración** - Debían orar al Padre en su nombre, no a él",
@@ -3305,7 +3315,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué se alegra Satanás si empezamos a dudar del amor de Jehová?",
             textLSM: "",
             paragraphs: [11],
-            section: "¿DE DÓNDE VIENEN LAS DUDAS?",
+            preview: "Cómo Satanás usa las dudas como una trampa astuta y por qué él mismo ya perdió el amor de Dios.",
+            section: "¿TENGAMOS CLARO DE DÓNDE VIENEN LAS DUDAS?",
             answer: "Satanás está «tratando de devorar» a cada uno de nosotros y desea que pensemos que Jehová no nos quiere. Fue el amor lo que impulsó a Jehová a dar el rescate, y Satanás quiere que sintamos que no merecemos ese regalo. Si dudamos del amor de Jehová o nos rendimos, Satanás se alegra. Pero él es quien ya no tiene el amor de Dios, así que es una de sus trampas más astutas hacernos creer que nosotros tampoco lo tenemos. Conocer sus intenciones nos motiva a oponernos a él con más fuerzas.",
             answerBullets: [
               "**Satanás quiere devorarnos** - Desea que pensemos que Jehová no nos quiere (1 Ped. 5:8)",
@@ -3342,6 +3353,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué el pecado heredado nos puede hacer dudar del amor de Jehová?",
             textLSM: "",
             paragraphs: [12, 13],
+            preview: "Cómo el pecado heredado afecta nuestras emociones y por qué somos como un vehículo con rueda desinflada.",
             answer: "El pecado heredado nos ha alejado de nuestro Creador y ha dañado nuestra mente, corazón y cuerpo. Ha tenido un efecto muy negativo en nuestras emociones: nos hace sentir culpabilidad, ansiedad, inseguridad y vergüenza. Estos sentimientos surgen cuando pecamos o porque somos conscientes de nuestra imperfección. Somos como un vehículo con una rueda desinflada: no funcionamos a plena capacidad. Por eso a veces dudamos del amor de Jehová, pero debemos recordar que él «les muestra amor leal a los que lo aman y obedecen sus mandamientos».",
             answerBullets: [
               "**El pecado nos alejó del Creador** - Ha dañado mente, corazón y cuerpo (Sal. 51:5; Rom. 5:12)",
@@ -3384,6 +3396,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [14],
             readText: "LEE Romanos 5:8",
+            preview: "Por qué el rescate demuestra que Jehová nos ama aunque no lo merezcamos.",
+            image: "https://imgur.com/nnAP7Xu.png",
             answer: "Puede que a veces sintamos que no merecemos el amor de Jehová. Y en sentido estricto eso es cierto, pero justamente por esa razón es tan especial el amor que nos tiene. No hay nada que podamos hacer para ganarnos su amor. Aun así, él nos quiere tanto que dio el rescate para poder perdonarnos. Jesús no vino para salvar a personas perfectas, sino a personas pecadoras (Rom. 5:8). Jehová no espera que hagamos las cosas perfectamente. Comprender que el pecado heredado nos puede hacer dudar nos motiva a luchar contra ese pensamiento.",
             answerBullets: [
               "**No merecemos el amor de Jehová** - Y justamente por eso es tan especial",
@@ -3425,7 +3439,9 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "Si le somos leales a Jehová, ¿de qué podemos estar seguros, y por qué? (2 Samuel 22:26).",
             textLSM: "",
             paragraphs: [15, 16],
+            section: "TOMEMOS LA DECISIÓN DE SER LEALES",
             readText: "LEE 2 Samuel 22:26",
+            preview: "Conclusión: Si somos leales a Jehová, él será leal con nosotros y nunca nos abandonará.",
             answer: "Si le somos leales a Jehová, podemos estar seguros de que él también lo será y no nos abandonará pase lo que pase. Cuando pasamos por situaciones difíciles, lo mejor es «echar el ancla»: recordar que Jehová nos ama y va a estar ahí para ayudarnos. Si alguna vez dudamos de su amor, recordemos que una cosa es lo que sentimos y otra cosa es lo que sabemos que es cierto. Nunca perdamos la confianza en esta verdad básica: el amor leal de Jehová dura para siempre.",
             answerBullets: [
               "**Si somos leales, él lo será** - No nos abandonará pase lo que pase (2 Sam. 22:26)",

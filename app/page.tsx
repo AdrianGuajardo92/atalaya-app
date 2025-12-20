@@ -47,32 +47,22 @@ export default function Home() {
 
   // Cargar artículos del mes al iniciar
   useEffect(() => {
-    console.log('🔍 Cargando artículos del mes:', currentMonth);
     const articles = getMonthArticles(currentMonth);
-    console.log('📚 Artículos encontrados:', articles.length);
     setMonthArticles(articles);
 
     // Cargar artículo actual
-    console.log('🔍 Buscando artículo ID:', currentArticleId);
     const article = getArticleById(currentArticleId);
-    console.log('📄 Artículo encontrado:', article ? article.title : 'NO ENCONTRADO');
     if (article) {
       setCurrentArticle(article);
     } else {
-      // Si no se encuentra el artículo, desactivar loading para mostrar error
-      console.error('❌ No se encontró el artículo con ID:', currentArticleId);
       setIsLoading(false);
     }
   }, [currentMonth, currentArticleId]);
 
   // Cargar datos LSM, favoritos y tarjetas ocultas cuando cambia el artículo
   useEffect(() => {
-    if (!currentArticleId) {
-      console.log('⚠️ No hay currentArticleId, saltando carga de datos');
-      return;
-    }
+    if (!currentArticleId) return;
 
-    console.log('🔄 Iniciando carga de datos para artículo:', currentArticleId);
     setIsLoading(true);
     Promise.all([
       fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.json()),
@@ -80,14 +70,12 @@ export default function Home() {
       fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json())
     ])
       .then(([lsmDataResult, favoritesResult, hiddenCardsResult]) => {
-        console.log('✅ Datos cargados exitosamente');
         setLsmData(lsmDataResult);
         setFavorites(favoritesResult);
         setHiddenCards(hiddenCardsResult);
         setIsLoading(false);
       })
-      .catch(err => {
-        console.error('❌ Error loading data:', err);
+      .catch(() => {
         setIsLoading(false);
       });
   }, [currentArticleId]);
@@ -203,8 +191,8 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ articleId: currentArticleId, questionNumber: 'title', lsmText: text })
       });
-    } catch (error) {
-      console.error('Error saving title LSM:', error);
+    } catch {
+      // Error silencioso
     }
   };
 
@@ -229,8 +217,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ articleId: currentArticleId, favoriteId, isFavorite })
       });
-    } catch (error) {
-      console.error('Error saving favorite:', error);
+    } catch {
       // Revertir cambio si falla
       setFavorites(prev => {
         const newFavorites = { ...prev };
@@ -260,8 +247,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ articleId: currentArticleId, cardId, isHidden })
       });
-    } catch (error) {
-      console.error('Error hiding card:', error);
+    } catch {
       // Revertir cambio si falla
       setHiddenCards(prev => {
         const newHidden = { ...prev };
@@ -543,6 +529,16 @@ export default function Home() {
                         {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
                       </span>
                     </div>
+
+                    {/* ADELANTO del tema */}
+                    {currentArticle.questions[currentQuestionIndex + 1].preview && (
+                      <div className="mt-2 bg-orange-50 px-3 py-2 rounded-lg border border-orange-200">
+                        <p className="text-sm text-orange-800">
+                          <span className="font-semibold">🎯 Veremos:</span>{' '}
+                          <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (

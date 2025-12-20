@@ -20,9 +20,27 @@ interface QuestionCardProps {
   articleId: string; // ID del artículo actual
 }
 
+// Textos bíblicos para el modal LEE (NWT 2019)
+const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
+  "LEE Salmo 31:7; 136:1": [
+    { reference: "Salmo 31:7", text: "Estaré muy feliz y me alegraré por tu amor leal, porque has visto mi sufrimiento; estás al tanto de mi profunda angustia." },
+    { reference: "Salmo 136:1", text: "Denle gracias a Jehová porque él es bueno; su amor leal dura para siempre." }
+  ],
+  "LEE Juan 16:26, 27": [
+    { reference: "Juan 16:26, 27", text: "Ese día le pedirán al Padre en mi nombre. No les digo que yo le rogaré al Padre por ustedes, porque el Padre mismo los quiere, ya que ustedes me han querido a mí y han creído que vine como representante del Padre." }
+  ],
+  "LEE Romanos 5:8": [
+    { reference: "Romanos 5:8", text: "Pero Dios nos recomienda su propio amor de esta manera: en que, siendo nosotros todavía pecadores, Cristo murió por nosotros." }
+  ],
+  "LEE 2 Samuel 22:26": [
+    { reference: "2 Samuel 22:26", text: "Con alguien leal, tú actúas con lealtad; con el hombre intachable, tú te portas de manera intachable." }
+  ]
+};
+
 export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [showInfographicModal, setShowInfographicModal] = useState(false);
+  const [showReadTextModal, setShowReadTextModal] = useState(false);
   const [paragraphCopied, setParagraphCopied] = useState(false);
   const [infographicCopied, setInfographicCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
@@ -943,9 +961,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </p>
               {question.readText && (
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <p className="text-sm font-bold text-blue-700 uppercase">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowReadTextModal(true);
+                    }}
+                    className="text-sm font-bold text-blue-700 uppercase hover:text-blue-900 hover:underline cursor-pointer transition-colors"
+                  >
                     📖 {question.readText}
-                  </p>
+                  </button>
                 </div>
               )}
             </div>
@@ -1749,6 +1773,66 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <button
                 onClick={() => setShowInfographicModal(false)}
                 className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Lectura Bíblica (LEE) */}
+      {showReadTextModal && question.readText && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}
+          onClick={() => setShowReadTextModal(false)}
+        >
+          <div
+            className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header del modal */}
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-emerald-800 text-white p-4 rounded-t-xl flex items-center justify-between z-10">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📖</span>
+                <h3 className="text-lg font-bold">{question.readText}</h3>
+              </div>
+              <button
+                onClick={() => setShowReadTextModal(false)}
+                className="w-10 h-10 bg-white/20 hover:bg-white/30 border border-white/40 rounded-lg flex items-center justify-center transition-all shadow-sm"
+                title="Cerrar"
+              >
+                <span className="text-2xl font-bold text-white">×</span>
+              </button>
+            </div>
+
+            {/* Contenido - Textos bíblicos */}
+            <div className="p-6 space-y-4">
+              {biblicalTexts[question.readText] ? (
+                biblicalTexts[question.readText].map((item, index) => (
+                  <div key={index} className="bg-emerald-50 rounded-lg p-4 border-l-4 border-emerald-500">
+                    <p className="text-sm font-bold text-emerald-700 mb-2">{item.reference}</p>
+                    <p className="text-slate-800 leading-relaxed italic">&ldquo;{item.text}&rdquo;</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-slate-600 italic">Texto bíblico no disponible.</p>
+              )}
+              <p className="text-xs text-slate-500 text-center mt-4">
+                Traducción del Nuevo Mundo (edición 2019)
+              </p>
+            </div>
+
+            {/* Footer del modal */}
+            <div className="sticky bottom-0 bg-slate-50 p-4 rounded-b-xl border-t border-slate-200 text-center">
+              <button
+                onClick={() => setShowReadTextModal(false)}
+                className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium shadow-sm"
               >
                 Cerrar
               </button>

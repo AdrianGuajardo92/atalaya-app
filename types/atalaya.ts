@@ -6,6 +6,7 @@ export interface Question {
   section?: string; // Subtítulo de sección en español (opcional)
   sectionLSM?: string; // Subtítulo de sección en LSM (opcional)
   readText?: string; // Texto bíblico a leer (ej: "LEE Ezequiel 34:15, 16") (opcional)
+  preview?: string; // Adelanto del tema para el conductor del estudio (opcional)
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
   answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)

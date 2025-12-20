@@ -15,22 +15,12 @@ function getHiddenCardsKey(articleId?: string): string {
 
 export async function GET(request: NextRequest) {
   try {
-    console.log('🔍 Hidden Cards API: GET request received');
-    // Obtener articleId de query params
     const searchParams = request.nextUrl.searchParams;
     const articleId = searchParams.get('articleId') || undefined;
-    console.log('📝 Hidden Cards API: articleId =', articleId);
-
     const key = getHiddenCardsKey(articleId);
-    console.log('🔑 Hidden Cards API: key =', key);
-
-    console.log('🔄 Hidden Cards API: Calling kv.get()...');
     const data = await kv.get(key) || {};
-    console.log('✅ Hidden Cards API: Data retrieved successfully', data);
-
     return NextResponse.json(data);
-  } catch (error) {
-    console.error('❌ Hidden Cards API: Error reading hidden cards data:', error);
+  } catch {
     return NextResponse.json({});
   }
 }
@@ -62,8 +52,7 @@ export async function POST(request: NextRequest) {
     await kv.set(key, currentData);
 
     return NextResponse.json({ success: true, data: currentData });
-  } catch (error) {
-    console.error('Error saving hidden cards data:', error);
+  } catch {
     return NextResponse.json({ success: false, error: 'Failed to save' }, { status: 500 });
   }
 }
