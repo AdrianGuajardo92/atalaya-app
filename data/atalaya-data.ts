@@ -3540,7 +3540,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "a) ¿Qué puede hacer que nuestras oraciones se vuelvan monótonas o superficiales? b) ¿Cómo sabemos que Jehová presta atención a todo lo que le decimos?",
             textLSM: "",
             paragraphs: [1, 2],
-            answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el ajetreo de la vida (haciendo solo oraciones breves) o porque nos sentimos indignos de contarle a Jehová todo lo que sentimos. Sin embargo, lo más importante para Jehová es que le hablemos desde el corazón y con humildad. No hay que preocuparnos por usar palabras elegantes. Él escucha «el ruego de los mansos» y presta atención porque se preocupa por nosotros.",
+            answer: [
+              "Nuestras oraciones pueden volverse monótonas por el ajetreo de la vida o por sentirnos indignos.",
+              "Lo más importante para Jehová es que le hablemos desde el corazón y con humildad.",
+              "No hay que preocuparnos por usar palabras elegantes.",
+              "Jehová escucha «el ruego de los mansos» porque se preocupa por nosotros."
+            ],
             answerBullets: [
               "**El ajetreo de la vida** - Nos lleva a hacer solo oraciones breves",
               "**Sentirnos indignos** - Pensamos que no merecemos contarle todo",
@@ -3549,12 +3554,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué puede hacer que nuestras oraciones se vuelvan monótonas o superficiales?",
-                answer: "El ajetreo de la vida (haciendo solo oraciones breves) o sentirnos indignos de contarle a Jehová todo lo que sentimos."
+                question: "Según el párrafo 1, ¿por qué algunas personas solo hacen oraciones breves?",
+                answer: "Por el ajetreo de la vida, que les lleva a no tomarse tiempo para oraciones más largas."
               },
               {
-                question: "¿Qué es lo más importante para Jehová en nuestras oraciones?",
-                answer: "Que le hablemos desde el corazón y con humildad. No importan las palabras elegantes, él escucha «el ruego de los mansos»."
+                question: "¿Qué significa que Jehová escucha «el ruego de los mansos»?",
+                answer: "Que no importan las palabras elegantes ni expresarnos perfectamente; lo importante es hablar desde el corazón con humildad."
+              },
+              {
+                question: "¿Por qué no debemos preocuparnos por usar palabras elegantes al orar?",
+                answer: "Porque Jehová presta atención a todo lo que le decimos ya que de verdad se preocupa por nosotros."
               }
             ],
             biblicalCards: [
@@ -3568,14 +3577,20 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Jehová conoce todo sobre nosotros",
                 text: "Oh, Jehová, tú me has examinado y me conoces. Sabes cuándo me siento y cuándo me levanto. Percibes mis pensamientos desde lejos."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/9KBFOIF.png"
           },
           {
             number: "3",
             textEs: "¿Qué preguntas responderemos en este artículo?",
             textLSM: "",
             paragraphs: [3],
-            answer: "En este artículo responderemos: 1) ¿Por qué no debemos tener miedo de contarle a Jehová nuestros pensamientos y sentimientos? 2) ¿Qué podemos hacer para que nuestras oraciones sean más profundas? 3) ¿Cómo nos ayudan las oraciones de la Biblia a mejorar las nuestras? 4) ¿Qué podemos hacer si estamos tan angustiados que no nos salen las palabras?",
+            answer: [
+              "¿Por qué no debemos tener miedo de contarle a Jehová nuestros pensamientos y sentimientos?",
+              "¿Qué podemos hacer para que nuestras oraciones sean más profundas?",
+              "¿Cómo nos ayudan las oraciones de la Biblia a mejorar las nuestras?",
+              "¿Qué podemos hacer si estamos tan angustiados que no nos salen las palabras?"
+            ],
             answerBullets: [
               "**¿Por qué no tener miedo de orar?** - Contarle a Jehová pensamientos y sentimientos",
               "**¿Cómo hacer oraciones más profundas?** - Técnicas para mejorar",
@@ -3584,11 +3599,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué cuatro preguntas responderá el artículo sobre las oraciones?",
-                answer: "1) Por qué no tener miedo de orar, 2) Cómo hacer oraciones más profundas, 3) Cómo nos ayudan las oraciones bíblicas, 4) Qué hacer si no salen las palabras."
+                question: "¿Qué tema tratará este artículo sobre las oraciones cuando nos sentimos muy angustiados?",
+                answer: "Qué podemos hacer si estamos tan angustiados que no nos salen las palabras para expresar lo que sentimos."
+              },
+              {
+                question: "¿Qué fuente mencionada en el párrafo nos puede ayudar a mejorar nuestras oraciones?",
+                answer: "Las oraciones que encontramos en la Biblia, que nos ayudan a mejorar las nuestras."
               }
             ],
-            biblicalCards: []
+            biblicalCards: [],
+            infographic: "https://i.imgur.com/1Dsx1cy.png"
           },
           {
             number: "4",
@@ -3597,7 +3617,13 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [4],
             readText: "LEE Salmo 119:145",
             section: "ABRAMOS NUESTRO CORAZÓN A JEHOVÁ",
-            answer: "Nos será más fácil contarle a Jehová nuestros pensamientos y sentimientos si lo vemos como un amigo fiel que quiere lo mejor para nosotros. El escritor del Salmo 119 pasó por muchos problemas: dijeron mentiras de él y tuvo que cargar con sus imperfecciones. Pero procuró tener una relación estrecha con Dios, así que no tuvo miedo de abrirle su corazón.",
+            sectionLSM: "NO TENGAS MIEDO DE ORARLE A JEHOVÁ",
+            answer: [
+              "Nos será más fácil contarle a Jehová si lo vemos como un amigo fiel que quiere lo mejor para nosotros.",
+              "El escritor del Salmo 119 pasó por muchos problemas: dijeron mentiras de él y tuvo que cargar con sus imperfecciones.",
+              "Pero procuró tener una relación estrecha con Dios.",
+              "No tuvo miedo de abrirle su corazón."
+            ],
             answerBullets: [
               "**Ver a Jehová como amigo fiel** - Que quiere lo mejor para nosotros",
               "**El salmista tuvo problemas** - Mentiras sobre él, imperfecciones propias (Sal. 119:23, 69, 78)",
@@ -3606,12 +3632,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué nos ayudará a abrirle nuestro corazón a Jehová?",
-                answer: "Verlo como un amigo fiel que quiere lo mejor para nosotros, como hizo el escritor del Salmo 119."
+                question: "¿Qué problemas enfrentó el escritor del Salmo 119 según el párrafo?",
+                answer: "Dijeron mentiras terribles de él y tuvo que cargar con sus propias imperfecciones."
               },
               {
-                question: "¿Qué problemas tuvo el escritor del Salmo 119?",
-                answer: "Dijeron mentiras terribles de él y tuvo que cargar con sus propias imperfecciones, pero aun así no tuvo miedo de orar."
+                question: "A pesar de sus problemas, ¿qué procuró hacer el salmista?",
+                answer: "Procuró tener una relación estrecha con Dios, así que no tuvo miedo de abrirle su corazón."
+              },
+              {
+                question: "¿Cómo debemos ver a Jehová para que sea más fácil contarle nuestros sentimientos?",
+                answer: "Como un amigo fiel que quiere lo mejor para nosotros."
               }
             ],
             biblicalCards: [
@@ -3620,14 +3650,20 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Texto temático - Orar con todo el corazón",
                 text: "Llamo con todo mi corazón. Respóndeme, oh, Jehová. Voy a obedecer tus decretos."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/z2BpyL0.png"
           },
           {
             number: "5",
             textEs: "¿Por qué no debemos dejar que los sentimientos negativos nos frenen de orar? Pon un ejemplo.",
             textLSM: "",
             paragraphs: [5],
-            answer: "Jehová quiere que incluso quienes han cometido pecados graves le oren. No hay que dejar que los sentimientos negativos nos frenen. Ejemplo: un piloto de avión que ha cometido un error o se ha desviado de su rumbo sabe que puede contactarse con los controladores aéreos para pedir ayuda. No decidiría no hacerlo por vergüenza. De manera parecida, aunque a veces cometamos un pecado o nos desviemos, no debemos sentir miedo ni vergüenza de hablar con Jehová.",
+            answer: [
+              "Jehová quiere que incluso quienes han cometido pecados graves le oren.",
+              "No hay que dejar que los sentimientos negativos nos frenen.",
+              "Ejemplo: un piloto que comete un error contacta a los controladores para pedir ayuda, no evita hacerlo por vergüenza.",
+              "No debemos sentir miedo ni vergüenza de hablar con Jehová."
+            ],
             answerBullets: [
               "**Jehová quiere que oremos** - Incluso quienes han cometido pecados graves (Is. 55:6, 7)",
               "**Ejemplo del piloto** - Aunque cometa un error, contacta a los controladores para pedir ayuda",
@@ -3636,12 +3672,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿A qué se compara no orar por sentirse indigno?",
-                answer: "A un piloto que no contacta a los controladores aéreos después de cometer un error por vergüenza. Sería peligroso no pedir ayuda."
+                question: "¿A qué se compara en el párrafo no orar por sentirse indigno?",
+                answer: "A un piloto que comete un error y no contacta a los controladores aéreos por vergüenza. Sería peligroso no pedir ayuda."
               },
               {
-                question: "¿Por qué no debemos dejar que los sentimientos negativos nos frenen de orar?",
-                answer: "Porque Jehová quiere que incluso quienes han cometido pecados graves le oren. No debemos sentir miedo ni vergüenza."
+                question: "Según el párrafo, ¿qué quiere Jehová que hagan incluso quienes han cometido pecados graves?",
+                answer: "Que le oren. No hay que dejar que los sentimientos negativos nos frenen."
+              },
+              {
+                question: "¿Qué haría un piloto responsable si comete un error o se desvía de su rumbo?",
+                answer: "Contactarse con los controladores aéreos para pedir ayuda, sin importar que le dé vergüenza."
               }
             ],
             biblicalCards: [
@@ -3658,7 +3698,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [6, 7],
             section: "CÓMO PUEDES HACER ORACIONES MÁS PROFUNDAS",
-            answer: "Cuando le hablamos a Jehová con total franqueza de nuestros pensamientos y sentimientos más íntimos, nos acercamos más a él. Reflexionar en las cualidades de Jehová nos ayuda a hacer oraciones más profundas. Ejemplo: una hermana llamada Kristine tenía un padre violento y le costaba ver a Jehová como padre. Pero meditar en el amor leal de Jehová la hizo sentir segura: «Sé que siempre me llevará de la mano y que si caigo me levantará con mucho cariño».",
+            answer: [
+              "Cuando le hablamos a Jehová con total franqueza, nos acercamos más a él.",
+              "Reflexionar en las cualidades de Jehová nos ayuda a hacer oraciones más profundas.",
+              "Ejemplo: Kristine tenía un padre violento y le costaba ver a Jehová como padre.",
+              "El amor leal de Jehová la hizo sentir segura: «Sé que siempre me llevará de la mano»."
+            ],
             answerBullets: [
               "**Hablar con total franqueza** - De nuestros pensamientos y sentimientos más íntimos",
               "**Reflexionar en las cualidades de Jehová** - Nos acercamos más a él (Sal. 145:8, 9, 18)",
@@ -3667,12 +3712,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué nos ayudará a hacer oraciones más profundas?",
-                answer: "Reflexionar en las cualidades de Jehová. Cuanto más reflexionemos en ellas, más fácil será expresarnos abiertamente."
+                question: "¿Por qué a Kristine le costaba ver a Jehová como padre?",
+                answer: "Porque tenía un padre violento. Sentía que sus imperfecciones harían que Jehová se alejara de ella."
               },
               {
-                question: "¿Cómo ayudó a Kristine meditar en el amor leal de Jehová?",
-                answer: "La hizo sentir segura para contarle tanto sus mayores alegrías como sus penas más profundas, aunque le costaba ver a Jehová como padre."
+                question: "¿Qué cualidad de Jehová ayudó a Kristine a sentirse segura para orar?",
+                answer: "El amor leal de Jehová. Sabe que siempre la llevará de la mano y que si cae la levantará con cariño."
+              },
+              {
+                question: "Según el párrafo 6, ¿qué pasa cuando le hablamos a Jehová con total franqueza?",
+                answer: "Nos acercamos más a él."
               }
             ],
             biblicalCards: [
@@ -3688,7 +3737,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cuáles son algunos beneficios de pensar de antemano en qué decirle a Jehová? Pon un ejemplo.",
             textLSM: "",
             paragraphs: [8, 9],
-            answer: "Antes de orar podemos hacernos preguntas como: ¿Con qué problemas estoy luchando? ¿Hay alguien a quien no he perdonado? ¿Necesito ayuda en alguna situación? También podemos pedir por el nombre de Jehová, su Reino y su voluntad. Ejemplo: una hermana llamada Aliska no sabía qué decir cuando su esposo tuvo cáncer terminal. Sacar momentos para organizar sus pensamientos la ayudó a que sus oraciones no giraran solo en torno a ella y a tener la mente más calmada.",
+            answer: [
+              "Antes de orar podemos hacernos preguntas: ¿Con qué problemas lucho? ¿Hay alguien a quien no he perdonado?",
+              "También podemos pedir por el nombre de Jehová, su Reino y su voluntad.",
+              "Ejemplo: Aliska no sabía qué decir cuando su esposo tuvo cáncer terminal.",
+              "Organizar sus pensamientos la ayudó a tener la mente más calmada."
+            ],
             answerBullets: [
               "**Hacerse preguntas antes de orar** - ¿Problemas? ¿Perdón pendiente? ¿Situación que necesita ayuda?",
               "**Seguir el ejemplo de Jesús** - Pedir por el nombre de Jehová, su Reino y su voluntad (Mat. 6:9, 10)",
@@ -3723,7 +3777,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué es bueno que nos tomemos nuestro tiempo para orar? (Mira también las imágenes).",
             textLSM: "",
             paragraphs: [10],
-            answer: "Aunque las oraciones cortas nos pueden acercar a Jehová, si hacemos oraciones más largas es más probable que le contemos con más detalle todo lo que sentimos. Jehová nunca está mirando el reloj, así que podemos extendernos. Podemos buscar un momento y lugar sin distracciones para orar largo y tendido, quizás en voz alta, y convertirlo en costumbre.",
+            answer: [
+              "Las oraciones cortas nos acercan a Jehová, pero las largas nos permiten contar más detalles.",
+              "Jehová nunca está mirando el reloj, así que podemos extendernos.",
+              "Buscar un momento y lugar sin distracciones para orar largo y tendido.",
+              "Convertirlo en costumbre, quizás en voz alta."
+            ],
             answerBullets: [
               "**Oraciones cortas ayudan** - Pero las más largas permiten contar más detalles",
               "**Jehová nunca mira el reloj** - Podemos extendernos todo lo que queramos",
@@ -3732,12 +3791,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Por qué es bueno hacer oraciones más largas?",
-                answer: "Porque es más probable que le contemos a Jehová con más detalle todo lo que sentimos. Él nunca está mirando el reloj."
+                question: "¿Qué dijo Elijah sobre Jehová y el tiempo que dedicamos a orar?",
+                answer: "Que Jehová nunca está mirando el reloj, así que podemos extendernos todo lo que queramos."
               },
               {
-                question: "¿Qué meta podemos ponernos para mejorar nuestras oraciones?",
+                question: "¿Qué meta práctica sugiere el párrafo para mejorar nuestras oraciones?",
                 answer: "Buscar un momento y lugar sin distracciones para orar largo y tendido, quizás en voz alta, y convertirlo en costumbre."
+              },
+              {
+                question: "¿Qué beneficio tiene hacer oraciones más largas según el párrafo?",
+                answer: "Es más probable que le contemos a Jehová con más detalle todo lo que sentimos, y nos sentimos más cerca de él."
               }
             ],
             biblicalCards: []
@@ -3748,7 +3811,11 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [11],
             section: "MEDITA EN LAS ORACIONES DE PERSONAJES BÍBLICOS",
-            answer: "Meditar en las oraciones sentidas y canciones de alabanza de siervos de Jehová de tiempos bíblicos nos puede dar ideas de cómo expresarnos nosotros. Tal vez descubramos expresiones que podemos usar para alabar a Jehová. Y es probable que encontremos oraciones con las que nos sintamos identificados.",
+            answer: [
+              "Meditar en oraciones bíblicas nos da ideas de cómo expresarnos nosotros.",
+              "Tal vez descubramos expresiones que podemos usar para alabar a Jehová.",
+              "Es probable que encontremos oraciones con las que nos sintamos identificados."
+            ],
             answerBullets: [
               "**Nos da ideas** - De cómo expresarnos en nuestras oraciones",
               "**Expresiones para alabar** - Podemos descubrir cómo alabar a Jehová",
@@ -3757,8 +3824,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Cómo nos ayuda meditar en las oraciones de personajes bíblicos?",
-                answer: "Nos da ideas de cómo expresarnos, descubrimos expresiones para alabar a Jehová, y encontramos oraciones con las que nos identificamos."
+                question: "¿Qué podemos descubrir al meditar en oraciones sentidas y canciones de alabanza bíblicas?",
+                answer: "Expresiones que podemos usar para alabar a Jehová y oraciones con las que nos sintamos identificados."
+              },
+              {
+                question: "¿Cómo pueden las oraciones bíblicas darnos ideas para nuestras propias oraciones?",
+                answer: "Fijándonos en cómo se expresaron los siervos de Jehová de tiempos bíblicos, podemos hacer nosotros lo mismo."
               }
             ],
             biblicalCards: []
@@ -3768,7 +3839,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué preguntas podemos hacernos al leer una oración?",
             textLSM: "",
             paragraphs: [12],
-            answer: "Cuando leemos una oración de la Biblia, podemos preguntarnos: ¿Quién dijo esas palabras? ¿Cuáles eran sus circunstancias? ¿Estoy pasando por alguna situación parecida? ¿Qué lecciones saco? Quizás tengamos que investigar un poco para encontrar las respuestas, pero valdrá la pena.",
+            answer: [
+              "¿Quién dijo esas palabras?",
+              "¿Cuáles eran sus circunstancias?",
+              "¿Estoy pasando por alguna situación parecida?",
+              "¿Qué lecciones saco? Investigar vale la pena."
+            ],
             answerBullets: [
               "**¿Quién dijo esas palabras?** - Identificar al personaje",
               "**¿Cuáles eran sus circunstancias?** - Contexto de la oración",
@@ -3777,8 +3853,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué preguntas podemos hacernos al leer una oración de la Biblia?",
-                answer: "¿Quién dijo esas palabras? ¿Cuáles eran sus circunstancias? ¿Estoy en situación parecida? ¿Qué lecciones saco?"
+                question: "¿Por qué vale la pena investigar un poco al leer oraciones de la Biblia?",
+                answer: "Para encontrar respuestas a preguntas como quién dijo esas palabras, cuáles eran sus circunstancias y qué lecciones sacamos."
+              },
+              {
+                question: "¿Qué pregunta personal debemos hacernos al leer una oración bíblica?",
+                answer: "¿Estoy pasando por alguna situación parecida a la del personaje bíblico?"
               }
             ],
             biblicalCards: []
@@ -3789,7 +3869,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [13],
             readText: "LEE 1 Samuel 1:10, 11",
-            answer: "Ana tenía dos problemas graves: era estéril y la otra esposa de Elcaná le hacía la vida imposible. Ella se tomó su tiempo para contarle a Jehová todo lo que la inquietaba, y después se sintió mucho mejor. La lección: si estamos pasando por un problema que no desaparece, debemos «arrojar nuestra carga sobre Jehová», explicarle cuáles son nuestras preocupaciones y cómo nos hacen sentir.",
+            answer: [
+              "Ana tenía dos problemas graves: era estéril y la otra esposa le hacía la vida imposible.",
+              "Se tomó su tiempo para contarle a Jehová todo lo que la inquietaba.",
+              "Después se sintió mucho mejor.",
+              "Lección: «arrojar nuestra carga sobre Jehová» y explicarle nuestras preocupaciones."
+            ],
             answerBullets: [
               "**Problemas de Ana** - Era estéril y la otra esposa la acosaba (1 Sam. 1:4-7)",
               "**Se tomó su tiempo** - Le contó a Jehová todo lo que la inquietaba",
@@ -3798,12 +3883,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué problemas tenía Ana cuando oró a Jehová?",
+                question: "¿Cuáles eran los dos problemas graves de Ana mencionados en el párrafo?",
                 answer: "Era estéril y la otra esposa de Elcaná le estaba haciendo la vida imposible."
               },
               {
-                question: "¿Qué lección sacamos de la oración de Ana?",
-                answer: "Tomarnos tiempo para contarle a Jehová todo lo que nos inquieta, «arrojar nuestra carga sobre él» y explicarle cómo nos sentimos."
+                question: "¿Cómo se sintió Ana después de tomarse tiempo para contarle a Jehová lo que la inquietaba?",
+                answer: "Se sintió mucho mejor."
+              },
+              {
+                question: "¿Qué significa «arrojar tu carga sobre Jehová» según el párrafo?",
+                answer: "Explicarle cuáles son nuestras preocupaciones y cómo nos hacen sentir."
               }
             ],
             biblicalCards: [
@@ -3824,7 +3913,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "a) ¿Qué otra lección sacamos del ejemplo de Ana? b) ¿Cómo puede enriquecer nuestras oraciones meditar en la Biblia?",
             textLSM: "",
             paragraphs: [14],
-            answer: "Ana, años después de que nació Samuel, le dio gracias a Jehová porque vio que él protege y cuida a sus siervos leales. Aunque sus problemas quizás no habían desaparecido, ella se centró en cómo la había bendecido Jehová. Lección: nos resultará más fácil sobrellevar las dificultades si nos centramos en cómo nos ha apoyado Jehová. Meditar en la Biblia enriquece nuestras oraciones al darnos expresiones y perspectivas.",
+            answer: [
+              "Ana le dio gracias a Jehová porque vio que él protege a sus siervos leales.",
+              "Aunque sus problemas no habían desaparecido, se centró en las bendiciones.",
+              "Lección: centrarnos en cómo nos ha apoyado Jehová nos ayuda a sobrellevar.",
+              "Meditar en la Biblia enriquece nuestras oraciones."
+            ],
             answerBullets: [
               "**Ana agradeció a Jehová** - Porque vio que él protege y cuida a sus siervos leales (1 Sam. 2:1, 8, 9)",
               "**Se centró en las bendiciones** - Aunque sus problemas quizás no habían desaparecido",
@@ -3833,12 +3927,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué otra lección sacamos del ejemplo de Ana?",
-                answer: "Aunque sus problemas quizás no desaparecieron, ella se centró en cómo la había bendecido Jehová. Eso nos ayuda a sobrellevar dificultades."
+                question: "¿Qué hizo Ana años después de que nació Samuel?",
+                answer: "Le dio gracias a Jehová porque había visto que él protege y cuida a sus siervos leales."
               },
               {
-                question: "¿Cómo enriquece nuestras oraciones meditar en la Biblia?",
-                answer: "Nos da expresiones para usar, perspectivas nuevas y nos ayuda a ver cómo Jehová ha ayudado a otros."
+                question: "¿En qué se centró Ana aunque sus problemas quizás no habían desaparecido?",
+                answer: "En cómo la había bendecido Jehová."
+              },
+              {
+                question: "¿Qué nos ayuda a sobrellevar las dificultades según la lección de Ana?",
+                answer: "Centrarnos en cómo nos ha apoyado Jehová, no solo en los problemas."
               }
             ],
             biblicalCards: [
@@ -3855,7 +3953,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [15],
             readText: "LEE Jeremías 12:1",
-            answer: "Jeremías se sintió muy desanimado porque veía que a los malos les iba bien y que los israelitas se burlaban de él. Es fácil identificarnos porque la gente también se burla de nosotros y parece que los malos disfrutan de la vida. Pero Jeremías, aunque expresó su frustración, jamás acusó a Dios de ser injusto. Se convenció de que Jehová actúa con justicia. Nosotros también podemos contarle a Jehová nuestras frustraciones, confiando en que él solucionará las injusticias.",
+            answer: [
+              "Jeremías se sintió desanimado: a los malos les iba bien y los israelitas se burlaban de él.",
+              "Es fácil identificarnos porque la gente también se burla de nosotros.",
+              "Aunque expresó su frustración, jamás acusó a Dios de ser injusto.",
+              "Podemos contarle a Jehová nuestras frustraciones confiando en su justicia."
+            ],
             answerBullets: [
               "**Jeremías estaba desanimado** - A los malos les iba bien, los israelitas se burlaban de él (Jer. 20:7, 8)",
               "**Fácil identificarnos** - También nos burlan y los malos parecen disfrutar",
@@ -3891,7 +3994,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [16],
             readText: "LEE Salmo 42:1-4",
-            answer: "Un levita expresó cómo se sentía por estar exiliado y no poder reunirse con sus hermanos. Quizás nos sintamos como él si no podemos salir de nuestras casas o estamos en prisión por nuestra fe. En esas circunstancias nuestras emociones pueden ser una montaña rusa. Pero hablarle a Jehová nos ayuda a comprender mejor nuestros sentimientos, ver las cosas de otra manera y tener fuerzas para aguantar.",
+            answer: [
+              "Un levita expresó cómo se sentía por estar exiliado y no poder reunirse.",
+              "Nos sentimos como él si no podemos salir o estamos en prisión por nuestra fe.",
+              "En esas circunstancias nuestras emociones pueden ser una montaña rusa.",
+              "Hablarle a Jehová nos ayuda a comprender nuestros sentimientos y tener fuerzas."
+            ],
             answerBullets: [
               "**El levita estaba exiliado** - No podía reunirse con sus hermanos (Sal. 42:1-4)",
               "**Aplicación actual** - Si no podemos salir o estamos en prisión por nuestra fe",
@@ -3900,12 +4008,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué aprendemos del levita exiliado del Salmo 42?",
-                answer: "Que hablarle a Jehová de nuestros sentimientos nos ayuda a comprenderlos mejor, ver las cosas de otra manera y tener fuerzas para aguantar."
+                question: "¿Por qué estaba triste el levita del Salmo 42?",
+                answer: "Estaba exiliado y no podía reunirse con sus hermanos."
               },
               {
                 question: "¿En qué situaciones actuales podríamos sentirnos como el levita exiliado?",
-                answer: "Si no podemos salir de nuestras casas o estamos en prisión por nuestra fe y no podemos reunirnos con los hermanos."
+                answer: "Si no podemos salir de nuestras casas o estamos en prisión por nuestra fe."
+              },
+              {
+                question: "¿Qué se dio cuenta el levita después de hablarle a Jehová de cómo se sentía?",
+                answer: "Que tendría nuevas oportunidades de alabar a Dios y que Jehová lo estaba cuidando."
               }
             ],
             biblicalCards: [
@@ -3927,7 +4039,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [17],
             readText: "LEE Jonás 2:1, 2",
-            answer: "Jonás oró desde el vientre de un gran pez. Aunque había desobedecido a Jehová, estaba seguro de que Dios escucharía su voz. En su súplica usó muchas expresiones de los Salmos porque los conocía muy bien. Recordarlos y meditar en ellos lo convenció de que Jehová lo ayudaría. De manera parecida, si memorizamos textos bíblicos, puede que se nos vengan a la mente y nos consuelen cuando oremos en momentos difíciles.",
+            answer: [
+              "Jonás oró desde el vientre de un gran pez.",
+              "Aunque había desobedecido, estaba seguro de que Dios lo escucharía.",
+              "Usó expresiones de los Salmos porque los conocía muy bien.",
+              "Si memorizamos textos bíblicos, nos consolarán en momentos difíciles."
+            ],
             answerBullets: [
               "**Jonás oró desde el pez** - Aunque había desobedecido, estaba seguro de que Dios lo escucharía",
               "**Usó expresiones de los Salmos** - Los conocía muy bien",
@@ -3936,12 +4053,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué aprendemos de la oración de Jonás?",
-                answer: "Aunque había desobedecido, estaba seguro de que Dios lo escucharía. Usó expresiones de los Salmos que conocía bien."
+                question: "¿Desde dónde hizo Jonás su oración mencionada en el párrafo?",
+                answer: "Desde el vientre de un gran pez."
               },
               {
-                question: "¿Por qué es bueno memorizar textos bíblicos para nuestras oraciones?",
-                answer: "Porque pueden venirnos a la mente y consolarnos cuando estemos orando en momentos difíciles, como le pasó a Jonás."
+                question: "¿Qué usó Jonás en su oración que demuestra que conocía bien las Escrituras?",
+                answer: "Muchas expresiones que encontramos en los Salmos."
+              },
+              {
+                question: "¿Qué beneficio tuvo Jonás de conocer bien los Salmos cuando oró?",
+                answer: "Recordarlos y meditar en ellos lo convenció de que Jehová lo ayudaría."
               }
             ],
             biblicalCards: [
@@ -3959,7 +4080,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [18, 19],
             readText: "LEE Romanos 8:26, 27",
             section: "SIGUE ORÁNDOLE A JEHOVÁ PARA ACERCARTE MÁS A ÉL",
-            answer: "A veces estamos tan angustiados que no nos salen las palabras. Pero el espíritu santo acude en nuestra ayuda y «ruega» por nosotros. Mediante su espíritu, Jehová se encargó de que muchas oraciones quedaran registradas en la Biblia. Así que, cuando no conseguimos expresar claramente lo que pensamos, Jehová puede aceptar esas peticiones como si las hubiéramos hecho nosotros. Ejemplo: una hermana rusa arrestada por orar recordó este texto y eso la consoló mucho.",
+            answer: [
+              "A veces estamos tan angustiados que no nos salen las palabras.",
+              "El espíritu santo acude en nuestra ayuda y «ruega» por nosotros.",
+              "Jehová puede aceptar oraciones bíblicas como si las hubiéramos hecho nosotros.",
+              "Ejemplo: Elena, hermana rusa arrestada, recordó este texto y la consoló mucho."
+            ],
             answerBullets: [
               "**Muy angustiados para expresarnos** - No nos salen las palabras",
               "**El espíritu santo ruega por nosotros** - Acude en nuestra ayuda (Rom. 8:26, 27)",
@@ -3968,12 +4094,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Cómo nos ayuda Romanos 8:26, 27 si no nos salen las palabras?",
-                answer: "El espíritu santo «ruega» por nosotros. Jehová puede aceptar las oraciones de la Biblia como si las hubiéramos hecho nosotros."
+                question: "Según el párrafo, ¿qué hace el espíritu santo cuando estamos tan angustiados que no nos salen las palabras?",
+                answer: "Acude en nuestra ayuda y «ruega» por nosotros."
               },
               {
-                question: "¿Cómo consoló Romanos 8:26, 27 a Elena cuando fue arrestada?",
-                answer: "Recordó que si no sabe qué pedir, Jehová puede aceptar las oraciones de otros siervos en la Biblia como si fueran suyas."
+                question: "¿Por qué arrestaron a Elena, la hermana rusa mencionada en el párrafo?",
+                answer: "Por orar y leer la Biblia."
+              },
+              {
+                question: "¿Qué recordó Elena que la consoló cuando le costaba orar por estar tan angustiada?",
+                answer: "Que Jehová puede aceptar las oraciones de otros siervos en la Biblia como si fueran suyas."
               }
             ],
             biblicalCards: [
@@ -3989,7 +4119,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué nos ayudará a preparar nuestra mente para orar cuando estamos bajo mucho estrés?",
             textLSM: "",
             paragraphs: [20],
-            answer: "Cuando estamos bajo mucho estrés puede ser difícil mantenernos concentrados mientras oramos. Para preparar nuestra mente podemos escuchar los audios de los Salmos o hacer como el rey David y poner por escrito lo que sentimos. Como todos somos diferentes, cada cristiano puede buscar el método que le resulte más eficaz.",
+            answer: [
+              "Bajo estrés puede ser difícil concentrarnos mientras oramos.",
+              "Podemos escuchar los audios de los Salmos para preparar nuestra mente.",
+              "O hacer como David y poner por escrito lo que sentimos.",
+              "Cada uno puede buscar el método que le resulte más eficaz."
+            ],
             answerBullets: [
               "**Difícil concentrarse bajo estrés** - Necesitamos preparar la mente",
               "**Escuchar audios de los Salmos** - Nos prepara para orar",
@@ -3998,8 +4133,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Qué nos ayudará a preparar nuestra mente para orar bajo estrés?",
-                answer: "Escuchar los audios de los Salmos o poner por escrito lo que sentimos, como hizo el rey David."
+                question: "¿Qué dos métodos menciona el párrafo para preparar nuestra mente cuando estamos bajo estrés?",
+                answer: "Escuchar los audios de los Salmos o poner por escrito lo que sentimos."
+              },
+              {
+                question: "¿Qué hizo el rey David que nos puede servir de ejemplo para prepararnos para orar?",
+                answer: "Puso por escrito lo que sentía, como se ve en los encabezamientos de algunos Salmos."
               }
             ],
             biblicalCards: [
@@ -4015,7 +4154,12 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué podemos abrirle nuestro corazón a Jehová?",
             textLSM: "",
             paragraphs: [21],
-            answer: "Podemos abrirle nuestro corazón a Jehová porque él entiende nuestros sentimientos incluso antes de contárselos. Pero a él le encanta escucharnos y ver que confiamos en él. Jehová es un amigo verdadero y siempre estará a nuestro lado. Podemos usar expresiones e ideas de las oraciones que encontramos en su Palabra y compartir con él nuestras penas y alegrías.",
+            answer: [
+              "Jehová entiende nuestros sentimientos incluso antes de contárselos.",
+              "Pero a él le encanta escucharnos y ver que confiamos en él.",
+              "Jehová es un amigo verdadero y siempre estará a nuestro lado.",
+              "Podemos usar expresiones de la Biblia y compartir con él penas y alegrías."
+            ],
             answerBullets: [
               "**Jehová entiende antes de contarle** - Conoce nuestros sentimientos (Sal. 139:4)",
               "**Le encanta escucharnos** - Y ver que confiamos en él",
@@ -4024,8 +4168,16 @@ export const atalayaDatabase: AtalayaDatabase = {
             ],
             flashcards: [
               {
-                question: "¿Por qué podemos abrirle nuestro corazón a Jehová?",
-                answer: "Porque él entiende nuestros sentimientos incluso antes de contárselos, le encanta escucharnos, y es un amigo verdadero que siempre estará a nuestro lado."
+                question: "Según el párrafo, ¿qué sabe Jehová incluso antes de que le contemos algo?",
+                answer: "Entiende nuestros sentimientos incluso antes de contárselos."
+              },
+              {
+                question: "¿Qué le encanta a Jehová según el párrafo 21?",
+                answer: "Escucharnos y ver que confiamos en él."
+              },
+              {
+                question: "¿Cómo describe el párrafo a Jehová como amigo?",
+                answer: "Es un amigo verdadero que siempre estará a nuestro lado."
               }
             ],
             biblicalCards: [
@@ -4038,27 +4190,27 @@ export const atalayaDatabase: AtalayaDatabase = {
           }
         ],
         paragraphs: [
-          { number: 1, content: "¿TE HA parecido alguna vez que tus oraciones se han vuelto monótonas o superficiales? Eso es algo que nos puede pasar a todos. Quizás el ajetreo de la vida nos lleva a hacer únicamente oraciones breves. O tal vez nos sentimos indignos de contarle a Jehová todo lo que sentimos." },
-          { number: 2, content: "La Biblia nos asegura que lo más importante para Jehová es que en nuestras oraciones le hablemos desde el corazón y con humildad. Así que no hay que preocuparnos por usar palabras elegantes o por expresarnos perfectamente. Él escucha \"el ruego de los mansos\" (Sal. 10:17). Presta atención a todo lo que le decimos porque de verdad se preocupa por nosotros (Sal. 139:1-3)." },
-          { number: 3, content: "En este artículo responderemos las siguientes preguntas: ¿por qué no debemos tener miedo de contarle a Jehová nuestros pensamientos y sentimientos?, ¿qué podemos hacer para que nuestras oraciones sean más profundas?, ¿cómo nos ayudan las oraciones que encontramos en la Biblia a mejorar las nuestras? y ¿qué podemos hacer si estamos tan angustiados que no nos salen las palabras para expresar lo que sentimos?" },
-          { number: 4, content: "Nos resultará más fácil contarle a Jehová nuestros pensamientos y sentimientos si lo vemos como un amigo fiel que quiere lo mejor para nosotros. Pensemos en el escritor del Salmo 119, quien por desgracia pasó por muchos problemas. Por ejemplo, algunos dijeron mentiras terribles de él (Sal. 119:23, 69, 78). También tuvo que cargar con sus propias imperfecciones (Sal. 119:5). Pero él procuró tener una relación estrecha con Dios, así que no tuvo miedo de abrirle su corazón (lee Salmo 119:145)." },
-          { number: 5, content: "Jehová quiere que incluso quienes han cometido pecados graves le oren (Is. 55:6, 7). Así que no hay que dejar que los sentimientos negativos nos frenen de hacerlo. Para entenderlo mejor, piensa en un piloto de avión que ha cometido un error o se ha desviado de su rumbo. Él sabe que puede contactarse con los controladores aéreos para pedir ayuda. ¿Crees que decidiría no hacerlo porque quizás le dé vergüenza? ¡Para nada! De manera parecida, aunque a veces cometamos un pecado o nos desviemos de nuestro rumbo, no debemos sentir miedo ni vergüenza de hablar con Jehová (Sal. 119:25, 176)." },
-          { number: 6, content: "Cuando le hablamos a Jehová con total franqueza de nuestros pensamientos y sentimientos más íntimos, nos acercamos más a él. Veamos qué nos puede ayudar a hacer oraciones más profundas." },
-          { number: 7, content: "Reflexionemos en las cualidades de Jehová. Cuanto más reflexionemos en ellas, más fácil será expresarnos abiertamente (Sal. 145:8, 9, 18). Eso hizo Kristine, una hermana que tenía un padre violento. Ella cuenta: \"Ver a Jehová como un padre me hacía muy difícil hablar con él. Sentía que mis imperfecciones harían que él se alejara de mí\". ¿Qué cualidad de Dios la ayudó? Ella explica: \"El amor leal de Jehová me hace sentir segura. Sé que siempre me llevará de la mano y que si caigo me levantará con mucho cariño. Meditar en su amor me ayuda a contarle tanto mis mayores alegrías como mis penas más profundas\"." },
-          { number: 8, content: "Pensemos de antemano en qué decirle. Antes de orar, podemos hacernos preguntas como estas: \"¿Con qué problemas estoy luchando ahora? ¿Hay alguien a quien no he perdonado? ¿Me ha surgido recientemente alguna situación en la que necesite la ayuda de Jehová?\" (2 Rey. 19:15-19). También podemos seguir el ejemplo de Jesús y pedir cosas relacionadas con el nombre de Jehová, su Reino y su voluntad (Mat. 6:9, 10)." },
-          { number: 9, content: "A una hermana llamada Aliska se le hizo muy difícil orar cuando se enteró de que su esposo tenía cáncer cerebral terminal. Ella cuenta: \"Estaba tan angustiada que no lograba pensar con claridad y no sabía qué decir\". ¿Qué la ha ayudado? Ella explica: \"Antes de empezar, saco unos momentos para organizar mis pensamientos. Eso me ha ayudado a que mis oraciones no giren solo en torno a mí y mis problemas, y a que mi mente esté más centrada y calmada cuando le hablo a Jehová\"." },
-          { number: 10, content: "Tomémonos nuestro tiempo para orar. Es cierto que las oraciones cortas nos pueden acercar a Jehová; pero, si hacemos oraciones más largas, es más probable que le contemos con más detalle todo lo que sentimos. El esposo de Aliska, Elijah, dice: \"Intento orar muchas veces al día, y he visto que, cuando hablo un rato largo con Jehová, me siento más cerca de él. Él nunca está mirando el reloj, así que sé que puedo extenderme\". ¿Por qué no intentas esto? Busca un momento y un lugar en el que puedas orar largo y tendido, sin distracciones, quizás incluso en voz alta, y ponte la meta de que se convierta en una costumbre." },
-          { number: 11, content: "Quizás te ayude meditar en lo que dijeron algunos siervos de Jehová de tiempos bíblicos en sus oraciones sentidas y canciones de alabanza. Fijarte en cómo se expresaron ellos te puede dar ideas de cómo hacer tú lo mismo. Tal vez descubras expresiones que puedes usar para alabar a Jehová. Y es probable que encuentres oraciones con las que te sientas identificado." },
-          { number: 12, content: "Cuando leas una oración de la Biblia, pregúntate: \"¿Quién dijo esas palabras? ¿Cuáles eran sus circunstancias? ¿Estoy pasando por alguna situación parecida? ¿Qué lecciones saco?\". Claro, quizás tengas que investigar un poco para encontrar las respuestas, pero valdrá la pena. Veamos algunos ejemplos." },
-          { number: 13, content: "(Lee 1 Samuel 1:10, 11). Cuando Ana hizo esta oración, tenía dos problemas graves: era estéril y la otra esposa de Elcaná le estaba haciendo la vida imposible (1 Sam. 1:4-7). Si estás pasando por un problema que no desaparece, ¿qué puedes aprender de la oración de Ana? Ella se tomó su tiempo para contarle a Jehová todo lo que la inquietaba, y después se sintió mucho mejor (1 Sam. 1:12, 18). Haz lo mismo y \"arroja tu carga sobre Jehová\", es decir, explícale cuáles son tus preocupaciones y cómo te hacen sentir (Sal. 55:22)." },
-          { number: 14, content: "Unos años después de que nació su hijo, Samuel, Ana se lo llevó al sumo sacerdote Elí (1 Sam. 1:24-28). En una oración llena de sentimiento le dio las gracias a Jehová porque había visto que él protege y cuida a sus siervos leales (1 Sam. 2:1, 8, 9). Sus problemas tal vez no habían desaparecido, pero ella se centró en cómo la había bendecido Jehová. ¿La lección? Nos resultará más fácil sobrellevar las dificultades si nos centramos en cómo nos ha apoyado Jehová." },
-          { number: 15, content: "(Lee Jeremías 12:1). En algún momento de su vida, el profeta Jeremías se sintió muy desanimado porque veía que a los malos les iba bien y que los israelitas se burlaban de él (Jer. 20:7, 8). Es fácil ponernos en su lugar porque la gente también se burla de nosotros y parece que quienes hacen cosas malas disfrutan de la vida. Notemos que, aunque Jeremías expresó su frustración, jamás acusó a Dios de ser injusto. Al contrario, al ver cómo disciplinaba a su pueblo rebelde, se convenció cada vez más de que Jehová actúa con justicia (Jer. 32:19). Nosotros también podemos hacer lo mismo y contarle a Jehová nuestras frustraciones, con la confianza de que él solucionará las injusticias al debido tiempo." },
-          { number: 16, content: "(Lee Salmo 42:1-4). En esta canción, un levita expresó cómo se sentía debido a que estaba exiliado y no podía reunirse con sus hermanos. Quizás nos sintamos como él si no podemos salir de nuestras casas o estamos en prisión por nuestra fe. En esas circunstancias puede que nuestras emociones sean una montaña rusa, pero lo mejor es hablarle a Jehová de cómo nos sentimos. Eso nos ayudará a comprender mejor nuestros sentimientos y a ver las cosas de otra manera. Por ejemplo, el levita se dio cuenta de que tendría nuevas oportunidades de alabar a Dios (Sal. 42:5). También meditó en que Jehová lo estaba cuidando (Sal. 42:8). Abrirle nuestro corazón a Jehová nos puede ayudar a analizar nuestros sentimientos, recuperar el equilibro y tener las fuerzas para aguantar." },
-          { number: 17, content: "(Lee Jonás 2:1, 2). El profeta Jonás hizo esta oración mientras estaba en el vientre de un gran pez. Aunque había desobedecido a Jehová, estaba seguro de que Dios escucharía su voz. En su súplica usó muchas expresiones que encontramos en los Salmos, así que de seguro los conocía muy bien. Recordarlos y meditar en ellos lo convenció de que Jehová lo ayudaría. De manera parecida, si nos esforzamos por memorizar textos bíblicos, puede que se nos vengan a la mente y nos consuelen cuando estemos orando al pasar por momentos difíciles." },
-          { number: 18, content: "(Lee Romanos 8:26, 27). Puede que en ocasiones estemos tan angustiados que no nos salgan las palabras para expresar lo que sentimos. Pero, en esos momentos, el espíritu santo acude en nuestra ayuda y \"ruega\" por nosotros. ¿Y eso qué quiere decir? Mediante su espíritu, Jehová se encargó de que muchas oraciones quedaran registradas en la Biblia. Así que, cuando no conseguimos expresar claramente lo que pensamos, Jehová puede aceptar algunas de esas peticiones como si las hubiéramos hecho nosotros, y luego responderlas." },
-          { number: 19, content: "Tener esto presente fue de mucha ayuda para una hermana rusa llamada Elena, a quien arrestaron por orar y leer la Biblia. Estaba tan angustiada que le costaba orar. Ella explica: \"Recordé que, si siento que una situación me supera y no sé qué pedir en oración, Jehová puede aceptar las oraciones de otros siervos suyos que aparecen en la Biblia como si fueran mías\". Y añadió: \"Eso me consoló mucho en esos momentos tan tan difíciles\"." },
-          { number: 20, content: "Cuando estamos bajo mucho estrés, puede ser difícil mantenernos concentrados mientras oramos. Para preparar nuestra mente, podemos escuchar los audios de los Salmos o hacer como el rey David y poner por escrito lo que sentimos (Sal. 18, 34, 142 y encabezamientos). Claro, como todos somos muy diferentes, cada cristiano puede buscar el método que le resulte más eficaz a la hora de prepararse para orar (Sal. 141:2). ¿Cuál te funciona mejor a ti?" },
-          { number: 21, content: "Nos consuela que Jehová entienda nuestros sentimientos incluso antes de contárselos (Sal. 139:4). Pero a él le encanta escucharnos y ver que confiamos en él. Así que no dudemos en orarle a nuestro Padre celestial. Usemos expresiones e ideas de las oraciones que encontramos en su Palabra. Abrámosle nuestro corazón y compartamos con él nuestras penas y alegrías. Jehová es un amigo verdadero y siempre estará a nuestro lado." }
+          { number: 1, content: "¿TE HA parecido alguna vez que tus oraciones se han vuelto monótonas o superficiales? Eso es algo que nos puede pasar a todos. Quizás el ajetreo de la vida nos lleva a hacer únicamente oraciones breves. O tal vez nos sentimos indignos de contarle a Jehová todo lo que sentimos.", summary: "A veces nuestras oraciones se vuelven monótonas por el ajetreo de la vida o por sentirnos indignos." },
+          { number: 2, content: "La Biblia nos asegura que lo más importante para Jehová es que en nuestras oraciones le hablemos desde el corazón y con humildad. Así que no hay que preocuparnos por usar palabras elegantes o por expresarnos perfectamente. Él escucha \"el ruego de los mansos\" (Sal. 10:17). Presta atención a todo lo que le decimos porque de verdad se preocupa por nosotros (Sal. 139:1-3).", summary: "Lo más importante es hablar desde el corazón con humildad; Jehová escucha «el ruego de los mansos»." },
+          { number: 3, content: "En este artículo responderemos las siguientes preguntas: ¿por qué no debemos tener miedo de contarle a Jehová nuestros pensamientos y sentimientos?, ¿qué podemos hacer para que nuestras oraciones sean más profundas?, ¿cómo nos ayudan las oraciones que encontramos en la Biblia a mejorar las nuestras? y ¿qué podemos hacer si estamos tan angustiados que no nos salen las palabras para expresar lo que sentimos?", summary: "Cuatro temas: no tener miedo de orar, oraciones más profundas, aprender de oraciones bíblicas, qué hacer cuando no salen las palabras." },
+          { number: 4, content: "Nos resultará más fácil contarle a Jehová nuestros pensamientos y sentimientos si lo vemos como un amigo fiel que quiere lo mejor para nosotros. Pensemos en el escritor del Salmo 119, quien por desgracia pasó por muchos problemas. Por ejemplo, algunos dijeron mentiras terribles de él (Sal. 119:23, 69, 78). También tuvo que cargar con sus propias imperfecciones (Sal. 119:5). Pero él procuró tener una relación estrecha con Dios, así que no tuvo miedo de abrirle su corazón (lee Salmo 119:145).", summary: "Ver a Jehová como un amigo fiel nos ayuda a abrirle el corazón, como hizo el salmista." },
+          { number: 5, content: "Jehová quiere que incluso quienes han cometido pecados graves le oren (Is. 55:6, 7). Así que no hay que dejar que los sentimientos negativos nos frenen de hacerlo. Para entenderlo mejor, piensa en un piloto de avión que ha cometido un error o se ha desviado de su rumbo. Él sabe que puede contactarse con los controladores aéreos para pedir ayuda. ¿Crees que decidiría no hacerlo porque quizás le dé vergüenza? ¡Para nada! De manera parecida, aunque a veces cometamos un pecado o nos desviemos de nuestro rumbo, no debemos sentir miedo ni vergüenza de hablar con Jehová (Sal. 119:25, 176).", summary: "No dejar que los sentimientos negativos nos frenen; como un piloto que pide ayuda aunque haya cometido un error." },
+          { number: 6, content: "Cuando le hablamos a Jehová con total franqueza de nuestros pensamientos y sentimientos más íntimos, nos acercamos más a él. Veamos qué nos puede ayudar a hacer oraciones más profundas.", summary: "Hablar con franqueza nos acerca más a Jehová." },
+          { number: 7, content: "Reflexionemos en las cualidades de Jehová. Cuanto más reflexionemos en ellas, más fácil será expresarnos abiertamente (Sal. 145:8, 9, 18). Eso hizo Kristine, una hermana que tenía un padre violento. Ella cuenta: \"Ver a Jehová como un padre me hacía muy difícil hablar con él. Sentía que mis imperfecciones harían que él se alejara de mí\". ¿Qué cualidad de Dios la ayudó? Ella explica: \"El amor leal de Jehová me hace sentir segura. Sé que siempre me llevará de la mano y que si caigo me levantará con mucho cariño. Meditar en su amor me ayuda a contarle tanto mis mayores alegrías como mis penas más profundas\".", summary: "Reflexionar en las cualidades de Jehová, especialmente su amor leal, nos hace sentir seguros para expresarnos." },
+          { number: 8, content: "Pensemos de antemano en qué decirle. Antes de orar, podemos hacernos preguntas como estas: \"¿Con qué problemas estoy luchando ahora? ¿Hay alguien a quien no he perdonado? ¿Me ha surgido recientemente alguna situación en la que necesite la ayuda de Jehová?\" (2 Rey. 19:15-19). También podemos seguir el ejemplo de Jesús y pedir cosas relacionadas con el nombre de Jehová, su Reino y su voluntad (Mat. 6:9, 10).", summary: "Pensar de antemano qué decirle a Jehová; hacernos preguntas antes de orar." },
+          { number: 9, content: "A una hermana llamada Aliska se le hizo muy difícil orar cuando se enteró de que su esposo tenía cáncer cerebral terminal. Ella cuenta: \"Estaba tan angustiada que no lograba pensar con claridad y no sabía qué decir\". ¿Qué la ha ayudado? Ella explica: \"Antes de empezar, saco unos momentos para organizar mis pensamientos. Eso me ha ayudado a que mis oraciones no giren solo en torno a mí y mis problemas, y a que mi mente esté más centrada y calmada cuando le hablo a Jehová\".", summary: "Organizar los pensamientos antes de orar ayuda a tener la mente centrada y calmada." },
+          { number: 10, content: "Tomémonos nuestro tiempo para orar. Es cierto que las oraciones cortas nos pueden acercar a Jehová; pero, si hacemos oraciones más largas, es más probable que le contemos con más detalle todo lo que sentimos. El esposo de Aliska, Elijah, dice: \"Intento orar muchas veces al día, y he visto que, cuando hablo un rato largo con Jehová, me siento más cerca de él. Él nunca está mirando el reloj, así que sé que puedo extenderme\". ¿Por qué no intentas esto? Busca un momento y un lugar en el que puedas orar largo y tendido, sin distracciones, quizás incluso en voz alta, y ponte la meta de que se convierta en una costumbre.", summary: "Tomarse tiempo para oraciones más largas nos acerca más a Jehová; él nunca mira el reloj." },
+          { number: 11, content: "Quizás te ayude meditar en lo que dijeron algunos siervos de Jehová de tiempos bíblicos en sus oraciones sentidas y canciones de alabanza. Fijarte en cómo se expresaron ellos te puede dar ideas de cómo hacer tú lo mismo. Tal vez descubras expresiones que puedes usar para alabar a Jehová. Y es probable que encuentres oraciones con las que te sientas identificado.", summary: "Meditar en oraciones bíblicas nos da ideas y expresiones para mejorar nuestras propias oraciones." },
+          { number: 12, content: "Cuando leas una oración de la Biblia, pregúntate: \"¿Quién dijo esas palabras? ¿Cuáles eran sus circunstancias? ¿Estoy pasando por alguna situación parecida? ¿Qué lecciones saco?\". Claro, quizás tengas que investigar un poco para encontrar las respuestas, pero valdrá la pena. Veamos algunos ejemplos.", summary: "Analizar oraciones bíblicas: ¿Quién las dijo? ¿Cuáles eran sus circunstancias? ¿Qué lecciones saco?" },
+          { number: 13, content: "(Lee 1 Samuel 1:10, 11). Cuando Ana hizo esta oración, tenía dos problemas graves: era estéril y la otra esposa de Elcaná le estaba haciendo la vida imposible (1 Sam. 1:4-7). Si estás pasando por un problema que no desaparece, ¿qué puedes aprender de la oración de Ana? Ella se tomó su tiempo para contarle a Jehová todo lo que la inquietaba, y después se sintió mucho mejor (1 Sam. 1:12, 18). Haz lo mismo y \"arroja tu carga sobre Jehová\", es decir, explícale cuáles son tus preocupaciones y cómo te hacen sentir (Sal. 55:22).", summary: "Ana se tomó tiempo para contarle a Jehová todo lo que la inquietaba; «arroja tu carga sobre Jehová»." },
+          { number: 14, content: "Unos años después de que nació su hijo, Samuel, Ana se lo llevó al sumo sacerdote Elí (1 Sam. 1:24-28). En una oración llena de sentimiento le dio las gracias a Jehová porque había visto que él protege y cuida a sus siervos leales (1 Sam. 2:1, 8, 9). Sus problemas tal vez no habían desaparecido, pero ella se centró en cómo la había bendecido Jehová. ¿La lección? Nos resultará más fácil sobrellevar las dificultades si nos centramos en cómo nos ha apoyado Jehová.", summary: "Ana agradeció a Jehová centrándose en sus bendiciones; esto nos ayuda a sobrellevar las dificultades." },
+          { number: 15, content: "(Lee Jeremías 12:1). En algún momento de su vida, el profeta Jeremías se sintió muy desanimado porque veía que a los malos les iba bien y que los israelitas se burlaban de él (Jer. 20:7, 8). Es fácil ponernos en su lugar porque la gente también se burla de nosotros y parece que quienes hacen cosas malas disfrutan de la vida. Notemos que, aunque Jeremías expresó su frustración, jamás acusó a Dios de ser injusto. Al contrario, al ver cómo disciplinaba a su pueblo rebelde, se convenció cada vez más de que Jehová actúa con justicia (Jer. 32:19). Nosotros también podemos hacer lo mismo y contarle a Jehová nuestras frustraciones, con la confianza de que él solucionará las injusticias al debido tiempo.", summary: "Jeremías expresó frustración sin acusar a Dios; podemos confiar en que Jehová solucionará las injusticias." },
+          { number: 16, content: "(Lee Salmo 42:1-4). En esta canción, un levita expresó cómo se sentía debido a que estaba exiliado y no podía reunirse con sus hermanos. Quizás nos sintamos como él si no podemos salir de nuestras casas o estamos en prisión por nuestra fe. En esas circunstancias puede que nuestras emociones sean una montaña rusa, pero lo mejor es hablarle a Jehová de cómo nos sentimos. Eso nos ayudará a comprender mejor nuestros sentimientos y a ver las cosas de otra manera. Por ejemplo, el levita se dio cuenta de que tendría nuevas oportunidades de alabar a Dios (Sal. 42:5). También meditó en que Jehová lo estaba cuidando (Sal. 42:8). Abrirle nuestro corazón a Jehová nos puede ayudar a analizar nuestros sentimientos, recuperar el equilibro y tener las fuerzas para aguantar.", summary: "Hablar a Jehová de cómo nos sentimos nos ayuda a comprender nuestras emociones y recuperar el equilibrio." },
+          { number: 17, content: "(Lee Jonás 2:1, 2). El profeta Jonás hizo esta oración mientras estaba en el vientre de un gran pez. Aunque había desobedecido a Jehová, estaba seguro de que Dios escucharía su voz. En su súplica usó muchas expresiones que encontramos en los Salmos, así que de seguro los conocía muy bien. Recordarlos y meditar en ellos lo convenció de que Jehová lo ayudaría. De manera parecida, si nos esforzamos por memorizar textos bíblicos, puede que se nos vengan a la mente y nos consuelen cuando estemos orando al pasar por momentos difíciles.", summary: "Jonás usó expresiones de los Salmos; memorizar textos bíblicos nos consuela en momentos difíciles." },
+          { number: 18, content: "(Lee Romanos 8:26, 27). Puede que en ocasiones estemos tan angustiados que no nos salgan las palabras para expresar lo que sentimos. Pero, en esos momentos, el espíritu santo acude en nuestra ayuda y \"ruega\" por nosotros. ¿Y eso qué quiere decir? Mediante su espíritu, Jehová se encargó de que muchas oraciones quedaran registradas en la Biblia. Así que, cuando no conseguimos expresar claramente lo que pensamos, Jehová puede aceptar algunas de esas peticiones como si las hubiéramos hecho nosotros, y luego responderlas.", summary: "Cuando no salen las palabras, el espíritu santo «ruega» por nosotros; Jehová acepta oraciones bíblicas como nuestras." },
+          { number: 19, content: "Tener esto presente fue de mucha ayuda para una hermana rusa llamada Elena, a quien arrestaron por orar y leer la Biblia. Estaba tan angustiada que le costaba orar. Ella explica: \"Recordé que, si siento que una situación me supera y no sé qué pedir en oración, Jehová puede aceptar las oraciones de otros siervos suyos que aparecen en la Biblia como si fueran mías\". Y añadió: \"Eso me consoló mucho en esos momentos tan tan difíciles\".", summary: "Elena recordó que Jehová puede aceptar las oraciones bíblicas como suyas; esto la consoló muchísimo." },
+          { number: 20, content: "Cuando estamos bajo mucho estrés, puede ser difícil mantenernos concentrados mientras oramos. Para preparar nuestra mente, podemos escuchar los audios de los Salmos o hacer como el rey David y poner por escrito lo que sentimos (Sal. 18, 34, 142 y encabezamientos). Claro, como todos somos muy diferentes, cada cristiano puede buscar el método que le resulte más eficaz a la hora de prepararse para orar (Sal. 141:2). ¿Cuál te funciona mejor a ti?", summary: "Para concentrarnos bajo estrés: escuchar Salmos o escribir lo que sentimos, como hizo David." },
+          { number: 21, content: "Nos consuela que Jehová entienda nuestros sentimientos incluso antes de contárselos (Sal. 139:4). Pero a él le encanta escucharnos y ver que confiamos en él. Así que no dudemos en orarle a nuestro Padre celestial. Usemos expresiones e ideas de las oraciones que encontramos en su Palabra. Abrámosle nuestro corazón y compartamos con él nuestras penas y alegrías. Jehová es un amigo verdadero y siempre estará a nuestro lado.", summary: "Jehová entiende nuestros sentimientos pero le encanta escucharnos; es un amigo verdadero que siempre estará a nuestro lado." }
         ],
         reviewQuestions: [
           {

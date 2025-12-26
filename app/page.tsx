@@ -5,6 +5,7 @@ import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import SummaryView from '@/components/SummaryView';
+import TimelineView from '@/components/TimelineView';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
@@ -30,7 +31,7 @@ export default function Home() {
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
   // Estados existentes
-  const [viewMode, setViewMode] = useState<'study' | 'summary'>('study');
+  const [viewMode, setViewMode] = useState<'study' | 'summary' | 'timeline'>('study');
   const [navigationMode, setNavigationMode] = useState<'scroll' | 'paginated'>('scroll');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
@@ -322,6 +323,16 @@ export default function Home() {
             <span className="text-sm sm:text-base">📋</span>
             <span className="hidden sm:inline">Resumen</span>
           </button>
+          <button
+            onClick={() => setViewMode('timeline')}
+            className={`px-4 py-2 rounded-lg font-medium transition-all ${
+              viewMode === 'timeline'
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+            }`}
+          >
+            Timeline
+          </button>
         </div>
 
         {/* Selector de navegación (solo en modo estudio) */}
@@ -355,8 +366,19 @@ export default function Home() {
 
       {/* Contenido principal */}
       <div className="max-w-5xl mx-auto px-6 py-12">
-        {/* Vista de Resumen */}
-        {viewMode === 'summary' ? (
+        {/* Vista Timeline */}
+        {viewMode === 'timeline' ? (
+          <TimelineView
+            article={currentArticle}
+            lsmData={lsmData}
+            favorites={favorites}
+            onToggleFavorite={handleToggleFavorite}
+            hiddenCards={hiddenCards}
+            onToggleHidden={handleToggleHidden}
+            onLSMUpdate={handleLSMUpdate}
+            articleId={currentArticleId}
+          />
+        ) : viewMode === 'summary' ? (
           <SummaryView article={currentArticle} lsmData={lsmData} />
         ) : (
           <>

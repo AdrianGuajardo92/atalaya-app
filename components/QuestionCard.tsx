@@ -1091,230 +1091,33 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="bg-emerald-50 rounded-lg p-4 border-l-2 border-emerald-500">
                 <div className="text-xs font-semibold text-emerald-700 mb-3">💡 Respuesta</div>
 
-                {/* Respuesta en lenguaje sencillo */}
+                {/* Respuesta en oraciones clave */}
                 {question.answer && (
-                  <p className="text-base text-slate-800 leading-relaxed mb-4">
-                    {question.answer}
-                  </p>
-                )}
-
-                {/* Puntos clave como tarjetas pequeñas */}
-                {(question.answerBullets || customBullets.length > 0) && (
-                  <>
-                    <div className="border-t border-emerald-200 pt-3 mt-3">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-xs font-semibold text-emerald-700">🔑 Puntos Clave</div>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsAddingBullet(true);
-                          }}
-                          className="px-2 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 text-xs rounded font-medium transition-colors"
-                        >
-                          ➕ Agregar
-                        </button>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        {/* Ordenar bullets: primero "direct", luego "interlaced", luego sin tipo */}
-                        {customBullets.map((line, idx) => ({ line, idx }))
-                          .sort((a, b) => {
-                            const typeA = bulletTypes[a.idx];
-                            const typeB = bulletTypes[b.idx];
-
-                            // Prioridad: direct (1) > interlaced (2) > sin tipo (3)
-                            const getPriority = (type: 'direct' | 'interlaced' | undefined) => {
-                              if (type === 'direct') return 1;
-                              if (type === 'interlaced') return 2;
-                              return 3;
-                            };
-
-                            return getPriority(typeA) - getPriority(typeB);
-                          })
-                          .map(({ line, idx }) => {
-                            // Limpiar línea vacía
-                            if (!line.trim()) return null;
-
-                            const bulletId = `q${question.number}-bullet${idx}`;
-                            const isCompleted = completedBullets[bulletId];
-                            const isEditingThisBullet = editingBulletIndex === idx;
-                            const bulletType = bulletTypes[idx]; // undefined, 'direct', o 'interlaced'
-                            const isDirect = bulletType === 'direct';
-                            const isInterlaced = bulletType === 'interlaced';
-
-                            return (
-                              <div
-                                key={idx}
-                                className={`
-                                border rounded-lg p-3 transition-all group relative
-                                ${isEditingThisBullet ? 'ring-2 ring-emerald-500' : ''}
-                                ${isCompleted
-                                    ? 'bg-emerald-100 border-emerald-300 opacity-60'
-                                    : 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100'
-                                  }
-                              `}
-                              >
-                                {!isEditingThisBullet ? (
-                                  <>
-                                    {/* Botones de control */}
-                                    <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                      <button
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          toggleDirectType(idx);
-                                        }}
-                                        className={`px-2 py-1 text-white rounded text-xs font-medium ${isDirect
-                                            ? 'bg-green-600 hover:bg-green-700'
-                                            : 'bg-slate-400 hover:bg-green-500'
-                                          }`}
-                                        title={isDirect ? 'Quitar marca de Respuesta Directa' : 'Marcar como Respuesta Directa'}
-                                      >
-                                        {isDirect ? '✓' : '○'}
-                                      </button>
-                                      <button
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          toggleInterlacedType(idx);
-                                        }}
-                                        className={`px-2 py-1 text-white rounded text-xs font-medium ${isInterlaced
-                                            ? 'bg-orange-600 hover:bg-orange-700'
-                                            : 'bg-slate-400 hover:bg-orange-500'
-                                          }`}
-                                        title={isInterlaced ? 'Quitar marca de Entrelazado' : 'Marcar como Entrelazado'}
-                                      >
-                                        {isInterlaced ? '🔗' : '🔗'}
-                                      </button>
-                                      <button
-                                        onClick={(e) => handleStartEditBullet(idx, line, e)}
-                                        className="w-6 h-6 bg-blue-500 hover:bg-blue-600 text-white rounded flex items-center justify-center text-xs"
-                                        title="Editar"
-                                      >
-                                        ✏️
-                                      </button>
-                                      <button
-                                        onClick={(e) => handleDeleteBullet(idx, e)}
-                                        className="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded flex items-center justify-center text-xs"
-                                        title="Eliminar"
-                                      >
-                                        🗑️
-                                      </button>
-                                    </div>
-
-                                    {/* Badges */}
-                                    {(isDirect || isInterlaced) && (
-                                      <div className="mb-2">
-                                        {isDirect && (
-                                          <span className="inline-block px-2 py-0.5 bg-green-100 border border-green-300 text-green-700 text-xs rounded-full font-semibold">
-                                            ✓ Respuesta Directa
-                                          </span>
-                                        )}
-                                        {isInterlaced && (
-                                          <span className="inline-block px-2 py-0.5 bg-orange-100 border border-orange-300 text-orange-700 text-xs rounded-full font-semibold">
-                                            🔗 Entrelazado
-                                          </span>
-                                        )}
-                                      </div>
-                                    )}
-
-                                    {/* Contenido de la tarjeta */}
-                                    <div
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        toggleBulletCompleted(bulletId);
-                                      }}
-                                      className="cursor-pointer"
-                                    >
-                                      <div className="flex items-start gap-2">
-                                        {isCompleted ? (
-                                          <span className="text-emerald-600 text-sm flex-shrink-0">✓</span>
-                                        ) : (
-                                          <span className="text-emerald-600 text-xs flex-shrink-0 mt-0.5 font-bold">●</span>
-                                        )}
-                                        <p className={`text-xs text-slate-800 leading-relaxed font-semibold ${isCompleted ? 'line-through' : ''}`}>
-                                          {line.split(/(\*\*.*?\*\*)/g).map((part, partIdx) => {
-                                            if (part.startsWith('**') && part.endsWith('**')) {
-                                              return (
-                                                <strong key={partIdx} className="font-bold text-slate-900">
-                                                  {part.slice(2, -2)}
-                                                </strong>
-                                              );
-                                            }
-                                            return <span key={partIdx}>{part}</span>;
-                                          })}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </>
-                                ) : (
-                                  /* Modo edición */
-                                  <div onClick={(e) => e.stopPropagation()}>
-                                    <input
-                                      type="text"
-                                      value={editedBulletText}
-                                      onChange={(e) => setEditedBulletText(e.target.value)}
-                                      onKeyDown={handleBulletKeyDown}
-                                      className="w-full p-2 border-2 border-emerald-400 rounded text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                                      placeholder="Editar punto clave..."
-                                      autoFocus
-                                    />
-                                    <div className="flex gap-1 mt-2">
-                                      <button
-                                        onClick={handleSaveBullet}
-                                        disabled={isSavingBullets}
-                                        className="flex-1 px-2 py-1 bg-emerald-600 text-white text-xs rounded hover:bg-emerald-700 disabled:bg-slate-400 font-medium"
-                                      >
-                                        {isSavingBullets ? '...' : '💾'}
-                                      </button>
-                                      <button
-                                        onClick={handleCancelEditBullet}
-                                        disabled={isSavingBullets}
-                                        className="flex-1 px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
-                                      >
-                                        ✖️
-                                      </button>
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })}
-
-                        {/* Tarjeta para agregar nuevo punto */}
-                        {isAddingBullet && (
-                          <div className="border-2 border-dashed border-emerald-400 rounded-lg p-3 bg-white">
-                            <input
-                              type="text"
-                              value={newBulletText}
-                              onChange={(e) => setNewBulletText(e.target.value)}
-                              onKeyDown={handleBulletKeyDown}
-                              className="w-full p-2 border-2 border-emerald-400 rounded text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                              placeholder="Nuevo punto clave..."
-                              autoFocus
-                            />
-                            <div className="flex gap-1 mt-2">
-                              <button
-                                onClick={handleAddBullet}
-                                disabled={isSavingBullets}
-                                className="flex-1 px-2 py-1 bg-emerald-600 text-white text-xs rounded hover:bg-emerald-700 disabled:bg-slate-400 font-medium"
-                              >
-                                {isSavingBullets ? '...' : '✅ Agregar'}
-                              </button>
-                              <button
-                                onClick={() => {
-                                  setIsAddingBullet(false);
-                                  setNewBulletText('');
-                                }}
-                                disabled={isSavingBullets}
-                                className="flex-1 px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
-                              >
-                                ✖️
-                              </button>
-                            </div>
+                  Array.isArray(question.answer) ? (
+                    question.answer.length > 0 && (
+                      <div className="space-y-2 mb-4">
+                        {question.answer.map((sentence, i) => (
+                          <div
+                            key={i}
+                            className="flex items-start gap-3 p-3 bg-white rounded-lg border border-emerald-100"
+                          >
+                            <span className="flex-shrink-0 w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                              {i + 1}
+                            </span>
+                            <p className="text-slate-800 leading-relaxed">
+                              {sentence}
+                            </p>
                           </div>
-                        )}
+                        ))}
                       </div>
-                    </div>
-                  </>
+                    )
+                  ) : (
+                    <p className="text-base text-slate-800 leading-relaxed mb-4">
+                      {question.answer}
+                    </p>
+                  )
                 )}
+
               </div>
             )}
 
@@ -1608,7 +1411,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <h3 className="text-xl font-bold">
                   Párrafo{relatedParagraphs.length > 1 ? 's' : ''} {question.paragraphs.join(', ')}
                 </h3>
-                <p className="text-sm text-slate-300 mt-1">Pregunta {question.number}</p>
               </div>
               <div className="flex items-center gap-2">
                 <button
@@ -1649,6 +1451,26 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
             {/* Contenido de los párrafos */}
             <div className="p-6 space-y-6">
+              {/* Sección de RESUMEN - Al inicio del modal */}
+              {relatedParagraphs.some(p => p.summary) && (
+                <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                  <h4 className="text-xs font-bold text-blue-700 uppercase tracking-wide mb-3">
+                    Resumen
+                  </h4>
+                  <div className="space-y-2">
+                    {relatedParagraphs
+                      .filter(p => p.summary)
+                      .map((p, idx) => (
+                        <div key={idx} className="flex items-start gap-3">
+                          <span className="text-base font-bold text-blue-600 min-w-[24px]">{p.number}</span>
+                          <span className="text-base text-gray-700 leading-relaxed">{p.summary}</span>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              )}
+
               {relatedParagraphs.map((paragraph) => (
                 <div key={paragraph.number} className="bg-slate-50 rounded-lg p-5 border-l-2 border-indigo-400">
                   {/* Número de párrafo */}
@@ -1658,13 +1480,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     </span>
                     {/* Contenido del párrafo */}
                     <div className="flex-1">
-                      {/* Resumen / Oraciones clave */}
-                      {paragraph.summary && (
-                        <div className="mb-3 p-3 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
-                          <p className="text-sm font-bold text-amber-800 mb-1">📌 Ideas clave:</p>
-                          <p className="text-sm text-amber-900 font-medium">{paragraph.summary}</p>
-                        </div>
-                      )}
                       <p className="text-base leading-relaxed text-slate-700">
                         {formatContent(paragraph.content)}
                       </p>

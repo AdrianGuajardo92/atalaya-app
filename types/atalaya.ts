@@ -9,7 +9,7 @@ export interface Question {
   preview?: string; // Adelanto del tema para el conductor del estudio (opcional)
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
-  answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
+  answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
   flashcards?: string[] | Array<{
@@ -39,7 +39,7 @@ export interface Paragraph {
 export interface ReviewQuestion {
   question: string; // Pregunta de repaso en español
   questionLSM?: string; // Pregunta de repaso en LSM
-  answer?: string; // Respuesta basada en los párrafos (lenguaje sencillo)
+  answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
   flashcards?: string[] | Array<{

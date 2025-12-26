@@ -39,11 +39,12 @@ app/
 
 components/
 ├── QuestionCard.tsx      # Primary study card (largest component)
+├── TimelineView.tsx      # Timeline accordion view
+├── SummaryView.tsx       # Print-friendly summary view
 ├── FlashCards.tsx        # Interactive flashcards with flip
 ├── BiblicalCards.tsx     # Scripture reference cards
 ├── ReviewQuestionCard.tsx
 ├── StudyHeader.tsx
-├── SummaryView.tsx
 ├── Timer.tsx
 ├── PdfUploader.tsx
 └── InstructionsButton.tsx
@@ -67,30 +68,69 @@ types/
 
 ```typescript
 interface Question {
-  number: string;
-  textEs: string;
-  textLSM?: string;
-  paragraphs: number[];
-  section?: string;
-  answer?: string;
-  flashcards?: FlashCard[];
-  biblicalCards?: BiblicalCard[];
-  infographic?: string;
+  number: string;                    // ej: "1, 2" o "3"
+  textEs: string;                    // Pregunta en español
+  textLSM?: string;                  // Pregunta en LSM
+  paragraphs: number[];              // Números de párrafos relacionados
+  section?: string;                  // Subtítulo de sección en español
+  sectionLSM?: string;               // Subtítulo de sección en LSM
+  readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
+  image?: string;                    // URL de imagen ilustrativa
+  imageCaption?: string;             // Leyenda de la imagen
+  answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
+  flashcards?: FlashCard[];          // Tarjetas didácticas
+  biblicalCards?: BiblicalCard[];    // Tarjetas bíblicas
+  reflectionQuestions?: string[];    // Preguntas de reflexión personal
+  practicalApplications?: string[];  // Aplicaciones prácticas
+  infographic?: string;              // URL de infografía (botón en UI)
 }
 
 interface Paragraph {
   number: number;
-  content: string;
-  summary?: string;  // Key ideas for conductor
+  content: string;                   // Contenido con textos bíblicos
+  summary?: string;                  // Oraciones clave para el conductor
+  image?: string;                    // URL de imagen ilustrativa
+  imageCaption?: string;             // Leyenda de la imagen
+}
+
+interface ReviewQuestion {
+  question: string;                  // Pregunta de repaso en español
+  questionLSM?: string;              // Pregunta en LSM
+  answer?: string | string[];        // Oraciones clave de la respuesta
+  flashcards?: FlashCard[];
+  biblicalCards?: BiblicalCard[];
+}
+
+interface FlashCard {
+  question: string;
+  answer: string;
+  questionLSM?: string;
+  answerLSM?: string;
+}
+
+interface BiblicalCard {
+  reference: string;                 // ej: "Proverbios 28:13"
+  purpose: string;                   // Por qué está este texto
+  text: string;                      // Texto completo TNM
 }
 
 interface ArticleData {
   metadata: { articleNumber, week, month, year };
   song: string;
   title: string;
+  titleLSM?: string;                 // Título en LSM
+  biblicalText: string;              // Texto bíblico principal
+  theme: string;                     // Tema del artículo
   questions: Question[];
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[];
+  finalSong: string;                 // Canción final
+  articleSummary?: ArticleSummary;   // Resumen para comentario final
+}
+
+interface ArticleSummary {
+  keyPoints: { order, statement, bibleReference?, paragraphSource? }[];
+  centralIdea: string;               // Idea principal del artículo
 }
 ```
 
@@ -100,6 +140,23 @@ interface ArticleData {
 - State managed with React hooks (useState, useEffect)
 - API calls use fetch with JSON responses
 - Tailwind classes for all styling (no CSS modules)
+
+### UI Features
+
+**Modal de Párrafos:**
+- Encabezado: "Párrafos X, Y" con botones copiar/cerrar
+- Sección "RESUMEN" al inicio muestra `summary` de cada párrafo con su número
+- Contenido completo de cada párrafo debajo
+- Soporte para imágenes en párrafos
+
+**Infografías:**
+- Botón azul circular junto a la pregunta cuando tiene `infographic`
+- Click abre modal con imagen ampliada
+- Botón para copiar enlace de la infografía
+
+**Secciones LSM:**
+- Campo `sectionLSM` para subtítulos en Lengua de Señas Mexicana
+- Se muestra junto al subtítulo en español
 
 ### API Endpoints
 
@@ -116,3 +173,68 @@ Service worker caching strategies:
 - API routes: NetworkFirst (24h TTL)
 - Images: CacheFirst (30 days)
 - Static assets: StaleWhileRevalidate
+
+---
+
+## Content Guidelines
+
+### Formato de Respuestas (answer)
+
+Las respuestas deben ser **arrays de oraciones clave**, no párrafos largos.
+
+**Reglas:**
+1. Cada oración = **una idea completa y directa**
+2. Máximo **1-2 líneas** por oración
+3. Lenguaje **simple y claro**
+4. Incluir **referencias bíblicas** si son parte de la respuesta
+5. Típicamente **3-5 oraciones** por respuesta
+
+**Ejemplo CORRECTO:**
+```typescript
+answer: [
+  "Nuestras oraciones pueden volverse monótonas por el ajetreo de la vida.",
+  "Lo más importante para Jehová es que le hablemos desde el corazón.",
+  "No hay que preocuparnos por usar palabras elegantes.",
+  "Jehová escucha «el ruego de los mansos» porque se preocupa por nosotros."
+],
+```
+
+**Ejemplo INCORRECTO:**
+```typescript
+// ❌ Párrafo largo difícil de leer rápido
+answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el ajetreo de la vida (haciendo solo oraciones breves) o porque nos sentimos indignos de contarle a Jehová todo lo que sentimos. Sin embargo, lo más importante para Jehová es que le hablemos desde el corazón y con humildad..."
+```
+
+### Tarjetas Didácticas - Reglas Estrictas
+
+**Las tarjetas didácticas SÍ son:**
+- ✅ Preguntas que profundizan en el **TEMA del párrafo**
+- ✅ Preguntas sobre ejemplos o historias **mencionadas en el párrafo**
+- ✅ Preguntas sobre aplicaciones prácticas **basadas en el párrafo**
+- ✅ Detalles específicos del contenido que vale la pena recordar
+
+**Las tarjetas didácticas NO son:**
+- ❌ Repetición de la pregunta principal
+- ❌ Datos bíblicos irrelevantes al tema (ej: "¿Quién escribió el Salmo X?")
+- ❌ Información que no está en el contenido del párrafo
+- ❌ Preguntas genéricas sobre textos citados
+
+**Regla de oro:**
+> "¿Esta pregunta me ayuda a entender o recordar algo específico del párrafo?"
+> - SÍ → Es una buena tarjeta didáctica
+> - NO → No debe ser una tarjeta didáctica
+
+**Ejemplo CORRECTO** (Párrafo sobre ver a Jehová como amigo):
+```
+P: ¿Cómo debemos ver a Jehová para que sea más fácil hablarle?
+R: Como un amigo fiel que quiere lo mejor para nosotros.
+
+P: ¿Qué problemas enfrentó el salmista según el párrafo?
+R: Dijeron mentiras de él y tuvo que cargar con sus imperfecciones.
+```
+
+**Ejemplo INCORRECTO:**
+```
+❌ "¿Quién escribió el Salmo 119?" - Irrelevante al tema
+❌ "¿Qué nos ayudará a abrirle nuestro corazón?" - Es la pregunta principal
+```

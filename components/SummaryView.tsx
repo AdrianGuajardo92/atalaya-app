@@ -8,48 +8,16 @@ interface SummaryViewProps {
 }
 
 export default function SummaryView({ article, lsmData }: SummaryViewProps) {
-  // Función para obtener bullets (incluye personalizados del usuario)
-  const getBullets = (question: Question): string[] => {
-    // Primero intentar obtener bullets personalizados del usuario
-    const customBulletsKey = `bullets-${question.number}`;
-    const customBulletsStr = lsmData[customBulletsKey];
+  // Función para obtener oraciones clave de la respuesta
+  const getAnswerSentences = (question: Question): string[] => {
+    if (!question.answer) return [];
 
-    if (customBulletsStr) {
-      try {
-        const parsed = JSON.parse(customBulletsStr);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
-      } catch {
-        // Si no se puede parsear, usar los originales
-      }
+    if (Array.isArray(question.answer)) {
+      return question.answer;
     }
 
-    // Usar bullets originales
-    if (!question.answerBullets) return [];
-
-    if (typeof question.answerBullets === 'string') {
-      return question.answerBullets.split('\n').filter(b => b.trim());
-    }
-
-    return question.answerBullets;
-  };
-
-  // Función para formatear bullet (extraer título en negrita)
-  const formatBullet = (bullet: string) => {
-    // Buscar patrón **texto** - descripción
-    const match = bullet.match(/^\*\*(.+?)\*\*\s*[-–]\s*(.*)$/);
-    if (match) {
-      return {
-        title: match[1],
-        description: match[2]
-      };
-    }
-    // Si no tiene formato, devolver todo como descripción
-    return {
-      title: null,
-      description: bullet
-    };
+    // Para respuestas en string (artículos antiguos), dividir por oraciones
+    return [question.answer];
   };
 
   // Copiar todo al portapapeles
@@ -59,14 +27,9 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
 
     article.questions.forEach(q => {
       text += `[${q.number}] ${q.textEs}\n`;
-      const bullets = getBullets(q);
-      bullets.forEach(b => {
-        const formatted = formatBullet(b);
-        if (formatted.title) {
-          text += `  • ${formatted.title}: ${formatted.description}\n`;
-        } else {
-          text += `  • ${formatted.description}\n`;
-        }
+      const sentences = getAnswerSentences(q);
+      sentences.forEach((s, i) => {
+        text += `  ${i + 1}. ${s}\n`;
       });
       text += '\n';
     });
@@ -115,10 +78,10 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
         </button>
       </div>
 
-      {/* Lista de preguntas con bullets */}
+      {/* Lista de preguntas con respuestas */}
       <div className="space-y-4">
         {article.questions.map((question, qIndex) => {
-          const bullets = getBullets(question);
+          const sentences = getAnswerSentences(question);
 
           return (
             <div key={qIndex} className="summary-card">
@@ -143,33 +106,29 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
                   </p>
                 </div>
 
-                {/* Bullets */}
-                {bullets.length > 0 && (
+                {/* Oraciones clave de la respuesta */}
+                {sentences.length > 0 && (
                   <div className="px-4 py-3">
-                    <ul className="space-y-2">
-                      {bullets.map((bullet, bIndex) => {
-                        const { title, description } = formatBullet(bullet);
-                        return (
-                          <li key={bIndex} className="flex items-start gap-2 text-sm">
-                            <span className="text-blue-500 mt-0.5">•</span>
-                            <span className="text-slate-700">
-                              {title && (
-                                <strong className="text-slate-900">{title}:</strong>
-                              )}{' '}
-                              {description}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                    <div className="space-y-2">
+                      {sentences.map((sentence, sIndex) => (
+                        <div key={sIndex} className="flex items-start gap-2 text-sm">
+                          <span className="flex-shrink-0 w-5 h-5 bg-emerald-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                            {sIndex + 1}
+                          </span>
+                          <span className="text-slate-700 leading-relaxed">
+                            {sentence}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
 
-                {/* Si no hay bullets pero hay respuesta */}
-                {bullets.length === 0 && question.answer && (
+                {/* Si no hay respuesta */}
+                {sentences.length === 0 && (
                   <div className="px-4 py-3">
-                    <p className="text-sm text-slate-600 italic">
-                      {question.answer.substring(0, 150)}...
+                    <p className="text-sm text-slate-500 italic">
+                      Sin respuesta disponible
                     </p>
                   </div>
                 )}
