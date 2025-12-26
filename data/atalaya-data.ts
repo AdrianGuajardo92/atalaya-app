@@ -3690,7 +3690,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Jehová quiere que los pecadores lo busquen",
                 text: "Busquen a Jehová mientras se deje hallar. Llámenlo mientras esté cerca. Que el malvado abandone su camino... Que regrese a Jehová, quien tendrá compasión de él."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/09UBmc2.png"
           },
           {
             number: "6, 7",
@@ -3730,7 +3731,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Las cualidades de Jehová que nos ayudan a orar",
                 text: "Jehová es compasivo y misericordioso, lento para la ira y lleno de amor leal. Jehová es bueno con todos... Jehová está cerca de todos los que lo invocan."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/IXKbb3W.png"
           },
           {
             number: "8, 9",
@@ -3770,7 +3772,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Ejemplo de prepararse para orar en situaciones difíciles",
                 text: "Ezequías oró delante de Jehová diciendo... Oh, Jehová, Dios nuestro, sálvanos de su mano, para que todos los reinos de la tierra sepan que solo tú eres Dios."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/AYdMVqq.png"
           },
           {
             number: "10",
@@ -3803,7 +3806,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 answer: "Es más probable que le contemos a Jehová con más detalle todo lo que sentimos, y nos sentimos más cerca de él."
               }
             ],
-            biblicalCards: []
+            biblicalCards: [],
+            infographic: "https://i.imgur.com/vBCUvYA.png"
           },
           {
             number: "11",
