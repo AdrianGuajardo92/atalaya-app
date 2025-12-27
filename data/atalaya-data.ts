@@ -3785,6 +3785,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué es bueno que nos tomemos nuestro tiempo para orar? (Mira también las imágenes).",
             textLSM: "",
             paragraphs: [10],
+            image: "https://i.imgur.com/SW7Cal1.png",
             answer: [
               "Las oraciones cortas nos acercan a Jehová, pero las largas nos permiten contar más detalles.",
               "Jehová nunca está mirando el reloj, así que podemos extendernos.",
@@ -3819,6 +3820,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cómo nos ayuda meditar en las oraciones de algunos siervos de Jehová de tiempos bíblicos?",
             textLSM: "",
             paragraphs: [11],
+            image: "https://i.imgur.com/TX5pIuf.png",
             section: "MEDITA EN LAS ORACIONES DE PERSONAJES BÍBLICOS",
             answer: [
               "Meditar en oraciones bíblicas nos da ideas de cómo expresarnos nosotros.",
@@ -3879,6 +3881,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cuál es una lección que sacamos de la oración de Ana? (1 Samuel 1:10, 11; mira también la imagen de la portada).",
             textLSM: "",
             paragraphs: [13],
+            image: "https://i.imgur.com/zlBfQ5l.png",
             readText: "LEE 1 Samuel 1:10, 11",
             answer: [
               "Ana tenía dos problemas graves: era estéril y la otra esposa le hacía la vida imposible.",
@@ -4007,6 +4010,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué aprendemos de la oración de un levita exiliado? (Salmo 42:1-4; mira también las imágenes).",
             textLSM: "",
             paragraphs: [16],
+            image: "https://i.imgur.com/2VkQzzD.png",
             readText: "LEE Salmo 42:1-4",
             answer: [
               "Un levita expresó cómo se sentía por estar exiliado y no poder reunirse.",

@@ -28,7 +28,9 @@
       "Bash(cmd /c \"cd /d \"\"C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\"\" && del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\"\"\")",
       "WebFetch(domain:docs.anthropic.com)",
       "WebFetch(domain:platform.claude.com)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(npx vercel --prod)",
+      "Bash(npx vercel:*)"
     ],
     "deny": [],
     "ask": []
