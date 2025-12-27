@@ -34,6 +34,31 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
   ],
   "LEE 2 Samuel 22:26": [
     { reference: "2 Samuel 22:26", text: "Con alguien leal, tú actúas con lealtad; con el hombre intachable, tú te portas de manera intachable." }
+  ],
+  "LEE Salmo 119:145": [
+    { reference: "Salmo 119:145", text: "Con todo mi corazón clamo. Respóndeme, oh, Jehová. Tus disposiciones quiero obedecer." },
+    { reference: "Salmo 119:146", text: "Clamo a ti. ¡Sálvame! Y obedeceré tus recordatorios." }
+  ],
+  "LEE 1 Samuel 1:10, 11": [
+    { reference: "1 Samuel 1:10", text: "Ana estaba muy angustiada, y empezó a orar a Jehová llorando amargamente." },
+    { reference: "1 Samuel 1:11", text: "Entonces hizo este voto: «Oh, Jehová de los ejércitos, si te fijas en el sufrimiento de tu sierva y te acuerdas de mí, si no te olvidas de tu sierva y le das un hijo varón, se lo daré a Jehová por todos los días de su vida, y la navaja nunca tocará su cabeza»." }
+  ],
+  "LEE Jeremías 12:1": [
+    { reference: "Jeremías 12:1", text: "Tú siempre eres justo, oh, Jehová, cuando me quejo ante ti. Sin embargo, quiero hablarte de cuestiones de justicia. ¿Por qué les va bien a los malos? ¿Por qué viven tranquilos todos los que actúan con traición?" }
+  ],
+  "LEE Salmo 42:1-4": [
+    { reference: "Salmo 42:1", text: "Como el ciervo que brama por los riachuelos de agua, así brama mi alma por ti, oh, Dios." },
+    { reference: "Salmo 42:2", text: "Mi alma tiene sed de Dios, del Dios vivo. ¿Cuándo iré a presentarme delante de Dios?" },
+    { reference: "Salmo 42:3", text: "Mis lágrimas son mi alimento de día y de noche, mientras me dicen todo el día: «¿Dónde está tu Dios?»." },
+    { reference: "Salmo 42:4", text: "Recuerdo estas cosas y derramo mi alma dentro de mí, porque yo iba con la multitud, caminaba lentamente con ellos hacia la casa de Dios, entre el ruido de los que se alegraban y daban gracias, una multitud que celebraba una fiesta." }
+  ],
+  "LEE Jonás 2:1, 2": [
+    { reference: "Jonás 2:1", text: "Entonces Jonás oró a Jehová su Dios desde el vientre del pez." },
+    { reference: "Jonás 2:2", text: "Dijo: «Desde mi angustia llamé a Jehová, y él me respondió. Desde las profundidades de la Tumba pedí ayuda. Tú oíste mi voz»." }
+  ],
+  "LEE Romanos 8:26, 27": [
+    { reference: "Romanos 8:26", text: "Así mismo, el espíritu también nos ayuda cuando estamos débiles; porque no sabemos pedir en oración lo que necesitamos, pero el espíritu mismo ruega por nosotros con gemidos que no se pueden expresar con palabras." },
+    { reference: "Romanos 8:27", text: "Sin embargo, el que examina los corazones sabe cuál es la intención del espíritu, porque este ruega de acuerdo con Dios a favor de los santos." }
   ]
 };
 

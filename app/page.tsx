@@ -42,9 +42,13 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showPdfUploader, setShowPdfUploader] = useState(false);
+  const [showViewOptions, setShowViewOptions] = useState(false);
 
   // Referencia para hacer scroll al contenido
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Referencia para el menú de opciones de vista
+  const viewMenuRef = useRef<HTMLDivElement>(null);
 
   // Cargar artículos del mes al iniciar
   useEffect(() => {
@@ -121,6 +125,18 @@ export default function Home() {
       clearTimeout(hideTimeout);
     };
   }, [navigationMode]);
+
+  // Cerrar menú de opciones al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (viewMenuRef.current && !viewMenuRef.current.contains(e.target as Node)) {
+        setShowViewOptions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Función para cambiar de artículo
   const handleArticleChange = (articleId: string) => {
@@ -297,69 +313,71 @@ export default function Home() {
         </div>
       )}
 
-      {/* Control de modo de vista y navegación */}
-      <div className="fixed top-4 right-4 z-10 bg-white rounded-lg shadow-lg p-1.5 sm:p-2">
-        {/* Selector de vista principal */}
-        <div className="flex gap-1 sm:gap-2 mb-1 sm:mb-2">
-          <button
-            onClick={() => setViewMode('study')}
-            className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
-              viewMode === 'study'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-          >
-            <span className="text-sm sm:text-base">📖</span>
-            <span className="hidden sm:inline">Estudio</span>
-          </button>
-          <button
-            onClick={() => setViewMode('summary')}
-            className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
-              viewMode === 'summary'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-          >
-            <span className="text-sm sm:text-base">📋</span>
-            <span className="hidden sm:inline">Resumen</span>
-          </button>
-          <button
-            onClick={() => setViewMode('timeline')}
-            className={`px-4 py-2 rounded-lg font-medium transition-all ${
-              viewMode === 'timeline'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-          >
-            Timeline
-          </button>
-        </div>
+      {/* Control de modo de vista y navegación - Menú colapsable */}
+      <div ref={viewMenuRef} className="fixed top-4 right-4 z-50">
+        {/* Botón principal (siempre visible) */}
+        <button
+          onClick={() => setShowViewOptions(!showViewOptions)}
+          className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all"
+          title="Opciones de vista"
+        >
+          <span className="text-xl">{showViewOptions ? '✕' : '⚙️'}</span>
+        </button>
 
-        {/* Selector de navegación (solo en modo estudio) */}
-        {viewMode === 'study' && (
-          <div className="flex gap-1 sm:gap-2 pt-1 sm:pt-2 border-t border-slate-200">
-            <button
-              onClick={() => setNavigationMode('scroll')}
-              className={`px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
-                navigationMode === 'scroll'
-                  ? 'bg-slate-700 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              <span className="text-xs sm:text-sm">↕️</span>
-              <span className="hidden sm:inline">Scroll</span>
-            </button>
-            <button
-              onClick={() => setNavigationMode('paginated')}
-              className={`px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
-                navigationMode === 'paginated'
-                  ? 'bg-slate-700 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              <span className="text-xs sm:text-sm">📄</span>
-              <span className="hidden sm:inline">Paginado</span>
-            </button>
+        {/* Menú expandible */}
+        {showViewOptions && (
+          <div className="absolute top-14 right-0 bg-white rounded-xl shadow-xl p-3 animate-fadeIn min-w-[200px]">
+            {/* Fila 1: Tipo de vista */}
+            <div className="flex gap-2 mb-2">
+              <button
+                onClick={() => { setViewMode('study'); setShowViewOptions(false); }}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
+                  viewMode === 'study' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                📖 Estudio
+              </button>
+              <button
+                onClick={() => { setViewMode('summary'); setShowViewOptions(false); }}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
+                  viewMode === 'summary' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                📋 Resumen
+              </button>
+            </div>
+            <div className="flex gap-2 mb-2">
+              <button
+                onClick={() => { setViewMode('timeline'); setShowViewOptions(false); }}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
+                  viewMode === 'timeline' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                📅 Timeline
+              </button>
+            </div>
+
+            {/* Fila 2: Modo de scroll (solo en modo estudio) */}
+            {viewMode === 'study' && (
+              <div className="flex gap-2 pt-2 border-t border-gray-100">
+                <button
+                  onClick={() => { setNavigationMode('scroll'); setShowViewOptions(false); }}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
+                    navigationMode === 'scroll' ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  ↕️ Scroll
+                </button>
+                <button
+                  onClick={() => { setNavigationMode('paginated'); setShowViewOptions(false); }}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
+                    navigationMode === 'paginated' ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  📄 Paginado
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

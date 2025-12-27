@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function InstructionsButton() {
   const [showCopied, setShowCopied] = useState(false);
   const [showCopiedStudy, setShowCopiedStudy] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const promptInstructions = `# Instrucciones - Aplicación Atalaya
 
@@ -1088,41 +1089,69 @@ Al final del estudio, hay **3 preguntas de repaso** que resumen los puntos princ
     }
   };
 
+  const [showToolsMenu, setShowToolsMenu] = useState(false);
+
+  // Cerrar menú al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setShowToolsMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <div className="fixed bottom-4 left-4 z-10 hidden xl:flex xl:flex-col xl:gap-2">
-      {/* Botón Copiar Instrucciones */}
-      <div className="relative">
-        <button
-          onClick={handleCopy}
-          className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-4 py-2 rounded-lg shadow-lg hover:from-emerald-700 hover:to-emerald-800 transition-all font-medium text-sm flex items-center gap-2 w-full"
-          title="Copiar instrucciones completas para nueva conversación"
-        >
-          📋 Copiar Instrucciones
-        </button>
+    <div ref={menuRef} className="fixed bottom-4 left-4 z-50 hidden xl:block">
+      {/* Botón principal (siempre visible) */}
+      <button
+        onClick={() => setShowToolsMenu(!showToolsMenu)}
+        className="p-3 bg-slate-700 text-white rounded-full shadow-lg hover:bg-slate-600 transition-all"
+        title="Herramientas"
+      >
+        <span className="text-xl">{showToolsMenu ? '✕' : '📋'}</span>
+      </button>
 
-        {showCopied && (
-          <div className="absolute bottom-full left-0 mb-2 bg-emerald-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
-            ✅ ¡Copiado al portapapeles!
+      {/* Menú expandible (hacia arriba) */}
+      {showToolsMenu && (
+        <div className="absolute bottom-14 left-0 bg-slate-700 rounded-xl shadow-xl overflow-hidden animate-slideUp min-w-[200px]">
+          {/* Botón Copiar Instrucciones */}
+          <div className="relative">
+            <button
+              onClick={() => { handleCopy(); setShowToolsMenu(false); }}
+              className="flex items-center gap-2 px-4 py-3 text-white hover:bg-slate-600 w-full text-left text-sm font-medium"
+              title="Copiar instrucciones completas para nueva conversación"
+            >
+              📋 Copiar Instrucciones
+            </button>
+
+            {showCopied && (
+              <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-emerald-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
+                ✅ ¡Copiado!
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      {/* Botón Copiar Protocolo de Estudio */}
-      <div className="relative">
-        <button
-          onClick={handleCopyStudy}
-          className="bg-gradient-to-r from-slate-600 to-slate-700 text-white px-4 py-2 rounded-lg shadow-lg hover:from-slate-700 hover:to-slate-800 transition-all font-medium text-sm flex items-center gap-2 w-full"
-          title="Copiar solo el protocolo de estudio"
-        >
-          📚 Copiar Protocolo
-        </button>
+          {/* Botón Copiar Protocolo de Estudio */}
+          <div className="relative border-t border-slate-600">
+            <button
+              onClick={() => { handleCopyStudy(); setShowToolsMenu(false); }}
+              className="flex items-center gap-2 px-4 py-3 text-white hover:bg-slate-600 w-full text-left text-sm font-medium"
+              title="Copiar solo el protocolo de estudio"
+            >
+              📚 Copiar Protocolo
+            </button>
 
-        {showCopiedStudy && (
-          <div className="absolute bottom-full left-0 mb-2 bg-slate-600 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
-            ✅ ¡Protocolo copiado!
+            {showCopiedStudy && (
+              <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-slate-500 text-white px-3 py-1 rounded shadow-lg text-sm whitespace-nowrap">
+                ✅ ¡Copiado!
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

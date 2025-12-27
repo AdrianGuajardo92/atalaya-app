@@ -153,6 +153,33 @@ interface ArticleSummary {
 - Botón azul circular junto a la pregunta cuando tiene `infographic`
 - Click abre modal con imagen ampliada
 - Botón para copiar enlace de la infografía
+- **IMPORTANTE:** Las URLs de Imgur deben usar el formato directo:
+  - ✅ Correcto: `https://i.imgur.com/XXXXX.png`
+  - ❌ Incorrecto: `https://imgur.com/XXXXX`
+
+**Textos Bíblicos (readText):**
+- El campo `readText` en las preguntas indica qué texto bíblico leer (ej: "LEE Jeremías 12:1")
+- El **contenido** del texto bíblico debe agregarse en `components/QuestionCard.tsx`
+- Buscar el objeto `biblicalTexts` al inicio del archivo (~línea 24)
+- Agregar entrada con la clave exacta del `readText`:
+
+```typescript
+// En components/QuestionCard.tsx
+const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
+  // ... entradas existentes ...
+  "LEE Jeremías 12:1": [
+    { reference: "Jeremías 12:1", text: "Tú siempre eres justo, oh, Jehová..." }
+  ],
+  "LEE Salmo 42:1-4": [
+    { reference: "Salmo 42:1", text: "Como el ciervo que brama..." },
+    { reference: "Salmo 42:2", text: "Mi alma tiene sed de Dios..." },
+    // ... un objeto por cada versículo
+  ]
+};
+```
+
+- Usar texto de la **Traducción del Nuevo Mundo (edición 2019)**
+- La clave debe coincidir **exactamente** con el valor de `readText`
 
 **Secciones LSM:**
 - Campo `sectionLSM` para subtítulos en Lengua de Señas Mexicana

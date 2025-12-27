@@ -193,7 +193,23 @@ export default function ReviewQuestionCard({
           {reviewQuestion.answer && (
             <div className="mt-4 p-4 bg-emerald-50 rounded-lg border-l-2 border-emerald-500">
               <p className="text-sm font-semibold text-emerald-700 mb-2">💡 Respuesta:</p>
-              <p className="text-slate-800 leading-relaxed">{reviewQuestion.answer}</p>
+              {Array.isArray(reviewQuestion.answer) ? (
+                <div className="space-y-2">
+                  {reviewQuestion.answer.map((sentence, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 p-3 bg-white rounded-lg border border-emerald-100"
+                    >
+                      <span className="flex-shrink-0 w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        {i + 1}
+                      </span>
+                      <p className="text-slate-800 leading-relaxed">{sentence}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-slate-800 leading-relaxed">{reviewQuestion.answer}</p>
+              )}
             </div>
           )}
 

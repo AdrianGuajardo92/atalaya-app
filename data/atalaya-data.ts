@@ -2976,12 +2976,12 @@ export const atalayaDatabase: AtalayaDatabase = {
           { number: 8, content: "Ladrón número 1: los problemas de la vida. Quizás estemos sufriendo a causa de la persecución, un desastre natural, la pobreza, una enfermedad o la edad avanzada. Esas situaciones pueden robarnos la alegría, sobre todo si no podemos hacer nada para cambiar las cosas. La Biblia dice que \"un corazón angustiado aplasta el ánimo\" (Prov. 15:13). Veamos el caso de un anciano llamado Babis, que perdió a su hermano y a sus padres en solo cuatro años. Él cuenta cómo se sentía mientras ellos todavía vivían: \"Sentía que estaba solo y que nadie podía ayudarme. Tenía que lidiar con tantas cosas que me partía el corazón no poder pasar tanto tiempo con ellos como quería\". Como vemos, los golpes de la vida pueden hundirnos física y emocionalmente." },
           { number: 9, content: "¿Qué podemos hacer para recuperar la alegría? Ser realistas y estar agradecidos. El mundo promueve la idea de que para ser felices nuestra vida tiene que ser de color de rosa, pero eso no es verdad. Por ejemplo, Jehová les dijo a los judíos desterrados en Babilonia que, aunque la situación fuera difícil, trataran de aceptarla y llevarla lo mejor posible (lee Jeremías 29:4-7, 10). ¿Qué puedes aprender? Trata de aceptar que tus circunstancias son las que son y agradecer las cosas buenas que tienes. Y recuerda que Jehová está a tu lado y te va a ayudar (Sal. 63:7; 146:5). Una hermana llamada Efi, que quedó paralítica a causa de un accidente, dice: \"Jehová, mi familia y la congregación me ayudaron y me apoyaron muchísimo. Siento que rendirme sería una falta de gratitud hacia ellos, así que me esfuerzo por mantener una actitud positiva y alegre\"." },
           { number: 10, content: "Incluso cuando nuestra vida no es ideal o nos pasan cosas terribles a nosotros o a nuestra familia, podemos mantener la alegría (Sal. 126:5). ¿Por qué? Porque nuestra felicidad no depende de nuestras circunstancias. Una precursora llamada María dice: \"Cuando pasamos por problemas, no perdemos la alegría porque tenemos presentes las promesas de Jehová. Eso no significa que no podamos llorar o expresar lo que sentimos. Pero nuestro Padre nos ayuda a seguir siendo felices pase lo que pase\". Aunque ahora nuestra vida sea muy difícil, recordemos que todos nuestros problemas son tan temporales como unas huellas en la orilla del mar que el agua borra sin dejar rastro. Dentro de poco, Jehová hará lo mismo con nuestros problemas." },
-          { number: 11, content: "¿Y si empezamos a pensar que tenemos problemas porque hemos perdido la aprobación de Jehová? Algo que puede ayudarnos es meditar en siervos fieles de Jehová que se enfrentaron a situaciones muy difíciles. Pensemos por ejemplo en el apóstol Pablo. El propio Jesús le encomendó una labor muy importante: llevar la verdad \"a las naciones, así como a reyes y a los hijos de Israel\" (Hech. 9:15). Sin embargo, la vida de Pablo estuvo llena de dificultades (2 Cor. 11:23-27). ¿Significa eso que había perdido la aprobación de Dios? ¡Claro que no! Precisamente el hecho de que aguantara era prueba de que Jehová estaba con él (Rom. 5:3-5). Ahora piensa en tu situación. Como estás aguantando con fidelidad a pesar de todos tus problemas, puedes estar seguro de que cuentas con la aprobación de Jehová." },
-          { number: 12, content: "Ladrón número 2: las expectativas que no se cumplen (Prov. 13:12). Los siervos de Jehová nos ponemos metas para demostrarle el amor y la gratitud que sentimos por él. Ahora bien, esas metas tienen que adaptarse a nuestras circunstancias. Si no son realistas, podríamos desanimarnos (Prov. 17:22). Una precursora llamada Holly explica: \"Quería ir a la Escuela para Evangelizadores del Reino, servir en el extranjero o trabajar en el proyecto de construcción de Ramapo. Pero mis circunstancias cambiaron y me dio una tristeza enorme no poder alcanzar ninguna de esas metas. Es muy frustrante querer hacer cosas pero no poder lograrlo\". Muchos hermanos se sienten igual." },
-          { number: 13, content: "¿Qué podemos hacer para recuperar la alegría? Recordar que Jehová no es exigente y no nos pide más de lo que podemos hacer. Lo que hace que sus siervos seamos valiosos para él no son las responsabilidades que tenemos, sino nuestras bonitas cualidades. Lo que somos por dentro pesa más que lo que hacemos en nuestro servicio a Jehová. Él quiere que seamos modestos y fieles (Miq. 6:8; 1 Cor. 4:2). Entonces, ¿sería razonable exigirnos más de lo que Jehová nos pide que hagamos? Por supuesto que no. Así que, si tus circunstancias no te permiten hacer tanto como te gustaría, procura centrarte en lo que sí puedes hacer. Por ejemplo, ¿podrías hacerte amigo de algún joven de la congregación para ayudarlo a progresar? ¿Podrías ser un apoyo para los hermanos mayores? ¿Podrías ponerte la meta de animar a alguien, ya sea en persona, por teléfono o con mensajes? Si buscas maneras que estén a tu alcance de ayudar a los demás, Jehová bendecirá tus esfuerzos. Y piensa que muy pronto, en el nuevo mundo, podremos hacer muchísimas más cosas por Jehová... cosas que ahora ni siquiera imaginamos. Holly, mencionada en el párrafo anterior, dice: \"Cuando me siento un poco desanimada, me paro a pensar y me recuerdo a mí misma que tengo toda una eternidad por delante. Tengo reservadas algunas metas para el nuevo mundo, y Jehová me ayudará a cumplirlas\"." },
-          { number: 14, content: "Ladrón número 3: centrarte solo en ti y en tus deseos. Algunos usan las redes sociales para promover la idea de que la clave para ser feliz y sentirte realizado está en viajar, ir de compras, dedicarte a tus hobbies y darte todos los caprichos que puedas. No está mal disfrutar de lo que nos gusta. A fin de cuentas, es Jehová quien nos ha creado así. Sin embargo, muchas personas han visto que las cosas que creían que les iban a dar la felicidad en realidad se la han robado. Una precursora llamada Eva dice: \"Cuando te centras solo en ti y en tus deseos, nunca tienes suficiente, siempre te quedas con ganas de más\". Esa actitud produce tristeza y decepción." },
-          { number: 15, content: "Pensemos en lo que le pasó al rey Salomón. Él quiso comprobar si podía conseguir la felicidad centrándose en satisfacer sus deseos personales. Así que se dedicó a disfrutar de buena comida y música, y de todos los lujos que existían en su época. ¿Cuál fue el resultado? Acabó tan decepcionado que escribió: \"El ojo no se satisface con lo que ve ni se llena el oído con lo que oye\" (Ecl. 1:8; 2:1-11). Las ideas del mundo sobre cómo conseguir la felicidad verdadera son como los billetes falsos: parecen tener valor pero en realidad no sirven de nada." },
-          { number: 16, content: "¿Qué podemos hacer para recuperar la alegría? Jesús nos enseñó que \"hay más felicidad en dar que en recibir\" (Hech. 20:35). Un anciano llamado Alekos explica: \"Me centro en hacer cosas sencillas por los demás. Cuanto más pienso en otros, menos pienso en mí, y eso me hace feliz\". ¿Qué cosas puedes hacer tú por los demás? Si sabes de alguien que está pasando por una situación difícil, trata de animarlo. Quizás no puedas solucionar sus problemas, pero le harás mucho bien si lo escuchas con empatía, le demuestras compasión y le recuerdas que puede desahogarse con Jehová (Sal. 55:22; 68:19). También es bueno que le asegures que Jehová no lo ha abandonado (Sal. 37:28; Is. 59:1). Incluso podrías ofrecerte a prepararle algo de comer o a dar un paseo con él. Invítalo a predicar contigo, eso seguro que le levantará el ánimo. Al concentrarte en otros y no en ti mismo, serás como una herramienta en manos de Jehová y además te sentirás feliz de verdad (Prov. 11:25)." },
+          { number: 11, content: "¿Y si empezamos a pensar que tenemos problemas porque hemos perdido la aprobación de Jehová? Algo que puede ayudarnos es meditar en siervos fieles de Jehová que se enfrentaron a situaciones muy difíciles. Pensemos por ejemplo en el apóstol Pablo. El propio Jesús le encomendó una labor muy importante: llevar la verdad \"a las naciones, así como a reyes y a los hijos de Israel\" (Hech. 9:15). Sin embargo, la vida de Pablo estuvo llena de dificultades (2 Cor. 11:23-27). ¿Significa eso que había perdido la aprobación de Dios? ¡Claro que no! Precisamente el hecho de que aguantara era prueba de que Jehová estaba con él (Rom. 5:3-5). Ahora piensa en tu situación. Como estás aguantando con fidelidad a pesar de todos tus problemas, puedes estar seguro de que cuentas con la aprobación de Jehová.", image: "https://imgur.com/L215bx2" },
+          { number: 12, content: "Ladrón número 2: las expectativas que no se cumplen (Prov. 13:12). Los siervos de Jehová nos ponemos metas para demostrarle el amor y la gratitud que sentimos por él. Ahora bien, esas metas tienen que adaptarse a nuestras circunstancias. Si no son realistas, podríamos desanimarnos (Prov. 17:22). Una precursora llamada Holly explica: \"Quería ir a la Escuela para Evangelizadores del Reino, servir en el extranjero o trabajar en el proyecto de construcción de Ramapo. Pero mis circunstancias cambiaron y me dio una tristeza enorme no poder alcanzar ninguna de esas metas. Es muy frustrante querer hacer cosas pero no poder lograrlo\". Muchos hermanos se sienten igual.", image: "https://imgur.com/MbZA21l" },
+          { number: 13, content: "¿Qué podemos hacer para recuperar la alegría? Recordar que Jehová no es exigente y no nos pide más de lo que podemos hacer. Lo que hace que sus siervos seamos valiosos para él no son las responsabilidades que tenemos, sino nuestras bonitas cualidades. Lo que somos por dentro pesa más que lo que hacemos en nuestro servicio a Jehová. Él quiere que seamos modestos y fieles (Miq. 6:8; 1 Cor. 4:2). Entonces, ¿sería razonable exigirnos más de lo que Jehová nos pide que hagamos? Por supuesto que no. Así que, si tus circunstancias no te permiten hacer tanto como te gustaría, procura centrarte en lo que sí puedes hacer. Por ejemplo, ¿podrías hacerte amigo de algún joven de la congregación para ayudarlo a progresar? ¿Podrías ser un apoyo para los hermanos mayores? ¿Podrías ponerte la meta de animar a alguien, ya sea en persona, por teléfono o con mensajes? Si buscas maneras que estén a tu alcance de ayudar a los demás, Jehová bendecirá tus esfuerzos. Y piensa que muy pronto, en el nuevo mundo, podremos hacer muchísimas más cosas por Jehová... cosas que ahora ni siquiera imaginamos. Holly, mencionada en el párrafo anterior, dice: \"Cuando me siento un poco desanimada, me paro a pensar y me recuerdo a mí misma que tengo toda una eternidad por delante. Tengo reservadas algunas metas para el nuevo mundo, y Jehová me ayudará a cumplirlas\".", image: "https://imgur.com/zTLReUG" },
+          { number: 14, content: "Ladrón número 3: centrarte solo en ti y en tus deseos. Algunos usan las redes sociales para promover la idea de que la clave para ser feliz y sentirte realizado está en viajar, ir de compras, dedicarte a tus hobbies y darte todos los caprichos que puedas. No está mal disfrutar de lo que nos gusta. A fin de cuentas, es Jehová quien nos ha creado así. Sin embargo, muchas personas han visto que las cosas que creían que les iban a dar la felicidad en realidad se la han robado. Una precursora llamada Eva dice: \"Cuando te centras solo en ti y en tus deseos, nunca tienes suficiente, siempre te quedas con ganas de más\". Esa actitud produce tristeza y decepción.", image: "https://imgur.com/cBkTja8" },
+          { number: 15, content: "Pensemos en lo que le pasó al rey Salomón. Él quiso comprobar si podía conseguir la felicidad centrándose en satisfacer sus deseos personales. Así que se dedicó a disfrutar de buena comida y música, y de todos los lujos que existían en su época. ¿Cuál fue el resultado? Acabó tan decepcionado que escribió: \"El ojo no se satisface con lo que ve ni se llena el oído con lo que oye\" (Ecl. 1:8; 2:1-11). Las ideas del mundo sobre cómo conseguir la felicidad verdadera son como los billetes falsos: parecen tener valor pero en realidad no sirven de nada.", image: "https://imgur.com/Akdh3te" },
+          { number: 16, content: "¿Qué podemos hacer para recuperar la alegría? Jesús nos enseñó que \"hay más felicidad en dar que en recibir\" (Hech. 20:35). Un anciano llamado Alekos explica: \"Me centro en hacer cosas sencillas por los demás. Cuanto más pienso en otros, menos pienso en mí, y eso me hace feliz\". ¿Qué cosas puedes hacer tú por los demás? Si sabes de alguien que está pasando por una situación difícil, trata de animarlo. Quizás no puedas solucionar sus problemas, pero le harás mucho bien si lo escuchas con empatía, le demuestras compasión y le recuerdas que puede desahogarse con Jehová (Sal. 55:22; 68:19). También es bueno que le asegures que Jehová no lo ha abandonado (Sal. 37:28; Is. 59:1). Incluso podrías ofrecerte a prepararle algo de comer o a dar un paseo con él. Invítalo a predicar contigo, eso seguro que le levantará el ánimo. Al concentrarte en otros y no en ti mismo, serás como una herramienta en manos de Jehová y además te sentirás feliz de verdad (Prov. 11:25).", image: "https://imgur.com/QdhFPZp" },
           { number: 17, content: "Podemos sentirnos realmente felices si nos acercamos cada vez más a nuestro Padre celestial. La Biblia dice que Jehová es nuestra \"máxima alegría\" (lee Salmo 43:4). Así que, sin importar los problemas que tengamos, podemos estar tranquilos. Aferrémonos siempre a Jehová, y él nos ayudará a ser felices por toda la eternidad (Sal. 144:15)." }
         ],
         reviewQuestions: [
@@ -3649,6 +3649,11 @@ export const atalayaDatabase: AtalayaDatabase = {
                 reference: "Salmo 119:145",
                 purpose: "Texto temático - Orar con todo el corazón",
                 text: "Llamo con todo mi corazón. Respóndeme, oh, Jehová. Voy a obedecer tus decretos."
+              },
+              {
+                reference: "Salmo 119:146",
+                purpose: "Continuación del clamor del salmista",
+                text: "Te invoco. Sálvame, y guardaré tus recordatorios."
               }
             ],
             infographic: "https://i.imgur.com/z2BpyL0.png"
@@ -3836,7 +3841,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 answer: "Fijándonos en cómo se expresaron los siervos de Jehová de tiempos bíblicos, podemos hacer nosotros lo mismo."
               }
             ],
-            biblicalCards: []
+            biblicalCards: [],
+            infographic: "https://i.imgur.com/L215bx2.png"
           },
           {
             number: "12",
@@ -3865,7 +3871,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 answer: "¿Estoy pasando por alguna situación parecida a la del personaje bíblico?"
               }
             ],
-            biblicalCards: []
+            biblicalCards: [],
+            infographic: "https://i.imgur.com/MbZA21l.png"
           },
           {
             number: "13",
@@ -3903,14 +3910,15 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 reference: "1 Samuel 1:10, 11",
                 purpose: "La oración sincera de Ana",
-                text: "Ella estaba muy angustiada y se puso a orar a Jehová, llorando amargamente. E hizo un voto: Oh, Jehová de los ejércitos... si me das un hijo varón, te lo daré."
+                text: "Ella estaba muy angustiada y se puso a orar a Jehová, llorando amargamente. E hizo un voto, diciendo: «Oh, Jehová de los ejércitos, si te fijas en la aflicción de tu esclava y te acuerdas de mí, y no te olvidas de tu esclava y le das a tu esclava un hijo varón, entonces yo se lo daré a Jehová para todos los días de su vida, y no pasará ninguna navaja sobre su cabeza»."
               },
               {
                 reference: "Salmo 55:22",
                 purpose: "Arrojar nuestra carga sobre Jehová",
                 text: "Echa tu carga sobre Jehová, y él te sostendrá. Él nunca permitirá que el justo caiga."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/zTLReUG.png"
           },
           {
             number: "14",
@@ -3949,7 +3957,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "La oración de gratitud de Ana",
                 text: "Ana oró y dijo: Mi corazón se alegra por Jehová... Él levanta al pobre del polvo... Él protegerá a sus leales."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/cBkTja8.png"
           },
           {
             number: "15",
@@ -3983,14 +3992,15 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 reference: "Jeremías 12:1",
                 purpose: "Jeremías expresa su frustración a Jehová",
-                text: "Tú eres justo, oh, Jehová, cuando me quejo ante ti. Sin embargo, quisiera hablar contigo de justicia. ¿Por qué tiene éxito el camino de los malvados?"
+                text: "Tú siempre eres justo, oh, Jehová, cuando presento una queja ante ti. Sin embargo, quiero hablarte de cuestiones de justicia: ¿Por qué tiene éxito el camino de los malvados? ¿Por qué viven tranquilos todos los que actúan con traición?"
               },
               {
                 reference: "Jeremías 32:19",
                 purpose: "Confianza en la justicia de Jehová",
                 text: "Grande en consejos y poderoso en obras, tú, cuyos ojos están abiertos a todos los caminos de los hijos de los hombres, para darle a cada uno según sus caminos."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/Akdh3te.png"
           },
           {
             number: "16",
@@ -4028,14 +4038,15 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 reference: "Salmo 42:1-4",
                 purpose: "El anhelo del levita exiliado",
-                text: "Como el ciervo anhela los arroyos de agua, así te anhelo a ti, oh, Dios. Mi alma tiene sed de Dios, del Dios vivo."
+                text: "Como el ciervo anhela los arroyos de agua, así te anhelo a ti, oh, Dios. Mi alma tiene sed de Dios, del Dios vivo. ¿Cuándo podré presentarme ante Dios? Mis lágrimas han sido mi alimento de día y de noche, mientras me dicen todo el día: «¿Dónde está tu Dios?». Esto es lo que recuerdo mientras derramo mi alma dentro de mí: cómo iba con la muchedumbre, cómo los conducía lentamente a la casa de Dios, con la voz de alegría y de acción de gracias, una multitud celebrando una fiesta."
               },
               {
                 reference: "Salmo 42:5, 8",
                 purpose: "Cómo el levita recuperó la esperanza",
                 text: "¿Por qué estás desanimada, alma mía?... Espera en Dios, porque todavía lo alabaré... De día Jehová ordenará su amor leal."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/QdhFPZp.png"
           },
           {
             number: "17",
@@ -4073,9 +4084,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 reference: "Jonás 2:1, 2",
                 purpose: "Jonás oró desde el vientre del pez",
-                text: "Entonces Jonás oró a Jehová su Dios desde el vientre del pez, diciendo: En mi angustia llamé a Jehová, y él me respondió."
+                text: "Entonces Jonás oró a Jehová su Dios desde el vientre del pez, diciendo: «En mi angustia clamé a Jehová, y él me respondió. Desde las profundidades del Seol pedí ayuda. Tú oíste mi voz»."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/QG00veL.png"
           },
           {
             number: "18, 19",
@@ -4114,9 +4126,10 @@ export const atalayaDatabase: AtalayaDatabase = {
               {
                 reference: "Romanos 8:26, 27",
                 purpose: "El espíritu santo nos ayuda cuando no sabemos qué orar",
-                text: "El espíritu también viene en nuestra ayuda en nuestra debilidad, porque no sabemos qué debemos pedir, pero el espíritu mismo ruega por nosotros."
+                text: "Asimismo, el espíritu también viene en nuestra ayuda en nuestra debilidad, porque no sabemos qué debemos pedir, pero el espíritu mismo ruega por nosotros con gemidos que no se expresan con palabras. Sin embargo, el que examina los corazones sabe cuál es la intención del espíritu, porque este ruega en armonía con Dios a favor de los santos."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/8niqQoN.png"
           },
           {
             number: "20",
@@ -4151,7 +4164,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "La oración como incienso ante Jehová",
                 text: "Que mi oración sea preparada como incienso delante de ti; el alzar de mis manos, como la ofrenda de grano del atardecer."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/kTHexVq.png"
           },
           {
             number: "21",
@@ -4190,7 +4204,8 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Jehová conoce nuestros pensamientos",
                 text: "Porque aún no tengo una palabra en mi lengua y ya tú, oh, Jehová, la conoces toda."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/NolXvhV.png"
           }
         ],
         paragraphs: [
@@ -4218,13 +4233,34 @@ export const atalayaDatabase: AtalayaDatabase = {
         ],
         reviewQuestions: [
           {
-            question: "¿Qué nos ayudará a no sentir miedo de orarle a Jehová?"
+            question: "¿Qué nos ayudará a no sentir miedo de orarle a Jehová?",
+            answer: [
+              "Ver a Jehová como un amigo fiel que quiere lo mejor para nosotros.",
+              "Recordar que el salmista tuvo muchos problemas pero no tuvo miedo de abrirle su corazón a Dios.",
+              "Entender que Jehová quiere que oremos, incluso si hemos cometido errores (Isaías 55:6, 7).",
+              "No dejar que los sentimientos negativos (vergüenza, culpa) nos frenen.",
+              "Pensar en el ejemplo del piloto: aunque cometa un error, contacta a los controladores para pedir ayuda."
+            ]
           },
           {
-            question: "¿Qué podemos hacer para que nuestras oraciones sean más profundas?"
+            question: "¿Qué podemos hacer para que nuestras oraciones sean más profundas?",
+            answer: [
+              "Hablar con total franqueza de nuestros pensamientos y sentimientos más íntimos.",
+              "Reflexionar en las cualidades de Jehová (que es bueno, compasivo, que nos escucha).",
+              "Usar información bíblica como el Salmo 145 para expresarnos mejor.",
+              "Prepararnos antes de orar — pensar en qué queremos decirle.",
+              "Buscar un lugar tranquilo donde podamos concentrarnos y meditar."
+            ]
           },
           {
-            question: "¿Cómo nos beneficia meditar en las oraciones de personajes bíblicos?"
+            question: "¿Cómo nos beneficia meditar en las oraciones de personajes bíblicos?",
+            answer: [
+              "Nos da ideas de cómo expresarnos en nuestras propias oraciones.",
+              "Podemos sentirnos identificados con ellos porque pasaron por situaciones parecidas a las nuestras.",
+              "Descubrimos expresiones que podemos usar para alabar a Jehová o contarle nuestros problemas.",
+              "Aprendemos de 4 ejemplos: Ana (problemas familiares), Jeremías (desánimo por injusticias), el levita exiliado (no poder reunirse) y Jonás (situación desesperada).",
+              "Nos anima saber que Jehová escuchó y ayudó a estos siervos fieles."
+            ]
           }
         ],
         finalSong: "Canción 45: \"La meditación de mi corazón\""

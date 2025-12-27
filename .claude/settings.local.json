@@ -25,7 +25,10 @@
       "Bash(powershell -Command:*)",
       "Bash(del \"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\")",
       "Bash(cmd /c \"del \"\"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\"\"\")",
-      "Bash(cmd /c \"cd /d \"\"C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\"\" && del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\"\"\")"
+      "Bash(cmd /c \"cd /d \"\"C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\"\" && del /f /q \"\"\\\\?\\\\C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\nul\"\"\")",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:platform.claude.com)",
+      "Bash(git config:*)"
     ],
     "deny": [],
     "ask": []
