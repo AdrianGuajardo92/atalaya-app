@@ -4450,6 +4450,8 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [7],
             readText: "LEE Filipenses 2:3, 4",
             infographic: "https://i.imgur.com/5bmyrpL.png",
+            image: "https://i.imgur.com/0tzS05E.png",
+            imageCaption: "Orar por otros nos ayuda a ver nuestros problemas desde la perspectiva correcta. (Vea el párrafo 7).",
             answer: [
               "Vivimos en un mundo controlado por el Diablo, y todos afrontamos dificultades.",
               "Orar por otros nos recuerda que «toda la hermandad está pasando por los mismos sufrimientos» (1 Pedro 5:9).",
@@ -4623,13 +4625,15 @@ export const atalayaDatabase: AtalayaDatabase = {
                 purpose: "Criar hijos según Jehová",
                 text: "Y padres, no irriten a sus hijos, sino críenlos de acuerdo con la disciplina y los consejos de Jehová."
               }
-            ]
+            ],
+            infographic: "https://i.imgur.com/s87VYIw.png"
           },
           {
             number: "13",
             textEs: "¿Podemos orar por hermanos que no conocemos?",
             textLSM: "",
             paragraphs: [13],
+            infographic: "https://i.imgur.com/CjBktVH.png",
             answer: [
               "Sí, podemos mencionarlos por nombre, incluso sin conocerlos en persona.",
               "En jw.org encontramos los nombres de hermanos encarcelados en varios países.",
@@ -4653,6 +4657,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué nos ayudará a hacer oraciones más específicas?",
             textLSM: "",
             paragraphs: [14, 15],
+            infographic: "https://i.imgur.com/M9znDYt.png",
             answer: [
               "Hacer peticiones específicas nos ayuda a orar mejor.",
               "Podemos leer experiencias en jw.org e imaginar cómo nos sentiríamos (Hebreos 13:3).",
@@ -4691,6 +4696,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [16],
             readText: "LEE Mateo 6:8",
             section: "SEAMOS EQUILIBRADOS",
+            infographic: "https://i.imgur.com/ENXZjnE.png",
             answer: [
               "Debemos ser equilibrados al orar.",
               "Cuando oramos, no le contamos a Jehová algo que él no sepa (Mateo 6:8).",
