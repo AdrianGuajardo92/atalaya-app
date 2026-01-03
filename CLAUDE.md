@@ -265,3 +265,225 @@ R: Dijeron mentiras de él y tuvo que cargar con sus imperfecciones.
 ❌ "¿Quién escribió el Salmo 119?" - Irrelevante al tema
 ❌ "¿Qué nos ayudará a abrirle nuestro corazón?" - Es la pregunta principal
 ```
+
+---
+
+## Diseño "Ejecutivo" - Sistema de Diseño Premium
+
+A partir del **Artículo 43**, se implementa un diseño visual "Ejecutivo" que es más sobrio, profesional y elegante. Este diseño debe aplicarse a **todos los artículos nuevos (43 en adelante)**.
+
+### Cuándo Aplicar el Diseño Ejecutivo
+
+El diseño ejecutivo se aplica **automáticamente** a todos los artículos del **43 en adelante**.
+
+| Componente | Condición | Variable |
+|------------|-----------|----------|
+| `StudyHeader.tsx` | `articleNumber >= 43` | `isArticle43` |
+| `QuestionCard.tsx` | `articleNum >= 43` | `isPremiumDesign` |
+| `ReviewQuestionCard.tsx` | `articleNum >= 43` | `isArticle43` |
+
+**No se requiere ningún cambio para nuevos artículos.** Al agregar el Artículo 44, 45, etc., automáticamente usarán el diseño ejecutivo.
+
+### Paleta de Colores Ejecutivo
+
+```
+Fondos:
+- Principal: white / bg-white
+- Secundario: #F8FAFC / bg-slate-50
+- Hover: #F1F5F9 / bg-slate-100
+
+Textos:
+- Principal: #1E293B / text-slate-800
+- Secundario: #475569 / text-slate-600
+- Terciario: #94A3B8 / text-slate-400
+
+Bordes:
+- Normal: #E2E8F0 / border-slate-200
+- Hover: #CBD5E1 / border-slate-300
+- Activo: #94A3B8 / border-slate-400
+
+Acentos:
+- Barra lateral: bg-gradient-to-b from-slate-300 to-slate-400
+- Línea divisoria: bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200
+```
+
+### Tipografía Ejecutivo
+
+```css
+/* Títulos principales */
+font-serif font-bold text-slate-800
+
+/* Labels y etiquetas */
+text-xs font-bold text-slate-400 uppercase tracking-[0.2em]
+
+/* Texto de pregunta */
+text-2xl md:text-3xl font-serif text-slate-800
+
+/* Respuestas */
+text-slate-700 leading-relaxed
+```
+
+### Componentes del Diseño Ejecutivo
+
+#### 1. Contenedor Principal
+```jsx
+<div className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative">
+  {/* Barra lateral decorativa */}
+  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400"></div>
+
+  {/* Contenido */}
+</div>
+```
+
+#### 2. Cabecera de Pregunta
+```jsx
+<div className="p-8 pb-4">
+  <span className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">
+    Pregunta {number}
+  </span>
+  <h2 className="text-2xl md:text-3xl font-serif text-slate-800 leading-tight mt-4">
+    {texto}
+  </h2>
+</div>
+```
+
+#### 3. Sección LSM Editable
+```jsx
+<div className="px-8 py-4 bg-slate-50 border-y border-slate-100">
+  <div className="flex items-center gap-2 mb-1">
+    <span className="text-lg">🤟</span>
+    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">LSM</span>
+  </div>
+  <p className="text-slate-700 font-medium text-lg uppercase">
+    {textoLSM}
+  </p>
+</div>
+```
+
+#### 4. Respuestas con Numeración
+```jsx
+<div className="space-y-3">
+  {answers.map((answer, index) => (
+    <div key={index} className="flex gap-3">
+      <span className="text-slate-400 font-mono text-sm flex-shrink-0 mt-0.5">
+        [{index + 1}]
+      </span>
+      <p className="text-slate-700 leading-relaxed flex-1">
+        {answer}
+      </p>
+    </div>
+  ))}
+</div>
+```
+
+#### 5. Línea Divisoria Decorativa
+```jsx
+<div className="my-6 flex items-center gap-4">
+  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+  <span className="text-amber-400 text-sm">✦</span>
+  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+</div>
+```
+
+#### 6. Subtítulos de Sección
+```jsx
+<div className="mb-8 mt-12">
+  <div className="relative">
+    <div className="absolute inset-0 flex items-center">
+      <div className="w-full border-t border-slate-200"></div>
+    </div>
+    <div className="relative flex justify-center">
+      <div className="bg-slate-800 px-8 py-4 rounded-lg shadow-lg">
+        <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
+          {section}
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### 7. Badges de Información
+```jsx
+<div className="flex flex-wrap items-center justify-center gap-3">
+  <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold text-sm shadow-sm">
+    Artículo {number}
+  </span>
+  <span className="text-slate-300">•</span>
+  <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-600 font-medium text-sm shadow-sm">
+    {week}
+  </span>
+</div>
+```
+
+#### 8. Selector de Artículos
+```jsx
+<div className="relative">
+  <select className="appearance-none pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-200 cursor-pointer hover:border-slate-300 hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]">
+    {/* opciones */}
+  </select>
+  {/* Flecha SVG personalizada */}
+  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+    <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</div>
+```
+
+#### 9. Tarjetas (FlashCards / BiblicalCards)
+```jsx
+{/* Tarjeta con flip */}
+<div className="min-h-[250px]" style={{ perspective: '1000px' }}>
+  {/* Frente */}
+  <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+    {/* contenido */}
+  </div>
+  {/* Reverso */}
+  <div className="bg-slate-800 rounded-xl shadow-lg border border-slate-700 p-6">
+    {/* contenido */}
+  </div>
+</div>
+```
+
+### Comparación Visual: Normal vs Ejecutivo
+
+| Elemento | Diseño Normal | Diseño Ejecutivo |
+|----------|---------------|------------------|
+| Contenedor | `rounded-lg shadow-sm` | `rounded-xl shadow-lg` + barra lateral |
+| Títulos | `font-semibold` | `font-serif font-bold` |
+| Labels | `text-sm text-slate-600` | `text-xs uppercase tracking-[0.2em] text-slate-400` |
+| Fondos | Azul/púrpura gradientes | Blanco/slate sobrios |
+| Bordes | Colores variados | `border-slate-200` consistente |
+| Sombras | Básicas | Suaves y profesionales |
+| Hover | Cambio de color | Sombra + borde sutil |
+
+### Animaciones del Diseño Ejecutivo
+
+```css
+/* En globals.css - ya incluidas */
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 2000px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slideDown { animation: slideDown 0.4s ease-out forwards; }
+.animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+```
+
+### Checklist para Nuevos Artículos con Diseño Ejecutivo
+
+Al crear un nuevo artículo (44, 45, etc.) verificar:
+
+- [ ] `StudyHeader.tsx`: Header con barra lateral y badges separados
+- [ ] `QuestionCard.tsx`: Tipografía serif, numeración [1][2][3], línea divisoria ✦
+- [ ] `ReviewQuestionCard.tsx`: Mismo estilo ejecutivo
+- [ ] Subtítulos con fondo `slate-800` centrados
+- [ ] Selector de artículos con flecha SVG personalizada
+- [ ] LSM con fondo `slate-50` y borde sutil
+- [ ] Tarjetas con `min-h-[250px]` y headers alineados

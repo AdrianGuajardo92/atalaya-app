@@ -11,8 +11,7 @@ interface FlashCard {
 interface FlashCardsProps {
   cards: FlashCard[];
   questionNumber: string; // Para identificar a qué pregunta pertenecen estas tarjetas
-  favorites: Record<string, boolean>; // Estado de favoritos
-  onToggleFavorite: (favoriteId: string) => void; // Callback para marcar/desmarcar favorito
+
   lsmData: Record<string, string>; // Datos LSM para las tarjetas
   onLSMUpdate: (key: string, text: string) => void; // Callback para actualizar LSM
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
@@ -23,11 +22,11 @@ interface FlashCardsProps {
   onDeleteCard?: (index: number) => void; // Callback para eliminar tarjeta
 }
 
-export default function FlashCards({ cards, questionNumber, favorites, onToggleFavorite, lsmData, onLSMUpdate, hiddenCards, onToggleHidden, articleId, onAddCard, onEditCard, onDeleteCard }: FlashCardsProps) {
+export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate, hiddenCards, onToggleHidden, articleId, onAddCard, onEditCard, onDeleteCard }: FlashCardsProps) {
   // Estado para controlar qué tarjetas están volteadas (por índice)
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   // Estado para controlar qué tarjeta está siendo editada
-  const [editingCard, setEditingCard] = useState<{index: number, side: 'question' | 'answer'} | null>(null);
+  const [editingCard, setEditingCard] = useState<{ index: number, side: 'question' | 'answer' } | null>(null);
   // Estado para el texto siendo editado
   const [editedText, setEditedText] = useState('');
   // Estado de guardado
@@ -189,17 +188,18 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
   };
 
   return (
-    <div className="mt-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border-2 border-orange-300">
-      <div className="flex items-center justify-between mb-4">
-        <div className="text-xs font-semibold text-orange-700">🎴 Tarjetas Didácticas</div>
+    <div className="mt-4">
+      {/* Header con altura fija para alineación con Textos Clave */}
+      <div className="flex items-center justify-between mb-4 min-h-[40px]">
+        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
         <div className="flex items-center gap-3">
-          <div className="text-xs text-orange-600 font-medium">
+          <div className="text-xs text-slate-400 font-medium">
             {visibleCards.length} {visibleCards.length === 1 ? 'tarjeta' : 'tarjetas'}
           </div>
           {onAddCard && (
             <button
               onClick={handleOpenCreateModal}
-              className="px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs rounded-lg font-medium transition-colors shadow-sm flex items-center gap-1"
+              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs rounded-lg font-medium transition-colors shadow-sm flex items-center gap-1"
             >
               <span>+</span> Agregar
             </button>
@@ -215,8 +215,6 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
           const index = originalIndex; // Mantener el índice original para los IDs
           const isFlipped = flippedCards.has(index);
-          const favoriteId = `flashcard-${questionNumber}-${index}`;
-          const isFavorite = favorites[favoriteId] || false;
           const questionLSM = lsmData[`flashcard-${questionNumber}-${index}-question`];
           const answerLSM = lsmData[`flashcard-${questionNumber}-${index}-answer`];
           const isEditingThisCard = editingCard?.index === index;
@@ -239,15 +237,15 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
               >
                 {/* Indicador de tarjeta personalizada */}
                 {card.isCustom && (
-                  <div className="absolute top-2 left-2 z-10">
-                    <span className="bg-purple-500 text-white text-xs px-2 py-1 rounded-full font-medium shadow-md">
-                      ✨ Personal
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide border border-slate-200">
+                      Personal
                     </span>
                   </div>
                 )}
 
                 {/* Botones de control */}
-                <div className="absolute top-2 right-2 z-10 flex gap-1">
+                <div className="absolute top-3 right-3 z-10 flex gap-2">
                   {/* Botón de editar (solo para tarjetas personalizadas) */}
                   {card.isCustom && onEditCard && (
                     <button
@@ -255,28 +253,12 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                         e.stopPropagation();
                         handleOpenEditModal(index, card);
                       }}
-                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md bg-blue-500 hover:bg-blue-600 opacity-0 group-hover:opacity-100"
+                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-white text-slate-400 hover:text-blue-600 hover:bg-blue-50 shadow-sm border border-slate-200 opacity-0 group-hover:opacity-100"
                       title="Editar tarjeta"
                     >
                       <span className="text-sm">✏️</span>
                     </button>
                   )}
-
-                  {/* Botón de favorito */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onToggleFavorite(favoriteId);
-                    }}
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
-                      isFavorite
-                        ? 'bg-yellow-400 hover:bg-yellow-500 scale-110'
-                        : 'bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100'
-                    }`}
-                    title={isFavorite ? 'Quitar de favoritos' : 'Marcar como favorito'}
-                  >
-                    <span className="text-lg">{isFavorite ? '⭐' : '☆'}</span>
-                  </button>
 
                   {/* Botón de borrar - Para personalizadas elimina, para normales oculta */}
                   <button
@@ -300,14 +282,13 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                         }
                       }
                     }}
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md ${
-                      deleteConfirm === cardId
-                        ? 'bg-red-500 scale-110 opacity-100'
-                        : 'bg-slate-300 hover:bg-slate-400 opacity-0 group-hover:opacity-100'
-                    }`}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border ${deleteConfirm === cardId
+                      ? 'bg-red-50 text-red-600 border-red-200 scale-110 opacity-100'
+                      : 'bg-white text-slate-400 border-slate-200 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100'
+                      }`}
                     title={deleteConfirm === cardId ? 'Clic de nuevo para confirmar' : (card.isCustom ? 'Eliminar tarjeta' : 'Ocultar tarjeta')}
                   >
-                    <span className={`text-lg ${deleteConfirm === cardId ? 'filter brightness-0 invert' : ''}`}>🗑️</span>
+                    <span className="text-sm">🗑️</span>
                   </button>
                 </div>
 
@@ -320,9 +301,7 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                 >
                   {/* Frente de la tarjeta (Pregunta) */}
                   <div
-                    className={`absolute w-full min-h-[250px] bg-white rounded-lg shadow-lg p-4 flex flex-col ${
-                      isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-orange-200'
-                    }`}
+                    className="absolute w-full min-h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
@@ -330,14 +309,14 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                   >
                     {/* Contenido de la pregunta */}
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      <p className="text-center text-slate-800 font-medium leading-relaxed text-sm uppercase">
+                      <p className="text-center text-slate-700 font-serif text-lg leading-relaxed">
                         {card.question}
                       </p>
                       {/* Mostrar LSM de pregunta si existe y no está editando */}
                       {questionLSM && !isEditingQuestion && (
                         <>
-                          <div className="w-12 h-px bg-slate-300 my-2"></div>
-                          <p className="text-center text-indigo-600 font-bold text-base uppercase">
+                          <div className="w-8 h-px bg-slate-200 my-4"></div>
+                          <p className="text-center text-slate-500 font-bold text-sm uppercase tracking-wider">
                             🤟 {questionLSM}
                           </p>
                         </>
@@ -346,39 +325,39 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingQuestion && (
-                      <div className="mt-3 p-2 bg-indigo-50 rounded border-2 border-indigo-400" onClick={(e) => e.stopPropagation()}>
-                        <p className="text-xs text-indigo-700 mb-1 font-semibold">
-                          ✍️ LSM (Enter: guardar | Esc: cancelar)
+                      <div className="mt-4 p-3 bg-slate-50 rounded border border-slate-200 shadow-inner" onClick={(e) => e.stopPropagation()}>
+                        <p className="text-[10px] text-slate-500 mb-1 font-bold uppercase tracking-wider">
+                          Editar LSM
                         </p>
                         <textarea
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="w-full p-2 border border-indigo-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500 text-sm font-semibold text-slate-900 bg-white"
+                          className="w-full p-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-slate-500 text-sm font-medium text-slate-700 bg-white"
                           rows={2}
                           placeholder="Escribe en LSM..."
                           autoFocus
                         />
-                        <div className="flex gap-1 mt-1">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleSaveLSM();
-                            }}
-                            disabled={isSaving}
-                            className="px-2 py-1 bg-indigo-600 text-white text-xs rounded hover:bg-indigo-700 disabled:bg-slate-400 font-medium"
-                          >
-                            {isSaving ? '...' : '💾'}
-                          </button>
+                        <div className="flex gap-2 mt-2 justify-end">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handleCancelEdit();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 bg-slate-300 text-slate-700 text-xs rounded hover:bg-slate-400 font-medium"
+                            className="px-2 py-1 text-slate-500 text-xs hover:text-slate-700 font-medium"
                           >
-                            ✖️
+                            Cancelar
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSaveLSM();
+                            }}
+                            disabled={isSaving}
+                            className="px-3 py-1 bg-slate-700 text-white text-xs rounded hover:bg-slate-800 disabled:opacity-50 font-medium"
+                          >
+                            Guardar
                           </button>
                         </div>
                       </div>
@@ -386,20 +365,20 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
                     {/* Botón para editar pregunta */}
                     {!isEditingQuestion && (
-                      <button
-                        onClick={(e) => handleStartEdit(index, 'question', e)}
-                        className="mt-2 py-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 text-xs rounded-lg font-medium transition-colors opacity-0 group-hover:opacity-100"
-                      >
-                        {questionLSM ? '✏️ Editar LSM' : '➕ Agregar LSM'}
-                      </button>
+                      <div className="mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={(e) => handleStartEdit(index, 'question', e)}
+                          className="text-xs font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wider flex items-center gap-1"
+                        >
+                          {questionLSM ? '✏️ Editar LSM' : '➕ Agregar LSM'}
+                        </button>
+                      </div>
                     )}
                   </div>
 
                   {/* Reverso de la tarjeta (Respuesta) */}
                   <div
-                    className={`absolute w-full min-h-[250px] bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg shadow-lg p-4 flex flex-col ${
-                      isFavorite ? 'border-4 border-yellow-400' : 'border-2 border-indigo-800'
-                    }`}
+                    className="absolute w-full min-h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 p-6 flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
@@ -407,16 +386,16 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
                     }}
                   >
                     {/* Contenido de la respuesta */}
-                    <div className="flex-1 flex flex-col items-center justify-center">
-                      <div className="text-xs text-white font-semibold mb-2">💬 RESPUESTA</div>
-                      <p className="text-center text-white font-bold leading-relaxed uppercase">
+                    <div className="flex-1 flex flex-col items-center justify-center text-center">
+                      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mb-3">Respuesta</div>
+                      <p className="text-white font-medium text-lg leading-relaxed">
                         {card.answer}
                       </p>
                       {/* Mostrar LSM de respuesta si existe y no está editando */}
                       {answerLSM && !isEditingAnswer && (
                         <>
-                          <div className="w-12 h-px bg-white/40 my-2"></div>
-                          <p className="text-center text-yellow-300 font-bold text-base uppercase">
+                          <div className="w-8 h-px bg-slate-600 my-4"></div>
+                          <p className="text-slate-300 font-bold text-sm uppercase tracking-wider">
                             🤟 {answerLSM}
                           </p>
                         </>
@@ -425,39 +404,39 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingAnswer && (
-                      <div className="mt-3 p-2 bg-white/10 rounded border-2 border-white/40" onClick={(e) => e.stopPropagation()}>
-                        <p className="text-xs text-white mb-1 font-semibold">
-                          ✍️ LSM (Enter: guardar | Esc: cancelar)
+                      <div className="mt-4 p-3 bg-slate-700/50 rounded border border-slate-600" onClick={(e) => e.stopPropagation()}>
+                        <p className="text-[10px] text-slate-300 mb-1 font-bold uppercase tracking-wider">
+                          Editar LSM
                         </p>
                         <textarea
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="w-full p-2 border border-indigo-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-300 text-sm font-semibold text-slate-900 bg-white"
+                          className="w-full p-2 border border-slate-500 rounded focus:outline-none focus:ring-1 focus:ring-slate-400 text-sm font-medium text-white bg-slate-800"
                           rows={2}
                           placeholder="Escribe en LSM..."
                           autoFocus
                         />
-                        <div className="flex gap-1 mt-1">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleSaveLSM();
-                            }}
-                            disabled={isSaving}
-                            className="px-2 py-1 bg-white text-indigo-600 text-xs rounded hover:bg-indigo-50 disabled:bg-slate-400 font-medium"
-                          >
-                            {isSaving ? '...' : '💾'}
-                          </button>
+                        <div className="flex gap-2 mt-2 justify-end">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handleCancelEdit();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 bg-white/20 text-white text-xs rounded hover:bg-white/30 font-medium"
+                            className="px-2 py-1 text-slate-400 text-xs hover:text-slate-200 font-medium"
                           >
-                            ✖️
+                            Cancelar
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSaveLSM();
+                            }}
+                            disabled={isSaving}
+                            className="px-3 py-1 bg-white text-slate-900 text-xs rounded hover:bg-slate-100 disabled:opacity-50 font-medium"
+                          >
+                            Guardar
                           </button>
                         </div>
                       </div>
@@ -465,12 +444,14 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
                     {/* Botón para editar respuesta */}
                     {!isEditingAnswer && (
-                      <button
-                        onClick={(e) => handleStartEdit(index, 'answer', e)}
-                        className="mt-2 py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs rounded-lg font-medium transition-colors opacity-0 group-hover:opacity-100"
-                      >
-                        {answerLSM ? '✏️ Editar LSM' : '➕ Agregar LSM'}
-                      </button>
+                      <div className="mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={(e) => handleStartEdit(index, 'answer', e)}
+                          className="text-xs font-bold text-slate-500 hover:text-slate-300 uppercase tracking-wider flex items-center gap-1"
+                        >
+                          {answerLSM ? '✏️ Editar LSM' : '➕ Agregar LSM'}
+                        </button>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -485,45 +466,45 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
         <div
           className="fixed inset-0 flex items-center justify-center z-50 p-4"
           style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: 'rgba(15, 23, 42, 0.6)',
             backdropFilter: 'blur(4px)',
             WebkitBackdropFilter: 'blur(4px)'
           }}
           onClick={handleCloseModal}
         >
           <div
-            className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden"
+            className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header del modal */}
-            <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            <div className="bg-slate-50 border-b border-slate-200 p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <span className="text-xl">🎴</span>
-                <h3 className="text-lg font-bold">
+                <h3 className="text-lg font-bold text-slate-800">
                   {editingCustomCard !== null ? 'Editar Tarjeta' : 'Crear Tarjeta Didáctica'}
                 </h3>
               </div>
               <button
                 onClick={handleCloseModal}
-                className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-all"
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200 transition-colors text-slate-500"
                 title="Cerrar"
               >
-                <span className="text-xl font-bold">×</span>
+                <span className="text-xl">×</span>
               </button>
             </div>
 
             {/* Contenido del modal */}
-            <div className="p-5 space-y-4">
+            <div className="p-6 space-y-5">
               {/* Campo de pregunta */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Pregunta (frente de la tarjeta)
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                  Pregunta (Frente)
                 </label>
                 <textarea
                   value={newCardQuestion}
                   onChange={(e) => setNewCardQuestion(e.target.value)}
                   placeholder="Escribe la pregunta..."
-                  className="w-full p-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-orange-400 text-sm text-slate-800 resize-none"
+                  className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-400 text-slate-700 resize-none transition-all"
                   rows={3}
                   autoFocus
                 />
@@ -531,14 +512,14 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
 
               {/* Campo de respuesta */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Respuesta (reverso de la tarjeta)
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                  Respuesta (Reverso)
                 </label>
                 <textarea
                   value={newCardAnswer}
                   onChange={(e) => setNewCardAnswer(e.target.value)}
                   placeholder="Escribe la respuesta..."
-                  className="w-full p-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-orange-400 text-sm text-slate-800 resize-none"
+                  className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-400 text-slate-700 resize-none transition-all"
                   rows={4}
                 />
               </div>
@@ -548,25 +529,16 @@ export default function FlashCards({ cards, questionNumber, favorites, onToggleF
             <div className="bg-slate-50 p-4 flex justify-end gap-3 border-t border-slate-200">
               <button
                 onClick={handleCloseModal}
-                className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-medium transition-colors"
+                className="px-4 py-2 text-slate-600 hover:text-slate-800 font-medium transition-colors text-sm"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleSaveCard}
                 disabled={isSavingCard || !newCardQuestion.trim() || !newCardAnswer.trim()}
-                className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-sm"
               >
-                {isSavingCard ? (
-                  <>
-                    <span className="animate-spin">⏳</span>
-                    Guardando...
-                  </>
-                ) : (
-                  <>
-                    💾 {editingCustomCard !== null ? 'Guardar cambios' : 'Crear tarjeta'}
-                  </>
-                )}
+                {isSavingCard ? 'Guardando...' : (editingCustomCard !== null ? 'Guardar cambios' : 'Crear tarjeta')}
               </button>
             </div>
           </div>

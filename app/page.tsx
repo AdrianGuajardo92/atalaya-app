@@ -357,25 +357,69 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Fila 2: Modo de scroll (solo en modo estudio) */}
+            {/* Fila 2: Modo de navegación (solo en modo estudio) */}
             {viewMode === 'study' && (
-              <div className="flex gap-2 pt-2 border-t border-gray-100">
-                <button
-                  onClick={() => { setNavigationMode('scroll'); setShowViewOptions(false); }}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                    navigationMode === 'scroll' ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  ↕️ Scroll
-                </button>
-                <button
-                  onClick={() => { setNavigationMode('paginated'); setShowViewOptions(false); }}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                    navigationMode === 'paginated' ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  📄 Paginado
-                </button>
+              <div className="pt-3 border-t border-gray-100">
+                <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-2 px-1">Modo de estudio</p>
+                <div className="flex gap-2">
+                  {/* Botón ESTUDIAR (scroll) - Preparación personal */}
+                  <button
+                    onClick={() => { setNavigationMode('scroll'); setShowViewOptions(false); }}
+                    className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1.5 ${
+                      navigationMode === 'scroll'
+                        ? 'bg-slate-700 text-white shadow-md'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {/* SVG Libro abierto con marcador - Estilo Lucide */}
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                      <path d="M8 7h6" />
+                      <path d="M8 11h8" />
+                    </svg>
+                    <span>Estudiar</span>
+                  </button>
+
+                  {/* Botón ATALAYA (paginado) - Reunión/Conducción */}
+                  <button
+                    onClick={() => { setNavigationMode('paginated'); setShowViewOptions(false); }}
+                    className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1.5 ${
+                      navigationMode === 'paginated'
+                        ? 'bg-slate-700 text-white shadow-md'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {/* SVG Atril con micrófono - Estilo Lucide */}
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      {/* Atril/Podio */}
+                      <path d="M8 6h8" />
+                      <path d="M6 10h12" />
+                      <path d="M7 10l1 10h8l1-10" />
+                      <path d="M12 6V3" />
+                      {/* Micrófono */}
+                      <circle cx="12" cy="2" r="1" fill="currentColor" />
+                    </svg>
+                    <span>Atalaya</span>
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -400,21 +444,25 @@ export default function Home() {
           <SummaryView article={currentArticle} lsmData={lsmData} />
         ) : (
           <>
-            <StudyHeader
-              song={currentArticle.song}
-              title={currentArticle.title}
-              biblicalText={currentArticle.biblicalText}
-              theme={currentArticle.theme}
-              articleNumber={currentArticle.metadata.articleNumber}
-              week={currentArticle.metadata.week}
-              month={currentArticle.metadata.month}
-              year={currentArticle.metadata.year}
-              articles={monthArticles}
-              currentArticleId={currentArticleId}
-              onArticleChange={handleArticleChange}
-              titleLSM={lsmData['title']}
-              onTitleLSMUpdate={handleTitleLSMUpdate}
-            />
+            {/* Header: Siempre en Scroll, Solo en primera página en Paginado */}
+            {(navigationMode === 'scroll' || (navigationMode === 'paginated' && currentQuestionIndex === 0 && currentReviewIndex === -1)) && (
+              <StudyHeader
+                song={currentArticle.song}
+                title={currentArticle.title}
+                biblicalText={currentArticle.biblicalText}
+                theme={currentArticle.theme}
+                articleNumber={currentArticle.metadata.articleNumber}
+                week={currentArticle.metadata.week}
+                month={currentArticle.metadata.month}
+                year={currentArticle.metadata.year}
+                articles={monthArticles}
+                currentArticleId={currentArticleId}
+                onArticleChange={handleArticleChange}
+                titleLSM={lsmData['title']}
+                onTitleLSMUpdate={handleTitleLSMUpdate}
+                overview={currentArticle.overview}
+              />
+            )}
 
             {/* Modo Scroll - Muestra todas las preguntas */}
             {navigationMode === 'scroll' && (
@@ -489,6 +537,82 @@ export default function Home() {
             {currentReviewIndex === -1 ? (
               /* Mostrar pregunta normal */
               <>
+                {/* PÁRRAFOS ANTES DE LA PREGUNTA - Solo en modo paginado para Artículos 43+ */}
+                {currentArticle.metadata.articleNumber >= 43 && (() => {
+                  const currentQuestion = currentArticle.questions[currentQuestionIndex];
+                  const questionParagraphs = currentQuestion.paragraphs || [];
+                  const relatedParagraphs = currentArticle.paragraphs.filter(p =>
+                    questionParagraphs.includes(p.number)
+                  );
+
+                  if (relatedParagraphs.length === 0) return null;
+
+                  // Formatear label según cantidad de párrafos
+                  const paragraphLabel = questionParagraphs.length === 1
+                    ? `PÁRRAFO ${questionParagraphs[0]}`
+                    : `PÁRRAFOS ${questionParagraphs[0]}-${questionParagraphs[questionParagraphs.length - 1]}`;
+
+                  return (
+                    <div className="mb-6">
+                      {/* Contenedor de párrafos con diseño ejecutivo */}
+                      <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
+                        {/* Header del párrafo */}
+                        <div className="bg-white border-b border-slate-200 px-6 md:px-8 py-4 md:py-5">
+                          <span className="text-sm md:text-base font-bold text-slate-600 uppercase tracking-[0.15em]">
+                            {paragraphLabel}
+                          </span>
+                        </div>
+
+                        {/* Contenido de los párrafos */}
+                        <div className="p-6 md:p-8 space-y-6">
+                          {relatedParagraphs.map((paragraph, idx) => (
+                            <div key={paragraph.number} className="relative">
+                              {/* Barra lateral decorativa */}
+                              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-slate-500 to-slate-400 rounded-full"></div>
+
+                              <div className="pl-6 md:pl-8">
+                                {/* Número del párrafo */}
+                                {questionParagraphs.length > 1 && (
+                                  <span className="inline-block mb-3 px-3 py-1 bg-slate-200 text-slate-700 text-sm font-bold rounded">
+                                    {paragraph.number}
+                                  </span>
+                                )}
+
+                                {/* Contenido del párrafo - TAMAÑO GRANDE PARA TABLETS */}
+                                <p className="text-slate-800 leading-[1.8] text-lg md:text-xl font-normal">
+                                  {paragraph.content}
+                                </p>
+
+                                {/* Resumen/Summary si existe */}
+                                {paragraph.summary && (
+                                  <div className="mt-5 bg-amber-50 border border-amber-200 rounded-lg px-5 py-4">
+                                    <p className="text-sm font-bold text-amber-700 uppercase tracking-wider mb-2">💡 Resumen</p>
+                                    <p className="text-base md:text-lg text-amber-900 italic leading-relaxed">{paragraph.summary}</p>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Separador entre párrafos si hay más de uno */}
+                              {idx < relatedParagraphs.length - 1 && (
+                                <div className="mt-6 flex items-center gap-3">
+                                  <div className="flex-1 h-px bg-slate-200"></div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Separador ✦ entre párrafos y pregunta */}
+                      <div className="flex items-center gap-4 my-8">
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                        <span className="text-slate-400 text-sm">✦</span>
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 <QuestionCard
                   question={currentArticle.questions[currentQuestionIndex]}
                   paragraphs={currentArticle.paragraphs}
@@ -545,132 +669,270 @@ export default function Home() {
             {currentReviewIndex === -1 ? (
               /* Estamos en preguntas normales */
               currentQuestionIndex < currentArticle.questions.length - 1 ? (
-                <div className="mt-6 bg-white rounded-lg shadow-md border-2 border-orange-400 overflow-hidden">
-                  {/* Header con color sólido */}
-                  <div className="bg-orange-500 px-5 py-2.5">
-                    <p className="text-sm font-bold text-white flex items-center gap-2">
-                      <span>⏭️</span> Próxima pregunta
-                    </p>
-                  </div>
-
-                  <div className="p-5 space-y-3">
-                    {/* SUBTÍTULO muy destacado con fondo de énfasis */}
-                    {currentArticle.questions[currentQuestionIndex + 1].section && (
-                      <div className="bg-slate-50 border-l-4 border-slate-700 pl-4 py-3 rounded-r">
-                        <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
-                          Sección
-                        </p>
-                        <h3 className="text-xl font-extrabold text-slate-900 uppercase leading-tight">
-                          {currentArticle.questions[currentQuestionIndex + 1].section}
-                        </h3>
-                      </div>
-                    )}
-
-                    {/* PÁRRAFOS muy discreto */}
-                    <div className="text-xs text-slate-500 px-1">
-                      <span className="font-medium">Párrafos del artículo: </span>
-                      <span className="font-bold text-slate-700">
-                        {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
-                      </span>
+                currentArticle.metadata.articleNumber >= 43 ? (
+                  /* DISEÑO EJECUTIVO - Artículo 43+ */
+                  <div className="mt-8">
+                    {/* Separador ejecutivo */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      <span className="text-slate-400 text-sm">✦</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
                     </div>
 
-                    {/* ADELANTO del tema */}
-                    {currentArticle.questions[currentQuestionIndex + 1].preview && (
-                      <div className="mt-2 bg-orange-50 px-3 py-2 rounded-lg border border-orange-200">
-                        <p className="text-sm text-orange-800">
-                          <span className="font-semibold">🎯 Veremos:</span>{' '}
-                          <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
-                        </p>
+                    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+                      {/* Header ejecutivo */}
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-4 text-center">
+                        Próxima Pregunta
+                      </p>
+
+                      {/* SUBTÍTULO de sección */}
+                      {currentArticle.questions[currentQuestionIndex + 1].section && (
+                        <div className="bg-slate-800 rounded-lg px-5 py-3 mb-4">
+                          <h3 className="text-lg font-bold text-white uppercase tracking-wide text-center">
+                            {currentArticle.questions[currentQuestionIndex + 1].section}
+                          </h3>
+                        </div>
+                      )}
+
+                      {/* Badge de párrafos */}
+                      <div className="flex justify-center">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+                          <span className="text-slate-500">Párrafos:</span>
+                          <span className="font-bold text-slate-700">
+                            {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
+                          </span>
+                        </span>
                       </div>
-                    )}
+
+                      {/* ADELANTO del tema */}
+                      {currentArticle.questions[currentQuestionIndex + 1].preview && (
+                        <div className="mt-4 bg-slate-50 px-4 py-3 rounded-lg border border-slate-100">
+                          <p className="text-sm text-slate-600 text-center">
+                            <span className="font-medium text-slate-500">Veremos:</span>{' '}
+                            <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  /* DISEÑO ORIGINAL - Artículos anteriores */
+                  <div className="mt-6 bg-white rounded-lg shadow-md border-2 border-orange-400 overflow-hidden">
+                    <div className="bg-orange-500 px-5 py-2.5">
+                      <p className="text-sm font-bold text-white flex items-center gap-2">
+                        <span>⏭️</span> Próxima pregunta
+                      </p>
+                    </div>
+                    <div className="p-5 space-y-3">
+                      {currentArticle.questions[currentQuestionIndex + 1].section && (
+                        <div className="bg-slate-50 border-l-4 border-slate-700 pl-4 py-3 rounded-r">
+                          <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Sección</p>
+                          <h3 className="text-xl font-extrabold text-slate-900 uppercase leading-tight">
+                            {currentArticle.questions[currentQuestionIndex + 1].section}
+                          </h3>
+                        </div>
+                      )}
+                      <div className="text-xs text-slate-500 px-1">
+                        <span className="font-medium">Párrafos del artículo: </span>
+                        <span className="font-bold text-slate-700">
+                          {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
+                        </span>
+                      </div>
+                      {currentArticle.questions[currentQuestionIndex + 1].preview && (
+                        <div className="mt-2 bg-orange-50 px-3 py-2 rounded-lg border border-orange-200">
+                          <p className="text-sm text-orange-800">
+                            <span className="font-semibold">🎯 Veremos:</span>{' '}
+                            <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
               ) : (
                 /* En la última pregunta normal, mostrar que vienen las preguntas de repaso */
-                <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
-                  <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
-                  <div className="text-sm text-slate-700">
-                    <p className="font-semibold text-violet-700">
-                      ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
-                    </p>
+                currentArticle.metadata.articleNumber >= 43 ? (
+                  /* DISEÑO EJECUTIVO */
+                  <div className="mt-8">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      <span className="text-slate-400 text-sm">✦</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                    </div>
+                    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center">
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-3">Siguiente</p>
+                      <p className="text-lg font-semibold text-slate-700">
+                        ¿Qué responderías?
+                      </p>
+                      <p className="text-sm text-slate-500 mt-1">
+                        {currentArticle.reviewQuestions.length} preguntas de repaso
+                      </p>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  /* DISEÑO ORIGINAL */
+                  <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
+                    <div className="text-sm text-slate-700">
+                      <p className="font-semibold text-violet-700">
+                        ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
+                      </p>
+                    </div>
+                  </div>
+                )
               )
             ) : (
               /* Estamos en preguntas de repaso */
               currentReviewIndex < currentArticle.reviewQuestions.length - 1 && (
-                <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
-                  <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
-                  <div className="text-sm text-slate-700">
-                    <p className="font-semibold text-violet-700">
-                      Pregunta de repaso {currentReviewIndex + 2}
-                    </p>
+                currentArticle.metadata.articleNumber >= 43 ? (
+                  /* DISEÑO EJECUTIVO */
+                  <div className="mt-8">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      <span className="text-slate-400 text-sm">✦</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                    </div>
+                    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center">
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-3">Siguiente</p>
+                      <p className="text-lg font-semibold text-slate-700">
+                        Pregunta de repaso {currentReviewIndex + 2}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  /* DISEÑO ORIGINAL */
+                  <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
+                    <div className="text-sm text-slate-700">
+                      <p className="font-semibold text-violet-700">
+                        Pregunta de repaso {currentReviewIndex + 2}
+                      </p>
+                    </div>
+                  </div>
+                )
               )
             )}
 
             {/* Controles de navegación */}
-            <div className="mt-8 bg-white rounded-lg shadow-md p-5 border border-slate-200">
-              {/* Contador y barra de progreso */}
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <div className="text-lg font-semibold text-slate-700">
-                    {currentReviewIndex === -1 ? (
-                      <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
-                    ) : (
-                      <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
-                    )}
+            {currentArticle.metadata.articleNumber >= 43 ? (
+              /* DISEÑO EJECUTIVO */
+              <div className="mt-8 bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+                {/* Contador y barra de progreso */}
+                <div className="mb-5">
+                  <div className="flex justify-between items-center mb-3">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.1em]">
+                      {currentReviewIndex === -1 ? (
+                        <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
+                      ) : (
+                        <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
+                      )}
+                    </p>
+                    <span className="text-sm text-slate-400 font-medium">
+                      {currentReviewIndex === -1 ? (
+                        <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
+                      ) : (
+                        <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
+                      )}
+                    </span>
                   </div>
-                  <div className="text-sm text-slate-500 font-medium">
-                    {currentReviewIndex === -1 ? (
-                      <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
-                    ) : (
-                      <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
-                    )}
+
+                  {/* Barra de progreso ejecutiva */}
+                  <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-slate-500 transition-all duration-300 ease-out"
+                      style={{
+                        width: currentReviewIndex === -1
+                          ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
+                          : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`
+                      }}
+                    ></div>
                   </div>
                 </div>
 
-                {/* Barra de progreso */}
-                <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 transition-all duration-300 ease-out"
-                    style={{
-                      width: currentReviewIndex === -1
-                        ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
-                        : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`
-                    }}
-                  ></div>
+                {/* Botones ejecutivos */}
+                <div className="flex justify-between items-center gap-4">
+                  <button
+                    onClick={handlePrevious}
+                    disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
+                    className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
+                      currentQuestionIndex === 0 && currentReviewIndex === -1
+                        ? 'bg-slate-50 text-slate-300 cursor-not-allowed border border-slate-100'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                    }`}
+                  >
+                    ← Anterior
+                  </button>
+
+                  <button
+                    onClick={handleNext}
+                    disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
+                    className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
+                      currentReviewIndex === currentArticle.reviewQuestions.length - 1
+                        ? 'bg-slate-100 text-slate-300 cursor-not-allowed'
+                        : 'bg-slate-700 text-white hover:bg-slate-800 shadow-sm'
+                    }`}
+                  >
+                    Siguiente →
+                  </button>
                 </div>
               </div>
-
-              {/* Botones */}
-              <div className="flex justify-between items-center">
-                <button
-                  onClick={handlePrevious}
-                  disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
-                    currentQuestionIndex === 0 && currentReviewIndex === -1
-                      ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                      : 'bg-slate-700 text-white hover:bg-slate-800'
-                  }`}
-                >
-                  ⬅️ Anterior
-                </button>
-
-                <button
-                  onClick={handleNext}
-                  disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
-                    currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                      ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                      : 'bg-slate-700 text-white hover:bg-slate-800'
-                  }`}
-                >
-                  Siguiente ➡️
-                </button>
+            ) : (
+              /* DISEÑO ORIGINAL */
+              <div className="mt-8 bg-white rounded-lg shadow-md p-5 border border-slate-200">
+                <div className="mb-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="text-lg font-semibold text-slate-700">
+                      {currentReviewIndex === -1 ? (
+                        <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
+                      ) : (
+                        <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
+                      )}
+                    </div>
+                    <div className="text-sm text-slate-500 font-medium">
+                      {currentReviewIndex === -1 ? (
+                        <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
+                      ) : (
+                        <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 transition-all duration-300 ease-out"
+                      style={{
+                        width: currentReviewIndex === -1
+                          ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
+                          : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`
+                      }}
+                    ></div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={handlePrevious}
+                    disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
+                    className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
+                      currentQuestionIndex === 0 && currentReviewIndex === -1
+                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                        : 'bg-slate-700 text-white hover:bg-slate-800'
+                    }`}
+                  >
+                    ⬅️ Anterior
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
+                    className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
+                      currentReviewIndex === currentArticle.reviewQuestions.length - 1
+                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                        : 'bg-slate-700 text-white hover:bg-slate-800'
+                    }`}
+                  >
+                    Siguiente ➡️
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
           </>

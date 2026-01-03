@@ -57,6 +57,19 @@ export interface ReviewQuestion {
   practicalApplications?: string[]; // Aplicaciones prácticas concretas
 }
 
+// Vista previa del artículo: conexión con el anterior + lo que veremos
+export interface ArticleOverview {
+  previousArticle?: {
+    number: number;
+    topic: string;        // Tema corto del artículo anterior
+    keywords: string[];   // Palabras clave
+  };
+  whatWellSee: {
+    section: string;      // Título/tema de la sección
+    keywords: string[];   // Palabras clave de esa sección
+  }[];
+}
+
 // Resumen del artículo para el comentario final de la reunión
 export interface ArticleSummary {
   keyPoints: {
@@ -74,6 +87,7 @@ export interface AtalayaStudy {
   titleLSM?: string; // Título en LSM (se agregará después)
   biblicalText: string; // Texto bíblico principal
   theme: string;
+  overview?: ArticleOverview; // Vista previa: conexión con el anterior + lo que veremos
   questions: Question[];
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[]; // Preguntas de repaso

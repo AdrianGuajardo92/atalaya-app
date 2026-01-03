@@ -193,6 +193,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     loadBulletTypes();
   }, [articleId, question.number]);
 
+
+
   // Cargar preguntas de reflexión personalizadas desde Vercel KV
   useEffect(() => {
     const loadCustomReflections = async () => {
@@ -895,6 +897,472 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const currentLSMText = lsmText || question.textLSM;
   const currentSectionLSMText = sectionLsmText || question.sectionLSM;
 
+  // RENDERIZADO PREMIUM/EJECUTIVO (Artículo 43 en adelante)
+  const articleNum = parseInt(articleId.split('-').pop() || '0');
+  const isPremiumDesign = articleNum >= 43;
+
+  if (isPremiumDesign) {
+    return (
+      <>
+        {/* Modals (Mismos que el diseño original) */}
+        {showParagraphsModal && (
+          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-slate-200">
+              <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                  <span>📖</span> Párrafos de Estudio
+                </h3>
+                <button
+                  onClick={() => setShowParagraphsModal(false)}
+                  className="text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto custom-scrollbar bg-white">
+                <div className="space-y-6">
+                  {relatedParagraphs.map((paragraph, index) => (
+                    <div key={index} className="leading-relaxed text-slate-700 text-lg">
+                      <span className="font-bold text-slate-900 mr-2">[{paragraph.number}]</span>
+                      {formatContent(paragraph.content)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+                <button
+                  onClick={() => {
+                    const text = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
+                    navigator.clipboard.writeText(text);
+                    setParagraphCopied(true);
+                    setTimeout(() => setParagraphCopied(false), 2000);
+                  }}
+                  className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-medium flex items-center gap-2 shadow-sm"
+                >
+                  {paragraphCopied ? '✅ Copiado' : '📋 Copiar'}
+                </button>
+                <button
+                  onClick={() => setShowParagraphsModal(false)}
+                  className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium shadow-sm"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Helper para renderizar modales de textos bíblicos */}
+        {showReadTextModal && question.readText && biblicalTexts[question.readText] && (
+          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-slate-200">
+              <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                  <span>📖</span> Lectura Bíblica
+                </h3>
+                <button
+                  onClick={() => setShowReadTextModal(false)}
+                  className="text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto custom-scrollbar bg-white">
+                <div className="space-y-6">
+                  {biblicalTexts[question.readText].map((text, index) => (
+                    <div key={index} className="bg-slate-50 rounded-lg p-5 border-l-4 border-slate-600">
+                      <h4 className="font-bold text-slate-800 mb-2 font-serif">{text.reference}</h4>
+                      <p className="text-slate-700 italic leading-relaxed font-serif text-lg">
+                        &quot;{text.text}&quot;
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
+                <button
+                  onClick={() => setShowReadTextModal(false)}
+                  className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Subtítulo de Sección - Diseño Ejecutivo */}
+        {question.section && (
+          <div className="mb-8 mt-12">
+            {/* Contenedor del subtítulo */}
+            <div className="relative">
+              {/* Líneas decorativas laterales */}
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-slate-200"></div>
+              </div>
+
+              {/* Subtítulo centrado */}
+              <div className="relative flex justify-center">
+                <div className="bg-slate-800 px-8 py-4 rounded-lg shadow-lg">
+                  <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
+                    {question.section}
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+            {/* Sección LSM del subtítulo */}
+            <div className="mt-4 flex justify-center">
+              {isEditingSectionLSM ? (
+                <div className="w-full max-w-xl bg-white p-4 rounded-lg border border-blue-200 shadow-md animate-fadeIn">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg">🤟</span>
+                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Editando LSM</span>
+                  </div>
+                  <textarea
+                    value={editedSectionLSM}
+                    onChange={(e) => setEditedSectionLSM(e.target.value)}
+                    onKeyDown={handleSectionKeyDown}
+                    className="w-full p-3 text-slate-700 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg resize-none uppercase"
+                    rows={2}
+                    placeholder="Escribe el subtítulo en LSM..."
+                    autoFocus
+                  />
+                  <div className="flex justify-end gap-2 mt-3">
+                    <button
+                      onClick={handleSaveSectionLSM}
+                      disabled={isSavingSection}
+                      className="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium"
+                    >
+                      {isSavingSection ? 'Guardando...' : '💾 Guardar'}
+                    </button>
+                    <button
+                      onClick={handleCancelSectionEdit}
+                      className="text-sm text-slate-500 px-4 py-2 hover:text-slate-700"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onClick={() => setIsEditingSectionLSM(true)}
+                  className="group/section cursor-pointer px-6 py-3 rounded-lg border border-transparent hover:bg-slate-50 hover:border-slate-200 transition-all max-w-xl w-full"
+                >
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <span className="text-lg">🤟</span>
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider group-hover/section:text-blue-600">LSM</span>
+                    <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 text-xs transition-opacity">✏️</span>
+                  </div>
+                  <p className="text-slate-600 font-medium text-lg text-center uppercase">
+                    {currentSectionLSMText || <span className="text-slate-400 italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* DISEÑO PREMIUM */}
+        <div id={`question-${question.number}`} className="mb-12 scroll-mt-24 transform transition-all duration-500 ease-out">
+
+          {/* Tarjeta Principal */}
+          <div className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
+
+            {/* Barra lateral decorativa */}
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400"></div>
+
+            {/* Cabecera de la Pregunta */}
+            <div className="p-8 pb-4">
+              <div className="flex justify-between items-start mb-4">
+                <span className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">
+                  Pregunta {question.number}
+                </span>
+                <div className="flex items-center gap-2">
+                  {/* Botón Infografía */}
+                  {question.infographic && (
+                    <button
+                      onClick={() => setShowInfographicModal(true)}
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200"
+                      title="Ver infografía"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span>Infografía</span>
+                    </button>
+                  )}
+                  {/* Botón Párrafos (Diseño Minimalista) */}
+                  <button
+                    onClick={() => setShowParagraphsModal(true)}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors text-xs font-bold uppercase tracking-wide border border-slate-200"
+                  >
+                    <span>Párrafos</span>
+                    <span className="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded text-[10px]">
+                      {question.paragraphs.join(', ')}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Texto de la Pregunta */}
+              <h2 className="text-2xl md:text-3xl font-serif text-slate-800 leading-tight mb-2">
+                {question.textEs}
+              </h2>
+
+              {/* Lectura Bíblica (Si existe) */}
+              {question.readText && (
+                <div className="mt-4">
+                  <button
+                    onClick={() => setShowReadTextModal(true)}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-transform active:scale-95 shadow-md group/btn"
+                  >
+                    <span className="text-lg">📖</span>
+                    <span className="font-medium tracking-wide">{question.readText}</span>
+                    <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity ml-1">→</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Sección Intermedia: LSM y Herramientas */}
+            <div className="px-8 py-4 bg-slate-50 border-y border-slate-100 flex flex-wrap items-center gap-4">
+
+              {/* Botón LSM */}
+              <div className="flex-1 min-w-[200px]">
+                {isEditingLSM ? (
+                  <div className="bg-white p-2 rounded-lg border border-blue-200 shadow-sm animate-fadeIn">
+                    <textarea
+                      value={editedLSM}
+                      onChange={(e) => setEditedLSM(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      onBlur={handleBlurLSM}
+                      className="w-full p-2 text-slate-700 border-none focus:ring-0 text-sm resize-none"
+                      rows={2}
+                      placeholder="Escribe la traducción LSM..."
+                      autoFocus
+                    />
+                    <div className="flex justify-end gap-2 mt-2">
+                      <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Guardar</button>
+                      <button onMouseDown={handleCancelEdit} className="text-xs text-slate-500 px-2 py-1">Cancelar</button>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => setIsEditingLSM(true)}
+                    className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm transition-all"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-lg">🤟</span>
+                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wider group-hover/lsm:text-blue-600">LSM</span>
+                    </div>
+                    <p className="text-slate-700 font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
+                      {lsmText || question.textLSM || <span className="text-slate-400 italic font-normal text-sm">Agregar traducción...</span>}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Botones de Acción */}
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
+                    ? 'bg-white border-slate-300 text-slate-700'
+                    : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
+                    }`}
+                >
+                  {isExpanded ? 'Ocultar Respuesta' : 'Ver Respuesta'}
+                </button>
+              </div>
+            </div>
+
+            {/* Contenido Expandible (Respuesta y Tarjetas) */}
+            {isExpanded && (
+              <div className="animate-slideDown">
+
+                {/* Sección de Respuesta */}
+                <div className="p-8 bg-white">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-lg shadow-sm border border-amber-200">
+                        💡
+                      </div>
+                    </div>
+                    <div className="flex-1 space-y-4">
+
+                      {/* Respuesta Principal Mejorada con numeración */}
+                      <div className="prose prose-slate max-w-none">
+                        {question.answer && (
+                          Array.isArray(question.answer)
+                            ? question.answer.map((paragraph, idx) => (
+                              <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4">
+                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {paragraph}
+                              </p>
+                            ))
+                            : typeof question.answer === 'string'
+                              ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => (
+                                <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4 block">
+                                  <span className="text-slate-400 font-medium">[{idx + 1}]</span> {sentence.trim()}.
+                                </p>
+                              ))
+                              : <p className="text-lg text-slate-700 leading-relaxed">{String(question.answer)}</p>
+                        )}
+                      </div>
+
+                      {/* Puntos Clave */}
+                      {(question.answerBullets || customBullets.length > 0) && (
+                        <div className="mt-6 space-y-3">
+                          {(customBullets.length > 0 ? customBullets : question.answerBullets as string[]).map((bullet, idx) => (
+                            <div key={idx} className="flex gap-3 group/bullet">
+                              <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2.5 group-hover/bullet:bg-blue-500 transition-colors"></div>
+                              <p className="text-slate-600 group-hover/bullet:text-slate-800 transition-colors">{bullet}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Línea divisoria elegante */}
+                <div className="px-8 py-4 bg-white">
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50" />
+                    <span className="text-amber-400 text-sm">✦</span>
+                    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50" />
+                  </div>
+                </div>
+
+                {/* Grid de Tarjetas (Fondo sutil) */}
+                <div className="bg-slate-50 p-8">
+                  <div className="grid md:grid-cols-2 gap-6">
+
+                    {/* Tarjetas Didácticas */}
+                    {(question.flashcards || customFlashcards.length > 0) && (
+                      <div className="space-y-4">
+
+                        <FlashCards
+                          cards={customFlashcards}
+                          questionNumber={question.number}
+                          lsmData={allLsmData}
+                          onLSMUpdate={onLSMUpdate || (() => { })}
+                          hiddenCards={hiddenCards}
+                          onToggleHidden={onToggleHidden}
+                          articleId={articleId}
+                          onAddCard={handleAddFlashcard}
+                          onEditCard={handleEditFlashcard}
+                          onDeleteCard={handleDeleteFlashcard}
+                        />
+                      </div>
+                    )}
+
+                    {/* Textos Bíblicos */}
+                    {question.biblicalCards && (
+                      <div className="space-y-4">
+
+                        <BiblicalCards
+                          cards={question.biblicalCards}
+                          questionNumber={question.number}
+                          hiddenCards={hiddenCards}
+                          onToggleHidden={onToggleHidden}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+          </div>
+        </div>
+
+        {/* Modal de infografía para diseño premium */}
+        {showInfographicModal && question.infographic && (
+          <div
+            className="fixed inset-0 z-50 bg-black/95 flex flex-col"
+            onClick={() => setShowInfographicModal(false)}
+          >
+            {/* Header compacto */}
+            <div className="flex-shrink-0 h-12 bg-slate-800 px-4 flex items-center justify-between">
+              <span className="text-white text-sm font-medium flex items-center gap-2">
+                Infografía - Pregunta {question.number}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const textToCopy = `Infografía - Pregunta ${question.number}\n\n${question.textEs}\n\nURL: ${question.infographic}`;
+                    await navigator.clipboard.writeText(textToCopy);
+                    setInfographicCopied(true);
+                    setTimeout(() => setInfographicCopied(false), 2000);
+                  }}
+                  className={`p-2 rounded-lg ${infographicCopied ? 'bg-green-500' : 'bg-white/20 hover:bg-white/30'} transition-all`}
+                  title={infographicCopied ? '¡Copiado!' : 'Copiar enlace'}
+                >
+                  {infographicCopied ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                </button>
+                <button
+                  onClick={() => setShowInfographicModal(false)}
+                  className="p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-all"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* BOTÓN GRANDE DE CERRAR - Fácil de tocar en móvil/tablet */}
+            <div className="flex-shrink-0 px-4 py-2 bg-black">
+              <button
+                onClick={() => setShowInfographicModal(false)}
+                className="w-full py-4 bg-red-600 hover:bg-red-500 active:bg-red-700
+                           text-white font-semibold text-lg rounded-xl
+                           flex items-center justify-center gap-3
+                           transition-all duration-150
+                           shadow-lg hover:shadow-xl
+                           touch-manipulation
+                           min-h-[56px]"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>CERRAR INFOGRAFÍA</span>
+              </button>
+            </div>
+
+            {/* Contenedor de imagen */}
+            <div
+              className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={question.infographic}
+                alt={`Infografía para la pregunta ${question.number}`}
+                className="max-w-full object-contain"
+                style={{ maxHeight: 'calc(100vh - 140px)' }}
+              />
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
   return (
     <>
       {/* Subtítulo de sección (si existe) */}
@@ -1187,8 +1655,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <FlashCards
                   cards={customFlashcards}
                   questionNumber={question.number}
-                  favorites={favorites}
-                  onToggleFavorite={onToggleFavorite}
                   lsmData={allLsmData}
                   onLSMUpdate={onLSMUpdate || (() => { })}
                   hiddenCards={hiddenCards}
@@ -1208,8 +1674,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <BiblicalCards
                   cards={question.biblicalCards}
                   questionNumber={question.number}
-                  favorites={favorites}
-                  onToggleFavorite={onToggleFavorite}
                   hiddenCards={hiddenCards}
                   onToggleHidden={onToggleHidden}
                 />
@@ -1631,24 +2095,33 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </div>
             </div>
 
+            {/* BOTÓN GRANDE DE CERRAR - Fácil de tocar en móvil/tablet */}
+            <div className="flex-shrink-0 px-4 py-2 bg-black">
+              <button
+                onClick={() => setShowInfographicModal(false)}
+                className="w-full py-4 bg-red-600 hover:bg-red-500 active:bg-red-700
+                           text-white font-semibold text-lg rounded-xl
+                           flex items-center justify-center gap-3
+                           transition-all duration-150
+                           shadow-lg hover:shadow-xl
+                           touch-manipulation
+                           min-h-[56px]"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>CERRAR INFOGRAFÍA</span>
+              </button>
+            </div>
+
             {/* Contenedor de imagen - Ocupa todo el espacio disponible */}
             <div className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-white">
               <img
                 src={question.infographic}
                 alt={`Infografía para la pregunta ${question.number}`}
                 className="max-w-full object-contain"
-                style={{ maxHeight: 'calc(100vh - 110px)' }}
+                style={{ maxHeight: 'calc(100vh - 140px)' }}
               />
-            </div>
-
-            {/* Footer compacto */}
-            <div className="flex-shrink-0 h-14 bg-white flex items-center justify-center border-t border-slate-200">
-              <button
-                onClick={() => setShowInfographicModal(false)}
-                className="px-8 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-              >
-                Cerrar
-              </button>
             </div>
           </div>
         </div>

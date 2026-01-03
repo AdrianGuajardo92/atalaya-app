@@ -4282,6 +4282,27 @@ export const atalayaDatabase: AtalayaDatabase = {
         title: "No nos olvidemos de orar por otros",
         biblicalText: "\"Oren unos por otros [...]. El ruego del hombre justo tiene un efecto poderoso\" (SANT. 5:16).",
         theme: "Razones por las que es importante orar por los demás y algunas sugerencias sobre cómo hacerlo.",
+        overview: {
+          previousArticle: {
+            number: 42,
+            topic: "Cómo mejorar nuestras oraciones",
+            keywords: ["Oración personal", "Ejemplos bíblicos", "Desde el corazón", "Ana", "Jeremías"]
+          },
+          whatWellSee: [
+            {
+              section: "¿Por qué es importante?",
+              keywords: ["Efecto poderoso", "Tierna compasión", "Perspectiva correcta"]
+            },
+            {
+              section: "¿Quiénes necesitan nuestras oraciones?",
+              keywords: ["Hermanos en pruebas", "Los que tienen responsabilidades", "Oraciones paraguas"]
+            },
+            {
+              section: "¿Qué hacer cuando oramos por hermanos concretos?",
+              keywords: ["Ser observadores", "Nombres específicos", "Peticiones concretas"]
+            }
+          ]
+        },
         questions: [
           {
             number: "1",
