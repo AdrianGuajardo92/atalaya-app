@@ -59,6 +59,20 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
   "LEE Romanos 8:26, 27": [
     { reference: "Romanos 8:26", text: "Así mismo, el espíritu también nos ayuda cuando estamos débiles; porque no sabemos pedir en oración lo que necesitamos, pero el espíritu mismo ruega por nosotros con gemidos que no se pueden expresar con palabras." },
     { reference: "Romanos 8:27", text: "Sin embargo, el que examina los corazones sabe cuál es la intención del espíritu, porque este ruega de acuerdo con Dios a favor de los santos." }
+  ],
+  // Artículo 43: "No nos olvidemos de orar por otros"
+  "LEE Santiago 5:16": [
+    { reference: "Santiago 5:16", text: "Por eso, confiésense unos a otros sus pecados y oren unos por otros para que se curen. El ruego del hombre justo tiene un efecto poderoso." }
+  ],
+  "LEE 1 Pedro 3:8": [
+    { reference: "1 Pedro 3:8", text: "En conclusión, todos ustedes tengan la misma actitud mental, tengan empatía, cariño fraternal, tierna compasión y humildad." }
+  ],
+  "LEE Filipenses 2:3, 4": [
+    { reference: "Filipenses 2:3", text: "No hagan nada por espíritu de rivalidad ni por presunción, sino que con humildad consideren a los demás como superiores a ustedes." },
+    { reference: "Filipenses 2:4", text: "No busquen solo sus propios intereses, sino también los de los demás." }
+  ],
+  "LEE Mateo 6:8": [
+    { reference: "Mateo 6:8", text: "No sean como ellos, porque su Padre sabe lo que ustedes necesitan incluso antes de que se lo pidan." }
   ]
 };
 
@@ -278,6 +292,26 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [showParagraphsModal]);
+
+  // Bloquear scroll del body cuando el modal de infografía está abierto
+  useEffect(() => {
+    if (showInfographicModal) {
+      const scrollY = window.scrollY;
+
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+
+      return () => {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [showInfographicModal]);
 
   // Obtener los párrafos relacionados con esta pregunta
   const relatedParagraphs = paragraphs.filter(p =>
@@ -1440,10 +1474,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="flex items-center gap-2">
                 <button
                   onClick={async () => {
-                    const textToCopy = relatedParagraphs.map(p =>
-                      `Párrafo ${p.number}\n\n${p.content}`
-                    ).join('\n\n---\n\n');
-                    const fullText = `Pregunta ${question.number}\n\n${textToCopy}`;
+                    const paragraphsText = relatedParagraphs.map(p =>
+                      `Párrafo ${p.number}\n${p.content}`
+                    ).join('\n\n');
+                    const fullText = `Pregunta ${question.number}\n${question.textEs}\n\n${paragraphsText}`;
 
                     await navigator.clipboard.writeText(fullText);
                     setParagraphCopied(true);
@@ -1542,77 +1576,76 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         </div>
       )}
 
-      {/* Modal de infografía */}
+      {/* Modal de infografía - Optimizado para imágenes verticales */}
       {showInfographicModal && question.infographic && (
         <div
-          className="fixed inset-0 flex items-center justify-center z-50 p-4"
-          style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)'
-          }}
+          className="fixed inset-0 z-50 bg-black/90"
           onClick={() => setShowInfographicModal(false)}
+          onTouchMove={(e) => e.stopPropagation()}
+          onWheel={(e) => e.stopPropagation()}
         >
           <div
-            className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="h-full flex flex-col"
             onClick={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
           >
-            {/* Header del modal */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-t-xl flex items-center justify-between z-10">
-              <div className="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            {/* Header compacto */}
+            <div className="flex-shrink-0 h-12 bg-gradient-to-r from-blue-600 to-blue-800 px-4 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h3 className="text-lg font-bold">Infografía - Pregunta {question.number}</h3>
+                <span className="text-sm font-medium">Infografía - Pregunta {question.number}</span>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={async () => {
                     const textToCopy = `Infografía - Pregunta ${question.number}\n\n${question.textEs}\n\nURL: ${question.infographic}`;
-
                     await navigator.clipboard.writeText(textToCopy);
                     setInfographicCopied(true);
                     setTimeout(() => setInfographicCopied(false), 2000);
                   }}
-                  className={`w-10 h-10 ${infographicCopied ? 'bg-green-500 border-green-400' : 'bg-white/20 hover:bg-white/30 border-white/40'} rounded-lg flex items-center justify-center transition-all border shadow-sm`}
+                  className={`p-2 rounded-lg ${infographicCopied ? 'bg-green-500' : 'bg-white/20 hover:bg-white/30'} transition-all`}
                   title={infographicCopied ? '¡Copiado!' : 'Copiar enlace'}
-                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' }}
                 >
                   {infographicCopied ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                   )}
                 </button>
                 <button
                   onClick={() => setShowInfographicModal(false)}
-                  className="w-10 h-10 bg-white/20 hover:bg-white/30 border border-white/40 rounded-lg flex items-center justify-center transition-all shadow-sm"
+                  className="p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-all"
                   title="Cerrar"
-                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' }}
                 >
-                  <span className="text-2xl font-bold text-white">×</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
               </div>
             </div>
 
-            {/* Contenido - Imagen de la infografía */}
-            <div className="p-4">
+            {/* Contenedor de imagen - Ocupa todo el espacio disponible */}
+            <div className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-white">
               <img
                 src={question.infographic}
                 alt={`Infografía para la pregunta ${question.number}`}
-                className="w-full h-auto rounded-lg shadow-md"
+                className="max-w-full object-contain"
+                style={{ maxHeight: 'calc(100vh - 110px)' }}
               />
             </div>
 
-            {/* Footer del modal */}
-            <div className="sticky bottom-0 bg-slate-50 p-4 rounded-b-xl border-t border-slate-200 text-center">
+            {/* Footer compacto */}
+            <div className="flex-shrink-0 h-14 bg-white flex items-center justify-center border-t border-slate-200">
               <button
                 onClick={() => setShowInfographicModal(false)}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
+                className="px-8 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
               >
                 Cerrar
               </button>

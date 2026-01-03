@@ -4288,17 +4288,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Cómo sabemos que para Jehová nuestras oraciones son importantes?",
             textLSM: "",
             paragraphs: [1],
-            answer: "La oración es un regalo extraordinario. Aunque Jehová ha delegado tareas en los ángeles y le ha confiado a su Hijo grandes responsabilidades, escuchar las oraciones es una tarea que se ha reservado solo para él. Jehová es «el que escucha las oraciones» y quiere escuchar personalmente nuestras oraciones.",
-            answerBullets: [
-              "**La oración es un regalo extraordinario** - Muy especial para Jehová",
-              "**Delegó otras tareas** - A los ángeles y a su Hijo (Sal. 91:11; Mat. 28:18)",
-              "**Escuchar oraciones es solo suyo** - Es una tarea reservada para él",
-              "**«El que escucha las oraciones»** - Jehová quiere escucharnos personalmente (Sal. 65:2)"
+            infographic: "https://i.imgur.com/MlnoPzr.png",
+            answer: [
+              "La oración es un regalo extraordinario de Jehová.",
+              "Jehová delegó ciertas tareas en los ángeles y responsabilidades a su Hijo.",
+              "Sin embargo, escuchar las oraciones es una tarea que se ha reservado solo para él.",
+              "Él quiere escuchar personalmente nuestras oraciones (Salmo 65:2)."
             ],
             flashcards: [
               {
-                question: "¿Por qué sabemos que nuestras oraciones son importantes para Jehová?",
-                answer: "Porque escuchar las oraciones es una tarea que se ha reservado solo para él. Aunque delegó otras tareas, él personalmente quiere escucharnos."
+                question: "¿A quién delegó Jehová ciertas tareas según el párrafo?",
+                answer: "A los ángeles y a su Hijo les confió grandes responsabilidades."
+              },
+              {
+                question: "¿Qué tarea se ha reservado Jehová solo para él?",
+                answer: "Escuchar las oraciones de sus siervos."
               }
             ],
             biblicalCards: [
@@ -4314,21 +4318,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué buen ejemplo nos dejó el apóstol Pablo?",
             textLSM: "",
             paragraphs: [2],
-            answer: "Pablo nos dejó el ejemplo de orar por otros. Les dijo a los cristianos de Éfeso: «Sigo mencionándolos en mis oraciones». También oraba por algunos en particular, como Timoteo: «Siempre me acuerdo de ti en los ruegos que hago día y noche». Aunque Pablo tenía muchas preocupaciones propias por las que orar, sacó tiempo para orar por otras personas.",
-            answerBullets: [
-              "**Oraba por congregaciones** - «Sigo mencionándolos en mis oraciones» a los de Éfeso (Efes. 1:16)",
-              "**Oraba por personas específicas** - Como Timoteo, «día y noche» (2 Tim. 1:3)",
-              "**Tenía muchas preocupaciones propias** - Pero aun así oraba por otros (2 Cor. 11:23; 12:7, 8)",
-              "**Sacó tiempo para orar por otros** - A pesar de sus problemas personales"
+            infographic: "https://i.imgur.com/VcduQBt.png",
+            answer: [
+              "Pablo oraba por congregaciones enteras, como la de Éfeso (Efesios 1:16).",
+              "También oraba por personas específicas como Timoteo, «día y noche» (2 Timoteo 1:3).",
+              "Aunque tenía muchas preocupaciones propias, sacó tiempo para orar por otros.",
+              "Nos dejó el ejemplo de incluir a otros en nuestras oraciones."
             ],
             flashcards: [
               {
-                question: "¿Qué buen ejemplo nos dejó Pablo sobre la oración?",
-                answer: "Aunque tenía muchas preocupaciones propias, sacó tiempo para orar por otros, tanto congregaciones como personas específicas."
+                question: "¿Qué le escribió Pablo a Timoteo sobre cómo oraba por él?",
+                answer: "«Siempre me acuerdo de ti en los ruegos que hago día y noche» (2 Timoteo 1:3)."
               },
               {
-                question: "¿Por quién oraba Pablo específicamente según 2 Timoteo 1:3?",
-                answer: "Por Timoteo: «Siempre me acuerdo de ti en los ruegos que hago día y noche»."
+                question: "A pesar de sus propios problemas, ¿qué hizo Pablo?",
+                answer: "Sacó tiempo para orar por otros, tanto congregaciones como personas específicas."
               }
             ],
             biblicalCards: [
@@ -4349,17 +4353,17 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué puede que a veces se nos olvide orar por otros?",
             textLSM: "",
             paragraphs: [3],
-            answer: "La vida en este sistema es un no parar. Podemos centrarnos tanto en nuestros problemas que solo oremos por lo que necesitamos nosotros. Si nos damos cuenta de que eso nos está pasando, este artículo nos ayudará a ver por qué es importante orar por los demás y cómo hacerlo.",
-            answerBullets: [
-              "**La vida es un no parar** - El sistema nos mantiene ocupados",
-              "**Centrarnos en nuestros problemas** - Solo oramos por nosotros mismos",
-              "**Olvidamos a los demás** - Nos enfocamos en nuestras necesidades",
-              "**El artículo ayuda** - Por qué es importante y cómo orar por otros"
+            infographic: "https://i.imgur.com/fs87AV1.png",
+            answer: [
+              "La vida en este sistema es un no parar.",
+              "Podemos centrarnos tanto en nuestros problemas que solo oremos por nosotros.",
+              "El artículo explica por qué es importante orar por los demás.",
+              "También da sugerencias prácticas sobre cómo hacerlo."
             ],
             flashcards: [
               {
-                question: "¿Por qué puede que se nos olvide orar por otros?",
-                answer: "La vida en este sistema es un no parar y podemos centrarnos tanto en nuestros problemas que solo oremos por lo que necesitamos nosotros."
+                question: "¿Qué explica la hermana Sabrina sobre por qué olvidamos orar por otros?",
+                answer: "«La vida en este sistema es un no parar. Podemos centrarnos tanto en nuestros problemas que solo oremos por lo que necesitamos nosotros»."
               }
             ],
             biblicalCards: []
@@ -4371,21 +4375,22 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [4, 5],
             readText: "LEE Santiago 5:16",
             section: "¿POR QUÉ ES IMPORTANTE?",
-            answer: "Nuestras oraciones por otros pueden influir en lo que les pase. Jesús rogó por Pedro para que su fe no decayera. Pablo esperaba ser liberado gracias a las oraciones de Filemón, y así fue. Aunque no podemos obligar a Jehová a actuar, él toma en cuenta lo que nos preocupa y a veces decide hacer lo que le pedimos. Esto nos motiva a orar con intensidad y confiar en que él hará lo mejor.",
-            answerBullets: [
-              "**Podemos influir en otros** - Las oraciones tienen efecto poderoso (Sant. 5:16)",
-              "**Jesús rogó por Pedro** - Para que su fe no decayera (Luc. 22:32)",
-              "**Pablo fue liberado** - Gracias a las oraciones de Filemón (Filem. 22)",
-              "**Jehová toma en cuenta lo que pedimos** - A veces decide hacer lo que le pedimos (Sal. 37:5)"
+            infographic: "https://i.imgur.com/VcUrAqO.png",
+            answer: [
+              "Nuestras oraciones por otros pueden influir en lo que les pase.",
+              "Jesús rogó por Pedro para que su fe no decayera (Lucas 22:32).",
+              "Pablo fue liberado gracias a las oraciones de Filemón (Filemón 22).",
+              "Aunque no podemos obligar a Jehová, él toma en cuenta lo que nos preocupa.",
+              "Esto nos motiva a orar con intensidad y confiar en que él hará lo mejor."
             ],
             flashcards: [
               {
-                question: "¿Cómo tienen «un efecto poderoso» nuestras oraciones por otros?",
-                answer: "Pueden influir en lo que les pase. Jesús rogó por Pedro, Pablo fue liberado gracias a oraciones. Jehová toma en cuenta lo que nos preocupa."
+                question: "¿Por quién rogó Jesús y con qué propósito?",
+                answer: "Rogó por Pedro para que su fe no decayera (Lucas 22:32)."
               },
               {
-                question: "¿Qué ejemplo muestra que nuestras oraciones pueden cambiar situaciones?",
-                answer: "Pablo fue liberado de su arresto domiciliario gracias a las oraciones de Filemón (Filemón 22)."
+                question: "¿Qué esperaba Pablo que sucediera gracias a las oraciones de Filemón?",
+                answer: "Esperaba ser liberado de su arresto domiciliario, y así fue (Filemón 22)."
               }
             ],
             biblicalCards: [
@@ -4407,17 +4412,22 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [6],
             readText: "LEE 1 Pedro 3:8",
-            answer: "Orar por otros nos ayuda a cultivar «tierna compasión». Cuando oramos por las necesidades de los demás, nos volvemos más conscientes de sus luchas, y eso hace que los queramos todavía más. Aunque ellos no lo sepan, nos sentimos más cerca de ellos. Además, cuando oramos por alguien, nos entran más ganas de ayudarlo, como si estuviéramos contribuyendo a contestar nuestra propia oración.",
-            answerBullets: [
-              "**Cultivamos «tierna compasión»** - Nos fijamos en el sufrimiento de otros (1 Ped. 3:8)",
-              "**Más conscientes de sus luchas** - Y los queremos más",
-              "**Nos sentimos más cerca** - Aunque ellos no lo sepan",
-              "**Más ganas de ayudar** - Contribuimos a contestar nuestra propia oración"
+            infographic: "https://i.imgur.com/LE2392S.png",
+            answer: [
+              "Orar por otros nos ayuda a cultivar «tierna compasión» (1 Pedro 3:8).",
+              "Nos volvemos más conscientes de sus luchas, y eso hace que los queramos más.",
+              "Aunque ellos no lo sepan, nos sentimos más cerca de ellos.",
+              "Cuando oramos por alguien, nos entran más ganas de ayudarlo.",
+              "Es como si contribuyéramos a contestar nuestra propia oración."
             ],
             flashcards: [
               {
-                question: "¿Qué efecto tiene en nuestros sentimientos orar por otros?",
-                answer: "Cultivamos «tierna compasión», nos volvemos más conscientes de sus luchas, los queremos más y nos entran más ganas de ayudarlos."
+                question: "¿Qué dice el anciano Michael sobre orar por las necesidades de los demás?",
+                answer: "«Me vuelvo más consciente de sus luchas, y eso hace que los quiera todavía más. Aunque ellos no lo sepan, me siento más cerca de ellos»."
+              },
+              {
+                question: "¿Qué dice el anciano Richard sobre orar por alguien?",
+                answer: "«Nos entran más ganas de ayudarlo. Al darle ayuda práctica, es como si estuviéramos contribuyendo a contestar nuestra propia oración»."
               }
             ],
             biblicalCards: [
@@ -4439,17 +4449,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [7],
             readText: "LEE Filipenses 2:3, 4",
-            answer: "Como vivimos en un mundo controlado por el Diablo, todos afrontamos dificultades. Tener la costumbre de orar por los demás nos recuerda que «toda la hermandad en el mundo está pasando por los mismos sufrimientos». Esto nos ayuda a no centrarnos demasiado en nosotros mismos y ver que no somos los únicos que estamos pasando por problemas.",
-            answerBullets: [
-              "**El mundo está controlado por el Diablo** - Todos afrontamos dificultades (1 Juan 5:19; Apoc. 12:12)",
-              "**Orar por otros nos recuerda** - Que toda la hermandad pasa por sufrimientos (1 Ped. 5:9)",
-              "**No somos los únicos** - Con problemas, nos ayuda a tener perspectiva",
-              "**No centrarnos demasiado en nosotros** - Filipenses 2:3, 4 lo enseña"
+            infographic: "https://i.imgur.com/5bmyrpL.png",
+            answer: [
+              "Vivimos en un mundo controlado por el Diablo, y todos afrontamos dificultades.",
+              "Orar por otros nos recuerda que «toda la hermandad está pasando por los mismos sufrimientos» (1 Pedro 5:9).",
+              "Esto evita que nos centremos demasiado en nosotros mismos.",
+              "No somos los únicos que estamos pasando por problemas."
             ],
             flashcards: [
               {
-                question: "¿Por qué orar por otros nos ayuda a ver nuestros problemas correctamente?",
-                answer: "Nos recuerda que «toda la hermandad en el mundo está pasando por los mismos sufrimientos». No somos los únicos con problemas."
+                question: "¿Qué dice la precursora Katherine sobre orar por los demás?",
+                answer: "«Me recuerda que no soy la única que está pasando por problemas. Eso evita que me centre demasiado en mí misma»."
+              },
+              {
+                question: "Según 1 Pedro 5:9, ¿por qué está pasando toda la hermandad en el mundo?",
+                answer: "Por los mismos sufrimientos que nosotros."
               }
             ],
             biblicalCards: [
@@ -4471,22 +4485,23 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [8],
             section: "¿QUIÉNES NECESITAN NUESTRAS ORACIONES?",
-            answer: "Podemos orar por diferentes grupos: los que tienen problemas de salud, los jóvenes que enfrentan burlas y presiones en la escuela, los que se van haciendo mayores, los que afrontan oposición de su familia o de gobiernos, los que han tenido que dejar sus casas por inestabilidad política, y los que sufren por desastres naturales. Aunque no los conozcamos en persona, al orar demostramos amor.",
-            answerBullets: [
-              "**Problemas de salud** - Los enfermos crónicos",
-              "**Jóvenes** - Que enfrentan burlas y presiones en la escuela",
-              "**Mayores** - Los que se van haciendo ancianos",
-              "**Oposición** - De familia o gobiernos (Mat. 10:18, 36; Hech. 12:5)",
-              "**Desplazados y víctimas** - Por inestabilidad política o desastres naturales"
+            infographic: "https://i.imgur.com/bf6gNHc.png",
+            answer: [
+              "Podemos orar por los que tienen problemas de salud.",
+              "Por los jóvenes que enfrentan burlas y presiones en la escuela.",
+              "Por quienes se van haciendo mayores.",
+              "Por los que afrontan oposición de su familia o de gobiernos.",
+              "Por los desplazados por inestabilidad política o víctimas de desastres.",
+              "Aunque no los conozcamos, al orar demostramos amor (Juan 13:34)."
             ],
             flashcards: [
               {
-                question: "¿Por qué grupos de hermanos podemos orar?",
-                answer: "Los enfermos, jóvenes con presiones, ancianos, los que enfrentan oposición, desplazados por política, víctimas de desastres."
+                question: "Menciona cinco grupos de hermanos por los que podemos orar.",
+                answer: "Enfermos, jóvenes con presiones, mayores, los que enfrentan oposición, y desplazados o víctimas de desastres."
               },
               {
-                question: "¿Qué demostramos cuando oramos por hermanos que no conocemos?",
-                answer: "Demostramos que obedecemos el mandato de Jesús de amarnos unos a otros (Juan 13:34)."
+                question: "¿Qué mandato de Jesús obedecemos cuando oramos por hermanos que no conocemos?",
+                answer: "El mandato de amarnos unos a otros (Juan 13:34)."
               }
             ],
             biblicalCards: [
@@ -4507,18 +4522,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué debemos orar por los hermanos que tienen responsabilidades dentro de la organización de Jehová y por sus esposas?",
             textLSM: "",
             paragraphs: [9],
-            answer: "Podemos orar por el Cuerpo Gobernante, sus ayudantes, los Comités de Sucursal, superintendentes de circuito, ancianos y siervos ministeriales. Muchos tienen que lidiar con sus propias preocupaciones a la vez que se desgastan por nosotros. Por ejemplo, un superintendente de circuito dijo que lo más difícil es estar lejos de sus padres mayores y enfermos. Es bueno orar por ellos y por sus esposas, que los apoyan lealmente.",
-            answerBullets: [
-              "**Cuerpo Gobernante y ayudantes** - Necesitan nuestras oraciones",
-              "**Comités de Sucursal, superintendentes** - Ancianos y siervos ministeriales",
-              "**Tienen preocupaciones propias** - Y se desgastan por nosotros (2 Cor. 12:15)",
-              "**Ejemplo de Mark** - Lo más difícil es estar lejos de sus padres mayores y enfermos",
-              "**Sus esposas** - Las que los apoyan lealmente (1 Tes. 5:12, 13)"
+            answer: [
+              "Podemos orar por el Cuerpo Gobernante, sus ayudantes, Comités de Sucursal y superintendentes.",
+              "También por ancianos y siervos ministeriales de la congregación.",
+              "Muchos lidian con preocupaciones propias mientras se desgastan por nosotros (2 Corintios 12:15).",
+              "El superintendente Mark dice que lo más difícil es estar lejos de sus padres mayores y enfermos.",
+              "Es bueno orar también por sus esposas, que los apoyan lealmente."
             ],
             flashcards: [
               {
-                question: "¿Por qué debemos orar por los que tienen responsabilidades en la organización?",
-                answer: "Tienen que lidiar con sus propias preocupaciones a la vez que se desgastan por nosotros. También debemos orar por sus esposas."
+                question: "¿Qué dice el superintendente Mark sobre una de sus dificultades personales?",
+                answer: "«Una de las cosas más difíciles para mí es estar lejos de mis padres. Ya son mayores y están enfermos»."
+              },
+              {
+                question: "Según 2 Corintios 12:15, ¿qué hacen los hermanos con responsabilidades por nosotros?",
+                answer: "Se desgastan completamente por nosotros."
               }
             ],
             biblicalCards: [
@@ -4539,21 +4557,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Le gustan a Jehová las oraciones que abarcan a muchos hermanos?",
             textLSM: "",
             paragraphs: [10, 11],
-            answer: "¡Por supuesto que sí! Muchas veces hacemos oraciones «paraguas» para no dejarnos a nadie, pidiendo por hermanos en la cárcel o los que han perdido a un ser querido sin pensar en alguien en particular. A Jehová le gustan estas oraciones porque no conocemos las necesidades concretas de todos. Las oraciones generales demuestran que tenemos «amor a toda la hermandad».",
-            answerBullets: [
-              "**Oraciones «paraguas»** - Para no dejarnos a nadie (Juan 17:20)",
-              "**Por grupos generales** - Hermanos en cárcel, los que han perdido seres queridos",
-              "**A Jehová le gustan** - No conocemos las necesidades de todos (Efes. 6:18)",
-              "**Demuestran amor** - «Amor a toda la hermandad» (1 Ped. 2:17)"
+            answer: [
+              "¡Por supuesto que sí! A Jehová le gustan las oraciones generales.",
+              "Muchas veces hacemos oraciones «paraguas» para no dejarnos a nadie.",
+              "Pedimos por hermanos en la cárcel o los que han perdido a un ser querido.",
+              "No conocemos las necesidades concretas de todos.",
+              "Estas oraciones demuestran que tenemos «amor a toda la hermandad» (1 Pedro 2:17)."
             ],
             flashcards: [
               {
-                question: "¿Le gustan a Jehová las oraciones generales por muchos hermanos?",
-                answer: "¡Por supuesto! Porque no conocemos las necesidades de todos. Demuestran que tenemos «amor a toda la hermandad»."
+                question: "¿Qué son las oraciones «paraguas» según el anciano Donald?",
+                answer: "Oraciones generales para que todos estén cubiertos y no dejarnos a nadie."
               },
               {
-                question: "¿Qué son las oraciones «paraguas»?",
-                answer: "Peticiones generales que abarcan a muchos hermanos para no dejarnos a nadie, como por los que están en prisión o han perdido seres queridos."
+                question: "¿Por qué a Jehová le gustan las oraciones generales por muchos hermanos?",
+                answer: "Porque no conocemos las necesidades concretas de todos, y demuestran «amor a toda la hermandad»."
               }
             ],
             biblicalCards: [
@@ -4575,17 +4593,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textLSM: "",
             paragraphs: [12],
             section: "¿QUÉ HACER CUANDO ORAMOS POR HERMANOS CONCRETOS?",
-            answer: "Además de oraciones generales, es bueno orar por hermanos específicos. Ser observadores nos da más empatía y nos motiva a orar por ellos. Podemos fijarnos en quién lucha con una enfermedad crónica, qué joven está desanimado por presiones de clase, o qué padre o madre cría solo a un hijo «de acuerdo con la disciplina y los consejos de Jehová».",
-            answerBullets: [
-              "**Ser observadores** - Nos da más empatía (Rom. 12:15)",
-              "**¿Quién lucha con enfermedad crónica?** - Podemos orar específicamente",
-              "**¿Qué joven está desanimado?** - Por presiones de clase",
-              "**¿Padres o madres solos?** - Criando según los consejos de Jehová (Efes. 6:4)"
+            answer: [
+              "Además de oraciones generales, es bueno orar por hermanos específicos.",
+              "Ser observadores nos da más empatía y nos motiva a orar por ellos (Romanos 12:15).",
+              "Podemos fijarnos en quién lucha con una enfermedad crónica.",
+              "Qué joven está desanimado por presiones de sus compañeros.",
+              "Qué padre o madre cría solo a un hijo según los consejos de Jehová (Efesios 6:4)."
             ],
             flashcards: [
               {
-                question: "¿Por qué ser observadores nos ayuda a hacer oraciones más específicas?",
-                answer: "Nos da más empatía y nos motiva a orar por hermanos específicos: los enfermos crónicos, jóvenes desanimados, padres solos."
+                question: "¿En qué tres grupos específicos sugiere fijarnos el párrafo para orar por ellos?",
+                answer: "Los que luchan con enfermedades crónicas, jóvenes desanimados por presiones, y padres o madres solos criando hijos."
+              },
+              {
+                question: "Según Romanos 12:15, ¿qué debemos hacer con los que lloran?",
+                answer: "Llorar con ellos (tener empatía)."
               }
             ],
             biblicalCards: [
@@ -4606,17 +4628,20 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Podemos orar por hermanos que no conocemos?",
             textLSM: "",
             paragraphs: [13],
-            answer: "Sí, podemos mencionarlos por nombre, incluso si no los conocemos en persona. Por ejemplo, en jw.org encontramos los nombres de hermanos encarcelados en Crimea, Eritrea, Rusia y Singapur. Un superintendente de circuito llamado Brian explica: «Cuando escribo el nombre de un hermano encarcelado y luego lo digo en voz alta, me resulta más fácil recordarlo y mencionarlo en mis oraciones».",
-            answerBullets: [
-              "**Mencionarlos por nombre** - Incluso sin conocerlos en persona",
-              "**Encontrar nombres en jw.org** - De hermanos encarcelados en varios países",
-              "**Ejemplo de Brian** - Escribir el nombre y decirlo en voz alta",
-              "**Más fácil recordarlos** - Y mencionarlos en nuestras oraciones"
+            answer: [
+              "Sí, podemos mencionarlos por nombre, incluso sin conocerlos en persona.",
+              "En jw.org encontramos los nombres de hermanos encarcelados en varios países.",
+              "El superintendente Brian sugiere escribir el nombre y decirlo en voz alta.",
+              "Esto facilita recordarlo y mencionarlo en nuestras oraciones."
             ],
             flashcards: [
               {
-                question: "¿Podemos orar por hermanos que no conocemos?",
-                answer: "Sí, podemos mencionarlos por nombre. En jw.org encontramos nombres de hermanos encarcelados. Escribir el nombre y decirlo en voz alta ayuda a recordarlos."
+                question: "¿Qué sugiere el superintendente Brian para recordar los nombres de hermanos encarcelados?",
+                answer: "«Cuando escribo el nombre de un hermano y luego lo digo en voz alta, me resulta más fácil recordarlo y mencionarlo en mis oraciones»."
+              },
+              {
+                question: "¿En qué países menciona el párrafo que hay hermanos encarcelados?",
+                answer: "Crimea, Eritrea, Rusia y Singapur."
               }
             ],
             biblicalCards: []
@@ -4626,22 +4651,22 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Qué nos ayudará a hacer oraciones más específicas?",
             textLSM: "",
             paragraphs: [14, 15],
-            answer: "Hacer peticiones específicas. Podemos leer experiencias de hermanos en prisión en jw.org e imaginar cómo nos sentiríamos en su situación. Por ejemplo, pedir que los guardias sean amables con ellos, que las autoridades les permitan adorar a Dios, que su buen ejemplo anime a la congregación local y motive a no Testigos a escuchar. Estas sugerencias aplican para cualquier hermano, no solo los presos.",
-            answerBullets: [
-              "**Leer experiencias en jw.org** - E imaginar cómo nos sentiríamos (Heb. 13:3)",
-              "**Pedir por cosas específicas** - Guardias amables, libertad de adoración",
-              "**Que su ejemplo anime** - A la congregación local (1 Ped. 2:12)",
-              "**Motive a otros a escuchar** - A quienes no son Testigos",
-              "**Aplicar para cualquier hermano** - No solo los presos (1 Tes. 3:12; 1 Tim. 2:1, 2)"
+            answer: [
+              "Hacer peticiones específicas nos ayuda a orar mejor.",
+              "Podemos leer experiencias en jw.org e imaginar cómo nos sentiríamos (Hebreos 13:3).",
+              "Pedir que los guardias sean amables con los hermanos presos.",
+              "Que las autoridades les permitan adorar a Dios (1 Timoteo 2:1, 2).",
+              "Que su buen ejemplo anime a la congregación local y motive a otros a escuchar.",
+              "Estas sugerencias aplican para cualquier hermano, no solo los presos."
             ],
             flashcards: [
               {
-                question: "¿Qué nos ayudará a hacer oraciones más específicas por hermanos en prisión?",
-                answer: "Imaginar cómo nos sentiríamos en su situación. Pedir que los guardias sean amables, que puedan adorar a Dios, que su ejemplo anime a otros."
+                question: "¿Qué sugiere el anciano Michael para hacer peticiones más específicas?",
+                answer: "Leer experiencias de hermanos en prisión e imaginar cómo nos sentiríamos en su situación."
               },
               {
-                question: "¿Solo debemos aplicar estas sugerencias para los hermanos presos?",
-                answer: "No, las sugerencias (ser observadores, mencionar nombres, hacer peticiones específicas) aplican para cualquier hermano."
+                question: "Menciona tres peticiones específicas que podemos hacer por hermanos presos.",
+                answer: "Que los guardias sean amables, que puedan adorar a Dios, y que su ejemplo anime a otros."
               }
             ],
             biblicalCards: [
@@ -4664,18 +4689,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             paragraphs: [16],
             readText: "LEE Mateo 6:8",
             section: "SEAMOS EQUILIBRADOS",
-            answer: "Debemos ser equilibrados. Cuando oramos, no le estamos contando a Jehová algo que él no sepa. Tampoco deberíamos darle consejos sobre cómo manejar una situación. Él sabe lo que sus siervos necesitan incluso antes de que se den cuenta. ¿Por qué orar por otros entonces? Porque eso es lo que hacen las personas que se interesan por los demás. Oramos porque los queremos, y Jehová se alegra de ver que imitamos su amor.",
-            answerBullets: [
-              "**No le contamos algo nuevo** - Jehová ya lo sabe todo (Mat. 6:8)",
-              "**No darle consejos** - Sobre cómo manejar situaciones",
-              "**Él sabe lo que necesitan** - Antes de que se den cuenta",
-              "**Oramos porque los queremos** - Es lo que hacen los que se interesan por otros",
-              "**Jehová se alegra** - De ver que imitamos su amor"
+            answer: [
+              "Debemos ser equilibrados al orar.",
+              "Cuando oramos, no le contamos a Jehová algo que él no sepa (Mateo 6:8).",
+              "Tampoco deberíamos darle consejos sobre cómo manejar una situación.",
+              "¿Por qué orar entonces? Porque eso es lo que hacen los que se interesan por otros.",
+              "Oramos porque los queremos, y Jehová se alegra de ver que imitamos su amor."
             ],
             flashcards: [
               {
-                question: "¿Por qué orar por otros si Jehová ya sabe lo que necesitan?",
-                answer: "Porque eso es lo que hacen las personas que se interesan por los demás. Oramos porque los queremos, y Jehová se alegra de ver que imitamos su amor."
+                question: "¿Por qué debemos orar por otros si Jehová ya sabe lo que necesitan?",
+                answer: "Porque oramos por ellos porque los queremos, y Jehová se alegra de ver que imitamos su amor."
+              },
+              {
+                question: "Según Mateo 6:8, ¿qué sabe Jehová incluso antes de que se lo pidamos?",
+                answer: "Lo que necesitamos."
               }
             ],
             biblicalCards: [
@@ -4691,22 +4719,21 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "Explique con un ejemplo por qué sabemos que nuestras oraciones no le pasan desapercibidas a Jehová.",
             textLSM: "",
             paragraphs: [17, 18],
-            answer: "Pensemos en un padre con un niño y una niña. El niño está enfermo, y la niña insiste: «Ayuda a mi hermanito». El padre tiene la situación bajo control y está cuidando al hijo, pero se alegra de ver que ella quiere tanto a su hermano. De manera parecida, Jehová quiere que nos interesemos por los demás y oremos por ellos. Demostraremos que nos preocupamos por los hermanos, y Jehová tomará nota de ello. Además, nuestras oraciones pueden cambiar el rumbo de una situación.",
-            answerBullets: [
-              "**Ejemplo del padre y sus hijos** - La niña pide ayuda para su hermano enfermo",
-              "**El padre ya tiene la situación controlada** - Pero se alegra del amor de la niña",
-              "**Jehová quiere que nos interesemos** - Y oremos por los demás",
-              "**Demostraremos preocupación** - Jehová tomará nota (2 Tes. 1:3; Heb. 6:10)",
-              "**Las oraciones pueden cambiar situaciones** - No debemos olvidar incluir a los hermanos"
+            answer: [
+              "Pensemos en un padre con un niño enfermo y una niña que insiste: «Ayuda a mi hermanito».",
+              "El padre tiene la situación controlada, pero se alegra de ver el amor de la niña.",
+              "De manera parecida, Jehová quiere que nos interesemos por los demás.",
+              "Demostraremos que nos preocupamos, y Jehová tomará nota (Hebreos 6:10).",
+              "Además, nuestras oraciones pueden cambiar el rumbo de una situación."
             ],
             flashcards: [
               {
-                question: "¿Por qué nuestras oraciones por otros no le pasan desapercibidas a Jehová?",
-                answer: "Como un padre que se alegra cuando su hija pide ayuda para su hermano, Jehová se alegra de ver que nos interesamos por los demás."
+                question: "¿Qué ilustra el ejemplo del padre con el niño enfermo y la niña?",
+                answer: "Que aunque Jehová tiene la situación bajo control, se alegra de ver que nos interesamos por otros y oramos por ellos."
               },
               {
-                question: "¿Qué beneficios tiene orar por los hermanos?",
-                answer: "Demostramos que nos preocupamos por ellos, Jehová toma nota, y nuestras oraciones pueden incluso cambiar el rumbo de una situación."
+                question: "Según Hebreos 6:10, ¿qué no olvidará Jehová?",
+                answer: "El amor que le mostramos a su nombre al servir a los santos."
               }
             ],
             biblicalCards: [
@@ -4745,13 +4772,29 @@ export const atalayaDatabase: AtalayaDatabase = {
         ],
         reviewQuestions: [
           {
-            question: "¿En qué sentido tienen \"un efecto poderoso\" nuestras oraciones?"
+            question: "¿En qué sentido tienen \"un efecto poderoso\" nuestras oraciones?",
+            answer: [
+              "Pueden influir en lo que les pase a otros.",
+              "Jesús rogó por Pedro para que su fe no decayera.",
+              "Pablo fue liberado gracias a las oraciones de Filemón.",
+              "Jehová toma en cuenta lo que nos preocupa y a veces actúa."
+            ]
           },
           {
-            question: "¿Por qué debemos hacer oraciones por grupos de hermanos?"
+            question: "¿Por qué debemos hacer oraciones por grupos de hermanos?",
+            answer: [
+              "No conocemos las necesidades concretas de todos.",
+              "Las oraciones generales demuestran «amor a toda la hermandad».",
+              "Son como oraciones «paraguas» para no dejarnos a nadie."
+            ]
           },
           {
-            question: "¿Qué podemos hacer cuando oramos por hermanos concretos?"
+            question: "¿Qué podemos hacer cuando oramos por hermanos concretos?",
+            answer: [
+              "Ser observadores para tener más empatía.",
+              "Mencionarlos por nombre, incluso si no los conocemos.",
+              "Hacer peticiones específicas imaginando cómo nos sentiríamos en su situación."
+            ]
           }
         ],
         finalSong: "Canción 101: Sirvamos a Dios en unidad"
