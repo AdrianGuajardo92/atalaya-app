@@ -4522,6 +4522,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Por qué debemos orar por los hermanos que tienen responsabilidades dentro de la organización de Jehová y por sus esposas?",
             textLSM: "",
             paragraphs: [9],
+            infographic: "https://i.imgur.com/IPqB6jQ.png",
             answer: [
               "Podemos orar por el Cuerpo Gobernante, sus ayudantes, Comités de Sucursal y superintendentes.",
               "También por ancianos y siervos ministeriales de la congregación.",
@@ -4557,6 +4558,7 @@ export const atalayaDatabase: AtalayaDatabase = {
             textEs: "¿Le gustan a Jehová las oraciones que abarcan a muchos hermanos?",
             textLSM: "",
             paragraphs: [10, 11],
+            infographic: "https://i.imgur.com/a2yAZ8d.png",
             answer: [
               "¡Por supuesto que sí! A Jehová le gustan las oraciones generales.",
               "Muchas veces hacemos oraciones «paraguas» para no dejarnos a nadie.",
