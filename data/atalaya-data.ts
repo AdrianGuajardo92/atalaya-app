@@ -3,4838 +3,4743 @@ import { isArticleActive } from './articles-config';
 
 // Base de datos completa con todos los artículos organizados por mes
 export const atalayaDatabase: AtalayaDatabase = {
-  "2025-08": {
-    articles: [
-      // Artículo 34 (Placeholder - agregar contenido después)
-      {
-        metadata: {
-          articleNumber: 34,
-          week: "27 Oct - 2 Nov",
-          month: "Agosto",
-          year: 2025
-        },
-        song: "",
-        title: "",
-        biblicalText: "",
-        theme: "",
-        questions: [],
-        paragraphs: [],
-        reviewQuestions: [],
-        finalSong: ""
-      },
-
-      // Artículo 36 (Placeholder)
-      {
-        metadata: {
-          articleNumber: 36,
-          week: "11-17 Nov",
-          month: "Agosto",
-          year: 2025
-        },
-        song: "",
-        title: "",
-        biblicalText: "",
-        theme: "",
-        questions: [],
-        paragraphs: [],
-        reviewQuestions: [],
-        finalSong: ""
-      },
-
-      // Artículo 37 (Placeholder)
-      {
-        metadata: {
-          articleNumber: 37,
-          week: "18-24 Nov",
-          month: "Agosto",
-          year: 2025
-        },
-        song: "",
-        title: "",
-        biblicalText: "",
-        theme: "",
-        questions: [],
-        paragraphs: [],
-        reviewQuestions: [],
-        finalSong: ""
-      },
-
-      // Artículo 38 (Placeholder)
-      {
-        metadata: {
-          articleNumber: 38,
-          week: "25 Nov - 1 Dic",
-          month: "Agosto",
-          year: 2025
-        },
-        song: "",
-        title: "",
-        biblicalText: "",
-        theme: "",
-        questions: [],
-        paragraphs: [],
-        reviewQuestions: [],
-        finalSong: ""
-      }
-    ]
-  },
-
   // ========================================
-  // PUEDES AGREGAR TANTOS MESES COMO QUIERAS
+  // NOVIEMBRE 2025 - ARTÍCULOS DE ESTUDIO
   // ========================================
 
-  // Septiembre 2025 - ARTÍCULOS DE ESTUDIO COMPLETOS
-  "2025-09": {
+  "2025-11": {
     articles: [
-      // Artículo 36: "Que llame a los ancianos" (10-16 Nov)
+      // Artículo 44: "Cómo mantener la alegría en la vejez" (5-11 Ene)
       {
         metadata: {
-          articleNumber: 36,
-          week: "10-16 Nov",
-          month: "Septiembre",
+          articleNumber: 44,
+          week: "5-11 Ene",
+          month: "Noviembre",
           year: 2025
         },
-        song: "Canción 103: Nuestros pastores son un regalo de Dios",
-        title: "Que llame a los ancianos",
-        biblicalText: "\"Que llame a los ancianos de la congregación\" (SANT. 5:14).",
-        theme: "La importancia de pedirles ayuda espiritual a los ancianos cuando la necesitamos.",
-        questions: [
-          {
-            number: "1",
-            textEs: "¿Cómo ha demostrado Jehová que quiere mucho a todas sus ovejas?",
-            textLSM: "",
-            paragraphs: [1],
-            answer: "Jehová demostró su amor comprando a sus ovejas con la sangre de Jesús. Además, les encargó a los ancianos que las cuiden con mucho cariño y las protejan de los peligros espirituales.",
-            answerBullets: [
-              "Jehová compró a sus ovejas con la sangre de Jesús",
-              "Encargó a los ancianos el cuidado de las ovejas",
-              "Los ancianos deben tratarlas con mucho cariño",
-              "Siguen las instrucciones de Jesús, cabeza de la congregación",
-              "Dos funciones principales: Animan al rebaño y protegen de los peligros espirituales"
-            ],
-            flashcards: [
-              "Según este párrafo, ¿quién es la cabeza de la congregación?",
-              "¿Qué dos funciones principales realizan los ancianos al seguir las instrucciones de Jesús?",
-              "¿Cómo te ayuda personalmente saber que Jehová compró a sus ovejas con la sangre de Jesús?"
-            ],
-            biblicalCards: [
-              {
-                reference: "Hechos 20:28",
-                purpose: "Jehová compró a sus ovejas con la sangre de Jesús",
-                text: "Presten atención a sí mismos y a todo el rebaño, en medio del cual el espíritu santo los ha nombrado supervisores para pastorear la congregación de Dios, que él compró con la sangre de su propio Hijo."
-              },
-              {
-                reference: "Isaías 32:1, 2",
-                purpose: "Los ancianos protegen y animan al rebaño",
-                text: "Miren, un rey reinará por la causa de la justicia, y los príncipes gobernarán por la causa de la justicia. Cada uno será como un escondite contra el viento, como un refugio contra la tormenta de lluvia, como corrientes de agua en tierra seca, como la sombra de una roca pesada en tierra agotada."
-              }
-            ]
-          },
-          {
-            number: "2",
-            textEs: "¿Por quiénes se interesa Jehová en especial?",
-            textLSM: "",
-            paragraphs: [2],
-            readText: "LEE Ezequiel 34:15, 16",
-            answer: "Jehová se interesa profundamente por todas sus ovejas, pero tiene especial interés por las que están sufriendo. Utiliza a los ancianos para ayudar a las que están sufriendo en sentido espiritual. Cuando necesitamos ayuda, debemos orar a Dios y también acudir a los pastores y maestros de la congregación.",
-            answerBullets: [
-              "Jehová se interesa profundamente por todas sus ovejas",
-              "Tiene especial interés por las que están sufriendo",
-              "Utiliza a los ancianos para ayudar a las que sufren espiritualmente",
-              "Dios quiere que le oremos cuando necesitamos ayuda",
-              "También debemos acudir a los \"pastores y maestros\" de la congregación",
-              "Los ancianos son instrumentos que Jehová usa para cuidarnos"
-            ],
-            flashcards: [
-              {
-                question: "Según Ezequiel 34:15, 16, ¿qué tres cosas hace Jehová por sus ovejas que sufren?",
-                answer: "Buscar a la perdida, traer de vuelta a la extraviada, y vendar a la herida"
-              },
-              {
-                question: "¿Qué dos acciones debemos tomar cuando necesitamos ayuda espiritual?",
-                answer: "Orar a Jehová y acudir a los ancianos de la congregación"
-              },
-              {
-                question: "Según Efesios 4:11, 12, ¿cómo llama la Biblia a los ancianos?",
-                answer: "Pastores y maestros"
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Ezequiel 34:15, 16",
-                purpose: "Jehová cuida especialmente a sus ovejas que sufren",
-                text: "'Yo mismo apacentaré a mis ovejas y yo mismo haré que se echen', dice el Señor Soberano Jehová. 'Buscaré a la oveja perdida, traeré de vuelta a la que se haya extraviado, vendaré a la que esté herida y fortaleceré a la que esté enferma, pero eliminaré a la gorda y a la fuerte. Las apacentaré con justicia'."
-              },
-              {
-                reference: "Efesios 4:11, 12",
-                purpose: "Los ancianos son pastores y maestros dados por Dios",
-                text: "Y dio algunos como apóstoles, algunos como profetas, algunos como evangelizadores, algunos como pastores y maestros, con el fin de preparar a los santos para la obra de servicio, para edificar el cuerpo de Cristo."
-              }
-            ],
-            reflectionQuestions: [
-              "¿Cómo me hace sentir saber que Jehová tiene especial interés por los que sufren?",
-              "Si estoy pasando por dificultades espirituales, ¿he pensado en acudir a los ancianos o solo en orar?",
-              "¿Qué me impide buscar ayuda de los ancianos cuando la necesito?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a orar a Jehová por cualquier lucha espiritual que esté enfrentando",
-              "Si estoy sufriendo espiritualmente, voy a acercarme a un anciano de confianza esta semana",
-              "Voy a recordar que los ancianos no son solo para disciplina, sino para ayudarme cuando sufro"
-            ]
-          },
-          {
-            number: "3",
-            textEs: "¿Por qué este artículo nos beneficiará a todos?",
-            textLSM: "",
-            paragraphs: [3],
-            answer: "Este artículo beneficiará a todos porque responderá tres preguntas importantes: cuándo debemos acudir a los ancianos, por qué debemos hacerlo y cómo nos ayudan. Incluso los que están espiritualmente fuertes se beneficiarán porque aprenderán a valorar más la ayuda que Dios da por medio de los ancianos y sabrán qué hacer si en el futuro necesitan acudir a ellos.",
-            answerBullets: [
-              "El artículo responde tres preguntas clave sobre los ancianos",
-              "Primera pregunta: ¿Cuándo debemos acudir a los ancianos?",
-              "Segunda pregunta: ¿Por qué debemos acudir a ellos?",
-              "Tercera pregunta: ¿Cómo nos ayudan los ancianos?",
-              "Beneficia incluso a quienes están espiritualmente fuertes ahora",
-              "Nos enseña a valorar más la ayuda que Dios da por medio de los ancianos",
-              "Nos prepara para saber qué hacer si en el futuro necesitamos su ayuda"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuáles son las tres preguntas que responde este artículo sobre los ancianos?",
-                answer: "Cuándo acudir, por qué hacerlo, y cómo nos ayudan"
-              },
-              {
-                question: "¿Por qué este artículo beneficia incluso a los que están espiritualmente fuertes?",
-                answer: "Porque les enseña a valorar más la ayuda de los ancianos y los prepara para el futuro"
-              },
-              {
-                question: "¿Cómo se vale Jehová de los ancianos para ayudarnos espiritualmente?",
-                answer: "Los usa como instrumentos para cuidar y ayudar a sus ovejas"
-              }
-            ],
-            reflectionQuestions: [
-              "Si estoy espiritualmente fuerte ahora, ¿he pensado en prepararme para saber qué hacer si en el futuro necesito ayuda?",
-              "¿Valoro realmente la ayuda que Jehová da por medio de los ancianos, o solo los veo como figuras de autoridad?",
-              "¿Estoy dispuesto a aprender de este artículo aunque ahora me sienta fuerte espiritualmente?"
-            ],
-            practicalApplications: [
-              "Voy a leer este artículo con mente abierta, pensando en cómo puede ayudarme ahora o en el futuro",
-              "Esta semana voy a reflexionar sobre cómo valoro a los ancianos de mi congregación",
-              "Voy a guardar las respuestas a estas tres preguntas para tenerlas presentes cuando las necesite"
-            ]
-          },
-          {
-            number: "4",
-            textEs: "¿Cómo sabemos que Santiago 5:14-16, 19, 20 se refiere a alguien enfermo en sentido espiritual? (Mira también las imágenes).",
-            textLSM: "",
-            paragraphs: [4],
-            section: "CUÁNDO \"LLAMAR\" A LOS ANCIANOS",
-            readText: "LEE Santiago 5:14-16, 19, 20",
-            answer: "Sabemos que Santiago se refiere a enfermedad espiritual por el contexto. Primero, Santiago no le dice al enfermo que llame a un médico, sino a los ancianos. Segundo, explica que la persona se sana cuando se le perdonan los pecados. Así como acudimos al médico cuando nos enfermamos físicamente, debemos acudir a los ancianos cuando nos enfermamos espiritualmente.",
-            answerBullets: [
-              "Santiago dice \"que llame a los ancianos\", no a un médico",
-              "La sanación se relaciona con el perdón de pecados",
-              "El contexto muestra que habla de enfermedad espiritual",
-              "Hay muchos parecidos entre enfermedad física y espiritual",
-              "Con el médico: explicamos síntomas y seguimos instrucciones",
-              "Con los ancianos: explicamos la situación y seguimos consejos bíblicos",
-              "Ambos casos requieren que busquemos ayuda activamente"
-            ],
-            flashcards: [
-              {
-                question: "Según el párrafo, ¿cuáles son las dos evidencias del contexto que demuestran que Santiago habla de enfermedad espiritual?",
-                answer: "No dice que llame a un médico sino a los ancianos, y la sanación se da cuando se perdonan los pecados"
-              },
-              {
-                question: "¿Qué tres pasos seguimos cuando vamos al médico que son similares a acudir a un anciano?",
-                answer: "Acudimos a él, explicamos nuestros síntomas/situación, y seguimos sus instrucciones/consejos"
-              },
-              {
-                question: "¿Por qué es importante que Santiago diga \"que llame\" en lugar de \"que espere\" a los ancianos?",
-                answer: "Porque muestra que la iniciativa debe ser nuestra, debemos buscar activamente la ayuda"
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Santiago 5:14-16",
-                purpose: "Los ancianos ayudan a sanar espiritualmente",
-                text: "¿Hay alguien enfermo entre ustedes? Que llame a los ancianos de la congregación, y que ellos oren por él y lo unjan con aceite en el nombre de Jehová. Y la oración de fe hará que el enfermo se ponga bien, y Jehová lo levantará. Además, si ha cometido pecados, se le perdonarán. Por lo tanto, confiésense abiertamente sus pecados unos a otros y oren unos por otros, para que sean sanados. La súplica del justo, cuando está en acción, tiene mucho poder."
-              },
-              {
-                reference: "Santiago 5:19, 20",
-                purpose: "Ayudar al pecador salva su alma",
-                text: "Hermanos míos, si alguno de ustedes se ha extraviado de la verdad y otro lo hace volver, sepan esto: el que hace volver a un pecador del error de su camino salvará su alma de la muerte y cubrirá una multitud de pecados."
-              }
-            ],
-            reflectionQuestions: [
-              "¿Me cuesta tanto acudir a los ancianos como me costaría no ir al médico si estuviera muy enfermo físicamente?",
-              "Cuando tengo problemas espirituales, ¿espero a que los ancianos me busquen o tomo la iniciativa de llamarlos como dice Santiago?",
-              "¿Veo a los ancianos como \"médicos espirituales\" que quieren ayudarme, o solo como figuras que disciplinan?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a reflexionar si tengo algún síntoma de \"enfermedad espiritual\" que deba atender antes de que empeore",
-              "Si identifico alguna debilidad espiritual, voy a tomar la iniciativa de hablar con un anciano en lugar de esperar",
-              "Voy a cambiar mi perspectiva: la próxima vez que necesite ayuda espiritual, voy a recordar que es como ir al médico, algo normal y necesario"
-            ]
-          },
-          {
-            number: "5",
-            textEs: "¿Cómo podemos revisar nuestro estado de salud espiritual?",
-            textLSM: "",
-            paragraphs: [5],
-            answer: "Podemos revisar nuestra salud espiritual comparando el entusiasmo que tenemos ahora con el que teníamos cuando nos bautizamos. Debemos hacernos preguntas sobre nuestra lectura y meditación de la Biblia, asistencia y preparación para las reuniones, importancia de la predicación, y el lugar que ocupan las diversiones y cosas materiales en nuestra vida.",
-            answerBullets: [
-              "No debemos esperar a que la relación con Dios se haya dañado",
-              "La Biblia advierte que podemos engañarnos sobre nuestra condición espiritual",
-              "Los cristianos de Sardis creían estar saludables pero no era así",
-              "Comparar el entusiasmo actual con el que teníamos al bautizarnos",
-              "Pregunta clave 1: ¿Disfruto como antes al leer la Biblia y meditar?",
-              "Pregunta clave 2: ¿Sigo asistiendo y preparándome bien para las reuniones?",
-              "Pregunta clave 3: ¿Sigue siendo la predicación igual de importante?",
-              "Pregunta clave 4: ¿Han ganado protagonismo las diversiones y cosas materiales?",
-              "Las respuestas indican si hay debilidades que pueden empeorar",
-              "Si no logramos corregir la debilidad solos, debemos acudir a los ancianos"
-            ],
-            flashcards: [
-              {
-                question: "Según Santiago 1:22, ¿de qué manera podemos engañarnos a nosotros mismos espiritualmente?",
-                answer: "Pensando que nuestra amistad con Jehová está mejor de lo que realmente está"
-              },
-              {
-                question: "¿Qué les dijo Jesús a los cristianos de Sardis en Apocalipsis 3:1, 2 sobre su condición espiritual?",
-                answer: "Que creían estar saludables pero no era así, tenían nombre de que vivían pero estaban muertos"
-              },
-              {
-                question: "El párrafo menciona 4 preguntas de autoevaluación espiritual, ¿cuáles son?",
-                answer: "Disfrute al leer la Biblia, asistencia y preparación para reuniones, importancia de la predicación, y lugar de diversiones/cosas materiales"
-              },
-              {
-                question: "¿Cuál es el punto de comparación que sugiere el párrafo para evaluar nuestra salud espiritual?",
-                answer: "El entusiasmo que teníamos cuando nos bautizamos comparado con el actual"
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Santiago 1:22",
-                purpose: "Podemos engañarnos sobre nuestra condición espiritual",
-                text: "Sin embargo, háganse hacedores de la palabra y no solo oyentes, engañándose a sí mismos con falsos razonamientos."
-              },
-              {
-                reference: "Apocalipsis 3:1, 2",
-                purpose: "Los cristianos de Sardis creían estar bien pero no era así",
-                text: "Esto es lo que dice el que tiene los siete espíritus de Dios y las siete estrellas: 'Conozco tus obras, que tienes nombre de que vives, pero estás muerto. Despierta y fortalece las cosas que quedan, que están a punto de morir, porque no he hallado tus obras plenamente realizadas delante de mi Dios'."
-              },
-              {
-                reference: "Apocalipsis 2:4, 5",
-                purpose: "Jesús advierte sobre perder el primer amor",
-                text: "Sin embargo, tengo esto contra ti: que has dejado el amor que tenías al principio. Así que recuerda de dónde has caído, y arrepiéntete y haz las obras que hacías al principio. De lo contrario, vendré a ti y quitaré tu candelabro de su lugar, a menos que te arrepientas."
-              }
-            ],
-            reflectionQuestions: [
-              "Si comparo mi entusiasmo espiritual actual con el que tenía cuando me bauticé, ¿qué diferencias noto y por qué han ocurrido?",
-              "¿He sido honesto conmigo mismo al responder estas cuatro preguntas de autoevaluación, o he intentado justificar mi condición actual?",
-              "Si identifico que algo ha cambiado negativamente en mi vida espiritual, ¿estoy dispuesto a buscar ayuda antes de que empeore?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a tomarme 30 minutos para responder honestamente las 4 preguntas de autoevaluación y anotar mis respuestas",
-              "Voy a buscar una foto o recuerdo de mi bautismo y reflexionar sobre el entusiasmo que tenía en ese momento comparado con ahora",
-              "Si descubro alguna debilidad al hacer esta autoevaluación, voy a hablar con un anciano esta misma semana antes de que empeore"
-            ]
-          },
-          {
-            number: "6",
-            textEs: "¿Qué debe hacer alguien que ha cometido un pecado grave?",
-            textLSM: "",
-            paragraphs: [6],
-            answer: "Alguien que ha cometido un pecado grave debe hablar con un anciano de inmediato, porque necesita ayuda espiritual para reparar su amistad con Jehová. El arrepentimiento genuino no es solo sentir pesar, sino demostrarlo con \"obras\" concretas, y una de esas obras esenciales es confesar el pecado grave a los ancianos para recibir la ayuda necesaria.",
-            answerBullets: [
-              "Si alguien comete un pecado grave que podría llevarlo a ser expulsado, tiene que hablar con un anciano",
-              "La persona necesita ayuda para reparar su amistad con Dios",
-              "Jehová solo nos perdonará si demostramos con \"obras\" que estamos verdaderamente arrepentidos (Hechos 26:20)",
-              "Confesarles a los ancianos que hemos cometido un pecado grave es una de esas \"obras\" requeridas",
-              "La expulsión es una posibilidad real si no se busca ayuda a tiempo (1 Corintios 5:11-13)",
-              "El arrepentimiento genuino va más allá del simple pesar emocional",
-              "Los ancianos están capacitados para brindar ayuda espiritual en momentos de crisis moral",
-              "La confesión a los ancianos no es opcional cuando se trata de pecados graves",
-              "Buscar ayuda pronto demuestra humildad y deseo genuino de restaurar la relación con Jehová",
-              "El silencio o la demora en buscar ayuda puede poner en peligro nuestra salvación"
-            ],
-            flashcards: [
-              {
-                question: "Según 1 Corintios 5:11-13, ¿qué puede suceder si alguien comete un pecado grave y no busca ayuda?",
-                answer: "Podría ser sacado de la congregación (expulsado)"
-              },
-              {
-                question: "¿Qué dice Hechos 26:20 que debemos hacer para que Jehová nos perdone?",
-                answer: "Demostrar con \"obras\" que estamos realmente arrepentidos"
-              },
-              {
-                question: "¿Por qué necesita ayuda alguien que ha cometido un pecado grave?",
-                answer: "Para reparar su amistad con Dios"
-              },
-              {
-                question: "¿Cuál es una de las \"obras\" esenciales que debe hacer alguien que cometió un pecado grave?",
-                answer: "Confesarles a los ancianos que ha cometido el pecado grave"
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "1 Corintios 5:11-13",
-                purpose: "Muestra que los pecados graves pueden llevar a ser expulsado de la congregación",
-                text: "Pero ahora les escribo que dejen de juntarse con cualquiera que, llamándose hermano, sea fornicador, codicioso, idólatra, injuriador, borracho o ladrón, y ni siquiera coman con tal hombre. Pues, ¿acaso tengo algo que ver con juzgar a los de afuera? ¿No juzgan ustedes a los de adentro, mientras Dios juzga a los de afuera? 'Saquen al hombre malvado de entre ustedes.'"
-              },
-              {
-                reference: "Hechos 26:20",
-                purpose: "Explica que el verdadero arrepentimiento se demuestra con obras",
-                text: "Sino que, tanto a los de Damasco primero como a los de Jerusalén, y por todo el país de Judea, y también a las naciones, les enseñé que se arrepintieran y se volvieran a Dios haciendo obras propias del arrepentimiento."
-              },
-              {
-                reference: "Santiago 5:14, 15",
-                purpose: "Muestra el papel de los ancianos en ayudar espiritualmente a los que están en problemas",
-                text: "¿Hay alguno enfermo entre ustedes? Que llame a los ancianos de la congregación, y que ellos oren por él, aplicándole aceite en el nombre de Jehová. Y la oración de fe sanará al indispuesto, y Jehová lo levantará. También, si hubiera cometido pecados, se le perdonará."
-              }
-            ],
-            reflectionQuestions: [
-              "Si yo cometiera un pecado grave, ¿tendría el valor de hablar inmediatamente con un anciano, o me sentiría tentado a ocultarlo esperando que \"se me pase\" el sentimiento de culpa?",
-              "¿Realmente creo que los ancianos están ahí para ayudarme y no solo para juzgarme? ¿Qué me impediría buscar su ayuda si la necesitara?",
-              "¿Entiendo claramente la diferencia entre sentir pesar por un pecado y demostrar arrepentimiento genuino con \"obras\"? ¿Qué obras concretas demostraría mi arrepentimiento?"
-            ],
-            practicalApplications: [
-              "Voy a cultivar una relación de confianza con al menos un anciano de la congregación ahora, antes de necesitar ayuda urgentemente, para que sea más fácil acudir a él si alguna vez enfrento una crisis espiritual.",
-              "Esta semana voy a meditar en Hechos 26:20 y hacer una lista personal de qué \"obras\" concretas demostraría si necesitara arrepentirme de algo grave.",
-              "Voy a orar específicamente por tener humildad y valor para buscar ayuda inmediatamente si alguna vez cometo un error grave, en lugar de intentar ocultarlo o manejarlo solo."
-            ]
-          },
-          {
-            number: "7",
-            textEs: "¿Quiénes necesitan también la ayuda de los ancianos?",
-            textLSM: "",
-            paragraphs: [7],
-            answer: "No solo los que han cometido un pecado grave necesitan ayuda de los ancianos. También los que están débiles espiritualmente deben acudir a ellos. Por ejemplo, si estás luchando contra algún mal deseo y sientes que vas a perder la batalla, un anciano puede escucharte, darte consejos prácticos y recordarte que cuentas con la aprobación de Jehová mientras no cedas.",
-            answerBullets: [
-              "Los ancianos no solo ayudan a quienes han cometido un pecado grave",
-              "**También ayudan a quienes están débiles espiritualmente**",
-              "Ejemplos de luchas: drogas, pornografía o vida inmoral del pasado",
-              "No estás solo en tu lucha contra los malos deseos",
-              "Puedes desahogarte con un anciano que te escuchará con atención",
-              "Los ancianos te darán consejos prácticos",
-              "Te recordarán que cuentas con la aprobación de Jehová mientras no cedas a los malos deseos",
-              "Si te sientes desanimado por seguir teniendo malos deseos, los ancianos pueden ayudarte",
-              "Tener malos deseos demuestra que te tomas en serio tu amistad con Jehová",
-              "También demuestra que no confías en tus propias fuerzas"
-            ],
-            flashcards: [
-              {
-                question: "Según este párrafo, ¿qué tres luchas específicas del pasado pueden hacer más dura la batalla contra los malos deseos?",
-                answer: "Drogas, pornografía o vida inmoral"
-              },
-              {
-                question: "Según Eclesiastés 4:12, ¿cómo te ayuda tener a un anciano de tu lado cuando luchas contra malos deseos?",
-                answer: "Un cordón triple no se rompe tan rápido - no estás solo"
-              },
-              {
-                question: "Si te sientes desanimado porque sigues teniendo malos deseos, ¿qué dos cosas positivas demuestran esos deseos según este párrafo?",
-                answer: "Que te tomas en serio tu amistad con Jehová y que no confías en tus propias fuerzas"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente saber que seguirás contando con la aprobación de Jehová mientras no cedas a los malos deseos?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Hechos 20:35",
-                purpose: "Los ancianos ayudan a los débiles espiritualmente",
-                text: "En todas las cosas les he mostrado que trabajando duro de este modo tienen que ayudar a los que son débiles, y tienen que tener presentes las palabras del Señor Jesús, cuando él mismo dijo: 'Hay más felicidad en dar que en recibir'."
-              },
-              {
-                reference: "Eclesiastés 4:12",
-                purpose: "No estás solo en tu lucha contra malos deseos",
-                text: "Y, si alguien pudiera vencer a uno solo, dos juntos podrían hacer frente a él. Y un cordón triple no se rompe tan rápido."
-              },
-              {
-                reference: "1 Corintios 10:12",
-                purpose: "No confiar en nuestras propias fuerzas es bueno",
-                text: "Así que el que piensa que está en pie, tenga cuidado de no caer."
-              }
-            ],
-            reflectionQuestions: [
-              "Si estoy luchando contra algún mal deseo del pasado, ¿he considerado desahogarme con un anciano de confianza?",
-              "¿Cómo me hace sentir saber que seguir teniendo malos deseos no significa que he perdido la aprobación de Jehová?",
-              "¿Qué me impide buscar ayuda de los ancianos cuando me siento débil espiritualmente: vergüenza, orgullo o pensar que puedo solo?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a identificar cualquier lucha espiritual que tenga y considerar seriamente hablar con un anciano sobre ella",
-              "Voy a recordar que tener malos deseos no me descalifica, sino que muestra que me tomo en serio mi amistad con Jehová",
-              "Si me siento débil espiritualmente, voy a desahogarme con un anciano esta semana en lugar de luchar solo"
-            ]
-          },
-          {
-            number: "8",
-            textEs: "¿Qué tipo de errores no es necesario contarles a los ancianos?",
-            textLSM: "",
-            paragraphs: [8],
-            answer: "No es necesario contarles a los ancianos cada error que cometemos. Por ejemplo, si le dijiste algo hiriente a un hermano o te enojaste mucho, puedes seguir el consejo de Jesús sobre hacer las paces y buscar información en las publicaciones sobre apacibilidad, paciencia y autocontrol. Pero si ves que no has podido solucionar el problema por ti mismo, entonces podrías pedirle ayuda a un anciano.",
-            answerBullets: [
-              "No es necesario contarles a los ancianos cada error que cometemos",
-              "Ejemplo: decir algo hiriente a un hermano o enojarte muchísimo",
-              "En lugar de hablar con un anciano, puedes seguir el consejo de Jesús sobre hacer las paces",
-              "También puedes buscar información en las publicaciones sobre apacibilidad, paciencia y autocontrol",
-              "Si aun así ves que no has podido solucionar el problema, podrías pedirle ayuda a un anciano",
-              "Pablo le dijo a un hermano que ayudara a Evodia y a Síntique a resolver sus diferencias",
-              "Un anciano puede hacer lo mismo por ti si tienes un problema con otro hermano"
-            ],
-            flashcards: [
-              {
-                question: "Según Mateo 5:23, 24, ¿qué tres pasos debes dar si ofendiste a un hermano?",
-                answer: "Dejar tu ofrenda, ir primero a hacer las paces, y luego volver a presentar tu ofrenda"
-              },
-              {
-                question: "En Filipenses 4:2, 3, ¿qué dos hermanas tenían diferencias que necesitaban resolver?",
-                answer: "Evodia y Síntique"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente saber que hay problemas que puedes resolver tú mismo sin necesidad de involucrar a los ancianos?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Mateo 5:23, 24",
-                purpose: "Cómo hacer las paces con un hermano",
-                text: "Por lo tanto, si estás llevando tu ofrenda al altar y allí recuerdas que tu hermano tiene algo contra ti, deja tu ofrenda allí delante del altar y vete. Primero haz las paces con tu hermano, y luego, cuando vuelvas, presenta tu ofrenda."
-              },
-              {
-                reference: "Filipenses 4:2, 3",
-                purpose: "Un anciano puede ayudar a resolver diferencias",
-                text: "Le ruego a Evodia y también le ruego a Síntique que se pongan de acuerdo en el Señor. Sí, y a ti también, verdadero compañero, te pido que ayudes a estas mujeres que se han esforzado conmigo promoviendo las buenas noticias junto con Clemente y los demás colaboradores míos, cuyos nombres están en el libro de la vida."
-              }
-            ],
-            reflectionQuestions: [
-              "¿Tengo algún problema sin resolver con un hermano que necesito arreglar directamente antes de buscar ayuda de un anciano?",
-              "¿Cuándo fue la última vez que busqué información en nuestras publicaciones sobre cómo mejorar una cualidad que me falta?",
-              "¿Tiendo a acudir demasiado rápido a los ancianos en lugar de intentar resolver problemas menores por mí mismo?"
-            ],
-            practicalApplications: [
-              "Si tengo algún problema con un hermano, voy a seguir Mateo 5:23, 24 esta semana e ir directamente a hacer las paces",
-              "Voy a buscar un artículo en JW Library sobre apacibilidad, paciencia o autocontrol para trabajar en áreas donde necesito mejorar",
-              "Antes de acudir a un anciano por un problema, voy a intentar resolverlo yo mismo aplicando principios bíblicos, y solo buscaré ayuda si no lo logro"
-            ]
-          },
-          {
-            number: "9",
-            textEs: "Aunque nos dé vergüenza hablar con los ancianos, ¿por qué debemos hacerlo? (Proverbios 28:13).",
-            textLSM: "",
-            paragraphs: [9],
-            section: "POR QUÉ \"LLAMAR\" A LOS ANCIANOS",
-            readText: "LEE Proverbios 28:13",
-            answer: "Debemos superar la vergüenza porque Jehová nos dio a los ancianos específicamente para ayudarnos a estar fuertes y sanos espiritualmente. Al acudir a ellos demostramos que confiamos en Dios y en sus instrucciones. Además, confiamos en que Jehová nos ayudará en nuestra lucha y que, si confesamos y abandonamos nuestros pecados, recibiremos su misericordia y su perdón.",
-            answerBullets: [
-              "Puede que necesitemos fe y valor para hablar con los ancianos",
-              "No debemos dejar que la vergüenza nos impida acudir a ellos",
-              "**Jehová nos los ha dado para ayudarnos a estar fuertes y sanos espiritualmente**",
-              "Al acudir a ellos demostramos que confiamos en Dios",
-              "También demostramos que confiamos en las instrucciones de Dios",
-              "Confiamos en que Jehová nos ayudará en nuestra lucha",
-              "Si confesamos y abandonamos nuestros pecados, recibiremos su misericordia y su perdón",
-              "La vergüenza no debe ser una barrera para buscar ayuda espiritual"
-            ],
-            flashcards: [
-              {
-                question: "Según Salmo 94:18, ¿cómo nos ayuda Jehová cuando sentimos que vamos a caer en nuestra lucha espiritual?",
-                answer: "Su amor leal nos sigue sosteniendo"
-              },
-              {
-                question: "Según Proverbios 28:13, ¿qué dos acciones específicas debemos tomar con nuestros pecados para recibir misericordia?",
-                answer: "Confesarlos y abandonarlos"
-              },
-              {
-                question: "¿Qué dos cosas demostramos cuando acudimos a los ancianos a pesar de sentir vergüenza?",
-                answer: "Que confiamos en Dios y en sus instrucciones"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente recordar que Jehová nos dio a los ancianos específicamente para ayudarnos espiritualmente, no para juzgarnos?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 94:18",
-                purpose: "Jehová nos sostiene cuando sentimos que vamos a caer",
-                text: "Cuando yo decía: 'Mi pie está resbalando', tu amor leal, oh Jehová, me seguía sosteniendo."
-              },
-              {
-                reference: "Proverbios 28:13",
-                purpose: "Confesar y abandonar pecados lleva a misericordia",
-                text: "El que encubre sus transgresiones no tendrá éxito, pero al que las confiesa y las abandona se le mostrará misericordia."
-              }
-            ],
-            reflectionQuestions: [
-              "¿Qué me da más vergüenza: admitir un error a los ancianos o permanecer en una situación que daña mi amistad con Jehová?",
-              "Si la vergüenza me impide buscar ayuda, ¿estoy confiando más en mi orgullo que en las instrucciones de Jehová?",
-              "¿Cómo cambiaría mi perspectiva si viera a los ancianos como un regalo de Jehová para mi bienestar espiritual y no como jueces?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a meditar en Proverbios 28:13 y recordar que confesar y abandonar pecados lleva a misericordia, no a condenación",
-              "Voy a orar específicamente pidiendo fe y valor para superar la vergüenza si necesito hablar con un anciano sobre alguna lucha",
-              "Voy a cambiar mi perspectiva sobre los ancianos: no son jueces que me condenarán, sino ayudantes que Jehová me ha dado para mi bienestar espiritual"
-            ]
-          },
-          {
-            number: "10",
-            textEs: "¿Qué puede pasar si intentamos esconder nuestros pecados?",
-            textLSM: "",
-            paragraphs: [10],
-            answer: "Si intentamos esconder nuestros pecados, podemos perjudicarnos de muchas maneras. El ejemplo del rey David muestra que cuando ocultó sus errores, sufrió espiritual, emocional e incluso físicamente. Los problemas espirituales son como lesiones físicas: si no se tratan, van de mal en peor. Por eso Jehová nos invita a acudir a los ancianos y arreglar las cosas.",
-            answerBullets: [
-              "Pedirles ayuda a los ancianos nos beneficia de muchas maneras",
-              "Si intentamos esconder nuestros pecados, podemos perjudicarnos",
-              "El rey David ocultó sus errores",
-              "**David sufrió de tres maneras: espiritualmente, emocionalmente e incluso físicamente**",
-              "Los problemas espirituales son como lesiones físicas",
-              "Si no se tratan, van de mal en peor",
-              "Jehová sabe que los problemas empeoran si no se tratan",
-              "Jehová nos invita a acudir a los ancianos",
-              "Jehová nos invita a \"arreglar las cosas\""
-            ],
-            flashcards: [
-              {
-                question: "Según Salmo 32:3-5, ¿de qué tres maneras específicas sufrió David cuando ocultó sus errores?",
-                answer: "Espiritualmente, emocionalmente e incluso físicamente"
-              },
-              {
-                question: "¿Con qué compara este párrafo los problemas espirituales no tratados, y qué les pasa si no se atienden?",
-                answer: "Con lesiones físicas, y van de mal en peor"
-              },
-              {
-                question: "Según Isaías 1:5, 6, 18, ¿qué invitación específica nos hace Jehová cuando tenemos problemas espirituales?",
-                answer: "Vengan ahora y arreglemos las cosas entre nosotros"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente la comparación de que los problemas espirituales son como lesiones físicas que empeoran si no se tratan?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 32:3-5",
-                purpose: "David sufrió al ocultar sus pecados",
-                text: "Cuando me quedaba callado, mis huesos se iban consumiendo por mi gemido todo el día. Porque de día y de noche tu mano pesaba sobre mí. Mis fuerzas se agotaban como en el calor seco del verano. Por fin te confesé mi pecado, y no encubrí mi error. Dije: 'Confesaré mis transgresiones a Jehová'. Y tú perdonaste el error de mis pecados."
-              },
-              {
-                reference: "Isaías 1:5, 6, 18",
-                purpose: "Jehová nos invita a arreglar las cosas",
-                text: "¿Por qué seguir recibiendo más golpes? ¿Por qué siguen rebelándose? Toda la cabeza está enferma y todo el corazón desfallece. Desde la planta del pie hasta la cabeza no hay en él nada sano, solo heridas, moretones y llagas supurantes. No han sido tratadas ni vendadas, y no se les ha aplicado aceite. 'Vengan ahora y arreglemos las cosas entre nosotros', dice Jehová."
-              }
-            ],
-            reflectionQuestions: [
-              "¿He experimentado alguna vez sufrimiento espiritual, emocional o incluso físico al intentar ocultar algo? ¿Qué me enseñó esa experiencia?",
-              "Si un problema espiritual sin tratar es como una lesión física que empeora, ¿qué 'lesión espiritual' necesito tratar ahora antes de que empeore?",
-              "¿Por qué a veces prefiero sufrir en silencio como David en lugar de aceptar la invitación de Jehová de 'arreglar las cosas'?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a meditar en la experiencia de David en Salmo 32:3-5 y reflexionar sobre las graves consecuencias físicas, emocionales y espirituales de ocultar pecados",
-              "Si tengo algún problema espiritual 'sin tratar' como una lesión sin atender, voy a acudir a un anciano esta semana antes de que empeore",
-              "Voy a aceptar la invitación personal de Jehová en Isaías 1:18 de 'arreglar las cosas' y no dejar que el orgullo o la vergüenza me impidan buscar ayuda"
-            ]
-          },
-          {
-            number: "11",
-            textEs: "¿Qué más puede pasar cuando se esconden pecados graves?",
-            textLSM: "",
-            paragraphs: [11],
-            answer: "Cuando se esconden pecados graves, no solo nos perjudicamos a nosotros mismos, sino también a otras personas. Podemos provocar que el espíritu de Dios deje de fluir libremente en la congregación y que la paz se vea amenazada. Además, si sabemos de un pecado grave de otro hermano y lo ocultamos, nos hacemos culpables también. Por eso, nuestro amor a Jehová debe impulsarnos a ayudar a esa persona para que hable con los ancianos.",
-            answerBullets: [
-              "Si escondemos nuestros pecados, también podemos perjudicar a otras personas",
-              "**Podemos provocar que el espíritu de Dios deje de fluir libremente en la congregación**",
-              "La paz de la congregación se puede ver amenazada",
-              "Si nos enteramos de que alguien ha cometido un pecado grave, debemos aconsejarle que hable con los ancianos",
-              "Ocultar el pecado de otro nos haría culpables a nosotros también",
-              "Nuestro amor a Jehová debe impulsarnos a dar el paso de contar la verdad",
-              "Así contribuiremos a mantener limpia la congregación",
-              "Así ayudamos a que la persona recupere su buena relación con Dios"
-            ],
-            flashcards: [
-              {
-                question: "Según Efesios 4:30, ¿qué dos cosas pueden pasar en la congregación cuando se esconden pecados graves?",
-                answer: "El espíritu de Dios deja de fluir libremente y la paz se ve amenazada"
-              },
-              {
-                question: "Según Levítico 5:1, ¿qué nos pasa si sabemos del pecado grave de otro hermano y lo ocultamos?",
-                answer: "Nos hacemos culpables también"
-              },
-              {
-                question: "¿Qué dos beneficios específicos se logran cuando ayudamos a alguien a hablar con los ancianos sobre un pecado grave?",
-                answer: "Mantener limpia la congregación y ayudar a que la persona recupere su relación con Dios"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente entender que tu amor a Jehová debe ser más fuerte que una lealtad mal entendida hacia un hermano que ha pecado?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Efesios 4:30",
-                purpose: "Ocultar pecados entristece el espíritu santo",
-                text: "Además, no entristezcan el espíritu santo de Dios, con el que ustedes fueron sellados para el día de la liberación por rescate."
-              },
-              {
-                reference: "Levítico 5:1",
-                purpose: "Ocultar el pecado de otro nos hace culpables",
-                text: "'Si alguien peca porque, aunque es testigo, se niega a declarar sobre algo que ha visto u oído, tendrá que responder por su error."
-              }
-            ],
-            reflectionQuestions: [
-              "Si sé que alguien ha cometido un pecado grave, ¿soy más leal a esa persona o a Jehová y al bienestar de la congregación?",
-              "¿Cómo me afecta personalmente saber que ocultar el pecado de otro me hace culpable también ante Jehová?",
-              "¿Entiendo que ayudar a alguien a hablar con los ancianos no es traición ni chisme, sino amor verdadero que busca su recuperación espiritual?"
-            ],
-            practicalApplications: [
-              "Si sé de alguien que ha cometido un pecado grave, voy a aconsejarle con amor esta semana que hable con los ancianos, explicándole que es para su bien y el de la congregación",
-              "Voy a meditar en Efesios 4:30 y recordar que mi silencio ante pecados graves puede entristecer el espíritu santo de Jehová en la congregación",
-              "Voy a entender que mantener limpia la congregación es responsabilidad de todos, no solo de los ancianos, y actuaré en consecuencia con amor"
-            ]
-          },
-          {
-            number: "12",
-            textEs: "¿Cómo apoyan los ancianos a los que están débiles en sentido espiritual?",
-            textLSM: "",
-            paragraphs: [12],
-            section: "CÓMO NOS AYUDAN LOS ANCIANOS",
-            answer: "Los ancianos apoyan a los débiles haciendo preguntas bien pensadas que ayudan a sacar lo que piensan y sienten. No sacan conclusiones apresuradas, sino que escuchan con atención y se hacen un cuadro completo antes de dar consejo. Ellos saben que pastorear al rebaño toma tiempo y que algunas situaciones no se resuelven con una sola conversación. Podemos facilitarles su labor expresándonos abiertamente, sin preocuparnos si no controlamos perfectamente lo que decimos.",
-            answerBullets: [
-              "La Biblia les dice a los ancianos que apoyen a los débiles espiritualmente",
-              "**Hacen preguntas bien pensadas para ayudarte a sacar lo que piensas y sientes**",
-              "Puedes facilitarles su labor expresándote abiertamente",
-              "Puede costarte expresarte por tu cultura, personalidad o vergüenza",
-              "No te preocupes si no eres capaz de controlar todo lo que dices o cómo lo dices",
-              "Los ancianos no sacarán conclusiones apresuradas",
-              "Se esforzarán por escucharte con atención",
-              "Se harán un cuadro completo antes de darte consejo",
-              "Saben que pastorear al rebaño toma tiempo",
-              "Saben que algunas situaciones no se resuelven con una sola conversación"
-            ],
-            flashcards: [
-              {
-                question: "Según Proverbios 20:5, ¿cómo compara la Biblia los pensamientos del corazón, y qué necesitas para sacarlos?",
-                answer: "Como aguas profundas, y necesitas entendimiento para sacarlos"
-              },
-              {
-                question: "Según Proverbios 18:13, ¿qué debe hacer un anciano antes de dar consejo, y qué es si no lo hace?",
-                answer: "Debe oír el asunto completo, de lo contrario es una tontería y una humillación"
-              },
-              {
-                question: "Según Job 6:3, ¿por qué las palabras de Job fueron imprudentes cuando estaba sufriendo?",
-                answer: "Porque su sufrimiento pesaba más que la arena de los mares"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente saber que los ancianos entienden que algunas situaciones requieren varias conversaciones y no se resuelven de inmediato?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "1 Tesalonicenses 5:14",
-                purpose: "Los ancianos deben apoyar a los débiles",
-                text: "Por otro lado, hermanos, los instamos a amonestar a los desordenados, a consolar a los deprimidos, a apoyar a los débiles y a ser pacientes con todos."
-              },
-              {
-                reference: "Proverbios 20:5",
-                purpose: "Preguntas bien pensadas sacan lo que piensas",
-                text: "El consejo en el corazón del hombre es como aguas profundas, pero el hombre de entendimiento lo saca."
-              },
-              {
-                reference: "Job 6:3",
-                purpose: "No controlar lo que dices cuando sufres",
-                text: "Ahora pesarían más que la arena de los mares. Por eso he hablado imprudentemente."
-              },
-              {
-                reference: "Proverbios 18:13",
-                purpose: "Escuchar antes de sacar conclusiones",
-                text: "Responder a un asunto antes de oírlo es una tontería y una humillación."
-              }
-            ],
-            reflectionQuestions: [
-              "¿He sido completamente abierto con los ancianos cuando he necesitado ayuda, o he guardado información por vergüenza o miedo a ser juzgado?",
-              "¿Cómo me hace sentir saber que los ancianos no sacarán conclusiones apresuradas sino que me escucharán con paciencia y atención?",
-              "¿Entiendo que expresar lo que pienso y siento sin filtros, incluso si mis palabras no son perfectas, puede ser parte del proceso de sanación espiritual?"
-            ],
-            practicalApplications: [
-              "Si necesito hablar con un anciano, voy a prepararme mentalmente para expresarme abiertamente esta semana, sin guardar información por vergüenza o miedo",
-              "Voy a confiar en que los ancianos se tomarán el tiempo necesario para entenderme completamente y no me juzgarán apresuradamente",
-              "No voy a esperar que mi situación se resuelva en una sola conversación; voy a ser paciente, confiar en el proceso de pastoreo y estar dispuesto a tener varias conversaciones si es necesario"
-            ]
-          },
-          {
-            number: "13",
-            textEs: "¿Qué más harán los ancianos para ayudarnos? (Mira también las imágenes).",
-            textLSM: "",
-            paragraphs: [13],
-            answer: "Los ancianos procurarán no hacer nada que te haga sentir más culpable. En cambio, orarán por ti, y esas oraciones pueden tener un \"efecto poderoso\" en tu ánimo. También te aplicarán \"aceite en el nombre de Jehová\", que es la verdad de la Palabra de Dios, usando con habilidad la Biblia para aliviarte, consolarte y ayudarte a recuperar tu relación con Jehová. Por medio de ellos oirás la voz de Jehová diciéndote: \"Este es el camino. Anda en él\".",
-            answerBullets: [
-              "Los ancianos procurarán no hacer nada que te haga sentir más culpable",
-              "Orarán por ti",
-              "Esas oraciones pueden tener un \"efecto poderoso\" en tu ánimo",
-              "Te ayudarán aplicándote \"aceite en el nombre de Jehová\"",
-              "**Este \"aceite\" es la verdad de la Palabra de Dios**",
-              "Usarán con habilidad la Biblia para aliviarte",
-              "Usarán con habilidad la Biblia para consolarte",
-              "Usarán con habilidad la Biblia para ayudarte a recuperar tu relación con Jehová",
-              "Sus consejos bíblicos te darán las fuerzas para seguir haciendo lo correcto",
-              "Por medio de ellos oirás la voz de Jehová diciéndote: \"Este es el camino. Anda en él\""
-            ],
-            flashcards: [
-              {
-                question: "Según Santiago 5:14-16, ¿qué representa el 'aceite en el nombre de Jehová' que los ancianos aplican cuando ayudan espiritualmente?",
-                answer: "La verdad de la Palabra de Dios"
-              },
-              {
-                question: "Según Isaías 57:18, ¿qué tres cosas específicas hace Jehová por medio de los ancianos cuando usan su Palabra?",
-                answer: "Sanar, guiar y dar pleno consuelo"
-              },
-              {
-                question: "Según Isaías 30:21, ¿qué mensaje específico oirás por medio de los ancianos cuando te están guiando espiritualmente?",
-                answer: "Este es el camino. Anda en él"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente saber que los ancianos orarán por ti y que esas oraciones pueden tener un 'efecto poderoso' en tu ánimo?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Santiago 5:14-16",
-                purpose: "Aplicar aceite espiritual (la verdad de Dios)",
-                text: "¿Hay alguien enfermo entre ustedes? Que llame a los ancianos de la congregación, y que ellos oren por él y le apliquen aceite en el nombre de Jehová. Y la oración de fe hará que el enfermo se ponga bien, y Jehová lo levantará. Además, si ha cometido pecados, se le perdonará. Por lo tanto, confiesen abiertamente sus pecados unos a otros y oren unos por otros, para que sean sanados. La súplica del justo, cuando está en acción, tiene mucho poder."
-              },
-              {
-                reference: "Isaías 57:18",
-                purpose: "Aliviar, consolar y recuperar",
-                text: "He visto sus caminos, pero lo sanaré. Lo guiaré y le daré pleno consuelo, a él y a los que están de duelo por él."
-              },
-              {
-                reference: "Isaías 30:21",
-                purpose: "Oír la voz de Jehová por medio de los ancianos",
-                text: "Y tus propios oídos oirán una palabra detrás de ti que dice: 'Este es el camino. Anda en él', en caso de que ustedes vayan a la derecha o en caso de que vayan a la izquierda."
-              }
-            ],
-            reflectionQuestions: [
-              "¿He experimentado alguna vez el 'efecto poderoso' de las oraciones de los ancianos en mi ánimo cuando he pasado por dificultades?",
-              "¿Cómo me ayuda saber que el objetivo de los ancianos no es hacerme sentir más culpable, sino aliviarme, consolarme y ayudarme a recuperarme?",
-              "¿Puedo ver a los ancianos como instrumentos por medio de los cuales Jehová me habla, me guía y me dice: 'Este es el camino. Anda en él'?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a pedirle específicamente a un anciano que ore por mí si estoy pasando por alguna dificultad espiritual, confiando en el 'efecto poderoso' de esas oraciones",
-              "Voy a meditar en Isaías 30:21 y recordar que cuando los ancianos me aconsejan con la Biblia, es Jehová quien me está diciendo: 'Este es el camino. Anda en él'",
-              "Voy a ver los consejos bíblicos de los ancianos no como críticas que me hacen sentir peor, sino como 'aceite' sanador que Jehová aplica para mi recuperación y alivio espiritual"
-            ]
-          },
-          {
-            number: "14",
-            textEs: "Según Gálatas 6:1, ¿cómo ayudan los ancianos a quien da \"un paso en falso\"? (Mira también las imágenes).",
-            textLSM: "",
-            paragraphs: [14],
-            readText: "LEE Gálatas 6:1",
-            answer: "Los ancianos ayudan a quien da \"un paso en falso\" corrigiéndolo \"con espíritu apacible\", impulsados por el amor. La palabra griega para \"corregir\" significa reajustar, como cuando un médico recoloca un hueso dislocado causando el mínimo dolor posible. Los ancianos tratan al hermano con mucha bondad y compasión para no causarle más dolor. También se vigilan a sí mismos, siendo humildes y no tratando al hermano con actitud crítica o superior.",
-            answerBullets: [
-              "Dar \"un paso en falso\" significa no actuar de acuerdo con las normas de Dios",
-              "Puede ser un simple error de juicio o una grave violación",
-              "El amor impulsa a los ancianos a corregir",
-              "Corrigen \"con espíritu apacible\"",
-              "**La palabra \"corregir\" significa reajustar, como recolocar un hueso dislocado**",
-              "Como un médico que recoloca un hueso causando el mínimo dolor posible",
-              "Tratan de corregir con mucha bondad para no causar más dolor",
-              "Cada anciano debe \"vigilarse a sí mismo\" cuando aconseja",
-              "Los ancianos también son imperfectos y pueden dar pasos en falso",
-              "No tratan al hermano con actitud crítica o superior",
-              "Se esfuerzan por ser humildes",
-              "Muestran compasión"
-            ],
-            flashcards: [
-              {
-                question: "Según Gálatas 6:1, ¿con qué espíritu específico deben los ancianos corregir a quien da un paso en falso?",
-                answer: "Con espíritu apacible"
-              },
-              {
-                question: "¿Con qué acción médica específica compara este párrafo el trabajo de 'corregir' o 'reajustar' a un hermano?",
-                answer: "Recolocar un hueso dislocado para evitar una lesión permanente"
-              },
-              {
-                question: "Según Gálatas 6:1, ¿qué debe hacer cada anciano consigo mismo cuando aconseja a otros, y por qué?",
-                answer: "Vigilarse a sí mismo, porque también es imperfecto y puede dar pasos en falso"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente la comparación de que corregir es como recolocar un hueso dislocado con el mínimo dolor posible?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Gálatas 6:1",
-                purpose: "Corregir con espíritu apacible y vigilarse",
-                text: "Hermanos, aunque un hombre dé un paso en falso antes de darse cuenta, ustedes, los que tienen cualidades espirituales, traten de corregir a ese hombre con espíritu apacible. Pero vigílate a ti mismo para que tú también no seas tentado."
-              },
-              {
-                reference: "1 Pedro 3:8",
-                purpose: "Ser humilde y mostrar compasión",
-                text: "Por último, todos ustedes sean de una misma mente, mostrando compasión, teniendo cariño fraternal, siendo tiernos en sus sentimientos y humildes en su manera de pensar."
-              }
-            ],
-            reflectionQuestions: [
-              "Si alguna vez he necesitado corrección, ¿he visto a los ancianos como médicos espirituales que me reajustan con cuidado y amor, o como jueces críticos?",
-              "¿Cómo me ayuda saber que los ancianos también son imperfectos y pueden dar pasos en falso, igual que yo, y por eso deben vigilarse a sí mismos?",
-              "¿Puedo confiar en que los ancianos me tratarán con bondad, humildad y compasión en lugar de con actitud crítica o sintiéndose superiores?"
-            ],
-            practicalApplications: [
-              "Si alguna vez me corrigen los ancianos, voy a recordar que su objetivo es 'reajustarme' espiritualmente con el mínimo dolor posible, como un médico cuida a su paciente, no lastimarme más",
-              "Voy a apreciar la humildad de los ancianos que se vigilan a sí mismos cuando me aconsejan, sabiendo que también son imperfectos y vulnerables",
-              "Si necesito corrección, voy a enfocarme en el amor y la compasión detrás de la corrección, no en el dolor temporal del momento, confiando en que es para evitar una lesión espiritual permanente"
-            ]
-          },
-          {
-            number: "15",
-            textEs: "¿Qué podemos hacer si tenemos un problema?",
-            textLSM: "",
-            paragraphs: [15],
-            answer: "Si tenemos un problema, podemos acudir a cualquier anciano de la congregación porque podemos confiar en ellos. Ellos saben que no deben revelar asuntos confidenciales y han sido capacitados para basar sus consejos en la Biblia en lugar de en sus opiniones personales. Aunque tienen personalidades diferentes y algunos tienen más experiencia que otros, todos están preparados para ayudarnos a llevar nuestras cargas. Sin embargo, no debemos ir de anciano en anciano buscando que nos digan lo que queremos oír.",
-            answerBullets: [
-              "Podemos confiar en los ancianos de la congregación",
-              "Ellos saben que no deben revelar asuntos confidenciales",
-              "Han recibido capacitación para basar sus consejos en la Biblia, no en opiniones personales",
-              "Siguen pendientes de ayudarnos a llevar nuestras cargas",
-              "Los ancianos tienen personalidades diferentes",
-              "Algunos tienen más experiencia que otros",
-              "**Podemos hablar con cualquiera de ellos si tenemos un problema**",
-              "No debemos ir de anciano en anciano pidiendo consejo hasta que uno nos diga lo que queremos oír",
-              "No queremos que \"nos regalen los oídos\"",
-              "Preferimos aprender la \"enseñanza sana\" de la Palabra de Dios",
-              "Un anciano puede preguntar si ya hablaste con otros ancianos",
-              "Por modestia, un anciano puede pedir la opinión de otro anciano"
-            ],
-            flashcards: [
-              {
-                question: "Según Proverbios 11:13, ¿qué característica específica de los ancianos nos da confianza para hablar con ellos sobre asuntos personales?",
-                answer: "Son dignos de confianza y guardan secretos"
-              },
-              {
-                question: "Según Gálatas 6:2, ¿qué responsabilidad continua tienen los ancianos hacia nosotros cuando tenemos problemas?",
-                answer: "Seguir llevando nuestras cargas"
-              },
-              {
-                question: "Según 2 Timoteo 4:3, ¿qué actitud incorrecta debemos evitar cuando buscamos consejo de los ancianos?",
-                answer: "Acumular maestros para que nos regalen los oídos en lugar de aceptar la enseñanza sana"
-              },
-              {
-                question: "Según Proverbios 13:10, ¿qué cualidad impulsa a un anciano a pedir la opinión de otro anciano?",
-                answer: "La modestia o humildad"
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Proverbios 11:13",
-                purpose: "Los ancianos no revelan asuntos confidenciales",
-                text: "El que anda chismeando revela información confidencial, pero el que es digno de confianza guarda un secreto."
-              },
-              {
-                reference: "Gálatas 6:2",
-                purpose: "Ayudar a llevar las cargas",
-                text: "Sigan llevando las cargas los unos de los otros, y así cumplan la ley del Cristo."
-              },
-              {
-                reference: "2 Timoteo 4:3",
-                purpose: "No buscar que nos regalen los oídos",
-                text: "Porque habrá un período en que no soportarán la enseñanza sana, sino que según sus propios deseos acumularán maestros para sí mismos, para que les regalen los oídos."
-              },
-              {
-                reference: "Proverbios 13:10",
-                purpose: "La modestia impulsa a buscar consejo",
-                text: "El orgullo solo lleva a peleas, pero la sabiduría está con los que aceptan consejo."
-              }
-            ],
-            reflectionQuestions: [
-              "Cuando busco consejo de los ancianos, ¿estoy buscando honestamente la 'enseñanza sana' de la Biblia o solo quiero que me digan lo que me hace sentir mejor?",
-              "¿Confío plenamente en que los ancianos mantendrán la confidencialidad de mis asuntos privados, o ese temor infundado me impide buscar ayuda cuando la necesito?",
-              "¿Aprecio que los ancianos tengan personalidades diferentes, viendo eso como una ventaja que me permite conectar mejor con diferentes personas, en lugar de verlo como un problema?"
-            ],
-            practicalApplications: [
-              "Si tengo un problema esta semana, voy a acudir con plena confianza a un anciano, sabiendo que mantendrá la confidencialidad y me dará consejo basado en la Biblia, no en opiniones personales",
-              "Voy a comprometer mi corazón desde ahora a aceptar la 'enseñanza sana' de la Biblia aunque no sea lo que quiero oír, en lugar de buscar ancianos que 'me regalen los oídos'",
-              "Voy a apreciar que los ancianos tienen personalidades y experiencias diferentes, reconociendo que puedo hablar con cualquiera de ellos porque todos han sido capacitados para ayudarme"
-            ]
-          },
-          {
-            number: "16",
-            textEs: "¿Qué responsabilidad tenemos?",
-            textLSM: "",
-            paragraphs: [16],
-            section: "QUÉ RESPONSABILIDAD TENEMOS CADA UNO",
-            answer: "Cada uno de nosotros tenemos la responsabilidad de demostrarle a Jehová cada día, con lo que decimos y hacemos, que lo amamos y queremos agradarle. Los ancianos nos cuidan y dan consejos, pero no nos dicen lo que tenemos que hacer. Ellos usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos, y luego dejan que tomemos nuestra propia decisión. Esto nos permite entrenar nuestra \"capacidad de discernimiento\".",
-            answerBullets: [
-              "Los ancianos nos cuidan y nos dan consejos",
-              "Pero no nos dicen lo que tenemos que hacer",
-              "**Cada uno tenemos la responsabilidad de demostrarle a Jehová cada día que lo amamos**",
-              "Lo demostramos con lo que decimos y hacemos",
-              "Queremos agradarle",
-              "Renderemos cuentas a Dios",
-              "Él nos ayudará a tomar buenas decisiones",
-              "Él nos ayudará a serle fieles",
-              "Los ancianos usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos",
-              "Luego dejan que tomemos nuestra propia decisión",
-              "Esto nos permite entrenar nuestra \"capacidad de discernimiento\""
-            ],
-            flashcards: [
-              {
-                question: "Según Romanos 14:12, ¿ante quién tenemos que rendir cuentas de nuestras decisiones espirituales?",
-                answer: "Ante Dios"
-              },
-              {
-                question: "Según Hebreos 5:14, ¿qué capacidad entrenamos cuando tomamos nuestras propias decisiones después de entender los principios bíblicos?",
-                answer: "La capacidad de discernimiento"
-              },
-              {
-                question: "¿Qué dos cosas usan los ancianos para ayudarnos, y qué dejan que hagamos después?",
-                answer: "Usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos, y luego dejan que tomemos nuestra propia decisión"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente entender que los ancianos no te dicen qué hacer, sino que te ayudan a entender los principios bíblicos para que tú decidas?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Romanos 14:12",
-                purpose: "Renderemos cuentas a Dios",
-                text: "Así que cada uno de nosotros rendirá cuentas de sí mismo a Dios."
-              },
-              {
-                reference: "Hebreos 5:14",
-                purpose: "Entrenar la capacidad de discernimiento",
-                text: "Pero el alimento sólido es para las personas maduras, para los que tienen la capacidad de discernimiento entrenada por el uso para distinguir tanto lo correcto como lo incorrecto."
-              }
-            ],
-            reflectionQuestions: [
-              "¿Asumo la plena responsabilidad de mis propias decisiones espirituales, o espero que los ancianos me digan exactamente qué hacer en cada situación?",
-              "¿Estoy entrenando activamente mi 'capacidad de discernimiento' al tomar decisiones basadas en principios bíblicos, o prefiero que otros decidan por mí para no asumir responsabilidad?",
-              "¿Demuestro realmente cada día con lo que digo y hago que amo a Jehová y quiero agradarle, sabiendo que renderé cuentas directamente a él?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a tomar una decisión importante usando principios bíblicos que entienda, recordando que renderé cuentas a Jehová, no a los ancianos",
-              "Voy a entrenar mi 'capacidad de discernimiento' estudiando cómo ve Jehová los asuntos y aplicándolo a situaciones reales, en lugar de esperar que siempre me digan exactamente qué hacer",
-              "Cada día voy a demostrar conscientemente con mis palabras y acciones que amo a Jehová y quiero agradarle, asumiendo mi responsabilidad personal ante él"
-            ]
-          },
-          {
-            number: "17",
-            textEs: "¿A qué debemos estar decididos?",
-            textLSM: "",
-            paragraphs: [17],
-            answer: "Debemos estar decididos a aprovechar al máximo el regalo que Jehová nos ha dado por medio de los ancianos. Jehová cumplió su promesa de darnos pastores que actúan de acuerdo con su voluntad y nos alimentan con conocimiento y entendimiento. Por eso, si estamos débiles o enfermos en sentido espiritual, no debemos dudar en \"llamar\" a los ancianos para pedirles ayuda. Es un privilegio ser ovejas de Jehová y contar con Jesús como \"el pastor excelente\" y con los ancianos como pastores de la congregación.",
-            answerBullets: [
-              "Es un privilegio ser ovejas de Jehová",
-              "Jehová envió a Jesús, \"el pastor excelente\", para rescatarnos",
-              "Jesús nos dio la oportunidad de vivir para siempre",
-              "Jehová cumplió su promesa de darnos pastores (ancianos)",
-              "Estos pastores actúan de acuerdo con su voluntad",
-              "Nos alimentan con conocimiento y entendimiento",
-              "**Si estamos débiles o enfermos espiritualmente, no debemos dudar en \"llamar\" a los ancianos**",
-              "Debemos estar decididos a aprovechar al máximo este regalo de Jehová",
-              "Los ancianos son un regalo que Jehová nos ha dado"
-            ],
-            flashcards: [
-              {
-                question: "Según Juan 10:11, ¿cómo llama la Biblia a Jesús en relación con su cuidado por las ovejas?",
-                answer: "El pastor excelente"
-              },
-              {
-                question: "Según Jeremías 3:15, ¿con qué dos cosas específicas alimentan los pastores (ancianos) que Jehová nos da?",
-                answer: "Con conocimiento y entendimiento"
-              },
-              {
-                question: "¿Cuál es la decisión específica a la que nos insta el párrafo final del artículo?",
-                answer: "Estar decididos a aprovechar al máximo el regalo de los ancianos que Jehová nos ha dado"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente ver a los ancianos como un 'regalo' que Jehová nos ha dado en lugar de verlos de otra manera?",
-                answer: ""
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Juan 10:11",
-                purpose: "Jesús es el pastor excelente que nos rescató",
-                text: "Yo soy el pastor excelente. El pastor excelente entrega su vida por las ovejas."
-              },
-              {
-                reference: "Jeremías 3:15",
-                purpose: "Pastores que alimentan con conocimiento",
-                text: "Y les daré pastores que actúen de acuerdo con mi voluntad, y ellos los alimentarán con conocimiento y entendimiento."
-              }
-            ],
-            reflectionQuestions: [
-              "¿Veo realmente a los ancianos como un 'regalo' de Jehová que debo aprovechar, o los veo como una carga, una amenaza o algo opcional?",
-              "Si estoy débil o enfermo espiritualmente en este momento, ¿estoy decidido a no dudar en 'llamar' a los ancianos como dice Santiago 5:14, o sigo resistiéndome por orgullo, vergüenza o desconfianza?",
-              "¿Aprecio profundamente el privilegio de ser una oveja de Jehová con Jesús como mi pastor excelente que dio su vida por mí y los ancianos como pastores de la congregación?"
-            ],
-            practicalApplications: [
-              "Esta semana voy a agradecer específicamente a Jehová en oración por el regalo de los ancianos, cambiando mi perspectiva sobre ellos si he sido negativo o desconfiado",
-              "Voy a estar firmemente decidido desde hoy a 'llamar' a los ancianos sin dudarlo si alguna vez estoy débil o enfermo espiritualmente, sin dejar que el orgullo, la vergüenza o el temor me lo impidan",
-              "Voy a aprovechar al máximo este regalo buscando consejo y ayuda de los ancianos cuando lo necesite, recordando que actúan de acuerdo con la voluntad de Jehová y me alimentan con conocimiento y entendimiento bíblico"
-            ]
-          }
-        ],
-        paragraphs: [
-          {
-            number: 1,
-            content: "JEHOVÁ quiere mucho a todas sus ovejas. Las compró con la sangre de Jesús y les encargó a los ancianos de las congregaciones que las cuiden (Hech. 20:28). Dios quiere que las traten con mucho cariño. Y ellos, siguiendo las instrucciones de Jesús —que es la cabeza de la congregación—, animan al rebaño y lo protegen de los peligros espirituales (Is. 32:1, 2)."
-          },
-          {
-            number: 2,
-            content: "Jehová se interesa profundamente por todas sus ovejas, pero en especial por las que sufren. Él utiliza a los ancianos para ayudar a las que están sufriendo en sentido espiritual (lea Ezequiel 34:15, 16). Entonces, ¿qué debemos hacer si necesitamos ayuda? Dios quiere que le oremos, pero también que acudamos a los \"pastores y maestros\" de la congregación (Efes. 4:11, 12)."
-          },
-          {
-            number: 3,
-            content: "En este artículo hablaremos de cómo se vale Jehová de los ancianos para ayudarnos en sentido espiritual. Responderemos estas preguntas: ¿cuándo debemos acudir a los ancianos?, ¿por qué debemos hacerlo? y ¿cómo nos ayudan ellos? Este análisis también beneficiará a quienes ahora están espiritualmente fuertes, pues hará que todos valoremos más la ayuda que Dios nos da por medio de los ancianos y nos enseñará qué hacer si en el futuro tenemos que acudir a ellos."
-          },
-          {
-            number: 4,
-            content: "El discípulo Santiago explicó cómo se vale Jehová de los ancianos para ayudarnos. Escribió: \"¿Hay alguien enfermo entre ustedes? Que llame a los ancianos de la congregación\" (lea Santiago 5:14-16, 19, 20). Aquí Santiago estaba hablando de alguien enfermo en sentido espiritual. ¿Cómo lo sabemos? Por el contexto. Por un lado, no le dice al enfermo que llame a un médico, sino a los ancianos. Por otro, explica que la persona enferma se sana cuando se le perdonan los pecados. Lo cierto es que hay muchos parecidos entre una enfermedad física y una espiritual. Cuando nos enfermamos, acudimos al médico, le explicamos nuestros síntomas y seguimos sus instrucciones. De manera parecida, cuando nos enfermamos espiritualmente, deberíamos acudir a un anciano, explicarle nuestra situación y seguir sus consejos bíblicos.",
-            image: "https://i.imgur.com/7XIZRnj.png",
-            imageCaption: "Cuando nos enfermamos espiritualmente, deberíamos acudir a un anciano. (Vea el párrafo 4)."
-          },
-          {
-            number: 5,
-            content: "El capítulo 5 de Santiago nos anima a pedirles ayuda a los ancianos cuando notamos que tenemos un problema de salud espiritual. Pero no hay por qué esperar a que nuestra relación con Dios se haya dañado; sin duda, es bueno pedirles ayuda antes de que eso suceda. Y debemos tener cuidado, pues la Biblia nos advierte que podemos engañarnos pensando que nuestra amistad con Jehová está mejor de lo que realmente está (Sant. 1:22). Eso fue lo que les pasó a algunos cristianos de Sardis: creían que estaban saludables, pero Jesús les dijo que no era así (Apoc. 3:1, 2). ¿Cómo podemos revisar nuestro estado de salud espiritual? Una forma es comparando el entusiasmo que tenemos ahora con el que teníamos cuando nos bautizamos (Apoc. 2:4, 5). Podemos preguntarnos: \"¿Disfruto como antes al leer la Biblia y meditar en ella? ¿Sigo asistiendo a todas las reuniones y preparándome bien para ellas? ¿Sigue siendo la predicación igual de importante para mí? ¿Han ganado protagonismo en mi vida las diversiones y las cosas materiales?\". Las respuestas a estas preguntas indicarán si tenemos una debilidad que puede empeorar si no la tratamos. Si no logramos corregirla por nosotros mismos o si ya nos ha llevado a hacer algo que Jehová desaprueba, debemos acudir a los ancianos."
-          },
-          {
-            number: 6,
-            content: "Claro está, si alguien comete un pecado grave que pudiera llevarlo a ser sacado de la congregación, tiene que hablar con un anciano (1 Cor. 5:11-13). Esa persona necesita ayuda para reparar su amistad con Dios. Jehová solo nos perdonará si demostramos con \"obras\" que estamos realmente arrepentidos (Hech. 26:20). Y una de esas obras es confesarles a los ancianos que hemos cometido un pecado grave."
-          },
-          {
-            number: 7,
-            content: "Los ancianos no solo ayudan a quienes han cometido un pecado grave. También están ahí para quienes están débiles espiritualmente (Hech. 20:35). Supongamos que estás luchando contra algún mal deseo y sientes que vas a perder la batalla. Quizás esa lucha se te haga especialmente dura si antes de conocer la verdad consumías drogas, veías pornografía o llevabas una vida inmoral. Lo bueno es que no estás solo en tu lucha. Puedes desahogarte con un anciano que sabes que te escuchará con atención. Seguro que te dará consejos prácticos y te recordará que seguirás contando con la aprobación de Jehová siempre y cuando no cedas a los malos deseos (Ecl. 4:12). Si te sientes desanimado porque sigues teniendo malos deseos, los ancianos pueden recordarte que eso demuestra que te tomas en serio tu amistad con Jehová y que no confías en tus propias fuerzas (1 Cor. 10:12)."
-          },
-          {
-            number: 8,
-            content: "No es necesario contarles a los ancianos cada error que cometemos. Por ejemplo, imaginemos que le dijiste algo hiriente a un hermano e incluso te enojaste muchísimo. En lugar de hablar con un anciano, podrías seguir el consejo de Jesús sobre cómo hacer las paces (Mat. 5:23, 24). También podrías buscar información en nuestras publicaciones sobre cómo tener más apacibilidad, paciencia y autocontrol. Pero, si aun así ves que no has podido solucionar el problema, quizás podrías pedirle ayuda a un anciano. En la carta que les escribió a los filipenses, el apóstol Pablo le dijo a un hermano de la congregación que ayudara a Evodia y a Síntique a resolver sus diferencias. Un anciano de tu congregación puede hacer lo mismo por ti (Filip. 4:2, 3)."
-          },
-          {
-            number: 9,
-            content: "Si sentimos que vamos a perder la batalla contra los malos deseos o si hemos cometido un pecado grave, puede que necesitemos fe y valor para hablar con los ancianos. Pero no debemos dejar que la vergüenza nos impida acudir a ellos. ¿Por qué no? Recordemos que Jehová nos los ha dado para que nos ayuden a estar fuertes y sanos espiritualmente. Así que al acudir a ellos demostramos que confiamos en Dios y en sus instrucciones. Confiamos en que Jehová nos ayudará en nuestra lucha (Sal. 94:18). Y confiamos en que, si confesamos y abandonamos nuestros pecados, recibiremos su misericordia y su perdón (lea Proverbios 28:13)."
-          },
-          {
-            number: 10,
-            content: "Como hemos visto, pedirles ayuda a los ancianos nos beneficia de muchas maneras. En cambio, si intentamos esconder nuestros pecados, podemos perjudicarnos. Pensemos en el rey David. Cuando ocultó sus errores, sufrió espiritual, emocional e incluso físicamente (Sal. 32:3-5). Los problemas espirituales son como las lesiones físicas: si no se tratan, van de mal en peor. Jehová lo sabe y por eso nos invita a que acudamos a los ancianos y \"arreglemos las cosas\" (Is. 1:5, 6, 18)."
-          },
-          {
-            number: 11,
-            content: "Si escondemos nuestros pecados, también podemos perjudicar a otras personas. Podemos provocar que en la congregación el espíritu de Dios deje de fluir libremente y la paz se vea amenazada (Efes. 4:30). Por otra parte, si nos enteramos de que alguien de la congregación ha cometido un pecado grave, debemos aconsejarle que hable con los ancianos. No olvidemos que ocultarlo nos haría culpables a nosotros también (Lev. 5:1). Nuestro amor a Jehová debe impulsarnos a dar el paso de contar la verdad. Así contribuiremos a mantener limpia la congregación y a que la persona recupere su buena relación con Dios."
-          },
-          {
-            number: 12,
-            content: "La Biblia les dice a los ancianos que apoyen a los que están débiles en sentido espiritual (1 Tes. 5:14). Si has dañado de algún modo tu relación con Jehová, ellos tal vez te hagan preguntas bien pensadas para ayudarte a sacar lo que piensas y sientes (Prov. 20:5). Puedes facilitarles su labor expresándote abiertamente aunque te cueste hacerlo debido a tu cultura, tu personalidad o la vergüenza que sientes por lo que pasó. No te preocupes si no eres capaz de controlar todo lo que dices o cómo lo dices (Job 6:3). Los ancianos no sacarán conclusiones apresuradas, sino que se esforzarán por escucharte con atención y por hacerse un cuadro completo antes de darte cualquier consejo (Prov. 18:13). Ellos saben que pastorear al rebaño toma tiempo y que algunas situaciones no se pueden resolver con una sola conversación."
-          },
-          {
-            number: 13,
-            content: "Los ancianos procurarán no hacer nada que te haga sentir todavía más culpable. Más bien, orarán por ti. Tal vez te sorprenda el \"efecto poderoso\" que esas oraciones pueden tener en tu ánimo. Ellos también te ayudarán aplicándote \"aceite en el nombre de Jehová\" (Sant. 5:14-16). Este \"aceite\" es la verdad de la Palabra de Dios. Así que usarán con habilidad la Biblia para aliviarte, consolarte y ayudarte a recuperar tu relación con Jehová (Is. 57:18). Sus consejos bíblicos te darán las fuerzas para seguir haciendo lo correcto. Por medio de ellos oirás la voz de Jehová diciéndote: \"Este es el camino. Anda en él\" (Is. 30:21).",
-            image: "https://i.imgur.com/XfbY8NQ.png",
-            imageCaption: "Los ancianos usan con habilidad la Biblia para ayudarnos a recuperar nuestra relación con Jehová. (Vea los párrafos 13 y 14)."
-          },
-          {
-            number: 14,
-            content: "(Lea Gálatas 6:1). Dar \"un paso en falso\" significa no actuar de acuerdo con las justas normas de Dios. Ese paso en falso puede ser un simple error de juicio o una grave violación de la ley de Dios. El amor impulsa a los ancianos a tratar de \"corregir al hombre con espíritu apacible\". La palabra griega que se traduce \"corregir\" (o \"reajustar\", según la nota) también puede referirse a la acción de recolocar un hueso dislocado para evitar una lesión permanente. Tal como un buen médico tiene mucho cuidado para recolocar el hueso causando el mínimo dolor posible al paciente, los ancianos tratan de corregir al hermano con mucha bondad para no causarle más dolor todavía. Además, la Biblia le dice a cada anciano que al aconsejar a otros \"se vigile a sí mismo\", pues también es imperfecto y puede dar pasos en falso. Así que, en vez de tratar al hermano con una actitud crítica o como si se creyeran superiores, los ancianos se esfuerzan por ser humildes y mostrar compasión (1 Ped. 3:8).",
-            image: "https://i.imgur.com/XfbY8NQ.png",
-            imageCaption: "Los ancianos corrigen al hermano con mucha bondad y compasión. (Vea el párrafo 14)."
-          },
-          {
-            number: 15,
-            content: "Podemos confiar en los ancianos de la congregación. Ellos saben que no deben revelar los asuntos confidenciales, y han recibido capacitación para que basen sus consejos en la Biblia en vez de en sus opiniones personales y para que sigan pendientes de ayudarnos a llevar nuestras cargas (Prov. 11:13; Gál. 6:2). Es cierto que los ancianos tienen personalidades diferentes y algunos tienen más experiencia que otros, pero si tenemos un problema podemos hablar con cualquiera de ellos. Claro, no iremos de anciano en anciano pidiendo consejo hasta que alguno nos diga lo que queremos oír. No queremos ser como los que prefieren que \"les regalen los oídos\" en lugar de aprender \"la enseñanza sana\" de la Palabra de Dios (2 Tim. 4:3). Cuando le contamos un problema a un anciano, tal vez nos pregunte si ya hemos hablado del tema con otros ancianos y qué consejo nos han dado. Y la modestia tal vez lo impulse a pedirle la opinión a otro anciano (Prov. 13:10)."
-          },
-          {
-            number: 16,
-            content: "Los ancianos nos cuidan y nos dan consejos, pero no nos dicen lo que tenemos que hacer. Cada uno de nosotros tenemos la responsabilidad de demostrarle a Jehová cada día con lo que decimos y hacemos que lo amamos y queremos agradarle (Rom. 14:12). Él nos ayudará a tomar buenas decisiones y a serle fieles. Por eso, los ancianos usan la Biblia para ayudarnos a entender cómo ve Jehová los asuntos y luego dejan que tomemos nuestra propia decisión. Eso nos permite entrenar nuestra \"capacidad de discernimiento\" (Heb. 5:14)."
-          },
-          {
-            number: 17,
-            content: "¡Qué privilegio tan bonito es ser ovejas de Jehová! Él envió a Jesús, \"el pastor excelente\", para rescatarnos y darnos la oportunidad de vivir para siempre (Juan 10:11). Además, por medio de los ancianos de las congregaciones ha cumplido esta promesa: \"Les daré pastores que actúen de acuerdo con mi voluntad, y ellos los alimentarán con conocimiento y entendimiento\" (Jer. 3:15). Así pues, si estamos débiles o enfermos en sentido espiritual, no dudemos en \"llamar\" a los ancianos para pedirles ayuda. Estemos decididos a aprovechar al máximo este regalo que nos ha dado Jehová."
-          }
-        ],
-        reviewQuestions: [
-          {
-            question: "¿Cuándo debemos \"llamar\" a los ancianos?",
-            answer: "Debemos llamar a los ancianos cuando estamos enfermos espiritualmente, cuando pasamos por situaciones difíciles que afectan nuestra espiritualidad, cuando sentimos que nuestra fe se está debilitando o cuando necesitamos ánimo y fortaleza espiritual. También cuando enfrentamos tentaciones fuertes o cuando hemos cometido un pecado grave y necesitamos ayuda para recuperarnos.",
-            answerBullets: [
-              "**Situaciones para llamar a los ancianos:**",
-              "Cuando estamos enfermos espiritualmente",
-              "Cuando nuestra fe se está debilitando",
-              "Cuando pasamos por situaciones difíciles",
-              "Cuando necesitamos ánimo y fortaleza espiritual",
-              "Cuando enfrentamos tentaciones fuertes",
-              "Cuando hemos cometido un pecado grave",
-              "Cuando necesitamos ayuda para recuperarnos espiritualmente",
-              "Cuando nos sentimos desanimados o deprimidos",
-              "Cuando tenemos dudas o preguntas profundas"
-            ]
-          },
-          {
-            question: "¿Por qué debemos \"llamar\" a los ancianos?",
-            answer: "Porque Jehová los ha designado como pastores para cuidar de sus ovejas con amor. Ellos siguen las instrucciones de Jesús, el pastor excelente, y tienen la responsabilidad de alimentarnos espiritualmente y protegernos de los peligros. Además, Jehová cumple su promesa de darnos pastores que actúan según su voluntad y nos alimentan con conocimiento y entendimiento.",
-            answerBullets: [
-              "**Razones para llamar a los ancianos:**",
-              "Jehová los ha designado como pastores",
-              "Siguen las instrucciones de Jesús, el pastor excelente",
-              "Tienen la responsabilidad de cuidar las ovejas",
-              "Son un regalo de Jehová para ayudarnos",
-              "Actúan según la voluntad de Dios",
-              "Nos alimentan con conocimiento y entendimiento",
-              "Tienen experiencia y sabiduría bíblica",
-              "Muestran el amor de Jehová por nosotros",
-              "Cumplen la promesa de Jeremías 3:15"
-            ]
-          },
-          {
-            question: "¿Cómo nos ayudan los ancianos?",
-            answer: "Los ancianos nos ayudan orando con nosotros y por nosotros, animándonos con textos bíblicos específicos para nuestra situación, dándonos consejos prácticos basados en las Escrituras y su experiencia. También nos protegen de peligros espirituales, nos fortalecen cuando estamos débiles, nos corrigen con amor cuando es necesario y nos muestran el cariño que Jehová siente por nosotros.",
-            answerBullets: [
-              "**Formas en que los ancianos nos ayudan:**",
-              "Oran con nosotros y por nosotros",
-              "Nos animan con textos bíblicos específicos",
-              "Dan consejos prácticos basados en las Escrituras",
-              "Comparten su experiencia personal",
-              "Nos protegen de peligros espirituales",
-              "Nos fortalecen cuando estamos débiles",
-              "Nos corrigen con amor cuando es necesario",
-              "Muestran el cariño de Jehová por nosotros",
-              "Nos visitan cuando estamos enfermos",
-              "Nos ayudan a recuperar el gozo"
-            ]
-          }
-        ],
-        finalSong: "Canción 31: Camina siempre con Jehová"
-      },
-
-      // Artículo 37: "La mejor manera de reaccionar ante las injusticias" (17-23 Nov)
-      {
-        metadata: {
-          articleNumber: 37,
-          week: "17-23 Nov",
-          month: "Septiembre",
-          year: 2025
-        },
-        song: "Canción 114: Demostremos paciencia",
-        title: "La mejor manera de reaccionar ante las injusticias",
-        biblicalText: "\"Él esperaba justicia, pero resultó que hubo injusticia\" (IS. 5:7).",
-        theme: "Cómo nos enseña el ejemplo de Jesús a reaccionar ante las injusticias como Jehová quiere.",
+        song: "Canción 138: Los cabellos blancos, una hermosa corona",
+        title: "Cómo mantener la alegría en la vejez",
+        biblicalText: "\"En su vejez seguirán prosperando\" (SAL. 92:14).",
+        theme: "Por qué es importante que los cristianos mayores mantengan la alegría y cómo pueden conseguirlo.",
         questions: [
           {
             number: "1, 2",
-            textEs: "¿Cómo reaccionan muchas personas ante las injusticias, y qué es posible que nos preguntemos?",
+            textEs: "¿Cómo ve Jehová a los hermanos fieles que están envejeciendo? (Salmo 92:12-14; vea también la imagen).",
             textLSM: "",
             paragraphs: [1, 2],
-            answer: "Muchas personas reaccionan con indignación y se unen a movimientos sociales, campañas o manifestaciones para intentar cambiar las cosas. Sin embargo, los cristianos nos preguntamos cómo debemos reaccionar ante estas situaciones y si hay algo que podamos hacer ahora mismo para mejorar la situación, sabiendo que el Reino de Dios es la solución definitiva.",
-            answerBullets: [
-              "Muchas personas se indignan al ver injusticias",
-              "Se unen a movimientos sociales para cambiar las cosas",
-              "Apoyan campañas, manifestaciones y líderes políticos",
-              "Los cristianos sabemos que no debemos ser parte del mundo",
-              "Nos duele y enoja ver a personas sufriendo",
-              "**Nos preguntamos: ¿Cómo debo reaccionar?**",
-              "**Nos preguntamos: ¿Hay algo que pueda hacer ahora?**"
+            readText: "LEE Salmo 92:12-14",
+            answer: [
+              "Jehová compara a los hermanos mayores con árboles prósperos.",
+              "Los cristianos de edad avanzada son bellísimos a los ojos de Dios.",
+              "Jehová ve más allá de las canas y se fija en sus extraordinarias cualidades.",
+              "Ellos le han servido fielmente durante muchos años tanto en las buenas como en las malas."
             ],
             flashcards: [
               {
-                question: "Según el párrafo 1, ¿cuáles son las 5 razones mencionadas por las que se trata injustamente a las personas?",
-                answer: "Posición económica, sexo, cultura, lugar de origen y raza"
+                question: "¿Con qué compara Jehová a los hermanos que están envejeciendo?",
+                answer: "Con árboles prósperos, como el cerezo de flor japonés que puede superar los 1.000 años."
               },
               {
-                question: "¿Qué dos tipos de personas menciona el párrafo 1 que toman decisiones egoístas que dañan al planeta?",
-                answer: "Gobernantes y empresarios"
-              },
-              {
-                question: "Según Juan 17:16, ¿cuál es la postura fundamental del cristiano ante los movimientos del mundo?",
-                answer: "No ser parte del mundo"
+                question: "¿En qué se fija Jehová cuando mira a los cristianos mayores?",
+                answer: "Ve más allá de las canas y se fija en sus extraordinarias cualidades y su servicio fiel durante muchos años."
               }
             ],
             biblicalCards: [
               {
-                reference: "Juan 17:16",
-                purpose: "Los cristianos no son parte del mundo",
-                text: "Ellos no son parte del mundo, igual que yo no soy parte del mundo."
+                reference: "Salmo 92:12-14",
+                purpose: "Cómo ve Jehová a los mayores fieles",
+                text: "El justo florecerá como la palmera, crecerá como el cedro del Líbano. Plantados en la casa de Jehová, florecerán en los patios de nuestro Dios. En su vejez seguirán prosperando; estarán llenos de vitalidad y frescura."
+              },
+              {
+                reference: "Proverbios 16:31",
+                purpose: "Las canas son una corona de hermosura",
+                text: "Las canas son una corona de hermosura cuando se hallan en el camino de la justicia."
               }
             ]
           },
           {
             number: "3",
-            textEs: "¿Por qué es natural que nos sintamos indignados ante las injusticias? (Isaías 5:7).",
+            textEs: "Mencione cómo usó Jehová a alguno de sus siervos de edad avanzada para cumplir su voluntad.",
             textLSM: "",
             paragraphs: [3],
-            section: "JEHOVÁ Y JESÚS ODIAN LAS INJUSTICIAS",
-            readText: "LEE Isaías 5:7",
-            answer: "Es natural sentirnos indignados porque fuimos creados a la imagen de Jehová, y él \"ama la rectitud y la justicia\". Dios nunca comete injusticias y odia ver que otros las cometan. Por ejemplo, en tiempos de Isaías, Jehová escuchó el \"grito de angustia\" de los israelitas maltratados y castigó a quienes desobedecían su Ley tratando injustamente a los demás.",
-            answerBullets: [
-              "Fuimos creados a la imagen de Jehová",
-              "**Jehová \"ama la rectitud y la justicia\"**",
-              "Dios nunca comete injusticias",
-              "No quiere que nadie cometa injusticias",
-              "Jehová escuchó el \"grito de angustia\" de los israelitas",
-              "Castigó a quienes trataban injustamente a los demás",
-              "Es natural que nos sintamos como nuestro Creador"
+            answer: [
+              "Jehová no piensa que perdamos valor con los años.",
+              "Sara ya era mayor cuando se le anunció que tendría un hijo del que saldría una nación poderosa.",
+              "Moisés estaba muy entrado en años cuando se le encargó sacar a los israelitas de Egipto.",
+              "El apóstol Juan escribió cinco libros bíblicos en su vejez."
             ],
             flashcards: [
               {
-                question: "Según Deuteronomio 32:4, ¿qué cualidad de Jehová garantiza que nunca cometerá una injusticia?",
-                answer: "Es la Roca y todas sus obras son perfectas"
+                question: "¿Qué edad tenían Moisés y Aarón cuando recibieron la comisión de sacar a Israel de Egipto?",
+                answer: "Moisés tenía 80 años y Aarón 83 años (Éxodo 7:6, 7)."
               },
               {
-                question: "Según Miqueas 6:8, ¿qué tres cosas pide Jehová de nosotros en relación con la justicia?",
-                answer: "Practicar la justicia, amar la lealtad y andar con modestia junto a Dios"
-              },
-              {
-                question: "En Isaías 5:7, ¿qué esperaba Jehová de su pueblo y qué encontró en su lugar?",
-                answer: "Esperaba justicia pero hubo injusticia; esperaba rectitud pero hubo un grito de angustia"
+                question: "¿Cuántos libros bíblicos escribió el apóstol Juan en su vejez?",
+                answer: "Cinco libros: el Evangelio de Juan, tres cartas (1, 2 y 3 Juan) y Revelación."
               }
             ],
             biblicalCards: [
               {
-                reference: "Isaías 5:7",
-                purpose: "Jehová esperaba justicia de su pueblo",
-                text: "Porque la viña de Jehová de los ejércitos es la casa de Israel; los hombres de Judá son la plantación que él amaba. Él esperaba justicia, pero resultó que hubo injusticia; esperaba rectitud, pero resultó que hubo un grito de angustia."
+                reference: "Génesis 17:15-19",
+                purpose: "Sara recibiría un hijo en su vejez",
+                text: "Dios también le dijo a Abrahán: 'En cuanto a Sarai tu esposa, no la llamarás más Sarai, porque Sara será su nombre. La bendeciré y también te daré un hijo de ella'."
               },
               {
-                reference: "Salmo 33:5",
-                purpose: "Jehová ama la rectitud y la justicia",
-                text: "Él ama la rectitud y la justicia. La tierra está llena del amor leal de Jehová."
-              },
-              {
-                reference: "Deuteronomio 32:3, 4",
-                purpose: "Todas las obras de Dios son perfectas",
-                text: "Porque yo proclamaré el nombre de Jehová. ¡Engrandezcan a nuestro Dios! La Roca, todas sus obras son perfectas, porque todos sus caminos son justicia. Dios de fidelidad, que nunca comete injusticias; él es justo y recto."
-              },
-              {
-                reference: "Miqueas 6:8",
-                purpose: "Jehová pide que practiquemos la justicia",
-                text: "Él te ha dicho, oh hombre, lo que es bueno. ¿Y qué es lo que Jehová pide de ti? ¡Solo que practiques la justicia, ames la lealtad y andes con modestia junto a tu Dios!"
-              },
-              {
-                reference: "Zacarías 7:9",
-                purpose: "Juzgar con verdadera justicia",
-                text: "Esto es lo que dice Jehová de los ejércitos: 'Juzguen con verdadera justicia y traten a los demás con amor leal y misericordia'."
+                reference: "Éxodo 7:6, 7",
+                purpose: "Moisés y Aarón eran mayores cuando recibieron su comisión",
+                text: "Moisés y Aarón hicieron exactamente lo que Jehová les había mandado. Moisés tenía 80 años y Aarón 83 cuando hablaron con el faraón."
               }
             ]
           },
           {
             number: "4",
-            textEs: "¿Qué nos enseña sobre Jesús el relato del hombre que tenía una mano paralizada?",
+            textEs: "Según Proverbios 15:15, ¿qué cualidad ayuda a los hermanos mayores a encarar las dificultades? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [4],
-            answer: "Nos enseña que Jesús, al igual que Jehová, ama la justicia y odia las injusticias. Él se compadeció del hombre y lo curó, pero se sintió muy dolido e indignado al ver la dureza de corazón de los líderes religiosos, a quienes les importaba más cumplir sus reglas inflexibles que ayudar a alguien que sufría.",
-            answerBullets: [
-              "Jesús ama la justicia y odia las injusticias",
-              "Siente lo mismo que Jehová",
-              "Se compadeció del hombre y lo curó",
-              "Los líderes religiosos se enojaron",
-              "A ellos les importaban más sus reglas inflexibles",
-              "Jesús se sintió **\"muy dolido\"** por su dureza de corazón",
-              "Su reacción combina compasión por la víctima e indignación por la injusticia"
+            readText: "LEE Proverbios 15:15",
+            answer: [
+              "La alegría es la cualidad que ayuda a los mayores a encarar las dificultades.",
+              "La alegría está estrechamente relacionada con la felicidad, que forma parte del fruto del espíritu.",
+              "La clave para vivir alegres y felices es tener una amistad cercana con Jehová."
             ],
             flashcards: [
               {
-                question: "Según Marcos 3:5, ¿qué dos sentimientos experimentó Jesús al ver la actitud de los fariseos?",
-                answer: "Indignación y profunda tristeza (dolor)"
+                question: "¿Qué dijo una hermana sobre hacerse viejo?",
+                answer: "\"Hacerse viejo no es para gallinas\", ilustrando que la vejez trae muchos desafíos."
               },
               {
-                question: "¿Qué era más importante para los líderes religiosos que ayudar a un hombre que sufría?",
-                answer: "Cumplir con su interpretación inflexible de la ley del sábado"
-              },
-              {
-                question: "¿Qué nos enseña este relato sobre cómo ve Jesús la falta de compasión disfrazada de religiosidad?",
-                answer: "Que le causa dolor y lo considera dureza de corazón"
+                question: "¿Cuál es la clave para vivir alegres y felices según la nota del artículo?",
+                answer: "Tener una amistad cercana con Jehová, ya que la alegría forma parte del fruto del espíritu."
               }
             ],
             biblicalCards: [
               {
-                reference: "Marcos 3:1-6",
-                purpose: "Jesús sana en sábado y se duele por la dureza de corazón",
-                text: "Entró otra vez en una sinagoga, y había allí un hombre que tenía una mano paralizada. Así que ellos estaban observando a Jesús con atención para ver si curaba al hombre en sábado y tener de qué acusarlo. Él le dijo al hombre que tenía la mano paralizada: 'Levántate y ponte ahí en medio'. Luego les dijo a ellos: '¿Qué está permitido en sábado: hacer un buen acto, o uno malo? ¿Salvar una vida, o matarla?'. Pero ellos se quedaron callados. Entonces él los miró a todos con indignación, muy dolido al ver que tenían el corazón tan duro, y le dijo al hombre: 'Extiende la mano'. Él la extendió, y la mano se le curó. En cuanto los fariseos salieron, se pusieron a conspirar con los partidarios de Herodes contra Jesús para matarlo."
+                reference: "Proverbios 15:15",
+                purpose: "La alegría ayuda a encarar dificultades",
+                text: "Todos los días del afligido son malos, pero el que tiene un corazón alegre disfruta de un banquete continuo."
+              },
+              {
+                reference: "Gálatas 5:22",
+                purpose: "La alegría forma parte del fruto del espíritu",
+                text: "En cambio, el fruto del espíritu es amor, alegría, paz, paciencia, amabilidad, bondad, fe."
               }
             ]
           },
           {
             number: "5",
-            textEs: "¿Qué debemos recordar si nos enojamos por una injusticia?",
+            textEs: "¿Qué cosas podrían desanimarnos al hacernos mayores?",
             textLSM: "",
             paragraphs: [5],
-            answer: "Debemos recordar que nuestro enfado, aunque esté justificado, no eliminará la injusticia. Si sentimos ira durante mucho tiempo o no la controlamos, podemos perjudicar nuestra salud emocional y física. Por eso es importante analizar el ejemplo de Jesús para saber cómo debemos reaccionar.",
-            answerBullets: [
-              "No está mal enojarse por una injusticia (Jehová y Jesús también se enojan)",
-              "**Nuestro enfado —aunque esté justificado— no eliminará esa injusticia**",
-              "Sentir ira durante mucho tiempo perjudica nuestra salud emocional",
-              "No controlar la ira perjudica nuestra salud física",
-              "Debemos analizar el ejemplo de Jesús para saber cómo reaccionar"
+            section: "EL RETO DE MANTENER LA ALEGRÍA",
+            answer: [
+              "Nos puede entristecer ser incapaces de hacer lo mismo que antes.",
+              "Quizás extrañemos la juventud y la buena salud de otros tiempos.",
+              "Ruby cuenta que vestirse es muy difícil porque le duele todo el cuerpo y tiene las manos deformadas por la artrosis.",
+              "Harold, que sirvió en Betel, dice que ya no reconoce a la persona en la que se ha convertido."
             ],
             flashcards: [
               {
-                question: "Según Efesios 4:26, ¿está mal enojarse cuando vemos una injusticia?",
-                answer: "No, no está mal, ya que Jehová y Jesús también se enojan ante las injusticias"
+                question: "¿Qué tareas sencillas se vuelven difíciles para Ruby debido a su artrosis?",
+                answer: "Vestirse, levantar los pies para ponerse las medias, y cualquier tarea que requiera usar las manos."
               },
               {
-                question: "¿Qué debemos recordar sobre nuestro enfado aunque esté justificado?",
-                answer: "Que no eliminará esa injusticia"
-              },
-              {
-                question: "Según Salmo 37:1, 8 y Santiago 1:20, ¿qué puede pasar si sentimos ira durante mucho tiempo o no la controlamos?",
-                answer: "Podemos perjudicar nuestra salud emocional y física"
-              },
-              {
-                question: "¿A quién debemos imitar para saber cómo reaccionar ante las injusticias?",
-                answer: "A Jesús"
+                question: "¿Qué actividad disfrutaba Harold antes y por qué le frustra no poder hacerla ahora?",
+                answer: "El béisbol era su afición; los demás decían '¡Pásale la pelota a Harold, que nunca falla!'. Ahora cree que ni sería capaz de lanzarla."
               }
             ],
             biblicalCards: [
               {
-                reference: "Efesios 4:26",
-                purpose: "No está mal enojarse por una injusticia",
-                text: "Cuando se enojen, no pequen. Que no se ponga el sol estando ustedes todavía enojados."
-              },
-              {
-                reference: "Salmo 37:1, 8",
-                purpose: "La ira prolongada nos hace daño",
-                text: "No te inquietes por los malvados ni envidies a los que hacen el mal... Deja la ira y abandona la furia; no te inquietes, pues eso solo conduce al mal."
-              },
-              {
-                reference: "Santiago 1:20",
-                purpose: "La ira del hombre no logra lo que Dios quiere",
-                text: "Porque la ira del hombre no produce lo que es justo ante Dios."
+                reference: "Eclesiastés 7:10",
+                purpose: "No añorar los tiempos pasados",
+                text: "No digas: '¿Por qué los tiempos pasados fueron mejores que estos?'. Porque no es sabio preguntar eso."
               }
             ]
           },
           {
             number: "6",
-            textEs: "¿Qué injusticias vio Jesús cuando estuvo en la Tierra?",
+            textEs: "a) ¿Qué otras cosas podrían desanimarnos? b) ¿Qué deben tomar en cuenta los hermanos mayores para saber si deberían dejar de conducir?",
             textLSM: "",
             paragraphs: [6],
-            section: "CÓMO REACCIONÓ JESÚS ANTE LAS INJUSTICIAS",
-            answer: "Jesús vio que los líderes religiosos le hacían la vida imposible a la gente con un sinfín de reglas. También era consciente de lo mal que las autoridades romanas trataban al pueblo. A pesar de ver estas injusticias, no lideró ni apoyó ningún movimiento social a favor del cambio.",
-            answerBullets: [
-              "Los líderes religiosos le hacían la vida imposible a la gente",
-              "Imponían un sinfín de reglas injustas",
-              "Las autoridades romanas trataban mal al pueblo",
-              "Muchos judíos querían independencia de Roma",
-              "Los zelotes estaban dispuestos a combatir por la independencia",
-              "**Jesús no lideró ni apoyó ningún movimiento social**",
-              "Cuando querían hacerlo rey, se fue enseguida"
+            answer: [
+              "Nos puede desanimar ir perdiendo nuestra autonomía.",
+              "Es difícil depender de un cuidador o tener que irnos a vivir con algún hijo.",
+              "Quizás ya no podamos conducir o ir solos a los sitios.",
+              "Aunque no podamos valernos por nosotros mismos, seguimos siendo muy valiosos para Jehová.",
+              "Jehová se fija en cómo somos por dentro: en el amor que le tenemos a él y a nuestros hermanos."
             ],
             flashcards: [
               {
-                question: "Según Mateo 23:2-4, ¿cómo le hacían la vida imposible los líderes religiosos a la gente?",
-                answer: "Con un sinfín de reglas y cargas pesadas que ponían sobre sus hombros"
+                question: "¿Qué nos puede ayudar cuando ya no podemos valernos por nosotros mismos?",
+                answer: "Recordar que seguimos siendo muy valiosos para Jehová y que él se fija en cómo somos por dentro."
               },
               {
-                question: "Además de los líderes religiosos, ¿qué otro grupo maltrataba al pueblo judío en tiempos de Jesús?",
-                answer: "Las autoridades romanas"
-              },
-              {
-                question: "¿Cómo se llamaba el grupo de judíos que estaba dispuesto a combatir por la independencia de Roma?",
-                answer: "Los zelotes"
-              },
-              {
-                question: "¿Cuál fue la postura de Jesús frente a los movimientos sociales que buscaban un cambio político o la independencia?",
-                answer: "No lideró ni apoyó ningún movimiento social a favor del cambio"
-              },
-              {
-                question: "Según Juan 6:15, ¿qué hizo Jesús cuando se enteró de que la gente quería hacerlo rey?",
-                answer: "Se fue enseguida y se retiró a la montaña él solo"
+                question: "¿En qué se fija Jehová según 1 Samuel 16:7?",
+                answer: "Jehová se fija en cómo somos por dentro: en el gran amor y aprecio que les tenemos a él y a nuestros hermanos."
               }
             ],
             biblicalCards: [
               {
-                reference: "Mateo 23:2-4",
-                purpose: "Los líderes religiosos imponían cargas pesadas",
-                text: "Los maestros de la Ley y los fariseos se han sentado en el asiento de Moisés. Así que hagan y obedezcan todo lo que ellos les digan, pero no los imiten, porque ellos no practican lo que dicen. Atan cargas pesadas y las ponen sobre los hombros de la gente, pero ellos no las quieren mover ni siquiera con un dedo."
-              },
-              {
-                reference: "Juan 6:15",
-                purpose: "Jesús rechazó ser hecho rey",
-                text: "Entonces Jesús, al darse cuenta de que estaban a punto de venir y llevárselo a la fuerza para hacerlo rey, se retiró otra vez a la montaña él solo."
+                reference: "1 Samuel 16:7",
+                purpose: "Jehová mira el corazón",
+                text: "El hombre ve lo que aparece ante sus ojos, pero Jehová ve lo que hay en el corazón."
               }
             ]
           },
           {
-            number: "7, 8",
-            textEs: "¿Por qué no intentó Jesús acabar con las injusticias de su tiempo? (Juan 18:36).",
+            number: "7",
+            textEs: "¿Qué nos ayudará si nos entristece la posibilidad de no ver el fin de este sistema?",
             textLSM: "",
-            paragraphs: [7, 8],
-            readText: "LEE Juan 18:36",
-            answer: "Jesús no intentó acabar con las injusticias porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse. Tampoco pueden eliminar las verdaderas causas de las injusticias: Satanás y la imperfección. Jesús sabía que únicamente el Reino de Dios podrá eliminar de raíz estas causas, por eso dedicó su tiempo a predicar las buenas noticias del Reino.",
-            answerBullets: [
-              "Jesús no participó en asuntos políticos para acabar con las injusticias",
-              "Los seres humanos no tienen el derecho ni la capacidad de gobernarse",
-              "**Las dos verdaderas causas de las injusticias son: Satanás y la imperfección**",
-              "Satanás controla este mundo y hace que la gente sea cruel",
-              "La imperfección nos impide actuar siempre de manera justa",
-              "**Solo el Reino de Dios puede eliminar de raíz las causas de las injusticias**",
-              "Jesús dedicó su tiempo a predicar las buenas noticias del Reino",
-              "Les aseguró a quienes tienen \"hambre y sed de justicia\" que las injusticias desaparecerían",
-              "El Reino de Dios \"no es parte de este mundo\""
+            paragraphs: [7],
+            answer: [
+              "Recordar que Jehová está esperando pacientemente antes de ponerle fin a este mundo malvado.",
+              "Esa paciencia tiene un objetivo: darles tiempo a millones de personas para que conozcan a Dios.",
+              "Podemos pensar en todas las personas que se beneficiarán de la paciencia de Jehová.",
+              "Tal vez personas de nuestra propia familia se beneficien antes de que venga el fin."
             ],
             flashcards: [
               {
-                question: "¿Por qué motivo principal Jesús no participó en los asuntos políticos de su tiempo?",
-                answer: "Porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse a sí mismos"
+                question: "¿Por qué está esperando Jehová pacientemente antes de ponerle fin a este sistema?",
+                answer: "Para darles tiempo a millones de personas para que conozcan a Dios y le sirvan (2 Pedro 3:9)."
               },
               {
-                question: "Según el texto, ¿qué dos cosas les faltan a los seres humanos para poder gobernarse?",
-                answer: "Les falta derecho y la capacidad"
-              },
-              {
-                question: "¿Qué dos referencias bíblicas se citan para apoyar la idea de que los humanos no pueden gobernarse?",
-                answer: "Salmo 146:3 y Jeremías 10:23"
-              },
-              {
-                question: "Además de la incapacidad humana, ¿qué no pueden eliminar los humanos para acabar con la injusticia?",
-                answer: "Las verdaderas causas de las injusticias"
-              },
-              {
-                question: "El texto identifica a _____ como la primera causa de las injusticias, ya que controla este mundo.",
-                answer: "Satanás"
-              },
-              {
-                question: "¿Cómo usa Satanás su autoridad, según el texto?",
-                answer: "La usa para hacer que la gente sea tan cruel como él"
-              },
-              {
-                question: "¿Qué dos versículos se usan para demostrar la influencia de Satanás en el mundo?",
-                answer: "Juan 8:44 y Efesios 2:2"
-              },
-              {
-                question: "¿Cuál es la segunda causa de las injusticias que se menciona en el texto?",
-                answer: "La imperfección humana"
-              },
-              {
-                question: "Según Eclesiastés 7:20, ¿qué nos impide actuar siempre de manera justa?",
-                answer: "La imperfección"
-              },
-              {
-                question: "¿Qué sabía Jesús que era lo único que podría eliminar de raíz las causas de las injusticias?",
-                answer: "El Reino de Dios"
-              },
-              {
-                question: "¿Cuál es la mejor manera en la que Jesús decidió usar su tiempo y sus energías?",
-                answer: "Predicando y anunciando las buenas noticias del Reino de Dios"
-              },
-              {
-                question: "¿Qué escritura describe la principal actividad de Jesús como la predicación del Reino de Dios?",
-                answer: "Lucas 8:1"
-              },
-              {
-                question: "¿A quiénes les aseguró Jesús que la corrupción y las injusticias desaparecerían para siempre?",
-                answer: "A quienes tenían \"hambre y sed de justicia\""
-              },
-              {
-                question: "¿Qué referencia bíblica se da para la promesa a los que tienen \"hambre y sed de justicia\"?",
-                answer: "Mateo 5:6"
-              },
-              {
-                question: "¿Mediante qué se conseguirá la eliminación de las injusticias, en contraste con los gobiernos humanos?",
-                answer: "Gracias al Reino de Dios"
-              },
-              {
-                question: "El Reino de Dios \"no es parte de _____\", según Juan 18:36.",
-                answer: "este mundo"
-              },
-              {
-                question: "¿Qué escritura se cita para demostrar que el Reino de Dios no es un gobierno terrenal?",
-                answer: "Juan 18:36"
+                question: "¿En qué podemos pensar cuando nos venza el desánimo por no ver el fin?",
+                answer: "En todas las personas —tal vez hasta de nuestra propia familia— que se beneficiarán de la paciencia de Jehová."
               }
             ],
             biblicalCards: [
               {
-                reference: "Salmo 146:3",
-                purpose: "No confíes en los humanos para salvación",
-                text: "No confíen en los nobles ni en nadie nacido de humano, que no puede ofrecer salvación."
+                reference: "Isaías 30:18",
+                purpose: "Jehová espera pacientemente",
+                text: "Pero Jehová sigue esperando para mostrarles su favor, y se levantará para tenerles misericordia. Porque Jehová es un Dios de justicia. Felices son todos los que siguen esperando en él."
               },
               {
-                reference: "Jeremías 10:23",
-                purpose: "El hombre no puede dirigir sus pasos",
-                text: "Bien sé, oh Jehová, que el camino del hombre no es suyo. No le corresponde al hombre que está andando dirigir sus pasos."
+                reference: "2 Pedro 3:9",
+                purpose: "Jehová quiere que todos alcancen el arrepentimiento",
+                text: "Jehová no es lento en cuanto a su promesa, como algunos consideran la lentitud, sino que es paciente con ustedes porque no desea que nadie sea destruido; más bien, desea que todos alcancen el arrepentimiento."
+              }
+            ]
+          },
+          {
+            number: "8",
+            textEs: "¿Cómo podrían afectar a los mayores los problemas de la edad?",
+            textLSM: "",
+            paragraphs: [8],
+            answer: [
+              "Cuando no nos sentimos bien, probablemente digamos o hagamos cosas que después lamentemos.",
+              "Eso le pasó al fiel Job: el sufrimiento lo empujó a usar palabras 'impetuosas'.",
+              "Un problema médico podría llevarnos a hacer o decir cosas que no son habituales en nosotros.",
+              "Nadie debería tomar la edad o la salud como excusas para ser grosero o demasiado exigente.",
+              "Si hacemos un comentario poco amable, no deberíamos dudar en pedir perdón."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué ejemplo bíblico muestra cómo el sufrimiento puede afectar nuestras palabras?",
+                answer: "Job usó palabras 'impetuosas' debido a su sufrimiento (Job 6:1-3)."
               },
               {
-                reference: "Juan 8:44",
-                purpose: "Satanás es mentiroso y asesino",
-                text: "Ustedes proceden de su padre el Diablo, y quieren hacer los deseos de su padre. Ese fue un asesino cuando comenzó, y no permaneció firme en la verdad, porque la verdad no está en él. Cuando dice una mentira, habla según su propia disposición, porque es mentiroso y el padre de la mentira."
+                question: "¿Qué debemos hacer si hacemos un comentario poco amable?",
+                answer: "No deberíamos dudar en pedir perdón (Mateo 5:23, 24)."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 6:1-3",
+                purpose: "El sufrimiento puede afectar nuestras palabras",
+                text: "Job respondió: 'Si tan solo pudiera pesarse mi angustia, si mi desgracia pudiera ponerse en la balanza, pesaría más que la arena de los mares. Por eso mis palabras han sido impetuosas'."
               },
               {
-                reference: "Efesios 2:2",
-                purpose: "Satanás controla este mundo",
-                text: "En los cuales en algún tiempo anduvieron conforme a la índole de este mundo, conforme al gobernante de la autoridad del aire, el espíritu que ahora está operando en los hijos de la desobediencia."
-              },
-              {
-                reference: "Eclesiastés 7:20",
-                purpose: "No hay hombre justo en la tierra",
-                text: "Porque no hay hombre justo en la tierra que siempre haga el bien y nunca peque."
-              },
-              {
-                reference: "Lucas 8:1",
-                purpose: "Jesús predicaba el Reino de Dios",
-                text: "Poco después, él recorría ciudades y aldeas predicando y anunciando las buenas noticias del Reino de Dios. Y los Doce iban con él."
-              },
-              {
-                reference: "Mateo 5:6",
-                purpose: "Los que tienen hambre de justicia serán saciados",
-                text: "Felices son los que tienen hambre y sed de justicia, porque ellos serán saciados."
-              },
-              {
-                reference: "Lucas 18:7, 8",
-                purpose: "Dios hará justicia a los que claman",
-                text: "Entonces, ¿no hará justicia Dios a los que él ha elegido y que le claman día y noche, aunque parezca que tarda en ayudarlos? Les digo que hará justicia a ellos sin demora. Sin embargo, cuando el Hijo del Hombre llegue, ¿encontrará realmente esta fe en la tierra?"
-              },
-              {
-                reference: "Juan 18:36",
-                purpose: "El Reino de Jesús no es de este mundo",
-                text: "Jesús contestó: 'Mi Reino no es parte de este mundo. Si mi Reino fuera parte de este mundo, mis sirvientes habrían peleado para que yo no fuera entregado a los judíos. Pero mi Reino no es de aquí'."
+                reference: "Mateo 5:23, 24",
+                purpose: "Hacer las paces cuando ofendemos a alguien",
+                text: "Si llevas tu ofrenda al altar y allí recuerdas que tu hermano tiene algo contra ti, deja tu ofrenda allí delante del altar y ve primero a hacer las paces con tu hermano."
               }
             ]
           },
           {
             number: "9",
-            textEs: "¿Por qué está usted convencido de que solo el Reino de Dios eliminará las injusticias?",
+            textEs: "¿Por qué es bueno dejarnos ayudar? (Vea también las imágenes).",
             textLSM: "",
             paragraphs: [9],
-            section: "ANTE UNA INJUSTICIA, IMITEMOS A JESÚS",
-            answer: "Estamos convencidos porque las causas de las injusticias siguen siendo las mismas que en tiempos de Jesús: Satanás y las personas imperfectas que lo imitan. Al igual que Jesús, sabemos que solo el Reino de Dios eliminará de raíz estas verdaderas causas. Los esfuerzos humanos no funcionan, como lo experimentó Stacy, quien se preguntaba si estaba defendiendo la mejor solución al participar en protestas.",
-            answerBullets: [
-              "Vivimos en \"los últimos días\" y vemos más injusticias que Jesús",
-              "**Las causas siguen siendo las mismas: Satanás y las personas imperfectas**",
-              "Solo el Reino de Dios eliminará de raíz las verdaderas causas",
-              "El Reino de Dios es el único gobierno que apoyamos",
-              "No participamos en protestas, manifestaciones ni iniciativas sociales",
-              "Stacy participaba en actividades a favor del cambio social antes de la verdad",
-              "Empezó a preguntarse si estaba defendiendo la mejor solución",
-              "**Ahora está convencida de que Jehová hará más de lo que ella jamás podría**"
+            section: "CONSEJOS PARA MANTENER LA ALEGRÍA",
+            answer: [
+              "Al principio, podría resultarnos difícil aceptar ayuda.",
+              "Gretl dice que le cuesta aceptar ayuda porque no quiere ser una carga para nadie.",
+              "Cuando aceptamos la ayuda de los demás, les damos la oportunidad de experimentar la felicidad de dar.",
+              "Nosotros también nos sentiremos felices al ver lo mucho que nos quieren y se preocupan por nosotros."
             ],
             flashcards: [
               {
-                question: "¿Por qué vemos todavía más injusticias que las que vio Jesús?",
-                answer: "Porque vivimos en \"los últimos días\""
+                question: "¿Por qué le costaba a Gretl aceptar ayuda?",
+                answer: "Porque no quería ser una carga para nadie. Le tomó tiempo aprender a ser humilde y admitir que necesitaba que le dieran una mano."
               },
               {
-                question: "Según 2 Timoteo 3:1-5, 13 y Apocalipsis 12:12, ¿cuáles son las causas de las injusticias hoy en día?",
-                answer: "Satanás y las personas imperfectas que lo imitan"
-              },
-              {
-                question: "¿Qué es lo único que eliminará de raíz las verdaderas causas de las injusticias?",
-                answer: "El Reino de Dios"
-              },
-              {
-                question: "Como el Reino de Dios es el único gobierno que apoyamos, ¿en qué no participamos?",
-                answer: "En protestas, manifestaciones ni otros tipos de iniciativas que pretenden luchar contra las injusticias"
-              },
-              {
-                question: "¿Qué hacía la hermana Stacy antes de conocer la verdad?",
-                answer: "Participaba en actividades a favor del cambio social"
-              },
-              {
-                question: "¿Qué se preguntaba Stacy cuando estaba en las protestas?",
-                answer: "Si estaba defendiendo la mejor solución"
-              },
-              {
-                question: "Según Salmo 72:1, 4, ¿de qué está convencida Stacy ahora?",
-                answer: "De que Jehová hará por los desfavorecidos mucho más de lo que ella jamás podría"
+                question: "¿Qué beneficio reciben los que nos ayudan cuando aceptamos su ayuda?",
+                answer: "Les damos la oportunidad de experimentar la felicidad que viene de dar (Hechos 20:35)."
               }
             ],
             biblicalCards: [
               {
-                reference: "2 Timoteo 3:1-5, 13",
-                purpose: "En los últimos días habrá tiempos difíciles",
-                text: "Pero ten presente esto: en los últimos días vendrán tiempos difíciles de manejar. Porque los hombres serán amantes de sí mismos, amantes del dinero, presumidos, arrogantes, blasfemos, desobedientes a los padres, desagradecidos, desleales, sin cariño natural, inflexibles, calumniadores, sin autocontrol, violentos, sin amor por la bondad, traicioneros, testarudos, hinchados de orgullo, amantes de los placeres más bien que amantes de Dios, teniendo una apariencia de devoción a Dios pero demostrando ser falsos respecto a su poder; y de estos apártate... Pero los hombres malvados e impostores avanzarán de mal en peor, extraviando a otros y siendo extraviados."
+                reference: "Gálatas 6:2",
+                purpose: "Llevar las cargas los unos de los otros",
+                text: "Sigan llevando las cargas los unos de los otros, y así cumplirán la ley del Cristo."
               },
               {
-                reference: "Apocalipsis 12:12",
-                purpose: "Satanás tiene gran ira en los últimos días",
-                text: "Por esto alégrense, cielos, y los que residen en ellos. ¡Ay de la tierra y del mar!, porque el Diablo ha descendido a ustedes, teniendo gran ira, sabiendo que tiene un corto período de tiempo."
-              },
-              {
-                reference: "Salmo 72:1, 4",
-                purpose: "El Rey de Dios defenderá a los pobres",
-                text: "Oh Dios, dale al rey tus propias decisiones judiciales, y tu justicia al hijo del rey. Que juzgue a tu pueblo con justicia y a tus afligidos con decisiones judiciales justas... Él defenderá a los afligidos del pueblo, salvará a los hijos del pobre y aplastará al defraudador."
+                reference: "Hechos 20:35",
+                purpose: "Hay más felicidad en dar que en recibir",
+                text: "En todo les he mostrado que trabajando así deben ayudar a los débiles y deben recordar las palabras del Señor Jesús, que dijo: 'Hay más felicidad en dar que en recibir'."
               }
             ]
           },
           {
             number: "10",
-            textEs: "Según Mateo 5:43-48, ¿por qué no intentamos promover cambios sociales?",
+            textEs: "¿Por qué no debemos olvidarnos de demostrar nuestro agradecimiento? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [10],
-            readText: "LEE Mateo 5:43-48",
-            answer: "No intentamos promover cambios sociales porque muchos de estos grupos tienen una actitud rebelde y conflictiva que va en contra de lo que hizo y enseñó Jesús. En lugar de eso, Jesús nos enseña a tratar con amor a todas las personas, incluidas las que no piensan como nosotros o nos persiguen, y nosotros nos esforzamos por seguir su ejemplo en todo aspecto de la vida.",
-            answerBullets: [
-              "Muchos grupos sociales tienen actitud rebelde y conflictiva",
-              "Esto va en contra de lo que hizo y dijo Jesús (Efesios 4:31)",
-              "Jeffrey: \"Protestas pacíficas pueden volverse violentas en segundos\"",
-              "**Jesús nos enseña a tratar con amor a TODAS las personas**",
-              "Incluye a quienes no piensan como nosotros",
-              "Incluye a quienes nos persiguen",
-              "Los cristianos seguimos fielmente el ejemplo de Jesús",
-              "Lo aplicamos en todo aspecto de la vida"
+            answer: [
+              "Cuando los demás hacen cosas por nosotros, sentimos gratitud, aunque tal vez se nos olvide demostrarla.",
+              "Con una sonrisa y un 'gracias' lograremos que sientan que apreciamos mucho lo que hacen.",
+              "Leah cuenta que una hermana le deja notitas de agradecimiento cargadas de cariño.",
+              "Leah se siente muy feliz de saber que la hermana valora su ayuda."
             ],
             flashcards: [
               {
-                question: "Según Efesios 4:31, ¿qué actitudes deben eliminarse que muchos grupos sociales muestran?",
-                answer: "Enojo, ira, gritos y lenguaje ofensivo"
+                question: "¿Qué hace una hermana mayor para demostrar su agradecimiento a Leah?",
+                answer: "Le deja notitas de agradecimiento. Son pocas palabras, pero están cargadas de cariño."
               },
               {
-                question: "¿Qué observó el hermano Jeffrey sobre las protestas que empiezan siendo pacíficas?",
-                answer: "Pueden dar paso en cuestión de segundos a la violencia y los saqueos"
-              },
-              {
-                question: "Según Mateo 5:43-48, ¿a quiénes debemos amar, incluso cuando es difícil?",
-                answer: "A todas las personas, incluidas las que no piensan como nosotros o nos persiguen"
-              },
-              {
-                question: "¿Cómo te ayuda personalmente el mandato de Jesús de amar incluso a quienes te persiguen cuando enfrentas injusticias?",
-                answer: ""
+                question: "¿Qué cosas sencillas podemos hacer para demostrar agradecimiento?",
+                answer: "Una sonrisa y un 'gracias' lograrán que los demás sientan que apreciamos mucho lo que hacen."
               }
             ],
             biblicalCards: [
               {
-                reference: "Efesios 4:31",
-                purpose: "Actitudes que debemos eliminar",
-                text: "Eliminen de ustedes todo enojo, ira, gritos y lenguaje ofensivo, junto con toda forma de maldad."
+                reference: "Colosenses 3:15",
+                purpose: "Demostrar agradecimiento",
+                text: "Además, que la paz del Cristo controle sus corazones, porque a esa paz fueron llamados en un solo cuerpo. Y demuéstrense agradecidos."
               },
               {
-                reference: "Mateo 5:43-48",
-                purpose: "Jesús enseña a amar a todos, incluso enemigos",
-                text: "Ustedes oyeron que se dijo: 'Tienes que amar a tu prójimo y odiar a tu enemigo'. Sin embargo, yo les digo: Sigan amando a sus enemigos y orando por los que los persiguen, para que demuestren ser hijos de su Padre que está en los cielos, ya que él hace que salga el sol sobre malos y buenos y hace que llueva sobre justos e injustos. Porque, si aman a los que los aman, ¿qué recompensa tienen? ¿No hacen eso mismo los recaudadores de impuestos? Y, si saludan solo a sus hermanos, ¿qué están haciendo de extraordinario? ¿No hacen eso mismo las personas de las naciones? Por lo tanto, tienen que ser perfectos, como su Padre celestial es perfecto."
+                reference: "1 Tesalonicenses 5:18",
+                purpose: "Dar gracias en todo",
+                text: "Den gracias por todo. Esta es la voluntad de Dios para ustedes mediante Cristo Jesús."
               }
             ]
           },
           {
             number: "11",
-            textEs: "¿Por qué a veces nos puede resultar difícil seguir el ejemplo de Jesús?",
+            textEs: "¿De qué maneras podemos ayudar a los demás? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [11],
-            answer: "A veces resulta difícil seguir el ejemplo de Jesús cuando nos tratan de manera injusta porque es natural sentir rabia, tristeza y deseos de que los culpables paguen. Como le pasó a Janiya, podemos sentirnos tentados a buscar soluciones humanas y apoyar grupos que protestan contra las injusticias, pero debemos recordar confiar en Jehová y mantener nuestra neutralidad en asuntos sociales y políticos.",
-            answerBullets: [
-              "Aunque sabemos que el Reino acabará con las injusticias, puede ser difícil seguir a Jesús cuando nos tratan injustamente",
-              "**Ejemplo de Janiya:** Fue discriminada por su color de piel",
-              "Se sentía muy triste y enojada",
-              "Quería que los culpables pagaran por lo que le hicieron",
-              "Pensó en apoyar un grupo que protestaba contra el racismo",
-              "Creía que sería una buena manera de canalizar su rabia",
-              "**Se dio cuenta:** Otros estaban influyendo en ella",
-              "**Cambió su enfoque:** En vez de confiar en Jehová, confiaba en soluciones humanas",
-              "Decidió cortar todo contacto con ese grupo",
-              "Es normal sentir rabia ante injusticias",
-              "No debemos perder nuestra neutralidad en asuntos sociales y políticos"
+            answer: [
+              "Cuando nos centramos en dar de nuestro tiempo y energías, será menos probable que nos centremos en nuestros propios problemas.",
+              "Un proverbio africano compara a los mayores a bibliotecas que contienen un caudal de sabiduría.",
+              "Seamos como 'bibliotecas andantes' y compartamos con los más jóvenes nuestro conocimiento y experiencia.",
+              "Hagámosles preguntas, escuchémoslos y expliquémosles por qué obedecer a Jehová es siempre lo mejor."
             ],
             flashcards: [
               {
-                question: "¿Qué tipo de injusticia sufrió la hermana Janiya?",
-                answer: "Fue discriminada por el color de su piel"
+                question: "¿Con qué compara un proverbio africano a los mayores?",
+                answer: "A bibliotecas que contienen un caudal de sabiduría."
               },
               {
-                question: "¿Qué sentía Janiya hacia los culpables de la discriminación?",
-                answer: "Quería que pagaran por lo que le habían hecho"
-              },
-              {
-                question: "¿Qué se dio cuenta Janiya sobre su forma de pensar?",
-                answer: "Que otros estaban influyendo en ella y estaba empezando a confiar en soluciones humanas en vez de en Jehová"
-              },
-              {
-                question: "¿Qué acción tomó Janiya después de darse cuenta de su error?",
-                answer: "Decidió cortar todo contacto con el grupo que protestaba"
-              },
-              {
-                question: "¿Cómo te ayuda el ejemplo de Janiya cuando sientes rabia por una injusticia que sufriste?",
-                answer: ""
+                question: "¿Por qué los libros que se quedan en los estantes no son útiles?",
+                answer: "Porque no enseñan nada ni cuentan historias. Debemos ser 'bibliotecas andantes' y compartir nuestro conocimiento."
               }
             ],
             biblicalCards: [
               {
-                reference: "Juan 15:19",
-                purpose: "Los cristianos no son parte del mundo",
-                text: "Si ustedes fueran parte del mundo, el mundo sentiría cariño por lo que es suyo. Ahora bien, porque ustedes no son parte del mundo, sino que yo los he escogido del mundo, por esto el mundo los odia."
+                reference: "Salmo 71:18",
+                purpose: "Transmitir sabiduría a la siguiente generación",
+                text: "Y ahora que soy viejo y canoso, no me abandones, oh Dios, hasta que haya hablado de tu fuerza a esta generación, de tu poderío a todos los que han de venir."
               }
             ]
           },
           {
             number: "12",
-            textEs: "¿Por qué debemos elegir con cuidado lo que vemos, leemos o escuchamos?",
+            textEs: "¿Qué les promete Jehová en Isaías 46:4 a sus siervos de edad avanzada? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [12],
-            answer: "Debemos elegir con cuidado lo que consumimos en medios porque las redes sociales están llenas de historias exageradas para alarmarnos, y los reporteros a menudo presentan noticias influidos por su propia opinión. Si pasamos mucho tiempo viendo, leyendo o escuchando noticias sobre injusticias, podríamos frustrarnos, desanimarnos cada vez más y olvidar que el Reino de Dios es la única solución.",
-            answerBullets: [
-              "Una cosa que ayuda a mantener la calma: elegir con cuidado lo que vemos, leemos o escuchamos",
-              "**Redes sociales:** Llenas de historias exageradas para alarmar",
-              "Muchas se quejan de líderes políticos",
-              "**Reporteros:** A menudo no son objetivos",
-              "Presentan noticias influidos por su propia opinión",
-              "Incluso si la información es correcta, ¿de qué sirve darle vueltas?",
-              "**Si pasamos mucho tiempo en noticias sobre injusticias:**",
-              "Podemos frustrarnos más y más",
-              "Podemos desanimarnos cada vez más (Proverbios 24:10)",
-              "**Lo peor:** Podríamos olvidar la única solución: el Reino de Dios"
+            readText: "LEE Isaías 46:4",
+            answer: [
+              "Aunque a veces nos sintamos agotados física o emocionalmente, Jehová 'jamás se cansa ni se agota'.",
+              "Jehová posee una energía infinita y la usa para fortalecer a sus siervos fieles de edad avanzada.",
+              "Jehová promete sostener a sus siervos mayores.",
+              "Cada vez que experimentamos personalmente su amor y su apoyo, no podemos menos que sentirnos muy felices."
             ],
             flashcards: [
               {
-                question: "Según el párrafo, ¿qué tipo de historias están llenas las redes sociales?",
-                answer: "Historias exageradas para alarmar a la gente y quejarse de los líderes políticos"
+                question: "¿Qué promete Jehová en Isaías 46:4 a sus siervos mayores?",
+                answer: "Promete sostenerlos: 'Hasta su vejez yo seré el mismo, y hasta que tengan canas los seguiré cargando'."
               },
               {
-                question: "¿Qué problema menciona el párrafo sobre los reporteros de noticias?",
-                answer: "A menudo no son objetivos, sino que presentan las noticias influidos por su propia opinión"
-              },
-              {
-                question: "Según Proverbios 24:10, ¿qué puede pasar si pasamos mucho tiempo viendo noticias sobre injusticias?",
-                answer: "Podemos frustrarnos o desanimarnos más y más"
-              },
-              {
-                question: "¿Qué es lo peor que podríamos olvidar si nos enfocamos demasiado en noticias sobre injusticias?",
-                answer: "Que el Reino de Dios es la única solución a las injusticias"
+                question: "Según Isaías 40:28-31, ¿qué hace Jehová con su energía infinita?",
+                answer: "La usa para fortalecer a sus siervos fieles de edad avanzada."
               }
             ],
             biblicalCards: [
               {
-                reference: "Proverbios 24:10",
-                purpose: "Desanimarse en tiempos difíciles muestra debilidad",
-                text: "Si te desanimas en tiempos de angustia, tu fuerza es poca."
+                reference: "Isaías 46:4",
+                purpose: "Jehová promete sostener a los mayores",
+                text: "Hasta su vejez yo seré el mismo, y hasta que tengan canas los seguiré cargando. Yo los he hecho, yo los llevaré, sí, yo los cargaré y los salvaré."
+              },
+              {
+                reference: "Isaías 40:28-31",
+                purpose: "Jehová da fuerzas a los cansados",
+                text: "¿Es que no lo sabes? ¿No lo has oído? Jehová, el Creador de los confines de la tierra, es un Dios eterno. Él no se cansa ni se agota. Su entendimiento es insondable. Él da fuerzas al cansado y llena de energía al que no tiene fuerzas."
+              },
+              {
+                reference: "Josué 23:14",
+                purpose: "Jehová siempre cumple sus promesas",
+                text: "Miren, hoy me voy por el camino de toda la tierra, y ustedes saben de todo corazón y con toda su alma que no ha fallado ni una sola de todas las cosas buenas que Jehová su Dios les prometió."
               }
             ]
           },
           {
             number: "13",
-            textEs: "¿Cómo nos ayuda la lectura diaria de la Biblia?",
+            textEs: "De acuerdo con 2 Corintios 4:16-18, ¿qué debemos recordar? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [13],
-            answer: "Leer la Biblia todos los días y meditar en ella nos ayuda a mantener la calma y recordar que es Jehová quien solucionará los problemas. Nos asegura que nadie puede esconderse de él, que solo él tiene un sentido perfecto de la justicia y que solo él puede arreglar las cosas realmente.",
-            answerBullets: [
-              "Leer la Biblia y meditar en ella nos ayuda a mantener la calma",
-              "**Nos recuerda que es Jehová quien va a solucionar los problemas**",
-              "Ejemplo de Alia: se sentía indignada por el maltrato impune en su comunidad",
-              "Al leer Job 34:22-29, recordó que nadie puede esconderse de Jehová",
-              "Solo Jehová tiene un sentido perfecto de la justicia",
-              "Solo él puede solucionar las cosas realmente"
+            readText: "LEE 2 Corintios 4:16-18",
+            answer: [
+              "La vejez y sus achaques son temporales.",
+              "Comprender que algo negativo es temporal nos ayuda siempre a aguantarlo.",
+              "La Biblia nos asegura que la vejez y la mala salud dejarán de existir.",
+              "Nuestros mejores días no han quedado en el pasado, sino que están todavía por venir."
             ],
             flashcards: [
               {
-                question: "¿Qué sentía la hermana Alia al ver las injusticias en su comunidad?",
-                answer: "Se sentía profundamente indignada porque no se castigaba a los culpables"
+                question: "Según Job 33:25, ¿qué le pasará a nuestra carne en el futuro?",
+                answer: "Se volverá más tierna que cuando éramos jóvenes; volveremos a los días de nuestra juventud."
               },
               {
-                question: "Según Job 34:22-29, ¿qué dos verdades sobre la justicia de Jehová aprendió Alia?",
-                answer: "Que nadie puede esconderse de Jehová y que solo él tiene un sentido perfecto de la justicia"
-              },
-              {
-                question: "¿Qué efecto tuvo en Alia recordar que es Jehová quien va a solucionar los problemas?",
-                answer: "Le ayudó a manejar su indignación y recordar que solo Dios puede solucionar las cosas"
+                question: "¿Qué nos ayuda siempre a aguantar algo negativo?",
+                answer: "Comprender que es temporal."
               }
             ],
             biblicalCards: [
               {
-                reference: "Job 34:22-29",
-                purpose: "Nadie puede esconderse de la justicia de Jehová",
-                text: "No hay oscuridad ni sombras profundas donde puedan esconderse los que practican el mal. Porque él no tiene que fijar un tiempo para que el hombre se presente ante el Dios verdadero para ser juzgado. Él aplasta a los poderosos sin investigarlos y pone a otros en su lugar. Porque él conoce sus obras, y de noche los derriba, y son aplastados. Los castiga por su maldad en un lugar visible para todos. Porque se han apartado de él y no han tomado en cuenta ninguno de sus caminos. Hacen que el clamor del desdichado llegue a él, y él oye el grito de angustia de los afligidos. Cuando él da tranquilidad, ¿quién puede entonces causar problemas? Cuando él esconde su rostro, ¿quién puede entonces verlo? Tanto a una nación como a un solo hombre."
+                reference: "2 Corintios 4:16-18",
+                purpose: "Las dificultades presentes son temporales",
+                text: "Por eso no nos damos por vencidos. Aunque nuestro hombre exterior se está desgastando, nuestro hombre interior va renovándose día a día. Porque, aunque la tribulación es momentánea y leve, produce en nosotros una gloria que es de un peso cada vez más extraordinario y es eterna."
+              },
+              {
+                reference: "Job 33:25",
+                purpose: "Recuperaremos la juventud",
+                text: "Que su carne se vuelva más tierna que cuando era joven; que vuelva a los días de su juventud."
+              },
+              {
+                reference: "Isaías 33:24",
+                purpose: "No habrá más enfermedad",
+                text: "Y ningún habitante dirá: 'Estoy enfermo'. Al pueblo que viva en la tierra se le perdonará su pecado."
               }
             ]
           },
           {
             number: "14",
-            textEs: "¿Cuál es una de las cosas que podemos hacer ahora? (Colosenses 3:10, 11).",
+            textEs: "¿Por qué es importante llamar y visitar a los hermanos mayores?",
             textLSM: "",
             paragraphs: [14],
-            section: "¿QUÉ PODEMOS HACER AHORA?",
-            readText: "LEE Colosenses 3:10, 11",
-            answer: "Aunque no podemos impedir que otros cometan injusticias, sí podemos decidir cómo tratar a los demás. Imitamos a Jesús demostrando amor y tratando con respeto a todas las personas, incluso a las que actúan injustamente. Jehová se siente feliz cuando ve que somos amables y justos con todos sin hacer distinciones.",
-            answerBullets: [
-              "No podemos impedir que otros cometan injusticias",
-              "**Sí está en nuestra mano decidir cómo vamos a tratar a los demás**",
-              "Imitamos a Jesús demostrando amor",
-              "Tratamos con respeto a todas las personas",
-              "Incluimos a las que actúan injustamente",
-              "Jehová se siente feliz cuando somos amables y justos con todos"
+            section: "¿CÓMO PODEMOS AYUDAR A LOS MAYORES?",
+            answer: [
+              "Las personas mayores suelen sentirse solas.",
+              "Pierre dice que como no puede salir de casa en todo el día, se aburre terriblemente.",
+              "A veces se siente como un viejo león enjaulado: nervioso y agobiado.",
+              "Cuando visitamos a nuestros mayores, les demostramos que nos importan y que los queremos.",
+              "Puede ser útil ponernos un recordatorio en el calendario para llamarlos o visitarlos."
             ],
             flashcards: [
               {
-                question: "Según Mateo 7:12, ¿qué regla de oro debe guiar nuestro trato hacia los demás?",
-                answer: "Hacer por los demás lo que queremos que ellos hagan por nosotros"
+                question: "¿Cómo describe Pierre su situación cuando no puede salir de casa?",
+                answer: "\"Me aburro terriblemente. A veces me siento como un viejo león enjaulado: nervioso y agobiado\"."
               },
               {
-                question: "Según Romanos 12:17, ¿cómo debemos reaccionar ante quienes nos tratan mal?",
-                answer: "No devolviendo mal por mal a nadie"
-              },
-              {
-                question: "Según Colosenses 3:10, 11, ¿qué debemos hacer para agradar a Jehová en nuestro trato con otros?",
-                answer: "Vestirnos de la nueva personalidad que se va renovando mediante el conocimiento exacto"
-              },
-              {
-                question: "¿Por qué se siente feliz Jehová cuando tratamos con respeto incluso a los injustos?",
-                answer: "Porque demostramos que somos sus hijos y que imitamos su imparcialidad"
+                question: "¿Qué consejo práctico da el artículo para no olvidar visitar a los mayores?",
+                answer: "Ponernos un recordatorio en el calendario para enviarles un mensaje o llamarlos, y hacer planes concretos para visitarlos."
               }
             ],
             biblicalCards: [
               {
-                reference: "Mateo 7:12",
-                purpose: "La Regla de Oro",
-                text: "Por lo tanto, hagan por los demás todo lo que les gustaría que hicieran por ustedes. De hecho, en esto se resumen la Ley y los Profetas."
+                reference: "Hebreos 13:16",
+                purpose: "No olvidar hacer el bien",
+                text: "Además, no se olviden de hacer el bien y de compartir lo que tienen con los demás, porque a Dios le agradan mucho esos sacrificios."
               },
               {
-                reference: "Romanos 12:17",
-                purpose: "No devolver mal por mal",
-                text: "No devuelvan mal por mal a nadie. Tengan en cuenta lo que toda la gente piensa que está bien."
-              },
-              {
-                reference: "Colosenses 3:10, 11",
-                purpose: "Vestirse de la nueva personalidad imparcial",
-                text: "Y vístanse de la nueva personalidad, que mediante el conocimiento exacto se va renovando según la imagen de Aquel que la creó. Aquí no hay griego ni judío, circuncisión ni incircuncisión, extranjero, escita, esclavo ni hombre libre; más bien, Cristo es todas las cosas y en todos."
+                reference: "Filipenses 1:10",
+                purpose: "Centrarse en las cosas más importantes",
+                text: "Para que se aseguren de cuáles son las cosas más importantes, a fin de que estén sin tacha y no hagan tropezar a otros hasta el día de Cristo."
               }
             ]
           },
           {
             number: "15",
-            textEs: "¿Qué conseguimos al predicar?",
+            textEs: "¿Qué pueden hacer juntos jóvenes y ancianos?",
             textLSM: "",
             paragraphs: [15],
-            answer: "Al predicar, conseguimos luchar contra las injusticias de la mejor manera posible. El \"conocimiento de Jehová\" tiene el poder de transformar a personas agresivas y violentas en personas amables y pacíficas. Cada persona que cambia gracias a la Biblia es una persona menos que contribuye a las injusticias de este mundo.",
-            answerBullets: [
-              "La mejor manera de luchar contra las injusticias es predicando",
-              "**El \"conocimiento de Jehová\" puede cambiar a las personas**",
-              "Transforma a violentos en pacíficos (Isaías 11:6, 7, 9)",
-              "Ejemplo de Jemal: pertenecía a un grupo rebelde armado",
-              "Aprendió que la fuerza no cambia a la gente, pero la Biblia sí",
-              "Cada persona transformada es una menos que causa injusticias"
+            answer: [
+              "No hay que darle tantas vueltas; solo hay que ser un buen amigo.",
+              "Conversar con ellos antes o después de las reuniones.",
+              "Pedirles que cuenten cuál es su texto favorito o alguna anécdota graciosa de su infancia.",
+              "Invitarlos a ver un programa de JW Broadcasting.",
+              "Ayudarlos actualizándoles sus dispositivos electrónicos o descargándoles publicaciones.",
+              "Invitarlos a hacer lo que más nos guste: ir de compras, salir a comer, ver la creación."
             ],
             flashcards: [
               {
-                question: "Según Isaías 11:9, ¿qué es lo que logra que no se haga daño ni se cause ruina?",
-                answer: "Que la tierra esté llena del conocimiento de Jehová"
+                question: "¿Qué sugiere Carol que pueden hacer juntos jóvenes y mayores?",
+                answer: "\"Invítalos a hacer lo que más te guste a ti. Aunque tengo mis añitos, sigo disfrutando de la vida. Me gusta ir de compras, salir a comer y ver la creación\"."
               },
               {
-                question: "¿Qué lección importante aprendió Jemal sobre cómo cambiar a la gente?",
-                answer: "Que no se puede cambiar a la gente usando la fuerza, pero sí usando la Biblia"
-              },
-              {
-                question: "¿Cómo contribuye cada estudiante de la Biblia a reducir las injusticias del mundo?",
-                answer: "Al dejarse transformar, es una persona menos que contribuye a las injusticias"
+                question: "¿Qué cuenta Maira sobre su amistad con una hermana de 90 años?",
+                answer: "\"Nos lleva 57 años de diferencia, pero muchas veces ni pienso en eso, pues nos pasamos todo el tiempo riendo y viendo pelis juntas. Y acudimos la una a la otra siempre que necesitamos consejo\"."
               }
             ],
             biblicalCards: [
               {
-                reference: "Isaías 11:6, 7, 9",
-                purpose: "El conocimiento de Jehová transforma personalidades",
-                text: "El lobo residirá por un tiempo con el cordero, y el leopardo se echará con el cabrito, y el becerro y el león y el animal engordado estarán todos juntos; y un niño pequeño los guiará. La vaca y la osa pacerán juntas, y sus crías se echarán juntas. El león comerá paja como el toro. No causarán ningún daño ni destrucción en toda mi santa montaña, porque la tierra de seguro estará llena del conocimiento de Jehová tal como las aguas cubren el mar."
+                reference: "Proverbios 17:17",
+                purpose: "Un verdadero amigo ama en todo tiempo",
+                text: "Un verdadero amigo ama en todo tiempo, y un hermano ha nacido para cuando hay angustia."
               }
             ]
           },
           {
             number: "16",
-            textEs: "¿Por qué quiere usted predicar el mensaje del Reino?",
+            textEs: "¿Por qué puede ser conveniente acompañar a los mayores al médico?",
             textLSM: "",
-            paragraphs: [16]
+            paragraphs: [16],
+            answer: [
+              "Podemos ofrecernos a quedarnos con ellos para asegurarnos de que los tratan bien.",
+              "Incluso podríamos tomar notas de lo que diga el médico.",
+              "Ruth explica que cuando va sola, los doctores no suelen tomarla en serio.",
+              "Pero cuando va acompañada, el trato es muy diferente."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué experiencia comparte Ruth sobre ir al médico?",
+                answer: "Cuando va sola, los doctores no suelen tomarla en serio y le dicen que el problema es psicológico. Pero cuando va acompañada, el trato es muy diferente."
+              },
+              {
+                question: "¿Qué podemos hacer para ayudar a los mayores durante las citas médicas?",
+                answer: "Quedarnos con ellos para asegurarnos de que los tratan bien y tomar notas de lo que diga el médico."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Isaías 1:17",
+                purpose: "Defender a los que lo necesitan",
+                text: "Aprendan a hacer el bien; busquen la justicia, corrijan al opresor, hagan justicia al huérfano, defiendan la causa de la viuda."
+              }
+            ]
           },
           {
             number: "17",
-            textEs: "¿Cómo nos ayuda Jehová a sobrellevar las injusticias de este mundo?",
+            textEs: "¿En qué facetas del ministerio podemos participar con los mayores?",
             textLSM: "",
-            paragraphs: [17]
-          }
-        ],
-        paragraphs: [
-          {
-            number: 1,
-            content: "EN EL mundo en el que vivimos se trata injustamente a muchas personas, ya sea por su posición económica, su sexo, su cultura o lugar de origen, su raza o por otras razones. Además, algunos gobernantes y empresarios toman decisiones egoístas sin preocuparse por el daño que puedan causar al planeta y a sus habitantes. Estas y otras injusticias nos afectan a todos, ya sea de forma directa o indirecta."
-          },
-          {
-            number: 2,
-            content: "Claro, todos queremos vivir en paz y que se nos trate bien. Por eso es normal que al ver tantas injusticias muchas personas se indignen. Algunas se unen a movimientos sociales con el objetivo de cambiar las cosas. Apoyan campañas, manifestaciones y a líderes políticos que prometen luchar contra las injusticias. Pero los cristianos sabemos que no debemos ser \"parte del mundo\" y que el Reino de Dios acabará con todas las injusticias (Juan 17:16). Aun así, nos duele e incluso nos enoja ver a personas sufriendo una injusticia. Quizás nos preguntemos: \"¿Cómo debo reaccionar? ¿Hay algo que pueda hacer ahora para mejorar la situación?\". En este artículo vamos a responder esas preguntas. Pero primero veamos qué sienten Jehová y Jesús al ver las injusticias."
-          },
-          {
-            number: 3,
-            content: "La Biblia explica por qué es natural que nos sintamos indignados ante las injusticias: Jehová nos creó a su imagen y \"él ama la rectitud y la justicia\" (Sal. 33:5; Gén. 1:26). Nunca comete injusticias y no quiere que nadie las cometa tampoco (Deut. 32:3, 4; Miq. 6:8; Zac. 7:9). Por ejemplo, en la época del profeta Isaías, Jehová escuchó el \"grito de angustia\" de muchos israelitas que estaban siendo maltratados por otros israelitas (lea Isaías 5:7). Castigó a aquellas personas que se empeñaban en desobedecer su Ley y en tratar injustamente a los demás (Is. 5:5, 13)."
-          },
-          {
-            number: 4,
-            content: "Al igual que Jehová, Jesús ama la justicia y odia las injusticias. Pensemos en algo que ocurrió cuando estuvo en la Tierra. Un día vio a un hombre que tenía una mano paralizada. Entonces se compadeció de él y se la curó. Pero, cuando los líderes religiosos lo vieron, se enojaron. Para aquellos hombres insensibles, era más importante cumplir con su interpretación inflexible de la ley del sábado que ayudar a un hombre que estaba sufriendo. Cuando Jesús vio su reacción, se sintió \"muy dolido al ver que tenían el corazón tan duro\" (Mar. 3:1-6).",
-            image: "https://i.imgur.com/V2keqGc.png",
-            imageCaption: "Jesús se compadeció del hombre y curó su mano paralizada. (Vea el párrafo 4)."
-          },
-          {
-            number: 5,
-            content: "Dado que Jehová y Jesús se enojan cuando ven una injusticia, no está mal que nosotros sintamos lo mismo (Efes. 4:26 y la nota de estudio \"Cuando se enojen\"). Sin embargo, debemos recordar que nuestro enfado —aunque esté justificado— no eliminará esa injusticia. De hecho, si sentimos ira durante mucho tiempo o no la controlamos, podemos perjudicar nuestra salud emocional y física (Sal. 37:1, 8; Sant. 1:20). Así que, para saber cómo debemos reaccionar ante las injusticias, analicemos el ejemplo de Jesús."
-          },
-          {
-            number: 6,
-            content: "Jesús vio muchas injusticias cuando estuvo en la Tierra. Por ejemplo, sabía que los líderes religiosos le hacían la vida imposible a la gente con un sinfín de reglas (Mat. 23:2-4). También era consciente de lo mal que trataban las autoridades romanas al pueblo. Había muchos judíos que querían la independencia de Roma, y algunos —como los zelotes— estaban dispuestos a combatir por ella. Ahora bien, Jesús no lideró ni apoyó ningún movimiento social a favor del cambio. Cuando se enteró de que la gente quería hacerlo rey, se fue enseguida (Juan 6:15).",
-            image: "https://i.imgur.com/o8p6CdP.png",
-            imageCaption: "Jesús no apoyó ningún movimiento social a favor del cambio. (Vea el párrafo 6)."
-          },
-          {
-            number: 7,
-            content: "Jesús no participó en los asuntos políticos para tratar de acabar con las injusticias de su tiempo. ¿Por qué no? Porque sabía que los seres humanos no tienen ni el derecho ni la capacidad de gobernarse (Sal. 146:3; Jer. 10:23). Y tampoco pueden eliminar las verdaderas causas de las injusticias. Por un lado está Satanás, que controla este mundo y usa su autoridad para hacer que la gente sea tan cruel como él (Juan 8:44; Efes. 2:2). Por otro lado está la imperfección, que nos impide actuar siempre de manera justa por muy buenas que sean nuestras intenciones (Ecl. 7:20)."
-          },
-          {
-            number: 8,
-            content: "Jesús sabía que únicamente el Reino de Dios podrá eliminar de raíz las verdaderas causas de las injusticias. Por eso decidió que la mejor manera de usar su tiempo y sus energías era \"predicando y anunciando las buenas noticias del Reino de Dios\" (Luc. 8:1). Les aseguró a quienes tenían \"hambre y sed de justicia\" que la corrupción y las injusticias desaparecerían para siempre (Mat. 5:6 y la nota de estudio; Luc. 18:7, 8). Eso no se conseguirá gracias a ningún gobierno humano, sino gracias al Reino de Dios, que \"no es parte de este mundo\" (lea Juan 18:36)."
-          },
-          {
-            number: 9,
-            content: "Como vivimos en \"los últimos días\", vemos todavía más injusticias que las que vio Jesús. Pero las causas siguen siendo las mismas: Satanás y las personas imperfectas que lo imitan (2 Tim. 3:1-5, 13; Apoc. 12:12). Al igual que Jesús, sabemos que solo el Reino de Dios eliminará de raíz las verdaderas causas de las injusticias. Como ese es el único gobierno que apoyamos, no participamos en protestas, manifestaciones ni otros tipos de iniciativas que pretenden luchar contra las injusticias. Veamos el caso de una hermana llamada Stacy. Antes de conocer la verdad, solía participar en actividades a favor del cambio social. Pero al cabo de un tiempo empezó a tener dudas sobre si lo que hacía servía para algo. Ella cuenta: \"Cuando estaba en las protestas, me preguntaba si estaba defendiendo la mejor solución. Ahora que apoyo el Reino de Dios, sé que estoy defendiendo la mejor solución. Estoy convencida de que Jehová hará por los desfavorecidos mucho más de lo que yo jamás podría\" (Sal. 72:1, 4)."
-          },
-          {
-            number: 10,
-            content: "Muchos de los grupos que se forman para promover cambios sociales tienen una actitud rebelde y conflictiva, que va en contra de lo que hizo y dijo Jesús (Efes. 4:31). Un hermano llamado Jeffrey dice: \"Sé que algunas protestas que empiezan siendo pacíficas pueden dar paso en cuestión de segundos a la violencia y los saqueos\". Ahora bien, Jesús nos enseña a tratar con amor a todas las personas, incluidas las que no piensan como nosotros o nos persiguen (lea Mateo 5:43-48). Y los cristianos nos esforzamos por seguir fielmente su ejemplo y sus enseñanzas en todo aspecto de la vida.",
-            image: "https://i.imgur.com/yiwgCrE.png",
-            imageCaption: "Los cristianos tratamos con amor a todas las personas. (Vea el párrafo 10)."
-          },
-          {
-            number: 11,
-            content: "Aunque sabemos que el Reino de Dios acabará para siempre con todas las injusticias, puede que nos resulte difícil seguir el ejemplo de Jesús cuando nos tratan de manera injusta. Veamos lo que le pasó a Janiya, que fue discriminada por el color de su piel. Ella dice: \"Me sentía muy triste. También estaba muy enojada y quería que los culpables pagaran por lo que me habían hecho. Entonces pensé en apoyar un grupo que protestaba contra el racismo y la discriminación. Creía que esa sería una buena manera de canalizar mi rabia\". Sin embargo, con el tiempo se dio cuenta de que tenía que corregir su manera de pensar. Explica: \"Vi que otros estaban influyendo en mí y que en vez de confiar en Jehová estaba empezando a confiar en las soluciones humanas, y decidí cortar todo contacto con ese grupo\". Cuando sufrimos o vemos una injusticia, es normal que sintamos rabia. Pero no permitamos que eso nos lleve a perder nuestra neutralidad en los asuntos sociales y políticos de este mundo (Juan 15:19)."
-          },
-          {
-            number: 12,
-            content: "¿Qué puede ayudarnos a mantener la calma cuando vemos o sufrimos una injusticia? Una cosa que podemos hacer es elegir con cuidado lo que vemos, leemos o escuchamos. Algunas redes sociales están llenas de historias exageradas para alarmar a la gente y quejarse de los líderes políticos. Por otro lado, los reporteros a menudo no son objetivos, sino que presentan las noticias influidos por su propia opinión. Incluso si la información sobre una injusticia es correcta, ¿de qué nos sirve darle vueltas y vueltas? Si pasamos mucho tiempo viendo, leyendo o escuchando noticias sobre ese asunto, es posible que acabemos frustrándonos o desanimándonos más y más (Prov. 24:10). Y, lo que es peor, podríamos olvidar cuál es la única solución a las injusticias: el Reino de Dios."
-          },
-          {
-            number: 13,
-            content: "Otra cosa que nos ayudará es leer la Biblia todos los días y meditar en lo que leemos. Una hermana llamada Alia se sintió profundamente indignada al ver que se maltrataba a algunas personas de su comunidad y que no se castigaba a los culpables. Ella cuenta: \"Tuve que recordarme a mí misma que es Jehová quien va a solucionar estos problemas. Entonces leí Job 34:22-29, que nos asegura que nadie puede esconderse de Jehová. Solo él tiene un sentido perfecto de la justicia y solo él puede solucionar las cosas\". Ahora bien, ¿hay algo que podamos hacer ahora, mientras esperamos a que el Reino de Dios acabe con todas las injusticias?"
-          },
-          {
-            number: 14,
-            content: "No podemos impedir que otros cometan injusticias, pero sí está en nuestra mano decidir cómo vamos a tratar a los demás. Como ya hemos visto, imitamos a Jesús demostrando amor. Y ese amor nos impulsa a tratar con respeto a todas las personas, incluidas las que actúan injustamente (Mat. 7:12; Rom. 12:17). Jehová se siente feliz cuando ve que somos amables y justos con todos (lea Colosenses 3:10, 11)."
-          },
-          {
-            number: 15,
-            content: "La mejor manera de luchar contra las injusticias es predicando el mensaje de la Biblia. ¿Por qué lo decimos? Porque el \"conocimiento de Jehová\" puede hacer que alguien agresivo y violento cambie y llegue a ser amable y pacífico (Is. 11:6, 7, 9). Antes de conocer la verdad, un hombre llamado Jemal se unió a un grupo rebelde que luchaba contra un Gobierno que le parecía opresivo. Dice: \"No se puede cambiar a la gente usando la fuerza, pero sí usando la Biblia. Eso es lo que me hizo cambiar a mí\". Lo que aprendía al estudiar la Palabra de Dios lo motivó a abandonar la lucha. Cada persona que se deja transformar por la Biblia es una persona menos que contribuye a las injusticias de este mundo."
-          },
-          {
-            number: 16,
-            content: "Igual que Jesús, deseamos contarles a las personas que el Reino de Dios es la única solución permanente a las injusticias. Así podemos darles esperanza a quienes han sufrido alguna injusticia en este mundo (Jer. 29:11). Stacy, mencionada en el párrafo 9, explica: \"Conocer la verdad me ha ayudado a sobrellevar las injusticias que he visto y vivido. Mediante la Biblia, Jehová nos consuela\". Para poder consolar a las personas con las promesas de la Biblia, tenemos que prepararnos bien. Cuanto más convencidos estemos de que el Reino de Dios acabará con todas las injusticias, más fácil nos resultará hablar con tacto de este tema si surge en la escuela o en el trabajo."
-          },
-          {
-            number: 17,
-            content: "Sabemos que, mientras Satanás siga siendo \"el gobernante de este mundo\", continuarán existiendo las injusticias. Pero Jehová nos va a ayudar y nos promete que pronto Satanás \"será echado afuera\" (Juan 12:31). Además, en la Biblia nos explica por qué hay tantas injusticias y nos asegura que le duele vernos sufrir (Sal. 34:17-19). Y por medio de su Hijo nos enseña cómo debemos reaccionar ante las injusticias de este mundo y cómo su Reino pronto acabará con ellas de una vez por todas (2 Ped. 3:13). Así pues, sigamos predicando con entusiasmo las buenas noticias del Reino mientras esperamos con anhelo que llegue el día en que \"la justicia y la rectitud\" llenen la Tierra (Is. 9:7)."
-          }
-        ],
-        reviewQuestions: [
-          {
-            question: "¿Por qué nos indignan tanto las injusticias?"
-          },
-          {
-            question: "¿Por qué no apoyamos las iniciativas humanas que pretenden luchar contra las injusticias?"
-          },
-          {
-            question: "¿Qué podemos hacer ahora ante una injusticia?"
-          }
-        ],
-        finalSong: "Canción 158: Danos paciencia"
-      },
-
-      // Artículo 38: "Mostremos que respetamos a los demás" (24-30 Nov)
-      {
-        metadata: {
-          articleNumber: 38,
-          week: "24-30 Nov",
-          month: "Septiembre",
-          year: 2025
-        },
-        song: "Canción 120: Seamos apacibles y humildes como Cristo",
-        title: "Mostremos que respetamos a los demás",
-        biblicalText: "\"Ser respetado es mejor que tener plata y oro\" (PROV. 22:1).",
-        theme: "Por qué tenemos que respetar a los demás y cómo hacerlo incluso en situaciones difíciles.",
-        questions: [
-          {
-            number: "1",
-            textEs: "¿Por qué es tan importante sentirnos respetados? (Proverbios 22:1).",
-            textLSM: "",
-            paragraphs: [1]
-          },
-          {
-            number: "2, 3",
-            textEs: "¿Por qué no siempre es fácil respetar a los demás, y qué veremos en este artículo?",
-            textLSM: "",
-            paragraphs: [2, 3]
-          },
-          {
-            number: "4",
-            textEs: "¿Qué significa respetar a los demás?",
-            textLSM: "",
-            paragraphs: [4],
-            section: "¿QUÉ SIGNIFICA RESPETAR A LOS DEMÁS?"
-          },
-          {
-            number: "5",
-            textEs: "¿Qué nos motiva a respetar a los demás?",
-            textLSM: "",
-            paragraphs: [5]
-          },
-          {
-            number: "6",
-            textEs: "¿Es posible respetar a alguien que nos falte el respeto? (Vea también la imagen de la portada).",
-            textLSM: "",
-            paragraphs: [6]
-          },
-          {
-            number: "7",
-            textEs: "¿Qué cosas pueden hacer difícil tratar con respeto a nuestra familia?",
-            textLSM: "",
-            paragraphs: [7],
-            section: "RESPETEMOS A NUESTROS FAMILIARES"
-          },
-          {
-            number: "8",
-            textEs: "¿Por qué debemos mostrarles respeto a nuestros familiares? (1 Timoteo 5:4, 8).",
-            textLSM: "",
-            paragraphs: [8]
-          },
-          {
-            number: "9",
-            textEs: "¿Cómo se pueden tratar con respeto el esposo y la esposa? (Vea también las imágenes).",
-            textLSM: "",
-            paragraphs: [9]
-          },
-          {
-            number: "10",
-            textEs: "¿Cómo pueden los jóvenes demostrar que respetan a sus padres?",
-            textLSM: "",
-            paragraphs: [10]
-          },
-          {
-            number: "11",
-            textEs: "¿Por qué puede resultarnos a veces difícil tratar con respeto a los hermanos?",
-            textLSM: "",
-            paragraphs: [11],
-            section: "RESPETEMOS A LOS HERMANOS"
-          },
-          {
-            number: "12",
-            textEs: "¿Por qué es importante respetar a nuestros hermanos? (2 Pedro 2:9-12).",
-            textLSM: "",
-            paragraphs: [12]
-          },
-          {
-            number: "13, 14",
-            textEs: "¿De qué maneras demostramos que respetamos a los hermanos? (Vea también las imágenes).",
-            textLSM: "",
-            paragraphs: [13, 14]
-          },
-          {
-            number: "15",
-            textEs: "¿Por qué puede resultarnos a veces difícil tratar con respeto a quienes no son Testigos?",
-            textLSM: "",
-            paragraphs: [15],
-            section: "RESPETEMOS A QUIENES NO SON TESTIGOS"
-          },
-          {
-            number: "16",
-            textEs: "¿Por qué es importante respetar a quienes todavía no sirven a Jehová? (1 Pedro 2:12; 3:15).",
-            textLSM: "",
-            paragraphs: [16]
-          },
-          {
-            number: "17",
-            textEs: "¿De qué maneras demostramos que respetamos a quienes no son Testigos?",
-            textLSM: "",
-            paragraphs: [17]
+            paragraphs: [17],
+            answer: [
+              "Invitarlos a estar en el carrito con nosotros, incluso llevándoles una silla.",
+              "Invitarlos a que nos acompañen a un curso bíblico, tal vez dirigiéndolo en su hogar.",
+              "Los ancianos pueden organizar reuniones para la predicación en la casa de estos hermanos.",
+              "Valdrá la pena cualquier esfuerzo que hagamos por honrarlos."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué pueden hacer los ancianos para facilitar que los mayores participen en el ministerio?",
+                answer: "Organizar reuniones para la predicación en la casa de estos hermanos para que les resulte más fácil salir al ministerio."
+              },
+              {
+                question: "¿Cómo podemos incluir a los mayores en la predicación con el carrito?",
+                answer: "Invitarlos a estar en el carrito con nosotros, incluso llevándoles una silla para que se sienten."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 3:27",
+                purpose: "No retener el bien cuando podemos darlo",
+                text: "No retengas el bien de quienes lo merecen cuando esté a tu alcance darlo."
+              },
+              {
+                reference: "Romanos 12:10",
+                purpose: "Honrarnos unos a otros",
+                text: "En amor fraternal, tengan tierno cariño unos por otros. En cuanto a mostrarse honra unos a otros, lleven la delantera."
+              }
+            ]
           },
           {
             number: "18",
-            textEs: "¿Por qué vale la pena tratar con respeto a los demás?",
+            textEs: "¿De qué tratará el siguiente artículo de estudio?",
             textLSM: "",
-            paragraphs: [18]
+            paragraphs: [18],
+            answer: [
+              "Jehová y toda la congregación aman y valoran a los mayores.",
+              "Envejecer es una etapa difícil, pero con la ayuda de Jehová es posible mantener la alegría.",
+              "Nuestros mejores días no han quedado en el pasado, sino que están todavía por venir.",
+              "El siguiente artículo hablará de cómo mantener la alegría al cuidar de un ser querido enfermo."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué nos anima saber según el párrafo 18?",
+                answer: "Que nuestros mejores días no han quedado en el pasado, sino que están todavía por venir."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 37:25",
+                purpose: "Jehová no abandona a los justos",
+                text: "Fui joven y ahora soy viejo, pero nunca he visto al justo abandonado ni a sus hijos mendigando pan."
+              }
+            ]
           }
         ],
         paragraphs: [
-          {
-            number: 1,
-            content: "¿VERDAD que a todos nos gusta y hace sentir felices que nos traten con respeto? Y no solo eso, lo necesitamos. Con razón la Biblia dice que \"ser respetado es mejor que tener plata y oro\" (lea Proverbios 22:1)."
-          },
-          {
-            number: 2,
-            content: "Aun así, puede que a veces nos cueste respetar a los demás. ¿Por qué? Por un lado, vemos sus imperfecciones y, por otro, vivimos en una época en la que el respeto brilla por su ausencia. Pero nosotros sí queremos ser respetuosos porque Jehová nos pide que honremos —es decir, que tratemos con respeto— \"a gente de toda clase\" (1 Ped. 2:17)."
-          },
-          {
-            number: 3,
-            content: "En este artículo veremos qué significa respetar a los demás y cómo demostrar esta cualidad con 1) la familia, 2) los hermanos y 3) los que no son Testigos. Nos centraremos en cómo ser respetuosos en situaciones difíciles."
-          },
-          {
-            number: 4,
-            content: "¿Cómo definiría usted el respeto? En la Biblia, las palabras respeto y honra están relacionadas. El respeto se refiere principalmente a cómo vemos a una persona. Cuando respetamos a los demás, consideramos que merecen nuestra atención y estima, quizás por sus cualidades, sus logros o su posición. La honra se refiere a cómo tratamos a una persona. Cuando honramos a los demás, los tratamos con dignidad y hacemos cosas que demuestran que los valoramos. Claro está, para que la honra sea sincera, debe nacer del corazón (Mat. 15:8)."
-          },
-          {
-            number: 5,
-            content: "Jehová quiere que respetemos a los demás. Por ejemplo, nos manda honrar a \"las autoridades superiores\" (Rom. 13:1, 7). Sin embargo, quizás alguien diga: \"Yo le doy mi respeto a quien se lo gana\". ¿Pero está bien pensar así? No. Como siervos de Jehová, entendemos que debemos respetar a los demás, pero no por las cosas que hagan o no hagan, sino por una razón mucho más importante: porque amamos a Jehová y queremos complacerlo (Jos. 4:14; 1 Ped. 3:15)."
-          },
-          {
-            number: 6,
-            content: "Puede que nos preguntemos: \"¿Es posible respetar a alguien que nos falte el respeto?\". Sí. Pensemos en los siguientes ejemplos. El rey Saúl humilló a su hijo Jonatán al frente de otras personas (1 Sam. 20:30-34). A pesar de eso, Jonatán siguió respetando a su padre y luchó junto a él hasta el día de su muerte (Éx. 20:12; 2 Sam. 1:23). El sumo sacerdote Elí acusó a Ana de estar borracha (1 Sam. 1:12-14). Sin embargo, ella le respondió con respeto, aunque todo Israel sabía que Elí no estaba cumpliendo bien con su responsabilidad de padre y sumo sacerdote (1 Sam. 1:15-18; 2:22-24). Y unos hombres de Atenas insultaron a Pablo llamándolo \"charlatán\" (Hech. 17:18). Pero él les siguió hablando con respeto (Hech. 17:22). Estos ejemplos muestran que el amor profundo por Jehová y el temor a desagradarle pueden motivarnos a respetar a los demás incluso cuando no es fácil hacerlo. Veamos ahora a quiénes debemos respetar y por qué.",
-            image: "https://i.imgur.com/1Gdk88z.png",
-            imageCaption: "Pablo siguió hablando con respeto a los atenienses. (Vea el párrafo 6 y la imagen de la portada)."
-          },
-          {
-            number: 7,
-            content: "El desafío. Como pasamos tanto tiempo con la familia, conocemos muy bien las virtudes y los defectos de cada uno. Por otro lado, quizás tengamos familiares que padezcan una enfermedad que haga que sea difícil cuidarlos, o sufran mucho de ansiedad. O algunos tal vez nos hagan o digan cosas hirientes. Y otros tratan a la familia con falta de respeto y hacen que el hogar no sea un refugio de paz, sino un campo de batalla. Todo esto hace que las cosas no vayan bien en la familia. Por poner un ejemplo: tal como la artritis hace que el cuerpo sufra y dificulta los movimientos, la falta de respeto hace que la familia sufra y dificulta la convivencia. Eso sí, aunque la artritis quizás no tenga cura, la falta de respeto sí."
-          },
-          {
-            number: 8,
-            content: "Por qué mostrar respeto (lea 1 Timoteo 5:4, 8). En la primera carta que Pablo le escribió a Timoteo explicó qué tenían que hacer los miembros de la familia para cuidarse unos a otros. También dijo que debemos honrar a la familia no por simple obligación, sino principalmente por \"devoción a Dios\", es decir, porque amamos a Jehová y lo vemos como parte de nuestra adoración a él. Jehová es el Creador de la familia (Efes. 3:14, 15). Así que, cuando honramos a nuestros familiares, en realidad lo estamos honrando a él. ¡Qué razón tan importante para mostrar respeto!"
-          },
-          {
-            number: 9,
-            content: "Cómo mostrar respeto. El esposo que honra a su esposa demuestra tanto en público como en privado que la valora (Prov. 31:28; 1 Ped. 3:7). Jamás la golpea ni la humilla ni la hace sentir que vale poco. Un hermano de Argentina llamado Ariel dice: \"Debido a la enfermedad de mi esposa, a veces dice cosas que me duelen. Lo que hago es recordar que sus palabras no reflejan lo que de verdad siente. En los momentos más difíciles pienso en 1 Corintios 13:5, y eso me ayuda a hablarle con respeto y calma\" (Prov. 19:11). Por otro lado, la esposa que honra a su esposo les habla bien de él a los demás (Efes. 5:33). Evita el sarcasmo, las burlas, los nombres ofensivos y los insultos, pues comprende que esas cosas son como el óxido: corroen el matrimonio (Prov. 14:1). Una hermana de Italia que tiene un esposo que sufre de ansiedad explica: \"A veces siento que él se preocupa demasiado por las cosas. En el pasado yo le demostraba falta de respeto con las cosas que le decía y con las caras que le ponía. Pero me he dado cuenta de que juntarme con personas que hablan con respeto de los demás me ayuda a ser respetuosa con mi esposo\".",
-            image: "https://i.imgur.com/Z9Vxy2Z.png",
-            imageCaption: "El esposo y la esposa se tratan con respeto. (Vea el párrafo 9 y las imágenes)."
-          },
-          {
-            number: 10,
-            content: "Jóvenes, obedezcan a sus padres y háblenles con respeto (Éx. 21:17; Efes. 6:1-3). A medida que ellos se vayan haciendo mayores, tal vez necesiten más cuidados. Así que hagan todo lo posible por atenderlos bien. Hablemos del ejemplo de una hermana llamada María. Cuando su padre, que no es Testigo, se enfermó, ella empezó a cuidarlo, pero él no se lo puso fácil. María explica: \"Le pedía a Jehová que me ayudara a sentir respeto por mi padre y a ser capaz de demostrárselo. Me decía a mí misma que, si Jehová me pide que honre a mis padres, él me dará las fuerzas para hacerlo. Con el tiempo comprendí que tengo que respetar a mi padre aunque él no cambie su forma de tratarme\". Cuando honramos a nuestros familiares a pesar de sus defectos, demostramos respeto por Jehová, quien creó la familia."
-          },
-          {
-            number: 11,
-            content: "El desafío. Es cierto que los hermanos se esfuerzan por poner en práctica lo que dice la Biblia. Sin embargo, puede que a veces no sean amables con nosotros, nos juzguen injustamente o nos irriten. Si alguno de nosotros \"tiene una razón para quejarse de otro\", quizás nos cueste seguir respetándolo (Col. 3:13). Ahora bien, ¿qué nos puede ayudar?"
-          },
-          {
-            number: 12,
-            content: "Por qué mostrar respeto (lea 2 Pedro 2:9-12). En su segunda carta inspirada, Pedro dijo que algunos cristianos del primer siglo estaban hablando de manera irrespetuosa de \"los gloriosos\", es decir, los ancianos. ¿Cómo reaccionaron los ángeles al ver esa situación? Pedro explicó que \"por respeto a Jehová\" no dijeron ninguna palabra ofensiva contra aquellos hombres irrespetuosos y arrogantes. Qué interesante que los ángeles, que son perfectos, se aseguraron de no decir nada malo de ellos. Al contrario, dejaron que Jehová se encargara de juzgarlos y reprenderlos (Rom. 14:10-12; compare con Judas 9). Podemos aprender mucho de los ángeles. Si no somos irrespetuosos con quienes nos persiguen, mucho menos vamos a serlo con nuestros hermanos. Más bien debemos tomar \"la iniciativa\" de honrarlos (Rom. 12:10). Así mostramos que respetamos a Jehová."
-          },
-          {
-            number: 13,
-            content: "Cómo mostrar respeto. Ancianos, enseñen siempre con amor (Filem. 8, 9). Si tienen que corregir a alguien, no se dejen llevar por la frustración, sino que sean amables. Hermanas, eviten el chisme y la calumnia, y así contribuirán a crear y mantener un ambiente de respeto en la congregación (Tito 2:3-5). Y todos podemos demostrar que respetamos a los ancianos. ¿Cómo? Colaborando con ellos y diciendo cuánto agradecemos todo lo que hacen por dirigir las reuniones, organizar la predicación y ayudar a quienes han dado \"un paso en falso\" (Gál. 6:1; 1 Tim. 5:17).",
-            image: "https://i.imgur.com/1OL2zVw.png",
-            imageCaption: "Demostramos respeto a los hermanos colaborando y agradeciendo su trabajo. (Vea los párrafos 13 y 14 y las imágenes)."
-          },
-          {
-            number: 14,
-            content: "A una hermana llamada Rocío le costaba respetar a un anciano que la había aconsejado. Ella cuenta: \"Sentí que él no había sido para nada amoroso conmigo. En casa hablaba mal de él. Intentaba que no se me notara, pero por dentro dudaba de sus motivos y me negaba a aplicar su consejo\". ¿Qué la ayudó? Ella explica: \"Leí 1 Tesalonicenses 5:12, 13 y me di cuenta de que no estaba respetando al hermano. Entonces la conciencia empezó a molestarme. Le oré a Jehová y busqué en nuestras publicaciones información que me ayudara a cambiar de actitud. Con el tiempo comprendí que el problema no era el hermano, sino mi orgullo. Ahora entiendo que, si quiero mostrar respeto, tengo que ser humilde. Sé que tengo que seguir trabajando en ello, pero me siento tranquila porque Jehová ve que me estoy esforzando\"."
-          },
-          {
-            number: 15,
-            content: "El desafío. Muchas veces en la predicación nos encontramos con personas que no tienen ningún interés por Dios ni por la Biblia (Efes. 4:18). Algunos se niegan a escuchar nuestro mensaje por lo que les enseñaron a creer desde niños. Por otro lado, quizás nos toque lidiar con jefes o maestros muy duros y exigentes, o tengamos compañeros de trabajo o de clase difíciles de tratar. Puede que poco a poco les perdamos el respeto y nos cueste tratarlos como nos gustaría que los demás nos trataran."
-          },
-          {
-            number: 16,
-            content: "Por qué mostrar respeto. Recordemos que Jehová está pendiente de cómo tratamos a quienes no son Testigos. El apóstol Pedro les recordó a los cristianos que su conducta ejemplar podía llevar a algunas personas a darle gloria a Dios. Por eso les aconsejó presentar una defensa de su fe \"con apacibilidad y profundo respeto\" (lea 1 Pedro 2:12; 3:15). Cuando estuvieran defendiendo su fe ante un juez o ante cualquier otra persona, siempre debían tratar a los demás con respeto, como si Dios estuviera allí con ellos. A fin de cuentas, Jehová escucha todo lo que decimos y ve cómo lo hacemos. Sin duda, esta es una razón de peso para respetar a quienes no son Testigos."
-          },
-          {
-            number: 17,
-            content: "Cómo mostrar respeto. En la predicación, nunca queremos dar la impresión de creernos superiores a aquellos que saben menos de la Biblia. Al contrario, recordamos que son valiosos para Dios y los vemos superiores a nosotros (Ageo 2:7; Filip. 2:3). Si alguien nos insulta por nuestras creencias, resistimos el impulso de pagar con la misma moneda. Por eso nunca daríamos una respuesta ingeniosa pero sarcástica (1 Ped. 2:23). Si se nos escapa algo que no deberíamos haber dicho, nos disculpamos de inmediato. ¿Y cómo podemos mostrar respeto en el trabajo? Siendo diligentes y esforzándonos por centrarnos en las cosas positivas de los compañeros y los jefes (Tito 2:9, 10). También es importante que seamos honrados y trabajemos con toda el alma. Así, aunque no siempre complazcamos a los demás, siempre complaceremos a Jehová (Col. 3:22, 23)."
-          },
-          {
-            number: 18,
-            content: "Tenemos muy buenas razones para respetar a los demás. Vimos que, si respetamos a nuestros familiares, estaremos honrando a Jehová, el Creador de la familia. De manera parecida, si respetamos a nuestra familia espiritual, estaremos honrando a nuestro Padre celestial. Y, si respetamos a quienes no son Testigos, estaremos contribuyendo a que tal vez lleguen a darle gloria, u honra, a nuestro gran Dios. Incluso si algunas personas no nos tratan con respeto, vale la pena que nosotros sí lo hagamos porque Jehová nos bendecirá por ello. Él promete: \"Honraré a los que me honran\" (1 Sam. 2:30)."
-          }
+          { number: 1, content: "EN ALGUNAS partes del mundo se considera todo un honor envejecer. Sin embargo, en otras, las personas hacen lo imposible por disimular el paso de los años. Por ejemplo, tan pronto ven la primera cana, se la arrancan. Pero, no porque se arranquen las canas, van a dejar de aparecer. Este ejemplo ilustra lo difícil que puede ser aceptar que nos estamos haciendo mayores." },
+          { number: 2, content: "Ahora bien, ¿cómo ve nuestro Padre celestial a los hermanos que están envejeciendo? (Prov. 16:31). Él los compara a árboles prósperos (lea Salmo 92:12-14). Y es una comparación muy adecuada. Los árboles que están repletos de hojas y fragantes flores suelen tener décadas de edad. Una de las especies más impresionantes y hermosas es el cerezo de flor japonés, que puede llegar a superar los 1.000 años. Al igual que estos árboles tan maduros, los cristianos de edad avanzada son bellísimos, sobre todo a los ojos de Dios. Jehová ve más allá de las canas y se fija en sus extraordinarias cualidades. Ellos le han servido fielmente durante muchos años tanto en las buenas como en las malas.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_1_lg.jpg", imageCaption: "Un matrimonio de edad avanzada está sentado en un banco al aire libre rodeado de cerezos en flor. Como florecientes árboles maduros, los hermanos mayores son muy hermosos y siguen prosperando." },
+          { number: 3, content: "Jehová no piensa que perdamos valor con los años. Al contrario, muchas veces usa a sus siervos de edad avanzada para cumplir su voluntad. Por ejemplo, Sara ya era bastante mayor cuando se le anunció que tendría un hijo del que saldría una nación poderosa y que sería antepasada del Mesías (Gén. 17:15-19). Igualmente, Moisés estaba muy entrado en años cuando se le encargó sacar a los israelitas de Egipto (Éx. 7:6, 7). Y también fue en su vejez cuando el apóstol Juan escribió por inspiración cinco libros bíblicos." },
+          { number: 4, content: "La edad avanzada trae muchos desafíos. Una hermana dijo chistosamente: \"Hacerse viejo no es para gallinas\". Pero hay una cualidad que ayuda a los hermanos mayores a encarar las dificultades: la alegría (lea Proverbios 15:15). En este artículo veremos qué pueden hacer estos hermanos para no perderla. También analizaremos cómo puede apoyarlos el resto de la congregación. Pero antes hablaremos de por qué es un reto mantener la alegría con el paso de los años.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_2_lg.jpg", imageCaption: "El matrimonio de la imagen anterior, abrazados y sonrientes bajo las ramas de un cerezo en flor. Una actitud alegre y positiva ayuda a los hermanos mayores a encarar las dificultades que vienen con los años." },
+          { number: 5, content: "¿Qué cosas podrían desanimarnos al hacernos mayores? Tal vez nos entristezca ser incapaces de hacer lo mismo que antes. O quizás extrañemos la juventud y la buena salud de otros tiempos (Ecl. 7:10). Una hermana que se llama Ruby cuenta: \"Me resulta muy difícil vestirme porque me cuesta una barbaridad moverme y me duele todo el cuerpo. Algo tan sencillo como levantar los pies para ponerme las medias es una tortura. Como tengo las manos torpes y deformadas por la artrosis, hasta la tarea más pequeña se vuelve una odisea\". Harold, que sirvió en Betel, dice: \"Me he convertido en una persona que ya no reconozco, y eso a veces me da mucha rabia. Siempre he sido muy atlético, y el béisbol era mi afición. Cuando jugábamos, los demás decían '¡Pásale la pelota a Harold, que nunca falla!'. Pero ahora creo que ni sería capaz de lanzarla\"." },
+          { number: 6, content: "Puede que también nos desanime el hecho de ir perdiendo nuestra autonomía. Esto es así sobre todo cuando dependemos de un cuidador o tenemos que irnos a vivir con algún hijo. O puede que debido a nuestra mala salud o la pérdida de vista ya no podamos conducir o ir solos a los sitios. ¡Qué deprimente! Pero algo que nos puede ayudar es recordar que, aunque tal vez no podamos valernos por nosotros mismos, vivir solos o conducir, seguimos siendo muy valiosos para Jehová y los demás. Además, sabemos que Jehová comprende nuestros sentimientos. Él se fija en cómo somos por dentro: en el gran amor y aprecio que les tenemos a él y a nuestros hermanos (1 Sam. 16:7)." },
+          { number: 7, content: "Otra cosa que podría entristecernos es pensar que quizás no vivamos para ver el fin de este sistema. Si nos sentimos así, nos ayudará recordar que Jehová está esperando pacientemente antes de ponerle fin a este mundo malvado (Is. 30:18). Y esa paciencia tiene un objetivo: darles tiempo a millones de personas para que conozcan a Dios y le sirvan (2 Ped. 3:9). Así que, cuando nos venza el desánimo, procuremos pensar en todas las personas —tal vez hasta de nuestra propia familia— que se beneficiarán de la paciencia de Jehová antes de que venga el fin." },
+          { number: 8, content: "Cuando no nos sentimos bien, todos —seamos jóvenes o mayores— probablemente digamos o hagamos cosas que después lamentemos (Ecl. 7:7; Sant. 3:2). Eso fue lo que le pasó al fiel Job. El sufrimiento lo empujó a usar palabras \"impetuosas\" (Job 6:1-3, nota). Por otro lado, un problema médico podría llevarnos a hacer o decir cosas que no son habituales en nosotros. Claro está, nadie debería tomar la edad o la salud como excusas para ser grosero o demasiado exigente. Y, si nos damos cuenta de que hemos hecho un comentario poco amable, no deberíamos dudar en pedir perdón (Mat. 5:23, 24)." },
+          { number: 9, content: "Dejemos que nos ayuden (Gál. 6:2). Al principio, podría resultarnos difícil. Una hermana llamada Gretl dice: \"A veces me cuesta aceptar que me ayuden porque no quiero ser una carga para nadie. Me ha tomado tiempo aprender a ser humilde y admitir que necesito que me den una mano\". Pero, cuando aceptamos la ayuda de los demás, les damos la oportunidad de experimentar la felicidad que viene de dar (Hech. 20:35). Y nosotros también nos sentiremos felices al ver lo mucho que nos quieren y se preocupan por nosotros.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_4_lg.jpg", imageCaption: "Una hermana mayor va agarrada del brazo de una hermana joven mientras van juntas a comprar alimentos." },
+          { number: 10, content: "Demostremos nuestro agradecimiento (Col. 3:15; 1 Tes. 5:18). Cuando los demás hacen cosas por nosotros, sentimos gratitud, aunque tal vez se nos olvide demostrarla. Pero con una sonrisa y un \"gracias\" lograremos que sientan que apreciamos mucho lo que hacen. Leah, que cuida hermanos mayores en Betel, dice: \"Una de las hermanas me deja notitas de agradecimiento. Son pocas palabras, pero están cargadas de cariño. ¡Me encantan! Me siento muy feliz de saber que valora mi ayuda\".", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_5_lg.jpg", imageCaption: "Una hermana mayor escribiendo una tarjeta de agradecimiento." },
+          { number: 11, content: "Ayudemos a los demás. Cuando nos centramos en dar de nuestro tiempo y energías, será menos probable que nos centremos en nuestros propios problemas. Un proverbio africano compara a los mayores a bibliotecas que contienen un caudal de sabiduría. Pero los libros que se quedan en los estantes no enseñan nada ni cuentan historias. Así que seamos como \"bibliotecas andantes\" y compartamos con los más jóvenes nuestro conocimiento y experiencia. Hagámosles preguntas y luego escuchémoslos. Expliquémosles las razones por las que obedecer a Jehová es siempre lo mejor y es lo que los hará felices. Y seguro que nosotros también nos sentiremos felices al consolarlos y fortalecerlos (Sal. 71:18).", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_6_lg.jpg", imageCaption: "Un hermano mayor escuchando a un hermano joven que le está contando algo." },
+          { number: 12, content: "Pidámosle fuerzas a Jehová. Aunque a veces nos sintamos agotados física o emocionalmente, Jehová \"jamás se cansa ni se agota\" (Is. 40:28). Él posee una energía infinita y, entre otras cosas, la usa para fortalecer a sus siervos fieles de edad avanzada (Is. 40:29-31). De hecho, promete sostenerlos (lea Isaías 46:4). Y Jehová siempre cumple sus promesas (Jos. 23:14; Is. 55:10, 11). Cada vez que experimentamos personalmente su amor y su apoyo, no podemos menos que sentirnos muy felices.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_7_lg.jpg", imageCaption: "Un hermano mayor haciendo una oración." },
+          { number: 13, content: "Recordemos que la vejez y sus achaques son temporales. Comprender que algo negativo es temporal nos ayuda siempre a aguantarlo. Y la Biblia nos asegura que la vejez y la mala salud dejarán de existir (Job 33:25; Is. 33:24). ¡Cuánto nos alegra saber que nuestros mejores días no han quedado en el pasado, sino que están todavía por venir! (Lea 2 Corintios 4:16-18). Ahora bien, ¿cómo pueden los demás ayudar?", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025648/univ/art/2025648_univ_cnt_8_lg.jpg", imageCaption: "Una hermana mayor en silla de ruedas está leyendo la Biblia y se imagina a sí misma en el Paraíso siendo joven y levantándose de la silla." },
+          { number: 14, content: "Visitándolos y llamándolos periódicamente (Heb. 13:16). Las personas mayores suelen sentirse solas. Un hermano llamado Pierre dice: \"Como no puedo salir de casa en todo el día, me aburro terriblemente. A veces me siento como un viejo león enjaulado: nervioso y agobiado\". Cuando visitamos a nuestros mayores, les demostramos que nos importan y que los queremos. Pero es probable que todos recordemos ocasiones en las que pensamos visitar o llamar a algún hermano de la congregación, y al final no lo hicimos. En vista de que todos llevamos vidas muy ocupadas, ¿qué nos ayudará a centrarnos en las \"cosas [...] más importantes\", como visitar a los mayores? (Filip. 1:10). Tal vez nos resulte útil ponernos un recordatorio en el calendario para enviarles un mensaje o llamarlos. Y, cuando queramos visitarlos, hagamos planes concretos y no lo dejemos a la casualidad." },
+          { number: 15, content: "¿Eres una persona joven? Entonces, tal vez te preguntes de qué temas puedes hablar con los mayores y qué actividades pueden realizar juntos. Pero no le des tantas vueltas. Solo hay que ser un buen amigo (Prov. 17:17). Conversa con ellos antes o después de las reuniones. Podrías pedirles que te cuenten cuál es su texto favorito o alguna anécdota graciosa de su infancia. Otra opción es invitarlos a ver un programa de JW Broadcasting®. También podrías ayudarlos de maneras prácticas, como por ejemplo actualizándoles sus dispositivos electrónicos o descargándoles las últimas publicaciones de estudio. Una hermana que se llama Carol hace esta sugerencia: \"Invítalos a hacer lo que más te guste a ti. Aunque tengo mis añitos, sigo disfrutando de la vida. Me gusta ir de compras, salir a comer y ver la creación\". Y otra hermana, llamada Maira, cuenta: \"Una de mis amigas tiene 90 años, así que me lleva 57 años. Pero muchas veces ni pienso en eso, pues nos pasamos todo el tiempo riendo y viendo pelis juntas. Y acudimos la una a la otra siempre que necesitamos consejo\"." },
+          { number: 16, content: "Acompañándolos al médico. Además de llevarlos a las citas, podemos ofrecernos a quedarnos con ellos para asegurarnos de que los tratan bien y les dan toda la atención que necesitan (Is. 1:17). Incluso podríamos tomar notas de lo que diga el médico. Una hermana llamada Ruth explica: \"Cuando voy sola, los doctores no suelen tomarme en serio. Quizás me hagan comentarios como 'El problema que usted tiene es psicológico; está solo en su cabeza'. Pero, cuando voy acompañada, el trato es muy diferente. Les estoy muy agradecida a los hermanos y hermanas que sacan tiempo para ir conmigo\"." },
+          { number: 17, content: "Participando con ellos en el ministerio. A veces los hermanos mayores no tienen las fuerzas para predicar de casa en casa. ¿Hemos pensado en invitarlos a estar en el carrito con nosotros? Incluso podríamos llevarles una silla para que se sienten. ¿O qué tal invitarlos a que nos acompañen a un curso bíblico, tal vez hasta dirigiéndolo en su hogar? Los ancianos pueden organizar reuniones para la predicación en la casa de estos hermanos para que les resulte más fácil salir al ministerio. Valdrá la pena cualquier esfuerzo que hagamos por honrarlos (Prov. 3:27; Rom. 12:10)." },
+          { number: 18, content: "Este artículo nos ha recordado que Jehová y toda la congregación aman y valoran a los mayores. Es cierto que envejecer es una etapa difícil, pero con la ayuda de Jehová es posible mantener la alegría (Sal. 37:25). ¡Cuánto nos anima saber que nuestros mejores días no han quedado en el pasado, sino que están todavía por venir! Ahora bien, ¿y si somos nosotros quienes estamos cuidando de un familiar mayor, un hijo o un amigo enfermo? ¿Qué nos ayudará a no perder la alegría? En el siguiente artículo de estudio veremos la respuesta." }
         ],
         reviewQuestions: [
           {
-            question: "¿Cómo podemos mostrar que respetamos a nuestros familiares?"
+            question: "¿Qué cosas podrían desanimar a los hermanos mayores?",
+            answer: [
+              "Ser incapaces de hacer lo mismo que antes.",
+              "Extrañar la juventud y la buena salud de otros tiempos.",
+              "Ir perdiendo la autonomía y depender de otros.",
+              "Pensar que quizás no vivamos para ver el fin de este sistema.",
+              "Problemas médicos que afectan nuestro estado de ánimo."
+            ]
           },
           {
-            question: "¿Cómo podemos mostrar que respetamos a los hermanos?"
+            question: "¿Qué pueden hacer los mayores para mantener la alegría?",
+            answer: [
+              "Dejarse ayudar por los demás.",
+              "Demostrar agradecimiento con una sonrisa y un 'gracias'.",
+              "Ayudar a otros compartiendo su sabiduría y experiencia.",
+              "Pedirle fuerzas a Jehová en oración.",
+              "Recordar que la vejez y sus achaques son temporales."
+            ]
           },
           {
-            question: "¿Cómo podemos mostrar que respetamos a quienes no son Testigos?"
+            question: "¿Cómo podemos ayudar a los cristianos de edad avanzada?",
+            answer: [
+              "Visitándolos y llamándolos periódicamente.",
+              "Siendo buenos amigos y pasando tiempo con ellos.",
+              "Acompañándolos al médico.",
+              "Participando con ellos en el ministerio.",
+              "Ayudándolos con la tecnología y sus dispositivos."
+            ]
           }
         ],
-        finalSong: "Canción 129: Servimos con aguante"
+        finalSong: "Canción 30: Mi Amigo, mi Padre, mi Dios"
       },
 
-      // Artículo 39: "Ayudemos de inmediato a quienes tienen 'la actitud correcta'" (1-7 Dic)
+      // Artículo 45: "Cómo mantener la alegría al cuidar de un ser querido" (12-18 Ene)
       {
         metadata: {
-          articleNumber: 39,
-          week: "1-7 Dic",
-          month: "Septiembre",
-          year: 2025
-        },
-        song: "Canción 54: \"Este es el camino\"",
-        title: "Ayudemos de inmediato a quienes tienen \"la actitud correcta\"",
-        biblicalText: "\"Todos los que tenían la actitud correcta para obtener vida eterna se hicieron creyentes\" (HECH. 13:48).",
-        theme: "Cuándo ofrecerle a una persona un curso bíblico y cuándo invitarla a nuestras reuniones.",
-        questions: [
-          {
-            number: "1",
-            textEs: "¿De qué maneras reaccionan las personas cuando les predicamos? (Hechos 13:47, 48; 16:14, 15).",
-            textLSM: "",
-            paragraphs: [1]
-          },
-          {
-            number: "2",
-            textEs: "¿En qué sentido puede decirse que predicar es como cuidar de una huerta?",
-            textLSM: "",
-            paragraphs: [2]
-          },
-          {
-            number: "3",
-            textEs: "Si estamos predicando y encontramos a una persona interesada en el mensaje, ¿qué podemos hacer? (1 Corintios 9:26).",
-            textLSM: "",
-            paragraphs: [3],
-            section: "SI LA PERSONA ESTÁ INTERESADA EN EL MENSAJE"
-          },
-          {
-            number: "4",
-            textEs: "¿Qué experiencia muestra que hay personas dispuestas a aceptar un curso bíblico desde el primer momento?",
-            textLSM: "",
-            paragraphs: [4]
-          },
-          {
-            number: "5",
-            textEs: "¿Qué debemos tener presente al ofrecer un curso bíblico? (Vea también las imágenes).",
-            textLSM: "",
-            paragraphs: [5]
-          },
-          {
-            number: "6",
-            textEs: "¿Qué podemos hacer para que la persona nos permita volver para seguir hablando de la Biblia?",
-            textLSM: "",
-            paragraphs: [6]
-          },
-          {
-            number: "7",
-            textEs: "¿Cuándo se dan cuenta algunas personas de que han encontrado la verdad? (1 Corintios 14:23-25).",
-            textLSM: "",
-            paragraphs: [7]
-          },
-          {
-            number: "8",
-            textEs: "Si invitamos a una persona a una reunión, ¿qué podemos explicarle? (Isaías 54:13).",
-            textLSM: "",
-            paragraphs: [8]
-          },
-          {
-            number: "9, 10",
-            textEs: "Si invitamos a alguien a una reunión, ¿qué podemos decirle para ayudarlo a vencer sus posibles temores? (Vea también la imagen).",
-            textLSM: "",
-            paragraphs: [9, 10]
-          },
-          {
-            number: "11",
-            textEs: "¿Cómo mostramos que respetamos el tiempo de la persona?",
-            textLSM: "",
-            paragraphs: [11],
-            section: "SI EMPEZAMOS UN CURSO BÍBLICO"
-          },
-          {
-            number: "12",
-            textEs: "¿Cuál debe ser nuestro objetivo desde la primera clase?",
-            textLSM: "",
-            paragraphs: [12]
-          },
-          {
-            number: "13",
-            textEs: "¿Cómo podemos ser pacientes y comprensivos con el estudiante? (2 Corintios 10:4, 5; vea también la imagen).",
-            textLSM: "",
-            paragraphs: [13]
-          },
-          {
-            number: "14",
-            textEs: "¿Cómo debemos tratar a quienes vienen a nuestras reuniones?",
-            textLSM: "",
-            paragraphs: [14],
-            section: "SI LA PERSONA ASISTE A UNA REUNIÓN"
-          },
-          {
-            number: "15, 16",
-            textEs: "¿Qué podemos hacer para que los nuevos se sientan a gusto?",
-            textLSM: "",
-            paragraphs: [15, 16]
-          },
-          {
-            number: "17",
-            textEs: "¿Cuál debe ser nuestra meta si encontramos a alguien que tiene \"la actitud correcta\"?",
-            textLSM: "",
-            paragraphs: [17]
-          }
-        ],
-        paragraphs: [
-          {
-            number: 1,
-            content: "EN EL siglo primero, muchas personas aceptaron la verdad tan pronto como les predicaron el mensaje (lea Hechos 13:47, 48; 16:14, 15). Hoy día también hay quienes aceptan con alegría las buenas noticias desde el primer momento en que las oyen. Puede que incluso los que al principio no muestran interés luego abran su corazón y sí quieran aprender sobre Dios. ¿Qué debemos hacer cuando al predicar encontramos personas que tienen \"la actitud correcta\"?"
-          },
-          {
-            number: 2,
-            content: "En cierto sentido, podría decirse que predicar es como cuidar de una huerta. Mientras un agricultor está sembrando y cultivando plantas, quizás vea que otra ya tiene fruto maduro, así que de inmediato va a cosecharlo. De forma parecida, mientras cultivamos el interés de las personas para ayudarlas a comprender el valor de lo que enseña la Biblia, tal vez encontremos a alguien que está listo para aceptar el mensaje, así que de inmediato hacemos todo lo posible por ayudarlo (Juan 4:35, 36). Si somos observadores, podremos diferenciar entre los dos tipos de personas y sabremos cómo atender a cada una. En este artículo veremos qué podemos hacer durante la primera conversación si vemos que la persona está ya dispuesta a aceptar el mensaje. También hablaremos de cómo ayudarla a seguir progresando."
-          },
-          {
-            number: 3,
-            content: "Si estamos predicando y encontramos a una persona interesada en el mensaje, queremos ayudarla de inmediato a empezar a andar por el camino que lleva a la vida. No hay por qué esperar: durante la primera conversación, lo mejor es ofrecerle un curso de la Biblia e invitarla a asistir a nuestras reuniones (lea 1 Corintios 9:26)."
-          },
-          {
-            number: 4,
-            content: "Ofrézc ale un curso. Hay personas dispuestas a aceptar un curso bíblico desde el primer momento. Veamos un caso que sucedió en Canadá. Cierto jueves, una chica se acercó a un carrito y tomó un folleto Disfrute de la vida. La hermana que estaba allí le explicó que el folleto incluía un curso bíblico gratis. La chica le dijo que estaba interesada y le dio su número de teléfono. Además, ese mismo día le envió un mensaje preguntándole por el curso. La hermana le propuso quedar ese fin de semana, pero la chica le respondió: \"¿Y por qué no mañana? Estoy disponible\". Al día siguiente empezaron el curso, ese mismo fin de semana asistió a su primera reunión y luego siguió progresando muy rápido."
-          },
-          {
-            number: 5,
-            content: "Por supuesto, no todos los que nos escuchan son como esta chica. Debemos tener presente que, en muchos casos, puede que sea necesario conversar primero sobre algún tema que llame la atención de la persona para lograr que se interese. Aun así, si mantenemos una actitud positiva y mostramos interés personal, puede que no tardemos en empezar un curso. ¿Qué podemos decir para ofrecerlo? Eso mismo se les preguntó a varios hermanos y hermanas que son muy hábiles empezando cursos de la Biblia. Veamos qué respondieron.",
-            image: "https://i.imgur.com/lYaiiCE.png",
-            imageCaption: "Mostramos interés personal al predicar. (Vea el párrafo 5 y las imágenes)."
-          },
-          {
-            number: 6,
-            content: "Estos publicadores y precursores explicaron que en algunos lugares quizás es mejor no decirle a la persona palabras como clase, curso o estudio. Les da mejor resultado usar expresiones como conversar, hablar y conocer mejor la Biblia. Para sacar el tema de que nos gustaría volver, sugieren decir cosas como \"Es sorprendente que la Biblia responde preguntas que uno se ha hecho toda la vida\" o \"La Biblia no solo habla de cosas religiosas, también da consejos muy prácticos y útiles\". Y tal vez añadir: \"En solo 10 o 15 minutos puede aprender cosas que lo pueden ayudar mucho\". No es necesario incluir que queremos ir todas las semanas, pues así evitaremos que la persona se agobie o se sienta comprometida."
-          },
-          {
-            number: 7,
-            content: "Invítela a una reunión. Al parecer, en tiempos del apóstol Pablo había personas que se daban cuenta de que habían encontrado la verdad cuando asistían a su primera reunión cristiana (lea 1 Corintios 14:23-25). Hoy día ocurre lo mismo. Muchas personas progresan más rápido cuando empiezan a asistir a nuestras reuniones. Ahora bien, ¿en qué momento invitar a la persona? El libro Disfrute de la vida incluye una invitación en la lección 10, pero no es necesario esperar hasta ese punto. Podemos animarla a ir a la reunión del fin de semana incluso en la primera conversación, quizás mencionando el título del discurso público o algún punto del artículo de La Atalaya de esa semana."
-          },
-          {
-            number: 8,
-            content: "Cuando invitemos a la persona, expliquémosle las diferencias entre lo que hacemos en nuestras reuniones y lo que se hace en otras religiones que quizás conozca. Después de asistir por primera vez al Estudio de La Atalaya, una estudiante le preguntó a su maestra de la Biblia: \"¿El que hace las preguntas se sabe el nombre de cada persona?\". La hermana le explicó que la congregación es como una familia, así que todos procuramos conocer el nombre de todos. La estudiante le contestó que en su iglesia casi nadie sabe cómo se llaman los demás. Muchos tal vez tampoco sepan cuál es el propósito de nuestras reuniones, así que convendría explicárselo (lea Isaías 54:13). Nos reunimos para adorar a Jehová, aprender de él y animarnos unos a otros (Heb. 2:12; 10:24, 25). Por eso nuestras reuniones se caracterizan por ser didácticas y organizadas, pero no ceremoniosas (1 Cor. 14:40). Como al Salón del Reino vamos a aprender, procuramos que los auditorios estén bien iluminados. Además, somos neutrales, así que no hablamos de temas políticos ni apoyamos a ningún partido. En las reuniones tampoco hacemos debates ni discutimos a gritos. Para que la persona se haga una idea de qué esperar, podemos enseñarle el video ¿Cómo son nuestras reuniones?"
-          },
-          {
-            number: 9,
-            content: "Algunos no se atreven a ir a una reunión porque temen que les dirán que tienen que hacerse testigos de Jehová. Por eso, aseguremos a la persona que quienes no son Testigos son bienvenidos; si ella quiere, puede ir y sentarse a escuchar, y nadie la va a presionar para que participe ni para que cambie de religión. No se hacen reuniones separadas para los niños, así que las familias pueden asistir y sentarse juntas para aprender. De esa manera los padres saben en todo momento dónde están sus hijos y qué se les está enseñando (Deut. 31:12). Tampoco hacemos colectas ni pedimos dinero, pues hacemos lo que dijo Jesús: \"Recibieron gratis, den gratis\" (Mat. 10:8). Además, podemos decirle que no es necesario que se ponga ropa cara. Dios no se fija en la apariencia, sino en el corazón (1 Sam. 16:7).",
-            image: "https://i.imgur.com/i4qDbKD.png",
-            imageCaption: "Ayudamos a la persona a sentirse cómoda en las reuniones. (Vea los párrafos 9 y 10 y la imagen)."
-          },
-          {
-            number: 10,
-            content: "Si la persona asiste, hagamos todo lo posible para que se sienta cómoda. Podemos presentarle a los ancianos y a otros hermanos. Si logramos que se sienta a gusto, es más probable que vuelva. Durante la reunión, si no tiene biblia, mostrémosle los textos en la nuestra y cómo seguir lo que se está analizando."
-          },
-          {
-            number: 11,
-            content: "Si empezamos un curso bíblico con alguien, ¿qué cosas debemos tomar en cuenta? Es importante respetar el tiempo de la persona. Por ejemplo, si le decimos que vamos a ir a cierta hora, cumplamos nuestra palabra, aunque la gente de la zona no le dé mucha importancia a la puntualidad. Además, tal vez sea buena idea que la primera sesión sea razonablemente corta. Algunos hermanos hábiles sugieren no extendernos más de lo acordado aunque la persona quiera seguir. Y evitemos hablar mucho; dejemos que sea ella la que se exprese (Prov. 10:19)."
-          },
-          {
-            number: 12,
-            content: "Al darle clases de la Biblia a una persona, nuestro objetivo desde la primera sesión debe ser que llegue a conocer y amar a Jehová y a Jesús. Para lograr eso debemos enseñar todas las cosas con la Biblia y no basarnos en nuestro propio conocimiento (Hech. 10:25, 26). El apóstol Pablo centró su enseñanza en Jesucristo, la persona a la que Jehová envió para ayudarnos a conocerlo y amarlo (1 Cor. 2:1, 2). Pablo también dejó claro que era muy importante ayudar a los nuevos discípulos a cultivar cualidades que son tan valiosas como el oro, la plata y las piedras preciosas (1 Cor. 3:11-15). Algunas de ellas son la fe, la sabiduría, el discernimiento y el temor de Jehová (Sal. 19:9, 10; Prov. 3:13-15; 1 Ped. 1:7). Sigamos su ejemplo y ayudemos a los estudiantes a cultivar una fe fuerte y una estrecha amistad con su cariñoso Padre celestial (2 Cor. 1:24)."
-          },
-          {
-            number: 13,
-            content: "Imitemos la forma de enseñar de Jesús siendo pacientes y comprensivos. No le hagamos al estudiante preguntas que le hagan sentir incómodo. Si notamos que no logra entender algún punto, sigamos con la lección y volvamos a tratarlo más adelante. Y, si vemos que le cuesta aceptar alguna enseñanza, no intentemos presionarlo, sino que dejemos tiempo para que la verdad le llegue al corazón (Juan 16:12; Col. 2:6, 7). La Biblia compara las enseñanzas falsas a una fortaleza que hay que derrumbar (lea 2 Corintios 10:4, 5; vea la nota de estudio \"derrumbar cosas fuertemente atrincheradas\"). Para que la persona pueda derribar creencias muy arraigadas, primero tenemos que ayudarla a hacer que Jehová sea su refugio (Sal. 91:9).",
-            image: "https://i.imgur.com/gdhRbsV.png",
-            imageCaption: "Seamos pacientes y comprensivos con el estudiante. (Vea el párrafo 13 y la imagen)."
-          },
-          {
-            number: 14,
-            content: "Jehová quiere que seamos imparciales y tratemos con amor a todas las personas que vienen a nuestras reuniones, sin importar su cultura, posición económica o lugar de origen (Sant. 2:1-4, 9). Veamos algunas maneras prácticas de hacerlo."
-          },
-          {
-            number: 15,
-            content: "Hay personas que asisten a una reunión simplemente por curiosidad o porque alguien que vive en otra zona las ha animado a ir. Así que, si vemos entrar a alguien nuevo, acerquémonos para darle la bienvenida. Seamos amigables, pero sin llegar a agobiarlo. Podemos invitarlo a sentarse con nosotros. Consigamos para él una biblia y las publicaciones, o compartamos con él las nuestras. Pensemos en otras maneras de hacer que se sienta a gusto. Por ejemplo, un hombre que fue a un Salón del Reino recuerda que estaba nervioso porque le parecía que su ropa era demasiado informal. Para tranquilizarlo, el hermano que lo recibió le dijo que no se preocupara, que los testigos de Jehová somos personas normales. Aquel hombre llegó a bautizarse y nunca olvidó la reacción del hermano. Eso sí, aunque les mostramos interés personal a quienes vienen a nuestras reuniones, debemos tener mucho cuidado para no entrometernos en sus asuntos privados (1 Ped. 4:15)."
-          },
-          {
-            number: 16,
-            content: "¿Qué más podemos hacer para que las personas se sientan bienvenidas? Por ejemplo, ser respetuosos si decimos algo sobre quienes no son Testigos o sobre sus creencias en nuestras conversaciones, comentarios e intervenciones en la reunión. No digamos nada que pudiera ofender a quienes nos visitan y hacer que no quieran volver (Tito 2:8; 3:2). Por ejemplo, no estaría bien menospreciar las creencias de los demás (2 Cor. 6:3). Los hermanos que están presentando discursos públicos deben tener muchísimo cuidado con esto. También deben mostrar que toman en cuenta a los visitantes explicando las palabras y los conceptos que solemos usar y que tal vez no entiendan."
-          },
-          {
-            number: 17,
-            content: "Cada día la predicación se hace más urgente y seguimos encontrando personas que tienen \"la actitud correcta para obtener vida eterna\" (Hech. 13:48). Así que, si le predicamos a alguien dispuesto a aceptar el mensaje, no dudemos en ofrecerle un curso bíblico y en invitarlo a nuestras reuniones. Así lo ayudaremos a empezar a andar por \"el camino que lleva a la vida\" (Mat. 7:14)."
-          }
-        ],
-        reviewQuestions: [
-          {
-            question: "¿Qué podemos hacer durante la primera conversación si vemos que la persona tiene \"la actitud correcta\"?"
-          },
-          {
-            question: "Si empezamos a darle clases de la Biblia a una persona, ¿qué sugerencias podemos aplicar desde la primera lección?"
-          },
-          {
-            question: "¿Qué podemos hacer para que las personas que vienen a nuestras reuniones se sientan a gusto?"
-          }
-        ],
-        finalSong: "Canción 64: Participemos con gozo en la cosecha"
-      }
-    ]
-  },
-
-  // Octubre 2025
-  "2025-10": {
-    articles: [
-      // Artículo 40: "Jehová es nuestra 'máxima alegría'" (8-14 Dic)
-      {
-        metadata: {
-          articleNumber: 40,
-          week: "8-14 Dic",
-          month: "Octubre",
+          articleNumber: 45,
+          week: "12-18 Ene",
+          month: "Noviembre",
           year: 2025
         },
         song: "Canción 111: Los motivos de nuestro gozo",
-        title: "Jehová es nuestra \"máxima alegría\"",
-        biblicalText: "\"Iré [...] a Dios, mi máxima alegría\" (SAL. 43:4).",
-        theme: "Qué cosas pueden robarnos la alegría y qué podemos hacer para recuperarla.",
+        title: "Cómo mantener la alegría al cuidar de un ser querido",
+        biblicalText: "\"Los que siembran con llanto cosecharán con gritos de alegría\" (SAL. 126:5).",
+        theme: "Sugerencias que lo ayudarán a mantener la alegría al cuidar de un amigo o un familiar mayor o enfermo.",
         questions: [
           {
             number: "1, 2",
-            textEs: "a) ¿Cómo se sienten muchas personas hoy en día? b) ¿Qué veremos en este artículo?",
+            textEs: "¿Qué piensa Jehová de sus esfuerzos por cuidar de un ser querido? (Proverbios 19:17; vea también las imágenes).",
             textLSM: "",
             paragraphs: [1, 2],
-            answer: "Muchas personas hoy en día se sienten terriblemente tristes y vacías, a pesar de estar obsesionadas con la idea de ser felices. La felicidad que consiguen es pasajera. Incluso algunos siervos de Jehová pueden sentirse así debido a las situaciones y emociones «difíciles de soportar» de los últimos días. En este artículo veremos qué cosas pueden robarnos la alegría, qué podemos hacer para recuperarla, y quién puede darnos la verdadera felicidad.",
-            answerBullets: [
-              "**Muchas personas se sienten tristes y vacías** - A pesar de buscar la felicidad, solo consiguen una felicidad pasajera",
-              "**Los siervos de Jehová no son inmunes** - También pueden sentirse así por vivir en los últimos días",
-              "**Tiempos difíciles de soportar** - 2 Timoteo 3:1 describe las situaciones y emociones de estos días",
-              "**El artículo analizará tres cosas** - Qué roba la alegría, cómo recuperarla, y quién da la verdadera felicidad"
+            readText: "LEE Proverbios 19:17",
+            answer: [
+              "Jehová sabe y comprende los sentimientos de los cuidadores.",
+              "Cada una de sus lágrimas es muy valiosa para él.",
+              "Jehová aprecia todos los sacrificios que hace por atender a su ser querido.",
+              "Jehová considera que está en deuda con usted y promete recompensarlo."
             ],
             flashcards: [
               {
-                question: "¿Cómo se sienten muchas personas hoy en día a pesar de buscar la felicidad?",
-                answer: "Se sienten terriblemente tristes y vacías, y la felicidad que consiguen es pasajera"
+                question: "¿Qué cuenta Jin-yeol sobre el cuidado de su esposa con párkinson?",
+                answer: "Lleva 5 años cuidándola. Todas las noches duermen agarrados de la mano, él en su cama y ella a su lado en una cama especial."
               },
               {
-                question: "¿Por qué incluso los siervos de Jehová pueden sentirse tristes?",
-                answer: "Porque vivimos en los últimos días y tenemos que hacer frente a situaciones y emociones difíciles de soportar (2 Tim. 3:1)"
-              },
-              {
-                question: "¿Qué tres cosas analizará este artículo?",
-                answer: "1) Qué cosas pueden robarnos la alegría, 2) Qué podemos hacer para recuperarla, 3) Quién puede darnos la verdadera felicidad"
+                question: "Según Salmo 56:8, ¿qué hace Jehová con nuestras lágrimas?",
+                answer: "Son muy valiosas para él; las recoge y las guarda."
               }
             ],
             biblicalCards: [
               {
-                reference: "2 Timoteo 3:1",
-                purpose: "Explica por qué es difícil mantener la alegría en estos tiempos",
-                text: "Pero ten presente que en los últimos días habrá tiempos muy difíciles de soportar."
+                reference: "Proverbios 19:17",
+                purpose: "Jehová recompensa a quienes ayudan a otros",
+                text: "El que le muestra favor al de condición humilde le presta a Jehová, y Él le pagará lo que haya hecho."
+              },
+              {
+                reference: "Salmo 56:8",
+                purpose: "Jehová valora nuestras lágrimas",
+                text: "Tú llevas la cuenta de mis pasos de fugitivo. Recoge mis lágrimas en tu odre. ¿No están escritas en tu libro?"
+              },
+              {
+                reference: "1 Timoteo 5:4, 8",
+                purpose: "Cuidar de la familia es un deber cristiano",
+                text: "Pero si alguna viuda tiene hijos o nietos, que ellos aprendan primero a practicar la devoción piadosa en su propia casa y a corresponder a sus padres y abuelos."
               }
-            ],
-            infographic: "https://i.imgur.com/TI9ifyw.png"
+            ]
           },
           {
             number: "3",
-            textEs: "¿Qué nos enseña la creación sobre Jehová? (Mira también las imágenes).",
+            textEs: "¿Por qué debió resultarles difícil a Abrahán y Sara cuidar de Taré?",
             textLSM: "",
             paragraphs: [3],
-            image: "https://i.imgur.com/pSYxoHm.png",
-            imageCaption: "La creación nos enseña que Jehová siempre ha sido feliz y quiere que nosotros también lo seamos. (Vea el párrafo 3).",
-            answer: "La creación nos enseña que Jehová siempre ha sido feliz y quiere que nosotros también lo seamos. Por eso ha creado tantas cosas que nos llenan de alegría: nuestro hermoso planeta, una inmensa variedad de colores, deliciosos alimentos y animales que nos hacen reír con sus juegos. Sin duda, Jehová nos ama y desea que disfrutemos de la vida.",
-            answerBullets: [
-              "**Jehová siempre ha sido feliz** - Y quiere que nosotros también lo seamos",
-              "**Creó cosas que nos llenan de alegría** - Nuestro hermoso planeta, variedad de colores, deliciosos alimentos",
-              "**Los animales nos hacen reír** - Jehová creó animales que nos divierten con sus juegos",
-              "**Jehová nos ama** - Y desea que disfrutemos de la vida"
+            answer: [
+              "Taré tenía unos 200 años cuando salieron de Ur.",
+              "Viajaron unos 960 kilómetros hasta Harán.",
+              "Probablemente iban montados en camellos o burros, lo cual era especialmente incómodo para Taré.",
+              "Abrahán y Sara a veces debieron sentirse muy cansados, incluso agotados.",
+              "Pero Jehová les dio las fuerzas que necesitaban."
             ],
             flashcards: [
               {
-                question: "¿Qué nos enseña la creación sobre la personalidad de Jehová?",
-                answer: "Que Jehová siempre ha sido feliz y quiere que nosotros también lo seamos. Creó cosas que nos llenan de alegría."
+                question: "¿Qué distancia recorrieron Abrahán, Sara y Taré desde Ur hasta Harán?",
+                answer: "Unos 960 kilómetros (600 millas)."
               },
               {
-                question: "¿Qué cosas ha creado Jehová para que disfrutemos?",
-                answer: "Nuestro hermoso planeta, una inmensa variedad de colores, deliciosos alimentos y animales que nos hacen reír con sus juegos."
+                question: "¿Qué edad aproximada tenía Taré durante el viaje?",
+                answer: "Unos 200 años."
               }
             ],
-            biblicalCards: []
+            biblicalCards: [
+              {
+                reference: "Génesis 11:31, 32",
+                purpose: "Taré viajó con su familia",
+                text: "Taré tomó a su hijo Abrán y a su nieto Lot y a su nuera Sarai y salieron juntos de Ur de los caldeos para ir a la tierra de Canaán. Con el tiempo llegaron a Harán y se establecieron allí."
+              },
+              {
+                reference: "Salmo 55:22",
+                purpose: "Jehová nos sostiene",
+                text: "Echa tu carga sobre Jehová, y él te sostendrá. Nunca permitirá que el justo caiga."
+              }
+            ]
           },
           {
             number: "4",
-            textEs: "a) ¿Por qué Jehová se siente feliz a pesar de todo el sufrimiento que ve en el mundo? b) ¿Qué hace Jehová por nosotros? (Salmo 16:11).",
+            textEs: "¿Qué veremos en este artículo?",
             textLSM: "",
             paragraphs: [4],
-            readText: "LEE Salmo 16:11",
-            answer: "Jehová es el «Dios feliz» y conoce muy bien todo el sufrimiento del mundo, pero no deja que eso le robe la alegría. Sabe que el sufrimiento es temporal porque él mismo le ha puesto fecha de caducidad. Mientras espera con paciencia, está muy pendiente de cómo nos sentimos y nos ayuda a estar alegres y felices (Salmo 16:11).",
-            answerBullets: [
-              "**Jehová es el «Dios feliz»** - Aunque conoce muy bien todo el sufrimiento del mundo (1 Tim. 1:11)",
-              "**No deja que el sufrimiento le robe la alegría** - Sabe que es temporal y tiene fecha de caducidad",
-              "**Espera con paciencia** - El día de acabar para siempre con el dolor y la tristeza",
-              "**Está pendiente de nosotros** - Nos ayuda a estar alegres y felices (Salmo 16:11)"
+            answer: [
+              "Le resultará más fácil seguir cuidando de su ser querido si tiene una actitud alegre.",
+              "La felicidad es una cualidad que no depende de las circunstancias.",
+              "Podemos pedirle a Jehová que nos ayude a mantener una actitud positiva.",
+              "Veremos sugerencias para no perder la alegría y qué pueden hacer los demás por los cuidadores."
             ],
             flashcards: [
               {
-                question: "¿Por qué Jehová no deja que el sufrimiento del mundo le robe la alegría?",
-                answer: "Porque sabe que todo ese sufrimiento es temporal; él mismo le ha puesto fecha de caducidad."
-              },
-              {
-                question: "¿Qué hace Jehová mientras espera el fin del sufrimiento?",
-                answer: "Está muy pendiente de cómo nos sentimos y nos ayuda a estar alegres y felices (Salmo 16:11)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 16:11",
-                purpose: "Muestra cómo Jehová nos ayuda a estar alegres",
-                text: "Me darás a conocer el camino de la vida. En tu presencia hay alegría de sobra; a tu derecha hay felicidad para siempre."
-              },
-              {
-                reference: "1 Timoteo 1:11",
-                purpose: "Identifica a Jehová como el «Dios feliz»",
-                text: "Según las gloriosas buenas noticias del feliz Dios, que me fueron confiadas."
-              }
-            ]
-          },
-          {
-            number: "5, 6",
-            textEs: "¿Por qué se siente feliz Jesús?",
-            textLSM: "",
-            paragraphs: [5, 6],
-            answer: "Jesús es la persona más feliz después de Jehová por varias razones: 1) Es «la imagen del Dios invisible» y refleja a la perfección todas las cualidades de su Padre. 2) Ha pasado más tiempo que nadie junto a Jehová, la única fuente de la verdadera felicidad. 3) Siempre hace lo que su Padre quiere que haga. Debido a su obediencia, cuenta con el favor y la aprobación de Jehová.",
-            answerBullets: [
-              "**Es la imagen del Dios invisible** - Refleja a la perfección todas las cualidades de Jehová (Col. 1:15; 1 Tim. 6:15)",
-              "**Ha pasado más tiempo junto a Jehová** - La única fuente de la verdadera felicidad",
-              "**Siempre hace la voluntad de su Padre** - Se siente feliz por obedecer a Jehová (Prov. 8:30, 31; Juan 8:29)",
-              "**Cuenta con el favor de Jehová** - Su obediencia le da la aprobación de su Padre (Mat. 3:17)"
-            ],
-            flashcards: [
-              {
-                question: "¿Quién es la persona más feliz después de Jehová y por qué?",
-                answer: "Jesús, porque es la imagen de Dios, ha pasado más tiempo con Jehová y siempre hace Su voluntad."
-              },
-              {
-                question: "¿Qué relación hay entre la obediencia de Jesús y su felicidad?",
-                answer: "Jesús se siente feliz porque siempre hace lo que su Padre quiere, y debido a eso cuenta con el favor y la aprobación de Jehová."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Colosenses 1:15",
-                purpose: "Explica por qué Jesús refleja las cualidades de Jehová",
-                text: "Él es la imagen del Dios invisible, el primogénito de toda la creación."
-              },
-              {
-                reference: "Juan 8:29",
-                purpose: "Muestra la obediencia de Jesús a su Padre",
-                text: "Y el que me envió está conmigo; él no me ha dejado solo, porque yo siempre hago las cosas que le agradan."
-              },
-              {
-                reference: "Mateo 3:17",
-                purpose: "Muestra la aprobación de Jehová hacia Jesús",
-                text: "Además, se oyó una voz del cielo que decía: «Este es mi Hijo, el amado, a quien he aprobado»."
-              }
-            ]
-          },
-          {
-            number: "7",
-            textEs: "¿Qué tenemos que hacer para sentirnos realmente felices?",
-            textLSM: "",
-            paragraphs: [7],
-            image: "https://i.imgur.com/I1i4eNg.png",
-            imageCaption: "Para sentirnos realmente felices debemos acercarnos cada vez más a Jehová. (Vea el párrafo 7).",
-            answer: "Para sentirnos realmente felices debemos acercarnos cada vez más a Jehová. Cuanto más tiempo pasemos aprendiendo de él, mejor lo imitaremos y más felices seremos. Hacer su voluntad y saber que contamos con su aprobación también nos llena de alegría. Aunque a veces sintamos que hemos perdido la alegría, eso no significa que hayamos perdido la aprobación de Dios. Jehová entiende que somos imperfectos.",
-            answerBullets: [
-              "**Acercarnos cada vez más a Jehová** - Cuanto más tiempo aprendamos de él, más felices seremos",
-              "**Imitar a Jehová** - Al conocerlo mejor, lo imitaremos mejor",
-              "**Hacer su voluntad** - Saber que contamos con su aprobación nos llena de alegría (Sal. 33:12)",
-              "**Jehová entiende nuestra imperfección** - Perder la alegría temporalmente no significa perder su aprobación (Sal. 103:14)"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué debemos hacer para sentirnos realmente felices?",
-                answer: "Acercarnos cada vez más a Jehová, pasar tiempo aprendiendo de él, imitarlo y hacer su voluntad."
-              },
-              {
-                question: "Si a veces perdemos la alegría, ¿significa que hemos perdido la aprobación de Dios?",
-                answer: "No. Jehová entiende que somos imperfectos y que a veces sentimos dolor, tristeza y depresión (Sal. 103:14)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 33:12",
-                purpose: "Muestra la felicidad de quienes tienen la aprobación de Jehová",
-                text: "Feliz es la nación cuyo Dios es Jehová, el pueblo que él ha elegido como herencia."
-              },
-              {
-                reference: "Salmo 103:14",
-                purpose: "Muestra que Jehová entiende nuestras limitaciones",
-                text: "Pues él conoce bien cómo estamos formados, recuerda que somos polvo."
-              }
-            ]
-          },
-          {
-            number: "8",
-            textEs: "¿Cómo pueden afectarnos los problemas de la vida?",
-            textLSM: "",
-            paragraphs: [8],
-            section: "LADRÓN NÚMERO 1: LOS PROBLEMAS DE LA VIDA",
-            answer: "Los problemas de la vida son como el ladrón número 1 que puede robarnos la alegría. Podemos sufrir por persecución, un desastre natural, la pobreza, una enfermedad o la edad avanzada. Estas situaciones pueden robarnos la alegría, especialmente si no podemos hacer nada para cambiarlas. La Biblia dice que «un corazón angustiado aplasta el ánimo». Los golpes de la vida pueden hundirnos física y emocionalmente.",
-            answerBullets: [
-              "**Ladrón número 1: los problemas de la vida** - Pueden robarnos la alegría",
-              "**Ejemplos de problemas** - Persecución, desastres naturales, pobreza, enfermedad, edad avanzada",
-              "**Especialmente difíciles** - Cuando no podemos hacer nada para cambiar las cosas",
-              "**Un corazón angustiado aplasta el ánimo** - Los golpes nos hunden física y emocionalmente (Prov. 15:13)"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuál es el 'ladrón número 1' que puede robarnos la alegría?",
-                answer: "Los problemas de la vida: persecución, desastres naturales, pobreza, enfermedad o edad avanzada."
-              },
-              {
-                question: "¿Qué dice Proverbios 15:13 sobre cómo nos afectan los problemas?",
-                answer: "«Un corazón angustiado aplasta el ánimo». Los golpes de la vida pueden hundirnos física y emocionalmente."
+                question: "Según Santiago 1:2, 3, ¿de qué no depende la felicidad?",
+                answer: "No depende de las circunstancias; es una cualidad que podemos cultivar."
               }
             ],
             biblicalCards: [
               {
                 reference: "Proverbios 15:13",
-                purpose: "Describe el efecto de los problemas en nuestro ánimo",
-                text: "El corazón alegre hace que el rostro sea radiante, pero un corazón angustiado aplasta el ánimo."
+                purpose: "Una actitud alegre nos ayuda",
+                text: "Un corazón alegre le da alegría al rostro, pero el dolor del corazón aplasta el espíritu."
+              },
+              {
+                reference: "Santiago 1:2, 3",
+                purpose: "La felicidad no depende de las circunstancias",
+                text: "Considérenlo todo un gozo, hermanos míos, cuando se enfrenten a diversas pruebas, sabiendo como saben que la fe probada produce aguante."
               }
             ]
           },
           {
-            number: "9",
-            textEs: "¿Qué podemos hacer para recuperar la alegría? (Jeremías 29:4-7, 10).",
+            number: "5",
+            textEs: "¿Por qué es importante mantener la alegría?",
             textLSM: "",
-            paragraphs: [9],
-            readText: "LEE Jeremías 29:4-7, 10",
-            answer: "Para recuperar la alegría debemos ser realistas y estar agradecidos. Aunque el mundo promueve la idea de que para ser felices nuestra vida tiene que ser perfecta, eso no es verdad. Jehová les dijo a los judíos en Babilonia que, aunque la situación fuera difícil, trataran de aceptarla y llevarla lo mejor posible. Debemos aceptar nuestras circunstancias, agradecer las cosas buenas y recordar que Jehová está a nuestro lado.",
-            answerBullets: [
-              "**Ser realistas y estar agradecidos** - No necesitamos una vida perfecta para ser felices",
-              "**Aceptar nuestras circunstancias** - Como los judíos en Babilonia (Jer. 29:4-7, 10)",
-              "**Agradecer las cosas buenas** - Enfocarnos en lo que tenemos",
-              "**Recordar que Jehová está con nosotros** - Él es nuestro refugio y ayuda (Sal. 63:7; 146:5)"
+            paragraphs: [5],
+            section: "POR QUÉ PUEDE SER DIFÍCIL MANTENER LA ALEGRÍA",
+            answer: [
+              "Si los cuidadores pierden la alegría, es más fácil que se cansen.",
+              "Si están cansados, puede que no sean tan amables ni ayuden tanto como les gustaría."
             ],
             flashcards: [
               {
-                question: "¿Qué consejo les dio Jehová a los judíos desterrados en Babilonia?",
-                answer: "Que trataran de aceptar la situación difícil y llevarla lo mejor posible (Jeremías 29:4-7, 10)."
-              },
-              {
-                question: "¿Qué podemos hacer para recuperar la alegría según el párrafo 9?",
-                answer: "Ser realistas, aceptar nuestras circunstancias, agradecer las cosas buenas y recordar que Jehová está a nuestro lado."
+                question: "¿Qué pasa si los cuidadores pierden la alegría?",
+                answer: "Es más fácil que se cansen, y puede que no sean tan amables ni ayuden tanto como les gustaría."
               }
             ],
             biblicalCards: [
               {
-                reference: "Jeremías 29:4-7, 10",
-                purpose: "Ejemplo de cómo afrontar situaciones difíciles",
-                text: "Construyan casas y vivan en ellas; planten jardines y coman de sus frutos... Busquen la paz de la ciudad... Cuando se cumplan los 70 años en Babilonia, yo les prestaré atención."
-              },
-              {
-                reference: "Salmo 146:5",
-                purpose: "Muestra que Jehová es nuestra fuente de felicidad",
-                text: "Feliz es el que tiene al Dios de Jacob como su ayudador, el que espera en Jehová su Dios."
+                reference: "Proverbios 24:10",
+                purpose: "Perder la alegría debilita",
+                text: "Si te desanimas en el día de la angustia, tu fuerza será poca."
               }
             ]
           },
           {
-            number: "10",
-            textEs: "¿Por qué podemos mantener la alegría incluso cuando tenemos problemas?",
+            number: "6",
+            textEs: "¿Por qué se queman algunos cuidadores?",
             textLSM: "",
-            paragraphs: [10],
-            answer: "Podemos mantener la alegría incluso cuando nuestra vida no es ideal o nos pasan cosas terribles porque nuestra felicidad no depende de nuestras circunstancias. Cuando pasamos por problemas, no perdemos la alegría porque tenemos presentes las promesas de Jehová. Nuestro Padre nos ayuda a seguir siendo felices pase lo que pase. Todos nuestros problemas son temporales, como huellas en la orilla del mar que el agua borra sin dejar rastro.",
-            answerBullets: [
-              "**Nuestra felicidad no depende de las circunstancias** - Podemos ser felices aunque la vida no sea ideal",
-              "**Tenemos presentes las promesas de Jehová** - Esto nos ayuda a no perder la alegría",
-              "**Podemos expresar nuestras emociones** - No significa que no podamos llorar, pero Jehová nos ayuda",
-              "**Los problemas son temporales** - Como huellas en la orilla del mar que el agua borra (Sal. 126:5)"
+            paragraphs: [6],
+            answer: [
+              "Los cuidadores pueden quemarse física y emocionalmente.",
+              "Leah explica que cuidar de alguien implica un desgaste emocional tremendo.",
+              "Les cuesta sacar tiempo para descansar bien y desconectar.",
+              "Inés cuenta que no consigue dormir lo suficiente y lleva años sin vacaciones.",
+              "Algunos tienen que rechazar invitaciones sociales y asignaciones teocráticas.",
+              "Pueden sentirse aislados o atrapados por sus circunstancias."
             ],
             flashcards: [
               {
-                question: "¿Por qué podemos mantener la alegría incluso con problemas?",
-                answer: "Porque nuestra felicidad no depende de nuestras circunstancias y tenemos presentes las promesas de Jehová."
+                question: "¿Qué dice Leah sobre el desgaste de cuidar a alguien?",
+                answer: "«Incluso en los días buenos, cuidar de alguien implica un desgaste emocional tremendo. Al final del día, muchas veces siento que no me queda ni una gota de energía»."
               },
               {
-                question: "¿A qué se comparan nuestros problemas en el párrafo 10?",
-                answer: "A huellas en la orilla del mar que el agua borra sin dejar rastro. Son temporales."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 126:5",
-                purpose: "Muestra que podemos tener alegría a pesar de las dificultades",
-                text: "Los que siembran con lágrimas cosecharán con gritos de alegría."
-              }
-            ]
-          },
-          {
-            number: "11",
-            textEs: "¿Cómo te anima el ejemplo del apóstol Pablo?",
-            textLSM: "",
-            paragraphs: [11],
-            answer: "El ejemplo de Pablo nos anima porque aunque Jesús le encomendó una labor muy importante (llevar la verdad a las naciones, reyes e hijos de Israel), su vida estuvo llena de dificultades. Pero eso no significaba que había perdido la aprobación de Dios. Precisamente el hecho de que aguantara era prueba de que Jehová estaba con él. Si estamos aguantando con fidelidad a pesar de nuestros problemas, podemos estar seguros de que contamos con la aprobación de Jehová.",
-            answerBullets: [
-              "**Pablo recibió una labor importante** - Llevar la verdad a las naciones, reyes e hijos de Israel (Hech. 9:15)",
-              "**Su vida estuvo llena de dificultades** - Sufrió muchos problemas (2 Cor. 11:23-27)",
-              "**No perdió la aprobación de Dios** - Sus problemas no significaban que Jehová lo había abandonado",
-              "**Aguantar es prueba de aprobación** - Si aguantamos con fidelidad, Jehová está con nosotros (Rom. 5:3-5)"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué labor le encomendó Jesús a Pablo?",
-                answer: "Llevar la verdad «a las naciones, así como a reyes y a los hijos de Israel» (Hechos 9:15)."
-              },
-              {
-                question: "¿Qué prueba el ejemplo de Pablo sobre los problemas y la aprobación de Dios?",
-                answer: "Que tener dificultades no significa perder la aprobación de Dios. Aguantar con fidelidad es prueba de que Jehová está con nosotros."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Hechos 9:15",
-                purpose: "Muestra la importante asignación de Pablo",
-                text: "Pero el Señor le dijo: «¡Ponte en camino! porque este hombre es mi instrumento elegido para llevar mi nombre a las naciones, así como a reyes y a los hijos de Israel»."
-              },
-              {
-                reference: "Romanos 5:3-5",
-                purpose: "Explica cómo el aguante produce esperanza",
-                text: "No solo eso, sino que también nos gloriamos en las dificultades, sabiendo que la dificultad produce aguante; el aguante, una condición aprobada; la condición aprobada, esperanza."
-              }
-            ]
-          },
-          {
-            number: "12",
-            textEs: "¿Por qué podrían robarnos la alegría las expectativas que no se cumplen?",
-            textLSM: "",
-            paragraphs: [12],
-            section: "LADRÓN NÚMERO 2: LAS EXPECTATIVAS QUE NO SE CUMPLEN",
-            answer: "Las expectativas que no se cumplen son el ladrón número 2 que puede robarnos la alegría. Nos ponemos metas para demostrarle amor y gratitud a Jehová, pero si no son realistas podríamos desanimarnos. Por ejemplo, algunos querían ir a la Escuela para Evangelizadores del Reino, servir en el extranjero o trabajar en construcción, pero sus circunstancias cambiaron. Es muy frustrante querer hacer cosas pero no poder lograrlas.",
-            answerBullets: [
-              "**Ladrón número 2: expectativas que no se cumplen** - Puede robarnos la alegría (Prov. 13:12)",
-              "**Nos ponemos metas por amor a Jehová** - Pero deben adaptarse a nuestras circunstancias",
-              "**Metas no realistas causan desánimo** - «Un corazón enfermo» por la esperanza aplazada (Prov. 17:22)",
-              "**Frustrante querer y no poder** - Las circunstancias pueden cambiar e impedir nuestras metas"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuál es el 'ladrón número 2' que puede robarnos la alegría?",
-                answer: "Las expectativas que no se cumplen. Si nuestras metas no son realistas, podríamos desanimarnos."
-              },
-              {
-                question: "¿Por qué debemos adaptar nuestras metas a nuestras circunstancias?",
-                answer: "Porque si no son realistas podríamos desanimarnos. Las circunstancias pueden cambiar y es frustrante querer hacer cosas pero no poder lograrlas."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Proverbios 13:12",
-                purpose: "Describe el efecto de la esperanza aplazada",
-                text: "Una esperanza aplazada enferma el corazón, pero un deseo cumplido es un árbol de vida."
-              },
-              {
-                reference: "Proverbios 17:22",
-                purpose: "Muestra el efecto del desánimo en nuestra salud",
-                text: "Un corazón alegre es buena medicina, pero un espíritu desalentado seca los huesos."
-              }
-            ]
-          },
-          {
-            number: "13",
-            textEs: "Si nuestras circunstancias no nos permiten hacer tanto como nos gustaría, ¿qué metas sí están a nuestro alcance?",
-            textLSM: "",
-            paragraphs: [13],
-            answer: "Jehová no es exigente y no nos pide más de lo que podemos hacer. Lo que nos hace valiosos para él no son las responsabilidades, sino nuestras cualidades. Metas que sí están a nuestro alcance: hacernos amigos de algún joven para ayudarlo a progresar, ser apoyo para los hermanos mayores, ponernos la meta de animar a alguien en persona, por teléfono o con mensajes. Podemos reservar algunas metas para el nuevo mundo, donde podremos hacer muchísimas más cosas.",
-            answerBullets: [
-              "**Jehová no es exigente** - No nos pide más de lo que podemos hacer",
-              "**Lo que somos vale más que lo que hacemos** - Nuestras cualidades pesan más que las responsabilidades",
-              "**Metas al alcance** - Ayudar a jóvenes, apoyar a mayores, animar a otros (Miq. 6:8; 1 Cor. 4:2)",
-              "**Reservar metas para el nuevo mundo** - Tenemos toda una eternidad por delante"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué metas están a nuestro alcance si no podemos hacer tanto como nos gustaría?",
-                answer: "Hacernos amigos de jóvenes para ayudarlos, apoyar a hermanos mayores, animar a otros en persona, por teléfono o con mensajes."
-              },
-              {
-                question: "¿Qué hace que los siervos de Jehová seamos valiosos para él?",
-                answer: "No son las responsabilidades que tenemos, sino nuestras bonitas cualidades. Lo que somos por dentro pesa más que lo que hacemos."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Miqueas 6:8",
-                purpose: "Muestra lo que Jehová espera de nosotros",
-                text: "Él te ha dicho lo que es bueno. ¿Y qué te pide Jehová? Que practiques la justicia, que ames la lealtad y que seas modesto al andar con tu Dios."
-              },
-              {
-                reference: "1 Corintios 4:2",
-                purpose: "Destaca la importancia de ser fieles",
-                text: "En este caso, además, lo que se espera de los mayordomos es que se los encuentre fieles."
-              }
-            ]
-          },
-          {
-            number: "14",
-            textEs: "¿Qué otra cosa puede robarnos la alegría?",
-            textLSM: "",
-            paragraphs: [14],
-            section: "LADRÓN NÚMERO 3: CENTRARTE SOLO EN TI Y EN TUS DESEOS",
-            answer: "El ladrón número 3 es centrarte solo en ti y en tus deseos. Las redes sociales promueven la idea de que la clave para ser feliz está en viajar, ir de compras, dedicarte a tus hobbies y darte todos los caprichos. No está mal disfrutar de lo que nos gusta, pero muchas personas han visto que esas cosas en realidad les han robado la felicidad. Cuando te centras solo en ti, nunca tienes suficiente, siempre te quedas con ganas de más. Esa actitud produce tristeza y decepción.",
-            answerBullets: [
-              "**Ladrón número 3: centrarte en ti mismo** - Enfocarte solo en tus deseos roba la alegría",
-              "**Las redes sociales promueven esto** - Viajar, compras, hobbies, caprichos como clave de felicidad",
-              "**Disfrutar está bien** - Jehová nos creó para disfrutar, pero no debe ser el centro",
-              "**Nunca tienes suficiente** - Centrarte en ti produce tristeza y decepción, siempre quieres más"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuál es el 'ladrón número 3' que puede robarnos la alegría?",
-                answer: "Centrarte solo en ti y en tus deseos. Cuando te enfocas solo en ti, nunca tienes suficiente y siempre quieres más."
-              },
-              {
-                question: "¿Qué promueven las redes sociales como clave de la felicidad?",
-                answer: "Viajar, ir de compras, dedicarte a tus hobbies y darte todos los caprichos que puedas."
+                question: "¿Qué problema de sueño menciona Inés?",
+                answer: "Tiene que levantarse cada dos horas para atender a su suegra, y lleva años sin poder tomarse vacaciones."
               }
             ],
             biblicalCards: []
           },
           {
-            number: "15",
-            textEs: "¿Qué nos enseña lo que le pasó al rey Salomón?",
+            number: "7",
+            textEs: "¿Por qué se sienten culpables o tristes algunos cuidadores?",
             textLSM: "",
-            paragraphs: [15],
-            answer: "Salomón quiso comprobar si podía conseguir la felicidad centrándose en satisfacer sus deseos personales. Se dedicó a disfrutar de buena comida, música y todos los lujos de su época. El resultado fue que acabó tan decepcionado que escribió: «El ojo no se satisface con lo que ve ni se llena el oído con lo que oye». Las ideas del mundo sobre cómo conseguir la felicidad son como billetes falsos: parecen tener valor pero en realidad no sirven de nada.",
-            answerBullets: [
-              "**Salomón hizo un experimento** - Quiso ver si satisfacer sus deseos le daba felicidad",
-              "**Disfrutó de todo** - Buena comida, música y todos los lujos de su época",
-              "**El resultado fue decepción** - «El ojo no se satisface con lo que ve» (Ecl. 1:8; 2:1-11)",
-              "**Ideas del mundo como billetes falsos** - Parecen tener valor pero no sirven de nada"
+            paragraphs: [7],
+            answer: [
+              "Jessica se frustra por no poder hacer más y se siente culpable cuando descansa.",
+              "Algunos luchan con remordimientos porque a veces se sienten molestos por su situación.",
+              "Otros temen que no están haciendo lo suficiente.",
+              "Algunos se sienten mal porque han perdido los nervios y dicho algo fuera de lugar.",
+              "Les duele ver cómo la persona va perdiendo el vigor y la salud."
             ],
             flashcards: [
               {
-                question: "¿Qué experimento hizo el rey Salomón y cuál fue el resultado?",
-                answer: "Se dedicó a satisfacer todos sus deseos personales (comida, música, lujos). Acabó tan decepcionado que escribió que «el ojo no se satisface con lo que ve»."
+                question: "¿Por qué se siente culpable Jessica cuando descansa?",
+                answer: "Porque siente que es egoísta tomarse tiempo para descansar."
               },
               {
-                question: "¿A qué se comparan las ideas del mundo sobre la felicidad?",
-                answer: "A billetes falsos: parecen tener valor pero en realidad no sirven de nada."
+                question: "¿Qué dice Bárbara sobre ver el deterioro de su amiga?",
+                answer: "«Una de las cosas que peor llevo es ver a mi querida amiga deteriorarse cada día un poco más»."
               }
             ],
             biblicalCards: [
               {
-                reference: "Eclesiastés 1:8",
-                purpose: "Muestra la decepción de Salomón al buscar la felicidad en cosas materiales",
-                text: "Todas las cosas son fatigosas; nadie puede expresarlo del todo. El ojo no se satisface con lo que ve ni se llena el oído con lo que oye."
+                reference: "Santiago 3:2",
+                purpose: "Todos cometemos errores",
+                text: "Porque todos tropezamos muchas veces. Si alguien no tropieza en lo que dice, es un hombre perfecto, capaz también de controlar todo su cuerpo."
+              }
+            ]
+          },
+          {
+            number: "8",
+            textEs: "¿Cómo se han sentido algunos cuidadores cuando les han dado las gracias por su ayuda?",
+            textLSM: "",
+            paragraphs: [8],
+            answer: [
+              "Los cuidadores pueden sentir que no se valora lo que hacen.",
+              "Unas palabras de gratitud pueden hacer mucho bien.",
+              "Melissa dice que cuando le dicen 'Gracias por todo lo que haces por mí', siente una inyección de ánimo.",
+              "Ahmadu cuenta que su corazón rebosa de alegría cuando su sobrina les da las gracias."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué efecto tienen las palabras de gratitud en Melissa?",
+                answer: "«Siento una inyección de ánimo. Eso me ayuda a levantarme al día siguiente lista y con muchas ganas de seguir cuidándolas»."
               },
               {
-                reference: "Eclesiastés 2:1-11",
-                purpose: "Describe el experimento de Salomón buscando la felicidad",
-                text: "Dije en mi corazón: «Vamos, déjame probarte con el placer. Disfruta de las cosas buenas»... Amasé para mí plata y oro... y todo resultó ser vanidad."
+                question: "¿Qué hace la sobrina de Ahmadu que le llena el corazón de alegría?",
+                answer: "Le da las gracias o garabatea en un papel 'Los quiero mucho'."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Tesalonicenses 5:18",
+                purpose: "La importancia de dar gracias",
+                text: "Den gracias por todo. Esta es la voluntad de Dios para ustedes mediante Cristo Jesús."
+              }
+            ]
+          },
+          {
+            number: "9",
+            textEs: "¿De qué maneras demuestran los cuidadores que son modestos?",
+            textLSM: "",
+            paragraphs: [9],
+            section: "SUGERENCIAS PARA MANTENER LA ALEGRÍA",
+            answer: [
+              "Ninguno de nosotros tiene fuerzas y tiempo sin límites.",
+              "Tendrá que determinar lo que puede hacer y lo que no.",
+              "A veces tendrá que decir que no a algunas cosas, y eso no tiene nada de malo.",
+              "Si otros se ofrecen a darle una mano, acepte con gusto su ayuda.",
+              "Jay explica: 'Tenemos que saber cuáles son nuestros límites y no intentar ir más allá'."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué consejo da Jay para no perder la alegría?",
+                answer: "«Es imposible hacer todo lo que nos gustaría. Para no perder la alegría, tenemos que saber cuáles son nuestros límites y no intentar ir más allá»."
+              },
+              {
+                question: "¿Qué no tiene nada de malo hacer cuando somos cuidadores?",
+                answer: "Decir que no a algunas cosas; solo estamos siendo modestos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 11:2",
+                purpose: "La modestia trae sabiduría",
+                text: "Cuando llega la presunción, llega la deshonra, pero la sabiduría está con los modestos."
+              }
+            ]
+          },
+          {
+            number: "10",
+            textEs: "¿Por qué necesitan tener perspicacia los cuidadores? (Proverbios 19:11).",
+            textLSM: "",
+            paragraphs: [10],
+            readText: "LEE Proverbios 19:11",
+            answer: [
+              "La perspicacia ayuda a comprender por qué el ser querido hace o dice ciertas cosas.",
+              "Algunas enfermedades crónicas pueden provocar cambios de comportamiento.",
+              "Alguien amable puede volverse irritable, exigente o crítico.",
+              "Investigar sobre la enfermedad ayuda a comprender que el culpable no es la persona, sino su enfermedad."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué cambios de comportamiento pueden causar algunas enfermedades crónicas?",
+                answer: "Alguien amable y bondadoso puede volverse irritable, conflictivo, exigente, crítico o difícil de complacer."
+              },
+              {
+                question: "¿Qué ayuda a los cuidadores a mantener la calma en situaciones tensas?",
+                answer: "La perspicacia para comprender que el culpable del comportamiento no es la persona, sino su enfermedad."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 19:11",
+                purpose: "La perspicacia ayuda a mantener la calma",
+                text: "La perspicacia del hombre ciertamente retarda su cólera, y es hermosura de su parte pasar por alto la transgresión."
+              },
+              {
+                reference: "Eclesiastés 7:7",
+                purpose: "La opresión puede afectar el comportamiento",
+                text: "Porque la mera opresión puede hacer que el sabio actúe como loco."
+              },
+              {
+                reference: "Proverbios 14:29",
+                purpose: "Ser lento para enojarse",
+                text: "El que es lento para la cólera tiene gran discernimiento, pero el impaciente pone de manifiesto su insensatez."
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "¿Para qué cosas importantes deben sacar tiempo los cuidadores todos los días? (Salmo 132:4, 5).",
+            textLSM: "",
+            paragraphs: [11],
+            readText: "LEE Salmo 132:4, 5",
+            answer: [
+              "Deben sacar tiempo para fortalecer su amistad con Jehová.",
+              "A veces tendrán que dejar a un lado algunas actividades para atender asuntos 'más importantes'.",
+              "El rey David demostró que adorar a Jehová era lo principal en su vida.",
+              "Es importante sacar tiempo todos los días para leer la Biblia y orar.",
+              "Elisha dice: 'La oración ha sido mi salvavidas. Acudo a Jehová durante todo el día'."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo mantiene Elisha la alegría según su comentario?",
+                answer: "«Consigo mantener la alegría orando y meditando en las palabras reconfortantes de algunos salmos. La oración ha sido mi salvavidas»."
+              },
+              {
+                question: "¿Qué ejemplo dio el rey David sobre priorizar la adoración?",
+                answer: "Aunque estaba muy ocupado, demostró que adorar a Jehová era lo principal en su vida (Salmo 132:4, 5)."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 132:4, 5",
+                purpose: "Priorizar la adoración a Jehová",
+                text: "No permitiré que mis ojos se duerman ni que mis párpados se cierren hasta que encuentre un lugar para Jehová, una magnífica morada para el Poderoso de Jacob."
+              },
+              {
+                reference: "Filipenses 1:10",
+                purpose: "Asegurarse de las cosas más importantes",
+                text: "Para que se aseguren de cuáles son las cosas más importantes, a fin de que estén sin tacha y no hagan tropezar a otros hasta el día de Cristo."
+              }
+            ]
+          },
+          {
+            number: "12",
+            textEs: "¿Por qué tienen que apartar tiempo para cuidar su salud los cuidadores?",
+            textLSM: "",
+            paragraphs: [12],
+            answer: [
+              "Es posible que estén descuidando su alimentación por falta de tiempo.",
+              "Una buena alimentación y una rutina de ejercicio son esenciales para la salud física y mental.",
+              "Dormir ayuda a eliminar toxinas del cerebro y reduce la ansiedad.",
+              "Es bueno buscar momentos para hacer actividades que les gusten."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué beneficios tiene dormir lo suficiente según el artículo?",
+                answer: "Ayuda a eliminar toxinas del cerebro, reduce la ansiedad y mejora la capacidad de procesar el estrés."
+              },
+              {
+                question: "¿Qué hace una hermana cuidadora para no perder la alegría?",
+                answer: "«Cuando hace buen tiempo, salgo al aire libre para disfrutar del sol. Y por lo menos una vez al mes quedo con alguna amiga para pasar juntas un día divertido»."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Efesios 5:15, 16",
+                purpose: "Aprovechar bien el tiempo",
+                text: "Así que vigilen con cuidado cómo andan, no como insensatos, sino como sabios, aprovechando bien el tiempo, porque los días son malos."
+              },
+              {
+                reference: "Eclesiastés 4:6",
+                purpose: "Descansar es importante",
+                text: "Mejor es un puñado de descanso que dos puñados de duro trabajo y de ir tras el viento."
+              },
+              {
+                reference: "Eclesiastés 8:15",
+                purpose: "Disfrutar de la vida",
+                text: "Y recomendé el regocijo, porque el hombre no tiene nada mejor bajo el sol que comer y beber y regocijarse."
+              }
+            ]
+          },
+          {
+            number: "13",
+            textEs: "¿Por qué es buena la risa? (Proverbios 17:22).",
+            textLSM: "",
+            paragraphs: [13],
+            readText: "LEE Proverbios 17:22",
+            answer: [
+              "La risa es buena para el cuerpo y la mente.",
+              "Si logramos ver el lado divertido de las situaciones estresantes, será más fácil sobrellevarlas.",
+              "Si nos reímos juntos con nuestro ser querido, nos sentiremos más unidos."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué beneficios tiene la risa según el artículo?",
+                answer: "Es buena para el cuerpo y la mente, ayuda a sobrellevar situaciones estresantes y nos une más a nuestros seres queridos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 17:22",
+                purpose: "La risa es buena medicina",
+                text: "Un corazón alegre es buena medicina, pero el espíritu deprimido seca los huesos."
+              },
+              {
+                reference: "Eclesiastés 3:1, 4",
+                purpose: "Hay tiempo para reír",
+                text: "Para todo hay un tiempo señalado... tiempo de llorar y tiempo de reír."
+              }
+            ]
+          },
+          {
+            number: "14",
+            textEs: "¿Por qué es bueno hablar con un amigo de confianza?",
+            textLSM: "",
+            paragraphs: [14],
+            answer: [
+              "Habrá ocasiones en las que se sentirá superado y necesite desahogarse.",
+              "Un buen amigo no lo juzgará ni se escandalizará por lo que le cuente.",
+              "Lo escuchará con paciencia y le dirá palabras de consuelo.",
+              "Eso es justo lo que necesita para mantener la alegría."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué características debe tener el amigo con quien desahogarse?",
+                answer: "Alguien que no lo juzgue ni se escandalice, que lo escuche con paciencia y le diga palabras de consuelo."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 17:17",
+                purpose: "Un verdadero amigo ama en todo tiempo",
+                text: "Un verdadero amigo ama en todo tiempo, y un hermano ha nacido para cuando hay angustia."
+              },
+              {
+                reference: "Proverbios 12:25",
+                purpose: "Las palabras de consuelo alivian la ansiedad",
+                text: "La ansiedad en el corazón del hombre lo deprime, pero una buena palabra lo alegra."
+              }
+            ]
+          },
+          {
+            number: "15",
+            textEs: "¿Cuáles son los beneficios de hablar sobre la vida en el Paraíso?",
+            textLSM: "",
+            paragraphs: [15],
+            answer: [
+              "El propósito original de Jehová no incluía cuidar de enfermos y mayores.",
+              "Esa es una tarea temporal.",
+              "En el futuro nos espera 'la vida que realmente es vida'.",
+              "Si hablamos con nuestro ser querido de lo que haremos juntos en el Paraíso, los dos nos sentiremos reconfortados.",
+              "Heather cuenta: 'Pronto coseremos juntos, correremos juntos y pasearemos en bici juntos'."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué le dice Heather a quienes cuida sobre el Paraíso?",
+                answer: "«Pronto coseremos juntos, correremos juntos y pasearemos en bici juntos. Haremos pan y cocinaremos comidas ricas para nuestros seres queridos que resuciten»."
+              },
+              {
+                question: "¿Por qué es temporal la tarea de cuidar de enfermos?",
+                answer: "Porque el propósito original de Jehová no incluía la enfermedad ni la vejez; en el futuro nos espera 'la vida que realmente es vida'."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "2 Corintios 4:16-18",
+                purpose: "Las dificultades presentes son temporales",
+                text: "Por eso no nos damos por vencidos. Aunque nuestro hombre exterior se está desgastando, nuestro hombre interior va renovándose día a día."
+              },
+              {
+                reference: "1 Timoteo 6:19",
+                purpose: "La vida que realmente es vida",
+                text: "Atesorando para sí mismos un fundamento excelente para el futuro, para que se aferren firmemente a la vida que realmente es vida."
+              },
+              {
+                reference: "Isaías 33:24",
+                purpose: "No habrá más enfermedad",
+                text: "Y ningún habitante dirá: 'Estoy enfermo'. Al pueblo que viva en la tierra se le perdonará su pecado."
+              },
+              {
+                reference: "Isaías 65:21",
+                purpose: "Construiremos casas y plantaremos viñedos",
+                text: "Construirán casas y vivirán en ellas, plantarán viñedos y comerán su fruto."
               }
             ]
           },
           {
             number: "16",
-            textEs: "¿Por qué seremos felices si hacemos cosas por otros? (Mira también las imágenes).",
+            textEs: "¿Qué podemos hacer si en nuestra congregación hay algún cuidador? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [16],
-            image: "https://i.imgur.com/ICyhoBS.png",
-            imageCaption: "Hay más felicidad en dar que en recibir. (Vea el párrafo 16).",
-            answer: "Jesús nos enseñó que «hay más felicidad en dar que en recibir». Cuanto más pensamos en otros, menos pensamos en nosotros mismos, y eso nos hace felices. Podemos: animar a alguien que pasa por dificultades, escucharlo con empatía, demostrarle compasión, recordarle que puede desahogarse con Jehová, asegurarle que Jehová no lo ha abandonado, prepararle algo de comer, dar un paseo con él, o invitarlo a predicar. Al concentrarnos en otros, somos una herramienta en manos de Jehová.",
-            answerBullets: [
-              "**Hay más felicidad en dar** - Jesús lo enseñó (Hech. 20:35)",
-              "**Pensar en otros nos hace felices** - Cuanto más pensamos en otros, menos en nosotros",
-              "**Maneras de ayudar** - Escuchar con empatía, compasión, animar, cocinar, pasear, predicar juntos",
-              "**Somos herramienta de Jehová** - Al concentrarnos en otros y no en nosotros (Prov. 11:25)"
+            section: "QUÉ PODEMOS HACER POR LOS CUIDADORES",
+            answer: [
+              "Podemos ofrecernos para atender a la persona a la que están cuidando.",
+              "Así le daremos al cuidador tiempo para despejar la mente y atender sus asuntos personales.",
+              "Algunos hermanos han organizado turnos semanales.",
+              "Natalya cuenta que un hermano viene a su casa una o dos veces por semana para pasar tiempo con su esposo.",
+              "Incluso podríamos cuidar a la persona alguna noche para que el cuidador pueda dormir bien."
             ],
             flashcards: [
               {
-                question: "¿Qué principio enseñó Jesús sobre la felicidad?",
-                answer: "«Hay más felicidad en dar que en recibir» (Hechos 20:35)."
+                question: "¿Qué hace un hermano para ayudar a Natalya?",
+                answer: "Viene a su casa una o dos veces por semana para pasar tiempo con su esposo. Predican, hablan e incluso ven películas."
               },
               {
-                question: "¿Qué cosas prácticas podemos hacer por otros para ser felices?",
-                answer: "Escucharlos con empatía, demostrar compasión, animarlos, prepararles comida, dar un paseo, invitarlos a predicar."
+                question: "¿Qué pueden organizar los hermanos para ayudar a los cuidadores?",
+                answer: "Turnos semanales para atender a la persona que cuidan, dándole tiempo al cuidador para descansar."
               }
             ],
             biblicalCards: [
               {
-                reference: "Hechos 20:35",
-                purpose: "Principio de Jesús sobre la felicidad",
-                text: "En todo les he mostrado que trabajando así deben ayudar a los débiles y tener presentes las palabras del Señor Jesús, que él mismo dijo: «Hay más felicidad en dar que en recibir»."
-              },
-              {
-                reference: "Proverbios 11:25",
-                purpose: "Muestra la bendición de dar a otros",
-                text: "El alma generosa será prosperada, y el que refresca a otros será refrescado él también."
-              },
-              {
-                reference: "Salmo 55:22",
-                purpose: "Recordarle a otros que pueden desahogarse con Jehová",
-                text: "Echa tu carga sobre Jehová, y él te sostendrá. Él nunca permitirá que el justo caiga."
+                reference: "Gálatas 6:2",
+                purpose: "Llevar las cargas los unos de los otros",
+                text: "Sigan llevando las cargas los unos de los otros, y así cumplirán la ley del Cristo."
               }
             ]
           },
           {
             number: "17",
-            textEs: "Si queremos sentirnos realmente felices, ¿qué debemos hacer? (Salmo 43:4).",
+            textEs: "¿Cómo podemos ayudar a los cuidadores durante las reuniones?",
             textLSM: "",
             paragraphs: [17],
-            readText: "LEE Salmo 43:4",
-            answer: "Para sentirnos realmente felices debemos acercarnos cada vez más a nuestro Padre celestial. La Biblia dice que Jehová es nuestra «máxima alegría». Sin importar los problemas que tengamos, podemos estar tranquilos. Si nos aferramos siempre a Jehová, él nos ayudará a ser felices por toda la eternidad.",
-            answerBullets: [
-              "**Acercarnos más a Jehová** - Es la clave para la verdadera felicidad",
-              "**Jehová es nuestra «máxima alegría»** - Salmo 43:4 lo declara",
-              "**Podemos estar tranquilos** - Sin importar los problemas que tengamos",
-              "**Felicidad eterna** - Si nos aferramos a Jehová, él nos ayudará para siempre (Sal. 144:15)"
+            answer: [
+              "Los cuidadores pueden no concentrarse en las reuniones porque están atendiendo a su ser querido.",
+              "Podemos ofrecernos para sentarnos con la persona a la que cuidan durante la reunión.",
+              "Si la persona no puede salir de casa, podemos ir allí y conectarnos a la reunión con ella.",
+              "Así el cuidador puede asistir en persona."
             ],
             flashcards: [
               {
-                question: "Según Salmo 43:4, ¿quién es nuestra «máxima alegría»?",
-                answer: "Jehová es nuestra «máxima alegría». Si nos acercamos a él, seremos felices."
-              },
+                question: "¿Qué podemos hacer si la persona que cuidan no puede salir de casa?",
+                answer: "Ofrecernos para ir a su casa y conectarnos a la reunión con ella para que el cuidador pueda asistir en persona."
+              }
+            ],
+            biblicalCards: []
+          },
+          {
+            number: "18",
+            textEs: "¿Qué más podemos hacer por los cuidadores?",
+            textLSM: "",
+            paragraphs: [18],
+            answer: [
+              "Los ancianos deben pastorear con regularidad a estos hermanos.",
+              "Todos debemos tener la costumbre de decirles palabras de ánimo y cariño.",
+              "También podemos pedirle a Jehová que los siga fortaleciendo y ayudando a mantener la alegría."
+            ],
+            flashcards: [
               {
-                question: "¿Qué promesa tenemos si nos aferramos a Jehová?",
-                answer: "Él nos ayudará a ser felices por toda la eternidad, sin importar los problemas que tengamos ahora."
+                question: "¿Qué tres cosas podemos hacer por los cuidadores según el párrafo 18?",
+                answer: "Pastorearlos con regularidad (ancianos), decirles palabras de ánimo y cariño, y orar a Jehová por ellos."
               }
             ],
             biblicalCards: [
               {
-                reference: "Salmo 43:4",
-                purpose: "Texto temático del artículo - Jehová es nuestra máxima alegría",
-                text: "Iré al altar de Dios, a Dios, mi máxima alegría. Te alabaré con el arpa, oh Dios, mi Dios."
+                reference: "Proverbios 27:23",
+                purpose: "Los ancianos deben pastorear",
+                text: "Debes conocer bien el aspecto de tu rebaño. Pon tu corazón en tus manadas."
               },
               {
-                reference: "Salmo 144:15",
-                purpose: "Muestra la felicidad de quienes tienen a Jehová como su Dios",
-                text: "¡Feliz el pueblo que tiene estas cosas! ¡Feliz el pueblo cuyo Dios es Jehová!"
+                reference: "2 Corintios 1:11",
+                purpose: "Orar unos por otros",
+                text: "Mientras ustedes también nos ayudan suplicando por nosotros, para que muchas personas den gracias por nosotros por el favor que nos ha sido mostrado gracias a las oraciones de muchos."
+              }
+            ]
+          },
+          {
+            number: "19",
+            textEs: "¿Qué esperamos que suceda pronto?",
+            textLSM: "",
+            paragraphs: [19],
+            answer: [
+              "Pronto Jehová secará todas las lágrimas de dolor.",
+              "La enfermedad y la muerte ya no existirán.",
+              "'El cojo trepará como un ciervo'.",
+              "Los achaques de la vejez y el dolor de cuidar de un ser querido enfermo no serán recordados.",
+              "Jehová nos ayudará a 'aguantar todo con paciencia y felicidad'."
+            ],
+            flashcards: [
+              {
+                question: "Según Isaías 35:5, 6, ¿qué pasará con los cojos?",
+                answer: "«El cojo trepará como un ciervo»."
+              },
+              {
+                question: "Según Colosenses 1:11, ¿cómo nos ayudará Jehová mientras esperamos?",
+                answer: "Nos ayudará a «aguantar todo con paciencia y felicidad»."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Apocalipsis 21:3, 4",
+                purpose: "No más lágrimas ni dolor",
+                text: "Y él limpiará toda lágrima de sus ojos, y la muerte ya no existirá, ni habrá más luto ni clamor ni dolor. Las cosas de antes han pasado."
+              },
+              {
+                reference: "Isaías 35:5, 6",
+                purpose: "Los enfermos sanarán",
+                text: "En aquel tiempo se abrirán los ojos de los ciegos y se destaparán los oídos de los sordos. El cojo trepará como un ciervo."
+              },
+              {
+                reference: "Isaías 65:17",
+                purpose: "Las cosas del pasado no serán recordadas",
+                text: "Porque voy a crear nuevos cielos y una nueva tierra; y las cosas del pasado no serán recordadas ni subirán al corazón."
+              },
+              {
+                reference: "Colosenses 1:11",
+                purpose: "Aguantar con paciencia y felicidad",
+                text: "Que se les fortalezca con todo el poder según su gloriosa fuerza para que aguanten todo con paciencia y felicidad."
               }
             ]
           }
         ],
         paragraphs: [
-          { number: 1, content: "EN EL mundo en el que vivimos, las personas están obsesionadas con la idea de ser felices. Pero, a pesar de sus esfuerzos, la felicidad que consiguen es pasajera. Es más, muchos se sienten terriblemente tristes y vacíos. Y es posible que algunos siervos de Jehová también se sientan así. Como estamos viviendo \"en los últimos días\", tenemos que hacer frente a situaciones y emociones \"difíciles de soportar\" (2 Tim. 3:1)." },
-          { number: 2, content: "En este artículo veremos qué cosas pueden robarnos la alegría y qué podemos hacer para recuperarla. Pero primero vamos a hablar de quién puede darnos la verdadera felicidad." },
-          { number: 3, content: "Jehová siempre ha sido feliz y quiere que nosotros también lo seamos. Por eso ha creado tantas cosas que nos llenan de alegría, como nuestro hermoso planeta, una inmensa variedad de colores, deliciosos alimentos y animales que nos hacen reír con sus juegos. Sin duda, Jehová nos ama y desea que disfrutemos de la vida." },
-          { number: 4, content: "Aunque Jehová es el \"Dios feliz\", conoce muy bien todo el sufrimiento que hay en el mundo (1 Tim. 1:11). Pero no deja que eso le robe la alegría. Sabe que todo ese sufrimiento es temporal; de hecho, él mismo le ha puesto fecha de caducidad. Y espera con paciencia a que llegue el día de acabar para siempre con todo el dolor y la tristeza. Mientras tanto, está muy pendiente de cómo nos sentimos y hace algo por nosotros: nos ayuda a estar alegres y felices (lee Salmo 16:11). Veamos cómo hizo eso con su Hijo, Jesús." },
-          { number: 5, content: "Después de Jehová, la persona más feliz que existe es Jesús. ¿Por qué? Una razón es que \"él es la imagen del Dios invisible\" y refleja a la perfección todas las cualidades de su Padre (Col. 1:15; 1 Tim. 6:15). Otra razón es que ha pasado más tiempo que nadie junto a Jehová, la única fuente de la verdadera felicidad." },
-          { number: 6, content: "Además, Jesús se siente feliz porque siempre hace lo que su Padre quiere que haga (Prov. 8:30, 31; Juan 8:29). Debido a su obediencia, cuenta con el favor y con la aprobación de Jehová (Mat. 3:17)." },
-          { number: 7, content: "Nosotros también podemos sentirnos realmente felices si nos acercamos cada vez más a Jehová. Cuanto más tiempo pasemos aprendiendo acerca de él, mejor lo imitaremos y más felices seremos. Otra cosa que nos llena de alegría es hacer su voluntad y saber que contamos con su aprobación (Sal. 33:12). Aun así, puede que haya momentos o épocas de nuestra vida en los que sintamos que hemos perdido la alegría. ¿Significa eso que ya no tenemos la aprobación de Dios? Por supuesto que no. Jehová entiende que somos imperfectos y que a veces sentimos dolor, tristeza y depresión (Sal. 103:14). Veamos ahora qué cosas son como ladrones que pueden robarnos la alegría y qué podemos hacer para recuperarla." },
-          { number: 8, content: "Ladrón número 1: los problemas de la vida. Quizás estemos sufriendo a causa de la persecución, un desastre natural, la pobreza, una enfermedad o la edad avanzada. Esas situaciones pueden robarnos la alegría, sobre todo si no podemos hacer nada para cambiar las cosas. La Biblia dice que \"un corazón angustiado aplasta el ánimo\" (Prov. 15:13). Veamos el caso de un anciano llamado Babis, que perdió a su hermano y a sus padres en solo cuatro años. Él cuenta cómo se sentía mientras ellos todavía vivían: \"Sentía que estaba solo y que nadie podía ayudarme. Tenía que lidiar con tantas cosas que me partía el corazón no poder pasar tanto tiempo con ellos como quería\". Como vemos, los golpes de la vida pueden hundirnos física y emocionalmente." },
-          { number: 9, content: "¿Qué podemos hacer para recuperar la alegría? Ser realistas y estar agradecidos. El mundo promueve la idea de que para ser felices nuestra vida tiene que ser de color de rosa, pero eso no es verdad. Por ejemplo, Jehová les dijo a los judíos desterrados en Babilonia que, aunque la situación fuera difícil, trataran de aceptarla y llevarla lo mejor posible (lee Jeremías 29:4-7, 10). ¿Qué puedes aprender? Trata de aceptar que tus circunstancias son las que son y agradecer las cosas buenas que tienes. Y recuerda que Jehová está a tu lado y te va a ayudar (Sal. 63:7; 146:5). Una hermana llamada Efi, que quedó paralítica a causa de un accidente, dice: \"Jehová, mi familia y la congregación me ayudaron y me apoyaron muchísimo. Siento que rendirme sería una falta de gratitud hacia ellos, así que me esfuerzo por mantener una actitud positiva y alegre\"." },
-          { number: 10, content: "Incluso cuando nuestra vida no es ideal o nos pasan cosas terribles a nosotros o a nuestra familia, podemos mantener la alegría (Sal. 126:5). ¿Por qué? Porque nuestra felicidad no depende de nuestras circunstancias. Una precursora llamada María dice: \"Cuando pasamos por problemas, no perdemos la alegría porque tenemos presentes las promesas de Jehová. Eso no significa que no podamos llorar o expresar lo que sentimos. Pero nuestro Padre nos ayuda a seguir siendo felices pase lo que pase\". Aunque ahora nuestra vida sea muy difícil, recordemos que todos nuestros problemas son tan temporales como unas huellas en la orilla del mar que el agua borra sin dejar rastro. Dentro de poco, Jehová hará lo mismo con nuestros problemas." },
-          { number: 11, content: "¿Y si empezamos a pensar que tenemos problemas porque hemos perdido la aprobación de Jehová? Algo que puede ayudarnos es meditar en siervos fieles de Jehová que se enfrentaron a situaciones muy difíciles. Pensemos por ejemplo en el apóstol Pablo. El propio Jesús le encomendó una labor muy importante: llevar la verdad \"a las naciones, así como a reyes y a los hijos de Israel\" (Hech. 9:15). Sin embargo, la vida de Pablo estuvo llena de dificultades (2 Cor. 11:23-27). ¿Significa eso que había perdido la aprobación de Dios? ¡Claro que no! Precisamente el hecho de que aguantara era prueba de que Jehová estaba con él (Rom. 5:3-5). Ahora piensa en tu situación. Como estás aguantando con fidelidad a pesar de todos tus problemas, puedes estar seguro de que cuentas con la aprobación de Jehová.", image: "https://imgur.com/L215bx2" },
-          { number: 12, content: "Ladrón número 2: las expectativas que no se cumplen (Prov. 13:12). Los siervos de Jehová nos ponemos metas para demostrarle el amor y la gratitud que sentimos por él. Ahora bien, esas metas tienen que adaptarse a nuestras circunstancias. Si no son realistas, podríamos desanimarnos (Prov. 17:22). Una precursora llamada Holly explica: \"Quería ir a la Escuela para Evangelizadores del Reino, servir en el extranjero o trabajar en el proyecto de construcción de Ramapo. Pero mis circunstancias cambiaron y me dio una tristeza enorme no poder alcanzar ninguna de esas metas. Es muy frustrante querer hacer cosas pero no poder lograrlo\". Muchos hermanos se sienten igual.", image: "https://imgur.com/MbZA21l" },
-          { number: 13, content: "¿Qué podemos hacer para recuperar la alegría? Recordar que Jehová no es exigente y no nos pide más de lo que podemos hacer. Lo que hace que sus siervos seamos valiosos para él no son las responsabilidades que tenemos, sino nuestras bonitas cualidades. Lo que somos por dentro pesa más que lo que hacemos en nuestro servicio a Jehová. Él quiere que seamos modestos y fieles (Miq. 6:8; 1 Cor. 4:2). Entonces, ¿sería razonable exigirnos más de lo que Jehová nos pide que hagamos? Por supuesto que no. Así que, si tus circunstancias no te permiten hacer tanto como te gustaría, procura centrarte en lo que sí puedes hacer. Por ejemplo, ¿podrías hacerte amigo de algún joven de la congregación para ayudarlo a progresar? ¿Podrías ser un apoyo para los hermanos mayores? ¿Podrías ponerte la meta de animar a alguien, ya sea en persona, por teléfono o con mensajes? Si buscas maneras que estén a tu alcance de ayudar a los demás, Jehová bendecirá tus esfuerzos. Y piensa que muy pronto, en el nuevo mundo, podremos hacer muchísimas más cosas por Jehová... cosas que ahora ni siquiera imaginamos. Holly, mencionada en el párrafo anterior, dice: \"Cuando me siento un poco desanimada, me paro a pensar y me recuerdo a mí misma que tengo toda una eternidad por delante. Tengo reservadas algunas metas para el nuevo mundo, y Jehová me ayudará a cumplirlas\".", image: "https://imgur.com/zTLReUG" },
-          { number: 14, content: "Ladrón número 3: centrarte solo en ti y en tus deseos. Algunos usan las redes sociales para promover la idea de que la clave para ser feliz y sentirte realizado está en viajar, ir de compras, dedicarte a tus hobbies y darte todos los caprichos que puedas. No está mal disfrutar de lo que nos gusta. A fin de cuentas, es Jehová quien nos ha creado así. Sin embargo, muchas personas han visto que las cosas que creían que les iban a dar la felicidad en realidad se la han robado. Una precursora llamada Eva dice: \"Cuando te centras solo en ti y en tus deseos, nunca tienes suficiente, siempre te quedas con ganas de más\". Esa actitud produce tristeza y decepción.", image: "https://imgur.com/cBkTja8" },
-          { number: 15, content: "Pensemos en lo que le pasó al rey Salomón. Él quiso comprobar si podía conseguir la felicidad centrándose en satisfacer sus deseos personales. Así que se dedicó a disfrutar de buena comida y música, y de todos los lujos que existían en su época. ¿Cuál fue el resultado? Acabó tan decepcionado que escribió: \"El ojo no se satisface con lo que ve ni se llena el oído con lo que oye\" (Ecl. 1:8; 2:1-11). Las ideas del mundo sobre cómo conseguir la felicidad verdadera son como los billetes falsos: parecen tener valor pero en realidad no sirven de nada.", image: "https://imgur.com/Akdh3te" },
-          { number: 16, content: "¿Qué podemos hacer para recuperar la alegría? Jesús nos enseñó que \"hay más felicidad en dar que en recibir\" (Hech. 20:35). Un anciano llamado Alekos explica: \"Me centro en hacer cosas sencillas por los demás. Cuanto más pienso en otros, menos pienso en mí, y eso me hace feliz\". ¿Qué cosas puedes hacer tú por los demás? Si sabes de alguien que está pasando por una situación difícil, trata de animarlo. Quizás no puedas solucionar sus problemas, pero le harás mucho bien si lo escuchas con empatía, le demuestras compasión y le recuerdas que puede desahogarse con Jehová (Sal. 55:22; 68:19). También es bueno que le asegures que Jehová no lo ha abandonado (Sal. 37:28; Is. 59:1). Incluso podrías ofrecerte a prepararle algo de comer o a dar un paseo con él. Invítalo a predicar contigo, eso seguro que le levantará el ánimo. Al concentrarte en otros y no en ti mismo, serás como una herramienta en manos de Jehová y además te sentirás feliz de verdad (Prov. 11:25).", image: "https://imgur.com/QdhFPZp" },
-          { number: 17, content: "Podemos sentirnos realmente felices si nos acercamos cada vez más a nuestro Padre celestial. La Biblia dice que Jehová es nuestra \"máxima alegría\" (lee Salmo 43:4). Así que, sin importar los problemas que tengamos, podemos estar tranquilos. Aferrémonos siempre a Jehová, y él nos ayudará a ser felices por toda la eternidad (Sal. 144:15)." }
+          { number: 1, content: "UN HERMANO de Corea del Sur llamado Jin-yeol cuenta: \"Mi esposa y yo llevamos casados más de 32 años. Los últimos cinco he estado cuidando de ella, pues tiene párkinson y casi no puede moverse. La quiero muchísimo y me gusta cuidarla. Todas las noches dormimos agarrados de la mano, yo en mi cama y ella a mi lado en una cama especial\"." },
+          { number: 2, content: "¿Está usted cuidando de un ser querido, tal vez un padre, un hijo, un amigo o su esposo o esposa? En ese caso, seguro que lo hace con mucho gusto por el amor que siente por esa persona. Y también lo hace porque ama a Jehová (1 Tim. 5:4, 8; Sant. 1:27). Aun así, sin duda se enfrenta a dificultades que quizás les pasen desapercibidas a los demás o incluso puede que sienta que es el único que está sufriendo. Por fuera tal vez sonría, pero puede que por dentro esté muy triste y se eche a llorar cuando está a solas (Sal. 6:6). Aunque otros quizás no sepan por lo que usted está pasando, Jehová sí lo sabe y comprende sus sentimientos (compare con Éxodo 3:7). Cada una de sus lágrimas es muy valiosa para él, y aprecia todos los sacrificios que hace por atender a su ser querido (Sal. 56:8; 126:5). De hecho, Jehová considera que está en deuda con usted y promete recompensarlo (lea Proverbios 19:17).", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025649/univ/art/2025649_univ_cnt_1_lg.jpg", imageCaption: "Cuidadores en diferentes circunstancias: una hermana da de comer a su madre, otra le pone los zapatos a su esposo en silla de ruedas, otra le pone un casco a su hijo, un hermano visita a su padre mayor." },
+          { number: 3, content: "En la Biblia encontramos muchos relatos de hombres y mujeres que tuvieron que cuidar de otros. Por ejemplo, cuando Abrahán y Sara salieron de Ur, su padre, Taré, tenía unos 200 años. A pesar de su avanzada edad, fue con ellos. Viajaron unos 960 kilómetros (600 millas) hasta llegar a Harán (Gén. 11:31, 32). Sin duda, Abrahán y Sara querían mucho a Taré, pero debió resultarles difícil cuidar de él, sobre todo mientras viajaban. Probablemente iban montados en camellos o en burros, lo que tenía que ser especialmente incómodo para Taré. Así que lo más normal es que Abrahán y Sara a veces se sintieran muy cansados, incluso agotados. Pero seguro que Jehová les dio las fuerzas que necesitaban. Y lo mismo hará con usted (Sal. 55:22)." },
+          { number: 4, content: "Le resultará más fácil seguir cuidando de su ser querido si tiene una actitud alegre (Prov. 15:13). Recuerde que la felicidad es una cualidad que no depende de las circunstancias (Sant. 1:2, 3). ¿Cómo puede cultivarla? Una manera es pidiéndole a Jehová que lo ayude a mantener una actitud positiva. En este artículo veremos más sugerencias para no perder la alegría. También analizaremos qué pueden hacer los demás por quienes están cuidando de un ser querido. Pero primero veamos por qué es indispensable que los cuidadores mantengan la alegría y qué cosas podrían robársela." },
+          { number: 5, content: "Si los cuidadores pierden la alegría, es más fácil que se cansen (Prov. 24:10). Y, si están cansados, puede que no sean tan amables ni ayuden tanto como les gustaría. Veamos ahora algunas cosas que podrían robarles la alegría." },
+          { number: 6, content: "Los cuidadores pueden quemarse física y emocionalmente. Una hermana llamada Leah explica: \"Incluso en los días buenos, cuidar de alguien implica un desgaste emocional tremendo. Al final del día, muchas veces siento que no me queda ni una gota de energía. Ni siquiera tengo fuerzas para responder un mensaje\". A otros les cuesta sacar tiempo para descansar bien y desconectar a pesar de lo mucho que lo necesitan. Una hermana que se llama Inés dice: \"No consigo dormir lo suficiente. Muchas noches tengo que levantarme cada dos horas para atender a mi suegra. Y mi esposo y yo llevamos años sin poder tomarnos unas vacaciones\". Algunos cuidadores tienen que rechazar invitaciones sociales e incluso asignaciones teocráticas porque no pueden dejar solo a su ser querido ni un momento. Por eso quizás se sientan aislados o atrapados por sus circunstancias." },
+          { number: 7, content: "Los cuidadores pueden sentirse profundamente culpables o tristes. Jessica, que también es hermana, admite: \"Me frustra no poder hacer más. A veces necesito un tiempo para descansar, pero cuando me lo tomo me siento culpable y egoísta\". Algunos cuidadores luchan con remordimientos porque de vez en cuando se sienten molestos por su situación. Otros temen que no están haciendo lo suficiente. Y hay quienes se sienten fatal porque en algún momento han perdido los nervios y le han dicho algo fuera de lugar a su ser querido (Sant. 3:2). Es posible que también les duela ver cómo la persona va perdiendo el vigor y la salud que la caracterizaban. Una hermana llamada Bárbara dice: \"Una de las cosas que peor llevo es ver a mi querida amiga deteriorarse cada día un poco más\"." },
+          { number: 8, content: "Los cuidadores pueden sentir que no se valora lo que hacen. ¿Por qué? Porque pocas veces les dan las gracias o los felicitan por sus esfuerzos y sacrificios. Pero todos sabemos que unas palabras de gratitud pueden hacer mucho bien (1 Tes. 5:18). Por ejemplo, una hermana llamada Melissa cuenta: \"En ocasiones me siento tan frustrada que me echo a llorar. Pero, cuando las personas a las que cuido me dicen 'Gracias por todo lo que haces por mí', siento una inyección de ánimo. Eso me ayuda a levantarme al día siguiente lista y con muchas ganas de seguir cuidándolas\". Y un hermano que se llama Ahmadu explica el efecto que tienen en él las muestras de aprecio. Él y su esposa están cuidando de su sobrina pequeña, que sufre ataques epilépticos. Dice: \"Aunque ella quizás no comprenda bien todos los sacrificios que hacemos para cuidarla, mi corazón rebosa de alegría cuando nos da las gracias o garabatea en un papel 'Los quiero mucho'\"." },
+          { number: 9, content: "Sea modesto (Prov. 11:2). Ninguno de nosotros tiene fuerzas y tiempo sin límites. Así que usted tendrá que determinar lo que puede hacer y lo que no, y a veces tendrá que decir que no a algunas cosas. Y eso no tiene nada de malo; solo está siendo modesto. Si otros se ofrecen a darle una mano, acepte con gusto su ayuda. Un hermano que se llama Jay explica: \"Es imposible hacer todo lo que nos gustaría. Para no perder la alegría, tenemos que saber cuáles son nuestros límites y no intentar ir más allá\"." },
+          { number: 10, content: "Trate de ver más allá de lo obvio (lea Proverbios 19:11). La perspicacia lo ayudará a comprender por qué su ser querido hace o dice ciertas cosas y así mantener la calma en situaciones tensas. Algunas enfermedades crónicas pueden provocar que la persona haga cosas que nunca antes había hecho (Ecl. 7:7). Por ejemplo, alguien que es amable y bondadoso puede volverse irritable o conflictivo. Quizás se vuelva exigente, crítico o difícil de complacer. Por otro lado, puede resultar útil investigar un poco sobre la enfermedad de la persona que usted está cuidando. Cuanto más la conozca, más fácil le resultará comprender que el culpable de su comportamiento no es la persona, sino su enfermedad (Prov. 14:29)." },
+          { number: 11, content: "Saque tiempo para fortalecer su amistad con Jehová. En ocasiones tendrá que dejar a un lado algunas actividades para atender asuntos \"más importantes\", como por ejemplo fortalecer su relación con Jehová (Filip. 1:10). El rey David estaba muy ocupado, pero demostró que adorar a Jehová era lo principal en su vida (lea Salmo 132:4, 5). Igualmente, aunque usted esté muy ocupado, es importante que saque tiempo todos los días para leer la Biblia y orar. Una hermana llamada Elisha dice: \"Consigo mantener la alegría orando y meditando en las palabras reconfortantes de algunos salmos. La oración ha sido mi salvavidas. Acudo a Jehová durante todo el día para que me ayude a estar tranquila\"." },
+          { number: 12, content: "Aparte tiempo para cuidar su salud. Como usted está muy ocupado atendiendo a su ser querido, es posible que esté descuidando su alimentación porque no tiene tiempo de ir a comprar alimentos saludables y cocinar platos nutritivos. Pero recuerde que una buena alimentación y una rutina de ejercicio son esenciales para la salud física y mental. Así que aproveche bien el poco tiempo que tiene comiendo alimentos saludables y haciendo ejercicio con regularidad (Efes. 5:15, 16). Además, procure descansar lo suficiente (Ecl. 4:6). Según algunos estudios, dormir ayuda a eliminar toxinas del cerebro. El artículo \"El impacto del sueño en el estrés\", publicado por la institución médica estadounidense Banner Health, afirma que dormir lo suficiente también puede reducir la ansiedad y mejorar la capacidad de procesar el estrés. Por otro lado, es bueno que busque momentos para hacer actividades que le gusten (Ecl. 8:15). Una hermana que cuida de un ser querido explica algo que la ayuda a no perder la alegría: \"Cuando hace buen tiempo, salgo al aire libre para disfrutar del sol. Y por lo menos una vez al mes quedo con alguna amiga para pasar juntas un día divertido\"." },
+          { number: 13, content: "No pierda el sentido del humor (lea Proverbios 17:22; Ecl. 3:1, 4). La risa es buena para el cuerpo y la mente. Claro, al cuidar de alguien, las cosas muchas veces no salen como esperamos. Pero, si usted logra ver el lado divertido incluso de las situaciones estresantes, le será más fácil sobrellevarlas. Y, si usted y su ser querido se ríen juntos, se sentirán más unidos." },
+          { number: 14, content: "Hable con un amigo de confianza. Aunque se esfuerce por no perder la alegría, habrá ocasiones en las que se sentirá superado por la situación y necesite desahogarse con un buen amigo, alguien que no lo juzgue ni se escandalice por lo que usted le cuente (Prov. 17:17). Él lo escuchará con paciencia y le dirá palabras de consuelo, justo lo que usted necesita para mantener la alegría (Prov. 12:25)." },
+          { number: 15, content: "Imagine lo que harán juntos en el Paraíso. Recuerde que, cuando Jehová creó a los seres humanos, su propósito no incluía que tuviéramos que cuidar de enfermos y mayores. Esa es una tarea temporal (2 Cor. 4:16-18). En el futuro nos espera \"la vida que realmente es vida\" (1 Tim. 6:19). Si usted y su ser querido hablan de lo que harán juntos en el Paraíso, los dos se sentirán reconfortados (Is. 33:24; 65:21). Una hermana llamada Heather cuenta: \"Suelo decirles a quienes cuido que pronto coseremos juntos, correremos juntos y pasearemos en bici juntos. Haremos pan y cocinaremos comidas ricas para nuestros seres queridos que resuciten. Y siempre le damos las gracias a Jehová por nuestra esperanza\"." },
+          { number: 16, content: "Ayudemos a los cuidadores a tener tiempo para descansar. Podemos ofrecernos para atender a la persona a la que están cuidando. Así le daremos al cuidador tiempo para despejar la mente y atender sus asuntos personales (Gál. 6:2). Algunos hermanos han organizado turnos semanales. Natalya, una hermana que está cuidando de su esposo, que no puede andar, dice: \"Un hermano de la congregación viene a nuestra casa una o dos veces por semana para pasar tiempo con él. Predican, hablan e incluso ven películas. Mi esposo aprecia mucho esos ratos que pasan juntos, y yo aprovecho para descansar o para hacer cosas que me gustan, como salir a dar un paseo\". En algunos casos, hasta podríamos ofrecernos para cuidar a la persona alguna noche para que así su cuidador pueda dormir bien.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025649/univ/art/2025649_univ_cnt_2_lg.jpg", imageCaption: "Dos hermanas jóvenes visitan a una hermana mayor para que su cuidadora pueda salir a dar un paseo." },
+          { number: 17, content: "Ayudemos a los cuidadores durante las reuniones. Es posible que los cuidadores no puedan concentrarse mucho en lo que se dice en las reuniones y las asambleas porque están ocupados atendiendo a su ser querido. Así que podemos ofrecernos para sentarnos con la persona a la que cuidan durante una de estas reuniones o parte de ellas. Si la persona no puede salir de su casa, podríamos ofrecernos para ir allí y conectarnos a la reunión con ella para que el cuidador pueda asistir en persona." },
+          { number: 18, content: "Animemos a los cuidadores y oremos por ellos. Los ancianos deben pastorear con regularidad a estos hermanos (Prov. 27:23). Y es bueno que todos nosotros, sin importar las circunstancias, tengamos la costumbre de decirles palabras de ánimo y cariño. También podemos pedirle a Jehová que los siga fortaleciendo y ayudando a mantener la alegría (2 Cor. 1:11)." },
+          { number: 19, content: "Pronto Jehová secará todas las lágrimas de dolor. La enfermedad y la muerte ya no existirán (Apoc. 21:3, 4). \"El cojo trepará como un ciervo\" (Is. 35:5, 6). \"Las cosas del pasado no serán recordadas\", entre ellas los achaques de la vejez y el dolor de tener que cuidar de un ser querido que está enfermo (Is. 65:17). Mientras llega el día en que Jehová cumpla sus maravillosas promesas, sabemos que él siempre estará a nuestro lado. Si seguimos pidiéndole que nos dé fuerzas, Jehová nos ayudará a \"aguantar todo con paciencia y felicidad\" (Col. 1:11)." }
         ],
         reviewQuestions: [
           {
-            question: "¿Por qué son felices Jehová y Jesús?"
+            question: "¿Qué cosas podrían robarles la alegría a los cuidadores?",
+            answer: [
+              "Quemarse física y emocionalmente por el desgaste de cuidar.",
+              "No poder descansar ni desconectar.",
+              "Sentirse culpables o tristes por no poder hacer más.",
+              "Sentir que no se valora lo que hacen.",
+              "Ver cómo el ser querido se deteriora cada día."
+            ]
           },
           {
-            question: "¿Qué tres \"ladrones\" pueden robarnos la alegría?"
+            question: "¿Qué pueden hacer los cuidadores para mantener la alegría?",
+            answer: [
+              "Ser modestos y conocer sus límites.",
+              "Tener perspicacia para comprender el comportamiento del ser querido.",
+              "Sacar tiempo para fortalecer su amistad con Jehová.",
+              "Cuidar su salud: alimentación, ejercicio y descanso.",
+              "No perder el sentido del humor.",
+              "Hablar con un amigo de confianza.",
+              "Imaginar lo que harán juntos en el Paraíso."
+            ]
           },
           {
-            question: "¿Qué podemos hacer para recuperar la alegría?"
+            question: "¿Qué podemos hacer por los cuidadores?",
+            answer: [
+              "Ofrecernos para atender a la persona que cuidan y darles tiempo para descansar.",
+              "Ayudarlos durante las reuniones sentándonos con su ser querido.",
+              "Animarlos con palabras de ánimo y cariño.",
+              "Orar a Jehová por ellos."
+            ]
           }
         ],
         finalSong: "Canción 155: Mi mayor felicidad"
       },
 
-      // Artículo 41: "El amor de Dios dura para siempre" (15-21 Dic)
+      // Artículo 46: "Jesús es un Sumo Sacerdote compasivo" (19-25 Ene)
       {
         metadata: {
-          articleNumber: 41,
-          week: "15-21 Dic",
-          month: "Octubre",
+          articleNumber: 46,
+          week: "19-25 Ene",
+          month: "Noviembre",
           year: 2025
         },
-        song: "Canción 108: El amor leal de Jehová",
-        title: "El amor de Dios dura para siempre",
-        biblicalText: "\"Denle gracias a Jehová porque él es bueno; su amor leal dura para siempre\" (SAL. 136:1).",
-        theme: "Tener presente que el amor de Jehová es una enseñanza básica de la Biblia nos puede ayudar a luchar contra el desánimo.",
+        song: "Canción 17: \"Quiero\"",
+        title: "Jesús es un Sumo Sacerdote compasivo",
+        biblicalText: "\"No tenemos a un sumo sacerdote que no pueda compadecerse de nuestras debilidades\" (HEB. 4:15).",
+        theme: "Por qué podemos decir que Jesús es un Sumo Sacerdote compasivo y de qué maneras nos ayuda hoy en día.",
         questions: [
           {
             number: "1, 2",
-            textEs: "¿Cómo se sienten muchos hermanos ante los golpes de la vida?",
+            textEs: "a) ¿Para qué envió Jehová a su Hijo a la Tierra? b) ¿Qué analizaremos en este artículo? (Hebreos 5:7-9).",
             textLSM: "",
             paragraphs: [1, 2],
-            preview: "Por qué los problemas pueden hacernos dudar del amor de Jehová y qué significa «echar el ancla».",
-            answer: "Los golpes de la vida pueden hacer que nuestras emociones suban y bajen, como un barco en una tempestad. Un día estamos convencidos de que Jehová nos ama, y al siguiente pensamos que ni siquiera se fija en nosotros. Aunque palabras de ánimo nos hacen sentir mejor por un tiempo, las dudas pueden regresar. Quizás hasta nos parezca que Jehová ya no se preocupa por nosotros. Necesitamos «echar el ancla» para no perder nunca la seguridad de que Jehová nos ama.",
-            answerBullets: [
-              "**Como un barco en tempestad** - Los golpes de la vida hacen que las emociones suban y bajen",
-              "**Dudas sobre el amor de Jehová** - Un día convencidos, al siguiente pensamos que no se fija en nosotros (Sal. 10:1; 13:1)",
-              "**Las palabras de ánimo ayudan** - Pero las dudas pueden regresar (Prov. 17:17; 25:11)",
-              "**Necesitamos «echar el ancla»** - Tener la seguridad de que Jehová nos ama y no perderla nunca"
+            readText: "LEE Hebreos 5:7-9",
+            answer: [
+              "Jehová envió a Jesús para liberar a la humanidad de la maldición del pecado y la muerte.",
+              "También para deshacer todo el daño causado por Satanás.",
+              "Las vivencias de Jesús como humano lo prepararon para ser un Sumo Sacerdote compasivo.",
+              "Analizaremos cómo lo que Jesús vivió en la Tierra contribuyó a que fuera 'perfeccionado' para su papel."
             ],
             flashcards: [
               {
-                question: "¿A qué se compara nuestra situación cuando los golpes de la vida nos afectan?",
-                answer: "A un barco en medio de una furiosa tempestad. Las olas nos hacen subir y bajar emocionalmente."
+                question: "¿Cuándo empezó Jesús a servir como Sumo Sacerdote?",
+                answer: "Tras su bautismo, en el año 29."
               },
               {
-                question: "¿Qué significa «echar el ancla» ante los problemas?",
-                answer: "Tener la seguridad de que Jehová nos ama y nos ayuda, y no perderla nunca."
+                question: "¿Por qué es importante comprender el papel de Jesús como Sumo Sacerdote compasivo?",
+                answer: "Porque así nos será más fácil acercarnos a Jehová y orarle, incluso cuando nos sintamos desanimados por nuestros pecados o debilidades."
               }
             ],
             biblicalCards: [
               {
-                reference: "Salmo 13:1",
-                purpose: "Expresa cómo podemos sentirnos cuando dudamos del amor de Jehová",
-                text: "¿Hasta cuándo, oh, Jehová? ¿Me olvidarás para siempre? ¿Hasta cuándo me ocultarás tu rostro?"
+                reference: "Hebreos 5:7-9",
+                purpose: "Jesús fue perfeccionado por sus experiencias",
+                text: "Durante sus días en la carne, Cristo ofreció ruegos y también súplicas al que podía salvarlo de la muerte, con fuertes clamores y lágrimas. Y fue escuchado favorablemente por su temor piadoso. Aunque era Hijo, aprendió la obediencia por las cosas que sufrió. Y después de haber sido perfeccionado, vino a ser responsable de la salvación eterna de todos los que le obedecen."
+              },
+              {
+                reference: "Juan 3:16",
+                purpose: "Dios envió a su Hijo por amor",
+                text: "Porque Dios amó tanto al mundo que dio a su Hijo unigénito para que todo el que ejerce fe en él no sea destruido, sino que tenga vida eterna."
+              },
+              {
+                reference: "1 Juan 3:8",
+                purpose: "Jesús vino a deshacer las obras del Diablo",
+                text: "El que practica el pecado se origina del Diablo, porque el Diablo ha estado pecando desde el principio. El Hijo de Dios se manifestó con este propósito: deshacer las obras del Diablo."
               }
-            ],
-            infographic: "https://i.imgur.com/TI9ifyw.png",
-            image: "https://i.imgur.com/3w6ZHbU.png"
+            ]
           },
           {
-            number: "3",
-            textEs: "a) ¿Qué es el amor leal? (Salmo 31:7; 136:1). b) ¿Por qué decimos que nadie muestra esta cualidad mejor que Jehová? (Mira también la imagen).",
+            number: "3, 4",
+            textEs: "¿Qué cambios afrontó Jesús cuando vino a la Tierra?",
             textLSM: "",
-            paragraphs: [3],
-            readText: "LEE Salmo 31:7; 136:1",
-            preview: "Qué es el amor leal y por qué Jehová lo demuestra mejor que nadie.",
-            image: "https://i.imgur.com/3w6ZHbU.png",
-            answer: "El amor leal es un apego profundo y duradero que una persona le tiene a otra. Nadie muestra esta cualidad mejor que Jehová porque la Biblia dice que él está «lleno de amor leal» y que su amor leal por sus siervos «es inmenso». Esto significa que Jehová nunca abandona a sus siervos fieles. Recordar esto nos ayuda a mantener la estabilidad ante las tormentas de la vida.",
-            answerBullets: [
-              "**Amor leal = apego profundo y duradero** - Una persona lo tiene hacia otra",
-              "**Jehová está «lleno de amor leal»** - Nadie muestra esta cualidad mejor que él (Éx. 34:6, 7)",
-              "**Su amor leal «es inmenso»** - Por sus siervos (Sal. 86:5)",
-              "**Nunca abandona a sus siervos fieles** - Nos da estabilidad ante las tormentas (Sal. 23:4)"
+            paragraphs: [3, 4],
+            section: "EL HIJO MÁS QUERIDO DE DIOS VIENE A LA TIERRA",
+            answer: [
+              "En el cielo, tenía el lugar más destacado entre los hijos espirituales de Dios.",
+              "Con gusto 'dejó todo lo que tenía' para vivir entre seres humanos imperfectos.",
+              "Nació en una familia pobre.",
+              "El malvado rey Herodes quiso acabar con su vida, así que huyeron a Egipto como refugiados."
             ],
             flashcards: [
               {
-                question: "¿Qué es el amor leal?",
-                answer: "Es un apego profundo y duradero que una persona le tiene a otra."
+                question: "¿Qué indica que Jesús nació en una familia pobre?",
+                answer: "Sus padres ofrecieron un sacrificio humilde cuando él nació (dos tórtolas o pichones según Levítico 12:8)."
               },
               {
-                question: "¿Por qué nadie muestra el amor leal mejor que Jehová?",
-                answer: "Porque la Biblia dice que él está «lleno de amor leal» y su amor leal por sus siervos «es inmenso». Nunca abandona a sus siervos fieles."
+                question: "¿Por qué la familia de Jesús huyó a Egipto?",
+                answer: "Porque el malvado rey Herodes quiso acabar con la vida de Jesús cuando se enteró de su nacimiento."
               }
             ],
             biblicalCards: [
               {
-                reference: "Salmo 136:1",
-                purpose: "Texto temático - El amor leal de Jehová dura para siempre",
-                text: "Denle gracias a Jehová porque él es bueno; su amor leal dura para siempre."
+                reference: "Filipenses 2:7",
+                purpose: "Jesús dejó todo lo que tenía",
+                text: "Más bien, se despojó a sí mismo y tomó la forma de un esclavo y llegó a ser como los seres humanos."
               },
               {
-                reference: "Salmo 31:7",
-                purpose: "Muestra la confianza en el amor leal de Jehová",
-                text: "Estaré muy feliz y me alegraré por tu amor leal, porque tú has visto mi aflicción; conoces bien las angustias de mi alma."
+                reference: "Salmo 16:11",
+                purpose: "Jesús estaba feliz junto a Jehová",
+                text: "Me darás a conocer el camino de la vida. Ante ti hay gran alegría; hay felicidad eterna a tu derecha."
               },
               {
-                reference: "Éxodo 34:6, 7",
-                purpose: "Jehová está lleno de amor leal",
-                text: "Jehová, Jehová, un Dios compasivo y misericordioso, lento para la ira y lleno de amor leal y verdad, que muestra amor leal a miles, que perdona la culpa, la transgresión y el pecado."
+                reference: "Mateo 2:13, 15",
+                purpose: "La huida a Egipto",
+                text: "Después que ellos se fueron, el ángel de Jehová se le apareció a José en un sueño y le dijo: 'Levántate, toma al niño y a su madre, y huye a Egipto'."
               }
-            ],
-            infographic: "https://i.imgur.com/CGFEUcK.png"
-          },
-          {
-            number: "4",
-            textEs: "¿Cuáles son algunas enseñanzas básicas de la Biblia? ¿Por qué no dejamos que nada nos haga creer lo contrario?",
-            textLSM: "",
-            paragraphs: [4],
-            section: "VEAMOS EL AMOR DE JEHOVÁ COMO UNA ENSEÑANZA BÁSICA DE LA BIBLIA",
-            preview: "Por qué el amor de Jehová es una enseñanza básica tan importante como las demás verdades bíblicas.",
-            answer: "Las enseñanzas básicas de la Biblia son verdades fundamentales: el nombre de Dios es Jehová, Jesús es su Hijo unigénito, los muertos están inconscientes, la Tierra será un paraíso y los humanos vivirán en ella para siempre. Una vez convencidos de que estas enseñanzas son ciertas porque están basadas en hechos y pruebas, ya no dejamos que nada nos haga creer lo contrario. Si vemos el amor de Jehová como una enseñanza básica, nos será más fácil rechazar la idea de que él no se fija en nosotros.",
-            answerBullets: [
-              "**El nombre de Dios es Jehová** - Verdad fundamental (Sal. 83:18)",
-              "**Jesús es el Hijo unigénito** - No es igual a Dios (Juan 3:16)",
-              "**Los muertos están inconscientes** - No hay infierno de fuego (Ecl. 9:5)",
-              "**La Tierra será un paraíso** - Los humanos vivirán para siempre (Apoc. 21:3, 4)",
-              "**El amor de Jehová es enseñanza básica** - Rechazamos la idea de que no se fija en nosotros"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuáles son algunas enseñanzas básicas de la Biblia?",
-                answer: "El nombre de Dios es Jehová, Jesús es su Hijo unigénito, los muertos están inconscientes, la Tierra será un paraíso y los humanos vivirán para siempre."
-              },
-              {
-                question: "¿Por qué debemos ver el amor de Jehová como una enseñanza básica?",
-                answer: "Porque así nos será más fácil rechazar la idea de que él no se fija en nosotros o no se preocupa por lo que nos pasa."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 83:18",
-                purpose: "Enseñanza básica: el nombre de Dios",
-                text: "Para que la gente sepa que tú, cuyo nombre es Jehová, solo tú eres el Altísimo sobre toda la tierra."
-              },
-              {
-                reference: "Apocalipsis 21:3, 4",
-                purpose: "Enseñanza básica: la Tierra será un paraíso",
-                text: "Él les secará toda lágrima de los ojos, y la muerte ya no existirá, ni tampoco el luto, el llanto ni el dolor."
-              }
-            ],
-            infographic: "https://i.imgur.com/mNJ130T.png"
+            ]
           },
           {
             number: "5",
-            textEs: "¿Cómo llega una persona a rechazar las creencias falsas?",
-            textLSM: "",
-            paragraphs: [5],
-            preview: "Cómo usar el mismo método que usamos para dejar creencias falsas y aplicarlo a las dudas sobre el amor de Dios.",
-            answer: "Cuando empezamos a estudiar la Biblia, comparamos lo que enseñaba nuestra religión con lo que enseña la Biblia. Si antes creíamos algo falso (por ejemplo, que Jesús es Dios), analizamos lo que dice la Biblia, nos dimos cuenta de que era falso, lo dejamos a un lado y aceptamos la verdad. Las enseñanzas falsas pueden estar «fuertemente atrincheradas», pero una vez que logramos dejarlas atrás, no permitimos que nada nos haga volver a ellas.",
-            answerBullets: [
-              "**Comparar con la Biblia** - Lo que enseñaba nuestra religión vs. lo que enseña la Biblia",
-              "**Preguntarse: «¿Es eso cierto?»** - Analizar lo que dice la Palabra de Dios",
-              "**Aceptar la verdad** - Jesús es «el primogénito de toda la creación» (Col. 1:15; Juan 3:18)",
-              "**No volver atrás** - Una vez dejadas las falsedades, no permitir que nada nos haga volver (Filip. 3:13)"
-            ],
-            flashcards: [
-              {
-                question: "¿Cómo llegamos a rechazar las creencias falsas al estudiar la Biblia?",
-                answer: "Comparando lo que enseñaba nuestra religión con la Biblia, preguntándonos si era cierto, y aceptando la verdad bíblica."
-              },
-              {
-                question: "¿Qué actitud debemos tener hacia las creencias falsas que dejamos atrás?",
-                answer: "No permitir que nada nos haga volver a ellas, aunque estuvieran «fuertemente atrincheradas» (2 Cor. 10:4, 5)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Colosenses 1:15",
-                purpose: "La verdad sobre Jesús: el primogénito de la creación",
-                text: "Él es la imagen del Dios invisible, el primogénito de toda la creación."
-              },
-              {
-                reference: "2 Corintios 10:4, 5",
-                purpose: "Derrumbar creencias falsas fuertemente atrincheradas",
-                text: "Las armas de nuestra guerra no son físicas, sino que tienen el poder de Dios para derrumbar cosas fuertemente atrincheradas."
-              }
-            ],
-            infographic: "https://i.imgur.com/ebTIk3r.png"
-          },
-          {
-            number: "6",
-            textEs: "¿Por qué en el Salmo 136 se repite tantas veces la frase \"su amor leal dura para siempre\"?",
-            textLSM: "",
-            paragraphs: [6],
-            preview: "Por qué el Salmo 136 repite 26 veces «su amor leal dura para siempre» y cómo aplicar esa verdad.",
-            answer: "La frase «su amor leal dura para siempre» se repite 26 veces en el Salmo 136 porque el hecho de que Dios siente amor leal por su pueblo es una verdad bíblica tan fundamental como las otras enseñanzas básicas que llegamos a hacer nuestras. Si empezamos a pensar que Jehová no nos ama, debemos preguntarnos: «¿Es eso cierto?» y comparar nuestras dudas con lo que la Biblia enseña. La idea de que a Jehová no le importamos no es cierta, así que debemos rechazarla con firmeza.",
-            answerBullets: [
-              "**26 veces se repite** - «Su amor leal dura para siempre» en el Salmo 136",
-              "**Es una verdad fundamental** - Tan básica como otras enseñanzas que hacemos nuestras",
-              "**Preguntarse: «¿Es cierto que no me ama?»** - Comparar dudas con lo que enseña la Biblia",
-              "**Rechazar la idea falsa** - Que a Jehová no le importamos, con la misma firmeza que otras falsedades"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuántas veces se repite «su amor leal dura para siempre» en el Salmo 136?",
-                answer: "26 veces. Esto enfatiza que el amor leal de Jehová es una verdad bíblica fundamental."
-              },
-              {
-                question: "Si empezamos a pensar que Jehová no nos ama, ¿qué debemos hacer?",
-                answer: "Preguntarnos «¿Es eso cierto?» y comparar nuestras dudas con lo que la Biblia enseña. Luego rechazar esa idea falsa con firmeza."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 136:1",
-                purpose: "Inicio del salmo que repite 26 veces el amor leal",
-                text: "Denle gracias a Jehová porque él es bueno; su amor leal dura para siempre."
-              }
-            ],
-            infographic: "https://i.imgur.com/iBy9Jl0.png"
-          },
-          {
-            number: "7",
-            textEs: "¿Cuáles son algunos textos que nos confirman que Jehová sí nos ama?",
-            textLSM: "",
-            paragraphs: [7],
-            preview: "Textos bíblicos que nos dan certeza (no solo posibilidad) de que Jehová nos ama.",
-            answer: "Jesús dijo a sus discípulos: «Ustedes valen más que muchos gorriones» (Mat. 10:31) - no dijo «quizás valen más». Jehová dijo: «Yo te daré fuerzas. Sí, yo te ayudaré» (Is. 41:10) - no dijo «quizás te ayudaré». Estos textos no hablan de posibilidades, sino de certezas. Si al pasar por un problema dudamos del amor de Dios, debemos meditar en estos textos y hablarle a Jehová de nuestras dudas. Así podremos decir: «Hemos llegado a conocer el amor que Dios nos tiene y creemos en ese amor».",
-            answerBullets: [
-              "**«Ustedes valen más que muchos gorriones»** - Jesús lo dijo como certeza, no posibilidad (Mat. 10:31)",
-              "**«Yo te daré fuerzas. Sí, yo te ayudaré»** - Jehová lo afirmó con certeza (Is. 41:10)",
-              "**Meditar en estos textos** - Nos convencen de que Jehová sí nos ama",
-              "**Hablar a Jehová de nuestras dudas** - Llegaremos a creer en su amor (1 Juan 4:16)"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué textos nos confirman con certeza que Jehová nos ama?",
-                answer: "Mateo 10:31: «Ustedes valen más que muchos gorriones». Isaías 41:10: «Yo te daré fuerzas. Sí, yo te ayudaré». No son posibilidades, son certezas."
-              },
-              {
-                question: "¿Qué debemos hacer si dudamos del amor de Dios cuando pasamos por problemas?",
-                answer: "Meditar en textos que confirman su amor y hablarle a Jehová de nuestras dudas."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Mateo 10:31",
-                purpose: "Certeza del valor que tenemos para Dios",
-                text: "Así que no tengan miedo: ustedes valen más que muchos gorriones."
-              },
-              {
-                reference: "Isaías 41:10",
-                purpose: "Promesa de ayuda de Jehová",
-                text: "No tengas miedo, porque estoy contigo. No mires con desconfianza, porque soy tu Dios. Yo te daré fuerzas. Sí, yo te ayudaré. Con mi mano derecha de justicia, de veras te sostendré."
-              },
-              {
-                reference: "1 Juan 4:16",
-                purpose: "Conocer y creer en el amor de Dios",
-                text: "Y nosotros hemos llegado a conocer el amor que Dios nos tiene y creemos en ese amor. Dios es amor."
-              }
-            ],
-            infographic: "https://i.imgur.com/61YOdDx.png"
-          },
-          {
-            number: "8",
-            textEs: "¿Qué podemos hacer si seguimos dudando de que Jehová nos quiere?",
-            textLSM: "",
-            paragraphs: [8],
-            preview: "Cómo comparar lo que sentimos con lo que sabemos que es verdad según la Biblia.",
-            answer: "Si nos siguen entrando dudas, debemos comparar lo que sentimos con lo que sabemos. Aunque sintamos que no tenemos el amor de Dios, sabemos que eso no es cierto porque la Biblia nos enseña que Jehová nos ama. La Biblia siempre dice la verdad; en cambio, los sentimientos nos pueden engañar. Si creyéramos que Dios no nos ama, estaríamos pasando por alto que el amor es la esencia de su personalidad.",
-            answerBullets: [
-              "**Comparar sentimientos con conocimiento** - Lo que sentimos vs. lo que sabemos",
-              "**La Biblia siempre dice la verdad** - Los sentimientos nos pueden engañar",
-              "**Jehová nos ama** - Es lo que la Biblia enseña claramente",
-              "**El amor es la esencia de Dios** - No podemos pasar por alto este hecho (1 Juan 4:8)"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué debemos hacer si seguimos dudando de que Jehová nos quiere?",
-                answer: "Comparar lo que sentimos con lo que sabemos. La Biblia dice la verdad; los sentimientos pueden engañarnos."
-              },
-              {
-                question: "¿Por qué no debemos creer que Dios no nos ama?",
-                answer: "Porque estaríamos pasando por alto que el amor es la esencia de su personalidad (1 Juan 4:8)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "1 Juan 4:8",
-                purpose: "El amor es la esencia de la personalidad de Dios",
-                text: "El que no ama no ha llegado a conocer a Dios, porque Dios es amor."
-              }
-            ],
-            infographic: "https://i.imgur.com/2ZeP5d1.png"
-          },
-          {
-            number: "9, 10",
-            textEs: "¿De qué estaba hablando Jesús cuando dijo \"A ustedes el Padre mismo los quiere\"? (Juan 16:26, 27; mira también la imagen).",
-            textLSM: "",
-            paragraphs: [9, 10],
-            readText: "LEE Juan 16:26, 27",
-            preview: "Qué quiso decir Jesús sobre la oración y por qué Jehová escucha personalmente nuestras peticiones.",
-            image: "https://i.imgur.com/tUOc2GQ.png",
-            section: "REFLEXIONEMOS EN QUE «EL PADRE MISMO» NOS QUIERE",
-            answer: "Jesús estaba hablando de la oración. Les explicó a sus discípulos que debían orar al Padre en nombre de él, pero no a él. Los discípulos podrían haber pensado que, como eran muy amigos de Jesús, él escucharía sus peticiones y se las transmitiría al Padre. Pero Jesús dejó claro que «el Padre mismo» los quería y escucharía personalmente sus oraciones. Esta es una verdad básica sobre la oración: Jehová nos quiere tanto que se encarga personalmente de escucharnos.",
-            answerBullets: [
-              "**Jesús hablaba de la oración** - Debían orar al Padre en su nombre, no a él",
-              "**No usar a Jesús como intermediario** - No orarle a él para que transmita las peticiones",
-              "**«El Padre mismo los quiere»** - Jehová escucha personalmente nuestras oraciones",
-              "**Verdad básica sobre la oración** - Cada vez que oramos demostramos fe en que el Padre nos quiere (1 Juan 5:14)"
-            ],
-            flashcards: [
-              {
-                question: "¿De qué hablaba Jesús cuando dijo «A ustedes el Padre mismo los quiere»?",
-                answer: "De la oración. Estaba explicando que debemos orar al Padre en nombre de Jesús, y que Jehová personalmente escucha nuestras oraciones porque nos quiere."
-              },
-              {
-                question: "¿Qué verdad básica sobre la oración aprendemos de Juan 16:26, 27?",
-                answer: "Que Jehová nos quiere tanto que se encarga personalmente de escuchar nuestras oraciones. No necesitamos que Jesús sea intermediario."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Juan 16:26, 27",
-                purpose: "Jesús explica que el Padre mismo nos quiere y nos escucha",
-                text: "Aquel día pedirán en mi nombre, y no les digo que les rogaré al Padre, porque a ustedes el Padre mismo los quiere, pues ustedes me han querido a mí y han creído que yo salí como representante de Dios."
-              },
-              {
-                reference: "1 Juan 5:14",
-                purpose: "Confianza de que Jehová escucha nuestras oraciones",
-                text: "Esta es la confianza que tenemos en él: que él nos oye sin importar lo que le pidamos conforme a su voluntad."
-              }
-            ],
-            infographic: "https://i.imgur.com/MYEG431.png"
-          },
-          {
-            number: "11",
-            textEs: "¿Por qué se alegra Satanás si empezamos a dudar del amor de Jehová?",
-            textLSM: "",
-            paragraphs: [11],
-            preview: "Cómo Satanás usa las dudas como una trampa astuta y por qué él mismo ya perdió el amor de Dios.",
-            section: "¿TENGAMOS CLARO DE DÓNDE VIENEN LAS DUDAS?",
-            answer: "Satanás está «tratando de devorar» a cada uno de nosotros y desea que pensemos que Jehová no nos quiere. Fue el amor lo que impulsó a Jehová a dar el rescate, y Satanás quiere que sintamos que no merecemos ese regalo. Si dudamos del amor de Jehová o nos rendimos, Satanás se alegra. Pero él es quien ya no tiene el amor de Dios, así que es una de sus trampas más astutas hacernos creer que nosotros tampoco lo tenemos. Conocer sus intenciones nos motiva a oponernos a él con más fuerzas.",
-            answerBullets: [
-              "**Satanás quiere devorarnos** - Desea que pensemos que Jehová no nos quiere (1 Ped. 5:8)",
-              "**El rescate vino del amor** - Satanás quiere que sintamos que no lo merecemos (Heb. 2:9)",
-              "**¡Él ya no tiene el amor de Dios!** - Quiere hacernos creer que nosotros tampoco",
-              "**Es una trampa astuta** - Conocer sus intenciones nos ayuda a oponernos (Efes. 6:11; Sant. 4:7)"
-            ],
-            flashcards: [
-              {
-                question: "¿Por qué se alegra Satanás si dudamos del amor de Jehová?",
-                answer: "Porque quiere devorarnos y hacer que pensemos que Jehová no nos quiere. Si nos rendimos, él gana."
-              },
-              {
-                question: "¿Por qué es irónico que Satanás quiera hacernos dudar del amor de Dios?",
-                answer: "Porque él mismo es quien ya no tiene el amor de Dios, y ahora quiere que nosotros pensemos lo mismo."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "1 Pedro 5:8",
-                purpose: "Satanás trata de devorar a los siervos de Dios",
-                text: "Mantengan la mente despejada y estén alerta. Su adversario, el Diablo, anda por ahí como un león rugiente, tratando de devorar a alguien."
-              },
-              {
-                reference: "Santiago 4:7",
-                purpose: "Cómo oponernos al Diablo",
-                text: "Así que sométanse a Dios. Opónganse al Diablo, y él huirá de ustedes."
-              }
-            ],
-            infographic: "https://i.imgur.com/V2Vg4Ok.png"
-          },
-          {
-            number: "12, 13",
-            textEs: "¿Por qué el pecado heredado nos puede hacer dudar del amor de Jehová?",
-            textLSM: "",
-            paragraphs: [12, 13],
-            preview: "Cómo el pecado heredado afecta nuestras emociones y por qué somos como un vehículo con rueda desinflada.",
-            answer: "El pecado heredado nos ha alejado de nuestro Creador y ha dañado nuestra mente, corazón y cuerpo. Ha tenido un efecto muy negativo en nuestras emociones: nos hace sentir culpabilidad, ansiedad, inseguridad y vergüenza. Estos sentimientos surgen cuando pecamos o porque somos conscientes de nuestra imperfección. Somos como un vehículo con una rueda desinflada: no funcionamos a plena capacidad. Por eso a veces dudamos del amor de Jehová, pero debemos recordar que él «les muestra amor leal a los que lo aman y obedecen sus mandamientos».",
-            answerBullets: [
-              "**El pecado nos alejó del Creador** - Ha dañado mente, corazón y cuerpo (Sal. 51:5; Rom. 5:12)",
-              "**Efecto negativo en emociones** - Culpabilidad, ansiedad, inseguridad, vergüenza",
-              "**Conscientes de nuestra imperfección** - Como un vehículo con rueda desinflada (Rom. 8:20, 21)",
-              "**Jehová muestra amor leal** - A los que lo aman y obedecen sus mandamientos (Neh. 1:5)"
-            ],
-            flashcards: [
-              {
-                question: "¿Cómo nos afecta el pecado heredado emocionalmente?",
-                answer: "Nos hace sentir culpabilidad, ansiedad, inseguridad y vergüenza. Estamos alejados de cómo Jehová nos diseñó."
-              },
-              {
-                question: "¿A qué se compara nuestra condición imperfecta?",
-                answer: "A un vehículo con una rueda desinflada: no podemos funcionar a plena capacidad como fuimos diseñados."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 51:5",
-                purpose: "El pecado heredado desde el nacimiento",
-                text: "Mira, nací culpable, mi madre me concibió en pecado."
-              },
-              {
-                reference: "Romanos 8:20, 21",
-                purpose: "La creación fue sometida a futilidad pero será liberada",
-                text: "Porque la creación fue sometida a futilidad... con la esperanza de que la creación misma también será liberada de la esclavitud de la decadencia."
-              },
-              {
-                reference: "Nehemías 1:5",
-                purpose: "Jehová muestra amor leal a quienes lo aman",
-                text: "Oh, Jehová, Dios del cielo, el Dios grande e imponente que les muestra amor leal a los que lo aman y obedecen sus mandamientos."
-              }
-            ],
-            infographic: "https://i.imgur.com/q6S23Xc.png"
-          },
-          {
-            number: "14",
-            textEs: "¿Por qué pensar en el rescate nos ayuda a dejar de dudar del amor de Jehová? (Romanos 5:8; mira también el recuadro \"Cuidado con el 'poder engañoso del pecado'\").",
-            textLSM: "",
-            paragraphs: [14],
-            readText: "LEE Romanos 5:8",
-            preview: "Por qué el rescate demuestra que Jehová nos ama aunque no lo merezcamos.",
-            image: "https://imgur.com/nnAP7Xu.png",
-            answer: "Puede que a veces sintamos que no merecemos el amor de Jehová. Y en sentido estricto eso es cierto, pero justamente por esa razón es tan especial el amor que nos tiene. No hay nada que podamos hacer para ganarnos su amor. Aun así, él nos quiere tanto que dio el rescate para poder perdonarnos. Jesús no vino para salvar a personas perfectas, sino a personas pecadoras (Rom. 5:8). Jehová no espera que hagamos las cosas perfectamente. Comprender que el pecado heredado nos puede hacer dudar nos motiva a luchar contra ese pensamiento.",
-            answerBullets: [
-              "**No merecemos el amor de Jehová** - Y justamente por eso es tan especial",
-              "**No podemos ganárnoslo** - Pero él nos quiere y dio el rescate (1 Juan 4:10)",
-              "**Jesús vino para pecadores** - No para personas perfectas (Rom. 5:8)",
-              "**Jehová no espera perfección** - Sabe que no somos capaces (Rom. 7:24, 25)"
-            ],
-            flashcards: [
-              {
-                question: "¿Por qué es tan especial el amor de Jehová hacia nosotros?",
-                answer: "Porque no lo merecemos y no hay nada que podamos hacer para ganárnoslo, pero aun así él nos lo da y dio el rescate."
-              },
-              {
-                question: "¿A quiénes vino a salvar Jesús según Romanos 5:8?",
-                answer: "A personas pecadoras, no perfectas. «Mientras todavía éramos pecadores, Cristo murió por nosotros»."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Romanos 5:8",
-                purpose: "Jehová demostró su amor dando a Jesús por pecadores",
-                text: "Pero Dios nos demuestra su amor a nosotros en que, mientras todavía éramos pecadores, Cristo murió por nosotros."
-              },
-              {
-                reference: "1 Juan 4:10",
-                purpose: "El amor de Dios al enviar a su Hijo como sacrificio",
-                text: "Él amor consiste en esto: no en que nosotros hayamos amado a Dios, sino en que él nos amó a nosotros y envió a su Hijo como sacrificio propiciatorio por nuestros pecados."
-              },
-              {
-                reference: "Romanos 7:24, 25",
-                purpose: "Liberación de la condición pecaminosa por medio de Cristo",
-                text: "¡Miserable de mí! ¿Quién me rescatará de este cuerpo que me lleva a la muerte? ¡Gracias a Dios, por medio de Jesucristo nuestro Señor!"
-              }
-            ],
-            infographic: "https://i.imgur.com/yC5rl42.png"
-          },
-          {
-            number: "15, 16",
-            textEs: "Si le somos leales a Jehová, ¿de qué podemos estar seguros, y por qué? (2 Samuel 22:26).",
-            textLSM: "",
-            paragraphs: [15, 16],
-            section: "TOMEMOS LA DECISIÓN DE SER LEALES",
-            readText: "LEE 2 Samuel 22:26",
-            preview: "Conclusión: Si somos leales a Jehová, él será leal con nosotros y nunca nos abandonará.",
-            answer: "Si le somos leales a Jehová, podemos estar seguros de que él también lo será y no nos abandonará pase lo que pase. Cuando pasamos por situaciones difíciles, lo mejor es «echar el ancla»: recordar que Jehová nos ama y va a estar ahí para ayudarnos. Si alguna vez dudamos de su amor, recordemos que una cosa es lo que sentimos y otra cosa es lo que sabemos que es cierto. Nunca perdamos la confianza en esta verdad básica: el amor leal de Jehová dura para siempre.",
-            answerBullets: [
-              "**Si somos leales, él lo será** - No nos abandonará pase lo que pase (2 Sam. 22:26)",
-              "**«Echar el ancla»** - Recordar que Jehová nos ama y nos ayudará",
-              "**Sentimientos vs. verdad** - Lo que sentimos puede diferir de lo que sabemos",
-              "**Verdad básica** - El amor leal de Jehová dura para siempre (Deut. 30:19, 20)"
-            ],
-            flashcards: [
-              {
-                question: "¿De qué podemos estar seguros si le somos leales a Jehová?",
-                answer: "De que él también nos será leal y no nos abandonará pase lo que pase (2 Samuel 22:26)."
-              },
-              {
-                question: "¿Qué verdad básica nunca debemos perder de vista?",
-                answer: "El amor leal de Jehová dura para siempre. Una cosa es lo que sentimos y otra lo que sabemos que es cierto."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "2 Samuel 22:26",
-                purpose: "Jehová es leal con quienes le son leales",
-                text: "Con el leal tú actúas con lealtad, con el poderoso, con integridad."
-              },
-              {
-                reference: "Deuteronomio 30:19, 20",
-                purpose: "Aferrarnos a Jehová es elegir la vida",
-                text: "Escoge la vida para que vivas, tú y tu descendencia, amando a Jehová tu Dios, escuchando su voz y aferrándote a él."
-              }
-            ],
-            infographic: "https://i.imgur.com/r46NTf1.png"
-          }
-        ],
-        paragraphs: [
-          { number: 1, content: "IMAGÍNATE un barco en medio de una furiosa tempestad. Las olas del mar embravecido lo hacen subir y bajar, golpeándolo con fuerza y amenazando con llevarlo a la deriva. La única manera de evitarlo y de mantener el barco estable es echando un ancla.", summary: "Metáfora: un barco necesita un ancla para no ir a la deriva en la tempestad." },
-          { number: 2, content: "¿Estás pasando por una situación difícil? Entonces tal vez te sientas como ese barco. Los golpes de la vida pueden hacer que tus emociones suban y bajen. Un día estás convencido de que Jehová te ama y te ayuda, y al siguiente piensas que ni siquiera se fija en lo que te está pasando (Sal. 10:1; 13:1). Puede que un amigo te diga unas palabras de ánimo, y eso te haga sentir mejor por un tiempo (Prov. 17:17; 25:11). Pero luego las dudas regresan. Quizás hasta te parezca que Jehová ya no se preocupa por ti. Si estás en esta situación, ¿cómo puedes \"echar el ancla\", es decir, tener la seguridad —y no perderla nunca— de que Jehová te ama y te ayuda?", summary: "Los golpes de la vida hacen que nuestras emociones suban y bajen; necesitamos 'echar el ancla'." },
-          { number: 3, content: "Cuando pasamos por una situación difícil, una manera de \"echar el ancla\" es recordar el amor leal de Jehová (lee Salmo 31:7; 136:1). La expresión \"amor leal\" transmite la idea de un apego profundo y duradero que una persona le tiene a otra. Nadie muestra esta cualidad mejor que Jehová. De hecho, la Biblia dice que él está \"lleno de amor leal\" y que el amor leal que siente por sus siervos \"es inmenso\" (Éx. 34:6, 7; Sal. 86:5). Piensa en lo que eso significa: ¡Jehová nunca abandona a sus siervos fieles! Recordar esto te puede ayudar a mantener la estabilidad ante las tormentas de la vida (Sal. 23:4).", summary: "'Echar el ancla' = recordar el amor leal de Jehová; él nunca abandona a sus siervos fieles." },
-          { number: 4, content: "Otra manera de \"echar el ancla\" ante los problemas es ver el amor de Jehová como una enseñanza básica de la Biblia. ¿Qué son para ti las enseñanzas básicas de la Biblia? Son las verdades fundamentales que aprendemos en la Palabra de Dios. Por ejemplo, que el nombre de Dios es Jehová, que Jesús es su Hijo unigénito, que los muertos están inconscientes, que la Tierra va a ser un paraíso y que los seres humanos vivirán en ella para siempre (Sal. 83:18; Ecl. 9:5; Juan 3:16; Apoc. 21:3, 4). Una vez que estás convencido de que esas enseñanzas son ciertas porque están basadas en hechos y pruebas, ¿verdad que ya no dejas que nada te haga creer lo contrario? De manera parecida, si ves el amor de Jehová como una enseñanza básica de la Biblia, te será más fácil rechazar la idea de que él no se fija en ti o no se preocupa por lo que te pasa. Hablemos más de ello.", summary: "Ver el amor de Jehová como una enseñanza básica de la Biblia nos da estabilidad." },
-          { number: 5, content: "Cuando empezaste a estudiar la Biblia, ¿qué te ayudó a rechazar las creencias falsas que tal vez tuvieras? Probablemente comparaste lo que enseñaba tu religión con lo que enseña la Biblia. Supongamos que antes creías que Jesús es Dios. A medida que estudiabas, te preguntaste: \"¿Es eso cierto?\". Entonces analizaste lo que dice la Biblia y te diste cuenta de que esa creencia es falsa. Así que la dejaste a un lado y aceptaste esta verdad: Jesús es \"el primogénito de toda la creación\" y el \"Hijo unigénito de Dios\" (Col. 1:15; Juan 3:18). Claro, las enseñanzas falsas pueden estar \"fuertemente atrincheradas\", así que tal vez no nos resulte fácil derrumbarlas (2 Cor. 10:4, 5). Ahora bien, una vez que logramos dejarlas atrás, no permitimos que nada nos haga volver a ellas (Filip. 3:13).", summary: "Al estudiar la Biblia, aprendimos a rechazar creencias falsas comparándolas con la verdad." },
-          { number: 6, content: "Puedes utilizar el mismo método si estás pasando por un problema y empiezas a pensar que Jehová tal vez no te ama. Pregúntate: \"¿Es eso cierto?\". Luego compara tus dudas con lo que la Biblia enseña sobre el amor de Jehová en Salmo 136:1, que es el texto temático de este artículo. ¿Por qué dice Jehová que su amor es \"leal\"? ¿Y por qué en ese salmo se repite 26 veces la frase \"su amor leal dura para siempre\"? Como vemos, el hecho de que Dios siente amor leal por su pueblo es una verdad bíblica tan fundamental como las otras enseñanzas básicas que llegaste a hacer tuyas. La idea de que a Jehová no le importas no es cierta, así que recházala con tanta firmeza como cualquier otra creencia falsa.", summary: "Método: preguntarnos '¿Es cierto que Jehová no me ama?' y comparar con Salmo 136:1." },
-          { number: 7, content: "En la Biblia encontramos muchos otros textos que nos confirman que Jehová sí nos ama. Veamos dos ejemplos muy claros. Jesús les dijo a sus discípulos: \"Ustedes valen más que muchos gorriones\" (Mat. 10:31). Él no dijo: \"Ustedes quizás valen más que muchos gorriones\". Y el propio Jehová le dijo a su pueblo: \"Yo te daré fuerzas. Sí, yo te ayudaré. Con mi mano derecha de justicia, de veras te sostendré\" (Is. 41:10). Él no dijo: \"Quizás yo te ayudaré\". Como ves, estos textos no están hablando de posibilidades, sino de certezas. Así que, si al pasar por un problema empiezas a dudar del amor de Dios, este tipo de textos no solo te harán sentir mejor, sino que te convencerán de que Jehová sí te ama. Medita en ellos y háblale a Jehová de tus dudas. Si lo haces, podrás decir lo mismo que dijeron los cristianos del siglo primero: \"Hemos llegado a conocer el amor que Dios nos tiene y creemos en ese amor\" (1 Juan 4:16).", summary: "Textos como Mat. 10:31 e Isa. 41:10 nos dan certezas, no posibilidades." },
-          { number: 8, content: "¿Y si te siguen entrando dudas de que Jehová te quiere? Compara lo que sientes con lo que sabes. Aunque sientas que no tienes el amor de Dios, sabes que eso no es cierto, porque la Biblia nos enseña que Jehová nos ama. Recuerda que la Biblia siempre dice la verdad; en cambio, los sentimientos nos pueden engañar. Si creyéramos que Dios no nos ama, estaríamos pasando por alto que el amor es la esencia de su personalidad (1 Juan 4:8).", summary: "Comparar lo que sentimos con lo que sabemos; los sentimientos pueden engañar." },
-          { number: 9, content: "Algo más que nos ayudará a convencernos de que Jehová nos ama es analizar esta frase que Jesús les dijo a sus discípulos: \"A ustedes el Padre mismo los quiere\" (lee Juan 16:26, 27). ¿Por qué les dijo eso? ¿Fue solo para que se sintieran bien? No, el contexto indica que en ese momento no estaba hablando de los sentimientos de sus discípulos, sino de un tema diferente: la oración.", summary: "Jesús dijo: 'El Padre mismo los quiere' - no solo para hacerlos sentir bien, sino hablando de la oración." },
-          { number: 10, content: "Jesús acababa de decirles a sus discípulos que debían orar en nombre de él, pero no a él (Juan 16:23, 24). Era muy importante que tuvieran eso claro. ¿Por qué? Porque, como habían llegado a ser muy amigos de Jesús, después de que resucitó podrían haber sentido la tentación de orarle a él. Podrían haber razonado que, como Jesús les tenía mucho cariño, tal vez se sentiría impulsado a escuchar él mismo sus peticiones y transmitírselas al Padre. Pero Jesús dejó claro que ese razonamiento sería incorrecto, pues les dijo: \"A ustedes el Padre mismo los quiere\". En efecto, Jehová nos quiere tanto que se encarga personalmente de escuchar nuestras oraciones, y esta es una verdad básica que enseña la Biblia sobre la oración. Piensa en lo que esto significa para ti. Al estudiar la Biblia, tú también has llegado a conocer y amar a Jesús (Juan 14:21). Pero, al igual que los discípulos del siglo primero, puedes dirigirle tus oraciones a Dios con la confianza de que te escucha y te quiere. Cada vez que le oras a Jehová estás demostrando que tienes fe en que \"el Padre mismo\" te quiere (1 Juan 5:14).", summary: "Jehová escucha personalmente nuestras oraciones porque nos quiere." },
-          { number: 11, content: "¿De dónde vienen las dudas sobre el amor de Jehová? Tal vez pensemos que vienen de Satanás, y eso es cierto. El Diablo está \"tratando de devorar\" a cada uno de nosotros, y desea que pensemos que Jehová no nos quiere (1 Ped. 5:8). A fin de cuentas, fue precisamente el amor lo que impulsó a Jehová a dar el rescate, y Satanás quiere que sintamos que no merecemos ese regalo (Heb. 2:9). ¿Quién se alegra si dudamos del amor de Jehová? Satanás. ¿Y quién se alegra si nos rendimos cuando pasamos por problemas? También Satanás. Pero un momento: ¡es él quien ya no tiene el amor de Dios! ¡¿Y ahora quiere que pensemos que somos nosotros quienes no contamos con el amor y la aprobación de Jehová?! Sin duda, esa es una de sus trampas más astutas (Efes. 6:11). Conocer sus intenciones nos motiva a oponernos a él con más fuerzas aún (Sant. 4:7).", summary: "Las dudas vienen de Satanás; él quiere que pensemos que no tenemos el amor de Dios." },
-          { number: 12, content: "Ahora bien, las dudas sobre el amor de Jehová no solo vienen de Satanás. También pueden venir del pecado heredado, es decir, nuestra tendencia a pecar (Sal. 51:5; Rom. 5:12). El pecado nos ha alejado de nuestro Creador, y también ha dañado nuestra mente, nuestro corazón y nuestro cuerpo.", summary: "Las dudas también vienen del pecado heredado que nos aleja del Creador." },
-          { number: 13, content: "El pecado ha tenido un efecto muy negativo en nuestras emociones: nos hace sentir culpabilidad, ansiedad, inseguridad y vergüenza. Estos sentimientos pueden surgir cuando pecamos. Pero también pueden surgir porque siempre somos conscientes de que somos imperfectos, de que nos encontramos en un estado completamente alejado de la manera en que Jehová nos diseñó (Rom. 8:20, 21). Debido a nuestra imperfección, en cierto sentido somos como un vehículo que tiene una rueda desinflada: no podemos funcionar a plena capacidad, tal y como hemos sido diseñados. Así que no es de extrañar que a veces nos entren dudas de que Jehová nos ama. En esos casos, recordemos que Jehová es \"el Dios grande e imponente que [...] les muestra amor leal a los que lo aman y obedecen sus mandamientos\" (Neh. 1:5).", summary: "El pecado causa culpabilidad, ansiedad, inseguridad; somos como un vehículo con rueda desinflada." },
-          { number: 14, content: "Puede que de vez en cuando sintamos que no merecemos el amor de Jehová. Y en sentido estricto eso es cierto, pero justamente por esa razón es tan especial el amor que nos tiene. No hay nada que podamos hacer para ganarnos su amor. Aun así, él nos quiere tanto que dio el rescate para poder perdonarnos los pecados (1 Juan 4:10). Recordemos también que Jesús no vino para salvar a personas perfectas, sino a personas pecadoras (lee Romanos 5:8). Jehová no espera que hagamos las cosas perfectamente, pues sabe que no somos capaces. Comprender que el pecado heredado nos puede hacer dudar del amor de Dios nos motiva a luchar contra ese pensamiento con más fuerzas aún (Rom. 7:24, 25).", summary: "El rescate demuestra que Jehová nos ama aunque no lo merezcamos." },
-          { number: 15, content: "Ante las tormentas de la vida, Jehová desea que tomemos la decisión correcta y nos aferremos a él (Deut. 30:19, 20). Si le somos leales, podemos estar seguros de que él también lo será y no nos abandonará pase lo que pase (lee 2 Samuel 22:26).", summary: "Si somos leales a Jehová, él será leal a nosotros." },
-          { number: 16, content: "Como hemos visto, cuando pasamos por situaciones difíciles, lo mejor que podemos hacer es \"echar el ancla\": recordar que Jehová nos ama y va a estar ahí para ayudarnos. Y, si alguna vez dudamos de su amor, no olvidemos que una cosa es lo que sentimos y otra cosa es lo que sabemos que es cierto. Nunca perdamos la confianza en esta verdad básica que enseña la Biblia: el amor leal de Jehová dura para siempre.", summary: "Conclusión: 'echar el ancla' recordando que el amor leal de Jehová dura para siempre." }
-        ],
-        reviewQuestions: [
-          {
-            question: "¿Por qué es bueno ver el amor de Jehová como una enseñanza básica de la Biblia?",
-            questionLSM: "BIBLIA AQUI ENSEÑARTE JAH A TI TE AMA, IMPORTANTE TENER EN MENTE ¿PORQUE?",
-            answer: "Porque nos ayuda a rechazar las dudas con firmeza. Las enseñanzas básicas son verdades fundamentales que, una vez que estamos convencidos de ellas, no dejamos que nada nos haga creer lo contrario. Si vemos el amor de Jehová de esa manera, será más fácil rechazar la idea de que él no se fija en nosotros. El Salmo 136 repite 26 veces \"su amor leal dura para siempre\", confirmando que es una verdad fundamental."
-          },
-          {
-            question: "¿Por qué el pecado heredado nos puede hacer dudar del amor de Jehová?",
-            questionLSM: "PECAR TENTARTE ¿QUE SIGNIFICA?",
-            answer: "Porque el pecado nos ha alejado de nuestro Creador y ha dañado nuestra mente, corazón y cuerpo. Ha tenido un efecto muy negativo en nuestras emociones: nos hace sentir culpabilidad, ansiedad, inseguridad y vergüenza. Somos como un vehículo con una rueda desinflada: no funcionamos a plena capacidad. Por eso a veces dudamos del amor de Jehová."
-          },
-          {
-            question: "¿Qué nos ayudará a dejar de dudar del amor de Jehová?",
-            questionLSM: "TU DUDAS NO, JEHOVA CONFIANZA EN EL ¿COMO?",
-            answer: "Pensar en el rescate nos ayuda, pues demuestra que Jehová nos ama aunque no lo merezcamos. Jesús vino para salvar a personas pecadoras, no perfectas (Rom. 5:8). También nos ayuda comparar lo que sentimos con lo que sabemos: aunque sintamos que no tenemos el amor de Dios, la Biblia nos enseña que él nos ama. Si le somos leales, podemos estar seguros de que él también lo será."
-          }
-        ],
-        finalSong: "Canción 159: Demos gloria a Jehová",
-        articleSummary: {
-          keyPoints: [
-            { order: 1, statement: "El pecado heredado puede hacernos dudar del amor de Jehová, haciéndonos sentir culpabilidad e inseguridad.", paragraphSource: 2 },
-            { order: 2, statement: "La Biblia nos da certezas, no posibilidades: Jehová nos ama y nos valora más que a muchos gorriones.", bibleReference: "Mateo 10:31", paragraphSource: 7 },
-            { order: 3, statement: "Meditar en textos como Isaías 41:10 fortalece nuestra convicción de que Jehová siempre nos ayudará.", bibleReference: "Isaías 41:10", paragraphSource: 7 },
-            { order: 4, statement: "Comparar lo que sentimos con lo que sabemos nos ayuda a no dejarnos engañar por nuestras emociones.", paragraphSource: 8 },
-            { order: 5, statement: "Si somos leales a Jehová, podemos estar seguros de que él también lo será con nosotros.", paragraphSource: 16 }
-          ],
-          centralIdea: "El amor de Jehová no es una posibilidad, es una certeza. Aunque nuestros sentimientos nos engañen, la Biblia siempre dice la verdad."
-        }
-      },
-
-      // Artículo 42: "Cómo mejorar las oraciones" (22-28 Dic)
-      {
-        metadata: {
-          articleNumber: 42,
-          week: "22-28 Dic",
-          month: "Octubre",
-          year: 2025
-        },
-        song: "Canción 44: Una súplica ferviente",
-        title: "Cómo mejorar las oraciones",
-        biblicalText: "\"Llamo con todo mi corazón. Respóndeme, oh, Jehová\" (SAL. 119:145).",
-        theme: "Meditar en las oraciones que encontramos en la Biblia nos puede ayudar a mejorar las nuestras.",
-        questions: [
-          {
-            number: "1, 2",
-            textEs: "a) ¿Qué puede hacer que nuestras oraciones se vuelvan monótonas o superficiales? b) ¿Cómo sabemos que Jehová presta atención a todo lo que le decimos?",
-            textLSM: "",
-            paragraphs: [1, 2],
-            answer: [
-              "Nuestras oraciones pueden volverse monótonas por el ajetreo de la vida o por sentirnos indignos.",
-              "Lo más importante para Jehová es que le hablemos desde el corazón y con humildad.",
-              "No hay que preocuparnos por usar palabras elegantes.",
-              "Jehová escucha «el ruego de los mansos» porque se preocupa por nosotros."
-            ],
-            answerBullets: [
-              "**El ajetreo de la vida** - Nos lleva a hacer solo oraciones breves",
-              "**Sentirnos indignos** - Pensamos que no merecemos contarle todo",
-              "**Lo importante es el corazón** - No las palabras elegantes ni expresarnos perfectamente",
-              "**Jehová escucha a los mansos** - Presta atención porque se preocupa por nosotros (Sal. 10:17; 139:1-3)"
-            ],
-            flashcards: [
-              {
-                question: "Según el párrafo 1, ¿por qué algunas personas solo hacen oraciones breves?",
-                answer: "Por el ajetreo de la vida, que les lleva a no tomarse tiempo para oraciones más largas."
-              },
-              {
-                question: "¿Qué significa que Jehová escucha «el ruego de los mansos»?",
-                answer: "Que no importan las palabras elegantes ni expresarnos perfectamente; lo importante es hablar desde el corazón con humildad."
-              },
-              {
-                question: "¿Por qué no debemos preocuparnos por usar palabras elegantes al orar?",
-                answer: "Porque Jehová presta atención a todo lo que le decimos ya que de verdad se preocupa por nosotros."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 10:17",
-                purpose: "Jehová escucha el ruego de los mansos",
-                text: "Jehová, tú oirás los ruegos de los mansos. Tú fortalecerás su corazón. Les prestarás atención."
-              },
-              {
-                reference: "Salmo 139:1-3",
-                purpose: "Jehová conoce todo sobre nosotros",
-                text: "Oh, Jehová, tú me has examinado y me conoces. Sabes cuándo me siento y cuándo me levanto. Percibes mis pensamientos desde lejos."
-              }
-            ],
-            infographic: "https://i.imgur.com/9KBFOIF.png"
-          },
-          {
-            number: "3",
-            textEs: "¿Qué preguntas responderemos en este artículo?",
-            textLSM: "",
-            paragraphs: [3],
-            answer: [
-              "¿Por qué no debemos tener miedo de contarle a Jehová nuestros pensamientos y sentimientos?",
-              "¿Qué podemos hacer para que nuestras oraciones sean más profundas?",
-              "¿Cómo nos ayudan las oraciones de la Biblia a mejorar las nuestras?",
-              "¿Qué podemos hacer si estamos tan angustiados que no nos salen las palabras?"
-            ],
-            answerBullets: [
-              "**¿Por qué no tener miedo de orar?** - Contarle a Jehová pensamientos y sentimientos",
-              "**¿Cómo hacer oraciones más profundas?** - Técnicas para mejorar",
-              "**¿Cómo nos ayudan las oraciones bíblicas?** - Aprender de personajes bíblicos",
-              "**¿Qué hacer si no salen las palabras?** - Cuando estamos muy angustiados"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué tema tratará este artículo sobre las oraciones cuando nos sentimos muy angustiados?",
-                answer: "Qué podemos hacer si estamos tan angustiados que no nos salen las palabras para expresar lo que sentimos."
-              },
-              {
-                question: "¿Qué fuente mencionada en el párrafo nos puede ayudar a mejorar nuestras oraciones?",
-                answer: "Las oraciones que encontramos en la Biblia, que nos ayudan a mejorar las nuestras."
-              }
-            ],
-            biblicalCards: [],
-            infographic: "https://i.imgur.com/1Dsx1cy.png"
-          },
-          {
-            number: "4",
-            textEs: "¿Qué nos ayudará a abrirle nuestro corazón a Jehová? (Salmo 119:145).",
-            textLSM: "",
-            paragraphs: [4],
-            readText: "LEE Salmo 119:145",
-            section: "ABRAMOS NUESTRO CORAZÓN A JEHOVÁ",
-            sectionLSM: "NO TENGAS MIEDO DE ORARLE A JEHOVÁ",
-            answer: [
-              "Nos será más fácil contarle a Jehová si lo vemos como un amigo fiel que quiere lo mejor para nosotros.",
-              "El escritor del Salmo 119 pasó por muchos problemas: dijeron mentiras de él y tuvo que cargar con sus imperfecciones.",
-              "Pero procuró tener una relación estrecha con Dios.",
-              "No tuvo miedo de abrirle su corazón."
-            ],
-            answerBullets: [
-              "**Ver a Jehová como amigo fiel** - Que quiere lo mejor para nosotros",
-              "**El salmista tuvo problemas** - Mentiras sobre él, imperfecciones propias (Sal. 119:23, 69, 78)",
-              "**Procuró relación estrecha con Dios** - A pesar de sus dificultades",
-              "**No tuvo miedo** - De abrirle su corazón a Jehová (Sal. 119:145)"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué problemas enfrentó el escritor del Salmo 119 según el párrafo?",
-                answer: "Dijeron mentiras terribles de él y tuvo que cargar con sus propias imperfecciones."
-              },
-              {
-                question: "A pesar de sus problemas, ¿qué procuró hacer el salmista?",
-                answer: "Procuró tener una relación estrecha con Dios, así que no tuvo miedo de abrirle su corazón."
-              },
-              {
-                question: "¿Cómo debemos ver a Jehová para que sea más fácil contarle nuestros sentimientos?",
-                answer: "Como un amigo fiel que quiere lo mejor para nosotros."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 119:145",
-                purpose: "Texto temático - Orar con todo el corazón",
-                text: "Llamo con todo mi corazón. Respóndeme, oh, Jehová. Voy a obedecer tus decretos."
-              },
-              {
-                reference: "Salmo 119:146",
-                purpose: "Continuación del clamor del salmista",
-                text: "Te invoco. Sálvame, y guardaré tus recordatorios."
-              }
-            ],
-            infographic: "https://i.imgur.com/z2BpyL0.png"
-          },
-          {
-            number: "5",
-            textEs: "¿Por qué no debemos dejar que los sentimientos negativos nos frenen de orar? Pon un ejemplo.",
+            textEs: "¿Qué vio Jesús cuando estuvo en la Tierra, y cómo lo preparó eso para ser Sumo Sacerdote? (Vea también la imagen).",
             textLSM: "",
             paragraphs: [5],
             answer: [
-              "Jehová quiere que incluso quienes han cometido pecados graves le oren.",
-              "No hay que dejar que los sentimientos negativos nos frenen.",
-              "Ejemplo: un piloto que comete un error contacta a los controladores para pedir ayuda, no evita hacerlo por vergüenza.",
-              "No debemos sentir miedo ni vergüenza de hablar con Jehová."
-            ],
-            answerBullets: [
-              "**Jehová quiere que oremos** - Incluso quienes han cometido pecados graves (Is. 55:6, 7)",
-              "**Ejemplo del piloto** - Aunque cometa un error, contacta a los controladores para pedir ayuda",
-              "**No evita pedir ayuda por vergüenza** - Sería peligroso no hacerlo",
-              "**No sentir miedo ni vergüenza** - Aunque nos desviemos, podemos hablar con Jehová (Sal. 119:25, 176)"
+              "Jesús vio a muchas personas sufrir durante su vida en la Tierra.",
+              "Vivió el dolor de perder a seres queridos, incluso por lo visto a José, su padre adoptivo.",
+              "Trató con personas con lepra, ciegas, paralíticas o de duelo, y sintió compasión por todas ellas.",
+              "Siendo humano, pudo ver el sufrimiento desde otra perspectiva.",
+              "Sintió en carne propia la misma angustia, cansancio y tristeza que todos nosotros."
             ],
             flashcards: [
               {
-                question: "¿A qué se compara en el párrafo no orar por sentirse indigno?",
-                answer: "A un piloto que comete un error y no contacta a los controladores aéreos por vergüenza. Sería peligroso no pedir ayuda."
+                question: "¿Qué diferencia hay entre ver el sufrimiento desde el cielo y verlo siendo humano?",
+                answer: "Siendo humano, Jesús pudo verlo desde otra perspectiva y sentir en carne propia la misma angustia, cansancio y tristeza que nosotros."
               },
               {
-                question: "Según el párrafo, ¿qué quiere Jehová que hagan incluso quienes han cometido pecados graves?",
-                answer: "Que le oren. No hay que dejar que los sentimientos negativos nos frenen."
-              },
-              {
-                question: "¿Qué haría un piloto responsable si comete un error o se desvía de su rumbo?",
-                answer: "Contactarse con los controladores aéreos para pedir ayuda, sin importar que le dé vergüenza."
+                question: "¿A qué ser querido probablemente perdió Jesús durante su vida?",
+                answer: "A José, su padre adoptivo."
               }
             ],
             biblicalCards: [
               {
-                reference: "Isaías 55:6, 7",
-                purpose: "Jehová quiere que los pecadores lo busquen",
-                text: "Busquen a Jehová mientras se deje hallar. Llámenlo mientras esté cerca. Que el malvado abandone su camino... Que regrese a Jehová, quien tendrá compasión de él."
-              }
-            ],
-            infographic: "https://i.imgur.com/09UBmc2.png"
-          },
-          {
-            number: "6, 7",
-            textEs: "¿Qué nos ayudará a hacer oraciones más profundas? Pon un ejemplo.",
-            textLSM: "",
-            paragraphs: [6, 7],
-            section: "CÓMO PUEDES HACER ORACIONES MÁS PROFUNDAS",
-            answer: [
-              "Cuando le hablamos a Jehová con total franqueza, nos acercamos más a él.",
-              "Reflexionar en las cualidades de Jehová nos ayuda a hacer oraciones más profundas.",
-              "Ejemplo: Kristine tenía un padre violento y le costaba ver a Jehová como padre.",
-              "El amor leal de Jehová la hizo sentir segura: «Sé que siempre me llevará de la mano»."
-            ],
-            answerBullets: [
-              "**Hablar con total franqueza** - De nuestros pensamientos y sentimientos más íntimos",
-              "**Reflexionar en las cualidades de Jehová** - Nos acercamos más a él (Sal. 145:8, 9, 18)",
-              "**Ejemplo de Kristine** - Le costaba ver a Jehová como padre por su padre violento",
-              "**El amor leal la ayudó** - La hace sentir segura para contarle todo a Jehová"
-            ],
-            flashcards: [
-              {
-                question: "¿Por qué a Kristine le costaba ver a Jehová como padre?",
-                answer: "Porque tenía un padre violento. Sentía que sus imperfecciones harían que Jehová se alejara de ella."
+                reference: "Isaías 53:4",
+                purpose: "Jesús cargó con nuestros dolores",
+                text: "Verdaderamente él mismo cargó con nuestras enfermedades, y él mismo llevó nuestros dolores."
               },
               {
-                question: "¿Qué cualidad de Jehová ayudó a Kristine a sentirse segura para orar?",
-                answer: "El amor leal de Jehová. Sabe que siempre la llevará de la mano y que si cae la levantará con cariño."
-              },
-              {
-                question: "Según el párrafo 6, ¿qué pasa cuando le hablamos a Jehová con total franqueza?",
-                answer: "Nos acercamos más a él."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 145:8, 9, 18",
-                purpose: "Las cualidades de Jehová que nos ayudan a orar",
-                text: "Jehová es compasivo y misericordioso, lento para la ira y lleno de amor leal. Jehová es bueno con todos... Jehová está cerca de todos los que lo invocan."
-              }
-            ],
-            infographic: "https://i.imgur.com/IXKbb3W.png"
-          },
-          {
-            number: "8, 9",
-            textEs: "¿Cuáles son algunos beneficios de pensar de antemano en qué decirle a Jehová? Pon un ejemplo.",
-            textLSM: "",
-            paragraphs: [8, 9],
-            answer: [
-              "Antes de orar podemos hacernos preguntas: ¿Con qué problemas lucho? ¿Hay alguien a quien no he perdonado?",
-              "También podemos pedir por el nombre de Jehová, su Reino y su voluntad.",
-              "Ejemplo: Aliska no sabía qué decir cuando su esposo tuvo cáncer terminal.",
-              "Organizar sus pensamientos la ayudó a tener la mente más calmada."
-            ],
-            answerBullets: [
-              "**Hacerse preguntas antes de orar** - ¿Problemas? ¿Perdón pendiente? ¿Situación que necesita ayuda?",
-              "**Seguir el ejemplo de Jesús** - Pedir por el nombre de Jehová, su Reino y su voluntad (Mat. 6:9, 10)",
-              "**Ejemplo de Aliska** - Su esposo con cáncer terminal, estaba muy angustiada",
-              "**Organizar pensamientos** - Sus oraciones no giran solo en torno a ella, mente más calmada"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué preguntas podemos hacernos antes de orar?",
-                answer: "¿Con qué problemas estoy luchando? ¿Hay alguien a quien no he perdonado? ¿Necesito ayuda de Jehová en alguna situación?"
-              },
-              {
-                question: "¿Cómo ayudó a Aliska organizar sus pensamientos antes de orar?",
-                answer: "Sus oraciones no giraban solo en torno a ella y sus problemas, y su mente estaba más centrada y calmada al hablar con Jehová."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Mateo 6:9, 10",
-                purpose: "Ejemplo de Jesús sobre qué incluir en la oración",
-                text: "Ustedes deben orar así: Padre nuestro que estás en los cielos, que tu nombre sea santificado. Que venga tu Reino. Que se haga tu voluntad."
-              },
-              {
-                reference: "2 Reyes 19:15-19",
-                purpose: "Ejemplo de prepararse para orar en situaciones difíciles",
-                text: "Ezequías oró delante de Jehová diciendo... Oh, Jehová, Dios nuestro, sálvanos de su mano, para que todos los reinos de la tierra sepan que solo tú eres Dios."
-              }
-            ],
-            infographic: "https://i.imgur.com/AYdMVqq.png"
-          },
-          {
-            number: "10",
-            textEs: "¿Por qué es bueno que nos tomemos nuestro tiempo para orar? (Mira también las imágenes).",
-            textLSM: "",
-            paragraphs: [10],
-            image: "https://i.imgur.com/SW7Cal1.png",
-            answer: [
-              "Las oraciones cortas nos acercan a Jehová, pero las largas nos permiten contar más detalles.",
-              "Jehová nunca está mirando el reloj, así que podemos extendernos.",
-              "Buscar un momento y lugar sin distracciones para orar largo y tendido.",
-              "Convertirlo en costumbre, quizás en voz alta."
-            ],
-            answerBullets: [
-              "**Oraciones cortas ayudan** - Pero las más largas permiten contar más detalles",
-              "**Jehová nunca mira el reloj** - Podemos extendernos todo lo que queramos",
-              "**Buscar momento y lugar** - Sin distracciones, para orar largo y tendido",
-              "**Convertirlo en costumbre** - Quizás en voz alta, habitualmente"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué dijo Elijah sobre Jehová y el tiempo que dedicamos a orar?",
-                answer: "Que Jehová nunca está mirando el reloj, así que podemos extendernos todo lo que queramos."
-              },
-              {
-                question: "¿Qué meta práctica sugiere el párrafo para mejorar nuestras oraciones?",
-                answer: "Buscar un momento y lugar sin distracciones para orar largo y tendido, quizás en voz alta, y convertirlo en costumbre."
-              },
-              {
-                question: "¿Qué beneficio tiene hacer oraciones más largas según el párrafo?",
-                answer: "Es más probable que le contemos a Jehová con más detalle todo lo que sentimos, y nos sentimos más cerca de él."
-              }
-            ],
-            biblicalCards: [],
-            infographic: "https://i.imgur.com/vBCUvYA.png"
-          },
-          {
-            number: "11",
-            textEs: "¿Cómo nos ayuda meditar en las oraciones de algunos siervos de Jehová de tiempos bíblicos?",
-            textLSM: "",
-            paragraphs: [11],
-            image: "https://i.imgur.com/TX5pIuf.png",
-            section: "MEDITA EN LAS ORACIONES DE PERSONAJES BÍBLICOS",
-            answer: [
-              "Meditar en oraciones bíblicas nos da ideas de cómo expresarnos nosotros.",
-              "Tal vez descubramos expresiones que podemos usar para alabar a Jehová.",
-              "Es probable que encontremos oraciones con las que nos sintamos identificados."
-            ],
-            answerBullets: [
-              "**Nos da ideas** - De cómo expresarnos en nuestras oraciones",
-              "**Expresiones para alabar** - Podemos descubrir cómo alabar a Jehová",
-              "**Oraciones con las que identificarnos** - Situaciones similares a las nuestras",
-              "**Oraciones sentidas y canciones de alabanza** - De los siervos de tiempos bíblicos"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué podemos descubrir al meditar en oraciones sentidas y canciones de alabanza bíblicas?",
-                answer: "Expresiones que podemos usar para alabar a Jehová y oraciones con las que nos sintamos identificados."
-              },
-              {
-                question: "¿Cómo pueden las oraciones bíblicas darnos ideas para nuestras propias oraciones?",
-                answer: "Fijándonos en cómo se expresaron los siervos de Jehová de tiempos bíblicos, podemos hacer nosotros lo mismo."
-              }
-            ],
-            biblicalCards: [],
-            infographic: "https://i.imgur.com/L215bx2.png"
-          },
-          {
-            number: "12",
-            textEs: "¿Qué preguntas podemos hacernos al leer una oración?",
-            textLSM: "",
-            paragraphs: [12],
-            answer: [
-              "¿Quién dijo esas palabras?",
-              "¿Cuáles eran sus circunstancias?",
-              "¿Estoy pasando por alguna situación parecida?",
-              "¿Qué lecciones saco? Investigar vale la pena."
-            ],
-            answerBullets: [
-              "**¿Quién dijo esas palabras?** - Identificar al personaje",
-              "**¿Cuáles eran sus circunstancias?** - Contexto de la oración",
-              "**¿Estoy en situación parecida?** - Aplicación personal",
-              "**¿Qué lecciones saco?** - Puede requerir investigar, pero vale la pena"
-            ],
-            flashcards: [
-              {
-                question: "¿Por qué vale la pena investigar un poco al leer oraciones de la Biblia?",
-                answer: "Para encontrar respuestas a preguntas como quién dijo esas palabras, cuáles eran sus circunstancias y qué lecciones sacamos."
-              },
-              {
-                question: "¿Qué pregunta personal debemos hacernos al leer una oración bíblica?",
-                answer: "¿Estoy pasando por alguna situación parecida a la del personaje bíblico?"
-              }
-            ],
-            biblicalCards: [],
-            infographic: "https://i.imgur.com/MbZA21l.png"
-          },
-          {
-            number: "13",
-            textEs: "¿Cuál es una lección que sacamos de la oración de Ana? (1 Samuel 1:10, 11; mira también la imagen de la portada).",
-            textLSM: "",
-            paragraphs: [13],
-            image: "https://i.imgur.com/zlBfQ5l.png",
-            readText: "LEE 1 Samuel 1:10, 11",
-            answer: [
-              "Ana tenía dos problemas graves: era estéril y la otra esposa le hacía la vida imposible.",
-              "Se tomó su tiempo para contarle a Jehová todo lo que la inquietaba.",
-              "Después se sintió mucho mejor.",
-              "Lección: «arrojar nuestra carga sobre Jehová» y explicarle nuestras preocupaciones."
-            ],
-            answerBullets: [
-              "**Problemas de Ana** - Era estéril y la otra esposa la acosaba (1 Sam. 1:4-7)",
-              "**Se tomó su tiempo** - Le contó a Jehová todo lo que la inquietaba",
-              "**Se sintió mucho mejor** - Después de orar (1 Sam. 1:12, 18)",
-              "**Lección: arrojar nuestra carga** - Explicarle a Jehová nuestras preocupaciones y cómo nos hacen sentir (Sal. 55:22)"
-            ],
-            flashcards: [
-              {
-                question: "¿Cuáles eran los dos problemas graves de Ana mencionados en el párrafo?",
-                answer: "Era estéril y la otra esposa de Elcaná le estaba haciendo la vida imposible."
-              },
-              {
-                question: "¿Cómo se sintió Ana después de tomarse tiempo para contarle a Jehová lo que la inquietaba?",
-                answer: "Se sintió mucho mejor."
-              },
-              {
-                question: "¿Qué significa «arrojar tu carga sobre Jehová» según el párrafo?",
-                answer: "Explicarle cuáles son nuestras preocupaciones y cómo nos hacen sentir."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "1 Samuel 1:10, 11",
-                purpose: "La oración sincera de Ana",
-                text: "Ella estaba muy angustiada y se puso a orar a Jehová, llorando amargamente. E hizo un voto, diciendo: «Oh, Jehová de los ejércitos, si te fijas en la aflicción de tu esclava y te acuerdas de mí, y no te olvidas de tu esclava y le das a tu esclava un hijo varón, entonces yo se lo daré a Jehová para todos los días de su vida, y no pasará ninguna navaja sobre su cabeza»."
-              },
-              {
-                reference: "Salmo 55:22",
-                purpose: "Arrojar nuestra carga sobre Jehová",
-                text: "Echa tu carga sobre Jehová, y él te sostendrá. Él nunca permitirá que el justo caiga."
-              }
-            ],
-            infographic: "https://i.imgur.com/zTLReUG.png"
-          },
-          {
-            number: "14",
-            textEs: "a) ¿Qué otra lección sacamos del ejemplo de Ana? b) ¿Cómo puede enriquecer nuestras oraciones meditar en la Biblia?",
-            textLSM: "",
-            paragraphs: [14],
-            answer: [
-              "Ana le dio gracias a Jehová porque vio que él protege a sus siervos leales.",
-              "Aunque sus problemas no habían desaparecido, se centró en las bendiciones.",
-              "Lección: centrarnos en cómo nos ha apoyado Jehová nos ayuda a sobrellevar.",
-              "Meditar en la Biblia enriquece nuestras oraciones."
-            ],
-            answerBullets: [
-              "**Ana agradeció a Jehová** - Porque vio que él protege y cuida a sus siervos leales (1 Sam. 2:1, 8, 9)",
-              "**Se centró en las bendiciones** - Aunque sus problemas quizás no habían desaparecido",
-              "**Lección: centrarse en el apoyo de Jehová** - Nos ayuda a sobrellevar las dificultades",
-              "**Meditar en la Biblia** - Enriquece nuestras oraciones con expresiones y perspectivas"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué hizo Ana años después de que nació Samuel?",
-                answer: "Le dio gracias a Jehová porque había visto que él protege y cuida a sus siervos leales."
-              },
-              {
-                question: "¿En qué se centró Ana aunque sus problemas quizás no habían desaparecido?",
-                answer: "En cómo la había bendecido Jehová."
-              },
-              {
-                question: "¿Qué nos ayuda a sobrellevar las dificultades según la lección de Ana?",
-                answer: "Centrarnos en cómo nos ha apoyado Jehová, no solo en los problemas."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "1 Samuel 2:1, 8, 9",
-                purpose: "La oración de gratitud de Ana",
-                text: "Ana oró y dijo: Mi corazón se alegra por Jehová... Él levanta al pobre del polvo... Él protegerá a sus leales."
-              }
-            ],
-            infographic: "https://i.imgur.com/cBkTja8.png"
-          },
-          {
-            number: "15",
-            textEs: "¿Qué aprendemos de la oración de Jeremías? (Jeremías 12:1).",
-            textLSM: "",
-            paragraphs: [15],
-            readText: "LEE Jeremías 12:1",
-            answer: [
-              "Jeremías se sintió desanimado: a los malos les iba bien y los israelitas se burlaban de él.",
-              "Es fácil identificarnos porque la gente también se burla de nosotros.",
-              "Aunque expresó su frustración, jamás acusó a Dios de ser injusto.",
-              "Podemos contarle a Jehová nuestras frustraciones confiando en su justicia."
-            ],
-            answerBullets: [
-              "**Jeremías estaba desanimado** - A los malos les iba bien, los israelitas se burlaban de él (Jer. 20:7, 8)",
-              "**Fácil identificarnos** - También nos burlan y los malos parecen disfrutar",
-              "**No acusó a Dios de injusto** - Aunque expresó su frustración",
-              "**Confiar en la justicia de Jehová** - Él solucionará las injusticias al debido tiempo (Jer. 32:19)"
-            ],
-            flashcards: [
-              {
-                question: "¿Por qué estaba desanimado Jeremías?",
-                answer: "Veía que a los malos les iba bien y que los israelitas se burlaban de él."
-              },
-              {
-                question: "¿Qué aprendemos de cómo Jeremías manejó su frustración?",
-                answer: "Aunque expresó su frustración, jamás acusó a Dios de ser injusto. Se convenció de que Jehová actúa con justicia."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Jeremías 12:1",
-                purpose: "Jeremías expresa su frustración a Jehová",
-                text: "Tú siempre eres justo, oh, Jehová, cuando presento una queja ante ti. Sin embargo, quiero hablarte de cuestiones de justicia: ¿Por qué tiene éxito el camino de los malvados? ¿Por qué viven tranquilos todos los que actúan con traición?"
-              },
-              {
-                reference: "Jeremías 32:19",
-                purpose: "Confianza en la justicia de Jehová",
-                text: "Grande en consejos y poderoso en obras, tú, cuyos ojos están abiertos a todos los caminos de los hijos de los hombres, para darle a cada uno según sus caminos."
-              }
-            ],
-            infographic: "https://i.imgur.com/Akdh3te.png"
-          },
-          {
-            number: "16",
-            textEs: "¿Qué aprendemos de la oración de un levita exiliado? (Salmo 42:1-4; mira también las imágenes).",
-            textLSM: "",
-            paragraphs: [16],
-            image: "https://i.imgur.com/2VkQzzD.png",
-            readText: "LEE Salmo 42:1-4",
-            answer: [
-              "Un levita expresó cómo se sentía por estar exiliado y no poder reunirse.",
-              "Nos sentimos como él si no podemos salir o estamos en prisión por nuestra fe.",
-              "En esas circunstancias nuestras emociones pueden ser una montaña rusa.",
-              "Hablarle a Jehová nos ayuda a comprender nuestros sentimientos y tener fuerzas."
-            ],
-            answerBullets: [
-              "**El levita estaba exiliado** - No podía reunirse con sus hermanos (Sal. 42:1-4)",
-              "**Aplicación actual** - Si no podemos salir o estamos en prisión por nuestra fe",
-              "**Emociones como montaña rusa** - Hablar con Jehová ayuda a comprenderlas",
-              "**Ver las cosas de otra manera** - Recuperar equilibrio y fuerzas para aguantar (Sal. 42:5, 8)"
-            ],
-            flashcards: [
-              {
-                question: "¿Por qué estaba triste el levita del Salmo 42?",
-                answer: "Estaba exiliado y no podía reunirse con sus hermanos."
-              },
-              {
-                question: "¿En qué situaciones actuales podríamos sentirnos como el levita exiliado?",
-                answer: "Si no podemos salir de nuestras casas o estamos en prisión por nuestra fe."
-              },
-              {
-                question: "¿Qué se dio cuenta el levita después de hablarle a Jehová de cómo se sentía?",
-                answer: "Que tendría nuevas oportunidades de alabar a Dios y que Jehová lo estaba cuidando."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 42:1-4",
-                purpose: "El anhelo del levita exiliado",
-                text: "Como el ciervo anhela los arroyos de agua, así te anhelo a ti, oh, Dios. Mi alma tiene sed de Dios, del Dios vivo. ¿Cuándo podré presentarme ante Dios? Mis lágrimas han sido mi alimento de día y de noche, mientras me dicen todo el día: «¿Dónde está tu Dios?». Esto es lo que recuerdo mientras derramo mi alma dentro de mí: cómo iba con la muchedumbre, cómo los conducía lentamente a la casa de Dios, con la voz de alegría y de acción de gracias, una multitud celebrando una fiesta."
-              },
-              {
-                reference: "Salmo 42:5, 8",
-                purpose: "Cómo el levita recuperó la esperanza",
-                text: "¿Por qué estás desanimada, alma mía?... Espera en Dios, porque todavía lo alabaré... De día Jehová ordenará su amor leal."
-              }
-            ],
-            infographic: "https://i.imgur.com/QdhFPZp.png"
-          },
-          {
-            number: "17",
-            textEs: "a) ¿Qué aprendemos de la oración de Jonás? (Jonás 2:1, 2). b) ¿Cómo nos pueden ayudar algunas expresiones de los Salmos cuando pasamos por momentos difíciles?",
-            textLSM: "",
-            paragraphs: [17],
-            readText: "LEE Jonás 2:1, 2",
-            answer: [
-              "Jonás oró desde el vientre de un gran pez.",
-              "Aunque había desobedecido, estaba seguro de que Dios lo escucharía.",
-              "Usó expresiones de los Salmos porque los conocía muy bien.",
-              "Si memorizamos textos bíblicos, nos consolarán en momentos difíciles."
-            ],
-            answerBullets: [
-              "**Jonás oró desde el pez** - Aunque había desobedecido, estaba seguro de que Dios lo escucharía",
-              "**Usó expresiones de los Salmos** - Los conocía muy bien",
-              "**Los Salmos lo convencieron** - De que Jehová lo ayudaría",
-              "**Memorizar textos** - Pueden venirnos a la mente y consolarnos en momentos difíciles"
-            ],
-            flashcards: [
-              {
-                question: "¿Desde dónde hizo Jonás su oración mencionada en el párrafo?",
-                answer: "Desde el vientre de un gran pez."
-              },
-              {
-                question: "¿Qué usó Jonás en su oración que demuestra que conocía bien las Escrituras?",
-                answer: "Muchas expresiones que encontramos en los Salmos."
-              },
-              {
-                question: "¿Qué beneficio tuvo Jonás de conocer bien los Salmos cuando oró?",
-                answer: "Recordarlos y meditar en ellos lo convenció de que Jehová lo ayudaría."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Jonás 2:1, 2",
-                purpose: "Jonás oró desde el vientre del pez",
-                text: "Entonces Jonás oró a Jehová su Dios desde el vientre del pez, diciendo: «En mi angustia clamé a Jehová, y él me respondió. Desde las profundidades del Seol pedí ayuda. Tú oíste mi voz»."
-              }
-            ],
-            infographic: "https://i.imgur.com/QG00veL.png"
-          },
-          {
-            number: "18, 19",
-            textEs: "¿Cómo nos ayuda Romanos 8:26, 27 si no nos salen las palabras para expresarle a Jehová lo que sentimos? Pon un ejemplo.",
-            textLSM: "",
-            paragraphs: [18, 19],
-            readText: "LEE Romanos 8:26, 27",
-            section: "SIGUE ORÁNDOLE A JEHOVÁ PARA ACERCARTE MÁS A ÉL",
-            answer: [
-              "A veces estamos tan angustiados que no nos salen las palabras.",
-              "El espíritu santo acude en nuestra ayuda y «ruega» por nosotros.",
-              "Jehová puede aceptar oraciones bíblicas como si las hubiéramos hecho nosotros.",
-              "Ejemplo: Elena, hermana rusa arrestada, recordó este texto y la consoló mucho."
-            ],
-            answerBullets: [
-              "**Muy angustiados para expresarnos** - No nos salen las palabras",
-              "**El espíritu santo ruega por nosotros** - Acude en nuestra ayuda (Rom. 8:26, 27)",
-              "**Oraciones registradas en la Biblia** - Jehová puede aceptarlas como nuestras",
-              "**Ejemplo de Elena** - Hermana rusa arrestada, este texto la consoló mucho"
-            ],
-            flashcards: [
-              {
-                question: "Según el párrafo, ¿qué hace el espíritu santo cuando estamos tan angustiados que no nos salen las palabras?",
-                answer: "Acude en nuestra ayuda y «ruega» por nosotros."
-              },
-              {
-                question: "¿Por qué arrestaron a Elena, la hermana rusa mencionada en el párrafo?",
-                answer: "Por orar y leer la Biblia."
-              },
-              {
-                question: "¿Qué recordó Elena que la consoló cuando le costaba orar por estar tan angustiada?",
-                answer: "Que Jehová puede aceptar las oraciones de otros siervos en la Biblia como si fueran suyas."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Romanos 8:26, 27",
-                purpose: "El espíritu santo nos ayuda cuando no sabemos qué orar",
-                text: "Asimismo, el espíritu también viene en nuestra ayuda en nuestra debilidad, porque no sabemos qué debemos pedir, pero el espíritu mismo ruega por nosotros con gemidos que no se expresan con palabras. Sin embargo, el que examina los corazones sabe cuál es la intención del espíritu, porque este ruega en armonía con Dios a favor de los santos."
-              }
-            ],
-            infographic: "https://i.imgur.com/8niqQoN.png"
-          },
-          {
-            number: "20",
-            textEs: "¿Qué nos ayudará a preparar nuestra mente para orar cuando estamos bajo mucho estrés?",
-            textLSM: "",
-            paragraphs: [20],
-            answer: [
-              "Bajo estrés puede ser difícil concentrarnos mientras oramos.",
-              "Podemos escuchar los audios de los Salmos para preparar nuestra mente.",
-              "O hacer como David y poner por escrito lo que sentimos.",
-              "Cada uno puede buscar el método que le resulte más eficaz."
-            ],
-            answerBullets: [
-              "**Difícil concentrarse bajo estrés** - Necesitamos preparar la mente",
-              "**Escuchar audios de los Salmos** - Nos prepara para orar",
-              "**Escribir lo que sentimos** - Como hizo el rey David (Sal. 18, 34, 142)",
-              "**Cada uno es diferente** - Buscar el método más eficaz para nosotros (Sal. 141:2)"
-            ],
-            flashcards: [
-              {
-                question: "¿Qué dos métodos menciona el párrafo para preparar nuestra mente cuando estamos bajo estrés?",
-                answer: "Escuchar los audios de los Salmos o poner por escrito lo que sentimos."
-              },
-              {
-                question: "¿Qué hizo el rey David que nos puede servir de ejemplo para prepararnos para orar?",
-                answer: "Puso por escrito lo que sentía, como se ve en los encabezamientos de algunos Salmos."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 141:2",
-                purpose: "La oración como incienso ante Jehová",
-                text: "Que mi oración sea preparada como incienso delante de ti; el alzar de mis manos, como la ofrenda de grano del atardecer."
-              }
-            ],
-            infographic: "https://i.imgur.com/kTHexVq.png"
-          },
-          {
-            number: "21",
-            textEs: "¿Por qué podemos abrirle nuestro corazón a Jehová?",
-            textLSM: "",
-            paragraphs: [21],
-            answer: [
-              "Jehová entiende nuestros sentimientos incluso antes de contárselos.",
-              "Pero a él le encanta escucharnos y ver que confiamos en él.",
-              "Jehová es un amigo verdadero y siempre estará a nuestro lado.",
-              "Podemos usar expresiones de la Biblia y compartir con él penas y alegrías."
-            ],
-            answerBullets: [
-              "**Jehová entiende antes de contarle** - Conoce nuestros sentimientos (Sal. 139:4)",
-              "**Le encanta escucharnos** - Y ver que confiamos en él",
-              "**Es un amigo verdadero** - Siempre estará a nuestro lado",
-              "**Usar expresiones de la Biblia** - Compartir penas y alegrías con él"
-            ],
-            flashcards: [
-              {
-                question: "Según el párrafo, ¿qué sabe Jehová incluso antes de que le contemos algo?",
-                answer: "Entiende nuestros sentimientos incluso antes de contárselos."
-              },
-              {
-                question: "¿Qué le encanta a Jehová según el párrafo 21?",
-                answer: "Escucharnos y ver que confiamos en él."
-              },
-              {
-                question: "¿Cómo describe el párrafo a Jehová como amigo?",
-                answer: "Es un amigo verdadero que siempre estará a nuestro lado."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 139:4",
-                purpose: "Jehová conoce nuestros pensamientos",
-                text: "Porque aún no tengo una palabra en mi lengua y ya tú, oh, Jehová, la conoces toda."
-              }
-            ],
-            infographic: "https://i.imgur.com/NolXvhV.png"
-          }
-        ],
-        paragraphs: [
-          { number: 1, content: "¿TE HA parecido alguna vez que tus oraciones se han vuelto monótonas o superficiales? Eso es algo que nos puede pasar a todos. Quizás el ajetreo de la vida nos lleva a hacer únicamente oraciones breves. O tal vez nos sentimos indignos de contarle a Jehová todo lo que sentimos.", summary: "A veces nuestras oraciones se vuelven monótonas por el ajetreo de la vida o por sentirnos indignos." },
-          { number: 2, content: "La Biblia nos asegura que lo más importante para Jehová es que en nuestras oraciones le hablemos desde el corazón y con humildad. Así que no hay que preocuparnos por usar palabras elegantes o por expresarnos perfectamente. Él escucha \"el ruego de los mansos\" (Sal. 10:17). Presta atención a todo lo que le decimos porque de verdad se preocupa por nosotros (Sal. 139:1-3).", summary: "Lo más importante es hablar desde el corazón con humildad; Jehová escucha «el ruego de los mansos»." },
-          { number: 3, content: "En este artículo responderemos las siguientes preguntas: ¿por qué no debemos tener miedo de contarle a Jehová nuestros pensamientos y sentimientos?, ¿qué podemos hacer para que nuestras oraciones sean más profundas?, ¿cómo nos ayudan las oraciones que encontramos en la Biblia a mejorar las nuestras? y ¿qué podemos hacer si estamos tan angustiados que no nos salen las palabras para expresar lo que sentimos?", summary: "Cuatro temas: no tener miedo de orar, oraciones más profundas, aprender de oraciones bíblicas, qué hacer cuando no salen las palabras." },
-          { number: 4, content: "Nos resultará más fácil contarle a Jehová nuestros pensamientos y sentimientos si lo vemos como un amigo fiel que quiere lo mejor para nosotros. Pensemos en el escritor del Salmo 119, quien por desgracia pasó por muchos problemas. Por ejemplo, algunos dijeron mentiras terribles de él (Sal. 119:23, 69, 78). También tuvo que cargar con sus propias imperfecciones (Sal. 119:5). Pero él procuró tener una relación estrecha con Dios, así que no tuvo miedo de abrirle su corazón (lee Salmo 119:145).", summary: "Ver a Jehová como un amigo fiel nos ayuda a abrirle el corazón, como hizo el salmista." },
-          { number: 5, content: "Jehová quiere que incluso quienes han cometido pecados graves le oren (Is. 55:6, 7). Así que no hay que dejar que los sentimientos negativos nos frenen de hacerlo. Para entenderlo mejor, piensa en un piloto de avión que ha cometido un error o se ha desviado de su rumbo. Él sabe que puede contactarse con los controladores aéreos para pedir ayuda. ¿Crees que decidiría no hacerlo porque quizás le dé vergüenza? ¡Para nada! De manera parecida, aunque a veces cometamos un pecado o nos desviemos de nuestro rumbo, no debemos sentir miedo ni vergüenza de hablar con Jehová (Sal. 119:25, 176).", summary: "No dejar que los sentimientos negativos nos frenen; como un piloto que pide ayuda aunque haya cometido un error." },
-          { number: 6, content: "Cuando le hablamos a Jehová con total franqueza de nuestros pensamientos y sentimientos más íntimos, nos acercamos más a él. Veamos qué nos puede ayudar a hacer oraciones más profundas.", summary: "Hablar con franqueza nos acerca más a Jehová." },
-          { number: 7, content: "Reflexionemos en las cualidades de Jehová. Cuanto más reflexionemos en ellas, más fácil será expresarnos abiertamente (Sal. 145:8, 9, 18). Eso hizo Kristine, una hermana que tenía un padre violento. Ella cuenta: \"Ver a Jehová como un padre me hacía muy difícil hablar con él. Sentía que mis imperfecciones harían que él se alejara de mí\". ¿Qué cualidad de Dios la ayudó? Ella explica: \"El amor leal de Jehová me hace sentir segura. Sé que siempre me llevará de la mano y que si caigo me levantará con mucho cariño. Meditar en su amor me ayuda a contarle tanto mis mayores alegrías como mis penas más profundas\".", summary: "Reflexionar en las cualidades de Jehová, especialmente su amor leal, nos hace sentir seguros para expresarnos." },
-          { number: 8, content: "Pensemos de antemano en qué decirle. Antes de orar, podemos hacernos preguntas como estas: \"¿Con qué problemas estoy luchando ahora? ¿Hay alguien a quien no he perdonado? ¿Me ha surgido recientemente alguna situación en la que necesite la ayuda de Jehová?\" (2 Rey. 19:15-19). También podemos seguir el ejemplo de Jesús y pedir cosas relacionadas con el nombre de Jehová, su Reino y su voluntad (Mat. 6:9, 10).", summary: "Pensar de antemano qué decirle a Jehová; hacernos preguntas antes de orar." },
-          { number: 9, content: "A una hermana llamada Aliska se le hizo muy difícil orar cuando se enteró de que su esposo tenía cáncer cerebral terminal. Ella cuenta: \"Estaba tan angustiada que no lograba pensar con claridad y no sabía qué decir\". ¿Qué la ha ayudado? Ella explica: \"Antes de empezar, saco unos momentos para organizar mis pensamientos. Eso me ha ayudado a que mis oraciones no giren solo en torno a mí y mis problemas, y a que mi mente esté más centrada y calmada cuando le hablo a Jehová\".", summary: "Organizar los pensamientos antes de orar ayuda a tener la mente centrada y calmada." },
-          { number: 10, content: "Tomémonos nuestro tiempo para orar. Es cierto que las oraciones cortas nos pueden acercar a Jehová; pero, si hacemos oraciones más largas, es más probable que le contemos con más detalle todo lo que sentimos. El esposo de Aliska, Elijah, dice: \"Intento orar muchas veces al día, y he visto que, cuando hablo un rato largo con Jehová, me siento más cerca de él. Él nunca está mirando el reloj, así que sé que puedo extenderme\". ¿Por qué no intentas esto? Busca un momento y un lugar en el que puedas orar largo y tendido, sin distracciones, quizás incluso en voz alta, y ponte la meta de que se convierta en una costumbre.", summary: "Tomarse tiempo para oraciones más largas nos acerca más a Jehová; él nunca mira el reloj." },
-          { number: 11, content: "Quizás te ayude meditar en lo que dijeron algunos siervos de Jehová de tiempos bíblicos en sus oraciones sentidas y canciones de alabanza. Fijarte en cómo se expresaron ellos te puede dar ideas de cómo hacer tú lo mismo. Tal vez descubras expresiones que puedes usar para alabar a Jehová. Y es probable que encuentres oraciones con las que te sientas identificado.", summary: "Meditar en oraciones bíblicas nos da ideas y expresiones para mejorar nuestras propias oraciones." },
-          { number: 12, content: "Cuando leas una oración de la Biblia, pregúntate: \"¿Quién dijo esas palabras? ¿Cuáles eran sus circunstancias? ¿Estoy pasando por alguna situación parecida? ¿Qué lecciones saco?\". Claro, quizás tengas que investigar un poco para encontrar las respuestas, pero valdrá la pena. Veamos algunos ejemplos.", summary: "Analizar oraciones bíblicas: ¿Quién las dijo? ¿Cuáles eran sus circunstancias? ¿Qué lecciones saco?" },
-          { number: 13, content: "(Lee 1 Samuel 1:10, 11). Cuando Ana hizo esta oración, tenía dos problemas graves: era estéril y la otra esposa de Elcaná le estaba haciendo la vida imposible (1 Sam. 1:4-7). Si estás pasando por un problema que no desaparece, ¿qué puedes aprender de la oración de Ana? Ella se tomó su tiempo para contarle a Jehová todo lo que la inquietaba, y después se sintió mucho mejor (1 Sam. 1:12, 18). Haz lo mismo y \"arroja tu carga sobre Jehová\", es decir, explícale cuáles son tus preocupaciones y cómo te hacen sentir (Sal. 55:22).", summary: "Ana se tomó tiempo para contarle a Jehová todo lo que la inquietaba; «arroja tu carga sobre Jehová»." },
-          { number: 14, content: "Unos años después de que nació su hijo, Samuel, Ana se lo llevó al sumo sacerdote Elí (1 Sam. 1:24-28). En una oración llena de sentimiento le dio las gracias a Jehová porque había visto que él protege y cuida a sus siervos leales (1 Sam. 2:1, 8, 9). Sus problemas tal vez no habían desaparecido, pero ella se centró en cómo la había bendecido Jehová. ¿La lección? Nos resultará más fácil sobrellevar las dificultades si nos centramos en cómo nos ha apoyado Jehová.", summary: "Ana agradeció a Jehová centrándose en sus bendiciones; esto nos ayuda a sobrellevar las dificultades." },
-          { number: 15, content: "(Lee Jeremías 12:1). En algún momento de su vida, el profeta Jeremías se sintió muy desanimado porque veía que a los malos les iba bien y que los israelitas se burlaban de él (Jer. 20:7, 8). Es fácil ponernos en su lugar porque la gente también se burla de nosotros y parece que quienes hacen cosas malas disfrutan de la vida. Notemos que, aunque Jeremías expresó su frustración, jamás acusó a Dios de ser injusto. Al contrario, al ver cómo disciplinaba a su pueblo rebelde, se convenció cada vez más de que Jehová actúa con justicia (Jer. 32:19). Nosotros también podemos hacer lo mismo y contarle a Jehová nuestras frustraciones, con la confianza de que él solucionará las injusticias al debido tiempo.", summary: "Jeremías expresó frustración sin acusar a Dios; podemos confiar en que Jehová solucionará las injusticias." },
-          { number: 16, content: "(Lee Salmo 42:1-4). En esta canción, un levita expresó cómo se sentía debido a que estaba exiliado y no podía reunirse con sus hermanos. Quizás nos sintamos como él si no podemos salir de nuestras casas o estamos en prisión por nuestra fe. En esas circunstancias puede que nuestras emociones sean una montaña rusa, pero lo mejor es hablarle a Jehová de cómo nos sentimos. Eso nos ayudará a comprender mejor nuestros sentimientos y a ver las cosas de otra manera. Por ejemplo, el levita se dio cuenta de que tendría nuevas oportunidades de alabar a Dios (Sal. 42:5). También meditó en que Jehová lo estaba cuidando (Sal. 42:8). Abrirle nuestro corazón a Jehová nos puede ayudar a analizar nuestros sentimientos, recuperar el equilibro y tener las fuerzas para aguantar.", summary: "Hablar a Jehová de cómo nos sentimos nos ayuda a comprender nuestras emociones y recuperar el equilibrio." },
-          { number: 17, content: "(Lee Jonás 2:1, 2). El profeta Jonás hizo esta oración mientras estaba en el vientre de un gran pez. Aunque había desobedecido a Jehová, estaba seguro de que Dios escucharía su voz. En su súplica usó muchas expresiones que encontramos en los Salmos, así que de seguro los conocía muy bien. Recordarlos y meditar en ellos lo convenció de que Jehová lo ayudaría. De manera parecida, si nos esforzamos por memorizar textos bíblicos, puede que se nos vengan a la mente y nos consuelen cuando estemos orando al pasar por momentos difíciles.", summary: "Jonás usó expresiones de los Salmos; memorizar textos bíblicos nos consuela en momentos difíciles." },
-          { number: 18, content: "(Lee Romanos 8:26, 27). Puede que en ocasiones estemos tan angustiados que no nos salgan las palabras para expresar lo que sentimos. Pero, en esos momentos, el espíritu santo acude en nuestra ayuda y \"ruega\" por nosotros. ¿Y eso qué quiere decir? Mediante su espíritu, Jehová se encargó de que muchas oraciones quedaran registradas en la Biblia. Así que, cuando no conseguimos expresar claramente lo que pensamos, Jehová puede aceptar algunas de esas peticiones como si las hubiéramos hecho nosotros, y luego responderlas.", summary: "Cuando no salen las palabras, el espíritu santo «ruega» por nosotros; Jehová acepta oraciones bíblicas como nuestras." },
-          { number: 19, content: "Tener esto presente fue de mucha ayuda para una hermana rusa llamada Elena, a quien arrestaron por orar y leer la Biblia. Estaba tan angustiada que le costaba orar. Ella explica: \"Recordé que, si siento que una situación me supera y no sé qué pedir en oración, Jehová puede aceptar las oraciones de otros siervos suyos que aparecen en la Biblia como si fueran mías\". Y añadió: \"Eso me consoló mucho en esos momentos tan tan difíciles\".", summary: "Elena recordó que Jehová puede aceptar las oraciones bíblicas como suyas; esto la consoló muchísimo." },
-          { number: 20, content: "Cuando estamos bajo mucho estrés, puede ser difícil mantenernos concentrados mientras oramos. Para preparar nuestra mente, podemos escuchar los audios de los Salmos o hacer como el rey David y poner por escrito lo que sentimos (Sal. 18, 34, 142 y encabezamientos). Claro, como todos somos muy diferentes, cada cristiano puede buscar el método que le resulte más eficaz a la hora de prepararse para orar (Sal. 141:2). ¿Cuál te funciona mejor a ti?", summary: "Para concentrarnos bajo estrés: escuchar Salmos o escribir lo que sentimos, como hizo David." },
-          { number: 21, content: "Nos consuela que Jehová entienda nuestros sentimientos incluso antes de contárselos (Sal. 139:4). Pero a él le encanta escucharnos y ver que confiamos en él. Así que no dudemos en orarle a nuestro Padre celestial. Usemos expresiones e ideas de las oraciones que encontramos en su Palabra. Abrámosle nuestro corazón y compartamos con él nuestras penas y alegrías. Jehová es un amigo verdadero y siempre estará a nuestro lado.", summary: "Jehová entiende nuestros sentimientos pero le encanta escucharnos; es un amigo verdadero que siempre estará a nuestro lado." }
-        ],
-        reviewQuestions: [
-          {
-            question: "¿Qué nos ayudará a no sentir miedo de orarle a Jehová?",
-            answer: [
-              "Ver a Jehová como un amigo fiel que quiere lo mejor para nosotros.",
-              "Recordar que el salmista tuvo muchos problemas pero no tuvo miedo de abrirle su corazón a Dios.",
-              "Entender que Jehová quiere que oremos, incluso si hemos cometido errores (Isaías 55:6, 7).",
-              "No dejar que los sentimientos negativos (vergüenza, culpa) nos frenen.",
-              "Pensar en el ejemplo del piloto: aunque cometa un error, contacta a los controladores para pedir ayuda."
-            ]
-          },
-          {
-            question: "¿Qué podemos hacer para que nuestras oraciones sean más profundas?",
-            answer: [
-              "Hablar con total franqueza de nuestros pensamientos y sentimientos más íntimos.",
-              "Reflexionar en las cualidades de Jehová (que es bueno, compasivo, que nos escucha).",
-              "Usar información bíblica como el Salmo 145 para expresarnos mejor.",
-              "Prepararnos antes de orar — pensar en qué queremos decirle.",
-              "Buscar un lugar tranquilo donde podamos concentrarnos y meditar."
-            ]
-          },
-          {
-            question: "¿Cómo nos beneficia meditar en las oraciones de personajes bíblicos?",
-            answer: [
-              "Nos da ideas de cómo expresarnos en nuestras propias oraciones.",
-              "Podemos sentirnos identificados con ellos porque pasaron por situaciones parecidas a las nuestras.",
-              "Descubrimos expresiones que podemos usar para alabar a Jehová o contarle nuestros problemas.",
-              "Aprendemos de 4 ejemplos: Ana (problemas familiares), Jeremías (desánimo por injusticias), el levita exiliado (no poder reunirse) y Jonás (situación desesperada).",
-              "Nos anima saber que Jehová escuchó y ayudó a estos siervos fieles."
-            ]
-          }
-        ],
-        finalSong: "Canción 45: \"La meditación de mi corazón\""
-      },
-
-      // Artículo 43: "No nos olvidemos de orar por otros" (29 Dic - 4 Ene)
-      {
-        metadata: {
-          articleNumber: 43,
-          week: "29 Dic - 4 Ene",
-          month: "Octubre",
-          year: 2025
-        },
-        song: "Canción 41: Padre, escucha mi oración",
-        title: "No nos olvidemos de orar por otros",
-        biblicalText: "\"Oren unos por otros [...]. El ruego del hombre justo tiene un efecto poderoso\" (SANT. 5:16).",
-        theme: "Razones por las que es importante orar por los demás y algunas sugerencias sobre cómo hacerlo.",
-        overview: {
-          previousArticle: {
-            number: 42,
-            topic: "Cómo mejorar nuestras oraciones",
-            keywords: ["Oración personal", "Ejemplos bíblicos", "Desde el corazón", "Ana", "Jeremías"]
-          },
-          whatWellSee: [
-            {
-              section: "¿Por qué es importante?",
-              keywords: ["Efecto poderoso", "Tierna compasión", "Perspectiva correcta"]
-            },
-            {
-              section: "¿Quiénes necesitan nuestras oraciones?",
-              keywords: ["Hermanos en pruebas", "Los que tienen responsabilidades", "Oraciones paraguas"]
-            },
-            {
-              section: "¿Qué hacer cuando oramos por hermanos concretos?",
-              keywords: ["Ser observadores", "Nombres específicos", "Peticiones concretas"]
-            }
-          ]
-        },
-        questions: [
-          {
-            number: "1",
-            textEs: "¿Cómo sabemos que para Jehová nuestras oraciones son importantes?",
-            textLSM: "",
-            paragraphs: [1],
-            infographic: "https://i.imgur.com/MlnoPzr.png",
-            answer: [
-              "La oración es un regalo extraordinario de Jehová.",
-              "Jehová delegó ciertas tareas en los ángeles y responsabilidades a su Hijo.",
-              "Sin embargo, escuchar las oraciones es una tarea que se ha reservado solo para él.",
-              "Él quiere escuchar personalmente nuestras oraciones (Salmo 65:2)."
-            ],
-            flashcards: [
-              {
-                question: "¿A quién delegó Jehová ciertas tareas según el párrafo?",
-                answer: "A los ángeles y a su Hijo les confió grandes responsabilidades."
-              },
-              {
-                question: "¿Qué tarea se ha reservado Jehová solo para él?",
-                answer: "Escuchar las oraciones de sus siervos."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Salmo 65:2",
-                purpose: "Jehová es el que escucha las oraciones",
-                text: "Oh, Oyente de la oración, a ti vendrá gente de toda clase."
-              }
-            ]
-          },
-          {
-            number: "2",
-            textEs: "¿Qué buen ejemplo nos dejó el apóstol Pablo?",
-            textLSM: "",
-            paragraphs: [2],
-            infographic: "https://i.imgur.com/VcduQBt.png",
-            answer: [
-              "Pablo oraba por congregaciones enteras, como la de Éfeso (Efesios 1:16).",
-              "También oraba por personas específicas como Timoteo, «día y noche» (2 Timoteo 1:3).",
-              "Aunque tenía muchas preocupaciones propias, sacó tiempo para orar por otros.",
-              "Nos dejó el ejemplo de incluir a otros en nuestras oraciones."
-            ],
-            flashcards: [
-              {
-                question: "¿Qué le escribió Pablo a Timoteo sobre cómo oraba por él?",
-                answer: "«Siempre me acuerdo de ti en los ruegos que hago día y noche» (2 Timoteo 1:3)."
-              },
-              {
-                question: "A pesar de sus propios problemas, ¿qué hizo Pablo?",
-                answer: "Sacó tiempo para orar por otros, tanto congregaciones como personas específicas."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Efesios 1:16",
-                purpose: "Pablo oraba por congregaciones",
-                text: "No dejo de dar gracias por ustedes. Sigo mencionándolos en mis oraciones."
-              },
-              {
-                reference: "2 Timoteo 1:3",
-                purpose: "Pablo oraba por personas específicas",
-                text: "Le estoy agradecido a Dios, a quien sirvo con conciencia limpia como mis antepasados, y siempre me acuerdo de ti en los ruegos que hago día y noche."
-              }
-            ]
-          },
-          {
-            number: "3",
-            textEs: "¿Por qué puede que a veces se nos olvide orar por otros?",
-            textLSM: "",
-            paragraphs: [3],
-            infographic: "https://i.imgur.com/fs87AV1.png",
-            answer: [
-              "La vida en este sistema es un no parar.",
-              "Podemos centrarnos tanto en nuestros problemas que solo oremos por nosotros.",
-              "El artículo explica por qué es importante orar por los demás.",
-              "También da sugerencias prácticas sobre cómo hacerlo."
-            ],
-            flashcards: [
-              {
-                question: "¿Qué explica la hermana Sabrina sobre por qué olvidamos orar por otros?",
-                answer: "«La vida en este sistema es un no parar. Podemos centrarnos tanto en nuestros problemas que solo oremos por lo que necesitamos nosotros»."
-              }
-            ],
-            biblicalCards: []
-          },
-          {
-            number: "4, 5",
-            textEs: "¿En qué sentido tienen \"un efecto poderoso\" las oraciones que hacemos por otros? (Santiago 5:16).",
-            textLSM: "",
-            paragraphs: [4, 5],
-            readText: "LEE Santiago 5:16",
-            section: "¿POR QUÉ ES IMPORTANTE?",
-            infographic: "https://i.imgur.com/VcUrAqO.png",
-            answer: [
-              "Nuestras oraciones por otros pueden influir en lo que les pase.",
-              "Jesús rogó por Pedro para que su fe no decayera (Lucas 22:32).",
-              "Pablo fue liberado gracias a las oraciones de Filemón (Filemón 22).",
-              "Aunque no podemos obligar a Jehová, él toma en cuenta lo que nos preocupa.",
-              "Esto nos motiva a orar con intensidad y confiar en que él hará lo mejor."
-            ],
-            flashcards: [
-              {
-                question: "¿Por quién rogó Jesús y con qué propósito?",
-                answer: "Rogó por Pedro para que su fe no decayera (Lucas 22:32)."
-              },
-              {
-                question: "¿Qué esperaba Pablo que sucediera gracias a las oraciones de Filemón?",
-                answer: "Esperaba ser liberado de su arresto domiciliario, y así fue (Filemón 22)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Santiago 5:16",
-                purpose: "Texto temático - Las oraciones tienen efecto poderoso",
-                text: "Oren unos por otros para que se curen. El ruego del hombre justo tiene un efecto poderoso."
-              },
-              {
-                reference: "Lucas 22:32",
-                purpose: "Jesús rogó por Pedro",
-                text: "Pero he rogado por ti para que tu fe no decaiga; y tú, una vez que hayas vuelto, fortalece a tus hermanos."
+                reference: "Mateo 9:36",
+                purpose: "Jesús sintió compasión por las multitudes",
+                text: "Al ver a las multitudes, sintió compasión por ellas porque estaban maltratadas y desvalidas, como ovejas sin pastor."
               }
             ]
           },
           {
             number: "6",
-            textEs: "¿Qué efecto tiene en nuestros sentimientos orar por otros? (1 Pedro 3:8).",
+            textEs: "¿Qué nos enseñan las comparaciones que usó el profeta Isaías? (Isaías 42:3).",
             textLSM: "",
             paragraphs: [6],
-            readText: "LEE 1 Pedro 3:8",
-            infographic: "https://i.imgur.com/LE2392S.png",
+            section: "JESÚS TRATA A LAS PERSONAS CON EMPATÍA",
+            readText: "LEE Isaías 42:3",
             answer: [
-              "Orar por otros nos ayuda a cultivar «tierna compasión» (1 Pedro 3:8).",
-              "Nos volvemos más conscientes de sus luchas, y eso hace que los queramos más.",
-              "Aunque ellos no lo sepan, nos sentimos más cerca de ellos.",
-              "Cuando oramos por alguien, nos entran más ganas de ayudarlo.",
-              "Es como si contribuyéramos a contestar nuestra propia oración."
+              "En las Escrituras, las personas fuertes y prósperas son comparadas con jardines fértiles y árboles majestuosos.",
+              "Los pobres y oprimidos son comparados con cañas quebradas y mechas que apenas arden.",
+              "Isaías predijo que Jesús trataría con mucho amor y compasión a las personas que otros consideraban de poco valor."
             ],
             flashcards: [
               {
-                question: "¿Qué dice el anciano Michael sobre orar por las necesidades de los demás?",
-                answer: "«Me vuelvo más consciente de sus luchas, y eso hace que los quiera todavía más. Aunque ellos no lo sepan, me siento más cerca de ellos»."
+                question: "¿A qué se compara a los pobres y oprimidos en las Escrituras?",
+                answer: "A cañas que están quebradas y mechas que apenas arden, cosas de poca utilidad para la gente."
               },
               {
-                question: "¿Qué dice el anciano Richard sobre orar por alguien?",
-                answer: "«Nos entran más ganas de ayudarlo. Al darle ayuda práctica, es como si estuviéramos contribuyendo a contestar nuestra propia oración»."
+                question: "¿Qué predijo Isaías sobre cómo trataría Jesús a los desfavorecidos?",
+                answer: "Que los trataría con mucho amor y compasión, no los despreciaría como otros hacían."
               }
             ],
             biblicalCards: [
               {
-                reference: "1 Pedro 3:8",
-                purpose: "Cultivar tierna compasión",
-                text: "En conclusión, todos ustedes tengan la misma actitud mental, tengan empatía, cariño fraternal, tierna compasión y humildad."
+                reference: "Isaías 42:3",
+                purpose: "Jesús no despreciaría a los débiles",
+                text: "No romperá la caña que está quebrada ni apagará la mecha que apenas arde. Con fidelidad hará que la justicia se conozca."
               },
               {
-                reference: "Marcos 1:40, 41",
-                purpose: "Ejemplo de compasión que lleva a actuar",
-                text: "También vino a él un leproso y, de rodillas, le suplicó: «Si quieres, puedes limpiarme». Entonces él, movido a compasión, extendió la mano y lo tocó."
+                reference: "Salmo 92:12",
+                purpose: "Los justos comparados a árboles",
+                text: "El justo florecerá como la palmera, crecerá como el cedro del Líbano."
               }
             ]
           },
           {
-            number: "7",
-            textEs: "¿Por qué orar por otros nos ayuda a ver nuestros problemas desde la perspectiva correcta? (Filipenses 2:3, 4; mira también las imágenes).",
+            number: "7, 8",
+            textEs: "¿Cómo cumplió Jesús la profecía de Isaías?",
             textLSM: "",
-            paragraphs: [7],
-            readText: "LEE Filipenses 2:3, 4",
-            infographic: "https://i.imgur.com/5bmyrpL.png",
-            image: "https://i.imgur.com/0tzS05E.png",
-            imageCaption: "Orar por otros nos ayuda a ver nuestros problemas desde la perspectiva correcta. (Vea el párrafo 7).",
+            paragraphs: [7, 8],
             answer: [
-              "Vivimos en un mundo controlado por el Diablo, y todos afrontamos dificultades.",
-              "Orar por otros nos recuerda que «toda la hermandad está pasando por los mismos sufrimientos» (1 Pedro 5:9).",
-              "Esto evita que nos centremos demasiado en nosotros mismos.",
-              "No somos los únicos que estamos pasando por problemas."
+              "Muchos milagros de Jesús beneficiaron a los maltratados o a quienes tenían pocas esperanzas.",
+              "Sanó al hombre cubierto de lepra que quizás había perdido la esperanza de estar con su familia.",
+              "Curó al sordo con dificultades para hablar que no podía participar en conversaciones.",
+              "En los días de Jesús, muchos judíos creían que las enfermedades eran castigo por los pecados.",
+              "Jesús sanó a los marginados y reavivó su esperanza en Dios."
             ],
             flashcards: [
               {
-                question: "¿Qué dice la precursora Katherine sobre orar por los demás?",
-                answer: "«Me recuerda que no soy la única que está pasando por problemas. Eso evita que me centre demasiado en mí misma»."
+                question: "¿Qué creencia errónea tenían muchos judíos sobre las enfermedades?",
+                answer: "Que las enfermedades y discapacidades eran un castigo por los pecados de la persona o los de sus padres."
               },
               {
-                question: "Según 1 Pedro 5:9, ¿por qué está pasando toda la hermandad en el mundo?",
-                answer: "Por los mismos sufrimientos que nosotros."
+                question: "¿Cómo aplicó Mateo las palabras de Isaías a Jesús?",
+                answer: "'No romperá la caña que está quebrada ni apagará la mecha que apenas arde' (Mateo 12:20)."
               }
             ],
             biblicalCards: [
               {
-                reference: "Filipenses 2:3, 4",
-                purpose: "Pensar en los intereses de los demás",
-                text: "No hagan nada por espíritu de rivalidad ni por presunción, sino que con humildad consideren a los demás como superiores a ustedes. No busquen solo sus propios intereses, sino también los de los demás."
+                reference: "Mateo 12:20",
+                purpose: "Jesús cumplió la profecía de Isaías",
+                text: "No romperá la caña que está quebrada ni apagará la mecha que apenas arde, hasta que lleve la justicia al éxito."
               },
               {
-                reference: "1 Pedro 5:9",
-                purpose: "Toda la hermandad pasa por sufrimientos",
-                text: "Opónganse a él firmes en la fe, sabiendo que toda la hermandad en el mundo está pasando por los mismos sufrimientos."
-              }
-            ]
-          },
-          {
-            number: "8",
-            textEs: "¿Por quiénes podemos orar?",
-            textLSM: "",
-            paragraphs: [8],
-            section: "¿QUIÉNES NECESITAN NUESTRAS ORACIONES?",
-            infographic: "https://i.imgur.com/bf6gNHc.png",
-            answer: [
-              "Podemos orar por los que tienen problemas de salud.",
-              "Por los jóvenes que enfrentan burlas y presiones en la escuela.",
-              "Por quienes se van haciendo mayores.",
-              "Por los que afrontan oposición de su familia o de gobiernos.",
-              "Por los desplazados por inestabilidad política o víctimas de desastres.",
-              "Aunque no los conozcamos, al orar demostramos amor (Juan 13:34)."
-            ],
-            flashcards: [
-              {
-                question: "Menciona cinco grupos de hermanos por los que podemos orar.",
-                answer: "Enfermos, jóvenes con presiones, mayores, los que enfrentan oposición, y desplazados o víctimas de desastres."
+                reference: "Lucas 5:12, 13",
+                purpose: "Jesús sanó al leproso",
+                text: "Cuando estaba en una de las ciudades, ¡mire!, había un hombre lleno de lepra. Al ver a Jesús, cayó sobre su rostro y le rogó: 'Señor, si tan solo quieres, puedes limpiarme'. Entonces Jesús extendió la mano, lo tocó y dijo: 'Quiero. Queda limpio'."
               },
               {
-                question: "¿Qué mandato de Jesús obedecemos cuando oramos por hermanos que no conocemos?",
-                answer: "El mandato de amarnos unos a otros (Juan 13:34)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Juan 13:34",
-                purpose: "El mandato de amarnos unos a otros",
-                text: "Les doy un mandamiento nuevo: que se amen unos a otros. Así como yo los he amado, también ustedes deben amarse unos a otros."
-              },
-              {
-                reference: "Hechos 12:5",
-                purpose: "La congregación oraba por Pedro en prisión",
-                text: "De modo que Pedro estaba detenido en la cárcel; pero la congregación oraba fervientemente a Dios por él."
+                reference: "Juan 9:2",
+                purpose: "Creencia errónea sobre enfermedades y pecado",
+                text: "Y sus discípulos le preguntaron: 'Rabí, ¿quién pecó, este hombre o sus padres, para que naciera ciego?'."
               }
             ]
           },
           {
             number: "9",
-            textEs: "¿Por qué debemos orar por los hermanos que tienen responsabilidades dentro de la organización de Jehová y por sus esposas?",
+            textEs: "¿Cómo enfatiza Hebreos 4:15, 16 que Jesús es un Sumo Sacerdote compasivo?",
             textLSM: "",
             paragraphs: [9],
-            infographic: "https://i.imgur.com/IPqB6jQ.png",
+            readText: "LEE Hebreos 4:15, 16",
             answer: [
-              "Podemos orar por el Cuerpo Gobernante, sus ayudantes, Comités de Sucursal y superintendentes.",
-              "También por ancianos y siervos ministeriales de la congregación.",
-              "Muchos lidian con preocupaciones propias mientras se desgastan por nosotros (2 Corintios 12:15).",
-              "El superintendente Mark dice que lo más difícil es estar lejos de sus padres mayores y enfermos.",
-              "Es bueno orar también por sus esposas, que los apoyan lealmente."
+              "Podemos estar seguros de que Jesús se compadece de nosotros.",
+              "'Compadecerse' significa sentir en carne propia la tristeza y el dolor de otra persona.",
+              "A Jesús le dolía profundamente el sufrimiento de los demás.",
+              "No curaba por un simple sentido del deber, sino porque se preocupaba sinceramente por ellos.",
+              "Tocó al leproso cuando otros lo evitaban, sanó al sordo en privado, y defendió a la mujer arrepentida."
             ],
             flashcards: [
               {
-                question: "¿Qué dice el superintendente Mark sobre una de sus dificultades personales?",
-                answer: "«Una de las cosas más difíciles para mí es estar lejos de mis padres. Ya son mayores y están enfermos»."
+                question: "¿Qué significa la palabra griega traducida 'compadecerse'?",
+                answer: "Sentir en carne propia la tristeza y el dolor de otra persona."
               },
               {
-                question: "Según 2 Corintios 12:15, ¿qué hacen los hermanos con responsabilidades por nosotros?",
-                answer: "Se desgastan completamente por nosotros."
+                question: "¿Por qué Jesús tocó al leproso en vez de curarlo a la distancia?",
+                answer: "Porque se preocupaba sinceramente por él; probablemente era la primera vez que alguien lo tocaba en muchos años."
+              },
+              {
+                question: "¿Por qué Jesús apartó al hombre sordo de la multitud antes de sanarlo?",
+                answer: "Fue muy considerado con él, lo apartó del ruido de la multitud y lo sanó en privado."
               }
             ],
             biblicalCards: [
               {
-                reference: "2 Corintios 12:15",
-                purpose: "Los siervos se desgastan por los hermanos",
-                text: "De buena gana gastaré todo, y me desgastaré completamente por ustedes."
+                reference: "Hebreos 4:15, 16",
+                purpose: "Jesús se compadece de nosotros",
+                text: "Porque no tenemos a un sumo sacerdote que no pueda compadecerse de nuestras debilidades, sino a uno que ha sido probado en todo sentido igual que nosotros, pero sin pecado. Así que acerquémonos con franqueza al trono de la bondad inmerecida para recibir misericordia y hallar bondad inmerecida que nos ayude justo en el momento en que necesitemos ayuda."
               },
               {
-                reference: "1 Tesalonicenses 5:12, 13",
-                purpose: "Valorar a los que trabajan duro por nosotros",
-                text: "Les pedimos, hermanos, que respeten a los que trabajan duro entre ustedes y los dirigen en el Señor y los amonestan; téngales en altísima consideración con amor por su trabajo."
+                reference: "Mateo 8:3",
+                purpose: "Jesús tocó al leproso",
+                text: "Entonces Jesús extendió la mano, lo tocó y dijo: 'Quiero. Queda limpio'. E inmediatamente quedó limpio de su lepra."
+              },
+              {
+                reference: "Lucas 7:44",
+                purpose: "Jesús defendió a la mujer arrepentida",
+                text: "Entonces se volvió hacia la mujer y le dijo a Simón: '¿Ves a esta mujer? Entré en tu casa y no me diste agua para los pies. Pero ella me ha mojado los pies con sus lágrimas y me los ha secado con su cabello'."
               }
             ]
           },
           {
-            number: "10, 11",
-            textEs: "¿Le gustan a Jehová las oraciones que abarcan a muchos hermanos?",
+            number: "10",
+            textEs: "¿Con qué contamos para ayudar espiritualmente a las personas sordas y a las ciegas? (Vea también las imágenes).",
             textLSM: "",
-            paragraphs: [10, 11],
-            infographic: "https://i.imgur.com/a2yAZ8d.png",
+            paragraphs: [10],
+            section: "IMITAMOS A NUESTRO SUMO SACERDOTE",
             answer: [
-              "¡Por supuesto que sí! A Jehová le gustan las oraciones generales.",
-              "Muchas veces hacemos oraciones «paraguas» para no dejarnos a nadie.",
-              "Pedimos por hermanos en la cárcel o los que han perdido a un ser querido.",
-              "No conocemos las necesidades concretas de todos.",
-              "Estas oraciones demuestran que tenemos «amor a toda la hermandad» (1 Pedro 2:17)."
+              "Nuestras publicaciones están disponibles en más de 100 lenguas de señas.",
+              "Contamos con publicaciones en braille para más de 60 idiomas.",
+              "Hay videos con audiodescripciones en más de 100 idiomas.",
+              "De esa manera, las personas sordas y ciegas pueden acercarse a Jehová y a su Hijo."
             ],
             flashcards: [
               {
-                question: "¿Qué son las oraciones «paraguas» según el anciano Donald?",
-                answer: "Oraciones generales para que todos estén cubiertos y no dejarnos a nadie."
+                question: "¿En cuántas lenguas de señas están disponibles nuestras publicaciones?",
+                answer: "En más de 100 lenguas de señas."
               },
               {
-                question: "¿Por qué a Jehová le gustan las oraciones generales por muchos hermanos?",
-                answer: "Porque no conocemos las necesidades concretas de todos, y demuestran «amor a toda la hermandad»."
+                question: "¿Qué recursos existen para las personas ciegas?",
+                answer: "Publicaciones en braille para más de 60 idiomas y videos con audiodescripciones en más de 100 idiomas."
               }
             ],
             biblicalCards: [
               {
-                reference: "Juan 17:20",
-                purpose: "Jesús oró por todos los que creerían",
-                text: "No ruego solo por estos, sino también por los que pongan fe en mí mediante la palabra de ellos."
+                reference: "1 Pedro 2:21",
+                purpose: "Seguir los pasos de Jesús",
+                text: "De hecho, ustedes fueron llamados a seguir este proceder, porque hasta Cristo sufrió por ustedes, dejándoles un modelo para que siguieran sus pasos con cuidado."
               },
               {
-                reference: "1 Pedro 2:17",
-                purpose: "Amor a toda la hermandad",
-                text: "Honren a hombres de toda clase, tengan amor a toda la hermandad, teman a Dios, honren al rey."
+                reference: "1 Pedro 3:8",
+                purpose: "Mostrar empatía y compasión",
+                text: "Finalmente, todos ustedes tengan la misma actitud mental, sean compasivos, tengan cariño fraternal, sean tiernamente compasivos y sean humildes."
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "¿Cómo sigue la organización de Jehová el ejemplo de Jesús? (Hechos 2:5-7, 33; vea también las imágenes).",
+            textLSM: "",
+            paragraphs: [11],
+            readText: "LEE Hechos 2:5-7, 33",
+            answer: [
+              "Después de resucitar, Jesús derramó espíritu santo para que predicaran 'en su propio idioma'.",
+              "La organización produce publicaciones bíblicas en más de 1.100 idiomas.",
+              "Se prepara alimento espiritual en más de 160 lenguas indígenas del continente americano.",
+              "Las publicaciones se traducen a más de 20 variantes del idioma romaní (gitano).",
+              "Como resultado, muchos miles de personas han aceptado la verdad."
+            ],
+            flashcards: [
+              {
+                question: "¿En cuántos idiomas produce la organización publicaciones bíblicas?",
+                answer: "En más de 1.100 idiomas."
+              },
+              {
+                question: "¿Cuántas lenguas indígenas del continente americano tienen alimento espiritual?",
+                answer: "Más de 160 lenguas indígenas."
+              },
+              {
+                question: "¿Cuántas variantes del idioma romaní (gitano) tienen publicaciones?",
+                answer: "Más de 20 variantes."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Hechos 2:5-7, 33",
+                purpose: "Las buenas noticias en el propio idioma",
+                text: "Había judíos de todas las naciones bajo el cielo viviendo en Jerusalén. Cuando se oyó este sonido, se juntó una multitud, y estaban desconcertados porque cada uno los oía hablar en su propio idioma. Estaban totalmente asombrados y decían: '¿No son galileos todos estos que están hablando?'."
               }
             ]
           },
           {
             number: "12",
-            textEs: "¿Por qué ser observadores nos ayuda a hacer oraciones más específicas?",
+            textEs: "¿Qué más hace la organización de Jehová?",
             textLSM: "",
             paragraphs: [12],
-            section: "¿QUÉ HACER CUANDO ORAMOS POR HERMANOS CONCRETOS?",
             answer: [
-              "Además de oraciones generales, es bueno orar por hermanos específicos.",
-              "Ser observadores nos da más empatía y nos motiva a orar por ellos (Romanos 12:15).",
-              "Podemos fijarnos en quién lucha con una enfermedad crónica.",
-              "Qué joven está desanimado por presiones de sus compañeros.",
-              "Qué padre o madre cría solo a un hijo según los consejos de Jehová (Efesios 6:4)."
+              "Coordina labores de socorro para las víctimas de desastres naturales.",
+              "Miles de voluntarios se ofrecen para ayudar a quienes lo necesitan.",
+              "Proporciona lugares de adoración sencillos donde las personas pueden reunirse para aprender del amor de Dios."
             ],
             flashcards: [
               {
-                question: "¿En qué tres grupos específicos sugiere fijarnos el párrafo para orar por ellos?",
-                answer: "Los que luchan con enfermedades crónicas, jóvenes desanimados por presiones, y padres o madres solos criando hijos."
-              },
-              {
-                question: "Según Romanos 12:15, ¿qué debemos hacer con los que lloran?",
-                answer: "Llorar con ellos (tener empatía)."
-              }
-            ],
-            biblicalCards: [
-              {
-                reference: "Romanos 12:15",
-                purpose: "Empatía con los hermanos",
-                text: "Alégrense con los que se alegran; lloren con los que lloran."
-              },
-              {
-                reference: "Efesios 6:4",
-                purpose: "Criar hijos según Jehová",
-                text: "Y padres, no irriten a sus hijos, sino críenlos de acuerdo con la disciplina y los consejos de Jehová."
-              }
-            ],
-            infographic: "https://i.imgur.com/s87VYIw.png"
-          },
-          {
-            number: "13",
-            textEs: "¿Podemos orar por hermanos que no conocemos?",
-            textLSM: "",
-            paragraphs: [13],
-            infographic: "https://i.imgur.com/CjBktVH.png",
-            answer: [
-              "Sí, podemos mencionarlos por nombre, incluso sin conocerlos en persona.",
-              "En jw.org encontramos los nombres de hermanos encarcelados en varios países.",
-              "El superintendente Brian sugiere escribir el nombre y decirlo en voz alta.",
-              "Esto facilita recordarlo y mencionarlo en nuestras oraciones."
-            ],
-            flashcards: [
-              {
-                question: "¿Qué sugiere el superintendente Brian para recordar los nombres de hermanos encarcelados?",
-                answer: "«Cuando escribo el nombre de un hermano y luego lo digo en voz alta, me resulta más fácil recordarlo y mencionarlo en mis oraciones»."
-              },
-              {
-                question: "¿En qué países menciona el párrafo que hay hermanos encarcelados?",
-                answer: "Crimea, Eritrea, Rusia y Singapur."
+                question: "¿Qué hace la organización además de producir publicaciones?",
+                answer: "Coordina labores de socorro para víctimas de desastres naturales y proporciona lugares de adoración."
               }
             ],
             biblicalCards: []
           },
           {
-            number: "14, 15",
-            textEs: "¿Qué nos ayudará a hacer oraciones más específicas?",
+            number: "13",
+            textEs: "¿Cuáles son algunas de las maneras en las que Jesús nos ayuda?",
             textLSM: "",
-            paragraphs: [14, 15],
-            infographic: "https://i.imgur.com/M9znDYt.png",
+            paragraphs: [13],
+            section: "NUESTRO SUMO SACERDOTE NOS AYUDA A CADA UNO DE NOSOTROS",
             answer: [
-              "Hacer peticiones específicas nos ayuda a orar mejor.",
-              "Podemos leer experiencias en jw.org e imaginar cómo nos sentiríamos (Hebreos 13:3).",
-              "Pedir que los guardias sean amables con los hermanos presos.",
-              "Que las autoridades les permitan adorar a Dios (1 Timoteo 2:1, 2).",
-              "Que su buen ejemplo anime a la congregación local y motive a otros a escuchar.",
-              "Estas sugerencias aplican para cualquier hermano, no solo los presos."
+              "Jesús es nuestro Pastor excelente y se encarga de que tengamos lo necesario espiritualmente.",
+              "Los golpes de la vida pueden hacernos sentir como una caña quebrada o una mecha que apenas arde.",
+              "Jesús está al tanto de todo lo que nos pasa y comprende cómo nos sentimos.",
+              "Puede utilizar el espíritu santo para darnos fuerzas.",
+              "También puede valerse de los ancianos y de otros hermanos para darnos ánimo y apoyo."
             ],
             flashcards: [
               {
-                question: "¿Qué sugiere el anciano Michael para hacer peticiones más específicas?",
-                answer: "Leer experiencias de hermanos en prisión e imaginar cómo nos sentiríamos en su situación."
+                question: "¿De qué maneras nos ayuda Jesús cuando estamos desanimados?",
+                answer: "Puede usar el espíritu santo para darnos fuerzas y valerse de los ancianos y hermanos para darnos ánimo y apoyo."
               },
               {
-                question: "Menciona tres peticiones específicas que podemos hacer por hermanos presos.",
-                answer: "Que los guardias sean amables, que puedan adorar a Dios, y que su ejemplo anime a otros."
+                question: "¿A qué se comparan los golpes de la vida según el artículo?",
+                answer: "Pueden hacernos sentir como una caña que está quebrada o una mecha que apenas arde."
               }
             ],
             biblicalCards: [
               {
-                reference: "Hebreos 13:3",
-                purpose: "Recordar a los que están en prisión",
-                text: "Sigan acordándose de los que están en prisión, como si estuvieran presos junto con ellos, y de los que están siendo maltratados, ya que ustedes también tienen un cuerpo."
+                reference: "Juan 10:14",
+                purpose: "Jesús es el Pastor excelente",
+                text: "Yo soy el pastor excelente. Conozco a mis ovejas y mis ovejas me conocen a mí."
               },
               {
-                reference: "1 Timoteo 2:1, 2",
-                purpose: "Orar por los que están en autoridad",
-                text: "Los exhorto a que hagan ruegos, oraciones, intercesiones y acciones de gracias por hombres de toda clase, por reyes y por todos los que están en puestos de autoridad."
+                reference: "Efesios 4:7, 8",
+                purpose: "Jesús dio regalos a la congregación",
+                text: "A cada uno de nosotros se nos concedió bondad inmerecida según la medida del regalo gratuito del Cristo. Por eso dice: 'Cuando ascendió a lo alto, se llevó cautivos; dio dones en hombres'."
+              },
+              {
+                reference: "Juan 16:7",
+                purpose: "Jesús envía el espíritu santo",
+                text: "Sin embargo, les digo la verdad: les conviene que yo me vaya. Porque, si no me voy, el ayudante no vendrá a ustedes; pero, si me voy, se los enviaré."
+              }
+            ]
+          },
+          {
+            number: "14",
+            textEs: "¿Qué podemos hacer para luchar contra el desánimo?",
+            textLSM: "",
+            paragraphs: [14],
+            answer: [
+              "Meditar en el papel de Jesús como Sumo Sacerdote.",
+              "Recordar que Jehová lo envió no solo para dar su vida, sino también para entender nuestros problemas.",
+              "Cuando nos sentimos hundidos por nuestros pecados o debilidades, Jesús está listo para ayudarnos.",
+              "Él nos da una mano 'justo en el momento en que necesitamos ayuda'."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuándo nos ayuda Jesús según Hebreos 4:15, 16?",
+                answer: "'Justo en el momento en que necesitamos ayuda'."
+              },
+              {
+                question: "¿Qué debemos recordar cuando el desánimo nos vence?",
+                answer: "Que Jehová envió a Jesús también para ayudarlo a entender mejor los problemas por los que pasamos los seres humanos imperfectos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Hebreos 4:15, 16",
+                purpose: "Jesús nos ayuda en el momento oportuno",
+                text: "Así que acerquémonos con franqueza al trono de la bondad inmerecida para recibir misericordia y hallar bondad inmerecida que nos ayude justo en el momento en que necesitemos ayuda."
+              }
+            ]
+          },
+          {
+            number: "15",
+            textEs: "¿Qué ayudó a un hermano a volver a la congregación?",
+            textLSM: "",
+            paragraphs: [15],
+            answer: [
+              "Stefano fue expulsado y después de 12 años decidió asistir a una reunión.",
+              "Los ancianos lo hicieron sentir bienvenido.",
+              "Los hermanos le recordaron que Jehová y Jesús querían que él perseverara.",
+              "Cuando fue readmitido, toda la congregación lo recibió con los brazos abiertos.",
+              "Con el tiempo su esposa empezó a estudiar y ahora sirven a Jehová todos juntos."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuánto tiempo estuvo Stefano alejado de la congregación?",
+                answer: "12 años."
+              },
+              {
+                question: "¿Qué le recordaron los hermanos a Stefano cuando quería tirar la toalla?",
+                answer: "Que Jehová y Jesús querían que él perseverara."
+              },
+              {
+                question: "¿Qué resultado positivo tuvo la readmisión de Stefano?",
+                answer: "Su esposa empezó a estudiar la Biblia y ahora sirven a Jehová todos juntos como familia."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Mateo 18:12, 13",
+                purpose: "Jesús busca a las ovejas perdidas",
+                text: "¿Qué les parece? Si un hombre tiene 100 ovejas y una de ellas se extravía, ¿no dejará las 99 en las montañas y saldrá a buscar a la que se ha extraviado? Y si llega a encontrarla, les aseguro que se alegra más por ella que por las 99 que no se habían extraviado."
               }
             ]
           },
           {
             number: "16",
-            textEs: "¿Qué debemos tener en cuenta a la hora de orar? (Mateo 6:8).",
+            textEs: "¿Por qué nos sentimos muy agradecidos de tener a un Sumo Sacerdote tan compasivo?",
             textLSM: "",
             paragraphs: [16],
-            readText: "LEE Mateo 6:8",
-            section: "SEAMOS EQUILIBRADOS",
-            infographic: "https://i.imgur.com/ENXZjnE.png",
             answer: [
-              "Debemos ser equilibrados al orar.",
-              "Cuando oramos, no le contamos a Jehová algo que él no sepa (Mateo 6:8).",
-              "Tampoco deberíamos darle consejos sobre cómo manejar una situación.",
-              "¿Por qué orar entonces? Porque eso es lo que hacen los que se interesan por otros.",
-              "Oramos porque los queremos, y Jehová se alegra de ver que imitamos su amor."
+              "Durante su vida en la Tierra, Jesús ayudó a muchas personas justo en el momento oportuno.",
+              "Hoy podemos estar convencidos de que él estará con nosotros siempre que lo necesitemos.",
+              "Pronto en el nuevo mundo ayudará a los seres humanos a liberarse de los efectos del pecado.",
+              "Estamos agradecidos a Jehová quien por amor nombró a su Hijo como Sumo Sacerdote compasivo."
             ],
             flashcards: [
               {
-                question: "¿Por qué debemos orar por otros si Jehová ya sabe lo que necesitan?",
-                answer: "Porque oramos por ellos porque los queremos, y Jehová se alegra de ver que imitamos su amor."
+                question: "¿Qué hará Jesús en el nuevo mundo?",
+                answer: "Ayudará a los seres humanos obedientes a liberarse por completo de los efectos del pecado y la imperfección."
+              }
+            ],
+            biblicalCards: []
+          }
+        ],
+        paragraphs: [
+          { number: 1, content: "HACE unos 2.000 años, Jehová envió a su Hijo más querido a la Tierra. ¿Para qué? Entre otras cosas, para liberar a la humanidad de la maldición del pecado y la muerte y para deshacer todo el daño causado por Satanás (Juan 3:16; 1 Juan 3:8). Jehová también sabía que las vivencias de Jesús como humano lo prepararían aún más para ser un Sumo Sacerdote que se compadezca de nosotros, es decir, que nos trate con compasión y empatía. Jesús empezó a servir como Sumo Sacerdote tras su bautismo, en el año 29." },
+          { number: 2, content: "En este artículo analizaremos cómo lo que Jesús vivió en la Tierra contribuyó a que fuera \"perfeccionado\" para su papel, es decir, a que estuviera más capacitado para ser un Sumo Sacerdote compasivo. Es importante que comprendamos bien esto porque así nos será más fácil acercarnos a Jehová y orarle, incluso cuando nos sintamos desanimados por nuestros pecados o debilidades (lea Hebreos 5:7-9)." },
+          { number: 3, content: "Muchos de nosotros experimentamos cambios en la vida, como por ejemplo tener que mudarnos de un lugar en el que estábamos a gusto y dejar atrás a nuestra querida familia y amigos. Esos cambios son difíciles; pero los cambios que tuvo que hacer Jesús no tienen comparación con los que haya hecho ningún ser humano. De todos los hijos espirituales de Dios, él tenía el lugar más destacado. En el cielo, vivía rodeado del amor de Jehová y siempre estaba feliz de servir a la \"derecha\" de su Padre (Sal. 16:11; Prov. 8:30). Sin embargo, Filipenses 2:7 muestra que con gusto \"dejó todo lo que tenía\" para vivir en la Tierra entre seres humanos imperfectos." },
+          { number: 4, content: "Además, pensemos en cómo fueron los primeros años de Jesús en la Tierra. Él nació en una familia pobre, como lo indica el hecho de que sus padres ofrecieran un sacrificio humilde cuando él nació (Lev. 12:8; Luc. 2:24). Por otro lado, en cuanto el malvado rey Herodes se enteró de su nacimiento, quiso acabar con la vida de Jesús. Para evitarlo, huyeron a Egipto y vivieron como refugiados un tiempo (Mat. 2:13, 15). ¡Qué cambio de vida tan drástico!" },
+          { number: 5, content: "Durante su vida en la Tierra, Jesús vio a muchas personas sufrir. Vivió el dolor de perder a seres queridos, incluso por lo visto a su padre adoptivo, José. Durante su ministerio trató con personas que tenían lepra, que eran ciegas, que estaban paralíticas o que estaban de duelo por haber perdido a un hijo, y sintió compasión por todas ellas (Mat. 9:2, 6; 15:30; 20:34; Mar. 1:40, 41; Luc. 7:13). Es verdad que en el cielo había visto a las personas sufrir, pero estando en la Tierra y siendo humano pudo verlo desde otra perspectiva (Is. 53:4). Lo que experimentó hizo que entendiera mejor los sentimientos, las frustraciones y las penas de la humanidad. Sintió en carne propia la misma angustia, cansancio y tristeza que todos nosotros.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025650/univ/art/2025650_univ_cnt_1_lg.jpg", imageCaption: "Jesús rodeado de personas que le suplican que las cure. Con mucha compasión, se acerca a un enfermo muy mayor y lo agarra de los brazos." },
+          { number: 6, content: "Durante su ministerio, Jesús trató con extraordinaria empatía a los débiles y desfavorecidos. De esa manera, cumplió una profecía que Isaías escribió por inspiración. En las Escrituras Hebreas a veces se dice que las personas fuertes y prósperas son como jardines fértiles y árboles majestuosos (Sal. 92:12; Is. 61:3; Jer. 31:12). En cambio, se compara a los pobres y oprimidos con cañas que están quebradas y mechas que apenas arden, cosas que son de poca utilidad para la gente (lea Isaías 42:3). Con esas comparaciones, Isaías predijo que Jesús trataría con mucho amor y compasión a las personas que el resto de la gente consideraba de poco valor." },
+          { number: 7, content: "Mateo le aplicó a Jesús las palabras de Isaías: \"No romperá la caña que está quebrada ni apagará la mecha que apenas arde\" (Mat. 12:20). Muchos de los milagros de Jesús beneficiaron a los maltratados o a quienes tenían pocas esperanzas de que su situación mejorara. Pensemos, por ejemplo, en el hombre que estaba cubierto de lepra. ¿Habría perdido la esperanza de recuperar su salud y de estar de nuevo con su familia y amigos? (Luc. 5:12, 13). O recordemos al sordo que además tenía dificultades para hablar. ¿Cómo se sentiría al ver a los demás teniendo conversaciones animadas en las que él no podía participar? (Mar. 7:32, 33). Pero la cosa no acababa ahí." },
+          { number: 8, content: "En los días de Jesús, muchos judíos creían erróneamente que las enfermedades y las discapacidades eran un castigo por los pecados de la persona o los de sus padres (Juan 9:2). Por eso las personas enfermas o con alguna discapacidad solían ser marginadas. Pero Jesús las sanó y reavivó su esperanza en Dios, cumpliendo así la profecía de Isaías. ¿Qué nos enseña esto a nosotros?" },
+          { number: 9, content: "(Lea Hebreos 4:15, 16). Podemos estar seguros de que Jesús se compadece de nosotros. La palabra griega que se tradujo \"compadecerse\" da la idea de sentir en carne propia la tristeza y el dolor de otra persona. Es interesante que en Hebreos 10:34 Pablo usó esa misma palabra cuando habló de mostrar compasión por los que están en prisión. Los relatos de los milagros de Jesús revelan que le dolía profundamente el sufrimiento de los demás. No los curaba por un simple sentido del deber, sino porque se preocupaba sinceramente por ellos y quería ayudarlos. Por ejemplo, pudo haber curado al hombre con lepra a la distancia. Pero en lugar de eso lo que hizo fue tocarlo. Probablemente era la primera vez que alguien lo tocaba en muchos años. También fue muy considerado con el hombre sordo, pues lo apartó del ruido de la multitud y lo sanó en privado. Y, cuando un fariseo despreció en su interior a una mujer arrepentida que le lavó los pies a Jesús y se los secó con su cabello, Jesús la defendió con firmeza (Mat. 8:3; Mar. 7:33; Luc. 7:44). Él jamás evitó a quienes estaban enfermos o habían pecado gravemente. Al contrario, los recibió con los brazos abiertos y los trató con compasión. Estamos totalmente convencidos de que hace lo mismo con nosotros." },
+          { number: 10, content: "Como queremos seguir fielmente los pasos de Jesús, nos esforzamos por mostrar amor, empatía y compasión (1 Ped. 2:21; 3:8). Es cierto que no podemos curar a las personas sordas o ciegas, pero sí podemos ayudarlas espiritualmente. Por ejemplo, nuestras publicaciones están disponibles en más de 100 lenguas de señas. Además, contamos con publicaciones en braille para más de 60 idiomas y con videos que incluyen audiodescripciones en más de 100 idiomas. De esa manera, las personas sordas y las ciegas pueden acercarse a Jehová y a su Hijo.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025650/univ/art/2025650_univ_cnt_2_lg.jpg", imageCaption: "Hermanos cantando una canción del Reino en una congregación de lengua de señas. Una hermana ciega leyendo la Biblia en braille." },
+          { number: 11, content: "Después de resucitar, Jesús derramó espíritu santo sobre sus discípulos para que les predicaran las buenas noticias \"en su propio idioma\" a quienes habían acudido a celebrar la Fiesta de Pentecostés (lea Hechos 2:5-7, 33). Siguiendo su ejemplo, la organización de Jehová pone todo su empeño en ayudar espiritualmente a personas de todas las culturas. Para ello, produce publicaciones bíblicas en más de 1.100 idiomas, algunos de los cuales tienen muy pocos hablantes. Ese es el caso, por ejemplo, de algunos idiomas indígenas del continente americano. La organización ha preparado alimento espiritual en más de 160 de esas lenguas para que las personas que las hablan puedan aprender sobre las buenas noticias. Además, nuestras publicaciones se traducen a más de 20 variantes del idioma romaní (o gitano). Como resultado, muchos miles de personas han aceptado la verdad.", image: "https://assetsnffrgf-a.akamaihd.net/assets/m/2025650/univ/art/2025650_univ_cnt_3_lg.jpg", imageCaption: "Una hermana indígena de América posa sonriente con una Biblia en su idioma. Una hermana y su hija romaníes asisten a una asamblea." },
+          { number: 12, content: "Además de ayudar a las personas a conocer las buenas noticias, la organización de Jehová coordina labores de socorro para las víctimas de desastres naturales. Miles de voluntarios se ofrecen para ayudar a quienes lo necesitan. La organización también proporciona lugares de adoración sencillos donde las personas pueden reunirse para aprender más del amor que Dios les tiene." },
+          { number: 13, content: "Jesús es nuestro Pastor excelente y por eso se encarga de que cada uno de nosotros tengamos lo necesario para estar espiritualmente fuertes (Juan 10:14; Efes. 4:7). Los golpes de la vida pueden hacernos sentir como una caña que está quebrada o una mecha que apenas arde. Quizás nos sintamos aplastados por una enfermedad grave, un error cometido o un desacuerdo con un hermano. En esas circunstancias tal vez nos resulte difícil ver más allá del dolor y centrarnos en nuestra esperanza. Pero recordemos que Jesús está al tanto de todo lo que nos pasa y comprende cómo nos sentimos. Y, como es compasivo, nos ayuda. Por ejemplo, puede utilizar el espíritu santo para darnos fuerzas (Juan 16:7; Tito 3:6). También puede valerse de los ancianos —que dio \"como regalos\" a la congregación— y de otros hermanos para darnos el ánimo y el apoyo necesarios (Efes. 4:8)." },
+          { number: 14, content: "Si sentimos que el desánimo nos vence y que ya no nos quedan fuerzas, meditemos en el papel de Jesús como Sumo Sacerdote. Recordemos que Jehová lo envió a la Tierra no solo para dar su vida como rescate, sino también para ayudarlo a entender mejor los problemas por los que pasamos los seres humanos imperfectos. Cuando nos sentimos hundidos debido a nuestros pecados o debilidades, Jesús está listo para darnos una mano \"justo en el momento en que necesitamos ayuda\" (Heb. 4:15, 16)." },
+          { number: 15, content: "Jesús también guía a sus seguidores para que encuentren y ayuden a quienes se han alejado del rebaño de Dios (Mat. 18:12, 13). Veamos la experiencia de Stefano. A él lo sacaron de la congregación y después de 12 años decidió asistir a una reunión. Él cuenta: \"Fue incómodo volver a entrar a un Salón, pero quería formar parte de la cariñosa familia de Jehová otra vez. Los ancianos que se reunieron conmigo me hicieron sentir bienvenido. A veces me sentía tan decepcionado conmigo mismo por haber dejado a Jehová que quería tirar la toalla. Pero los hermanos me recordaron que Jehová y Jesús querían que yo perseverara. Cuando me readmitieron, toda la congregación nos recibió a mí y a mi familia con los brazos abiertos. Con el tiempo mi esposa empezó a estudiar la Biblia y ahora servimos a Jehová todos juntos\". Nuestro cariñoso Sumo Sacerdote de seguro se siente muy feliz al ver que quienes se arrepienten reciben la ayuda que necesitan para volver a la congregación." },
+          { number: 16, content: "Durante su vida en la Tierra, Jesús ayudó a un sinnúmero de personas justo en el momento oportuno. Hoy en día podemos estar totalmente convencidos de que él también estará con nosotros siempre que lo necesitemos. Y muy pronto en el nuevo mundo ayudará a los seres humanos obedientes a liberarse por completo de los efectos del pecado y la imperfección. Estamos muy agradecidos a nuestro Dios, Jehová, quien por puro amor y misericordia nombró a su Hijo para que sea un Sumo Sacerdote compasivo." }
+        ],
+        reviewQuestions: [
+          {
+            question: "¿Cómo preparó a Jesús para ser Sumo Sacerdote todo lo que vivió en la Tierra?",
+            answer: [
+              "Vio a muchas personas sufrir y sintió compasión por ellas.",
+              "Vivió el dolor de perder a seres queridos.",
+              "Pudo ver el sufrimiento desde la perspectiva humana.",
+              "Sintió en carne propia la angustia, cansancio y tristeza que todos nosotros.",
+              "Eso lo capacitó para compadecerse de nuestras debilidades."
+            ]
+          },
+          {
+            question: "¿Cómo cumplió Jesús las palabras de Isaías 42:3?",
+            answer: [
+              "No despreció a los débiles y desfavorecidos como otros hacían.",
+              "Sanó a personas con lepra, ciegas, sordas y paralíticas.",
+              "Reavivó la esperanza de los marginados.",
+              "Los trató con amor y compasión, no como cosas de poco valor."
+            ]
+          },
+          {
+            question: "¿Cómo nos ayuda nuestro Sumo Sacerdote hoy en día?",
+            answer: [
+              "Utiliza el espíritu santo para darnos fuerzas.",
+              "Se vale de los ancianos y hermanos para darnos ánimo y apoyo.",
+              "Guía a sus seguidores para encontrar a quienes se han alejado.",
+              "Está listo para ayudarnos 'justo en el momento en que necesitamos ayuda'."
+            ]
+          }
+        ],
+        finalSong: "Canción 13: Cristo es nuestro modelo"
+      },
+      // Artículo 47: "Tú eres muy valioso" (26 Ene-1 Feb)
+      {
+        metadata: {
+          articleNumber: 47,
+          week: "26 Ene-1 Feb",
+          month: "Noviembre",
+          year: 2025
+        },
+        song: "Canción 38: Jehová te cuidará",
+        title: "\"Tú eres muy valioso\"",
+        biblicalText: "\"Tú eres muy valioso\" (DAN. 9:23).",
+        theme: "Ayudar a quienes tienen baja autoestima a comprender que son muy valiosos para Jehová.",
+        questions: [
+          {
+            number: "1, 2",
+            textEs: "¿Qué nos ayudará a convencernos de que somos muy valiosos para Jehová?",
+            textLSM: "",
+            paragraphs: [1, 2],
+            answer: [
+              "Analizar relatos bíblicos que muestran cómo Jehová quiere que nos tratemos unos a otros.",
+              "Jesús trató a las personas con dignidad y respeto, demostrando que él y su Padre consideran de gran valor a las personas humildes.",
+              "En este artículo veremos: 1) cómo ayudó Jesús a las personas a ver que son valiosas para Jehová y 2) qué puedes hacer para convencerte de que tú también lo eres."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué demostró Jesús al tratar a las personas con dignidad y respeto?",
+                answer: "Que tanto él como su Padre consideran de gran valor a las personas que son humildes y se sienten poco importantes."
               },
               {
-                question: "Según Mateo 6:8, ¿qué sabe Jehová incluso antes de que se lo pidamos?",
-                answer: "Lo que necesitamos."
+                question: "¿Por qué algunos siervos de Jehová tienen baja autoestima?",
+                answer: "Tal vez porque alguien los ha tratado con desprecio y les ha hecho sentir que no valen nada."
               }
             ],
             biblicalCards: [
               {
-                reference: "Mateo 6:8",
-                purpose: "Jehová sabe lo que necesitamos antes de pedirle",
-                text: "No sean como ellos, porque su Padre sabe lo que ustedes necesitan incluso antes de que se lo pidan."
+                reference: "Juan 5:19",
+                purpose: "Jesús imita a su Padre",
+                text: "El Hijo no puede hacer nada por su propia iniciativa, sino solo lo que ve hacer al Padre. Porque todo lo que el Padre hace, también lo hace el Hijo."
+              },
+              {
+                reference: "Hebreos 1:3",
+                purpose: "Jesús es el reflejo de la gloria de Dios",
+                text: "Él es el reflejo de la gloria de Dios y la imagen exacta de su ser, y sostiene todas las cosas mediante su poderosa palabra."
+              },
+              {
+                reference: "Ageo 2:7",
+                purpose: "Las cosas deseables de las naciones vendrán",
+                text: "Sacudiré a todas las naciones, y las cosas deseables de todas las naciones vendrán, y llenaré esta casa de gloria."
               }
             ]
           },
           {
-            number: "17, 18",
-            textEs: "Explique con un ejemplo por qué sabemos que nuestras oraciones no le pasan desapercibidas a Jehová.",
+            number: "3",
+            textEs: "¿Cómo trató Jesús a las personas de Galilea que acudieron a él?",
             textLSM: "",
-            paragraphs: [17, 18],
+            paragraphs: [3],
+            section: "CÓMO AYUDÓ JESÚS A LAS PERSONAS A VER QUE SON VALIOSAS",
             answer: [
-              "Pensemos en un padre con un niño enfermo y una niña que insiste: «Ayuda a mi hermanito».",
-              "El padre tiene la situación controlada, pero se alegra de ver el amor de la niña.",
-              "De manera parecida, Jehová quiere que nos interesemos por los demás.",
-              "Demostraremos que nos preocupamos, y Jehová tomará nota (Hebreos 6:10).",
-              "Además, nuestras oraciones pueden cambiar el rumbo de una situación."
+              "Jesús vio que estaban 'maltratadas y abandonadas como ovejas sin pastor'.",
+              "Los líderes religiosos las consideraban ignorantes e insignificantes, las llamaban 'gente maldita'.",
+              "Jesús las trató con dignidad, dedicó tiempo a enseñarles y curarlas.",
+              "Para ayudar a más personas, capacitó a sus apóstoles para predicar y les dio autoridad para curar enfermedades."
             ],
             flashcards: [
               {
-                question: "¿Qué ilustra el ejemplo del padre con el niño enfermo y la niña?",
-                answer: "Que aunque Jehová tiene la situación bajo control, se alegra de ver que nos interesamos por otros y oramos por ellos."
+                question: "¿Cómo veían los líderes religiosos a las personas de Galilea?",
+                answer: "Las consideraban demasiado ignorantes e insignificantes, y hasta las llamaban 'gente maldita'."
               },
               {
-                question: "Según Hebreos 6:10, ¿qué no olvidará Jehová?",
-                answer: "El amor que le mostramos a su nombre al servir a los santos."
+                question: "¿Qué hizo Jesús para ayudar a más personas además de enseñarles él mismo?",
+                answer: "Capacitó a sus apóstoles para predicar y les dio autoridad para curar todo tipo de enfermedades."
               }
             ],
             biblicalCards: [
               {
-                reference: "Hebreos 6:10",
-                purpose: "Jehová no olvida nuestro amor",
-                text: "Porque Dios no es injusto como para olvidarse de la obra de ustedes y del amor que le mostraron a su nombre al servir a los santos y seguir sirviéndoles."
+                reference: "Mateo 9:36",
+                purpose: "Jesús sintió lástima por las multitudes",
+                text: "Al ver las multitudes, se compadeció de ellas, porque estaban maltratadas y abandonadas como ovejas sin pastor."
               },
               {
-                reference: "2 Tesalonicenses 1:3",
-                purpose: "El amor que crece entre hermanos",
-                text: "Estamos obligados a darle siempre gracias a Dios por ustedes, hermanos. Es lo que corresponde, porque su fe está creciendo mucho y el amor de cada uno de ustedes hacia los demás está aumentando."
+                reference: "Juan 7:47-49",
+                purpose: "Los líderes despreciaban al pueblo",
+                text: "Los fariseos les contestaron: '¿También ustedes se han dejado engañar? ¿Acaso alguno de los gobernantes o de los fariseos ha puesto fe en él? Pero esta gente que no conoce la Ley son unos malditos'."
+              }
+            ]
+          },
+          {
+            number: "4",
+            textEs: "¿Qué aprendemos de la manera como Jesús trató a las personas humildes?",
+            textLSM: "",
+            paragraphs: [4],
+            answer: [
+              "Al tratar con bondad y respeto a las personas que el mundo suele despreciar, Jesús mostró que tanto él como su Padre las consideran valiosas.",
+              "Si sirves a Jehová pero sientes que no vales mucho, recuerda cómo Jesús trató a las personas humildes.",
+              "Eso te ayudará a ver cuánto le importas a Jehová."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué demostró Jesús al tratar con bondad a quienes el mundo despreciaba?",
+                answer: "Que tanto él como su Padre las consideran valiosas."
+              },
+              {
+                question: "¿Qué debe recordar quien sirve a Jehová pero siente que no vale mucho?",
+                answer: "Cómo Jesús trató a las personas que eran humildes y querían aprender de él."
+              }
+            ]
+          },
+          {
+            number: "5",
+            textEs: "¿Qué le pasaba a la mujer con la que se encontró Jesús en Galilea?",
+            textLSM: "",
+            paragraphs: [5],
+            answer: [
+              "Llevaba 12 años con hemorragias.",
+              "Este problema médico la hacía ceremonialmente impura.",
+              "Cualquiera que la tocara se volvería impuro, así que casi nunca pasaba tiempo con otras personas.",
+              "No podía adorar a Jehová junto con el resto de la gente en la sinagoga ni en las fiestas.",
+              "Sufría mucho no solo física, sino también emocionalmente."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuántos años llevaba la mujer sufriendo hemorragias?",
+                answer: "12 años."
+              },
+              {
+                question: "¿Qué consecuencias sociales y espirituales tenía su enfermedad?",
+                answer: "No podía pasar tiempo con otras personas ni adorar a Jehová en la sinagoga o las fiestas porque era ceremonialmente impura."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Marcos 5:25",
+                purpose: "La mujer llevaba 12 años enferma",
+                text: "Y había una mujer que llevaba 12 años con hemorragias."
+              },
+              {
+                reference: "Levítico 15:19, 25",
+                purpose: "La ley sobre la impureza",
+                text: "Cuando una mujer tenga flujo de sangre, será impura durante siete días. Si tiene un flujo de sangre durante muchos días fuera del periodo de su menstruación, será impura."
+              }
+            ]
+          },
+          {
+            number: "6",
+            textEs: "¿Cómo se curó la mujer que sufría hemorragias?",
+            textLSM: "",
+            paragraphs: [6],
+            answer: [
+              "No le pidió directamente a Jesús que la curara.",
+              "Quizás se sentía muy avergonzada por su enfermedad o le daba miedo que Jesús la regañara por meterse entre la gente estando impura.",
+              "Simplemente le tocó la ropa, pues tenía mucha fe en que así se curaría.",
+              "¡Su enfermedad desapareció al instante!"
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué la mujer no le pidió directamente a Jesús que la curara?",
+                answer: "Quizás se sentía muy avergonzada por su enfermedad o le daba miedo que Jesús la regañara por haberse metido entre la gente estando impura."
+              },
+              {
+                question: "¿Qué hizo la mujer para curarse y por qué?",
+                answer: "Simplemente le tocó la ropa a Jesús porque tenía una fe muy fuerte en que así se curaría."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Marcos 5:27, 28",
+                purpose: "La fe de la mujer",
+                text: "Cuando oyó hablar de Jesús, se acercó por detrás entre la gente y le tocó la ropa, porque se decía: 'Si le toco aunque sea la ropa, me curaré'."
+              }
+            ]
+          },
+          {
+            number: "7",
+            textEs: "¿Cómo trató Jesús a aquella mujer? (Marcos 5:34).",
+            textLSM: "",
+            paragraphs: [7],
+            readText: "LEE Marcos 5:34",
+            answer: [
+              "Jesús se dio cuenta de que la mujer estaba 'temblando de miedo'.",
+              "Le habló con mucho cariño, consideración y respeto.",
+              "La llamó 'hija', lo cual no era una simple fórmula de cortesía, sino una muestra de cercanía y ternura.",
+              "En vez de solo devolverle la salud, Jesús también la ayudó a ver que su Padre en el cielo la quería muchísimo."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué es significativo que Jesús llamara 'hija' a la mujer?",
+                answer: "Es la única ocasión de la que hay registro en la que Jesús se dirige a una mujer llamándola 'hija'. No era una simple fórmula de cortesía, sino una muestra de cercanía y ternura."
+              },
+              {
+                question: "Además de curarla, ¿qué más hizo Jesús por la mujer?",
+                answer: "La ayudó a ver que su Padre en el cielo la quería muchísimo."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Marcos 5:33",
+                purpose: "La mujer temblaba de miedo",
+                text: "La mujer, asustada y temblando, sabiendo lo que le había pasado, se acercó y se postró ante él y le dijo toda la verdad."
+              },
+              {
+                reference: "Marcos 5:34",
+                purpose: "Las palabras de cariño de Jesús",
+                text: "Él le dijo: 'Hija, tu fe te ha sanado. Vete en paz y queda sana de tu terrible enfermedad'."
+              }
+            ]
+          },
+          {
+            number: "8",
+            textEs: "¿Qué dificultades afrontó una hermana de Brasil?",
+            textLSM: "",
+            paragraphs: [8],
+            answer: [
+              "Renata nació sin piernas y sin su mano izquierda debido a un defecto genético.",
+              "En la escuela todo el tiempo le hacían bullying y se burlaban de ella con apodos crueles.",
+              "Incluso sus propios familiares a veces la trataban con prejuicios."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué defecto genético tiene Renata?",
+                answer: "Nació sin piernas y sin su mano izquierda."
+              },
+              {
+                question: "¿Cómo la trataban en la escuela y su familia?",
+                answer: "En la escuela le hacían bullying y le ponían apodos crueles; incluso sus propios familiares a veces la trataban con prejuicios."
+              }
+            ]
+          },
+          {
+            number: "9",
+            textEs: "¿Qué ayudó a Renata a sentirse muy valiosa?",
+            textLSM: "",
+            paragraphs: [9],
+            answer: [
+              "Cuando se hizo testigo de Jehová, los hermanos de su congregación la animaron con cariño.",
+              "La ayudaron a verse a sí misma como la ve Jehová.",
+              "Ella dice: 'Le doy las gracias a Dios de todo corazón por regalarme esta maravillosa familia espiritual'.",
+              "Gracias a todo lo que hicieron por ella, Renata entendió que a los ojos de Jehová es muy valiosa."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué hicieron los hermanos de la congregación por Renata?",
+                answer: "La animaron con cariño y la ayudaron a verse a sí misma como la ve Jehová."
+              },
+              {
+                question: "¿Qué conclusión sacó Renata gracias al apoyo de los hermanos?",
+                answer: "Entendió que a los ojos de Jehová es muy valiosa."
+              }
+            ]
+          },
+          {
+            number: "10",
+            textEs: "¿En qué situación terrible estuvo María Magdalena? (Vea también las imágenes).",
+            textLSM: "",
+            paragraphs: [10],
+            image: "",
+            imageCaption: "¿De qué maneras ayudó Jesús a María Magdalena a ver el gran valor que tenía a los ojos de Dios?",
+            answer: [
+              "María Magdalena estuvo poseída por siete demonios.",
+              "Probablemente ellos la hacían comportarse de formas extrañas.",
+              "El resto de la gente seguramente la evitaba.",
+              "Debió de sentirse marginada, indefensa y asustada.",
+              "Jesús la liberó de esos demonios y ella empezó a seguirlo con fe."
+            ],
+            flashcards: [
+              {
+                question: "¿Por cuántos demonios estuvo poseída María Magdalena?",
+                answer: "Por siete demonios."
+              },
+              {
+                question: "¿Cómo debió sentirse María Magdalena durante su posesión demoníaca?",
+                answer: "Marginada, indefensa y asustada, ya que probablemente la gente la evitaba por su comportamiento extraño."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Lucas 8:2",
+                purpose: "María Magdalena había sido liberada de demonios",
+                text: "Y también algunas mujeres que habían sido curadas de espíritus malvados y de enfermedades: María, la llamada Magdalena, de quien habían salido siete demonios."
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "¿Cómo le dejó claro Jesús a María Magdalena lo mucho que Jehová la apreciaba? (Vea también las imágenes).",
+            textLSM: "",
+            paragraphs: [11],
+            answer: [
+              "Jesús invitó a María Magdalena a acompañarlo en sus giras de predicación.",
+              "Gracias a eso, tuvo el privilegio de escuchar lo que él iba enseñando.",
+              "Jesús se le apareció el día que resucitó; fue una de las primeras personas con las que habló.",
+              "Le encargó que fuera a decirles a los apóstoles que había resucitado."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué privilegios recibió María Magdalena de parte de Jesús?",
+                answer: "La invitó a acompañarlo en sus giras de predicación y fue una de las primeras personas a las que se apareció después de resucitar."
+              },
+              {
+                question: "¿Qué encargo especial le dio Jesús a María Magdalena el día de su resurrección?",
+                answer: "Le encargó que fuera a decirles a los apóstoles que había resucitado."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Juan 20:11-18",
+                purpose: "Jesús se aparece a María Magdalena",
+                text: "María se quedó afuera, junto a la tumba, llorando. Jesús le dijo: '¿Por qué lloras? ¿A quién buscas?'. Ella le dijo: 'Señor, si tú te lo has llevado, dime dónde lo has puesto'. Jesús le dijo: '¡María!'. Ella se volvió y le dijo: '¡Rabboni!'."
+              },
+              {
+                reference: "Lucas 8:1-3",
+                purpose: "María Magdalena acompañaba a Jesús",
+                text: "Poco después, él iba viajando de ciudad en ciudad y de aldea en aldea, predicando y declarando las buenas noticias del Reino de Dios. Con él iban los Doce, así como algunas mujeres que habían sido curadas."
+              }
+            ]
+          },
+          {
+            number: "12",
+            textEs: "¿Por qué se sentía rechazada Lidia?",
+            textLSM: "",
+            paragraphs: [12],
+            answer: [
+              "Cuando su madre estaba embarazada de ella, estuvo planteándose abortar.",
+              "Aunque al final no lo hizo, su madre nunca se ocupaba de ella y le decía cosas muy crueles.",
+              "Lidia solo quería que los demás la aceptaran y la quisieran.",
+              "Le daba miedo no conseguirlo porque su madre la había convencido de que era una mala persona y no lo merecía."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué cosas crueles experimentó Lidia de parte de su madre?",
+                answer: "Su madre nunca se ocupaba de ella, le decía cosas muy crueles y la había convencido de que era una mala persona que no merecía ser querida."
+              },
+              {
+                question: "¿Qué era lo único que Lidia quería en la vida?",
+                answer: "Que los demás la aceptaran y la quisieran."
+              }
+            ]
+          },
+          {
+            number: "13",
+            textEs: "¿Qué ayudó a Lidia a comprender el gran valor que tiene a los ojos de Jehová?",
+            textLSM: "",
+            paragraphs: [13],
+            answer: [
+              "Las cosas cambiaron cuando Lidia conoció la verdad.",
+              "La oración, la lectura de la Biblia y el cariño de los hermanos la ayudaron.",
+              "Su esposo le dice muy a menudo cuánto la quiere y siempre le recuerda sus buenas cualidades.",
+              "También tiene amigos muy queridos que han hecho lo mismo."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué tres cosas ayudaron a Lidia a comprender su valor a los ojos de Jehová?",
+                answer: "La oración, la lectura de la Biblia y el cariño de los hermanos."
+              },
+              {
+                question: "¿Cómo la ayuda su esposo a Lidia?",
+                answer: "Le dice muy a menudo cuánto la quiere y siempre le está recordando sus buenas cualidades."
+              }
+            ]
+          },
+          {
+            number: "14",
+            textEs: "¿Qué nos enseña 1 Samuel 16:7 sobre el punto de vista de Jehová? (Vea también el recuadro \"¿Por qué valora Jehová tanto a sus siervos?\").",
+            textLSM: "",
+            paragraphs: [14],
+            section: "QUÉ PUEDES HACER PARA VERTE COMO JEHOVÁ TE VE",
+            readText: "LEE 1 Samuel 16:7",
+            answer: [
+              "El punto de vista de Jehová es diferente al de las personas del mundo.",
+              "Él no mide lo que vales según tu apariencia física, tu posición social o tu nivel de estudios.",
+              "Al pensar en lo que vales, fíjate en las mismas cosas que Jehová.",
+              "Lee en la Biblia relatos de personas que tuvieron baja autoestima y presta atención a cómo Jehová mostró que los valoraba."
+            ],
+            flashcards: [
+              {
+                question: "¿En qué NO se fija Jehová para medir lo que vales?",
+                answer: "En tu apariencia física, tu posición social o tu nivel de estudios."
+              },
+              {
+                question: "¿Qué ejemplos bíblicos de personas con baja autoestima menciona el artículo?",
+                answer: "Elías, Noemí y Ana."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Samuel 16:7",
+                purpose: "Jehová mira el corazón",
+                text: "El hombre ve lo que aparece ante sus ojos, pero Jehová ve lo que hay en el corazón."
+              },
+              {
+                reference: "Isaías 55:8, 9",
+                purpose: "Los pensamientos de Jehová son superiores",
+                text: "Porque mis pensamientos no son los pensamientos de ustedes, ni sus caminos son mis caminos. Porque, así como los cielos son más altos que la tierra, mis caminos son más altos que los caminos de ustedes."
+              }
+            ]
+          },
+          {
+            number: "15",
+            textEs: "¿Por qué le dijo Jehová a Daniel \"Tú eres muy valioso\"? (Daniel 9:23).",
+            textLSM: "",
+            paragraphs: [15],
+            readText: "LEE Daniel 9:23",
+            answer: [
+              "Daniel tenía cerca de 100 años cuando se sintió 'muy agotado' y desanimado.",
+              "Jehová le envió al ángel Gabriel para informarle que sus oraciones habían sido escuchadas.",
+              "Jehová lo estimaba por sus muchas cualidades, como su amor por la justicia y su fidelidad.",
+              "Al igual que con Daniel, Jehová escucha tus oraciones y te valora porque amas lo correcto y le sirves fielmente."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué edad tenía Daniel cuando recibió el mensaje de Gabriel?",
+                answer: "Cerca de 100 años."
+              },
+              {
+                question: "¿Por qué cualidades valoraba Jehová a Daniel?",
+                answer: "Por su amor por la justicia y su fidelidad."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Daniel 9:23",
+                purpose: "El mensaje de Gabriel a Daniel",
+                text: "Al comienzo de tus súplicas, se dio una orden, y he venido a informarte, porque tú eres muy valioso. Así que presta atención al mensaje y entiende la visión."
+              },
+              {
+                reference: "Daniel 9:20, 21",
+                purpose: "Daniel estaba muy agotado",
+                text: "Todavía estaba hablando y orando, confesando mi pecado y el pecado de mi pueblo Israel, cuando Gabriel, a quien había visto antes en la visión, se me acercó volando."
+              },
+              {
+                reference: "Ezequiel 14:14",
+                purpose: "Daniel era un hombre justo",
+                text: "Aunque estuvieran en medio de ella estos tres hombres —Noé, Daniel y Job—, solo ellos se salvarían a sí mismos por su justicia."
+              },
+              {
+                reference: "Hebreos 6:10",
+                purpose: "Jehová no olvida nuestra fidelidad",
+                text: "Porque Dios no es injusto para olvidarse de la obra de ustedes y del amor que le han demostrado a su nombre mediante el servicio que han dado a los santos."
+              }
+            ]
+          },
+          {
+            number: "16",
+            textEs: "¿Qué te puede ayudar a ver a Jehová como un padre que te quiere?",
+            textLSM: "",
+            paragraphs: [16],
+            answer: [
+              "Trata de ver a Jehová como un padre que te quiere.",
+              "Él no se dedica a buscar defectos en ti, sino que desea ayudarte.",
+              "Eliana, tras soportar años de maltrato verbal, se imagina que Jehová la lleva en sus brazos y le da su cariño y protección.",
+              "Lauren se recuerda: 'Si Jehová me atrajo a él con las cuerdas del amor e incluso me ha utilizado para enseñar a otros, eso sin duda quiere decir que me considera útil y valiosa'."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué hace Eliana cuando le invaden sentimientos de inutilidad?",
+                answer: "Trata de imaginarse que Jehová la lleva en sus brazos y le da su cariño y protección."
+              },
+              {
+                question: "¿Qué razonamiento usa Lauren para sentirse valiosa?",
+                answer: "'Si Jehová me atrajo a él con las cuerdas del amor e incluso me ha utilizado para enseñar a otros, eso quiere decir que me considera útil y valiosa'."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 130:3",
+                purpose: "Jehová no lleva cuenta de nuestros errores",
+                text: "Si tú, oh Jah, tomaras en cuenta los errores, ¿quién podría mantenerse en pie, oh Jehová?"
+              },
+              {
+                reference: "Mateo 7:11",
+                purpose: "Jehová da cosas buenas a sus hijos",
+                text: "Entonces, si ustedes, aunque son malos, saben dar buenos regalos a sus hijos, ¡con cuánta más razón el Padre que está en los cielos dará cosas buenas a los que le pidan!"
+              },
+              {
+                reference: "Lucas 12:6, 7",
+                purpose: "Jehová se preocupa por nosotros",
+                text: "¿No se venden cinco gorriones por dos monedas de poco valor? Sin embargo, Dios no se olvida de ninguno de ellos. Ustedes valen más que muchos gorriones."
+              },
+              {
+                reference: "Salmo 28:9",
+                purpose: "Jehová lleva a su pueblo",
+                text: "Salva a tu pueblo y bendice tu herencia. Pastoréalos y cárgalos para siempre."
+              },
+              {
+                reference: "Oseas 11:4",
+                purpose: "Jehová nos atrae con cuerdas de amor",
+                text: "Los fui guiando con las cuerdas del amor humano, con las sogas del cariño. Les fui como los que levantan un yugo de sus quijadas, y me incliné hacia ellos para darles de comer."
+              }
+            ]
+          },
+          {
+            number: "17",
+            textEs: "¿Qué te puede convencer de que cuentas con la aprobación de Jehová? (Salmo 5:12; vea también la imagen).",
+            textLSM: "",
+            paragraphs: [17],
+            readText: "LEE Salmo 5:12",
+            image: "",
+            imageCaption: "Saber que contamos con la aprobación de Jehová nos ayuda a luchar contra la baja autoestima.",
+            answer: [
+              "David dijo que la aprobación de Jehová es como 'un gran escudo' que protege a los justos.",
+              "Estar convencido de que tienes el favor y el apoyo de Dios te protegerá cuando te asalten las dudas sobre tu valor como persona.",
+              "En su Palabra, Jehová te confirma su amor.",
+              "Él utiliza a los ancianos, a los amigos y a otros hermanos para recordarte lo valioso que eres."
+            ],
+            flashcards: [
+              {
+                question: "¿Con qué compara David la aprobación de Jehová en Salmo 5:12?",
+                answer: "Con 'un gran escudo' que protege a los justos."
+              },
+              {
+                question: "¿Cómo usa Jehová a otras personas para ayudarnos con la autoestima?",
+                answer: "Utiliza a los ancianos, a los amigos y a otros hermanos para recordarnos lo valiosos que somos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 5:12",
+                purpose: "Jehová bendice al justo",
+                text: "Porque tú bendices al justo, oh Jehová; con tu favor lo rodeas como con un gran escudo."
+              }
+            ]
+          },
+          {
+            number: "18",
+            textEs: "¿Por qué debes aceptar las palabras de ánimo que te dan?",
+            textLSM: "",
+            paragraphs: [18],
+            answer: [
+              "Si las personas que te conocen y te quieren te dicen cosas positivas, no las rechaces pensando que no son ciertas.",
+              "Jehová puede estar usando a esas personas para confirmarte que cuentas con su aprobación.",
+              "Eliana dice: 'Poco a poco estoy aprendiendo a creerme las palabras de ánimo que me dan, porque sé que Jehová quiere que las acepte'.",
+              "Los ancianos la han ayudado con mucho cariño, y ahora es precursora y colabora como voluntaria a distancia para Betel."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué puede estar haciendo Jehová cuando otras personas nos dicen cosas positivas?",
+                answer: "Puede estar usando a esas personas para confirmarnos que contamos con su aprobación."
+              },
+              {
+                question: "¿Qué privilegios tiene ahora Eliana gracias a aceptar el ánimo de los demás?",
+                answer: "Es precursora y colabora como voluntaria a distancia para Betel."
+              }
+            ]
+          },
+          {
+            number: "19",
+            textEs: "¿Por qué puedes tener la seguridad de que eres de gran valor para Jehová?",
+            textLSM: "",
+            paragraphs: [19],
+            answer: [
+              "Jesús nos enseñó de manera muy tierna lo mucho que le importamos a nuestro Padre celestial.",
+              "Puedes tener la seguridad de que eres de gran valor para Jehová.",
+              "¡Nunca lo olvides!",
+              "Haz todo lo posible por ayudar a otros a ver lo valiosos que son a los ojos de Dios."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué nos enseñó Jesús sobre cuánto le importamos a Jehová?",
+                answer: "Nos enseñó de manera muy tierna lo mucho que le importamos a nuestro Padre celestial."
+              },
+              {
+                question: "¿Qué debemos hacer además de convencernos de nuestro propio valor?",
+                answer: "Hacer todo lo posible por ayudar a otros a ver lo valiosos que son a los ojos de Dios."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Lucas 12:24",
+                purpose: "Jehová cuida de nosotros",
+                text: "Fíjense bien en los cuervos: no siembran ni cosechan, y no tienen almacén ni granero; sin embargo, Dios les da de comer. ¿No valen ustedes mucho más que los pájaros?"
               }
             ]
           }
         ],
         paragraphs: [
-          { number: 1, content: "LA ORACIÓN es un regalo extraordinario. Pensemos en lo siguiente: Jehová ha delegado ciertas tareas en los ángeles y le ha confiado a su Hijo grandes responsabilidades (Sal. 91:11; Mat. 28:18). Sin embargo, Jehová es \"el que escucha las oraciones\"; esa es una tarea que se ha reservado solo para él (Sal. 65:2). Él quiere escuchar personalmente nuestras oraciones." },
-          { number: 2, content: "Podemos contarle a Jehová todo lo que nos preocupa, pero además debemos orar por otros. Eso es lo que hizo el apóstol Pablo. Por ejemplo, les dijo a todos los cristianos de la congregación de Éfeso: \"Sigo mencionándolos en mis oraciones\" (Efes. 1:16). Pero también oraba por algunos en particular. Le escribió a Timoteo: \"Le estoy agradecido a Dios [...] y siempre me acuerdo de ti en los ruegos que hago día y noche\" (2 Tim. 1:3). Pablo tenía muchas preocupaciones propias por las que orar; aun así, sacó tiempo para orar por otras personas (2 Cor. 11:23; 12:7, 8)." },
-          { number: 3, content: "Puede que a veces se nos olvide orar por otros. ¿Por qué? Una hermana llamada Sabrina explica: \"La vida en este sistema es un no parar. Podemos centrarnos tanto en nuestros problemas que solo oremos por lo que necesitamos nosotros\". Si nos damos cuenta de que eso nos está pasando, este artículo nos ayudará muchísimo. Por un lado, analizaremos por qué es importante que oremos por los demás. Y, por otro, veremos algunas sugerencias sobre cómo hacerlo." },
-          { number: 4, content: "Orar por otros \"tiene un efecto poderoso\" (lee Santiago 5:16). ¿Pero de verdad podemos influir en lo que les pase a otros al orar por ellos? Pues sí. Jesús, que sabía que el apóstol Pedro pronto negaría conocerlo, le dijo: \"He rogado por ti para que tu fe no decaiga\" (Luc. 22:32). Pablo también era consciente del poder de la oración. Por eso, cuando de manera injusta fue puesto bajo arresto domiciliario en Roma, le escribió a Filemón: \"Espero ser devuelto a ustedes gracias a sus oraciones\" (Filem. 22). Y así fue: en poco tiempo fue liberado y pudo retomar la predicación." },
-          { number: 5, content: "Claro está, eso no significa que con nuestras oraciones podamos obligar a Jehová a actuar. Ahora bien, él toma en cuenta lo que nos preocupa y a veces decide hacer lo que le pedimos. Saber esto nos motiva a orarle con intensidad cuando algo nos inquieta y luego confiar en que él hará lo que sea mejor (Sal. 37:5; mira 2 Corintios 1:11 y las notas de estudio)." },
-          { number: 6, content: "Orar por otros nos ayuda a cultivar \"tierna compasión\" (lee 1 Pedro 3:8). La persona compasiva se fija en el sufrimiento de los demás y desea hacer algo para ayudarlos (Mar. 1:40, 41). Un anciano llamado Michael dice: \"Cuando oro por las necesidades de los demás, me vuelvo más consciente de sus luchas, y eso hace que los quiera todavía más. Aunque ellos no lo sepan, me siento más cerca de ellos\". Richard, que también es anciano, explica otro beneficio: \"Cuando oramos por alguien, nos entran más ganas de ayudarlo\". Y añade: \"Al darle ayuda práctica a la persona por la que estamos orando, es como si estuviéramos contribuyendo a contestar nuestra propia oración\"." },
-          { number: 7, content: "Orar por otros nos ayuda a ver nuestros problemas desde la perspectiva correcta (lee Filipenses 2:3, 4). Como vivimos en un mundo que está controlado por el Diablo, todos afrontamos dificultades (1 Juan 5:19; Apoc. 12:12). Tener la costumbre de orar por los demás nos recuerda que \"toda la hermandad en el mundo está pasando por los mismos sufrimientos\" (1 Ped. 5:9). Una precursora llamada Katherine dice: \"Orar por los demás me recuerda que no soy la única que está pasando por problemas. Eso evita que me centre demasiado en mí misma\"." },
-          { number: 8, content: "¿Por quiénes podemos orar? Por diferentes grupos. Por ejemplo, podemos orar por los que tienen problemas de salud, por los jóvenes que se enfrentan a burlas y presiones en la escuela o por quienes se van haciendo mayores. Muchos hermanos afrontan oposición, unas veces de su propia familia y otras de los gobiernos (Mat. 10:18, 36; Hech. 12:5). Algunos han tenido que dejar sus casas debido a la inestabilidad política y otros sufren por culpa de los desastres naturales. Quizás no conozcamos en persona a esos hermanos. Pero, cuando oramos por ellos, demostramos que obedecemos el mandato de Jesús de amarnos unos a otros (Juan 13:34)." },
-          { number: 9, content: "También podemos orar por los hermanos que tienen responsabilidades dentro de la organización de Jehová: el Cuerpo Gobernante y sus ayudantes, los Comités de Sucursal, los encargados de los departamentos de las sucursales, los superintendentes de circuito, los ancianos de congregación y los siervos ministeriales. Muchos de ellos tienen que lidiar con sus propias preocupaciones a la vez que se desgastan por nosotros (2 Cor. 12:15). Por ejemplo, Mark, que es superintendente de circuito, explica: \"Una de las cosas más difíciles para mí es estar lejos de mis padres. Ya son mayores y están enfermos. Sé que mi hermana y su esposo los cuidan con cariño, pero me duele no poder hacer más por ellos\". Aunque no estemos al tanto de todas las inquietudes que tienen estos hermanos, es bueno que oremos por ellos (1 Tes. 5:12, 13). También podemos orar por sus esposas, que los apoyan lealmente para que puedan seguir trabajando duro por los hermanos." },
-          { number: 10, content: "Como hemos visto, muchas veces oramos por grandes grupos de hermanos. Sin pensar en alguien en particular, tal vez le pidamos a Jehová que ayude a los hermanos que están en la cárcel o que consuele a los que han perdido a un ser querido. Un anciano llamado Donald dice: \"Hay tantos hermanos y hermanas que están pasando por dificultades que a veces hacemos una oración 'paraguas' para no dejarnos a nadie y que todos estén cubiertos\"." },
-          { number: 11, content: "¿Le gustan a Jehová esas oraciones? ¡Por supuesto que sí! A fin de cuentas, no conocemos las necesidades concretas de todos y cada uno de sus siervos. Así que está bien que hagamos peticiones generales que abarquen a muchos hermanos (Juan 17:20; Efes. 6:18). Esas oraciones demuestran que le tenemos \"amor a toda la hermandad\" (1 Ped. 2:17)." },
-          { number: 12, content: "Seamos observadores. Además de hacer oraciones generales, es bueno que oremos por hermanos específicos. ¿Hay alguien en la congregación que esté luchando con una enfermedad crónica? ¿Hay algún joven que esté desanimado por las presiones de sus compañeros de clase? ¿Hay algún padre o madre que esté criando solo a un hijo \"de acuerdo con la disciplina y los consejos de Jehová\"? (Efes. 6:4). Si somos observadores, tendremos más empatía, y eso nos motivará a orar por los hermanos (Rom. 12:15)." },
-          { number: 13, content: "Mencionémoslos por nombre. Eso es algo que podemos hacer incluso en el caso de hermanos que no conocemos en persona. Pensemos, por ejemplo, en los hermanos que están encarcelados en Crimea, Eritrea, Rusia y Singapur. En jw.org podemos encontrar sus nombres. Un superintendente de circuito que se llama Brian explica: \"Cuando escribo el nombre de un hermano que está encarcelado y luego lo digo en voz alta, me resulta más fácil recordarlo y mencionarlo en mis oraciones\"." },
-          { number: 14, content: "Hagamos peticiones específicas. Michael, mencionado en el párrafo 6, nos da esta buena sugerencia: \"Cuando leo en jw.org las experiencias de los hermanos que están en la cárcel, trato de imaginar cómo me sentiría yo en su situación. Sé que estaría preocupado por mi esposa y querría saber que está bien cuidada. Eso me ayuda a hacer peticiones específicas cuando oro por hermanos casados que están presos\" (Heb. 13:3, nota)." },
-          { number: 15, content: "Cuando pensamos en el día a día de nuestros hermanos que están en prisión, se nos ocurren más detalles que incluir en nuestras oraciones. Por ejemplo, podemos pedirle a Jehová que los guardias de prisión sean amables con ellos o que quienes estén en puestos de autoridad les permitan adorar a Dios (1 Tim. 2:1, 2). También podemos orar para que el buen ejemplo de estos fieles hermanos anime a la congregación de la zona y motive a quienes no son Testigos a escuchar nuestro mensaje (1 Ped. 2:12). Claro, todas estas sugerencias (ser observadores, mencionar a los hermanos por nombre y hacer peticiones específicas) las podemos aplicar al pedir por cualquier hermano, y no solo por quienes están en prisión. Así demostraremos que \"abunda nuestro amor\" (1 Tes. 3:12)." },
-          { number: 16, content: "Como hemos visto, nuestras oraciones tienen mucho poder, pues pueden influir en lo que les pase a otros. Sin embargo, debemos ser equilibrados. Cuando oramos, no le estamos contando a Jehová algo que él no sepa. Tampoco deberíamos darle consejos sobre cómo manejar cierta situación. Él sabe lo que sus siervos necesitan incluso antes de que ellos o nosotros nos demos cuenta (lee Mateo 6:8). Entonces, ¿por qué orar por otros? En este artículo hemos visto varias razones. Pero hay otra más: eso es lo que hacen las personas que se interesan por los demás. Oramos por ellos porque los queremos. Y Jehová se siente muy feliz al ver que imitamos su amor." },
-          { number: 17, content: "Incluso si nuestras oraciones no parecen influir en lo que les pase a otros, lo cierto es que demuestran que amamos a nuestros hermanos, y eso no le pasa desapercibido a Jehová. Pensemos en un padre que tiene un niño y una niña. El niño está enfermo en cama, y la niña le dice con insistencia a su padre: \"Ayuda a mi hermanito, por favor. Es que está muy enfermo\". Su padre tiene la situación bajo control, ama a su hijo y lo está cuidando muy bien, pero aun así se siente feliz al ver que ella quiere tanto a su hermano que le pide a su padre que haga algo por él." },
-          { number: 18, content: "De manera parecida, Jehová quiere que nos interesemos por los demás y oremos por ellos. Así demostraremos que no solo nos preocupamos por nosotros mismos, sino también por los hermanos, y Jehová tomará nota de ello (2 Tes. 1:3; Heb. 6:10). Además, como vimos, en algunas ocasiones nuestras oraciones incluso pueden cambiar el rumbo de una situación. ¡Que nunca se nos olvide, entonces, incluir a los hermanos en nuestras oraciones!" }
+          {
+            number: 1,
+            content: "JEHOVÁ considera muy valiosos a todos sus siervos. Aun así, algunos de ellos tienen baja autoestima. ¿Por qué? Tal vez sea porque alguien los ha tratado con desprecio y les ha hecho sentir que no valen nada. Si ese es tu caso, ¿qué te ayudará a convencerte de que eres una persona muy valiosa para Jehová?"
+          },
+          {
+            number: 2,
+            content: "Algo que puedes hacer es analizar relatos bíblicos que muestran cómo Jehová quiere que nos tratemos unos a otros. Su Hijo, Jesús, trató a las personas con dignidad y respeto. Al hacer esto, demostró que tanto él como su Padre consideran de gran valor a las personas que son humildes y se sienten poco importantes (Juan 5:19; Heb. 1:3). En este artículo, analizaremos dos ideas principales: 1) cómo ayudó Jesús a las personas a ver que son valiosas para Jehová y 2) qué puedes hacer para convencerte de que tú también lo eres (Ageo 2:7)."
+          },
+          {
+            number: 3,
+            content: "Durante la tercera gira de predicación de Jesús por Galilea, vez tras vez muchas personas acudieron a él para que les enseñara y las curara. Jesús vio que \"estaban maltratadas y abandonadas como ovejas sin pastor\" (Mat. 9:36). Los líderes religiosos las consideraban demasiado ignorantes e insignificantes, y hasta las llamaban \"gente maldita\" (Juan 7:47-49). Pero Jesús las trató con dignidad, pues dedicó tiempo a enseñarles y curarlas (Mat. 9:35). Además, para ayudar a más personas, capacitó a sus apóstoles para predicar y les dio autoridad para curar todo tipo de enfermedades (Mat. 10:5-8)."
+          },
+          {
+            number: 4,
+            content: "Al tratar con bondad y respeto a las personas que el mundo suele despreciar, Jesús mostró que tanto él como su Padre las consideran valiosas. Por eso, si tú sirves a Jehová pero sientes que no vales mucho, recuerda cómo Jesús trató a las personas que eran humildes y querían aprender de él. Eso te ayudará a ver cuánto le importas a Jehová."
+          },
+          {
+            number: 5,
+            content: "Jesús no solo enseñó y ayudó a grupos en general, sino también a personas individuales. Por ejemplo, mientras predicaba en Galilea, se encontró con una mujer que llevaba 12 años con hemorragias (Mar. 5:25). Como este problema médico la hacía ceremonialmente impura, cualquiera que la tocara se volvería impuro, así que seguramente casi nunca pasaba tiempo con otras personas. Además, no podía adorar a Jehová junto con el resto de la gente en la sinagoga ni en las fiestas (Lev. 15:19, 25). ¿Podemos imaginar lo mucho que sufría no solo física, sino también emocionalmente? (Mar. 5:26)."
+          },
+          {
+            number: 6,
+            content: "Esta pobre mujer quería que Jesús la curara, pero no se lo pidió directamente. ¿Por qué no? Quizás es que se sentía muy avergonzada por su enfermedad. O tal vez le daba miedo que Jesús la regañara por haberse metido entre la gente estando impura. De modo que simplemente le tocó la ropa, pues tenía una fe muy fuerte en que así se curaría (Mar. 5:27, 28). Y tenía razón: ¡su enfermedad desapareció! Entonces Jesús preguntó quién lo había tocado, y ella lo confesó todo. ¿Cómo reaccionó él?"
+          },
+          {
+            number: 7,
+            content: "Jesús se dio cuenta de que la mujer estaba \"temblando de miedo\", así que le habló con mucho cariño, consideración y respeto (Mar. 5:33). Incluso la llamó \"hija\", lo cual no era una simple fórmula de cortesía, sino una muestra de cercanía y ternura (lee Marcos 5:34). La nota de estudio para esta palabra explica: \"Esta es la única ocasión de la que hay registro en la que Jesús se dirige a una mujer llamándola 'hija'. Tal vez lo hizo porque la situación era delicada y ella estaba 'temblando'\". ¡Qué alivio para ella! ¿Te imaginas que Jesús no le hubiera hablado con tanta bondad? Ella se habría curado de su enfermedad, pero quizás se habría quedado con unos enormes sentimientos de culpa. Por eso, en vez de solo devolverle la salud, Jesús también la ayudó a ver esta realidad: que su Padre en el cielo la quería muchísimo."
+          },
+          {
+            number: 8,
+            content: "Hoy día, algunos siervos de Dios también padecen problemas de salud que los pueden dejar deprimidos y sin autoestima. Veamos el caso de una precursora regular de Brasil llamada Renata. Debido a un defecto genético, nació sin piernas y sin su mano izquierda. Ella cuenta: \"En la escuela todo el tiempo me hacían bullying y se burlaban de mí poniéndome apodos crueles. Incluso mis propios familiares a veces me trataban con prejuicios\"."
+          },
+          {
+            number: 9,
+            content: "¿Qué ayuda recibió Renata? Cuando se hizo testigo de Jehová, los hermanos de su congregación la animaron con cariño y la ayudaron a verse a sí misma como la ve Jehová. Ella dice: \"Si tuviera que escribir una lista con los nombres de todos los que me han ayudado, ¡no terminaría nunca! Le doy las gracias a Dios de todo corazón por regalarme esta maravillosa familia espiritual\". Gracias a todo lo que hicieron por ella, Renata entendió que a los ojos de Jehová es muy valiosa."
+          },
+          {
+            number: 10,
+            content: "Hablemos de otra persona a la que Jesús ayudó de manera individual: María Magdalena. Ella estuvo poseída por siete demonios (Luc. 8:2). Probablemente ellos la hacían comportarse de formas extrañas, por lo que de seguro el resto de la gente la evitaba. En ese periodo tan oscuro de su vida, debió de sentirse marginada, indefensa y asustada. Parece que Jesús la liberó de esos demonios, y ella empezó a seguirlo con fe. De este modo, la ayudó a ver el inmenso valor que tenía a los ojos de Dios. Pero esto no fue lo único que hizo por ella."
+          },
+          {
+            number: 11,
+            content: "Jesús invitó a María Magdalena a acompañarlo en sus giras de predicación. Gracias a eso, tuvo el privilegio de escuchar lo que él iba enseñando. Además, Jesús se le apareció el día que resucitó; de hecho, ella fue una de las primeras personas con las que habló. Incluso le encargó que fuera a decirles a los apóstoles que había resucitado. De estas maneras, le dejó claro lo mucho que Jehová la apreciaba (Juan 20:11-18)."
+          },
+          {
+            number: 12,
+            content: "Al igual que María Magdalena, muchas personas hoy sufren el rechazo de los demás. Una hermana de España llamada Lidia cuenta que, cuando su madre estaba embarazada de ella, estuvo planteándose abortar. Aunque al final no lo hizo, Lidia recuerda que desde muy pequeñita su madre nunca se ocupaba de ella y le decía cosas muy crueles. Y añade: \"Lo único que yo quería en la vida era que los demás me aceptaran y me quisieran, pero me daba miedo no conseguirlo porque mi madre me había convencido de que era una mala persona y no lo merecía\"."
+          },
+          {
+            number: 13,
+            content: "Pero las cosas cambiaron cuando Lidia conoció la verdad. La oración, la lectura de la Biblia y el cariño de los hermanos la ayudaron a comprender el gran valor que tiene a los ojos de Jehová. Ella cuenta: \"Mi esposo me dice muy a menudo cuánto me quiere y siempre me está recordando mis buenas cualidades. También tengo amigos muy queridos que han hecho lo mismo\". ¿Se te viene a la mente alguien que necesite ayuda para convencerse de lo mucho que vale para Jehová? ¿Qué puedes hacer por él?"
+          },
+          {
+            number: 14,
+            content: "Recuerda que el punto de vista de Jehová es diferente al de las personas del mundo (lee 1 Samuel 16:7). A diferencia de la gente, él no mide lo que vales según tu apariencia física, tu posición social o tu nivel de estudios (Is. 55:8, 9). Así que, al pensar en lo que vales, fíjate en las mismas cosas que Jehová. ¿Qué te ayudará? Lee en la Biblia relatos de personas que a veces tuvieron baja autoestima, como Elías, Noemí y Ana, y presta atención a cómo Jehová mostró que los valoraba. También puedes poner por escrito momentos de tu vida en los que hayas visto que Jehová te ama y aprecia profundamente. Otra sugerencia es buscar información sobre la autoestima en nuestras publicaciones."
+          },
+          {
+            number: 15,
+            content: "No olvides que Jehová te considera muy valioso por tu fidelidad. Cuando el profeta Daniel tenía cerca de 100 años, hubo una ocasión en la que se sintió \"muy agotado\" y desanimado (Dan. 9:20, 21). ¿Qué hizo Jehová para animarlo? Le envió al ángel Gabriel para que le informara que sus oraciones habían sido escuchadas y le dijera: \"Tú eres muy valioso\" (lee Daniel 9:23). ¿Por qué lo estimaba tanto Jehová? Por sus muchas cualidades, como su amor por la justicia y su fidelidad (Ezeq. 14:14). Dios hizo que este relato se escribiera en su Palabra para consolarnos (Rom. 15:4). Al igual que hizo con Daniel, Jehová escucha tus oraciones y te valora porque amas lo correcto y le sirves fielmente (Miq. 6:8; Heb. 6:10)."
+          },
+          {
+            number: 16,
+            content: "Trata de ver a Jehová como un padre que te quiere. Él no se dedica a buscar defectos en ti, sino que desea ayudarte (Sal. 130:3; Mat. 7:11; Luc. 12:6, 7). Meditar en esto ha hecho que muchas personas que están luchando contra la baja autoestima se sientan mejor. Por ejemplo, veamos el caso de Eliana, una hermana de España que, tras soportar años de maltrato verbal por parte de su esposo, llegó a sentir que no valía para nada y que nadie la quería. Ella explica: \"Siempre que me invaden los sentimientos de inutilidad, trato de imaginarme que Jehová me lleva en sus brazos y me da su cariño y protección\" (Sal. 28:9). Y Lauren, una hermana de Sudáfrica, se recuerda a sí misma: \"Si Jehová me atrajo a él con las cuerdas del amor, me ha ayudado a mantenerme a su lado todos estos años e incluso me ha utilizado para enseñar a otros, eso sin duda quiere decir que me considera útil y valiosa\" (Os. 11:4)."
+          },
+          {
+            number: 17,
+            content: "Convéncete de que cuentas con la aprobación de Jehová (lee Salmo 5:12). David dijo que la aprobación de Jehová es como \"un gran escudo\" que protege a los justos. Estar convencido de que tienes el favor y el apoyo de Dios te protegerá cuando te asalten las dudas sobre tu valor como persona. ¿Y cómo puedes saber si Jehová está contento contigo? Como hemos visto, en su Palabra te confirma su amor. Además, utiliza a los ancianos, a los amigos y a otros hermanos para recordarte lo valioso que eres para él. Ahora bien, ¿cómo debes reaccionar ante las palabras de ánimo?"
+          },
+          {
+            number: 18,
+            content: "Si las personas que te conocen y te quieren te dicen cosas positivas sobre ti, no las rechaces pensando que no son ciertas. Ten presente que Jehová puede estar usando a esas personas para confirmarte que cuentas con su aprobación. Eliana, mencionada antes, dice: \"Aunque me cuesta mucho, poco a poco estoy aprendiendo a creerme las palabras de ánimo que me dan, porque sé que Jehová quiere que las acepte\". Los ancianos también la han ayudado con mucho cariño, y ahora es precursora y colabora como voluntaria a distancia para Betel."
+          },
+          {
+            number: 19,
+            content: "Jesús nos enseñó de manera muy tierna lo mucho que le importamos a nuestro Padre celestial (Luc. 12:24). Así que puedes tener la seguridad de que eres de gran valor para Jehová. ¡Nunca lo olvides! Además, haz todo lo posible por ayudar a otros a ver lo valiosos que son a los ojos de Dios."
+          }
         ],
         reviewQuestions: [
           {
-            question: "¿En qué sentido tienen \"un efecto poderoso\" nuestras oraciones?",
+            question: "¿Cómo ayudó Jesús a las personas a ver que eran valiosas a los ojos de Dios?",
             answer: [
-              "Pueden influir en lo que les pase a otros.",
-              "Jesús rogó por Pedro para que su fe no decayera.",
-              "Pablo fue liberado gracias a las oraciones de Filemón.",
-              "Jehová toma en cuenta lo que nos preocupa y a veces actúa."
+              "Las trató con dignidad y respeto, dedicando tiempo a enseñarles y curarlas.",
+              "Capacitó a sus apóstoles para predicar y curar, ayudando así a más personas.",
+              "Mostró bondad especial a individuos como la mujer con hemorragias y María Magdalena.",
+              "Les dejó claro que tanto él como su Padre las consideran valiosas."
             ]
           },
           {
-            question: "¿Por qué debemos hacer oraciones por grupos de hermanos?",
+            question: "¿Cómo ayudó Jesús a la mujer que sufría hemorragias?",
             answer: [
-              "No conocemos las necesidades concretas de todos.",
-              "Las oraciones generales demuestran «amor a toda la hermandad».",
-              "Son como oraciones «paraguas» para no dejarnos a nadie."
+              "La curó cuando ella le tocó la ropa con fe.",
+              "Le habló con mucho cariño, consideración y respeto.",
+              "La llamó 'hija', mostrando cercanía y ternura.",
+              "La ayudó a ver que su Padre en el cielo la quería muchísimo."
             ]
           },
           {
-            question: "¿Qué podemos hacer cuando oramos por hermanos concretos?",
+            question: "¿Qué podemos hacer para vernos como Jehová nos ve?",
             answer: [
-              "Ser observadores para tener más empatía.",
-              "Mencionarlos por nombre, incluso si no los conocemos.",
-              "Hacer peticiones específicas imaginando cómo nos sentiríamos en su situación."
+              "Recordar que Jehová no mide lo que valemos según nuestra apariencia física, posición social o nivel de estudios.",
+              "Leer relatos bíblicos de personas con baja autoestima y cómo Jehová mostró que los valoraba.",
+              "Ver a Jehová como un padre que nos quiere y desea ayudarnos.",
+              "Convencernos de que contamos con la aprobación de Jehová y aceptar las palabras de ánimo de los demás."
             ]
           }
         ],
-        finalSong: "Canción 101: Sirvamos a Dios en unidad"
+        finalSong: "Canción 139: ¿Te ves en el nuevo mundo?"
       }
-      // Agrega más artículos si lo necesitas...
+    ]
+  },
+
+  // ========================================
+  // DICIEMBRE 2025 - ARTÍCULOS DE ESTUDIO
+  // ========================================
+
+  "2025-12": {
+    articles: [
+      // Artículo 48: "Cómo nos ayuda el libro de Job cuando estamos sufriendo" (2-8 Feb)
+      {
+        metadata: {
+          articleNumber: 48,
+          week: "2-8 Feb",
+          month: "Diciembre",
+          year: 2025
+        },
+        song: "Canción 129: Servimos con aguante",
+        title: "Cómo nos ayuda el libro de Job cuando estamos sufriendo",
+        biblicalText: "\"Está claro que Dios no actúa con maldad\" (JOB 34:12).",
+        theme: "Qué nos enseña el libro de Job sobre por qué permite Dios el sufrimiento y qué nos ayudará a aguantarlo.",
+        questions: [
+          {
+            number: "1, 2",
+            textEs: "¿Cuáles son algunas razones para leer el libro de Job?",
+            textLSM: "",
+            paragraphs: [1, 2],
+            answer: [
+              "Aunque se escribió hace unos 3.500 años, se lo sigue considerando una joya de la literatura universal.",
+              "Muestra claramente la importante cuestión de la santificación del nombre de Jehová.",
+              "Nos ayuda a conocer mejor las hermosas cualidades de Dios, como el amor, la sabiduría, la justicia y el poder.",
+              "Se llama a Jehová 31 veces el 'Todopoderoso', más que en todos los demás libros de la Biblia juntos.",
+              "Explica por qué permite Dios el sufrimiento y responde otras grandes preguntas de la vida."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuántas veces se llama a Jehová 'el Todopoderoso' en el libro de Job?",
+                answer: "31 veces, más que en todos los demás libros de la Biblia juntos."
+              },
+              {
+                question: "¿Quién escribió el libro de Job y quién es su verdadero autor?",
+                answer: "Moisés fue quien lo escribió, pero su verdadero autor es Jehová (2 Tim. 3:16)."
+              },
+              {
+                question: "¿Cuál es la importante cuestión que muestra el libro de Job?",
+                answer: "La santificación del nombre de Jehová."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "2 Timoteo 3:16",
+                purpose: "Toda la Escritura es inspirada por Dios",
+                text: "Toda la Escritura es inspirada por Dios y es útil para enseñar, para disciplinar, para rectificar las cosas, para educar en la justicia."
+              }
+            ]
+          },
+          {
+            number: "3",
+            textEs: "¿Cuáles son algunos beneficios de estudiar el libro de Job?",
+            textLSM: "",
+            paragraphs: [3],
+            answer: [
+              "Leer el libro de Job es como subir a lo alto de una montaña.",
+              "Al llegar a la cima podemos ver mejor todo el panorama que nos rodea.",
+              "Podemos ver nuestros problemas desde una perspectiva más elevada: la de Jehová.",
+              "Nos ayuda cuando estamos sufriendo."
+            ],
+            flashcards: [
+              {
+                question: "¿Con qué compara el artículo la lectura del libro de Job?",
+                answer: "Con subir a lo alto de una montaña, lo que nos permite ver el panorama desde una perspectiva más elevada."
+              },
+              {
+                question: "¿Desde qué perspectiva podemos ver nuestros problemas al estudiar el libro de Job?",
+                answer: "Desde la perspectiva de Jehová, una perspectiva más elevada."
+              }
+            ]
+          },
+          {
+            number: "4",
+            textEs: "¿Qué diferencia había entre Job y algunos de los israelitas que estaban en Egipto?",
+            textLSM: "",
+            paragraphs: [4],
+            section: "DIOS PERMITE QUE JOB SUFRA",
+            answer: [
+              "Job vivió en la tierra de Uz durante el tiempo en que los israelitas eran esclavos en Egipto.",
+              "A diferencia de algunos israelitas que habían empezado a adorar ídolos en Egipto, Job sí sirvió fielmente a Jehová.",
+              "Dios dijo: 'No hay nadie como él en la tierra'.",
+              "Job tenía muchísimas riquezas y era el hombre más importante y respetado de todos los orientales.",
+              "Satanás estaba muy furioso al ver que este hombre tan prominente servía a Dios con integridad."
+            ],
+            flashcards: [
+              {
+                question: "¿Dónde vivió Job y en qué época?",
+                answer: "En la tierra de Uz, posiblemente al este de la Tierra Prometida y en el norte de Arabia, durante el tiempo en que los israelitas eran esclavos en Egipto."
+              },
+              {
+                question: "¿Qué dijo Jehová sobre Job?",
+                answer: "'No hay nadie como él en la tierra' (Job 1:8)."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 1:8",
+                purpose: "Jehová elogia a Job",
+                text: "Jehová le dijo a Satanás: '¿Te has fijado en mi siervo Job? No hay nadie como él en la tierra. Es un hombre intachable y recto que teme a Dios y huye del mal'."
+              },
+              {
+                reference: "Josué 24:14",
+                purpose: "Los israelitas habían adorado ídolos en Egipto",
+                text: "Ahora, teman a Jehová y sírvanlo con integridad y con fidelidad. Quiten los dioses a los que sirvieron sus antepasados al otro lado del Río y en Egipto, y sirvan a Jehová."
+              },
+              {
+                reference: "Ezequiel 20:8",
+                purpose: "Los israelitas adoraron ídolos",
+                text: "Pero ellos se rebelaron contra mí y no quisieron escucharme. Ninguno desechó las cosas detestables que atraían sus miradas, y no abandonaron los ídolos repugnantes de Egipto."
+              }
+            ]
+          },
+          {
+            number: "5",
+            textEs: "¿Por qué permitió Jehová que Job sufriera? (Job 1:20-22; 2:9, 10).",
+            textLSM: "",
+            paragraphs: [5],
+            readText: "LEE Job 1:20-22; 2:9, 10",
+            answer: [
+              "Satanás afirmó que Job le daría la espalda a Jehová si sufría.",
+              "Con esa acusación, hizo surgir muchas preguntas importantes.",
+              "Aunque Jehová amaba profundamente a Job, le permitió a Satanás intentar demostrar si tenía razón o no.",
+              "Los ataques crueles de Satanás fracasaron, pues Job se mantuvo leal a Jehová.",
+              "Con el tiempo, Jehová hizo que Job recuperara su salud, sus riquezas, su buena reputación y le dio 10 hijos más."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué afirmó Satanás sobre Job?",
+                answer: "Que Job le daría la espalda a Jehová si sufría."
+              },
+              {
+                question: "¿Cuántos años más vivió Job después de sus pruebas?",
+                answer: "Otros 140 años, y así pudo ver a cuatro generaciones de sus descendientes."
+              },
+              {
+                question: "¿Qué le devolvió Jehová a Job después de sus pruebas?",
+                answer: "Su salud, sus riquezas, su buena reputación y le dio 10 hijos más."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 1:20-22",
+                purpose: "Job se mantuvo fiel",
+                text: "Entonces Job se levantó, se rasgó la ropa y se rapó la cabeza. Luego se postró en el suelo y adoró, diciendo: 'Desnudo salí del vientre de mi madre y desnudo volveré. Jehová dio y Jehová quitó. Que el nombre de Jehová siga siendo bendecido'. En todo esto, Job no pecó ni acusó a Dios de haber hecho algo malo."
+              },
+              {
+                reference: "Job 2:9, 10",
+                purpose: "Job rechaza el mal consejo",
+                text: "Entonces su esposa le dijo: '¿Todavía te mantienes fiel? ¡Maldice a Dios y muérete!'. Pero él le contestó: 'Hablas como una mujer insensata. Si aceptamos las cosas buenas de Dios, ¿no deberíamos aceptar también las malas?'. En todo esto, Job no pecó con sus labios."
+              },
+              {
+                reference: "Job 42:10-13, 16",
+                purpose: "Jehová bendice a Job",
+                text: "Después de que Job oró por sus compañeros, Jehová lo liberó de su cautiverio y le devolvió el doble de todo lo que había tenido antes. Job vivió otros 140 años y vio a sus hijos y a sus nietos, hasta la cuarta generación."
+              }
+            ]
+          },
+          {
+            number: "6",
+            textEs: "¿Cómo podría haber ayudado la historia de Job a los israelitas? (Vea también la imagen).",
+            textLSM: "",
+            paragraphs: [6],
+            image: "",
+            imageCaption: "Los israelitas, que fueron esclavos en Egipto por muchos años, con el tiempo conocieron la historia de Job y seguramente sacaron lecciones prácticas.",
+            answer: [
+              "Los israelitas habían sufrido muchísimo en Egipto.",
+              "Josué y Caleb pasaron su juventud siendo esclavos y después tuvieron que estar 40 años vagando por el desierto.",
+              "La historia de Job les ayudó a entender quién es el principal causante del sufrimiento.",
+              "Pudieron comprender mejor por qué permite Dios el sufrimiento.",
+              "Aprendieron lo importantes que son para él la integridad y la fidelidad de los seres humanos."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué pudieron entender los israelitas gracias a la historia de Job?",
+                answer: "Quién es el principal causante del sufrimiento, por qué permite Dios el sufrimiento y lo importantes que son para él la integridad y la fidelidad."
+              },
+              {
+                question: "¿Qué sufrieron Josué y Caleb en su juventud?",
+                answer: "Pasaron su juventud siendo esclavos en Egipto y después tuvieron que estar 40 años vagando por el desierto por culpa de la desobediencia de otros."
+              }
+            ]
+          },
+          {
+            number: "7, 8",
+            textEs: "¿Cómo puede ayudar el libro de Job a quienes sufren? Cuente una experiencia.",
+            textLSM: "",
+            paragraphs: [7, 8],
+            answer: [
+              "Muchas personas pierden su fe en Dios porque no entienden por qué les ocurren cosas malas a las personas buenas.",
+              "Hazel, de Ruanda, pasó por el divorcio de sus padres, maltrato de su padrastro y fue violada en su adolescencia.",
+              "El libro de Job nos enseña que el causante del sufrimiento no es Dios, sino Satanás.",
+              "No debemos asumir que quienes sufren están cosechando lo que sembraron.",
+              "La Biblia explica que a todos nos puede llegar 'algún mal momento y algún suceso imprevisto' (Ecl. 9)."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué muchas personas pierden su fe en Dios?",
+                answer: "Porque no entienden por qué les ocurren cosas malas a las personas buenas."
+              },
+              {
+                question: "¿Qué enseña el libro de Job sobre quién causa el sufrimiento?",
+                answer: "Que el causante del sufrimiento no es Dios, sino Satanás."
+              },
+              {
+                question: "¿Qué admitió Job en Job 6:3, 26?",
+                answer: "Que en su empeño por defenderse había dicho cosas precipitadas."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Eclesiastés 9:11",
+                purpose: "A todos nos puede llegar algún suceso imprevisto",
+                text: "He visto algo más debajo del sol: que no siempre ganan los veloces la carrera ni los fuertes la batalla, ni siempre los sabios tienen pan ni los inteligentes tienen riquezas ni los conocedores tienen favor, porque el tiempo y los sucesos imprevistos los alcanzan a todos."
+              },
+              {
+                reference: "Job 6:3, 26",
+                purpose: "Job admite que habló precipitadamente",
+                text: "Pesaría más que la arena de los mares. Por eso mis palabras han sido impetuosas. ¿Es que piensan reprocharme mis palabras cuando el discurso de un desesperado se lo lleva el viento?"
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "¿Qué hizo Jehová cuando le respondió a Job?",
+            textLSM: "",
+            paragraphs: [11],
+            answer: [
+              "Detrás de las palabras de Job estaban su estrecha relación con Jehová y su total confianza en él.",
+              "Jehová le respondió desde una tempestad de viento.",
+              "No le dio una explicación detallada de por qué estaba sufriendo.",
+              "No le recriminó sus quejas y sus insistentes proclamaciones de inocencia.",
+              "Lo corrigió igual que un buen padre corrige a su hijo, y así le llegó al corazón.",
+              "Job reconoció humildemente lo limitado que era su conocimiento y se retractó de sus palabras irreflexivas."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo le respondió Jehová a Job?",
+                answer: "Desde una tempestad de viento, corrigiéndolo igual que un buen padre corrige a su hijo."
+              },
+              {
+                question: "¿Qué NO hizo Jehová cuando le respondió a Job?",
+                answer: "No le dio una explicación detallada de por qué estaba sufriendo ni le recriminó sus quejas."
+              },
+              {
+                question: "¿Cómo reaccionó Job a la corrección de Jehová?",
+                answer: "Reconoció humildemente lo limitado que era su conocimiento y se retractó de todas sus palabras irreflexivas."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 40:4, 5",
+                purpose: "Job reconoce su limitación",
+                text: "Mira, soy muy insignificante. ¿Qué puedo contestarte? Me pongo la mano en la boca. Hablé una vez, y no responderé; dos veces, y no añadiré nada más."
+              },
+              {
+                reference: "Job 42:1-6",
+                purpose: "Job se retracta",
+                text: "Entonces Job le respondió a Jehová: 'Sé que tú puedes hacer todas las cosas y que ningún plan tuyo puede ser frustrado. Por eso me retracto, y me arrepiento en polvo y ceniza'."
+              }
+            ]
+          },
+          {
+            number: "12",
+            textEs: "¿Qué posibles beneficios sacaron los israelitas del relato de Job?",
+            textLSM: "",
+            paragraphs: [12],
+            answer: [
+              "Moisés tuvo que aguantar muchas dificultades, decepciones y momentos de desánimo como líder de Israel.",
+              "A diferencia de los israelitas que se quejaron de Jehová, Moisés acudió a él para contarle lo que le preocupaba.",
+              "Moisés tuvo que mostrar aguante al recibir disciplina de Jehová.",
+              "En Cadés, Moisés 'habló precipitadamente con sus labios' y no le dio a Jehová la gloria que merecía.",
+              "Jehová no le permitió entrar en la Tierra Prometida, pero Moisés fue humilde y aceptó la corrección.",
+              "El relato de Job ayudó a las generaciones de israelitas a expresarle sus sentimientos a Jehová y a aceptar con humildad su disciplina."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué hizo Moisés diferente a los israelitas que se quejaban?",
+                answer: "Acudió a Jehová para contarle lo que le preocupaba, en vez de quejarse de él."
+              },
+              {
+                question: "¿Por qué Jehová no permitió que Moisés entrara en la Tierra Prometida?",
+                answer: "Porque 'habló precipitadamente con sus labios' y no le dio a Jehová la gloria que merecía."
+              },
+              {
+                question: "¿Qué lecciones podían aprender los israelitas del relato de Job?",
+                answer: "A expresarle sus sentimientos a Jehová, a no creerse más justos que Dios y a aceptar con humildad su disciplina."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 106:32, 33",
+                purpose: "Moisés habló precipitadamente",
+                text: "Junto a las aguas de Meribá provocaron su enojo, y a Moisés le fue mal por culpa de ellos. Porque amargaron su espíritu y él habló precipitadamente con sus labios."
+              },
+              {
+                reference: "Deuteronomio 32:50-52",
+                purpose: "Moisés no pudo entrar en la Tierra Prometida",
+                text: "Morirás en la montaña a la que subas y serás reunido con tu pueblo, así como tu hermano Aarón murió en el monte Hor. Porque ustedes dos me fueron infieles entre los israelitas, junto a las aguas de Meribá de Cadés."
+              },
+              {
+                reference: "Números 11:10-14",
+                purpose: "Moisés expresó sus sentimientos a Jehová",
+                text: "Moisés oyó llorar a la gente, familia por familia, cada uno a la entrada de su tienda. Jehová se enojó muchísimo, y Moisés también se disgustó. Entonces Moisés le dijo a Jehová: '¿Por qué le has causado este problema a tu siervo?'."
+              }
+            ]
+          },
+          {
+            number: "13",
+            textEs: "¿Cómo puede el relato de Job ayudarnos a aguantar? (Hebreos 10:36).",
+            textLSM: "",
+            paragraphs: [13],
+            readText: "LEE Hebreos 10:36",
+            answer: [
+              "Los cristianos también necesitamos aguante.",
+              "Una hermana estaba predicando por teléfono y llamó a Mario, quien estaba escribiendo una nota de suicidio.",
+              "Mario dijo: 'Creo en Dios, pero esta mañana sentí que me había abandonado'.",
+              "Hablaron sobre los sufrimientos de Job, y Mario decidió leer todo ese libro de la Biblia.",
+              "Mario aceptó un curso bíblico y le emocionó seguir aprendiendo sobre el Dios que le demostró su amor."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué estaba haciendo Mario antes de recibir la llamada de predicación?",
+                answer: "Estaba escribiendo una nota de suicidio porque sentía que Dios lo había abandonado."
+              },
+              {
+                question: "¿Qué decidió hacer Mario después de hablar sobre los sufrimientos de Job?",
+                answer: "Decidió leer todo el libro de Job en la Biblia y aceptó un curso bíblico."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Hebreos 10:36",
+                purpose: "Necesitamos aguante",
+                text: "Porque necesitan tener aguante para que, después de haber hecho la voluntad de Dios, reciban lo que se les ha prometido."
+              }
+            ]
+          },
+          {
+            number: "17",
+            textEs: "¿Por qué agradece usted que Jehová incluyera el libro de Job en su Palabra? (Job 34:12).",
+            textLSM: "",
+            paragraphs: [17],
+            readText: "LEE Job 34:12",
+            answer: [
+              "La Biblia tiene muchísimo poder: ayuda a las personas y consuela a quienes sufren.",
+              "El libro de Job nos asegura que 'Dios no actúa con maldad'.",
+              "Nos enseña por qué permite el sufrimiento y cómo podemos aguantar.",
+              "Nos ayuda a consolar a quienes están sufriendo."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué nos asegura el libro de Job según Job 34:12?",
+                answer: "Que 'Dios no actúa con maldad'."
+              },
+              {
+                question: "¿Cuáles son tres beneficios del libro de Job?",
+                answer: "Nos enseña por qué permite Dios el sufrimiento, cómo podemos aguantar, y nos ayuda a consolar a quienes sufren."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 34:12",
+                purpose: "Dios no actúa con maldad",
+                text: "Está claro que Dios no actúa con maldad; el Todopoderoso no pervierte la justicia."
+              },
+              {
+                reference: "Hebreos 4:12",
+                purpose: "La Palabra de Dios tiene poder",
+                text: "Porque la palabra de Dios es viva y ejerce poder, y es más afilada que cualquier espada de dos filos, y penetra hasta dividir el alma y el espíritu."
+              },
+              {
+                reference: "Job 19:23, 24",
+                purpose: "Las palabras de Job escritas para siempre",
+                text: "¡Ojalá mis palabras quedaran escritas! ¡Ojalá se inscribieran en un libro! ¡Ojalá se grabaran con cincel de hierro y plomo, en la roca para siempre!"
+              }
+            ]
+          }
+        ],
+        paragraphs: [
+          {
+            number: 1,
+            content: "¿HA TENIDO usted últimamente el gusto de leer el libro de Job? Aunque se escribió hace unos 3.500 años, se lo sigue considerando una joya de la literatura universal. Se ha destacado la sencillez de su estructura, la belleza de su estilo, la expresividad de su lenguaje y la genialidad de su escritor. Es cierto que Moisés fue quien escribió este magnífico libro, pero su verdadero autor es Jehová (2 Tim. 3:16)."
+          },
+          {
+            number: 2,
+            content: "El libro de Job es una parte clave de la Biblia. ¿Por qué? Una razón es que muestra claramente cuál es la importante cuestión a la que nos enfrentamos todos los seres inteligentes: la santificación del nombre de Jehová. Otra razón es que nos ayuda a conocer mejor las hermosas cualidades de Dios, como el amor, la sabiduría, la justicia y el poder. Por ejemplo, en este libro se llama a Jehová 31 veces el \"Todopoderoso\", más que en todos los demás libros de la Biblia juntos. Una tercera razón es que el libro de Job explica por qué permite Dios el sufrimiento y responde otras grandes preguntas de la vida."
+          },
+          {
+            number: 3,
+            content: "Podemos decir que leer el libro de Job es como subir a lo alto de una montaña. Al llegar a la cima podemos ver mejor todo el panorama que nos rodea. Igualmente, al estudiar este libro podemos ver nuestros problemas desde una perspectiva más elevada: la de Jehová. En este artículo analizaremos cómo nos ayuda el libro de Job cuando estamos sufriendo. Veremos cómo la historia de Job tal vez benefició a algunos israelitas en el pasado y cómo nos beneficia a nosotros hoy. Y también hablaremos de cómo usar este relato para ayudar a otros."
+          },
+          {
+            number: 4,
+            content: "Job vivió en la tierra de Uz —que posiblemente estaba en algún punto al este de la Tierra Prometida y en el norte de Arabia— durante el tiempo en que los israelitas eran esclavos en Egipto. A diferencia de algunos israelitas, que habían empezado a adorar ídolos en Egipto, Job sí sirvió fielmente a Jehová (Jos. 24:14; Ezeq. 20:8). De hecho, Dios dijo: \"No hay nadie como él en la tierra\" (Job 1:8). Job tenía muchísimas riquezas y era el hombre más importante y respetado de todos los orientales (Job 1:3). Seguro que Satanás estaba muy furioso al ver que este hombre tan prominente e influyente servía a Dios con integridad."
+          },
+          {
+            number: 5,
+            content: "Satanás afirmó que Job le daría la espalda a Jehová si sufría (Job 1:7-11; 2:2-5). Con esa acusación, hizo surgir muchas preguntas importantes. Por esa razón, aunque Jehová amaba profundamente a Job, le permitió a Satanás que intentara demostrar si tenía razón o no (Job 1:12-19; 2:6-8). Así que el Diablo hizo que Job perdiera sus rebaños, mató a sus 10 hijos y le envió una terrible enfermedad que le cubría todo el cuerpo. Sin embargo, estos ataques crueles fracasaron, pues Job se mantuvo leal a Jehová (lea Job 1:20-22; 2:9, 10). Con el tiempo, Jehová hizo que Job recuperara su salud, sus riquezas y su buena reputación, y le dio 10 hijos más. También lo bendijo con una larga vida. Job vivió otros 140 años, y así pudo ver a cuatro generaciones de sus descendientes (Job 42:10-13, 16)."
+          },
+          {
+            number: 6,
+            content: "Los israelitas habían sufrido muchísimo en Egipto. Pensemos, por ejemplo, en Josué y Caleb. Ellos pasaron su juventud siendo esclavos, y después tuvieron que estar 40 años vagando por el desierto por culpa de la desobediencia de otros. Si los israelitas conocieron la historia sobre las pruebas de Job y en qué acabó todo, sin duda los ayudó a ellos —y también a las siguientes generaciones de israelitas— a entender quién es el principal causante del sufrimiento. Además, pudieron comprender mejor por qué permite Dios el sufrimiento y lo importantes que son para él la integridad y la fidelidad de los seres humanos."
+          },
+          {
+            number: 7,
+            content: "Por desgracia, en nuestros días muchas personas pierden su fe en Dios porque no entienden por qué les ocurren cosas malas a las personas buenas. Veamos el caso de una mujer de Ruanda llamada Hazel. Cuando era joven, ella creía en Dios. Pero luego le pasaron cosas que le hicieron cambiar de opinión. Sus padres se divorciaron y su madre se casó con otro hombre, que trataba muy mal a Hazel. En su adolescencia, un hombre la violó. Cuando Hazel trató de buscar consuelo en su religión, no lo recibió. Un día le escribió una carta a Dios en la que le decía: \"Te he orado, me he esforzado por hacer el bien, pero tú solo me has pagado con sufrimientos. Así que he decidido dejarte y hacer lo que me parezca bien para ser feliz\". Nos duele muchísimo ver a personas como Hazel, a las que han hecho creer que Dios es el responsable del sufrimiento."
+          },
+          {
+            number: 8,
+            content: "Pero nosotros hemos aprendido gracias al libro de Job que el causante del sufrimiento no es Dios, sino Satanás. También hemos aprendido a no asumir que quienes sufren están cosechando lo que sembraron, pues la Biblia explica que a todos nos puede llegar \"algún mal momento y algún suceso imprevisto\" (Ecl. 9). Pero Job también admitió que en su empeño por defenderse había dicho cosas precipitadas (Job 6:3, 26). En el capítulo 31 leemos que quería que Jehová lo escuchara y lo declarara inocente (Job 31:35). Claro está, Job no tenía derecho a exigirle explicaciones a Dios sobre por qué estaba sufriendo."
+          },
+          {
+            number: 11,
+            content: "Ahora entendemos que detrás de las palabras que Job le dirigió a Jehová estaban su estrecha relación con él y su total confianza en que tomaría nota de su fidelidad. Cuando Jehová finalmente le respondió desde una tempestad de viento, no le dio una explicación detallada de por qué estaba sufriendo ni le recriminó sus quejas y sus insistentes proclamaciones de inocencia. Más bien, lo corrigió igual que un buen padre corrige a su hijo. Y así le llegó al corazón, pues Job reconoció humildemente lo limitado que era su conocimiento y se retractó de todas sus palabras irreflexivas (Job 31:6; 40:4, 5; 42:1-6)."
+          },
+          {
+            number: 12,
+            content: "Pensemos en Moisés. Como líder de la nación de Israel, tuvo que aguantar muchas dificultades, decepciones y momentos de desánimo. Pero, a diferencia de los israelitas, que muchas veces se quejaron de Jehová, Moisés acudió a él para contarle lo que le preocupaba (Éx. 16:6-8; Núm. 11:10-14; 14:1-4, 11; 16:41, 49; 17:5). Además, tuvo que mostrar aguante al recibir disciplina de parte de Jehová. Por ejemplo, mientras los israelitas estaban acampados en Cadés, probablemente cuando ya llevaban 40 años viajando por el desierto, Moisés \"habló precipitadamente con sus labios\" y no le dio a Jehová la gloria que merecía (Sal. 106:32, 33). Como resultado, Jehová no le permitió entrar en la Tierra Prometida (Deut. 32:50-52). Seguro que eso le dolió muchísimo a Moisés, pero fue humilde y aceptó la corrección. Es posible que el relato de Job también ayudara a las siguientes generaciones de israelitas a soportar las dificultades. Si meditaban en la historia de Job, podrían aprender a expresarle sus sentimientos a Jehová, a no creerse más justos que Dios y a aceptar con humildad su disciplina."
+          },
+          {
+            number: 13,
+            content: "Los cristianos también necesitamos aguante. Una hermana estaba predicando por teléfono, y la primera persona a la que llamó fue Mario. Le leyó un texto bíblico y le explicó que Dios no solo escucha nuestras oraciones, sino que también nos ofrece un futuro y una esperanza. Después le preguntó qué le parecía el versículo y Mario le contó que antes de recibir su llamada estaba escribiendo una nota de suicidio. Dijo: \"Creo en Dios, pero esta mañana sentí que me había abandonado\". Durante la segunda llamada hablaron sobre los sufrimientos de Job, y Mario decidió leer todo ese libro de la Biblia. Así que la hermana le envió un enlace a jw.org para que pudiera leerlo en línea. ¿Cuál fue el resultado? Mario aceptó un curso bíblico y le emocionó seguir aprendiendo sobre el Dios que le demostró su amor interesándose en él."
+          },
+          {
+            number: 17,
+            content: "Está claro que la Biblia tiene muchísimo poder: ayuda a las personas y consuela a quienes sufren (Heb. 4:12). Estamos profundamente agradecidos de que Jehová incluyera la historia de Job en su Palabra (Job 19:23, 24). El libro de Job nos asegura que \"Dios no actúa con maldad\" (lea Job 34:12). También nos enseña por qué permite el sufrimiento y cómo podemos aguantar. Además, nos ayuda a consolar a quienes están sufriendo. En el siguiente artículo sacaremos más lecciones del libro de Job y nos centraremos en cómo dar buenos consejos."
+          }
+        ],
+        reviewQuestions: [
+          {
+            question: "¿Cómo nos beneficia entender por qué permitió Dios que Job sufriera?",
+            answer: [
+              "Nos ayuda a entender quién es el principal causante del sufrimiento: Satanás, no Dios.",
+              "Comprendemos mejor por qué permite Dios el sufrimiento.",
+              "Aprendemos lo importantes que son para Jehová la integridad y la fidelidad.",
+              "Podemos ver nuestros problemas desde una perspectiva más elevada."
+            ]
+          },
+          {
+            question: "¿Cómo puede el relato de Job ayudarnos a aguantar?",
+            answer: [
+              "Nos enseña a expresarle nuestros sentimientos a Jehová.",
+              "Aprendemos a no creernos más justos que Dios.",
+              "Nos ayuda a aceptar con humildad la disciplina de Jehová.",
+              "Vemos que Jehová recompensa la fidelidad."
+            ]
+          },
+          {
+            question: "¿Cómo podemos usar el libro de Job para ayudar a otros?",
+            answer: [
+              "Podemos enseñarles que el causante del sufrimiento es Satanás, no Dios.",
+              "Les ayudamos a ver que no deben asumir que quienes sufren están cosechando lo que sembraron.",
+              "Los consolamos mostrándoles que Jehová ve y recompensa la fidelidad.",
+              "Les mostramos que 'Dios no actúa con maldad' (Job 34:12)."
+            ]
+          }
+        ],
+        finalSong: "Canción 156: Si tienes fe"
+      },
+      // Artículo 49: "Cómo nos ayuda el libro de Job a dar buenos consejos" (9-15 Feb)
+      {
+        metadata: {
+          articleNumber: 49,
+          week: "9-15 Feb",
+          month: "Diciembre",
+          year: 2025
+        },
+        song: "Canción 44: Una súplica ferviente",
+        title: "Cómo nos ayuda el libro de Job a dar buenos consejos",
+        biblicalText: "\"Ahora, Job, oye mis palabras, por favor\" (JOB 33:1).",
+        theme: "El libro de Job nos enseña a dar buenos consejos.",
+        questions: [
+          {
+            number: "1, 2",
+            textEs: "¿En qué situación difícil están Elihú y los tres conocidos de Job?",
+            textLSM: "",
+            paragraphs: [1, 2],
+            answer: [
+              "Job, un hombre muy rico y famoso, lo ha perdido todo.",
+              "Tres conocidos suyos —Elifaz, Bildad y Zofar— deciden ir a consolarlo.",
+              "Job tiene el cuerpo lleno de úlceras dolorosas y está sentado entre unas cenizas.",
+              "Los tres hombres se quedan siete días enteros totalmente callados.",
+              "Finalmente, Job rompe el silencio para maldecir el día de su nacimiento y desear la muerte."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo reaccionaron los tres conocidos de Job al verlo?",
+                answer: "Se sentaron al lado de él y se quedaron siete días enteros totalmente callados, sin decirle una sola palabra."
+              },
+              {
+                question: "¿Qué hizo Job después de los siete días de silencio?",
+                answer: "Rompió el silencio para maldecir el día de su nacimiento y desear la muerte."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 2:12, 13",
+                purpose: "Los amigos de Job guardan silencio",
+                text: "Cuando levantaron la vista a cierta distancia, no reconocieron a Job. Se echaron a llorar en alta voz, se rasgaron la ropa y lanzaron polvo al aire. Luego se sentaron con él en el suelo siete días y siete noches. Ninguno le dijo una palabra, porque podían ver que su dolor era muy intenso."
+              }
+            ]
+          },
+          {
+            number: "3",
+            textEs: "¿Qué vamos a ver en este artículo?",
+            textLSM: "",
+            paragraphs: [3],
+            answer: [
+              "Jehová hizo que Moisés pusiera por escrito lo que hicieron y dijeron los tres conocidos de Job y Elihú.",
+              "Las cosas que dijo Elihú fueron inspiradas por Jehová.",
+              "Algunas de las cosas que dijo Elifaz fueron inspiradas por un espíritu malvado.",
+              "El libro de Job contiene algunos de los mejores consejos de la historia, pero también algunos de los peores.",
+              "Primero analizaremos el mal ejemplo de los tres conocidos de Job y luego el buen ejemplo de Elihú."
+            ],
+            flashcards: [
+              {
+                question: "¿Quién inspiró las palabras de Elihú?",
+                answer: "Jehová."
+              },
+              {
+                question: "¿Quién inspiró algunas de las palabras de Elifaz?",
+                answer: "Un espíritu malvado (Job 4:12-16)."
+              }
+            ]
+          },
+          {
+            number: "4",
+            textEs: "¿Por qué los tres conocidos de Job no consiguieron consolarlo? (Vea también la imagen).",
+            textLSM: "",
+            paragraphs: [4],
+            section: "LOS CONSEJOS DE ELIFAZ, BILDAD Y ZOFAR",
+            image: "",
+            imageCaption: "Al darle un consejo a alguien, no le hagamos sentir que nos creemos superiores; nuestro objetivo debe ser ayudarlo.",
+            answer: [
+              "Primero, sacaron conclusiones precipitadas dando por sentado que Dios estaba castigando a Job por algún pecado.",
+              "Segundo, muchos de sus consejos fueron de poca ayuda, insensibles e incluso hirientes.",
+              "Tercero, muchas veces le hablaron con aires de superioridad y en un tono prepotente, sarcástico y condenatorio.",
+              "Lo que estos hombres buscaban no era consolar a Job sino demostrar que estaba equivocado."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuáles son los tres errores que cometieron los conocidos de Job?",
+                answer: "1) Sacaron conclusiones precipitadas, 2) dieron consejos insensibles e hirientes, 3) le hablaron con aires de superioridad."
+              },
+              {
+                question: "¿Qué buscaban en realidad los tres conocidos de Job?",
+                answer: "No buscaban consolar a Job ni fortalecer su fe, sino demostrar que estaba equivocado."
+              }
+            ]
+          },
+          {
+            number: "5",
+            textEs: "¿Qué consiguieron Elifaz, Bildad y Zofar con sus consejos?",
+            textLSM: "",
+            paragraphs: [5],
+            answer: [
+              "Sus consejos hicieron sentir aplastado a Job.",
+              "Job sintió la necesidad de defender su reputación y eso lo llevó a decir cosas fuera de lugar.",
+              "Expresaron ideas que no reflejaban el punto de vista de Dios y trataron a Job sin compasión.",
+              "Sin darse cuenta se convirtieron en herramientas en manos de Satanás."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo hicieron sentir a Job los consejos de sus tres conocidos?",
+                answer: "Lo hicieron sentir aplastado (Job 19:2)."
+              },
+              {
+                question: "¿En qué se convirtieron Elifaz, Bildad y Zofar sin darse cuenta?",
+                answer: "En herramientas en manos de Satanás."
+              }
+            ]
+          },
+          {
+            number: "6",
+            textEs: "¿Qué es posible que aprendieran los ancianos de Israel del mal ejemplo de Elifaz, Bildad y Zofar?",
+            textLSM: "",
+            paragraphs: [6],
+            answer: [
+              "Los jueces o ancianos tenían que escuchar con mucha atención antes de dar un consejo.",
+              "Debían investigar bien los asuntos y hacer preguntas sin dar por sentado que ya conocían todos los hechos.",
+              "Tenían que hablarle con bondad y no con dureza a quienes les pedían ayuda.",
+              "Si les hacían sentir que eran una molestia, no se atreverían a abrirles su corazón."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué debían hacer los ancianos de Israel antes de dar un consejo?",
+                answer: "Escuchar con mucha atención, investigar bien los asuntos y hacer preguntas sin dar por sentado que ya conocían todos los hechos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Deuteronomio 1:15-18",
+                purpose: "Los jueces debían juzgar con justicia",
+                text: "Así que tomé a los hombres principales de sus tribus, hombres sabios y experimentados, y los designé líderes sobre ustedes. Les ordené a sus jueces: 'Escuchen con cuidado a sus hermanos y juzguen con justicia'."
+              },
+              {
+                reference: "Éxodo 22:22-24",
+                purpose: "Jehová escucha a los afligidos",
+                text: "No deben maltratar a ninguna viuda ni a ningún huérfano. Si los maltratan y ellos claman a mí, yo sin falta escucharé su clamor."
+              }
+            ]
+          },
+          {
+            number: "7",
+            textEs: "Además de los ancianos, ¿quiénes en Israel podían aconsejar a otros, y qué podrían aprender del relato de Job? (Proverbios 27:9).",
+            textLSM: "",
+            paragraphs: [7],
+            readText: "LEE Proverbios 27:9",
+            answer: [
+              "Cualquier persona —fuera joven o mayor, hombre o mujer— podía darle consejos a alguien que lo necesitara.",
+              "Podían aconsejar para ayudar a acercarse más a Jehová o para corregir algún aspecto de la conducta.",
+              "Eso es lo que se espera de un amigo de verdad.",
+              "Al pensar en el mal ejemplo de los tres conocidos de Job, podrían aprender lo que no debían decir ni hacer al aconsejar a otros."
+            ],
+            flashcards: [
+              {
+                question: "¿Quiénes en Israel podían dar consejos?",
+                answer: "Cualquier persona —fuera joven o mayor, hombre o mujer— podía darle consejos a alguien que lo necesitara."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 27:9",
+                purpose: "El consejo sincero es valioso",
+                text: "El aceite y el incienso alegran el corazón; de igual manera, el consejo sincero de un amigo es dulce para el alma."
+              },
+              {
+                reference: "Salmo 141:5",
+                purpose: "El consejo del justo es beneficioso",
+                text: "Que el justo me golpee —será un acto leal— y que me corrija. Es como aceite sobre la cabeza; mi cabeza no lo rechazará."
+              }
+            ]
+          },
+          {
+            number: "8",
+            textEs: "¿Qué errores debemos evitar al dar un consejo? (Vea también las imágenes).",
+            textLSM: "",
+            paragraphs: [8],
+            image: "",
+            imageCaption: "Cuando hablemos con alguien, 1) asegurémonos de conocer todos los hechos, 2) usemos la Palabra de Dios y 3) expresémonos con cariño.",
+            answer: [
+              "Primero, antes de decir nada tenemos que asegurarnos de conocer todos los hechos, y no sacar conclusiones precipitadas.",
+              "Segundo, tenemos que basarnos siempre en la verdad de la Palabra de Dios y no en nuestra propia opinión o experiencia.",
+              "Tercero, jamás debemos usar un tono duro o crítico.",
+              "Nunca debemos darle a entender a la persona que Jehová es irrazonable o que es imposible que la quiera."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuáles son los tres errores que debemos evitar al dar un consejo?",
+                answer: "1) Sacar conclusiones precipitadas, 2) basarnos en nuestra opinión en vez de la Palabra de Dios, 3) usar un tono duro o crítico."
+              },
+              {
+                question: "¿Qué dijo Jehová sobre lo que afirmaron Elifaz, Bildad y Zofar?",
+                answer: "Que no habían dicho la verdad sobre él (Job 42:7, 8)."
+              }
+            ]
+          },
+          {
+            number: "9",
+            textEs: "¿Por qué seguía Job necesitando ayuda, y cómo se la dio Jehová?",
+            textLSM: "",
+            paragraphs: [9],
+            section: "LOS CONSEJOS DE ELIHÚ",
+            answer: [
+              "El debate entre Job y sus tres conocidos fue tan largo que ocupa 28 capítulos de la Biblia.",
+              "Job seguía sintiéndose muy desanimado y necesitando consuelo y corrección.",
+              "Jehová utilizó a Elihú para aconsejarlo.",
+              "Elihú esperó para intervenir porque era joven y los otros eran hombres de edad.",
+              "Dijo: 'La edad por sí misma no hace a alguien sabio'."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué esperó tanto Elihú para intervenir?",
+                answer: "Porque era joven y los otros eran hombres de edad. Dijo: 'Yo soy joven y ustedes son hombres de edad. Así que me quedé callado por respeto'."
+              },
+              {
+                question: "¿Qué dijo Elihú sobre la edad y la sabiduría?",
+                answer: "'La edad por sí misma no hace a alguien sabio ni son solo los hombres de edad los que comprenden lo que es correcto' (Job 32:9)."
+              }
+            ]
+          },
+          {
+            number: "10",
+            textEs: "¿Qué hizo Elihú antes de aconsejar a Job? (Job 33:6, 7).",
+            textLSM: "",
+            paragraphs: [10],
+            readText: "LEE Job 33:6, 7",
+            answer: [
+              "Elihú se aseguró de calmar el ambiente y preparar el terreno.",
+              "Controló sus propias emociones, aunque al principio estaba muy enojado.",
+              "En ningún momento le habló en un tono duro o cruel, sino con bondad y cariño.",
+              "Resumió las ideas principales de Job dejando claro que le había estado prestando mucha atención."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué hizo Elihú para preparar el terreno antes de aconsejar?",
+                answer: "Controló sus emociones, habló con bondad y cariño, y resumió las ideas de Job mostrando que le había prestado atención."
+              },
+              {
+                question: "¿Qué le dijo Elihú a Job para calmarlo?",
+                answer: "'Mira, para el Dios verdadero, yo soy igual que tú' (Job 33:6)."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 33:6, 7",
+                purpose: "Elihú se presenta con humildad",
+                text: "Mira, para el Dios verdadero, yo soy igual que tú; yo también fui formado de arcilla. Mira, no tienes por qué tenerme miedo; no te aplastaré con mi mano."
+              },
+              {
+                reference: "Job 32:2-5",
+                purpose: "Elihú estaba enojado pero se controló",
+                text: "Entonces Elihú hijo de Baraquel el buzita, de la familia de Ram, se encendió de ira. Se enojó muchísimo con Job porque este pensaba que tenía más razón que Dios. También se enojó con los tres compañeros de Job porque no habían podido rebatirlo."
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "¿Cómo aconsejó Elihú a Job? (Job 33:1).",
+            textLSM: "",
+            paragraphs: [11],
+            readText: "LEE Job 33:1",
+            answer: [
+              "Lo hizo con muchísimo respeto y sin humillarlo.",
+              "Se dirigió a él por su nombre, cosa que los otros tres no hicieron.",
+              "Le ofreció la oportunidad de responderle.",
+              "Le recordó que Jehová es muy sabio, poderoso, justo, leal y amoroso.",
+              "Las buenas palabras de Elihú hicieron que Job estuviera dispuesto a recibir más corrección de Jehová."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué hizo Elihú que los otros tres conocidos no hicieron?",
+                answer: "Se dirigió a Job por su nombre y le ofreció la oportunidad de responderle."
+              },
+              {
+                question: "¿Qué efecto tuvieron las palabras de Elihú en Job?",
+                answer: "Lo prepararon para estar dispuesto a recibir más corrección directamente de Jehová."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Job 33:1",
+                purpose: "Elihú se dirige a Job con respeto",
+                text: "Ahora, Job, oye mis palabras, por favor, y escucha todo lo que digo."
+              },
+              {
+                reference: "Job 33:32",
+                purpose: "Elihú invita a Job a responder",
+                text: "Si tienes algo que decir, respóndeme. Habla, porque quiero que se te declare justo."
+              }
+            ]
+          },
+          {
+            number: "12",
+            textEs: "¿Cómo utilizó Jehová a los profetas para ayudar a su pueblo, y qué podrían aprender los israelitas del buen ejemplo de Elihú?",
+            textLSM: "",
+            paragraphs: [12],
+            answer: [
+              "Jehová nombró profetas para enseñar su propósito y corregir a los israelitas.",
+              "Utilizó a la profetisa Débora y a Samuel para dar guía e instrucciones a la nación.",
+              "Envió profetas para fortalecer espiritualmente al pueblo y corregir a quienes se desviaban.",
+              "Los hombres y mujeres fieles podrían aprender lo que debían decir y hacer al corregir y aconsejar a otros."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué profetas usó Jehová durante el periodo de los Jueces?",
+                answer: "La profetisa Débora y Samuel, incluso siendo muy joven."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Samuel 3:19, 20",
+                purpose: "Samuel fue profeta desde joven",
+                text: "Samuel siguió creciendo, y Jehová estaba con él, y no dejó sin cumplir ninguna de sus palabras. Todo Israel, desde Dan hasta Beerseba, llegó a saber que a Samuel se lo había nombrado profeta de Jehová."
+              },
+              {
+                reference: "Jueces 4:4-7",
+                purpose: "Débora dio instrucciones a Israel",
+                text: "En aquel tiempo, la profetisa Débora, esposa de Lapidot, estaba juzgando a Israel. Ella dijo: 'Ve, porque Jehová te ha ordenado que vayas al monte Tabor'."
+              }
+            ]
+          },
+          {
+            number: "13",
+            textEs: "¿Cómo podemos imitar el ejemplo de Elihú al animar a nuestros hermanos?",
+            textLSM: "",
+            paragraphs: [13],
+            answer: [
+              "Los cristianos damos a conocer la voluntad de Dios y basamos lo que enseñamos en la Biblia.",
+              "Cuando ofrecemos consejos, usamos palabras que animen y edifiquen.",
+              "Los ancianos deben recordar siempre la importancia de hablar de manera cariñosa y reconfortante.",
+              "Incluso con quienes estén alterados o suelan decir cosas sin pensar al pasar por momentos difíciles."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué tipo de palabras debemos usar al dar consejos?",
+                answer: "Palabras que animen y edifiquen (1 Cor. 14:3)."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Corintios 14:3",
+                purpose: "El propósito de las palabras edificantes",
+                text: "Pero el que profetiza edifica, anima y consuela a la gente con lo que dice."
+              },
+              {
+                reference: "1 Tesalonicenses 5:14",
+                purpose: "Hablar reconfortantemente a todos",
+                text: "Los exhortamos, hermanos: amonesten a los desordenados, consuelen a los abatidos, apoyen a los débiles, sean pacientes con todos."
+              }
+            ]
+          },
+          {
+            number: "14, 15",
+            textEs: "¿Cómo puede un anciano imitar a Elihú?",
+            textLSM: "",
+            paragraphs: [14, 15],
+            answer: [
+              "Primero, tratará de comprender mejor la situación y los motivos de la tristeza.",
+              "Para ello tendrá que hacer preguntas y escuchar con atención.",
+              "Segundo, buscará cosas positivas por las que animar a la persona.",
+              "Por último, una vez que se haya hecho un cuadro completo de lo que ocurre, podrá usar la Biblia para ayudar."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuáles son los tres pasos que debe seguir un anciano para imitar a Elihú?",
+                answer: "1) Comprender la situación haciendo preguntas, 2) buscar cosas positivas por las que animar, 3) usar la Biblia para ayudar."
+              },
+              {
+                question: "¿Qué preguntas podría hacerse un anciano sobre una hermana deprimida?",
+                answer: "¿Piensa que no merece el amor de Dios? ¿Se siente aplastada por 'las preocupaciones de la vida'?"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Gálatas 2:20",
+                purpose: "Cristo nos amó y dio su vida por nosotros",
+                text: "Ya no soy yo el que vive, sino que es Cristo el que vive unido a mí. Y esta vida que ahora vivo en el cuerpo la vivo por la fe que tengo en el Hijo de Dios, que me amó y se entregó por mí."
+              },
+              {
+                reference: "Lucas 21:34",
+                purpose: "Las preocupaciones de la vida",
+                text: "Pero tengan cuidado de sí mismos, para que su corazón nunca se les haga pesado por comer demasiado, por beber mucho y por las preocupaciones de la vida."
+              }
+            ]
+          },
+          {
+            number: "16",
+            textEs: "¿Qué debemos hacer para seguir aprendiendo del libro de Job?",
+            textLSM: "",
+            paragraphs: [16],
+            section: "SIGAMOS APRENDIENDO DEL LIBRO DE JOB",
+            answer: [
+              "Podemos dar buenos consejos si evitamos el mal ejemplo de los tres conocidos de Job.",
+              "Debemos copiar el buen ejemplo de Elihú.",
+              "La próxima vez que tengamos que dar un consejo, repasemos las lecciones de este relato.",
+              "Si hace ya tiempo que no hemos leído el libro de Job, pongámonos la meta de volver a hacerlo."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué dos ejemplos del libro de Job debemos recordar al dar consejos?",
+                answer: "Evitar el mal ejemplo de Elifaz, Bildad y Zofar, y copiar el buen ejemplo de Elihú."
+              }
+            ]
+          }
+        ],
+        paragraphs: [
+          {
+            number: 1,
+            content: "POR toda la región, la noticia corre como la pólvora: Job, un hombre muy rico y famoso, lo ha perdido todo. Cuando tres conocidos suyos —Elifaz, Bildad y Zofar— se enteran, deciden viajar a Uz para consolarlo. Pero lo que encuentran al llegar los deja conmocionados."
+          },
+          {
+            number: 2,
+            content: "Imaginemos la escena. Job se ha quedado prácticamente sin nada. Todos sus camellos, ovejas, vacas y burros han muerto o se los han robado. También han asesinado a casi todos sus sirvientes, y todos los hijos de Job han fallecido cuando la casa en la que estaban se derrumbó sobre ellos. Por si esto fuera poco, Job está muy enfermo y tiene el cuerpo lleno de úlceras dolorosas. A medida que se acercan, los tres hombres lo ven sentado entre unas cenizas y completamente desolado. ¿Cómo reaccionan? Se sientan al lado de este hombre que está sufriendo tanto y se quedan siete días enteros totalmente callados, sin decirle una sola palabra (Job 2:12, 13). En algún momento llega un hombre joven llamado Elihú y se sienta por allí cerca. Finalmente, Job rompe el silencio para maldecir el día de su nacimiento y desear la muerte (Job 3:1-3, 11)."
+          },
+          {
+            number: 3,
+            content: "Jehová hizo que Moisés pusiera por escrito lo que hicieron y dijeron tanto los tres conocidos de Job como Elihú. Las cosas que dijo Elihú fueron inspiradas por Jehová, pero es interesante que, al parecer, algunas de las cosas que dijo Elifaz fueron inspiradas por un espíritu malvado (Job 4:12-16; 33:24, 25). Esto explica por qué el libro de Job contiene algunos de los mejores consejos de la historia, pero también algunos de los peores."
+          },
+          {
+            number: 4,
+            content: "La Biblia dice que, cuando los tres conocidos de Job se enteraron de todas sus desgracias, \"decidieron ir juntos a compartir el dolor de Job y consolarlo\" (Job 2:11). Pero hay al menos tres motivos por los que no consiguieron ese objetivo. Primero, sacaron conclusiones precipitadas. Por ejemplo, dieron por sentado erróneamente que Dios estaba castigando a Job por algún pecado (Job 4:7; 11:14). Segundo, muchos de sus consejos fueron de poca ayuda, insensibles e incluso hirientes. Por ejemplo, los tres en algún momento le dijeron palabras que sonaban bien pero estaban vacías (Job 13:12). Bildad fue muy desconsiderado y le dijo que hablaba demasiado (Job 8:2). Y Zofar tuvo el descaro de llamarlo disimuladamente \"cabeza hueca\" (Job 11:12). Tercero, aunque tal vez no le gritaron, muchas veces le hablaron con aires de superioridad y en un tono prepotente, sarcástico y condenatorio (Job 15:7-11). En el fondo, lo que estos hombres buscaban no era consolar a Job ni fortalecer su fe, sino demostrar que estaba equivocado."
+          },
+          {
+            number: 5,
+            content: "No es de extrañar que los consejos que estos tres hombres le dieron a Job no tuvieran buen resultado. De hecho, lo hicieron sentir aplastado (Job 19:2). También es comprensible que él sintiera la necesidad de defender su reputación y que eso lo llevara a perder el equilibrio y decir cosas fuera de lugar (Job 6:3, 26). Elifaz, Bildad y Zofar expresaron ideas que no reflejaban el punto de vista de Dios y trataron a Job sin compasión. Al hacer eso, sin darse cuenta se convirtieron en herramientas en manos de Satanás (Job 2:4, 6)."
+          },
+          {
+            number: 6,
+            content: "Cuando se formó la nación de Israel, Jehová eligió a ciertos hombres experimentados para que juzgaran a la nación de acuerdo con sus justas normas (Deut. 1:15-18; 27:1). Estos jueces o ancianos tenían que escuchar con mucha atención antes de dar un consejo o dictar una sentencia (2 Crón. 19:6). También debían investigar bien los asuntos y hacer preguntas sin dar por sentado que ya conocían todos los hechos (Deut. 19:18). Cuando alguien venía a pedirles ayuda, tenían que hablarle con bondad y no con dureza. ¿Por qué? Porque, si le hacían sentir que era una molestia, no se atrevería a abrirles su corazón (Éx. 22:22-24)."
+          },
+          {
+            number: 7,
+            content: "Claro está, aquellos ancianos no eran los únicos que podían dar consejos en Israel. En realidad, cualquier persona —fuera joven o mayor, hombre o mujer— podía darle consejos a alguien que lo necesitara para acercarse más a Jehová o para corregir algún aspecto de su conducta (Sal. 141:5). Eso es lo que se espera de un amigo de verdad (lea Proverbios 27:9). Al pensar en el mal ejemplo de los tres conocidos de Job, los israelitas podrían aprender lo que no debían decir ni hacer al aconsejar a otros."
+          },
+          {
+            number: 8,
+            content: "Como es natural, cuando nuestros hermanos pasan por situaciones difíciles, queremos ayudarlos. Ahora bien, no debemos caer en los mismos errores que los tres conocidos de Job. Primero, antes de decir nada tenemos que asegurarnos de conocer todos los hechos, y no sacar conclusiones precipitadas. Segundo, tenemos que basarnos siempre en la verdad de la Palabra de Dios y no en nuestra propia opinión o experiencia, como hizo Elifaz muchas veces (Job 4:8; 5:3, 27). Y, tercero, jamás debemos usar un tono duro o crítico. Recordemos que Elifaz y compañía dijeron algunas cosas que sí eran ciertas; de hecho, el apóstol Pablo citó por inspiración algunas de sus palabras (compare Job 5:13 con 1 Corintios 3:19). No obstante, la mayor parte de lo que afirmaron sobre Dios era mentira y le hicieron daño a Job, así que Jehová dijo que no habían dicho la verdad (Job 42:7, 8). Al dar un consejo, nunca debemos darle a entender a la persona que Jehová es irrazonable o que es imposible que la quiera."
+          },
+          {
+            number: 9,
+            content: "El debate entre Job y sus tres supuestos amigos fue tan largo que sus palabras ocupan 28 capítulos de la Biblia. Y los ánimos debían de estar bastante caldeados, pues la mayor parte del tiempo se dejaron llevar por el enojo y la frustración. Con razón Job seguía sintiéndose muy desanimado y necesitando consuelo y corrección. ¿Qué hizo Jehová para ayudarlo? Utilizó a Elihú para aconsejarlo. Pero ¿por qué esperó tanto Elihú para intervenir? Él mismo explicó: \"Yo soy joven y ustedes son hombres de edad. Así que me quedé callado por respeto\" (Job 32:6, 7). Era consciente de que, por lo general, los mayores cuentan con la sabiduría que viene con los años y la experiencia. Pero, después de escuchar con paciencia a Job y sus conocidos, Elihú decidió que no podía seguir callado. Por eso dijo: \"La edad por sí misma no hace a alguien sabio ni son solo los hombres de edad los que comprenden lo que es correcto\" (Job 32:9)."
+          },
+          {
+            number: 10,
+            content: "Antes de aconsejar a Job, Elihú se aseguró de calmar el ambiente y preparar el terreno. ¿Cómo? En primer lugar, controlando sus propias emociones. A fin de cuentas, la Biblia dice que al principio estaba muy enojado (Job 32:2-5). Pero luego en ningún momento le habló en un tono duro o cruel, sino al contrario, con bondad y cariño. Por ejemplo, le dijo: \"Mira, para el Dios verdadero, yo soy igual que tú\" (lea Job 33:6, 7). Entonces resumió las ideas principales de seis discursos de Job y así dejó claro que le había estado prestando mucha atención (Job 32:11; 33:8-11). Y volvió a hacer lo mismo cuando más tarde le dio otros consejos (Job 34:5, 6, 9; 35:1-4)."
+          },
+          {
+            number: 11,
+            content: "Cuando Elihú empezó a aconsejar a Job, lo hizo con muchísimo respeto y sin humillarlo. Por ejemplo, se dirigió a él por su nombre, cosa que los otros tres por lo visto no hicieron (lea Job 33:1). Además, con mucha bondad le ofreció la oportunidad de responderle, pues seguramente recordaba que él mismo había querido intervenir en varias ocasiones mientras Job y sus conocidos hablaban (Job 32:4; 33:32). También le advirtió que tuviera cuidado con algunos de sus argumentos y le recordó que Jehová es muy sabio, poderoso, justo, leal y amoroso (Job 36:18, 21-26; 37:23, 24). Sin duda, las buenas palabras de Elihú hicieron que Job estuviera dispuesto a recibir más corrección, ahora directamente de Jehová (Job 38:1-3)."
+          },
+          {
+            number: 12,
+            content: "A lo largo de la historia de Israel, Jehová muchas veces nombró profetas para enseñar su propósito y corregir a los israelitas. Por ejemplo, durante el periodo de los Jueces, utilizó a la profetisa Débora y a Samuel —incluso siendo muy joven— para que le dieran guía e instrucciones a la nación (Juec. 4:4-7; 5:7; 1 Sam. 3:19, 20). Y, durante el periodo de los reyes, envió a un profeta tras otro para fortalecer espiritualmente al pueblo y corregir a quienes se desviaban de la adoración pura (2 Sam. 12:1-4; Hech. 3:24). Al pensar en el buen ejemplo de Elihú, los hombres y mujeres fieles podrían aprender lo que debían decir y hacer al corregir y aconsejar a otros."
+          },
+          {
+            number: 13,
+            content: "Al igual que Elihú y los profetas de Israel, los cristianos damos a conocer la voluntad de Dios y basamos lo que enseñamos en la Biblia. Además, cuando ofrecemos consejos a nuestros hermanos, usamos palabras que los animen y edifiquen (1 Cor. 14:3). Los ancianos en especial tienen que recordar siempre la importancia de hablar de manera cariñosa y reconfortante a todos los hermanos y hermanas, incluso a quienes estén alterados o suelan decir cosas sin pensar al pasar por momentos difíciles (Job 6:3; 1 Tes. 5:14)."
+          },
+          {
+            number: 14,
+            content: "Imaginemos esta situación. En una congregación, un anciano se entera de que cierta hermana está deprimida, así que decide visitarla junto con otro hermano para animarla. Durante la visita, la hermana expresa algunas emociones negativas. Cuenta que, aunque asiste a las reuniones y sale a predicar, no se siente feliz. ¿Cómo debe reaccionar un anciano en una situación como esta?"
+          },
+          {
+            number: 15,
+            content: "En primer lugar, tratará de comprender mejor la situación y los motivos de su tristeza. Para ello tendrá que hacerle preguntas y escuchar con atención. ¿Será que la hermana piensa que no merece el amor de Dios? ¿Se siente tal vez aplastada por \"las preocupaciones de la vida\"? (Luc. 21:34). En segundo lugar, el anciano buscará cosas positivas por las que animarla. Por ejemplo, puede felicitarla porque está yendo a las reuniones y a predicar a pesar de estar deprimida. Y, por último, una vez que se haya hecho un cuadro completo de lo que le ocurre a la hermana y de por qué se siente desanimada, podrá usar la Biblia para ayudarla a convencerse de que Jehová la quiere (Gál. 2:20)."
+          },
+          {
+            number: 16,
+            content: "¡Cuántas cosas hemos aprendido al analizar el libro de Job! En el artículo anterior vimos que no solo nos enseña por qué permite Dios el sufrimiento, sino también cómo podemos aguantarlo. Y en este hemos visto que podemos dar buenos consejos si evitamos el mal ejemplo de los tres conocidos de Job y copiamos el buen ejemplo de Elihú. La próxima vez que tengamos que darle un consejo a alguien, ¿qué tal si repasamos las lecciones que nos enseña este relato? Y, si hace ya tiempo que no hemos tenido el gusto de leerlo, pongámonos la meta de volver a hacerlo. Seguro que comprobaremos que el maravilloso libro de Job sigue siendo tan valioso hoy como cuando se escribió."
+          }
+        ],
+        reviewQuestions: [
+          {
+            question: "¿Qué cosas que hicieron Elifaz, Bildad y Zofar debemos evitar al dar un consejo?",
+            answer: [
+              "Sacar conclusiones precipitadas sin conocer todos los hechos.",
+              "Dar consejos insensibles, hirientes o vacíos.",
+              "Hablar con aires de superioridad o en tono condenatorio.",
+              "Buscar demostrar que la persona está equivocada en vez de consolarla."
+            ]
+          },
+          {
+            question: "¿Cómo podemos imitar a Elihú al dar un consejo?",
+            answer: [
+              "Controlar nuestras emociones antes de hablar.",
+              "Escuchar con atención para entender la situación.",
+              "Hablar con bondad, cariño y respeto.",
+              "Usar la Biblia para ayudar a la persona.",
+              "Ofrecer la oportunidad de responder."
+            ]
+          },
+          {
+            question: "¿Qué debemos hacer para seguir aprendiendo del libro de Job?",
+            answer: [
+              "Evitar el mal ejemplo de los tres conocidos de Job.",
+              "Copiar el buen ejemplo de Elihú.",
+              "Repasar las lecciones del libro antes de dar consejos.",
+              "Ponernos la meta de leer el libro de Job si hace tiempo que no lo hemos leído."
+            ]
+          }
+        ],
+        finalSong: "Canción 125: Felices los misericordiosos"
+      },
+      // Artículo 50: "Imitemos la humildad de Jehová" (16-22 Feb)
+      {
+        metadata: {
+          articleNumber: 50,
+          week: "16-22 Feb",
+          month: "Diciembre",
+          year: 2025
+        },
+        song: "Canción 48: Caminemos diariamente con Jehová",
+        title: "Imitemos la humildad de Jehová",
+        biblicalText: "\"Imiten a Dios como hijos amados\" (EFES. 5:1).",
+        theme: "Cuatro maneras prácticas de imitar la humildad de Jehová.",
+        questions: [
+          {
+            number: "1",
+            textEs: "¿Por qué es tan impresionante pensar en que Jehová es humilde?",
+            textLSM: "",
+            paragraphs: [1],
+            answer: [
+              "Las personas que tienen poder en el mundo no suelen ser humildes.",
+              "Sin embargo, Jehová, quien es el Todopoderoso, sí lo es.",
+              "La humildad impregna toda su personalidad; no hay ni el más mínimo rastro de orgullo en él.",
+              "Analizaremos cuatro aspectos de la personalidad de Jehová donde se ve reflejada la humildad."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué distingue a Jehová de las personas poderosas del mundo?",
+                answer: "Aunque es el Todopoderoso, Jehová es humilde y no hay ni el más mínimo rastro de orgullo en él."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 113:5-8",
+                purpose: "Jehová es humilde a pesar de su grandeza",
+                text: "¿Quién es como Jehová nuestro Dios, que se sienta en las alturas, que se humilla para mirar al cielo y a la tierra? Levanta al de condición humilde del polvo."
+              }
+            ]
+          },
+          {
+            number: "2",
+            textEs: "¿Qué nos enseña Salmo 62:8 sobre Jehová? (Vea también la imagen).",
+            textLSM: "",
+            paragraphs: [2],
+            section: "JEHOVÁ ES ACCESIBLE",
+            readText: "LEE Salmo 62:8",
+            image: "",
+            imageCaption: "Un padre imita la humildad de Jehová y escucha a su hijo sin enojarse porque rompió un jarrón mientras jugaba.",
+            answer: [
+              "Las personas orgullosas no suelen ser accesibles.",
+              "Jehová nos invita a acercarnos a él y a contarle todo lo que sentimos y pensamos.",
+              "Así como un padre cariñoso escucha con atención las preocupaciones de sus hijos, nuestro Padre celestial escucha nuestras oraciones.",
+              "Hizo que muchas oraciones quedaran registradas en la Biblia, lo que demuestra lo fácil que es hablar con él."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué la humildad de Jehová lo hace accesible?",
+                answer: "Nos invita a acercarnos a él y a contarle todo lo que sentimos y pensamos, escuchando nuestras oraciones con atención."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 62:8",
+                purpose: "Podemos confiar en Jehová",
+                text: "Confíen en él en todo momento, oh pueblo. Derramen su corazón delante de él. Dios es un refugio para nosotros."
+              }
+            ]
+          },
+          {
+            number: "3",
+            textEs: "¿Por qué está usted seguro de que Jehová quiere que le ore siempre?",
+            textLSM: "",
+            paragraphs: [3],
+            answer: [
+              "Podemos orarle a Jehová incluso si sentimos que no merecemos su amor.",
+              "La parábola del hijo pródigo muestra un padre compasivo que corrió a abrazar a su hijo que regresó.",
+              "Jehová es como ese padre: cuando escucha la oración de alguien aplastado, su humildad lo motiva a prestarle toda su atención.",
+              "Su compasión lo impulsa a 'correr' hacia él para consolarlo y confirmarle su amor."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo ilustra la parábola del hijo pródigo la accesibilidad de Jehová?",
+                answer: "El padre corrió a abrazar a su hijo que regresó, así como Jehová está dispuesto a escuchar a quienes se sienten indignos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Lucas 15:17-20",
+                purpose: "El padre del hijo pródigo",
+                text: "Cuando todavía estaba lejos, su padre lo vio y se compadeció de él. Corrió a su encuentro, lo abrazó y lo besó con ternura."
+              },
+              {
+                reference: "Isaías 57:15",
+                purpose: "Jehová consuela a los humildes",
+                text: "El Alto y Elevado, el que habita la eternidad, cuyo nombre es santo, dice: 'Habito en las alturas, en un lugar santo, pero también con el aplastado y humilde de espíritu'."
+              }
+            ]
+          },
+          {
+            number: "4",
+            textEs: "¿Cómo demostró Jesús que era accesible?",
+            textLSM: "",
+            paragraphs: [4],
+            answer: [
+              "Al igual que Jehová, Jesús es humilde.",
+              "Las personas se sentían con la confianza de acercarse a él y hacerle preguntas con total libertad.",
+              "Si cometían un error, no temblaban de miedo, porque sabían que Jesús era bueno, misericordioso y paciente.",
+              "Sus seguidores llegaron a conocer mejor a Jehová gracias a que Jesús lo imitó a la perfección."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué las personas no temían acercarse a Jesús?",
+                answer: "Porque sabían que era bueno, misericordioso y paciente, y no temblaban de miedo si cometían un error."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Juan 14:9",
+                purpose: "Jesús reflejó a su Padre",
+                text: "Jesús le dijo: 'El que me ha visto a mí ha visto también al Padre'."
+              },
+              {
+                reference: "Mateo 17:24-27",
+                purpose: "Jesús fue paciente con sus discípulos",
+                text: "Jesús fue paciente al explicar sobre el impuesto del templo y proveyó la solución de manera bondadosa."
+              }
+            ]
+          },
+          {
+            number: "5",
+            textEs: "¿Por qué nos ayuda la humildad a ser más accesibles?",
+            textLSM: "",
+            paragraphs: [5],
+            answer: [
+              "La humildad nos ayuda a evitar defectos que alejan a los demás: envidia, orgullo y rencor.",
+              "Nos ayuda a tener cualidades que atraen: bondad, paciencia y perdón.",
+              "Los ancianos deben esforzarse por ser accesibles asistiendo presencialmente a las reuniones.",
+              "Deben salir a predicar con los hermanos para que los conozcan mejor y se sientan en confianza."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué defectos evita la humildad y qué cualidades desarrolla?",
+                answer: "Evita la envidia, el orgullo y el rencor. Desarrolla la bondad, la paciencia y el perdón."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Colosenses 3:12-14",
+                purpose: "Cualidades que debemos desarrollar",
+                text: "Vístanse de tierna compasión, bondad, humildad, apacibilidad y paciencia. Sigan soportándose unos a otros y perdonándose."
+              }
+            ]
+          },
+          {
+            number: "6, 7",
+            textEs: "Mencione alguna ocasión en la que Jehová concedió las peticiones de sus siervos.",
+            textLSM: "",
+            paragraphs: [6, 7],
+            section: "JEHOVÁ ES RAZONABLE",
+            answer: [
+              "Jehová curó a Míriam de la lepra cuando Moisés le rogó por ella.",
+              "No se aferró a su decisión de castigarla porque es humilde.",
+              "Cuando el rey Ezequías le rogó con lágrimas que lo curara, Jehová le añadió 15 años de vida.",
+              "La humildad de Jehová lo impulsa a ser flexible y compasivo."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo demostró Jehová que es razonable en el caso de Míriam?",
+                answer: "Aunque la castigó con lepra por hablar contra Moisés, la curó cuando Moisés le rogó por ella."
+              },
+              {
+                question: "¿Cuántos años añadió Jehová a la vida del rey Ezequías?",
+                answer: "15 años, después de que Ezequías le rogó con lágrimas que lo curara."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Números 12:1-15",
+                purpose: "Jehová curó a Míriam",
+                text: "Míriam y Aarón empezaron a hablar contra Moisés. Jehová se enojó y la castigó con lepra. Moisés rogó a Jehová, y él la curó."
+              },
+              {
+                reference: "2 Reyes 20:1, 5, 6",
+                purpose: "Jehová añadió años a Ezequías",
+                text: "Jehová dijo: 'He oído tu oración y he visto tus lágrimas. Te voy a curar y voy a añadir 15 años a tu vida'."
+              }
+            ]
+          },
+          {
+            number: "8",
+            textEs: "¿Qué ejemplos demuestran que Jesús es razonable? (Marcos 3:1-6).",
+            textLSM: "",
+            paragraphs: [8],
+            readText: "LEE Marcos 3:1-6",
+            answer: [
+              "Jesús fue razonable y buscó la manera de ayudar a la gente siempre que fue posible.",
+              "Sanó a las personas en sábado aunque los líderes religiosos se opusieron.",
+              "Sigue demostrando esta cualidad como cabeza de la congregación cristiana.",
+              "Cuando alguien comete un pecado grave, Jesús es paciente y le da muchas oportunidades de cambiar."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo demostró Jesús que era razonable respecto al sábado?",
+                answer: "Sanó a las personas en sábado aunque los líderes religiosos se opusieron, porque buscaba la manera de ayudar."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Marcos 3:1-6",
+                purpose: "Jesús sanó en sábado",
+                text: "Jesús sanó a un hombre con la mano seca en sábado. Les preguntó a los fariseos: '¿Es legal en sábado hacer algo bueno o hacer algo malo, salvar una vida o matarla?'."
+              },
+              {
+                reference: "Apocalipsis 2:2-5",
+                purpose: "Jesús da oportunidades de arrepentirse",
+                text: "Jesús le dijo a la congregación de Éfeso: 'Recuerda de dónde has caído y arrepiéntete'. Da oportunidades de cambiar."
+              }
+            ]
+          },
+          {
+            number: "9",
+            textEs: "¿Cómo podemos imitar a Jehová y ser razonables? (Vea también las imágenes).",
+            textLSM: "",
+            paragraphs: [9],
+            image: "",
+            imageCaption: "Los padres son razonables con sus hijos al no exigirles más de lo que pueden dar en la predicación.",
+            answer: [
+              "Los padres razonables no son permisivos, pero tampoco exigen a sus hijos más de lo que pueden dar.",
+              "Jacob fue un buen ejemplo al ser considerado con sus hijos.",
+              "Los padres humildes evitan hacer comparaciones injustas entre sus hijos.",
+              "Los ancianos apoyan la decisión de la mayoría siempre que no vaya en contra de los principios bíblicos."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo pueden los padres ser razonables con sus hijos?",
+                answer: "No siendo permisivos pero tampoco exigiendo más de lo que pueden dar, y evitando comparaciones injustas."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Génesis 33:12-14",
+                purpose: "Jacob fue considerado con sus hijos",
+                text: "Jacob dijo: 'Mi señor sabe que los niños son delicados. No debo apresurarlos, sino que iré despacio'."
+              },
+              {
+                reference: "Santiago 3:17",
+                purpose: "La sabiduría de arriba es razonable",
+                text: "La sabiduría de arriba es primero pura, luego pacífica, razonable, dispuesta a obedecer, llena de misericordia."
+              },
+              {
+                reference: "Filipenses 4:5",
+                purpose: "Sean personas razonables",
+                text: "Que todos sepan que ustedes son personas razonables."
+              }
+            ]
+          },
+          {
+            number: "10",
+            textEs: "¿De qué maneras ha demostrado Jehová que es paciente?",
+            textLSM: "",
+            paragraphs: [10],
+            section: "JEHOVÁ ES PACIENTE",
+            answer: [
+              "Las personas orgullosas son impacientes; no les gusta que las hagan esperar.",
+              "En los días de Noé, Jehová dijo que esperaría 120 años para destruir a los malvados.",
+              "Jehová escuchó con paciencia a Abrahán mientras este le hacía preguntas sobre Sodoma y Gomorra.",
+              "No hay nadie en el universo tan paciente como Jehová."
+            ],
+            flashcards: [
+              {
+                question: "¿Cuántos años esperó Jehová antes de destruir a los malvados en los días de Noé?",
+                answer: "120 años, tiempo suficiente para que Noé criara a sus hijos y construyera el arca."
+              },
+              {
+                question: "¿Cómo demostró Jehová paciencia con Abrahán?",
+                answer: "Escuchó con paciencia sus preguntas sobre la decisión de destruir Sodoma y Gomorra sin decirle '¿Quién te crees para cuestionarme?'."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Génesis 6:3",
+                purpose: "Jehová esperó 120 años",
+                text: "Entonces Jehová dijo: 'Mi espíritu no tolerará indefinidamente al hombre. Sus días serán 120 años'."
+              },
+              {
+                reference: "Génesis 18:20-33",
+                purpose: "Jehová escuchó a Abrahán",
+                text: "Abrahán siguió preguntando a Jehová sobre Sodoma, y Jehová respondió pacientemente a cada una de sus preguntas."
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "De acuerdo con 2 Pedro 3:9, ¿por qué está siendo tan paciente Jehová hoy en día?",
+            textLSM: "",
+            paragraphs: [11],
+            readText: "LEE 2 Pedro 3:9",
+            answer: [
+              "Jehová está esperando a que llegue el momento fijado para destruir este sistema malvado.",
+              "'No desea que ninguno sea destruido, sino que todos lleguen a arrepentirse'.",
+              "Millones de personas han llegado a conocerlo gracias a su paciencia.",
+              "Sin embargo, la paciencia de Dios tiene límites. No dejará que la maldad dure para siempre."
+            ],
+            flashcards: [
+              {
+                question: "Según 2 Pedro 3:9, ¿por qué es paciente Jehová?",
+                answer: "Porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse."
+              },
+              {
+                question: "¿Tiene límites la paciencia de Jehová?",
+                answer: "Sí, no dejará que la maldad dure para siempre (Habacuc 2:3)."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "2 Pedro 3:9",
+                purpose: "La paciencia de Jehová",
+                text: "Jehová no es lento en cuanto a su promesa, sino que tiene paciencia con ustedes porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse."
+              },
+              {
+                reference: "Habacuc 2:3",
+                purpose: "La paciencia tiene límites",
+                text: "Porque la visión es todavía para el tiempo señalado. No mentirá. Aunque parezca tardar, espérala; porque sin falta vendrá. No se retrasará."
+              }
+            ]
+          },
+          {
+            number: "12",
+            textEs: "¿Cómo imita Jesús la paciencia de Jehová?",
+            textLSM: "",
+            paragraphs: [12],
+            answer: [
+              "Durante miles de años, Jesús ha imitado la paciencia de Jehová.",
+              "Ha visto cómo Satanás ha esparcido mentiras terribles sobre Dios y los seres humanos fieles.",
+              "Jesús tiene muchas ganas de 'deshacer las obras del Diablo'.",
+              "Es humilde y reconoce que le corresponde a Jehová decidir cuándo es el mejor momento de actuar."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué ayuda a Jesús a esperar con paciencia?",
+                answer: "Es humilde y reconoce que le corresponde a Jehová decidir cuándo es el mejor momento de actuar."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Juan 3:8",
+                purpose: "Jesús deshará las obras del Diablo",
+                text: "El que practica el pecado se origina del Diablo, porque el Diablo ha estado pecando desde el principio. Para esto se manifestó el Hijo de Dios: para deshacer las obras del Diablo."
+              },
+              {
+                reference: "Hechos 1:7",
+                purpose: "Le corresponde a Jehová decidir",
+                text: "Él les dijo: 'No les corresponde a ustedes conocer los tiempos ni las épocas que el Padre ha colocado en su propia jurisdicción'."
+              }
+            ]
+          },
+          {
+            number: "13",
+            textEs: "¿En qué situación demostró Jesús que era paciente con sus apóstoles, y por qué?",
+            textLSM: "",
+            paragraphs: [13],
+            answer: [
+              "Jesús fue paciente al ver a sus apóstoles discutir vez tras vez sobre quién era el más importante.",
+              "No se desesperaba ni se frustraba.",
+              "Estaba seguro de que con el tiempo cambiarían.",
+              "Agradecemos que nuestro Rey sea tan humilde y paciente con nosotros."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo demostró Jesús paciencia con sus apóstoles?",
+                answer: "No se desesperaba al verlos discutir sobre quién era el más importante, porque estaba seguro de que con el tiempo cambiarían."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Lucas 22:24-27",
+                purpose: "Los apóstoles discutían sobre quién era mayor",
+                text: "Surgió una acalorada discusión entre ellos sobre quién de ellos era el mayor. Jesús pacientemente les enseñó sobre el servicio humilde."
+              }
+            ]
+          },
+          {
+            number: "14",
+            textEs: "¿Qué nos ayudará a ser más pacientes?",
+            textLSM: "",
+            paragraphs: [14],
+            answer: [
+              "Para parecernos más a Jehová debemos desarrollar 'la mente de Cristo'.",
+              "Hay que leer los Evangelios y meditar en cómo las acciones de Jesús reflejaban su manera de pensar.",
+              "Debemos pedirle a Jehová que nos ayude a ser humildes como su Hijo.",
+              "A medida que aprendamos a pensar como Cristo, seremos más pacientes con nosotros mismos y con los demás."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué nos ayudará a ser más pacientes?",
+                answer: "Desarrollar 'la mente de Cristo' leyendo los Evangelios, meditando en sus acciones y pidiéndole a Jehová que nos ayude a ser humildes."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Corintios 2:16",
+                purpose: "Tener la mente de Cristo",
+                text: "Porque '¿quién ha llegado a conocer la mente de Jehová para que lo instruya?'. Sin embargo, nosotros sí tenemos la mente de Cristo."
+              },
+              {
+                reference: "Mateo 18:26-30, 35",
+                purpose: "Debemos ser pacientes y perdonadores",
+                text: "Jesús enseñó la parábola del esclavo que no quiso perdonar, mostrando que debemos ser pacientes con los demás como Dios lo es con nosotros."
+              }
+            ]
+          },
+          {
+            number: "15",
+            textEs: "¿Cómo ha cumplido Jehová las palabras de Salmo 138:6?",
+            textLSM: "",
+            paragraphs: [15],
+            section: "JEHOVÁ DIGNIFICA A LOS HUMILDES",
+            readText: "LEE Salmo 138:6",
+            answer: [
+              "Jehová les presta una atención especial a quienes suelen pasar desapercibidos.",
+              "La nodriza Débora sirvió fielmente a Isaac y Jacob durante unos 125 años.",
+              "Jehová escogió a David, un simple pastorcito, para que llegara a ser rey de Israel.",
+              "Dio a unos humildes pastores el honor de ser los primeros en enterarse del nacimiento del Mesías."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué ejemplos bíblicos muestran que Jehová dignifica a los humildes?",
+                answer: "La nodriza Débora, David el pastorcito, los pastores en el nacimiento de Jesús, y Simeón y Ana en el templo."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 138:6",
+                purpose: "Jehová se fija en el humilde",
+                text: "Aunque Jehová es elevado, se fija en el humilde; pero al arrogante lo conoce desde lejos."
+              },
+              {
+                reference: "Lucas 2:8-11",
+                purpose: "Los pastores fueron los primeros en saber del Mesías",
+                text: "Había unos pastores que vivían a la intemperie, cuidando sus rebaños de noche. Un ángel de Jehová se les apareció y les dijo que el Cristo había nacido."
+              }
+            ]
+          },
+          {
+            number: "16",
+            textEs: "¿Cómo imitó Jesús a su Padre?",
+            textLSM: "",
+            paragraphs: [16],
+            answer: [
+              "Jesús dignificó a los humildes enseñándoles a personas 'comunes y con poca educación'.",
+              "Sanó a los enfermos con cariño, devolviéndoles no solo la salud sino también la dignidad.",
+              "La noche antes de morir les lavó los pies a sus apóstoles, una tarea de sirvientes.",
+              "Dio a sus seguidores el honor de llevar a cabo la labor más importante: ayudar a otros a conseguir la vida eterna."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo dignificó Jesús a los humildes?",
+                answer: "Les enseñó a personas comunes, sanó enfermos con cariño, lavó los pies de sus apóstoles y les dio el honor de predicar."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Hechos 4:13",
+                purpose: "Jesús enseñó a personas comunes",
+                text: "Cuando vieron la valentía de Pedro y Juan, y descubrieron que eran hombres del común y sin educación, se quedaron maravillados."
+              },
+              {
+                reference: "Juan 13:5",
+                purpose: "Jesús lavó los pies de sus discípulos",
+                text: "Después echó agua en una palangana y empezó a lavarles los pies a los discípulos y a secárselos con la toalla."
+              }
+            ]
+          },
+          {
+            number: "17",
+            textEs: "¿Cómo podemos imitar a Jehová? (Vea también la imagen).",
+            textLSM: "",
+            paragraphs: [17],
+            image: "",
+            imageCaption: "Imitamos la humildad de Jehová cuando les predicamos a toda clase de personas.",
+            answer: [
+              "Seguimos su ejemplo al predicar a todas las personas sin importar su cultura, color de piel o nivel de educación.",
+              "Consideramos a los hermanos como superiores a nosotros independientemente de sus habilidades o responsabilidades.",
+              "Jehová se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo podemos imitar la humildad de Jehová al predicar?",
+                answer: "Predicando a todas las personas sin importar su cultura, color de piel o nivel de educación."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Filipenses 2:3",
+                purpose: "Considerar a otros como superiores",
+                text: "No hagan nada por espíritu de rivalidad ni por presunción, sino que con humildad consideren a los demás como superiores a ustedes."
+              },
+              {
+                reference: "Romanos 12:10",
+                purpose: "Tomemos la iniciativa de honrar a otros",
+                text: "En el amor fraternal, sean cariñosos unos con otros. En cuanto a honrarse unos a otros, tomen la iniciativa."
+              }
+            ]
+          },
+          {
+            number: "18",
+            textEs: "¿Por qué quiere usted imitar la humildad de Jehová?",
+            textLSM: "",
+            paragraphs: [18],
+            answer: [
+              "Al imitar la humildad de Jehová, nos convertiremos en personas más accesibles, razonables y pacientes.",
+              "Trataremos a los demás de una manera que los honre, tal como hace Jehová.",
+              "Cada esfuerzo que hacemos por copiar su humildad nos hace más valiosos a sus ojos."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué beneficios trae imitar la humildad de Jehová?",
+                answer: "Nos hace más accesibles, razonables y pacientes, y nos hace más valiosos a los ojos de Jehová."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Isaías 43:4",
+                purpose: "Somos valiosos para Jehová",
+                text: "Porque eres precioso a mis ojos, has sido honrado y yo te amo."
+              }
+            ]
+          }
+        ],
+        paragraphs: [
+          {
+            number: 1,
+            content: "CUANDO pensamos en las personas que tienen poder en el mundo, ¿diríamos que son humildes? Es muy probable que no. Sin embargo, Jehová, quien es el Todopoderoso, sí lo es (Sal. 113:5-8). La humildad impregna toda su personalidad; no hay ni el más mínimo rastro de orgullo en él. En este artículo analizaremos cuatro aspectos de la hermosa personalidad de Jehová y descubriremos cómo se ve reflejada la humildad en cada uno de ellos. También veremos cómo imitó Jesús esta cualidad de su Padre. Todo esto nos ayudará a acercarnos más a Jehová y a esforzarnos por ser más humildes."
+          },
+          {
+            number: 2,
+            content: "Las personas orgullosas no suelen ser accesibles. Se creen tan importantes que actúan de tal manera que el resto de la gente no se atreve a acercarse a ellas o incluso las evita por completo. ¡Pero qué diferente es Jehová! Como es tan humilde, nos invita a acercarnos a él y a contarle todo lo que sentimos y pensamos (lea Salmo 62:8). Así como un padre cariñoso escucha con atención las preocupaciones de sus hijos, nuestro Padre celestial escucha con atención las oraciones de sus siervos. De hecho, hizo que muchas de ellas quedaran registradas en la Biblia, lo que demuestra lo fácil que es hablar con él y lo abierto que está a escucharnos."
+          },
+          {
+            number: 3,
+            content: "Podemos orarle a Jehová incluso si sentimos que no merecemos su amor. ¿Por qué lo sabemos? Por la parábola del hijo pródigo. En ella, Jesús habló de un padre compasivo que tenía un hijo que se sentía indigno de volver a ser parte de la familia, pues había cometido muchos errores. ¿Cómo reaccionó el padre cuando el hijo regresó a casa? En cuanto lo vio, \"corrió a su encuentro, lo abrazó y lo besó con ternura\" (Luc. 15:17-20). Pues bien, Jehová es como ese padre. En cuanto escucha la oración de alguien que está aplastado por las preocupaciones o por la culpa, su humildad lo motiva a prestarle toda su atención (Lam. 3:19, 20). Y su compasión lo impulsa a \"correr\" hacia él para consolarlo y confirmarle su amor y su perdón (Is. 57:15). ¿Cómo lo hace? Muchas veces usa a los ancianos, a los familiares Testigos y a otros hermanos (Sant. 5:14, 15). Jehová nos ayuda porque quiere que estemos cerca de él."
+          },
+          {
+            number: 4,
+            content: "Jesús imita a su Padre. Al igual que Jehová, Jesús es humilde. Por eso, mientras estuvo en la Tierra, las personas se sentían con la confianza de acercarse a él. Le hacían preguntas con total libertad (Mar. 4:10, 11). Y, cuando él les preguntaba qué opinaban sobre cierto asunto, le decían abiertamente lo que pensaban (Mat. 16:13-16). Si cometían un error, no temblaban de miedo, porque sabían que Jesús era bueno, misericordioso y paciente (Mat. 17:24-27). Gracias a que Jesús imitó a su Padre a la perfección, sus seguidores llegaron a conocer mejor a Jehová (Juan 14:9). Aprendieron que Jehová no se parecía en nada a los líderes religiosos de aquel entonces, quienes eran duros, orgullosos e insensibles. Al contrario, es humilde y accesible."
+          },
+          {
+            number: 5,
+            content: "La humildad nos hace más accesibles. ¿Por qué? Por un lado, nos ayuda a evitar defectos que alejan a los demás de nosotros, como la envidia, el orgullo y el rencor. Por otro, nos ayuda a tener cualidades que atraen a los demás, como la bondad, la paciencia y el perdón (Col. 3:12-14). Los ancianos en especial deben esforzarse por ser accesibles. Claro está, para que los hermanos tengan la confianza de acercarse a ellos, primero tienen que poder verlos. Esto quiere decir que los ancianos prefieren asistir a las reuniones presencialmente en vez de conectarse por videoconferencia si no es necesario. Y, en la medida de lo posible, salen a predicar de casa en casa con los hermanos y las hermanas. Así les permiten conocerlos mejor y sentirse en la confianza de abordarlos siempre que lo necesiten."
+          },
+          {
+            number: 6,
+            content: "Las personas orgullosas suelen ser inflexibles e irrazonables. En cambio, Jehová —que siempre tiene la razón y es infinitamente sabio— es humilde y está dispuesto a ceder. Por ejemplo, pensemos en cómo reaccionó cuando Míriam, junto con Aarón, empezó a hablar en contra de su hermano Moisés, quien era el representante de Dios. Jehová se puso furioso con ella, porque en realidad le estaba faltando el respeto a él. Así que la castigó con lepra. Ahora bien, Aarón le suplicó a Moisés que la ayudara, y luego Moisés le rogó a Jehová que la curara. ¿Qué hizo Dios? ¿Se aferró a su decisión de castigarla? Eso es lo que habría hecho alguien orgulloso. Pero Jehová es humilde y por eso le concedió a Moisés su petición y curó a Míriam (Núm. 12:1-15)."
+          },
+          {
+            number: 7,
+            content: "Veamos otro caso en el que Jehová demostró que es humilde. Por medio de un profeta, le anunció al enfermo rey Ezequías que iba a morir. Entonces el rey le rogó a Jehová con los ojos llenos de lágrimas que lo curara. ¿Cuál fue la respuesta de Dios? Movido por la compasión, le añadió 15 años de vida (2 Rey. 20:1, 5, 6). Como vemos, la humildad de Jehová lo impulsa a ser flexible y compasivo."
+          },
+          {
+            number: 8,
+            content: "Mientras estuvo en la Tierra, Jesús fue razonable y buscó la manera de ayudar a la gente siempre que fue posible. Por ejemplo, sanó a las personas en sábado aunque los insensibles líderes religiosos se opusieron (lea Marcos 3:1-6). Y sigue demostrando esta cualidad como cabeza de la congregación cristiana. Por ejemplo, cuando alguien comete un pecado grave, Jesús es paciente con él y le da muchas oportunidades de cambiar (Apoc. 2:2-5)."
+          },
+          {
+            number: 9,
+            content: "Tenemos que desarrollar con humildad la manera tan razonable de pensar y actuar de Jehová (Sant. 3:17). Los padres que son razonables no son permisivos, pero tampoco les exigen a sus hijos más de lo que pueden dar. Un buen ejemplo de esto lo encontramos en Génesis 33:12-14, donde leemos que Jacob fue considerado con sus hijos. Además, los padres humildes y razonables evitan hacer comparaciones injustas entre sus hijos. Los ancianos también deben ser razonables. En lugar de insistir en su opinión, apoyan la decisión de la mayoría de los ancianos siempre y cuando no vaya en contra de los principios bíblicos (1 Tim. 3:2, 3). Y todos debemos esforzarnos por entender el punto de vista de los demás aunque sea diferente al nuestro (Rom. 14:1). Cada uno de nosotros procuramos seguir este consejo: \"Que todos sepan que ustedes son personas razonables\" (Filip. 4:5)."
+          },
+          {
+            number: 10,
+            content: "Probablemente hemos notado que las personas orgullosas son impacientes; no les gusta que las hagan esperar. ¡Qué distinto es Jehová! No hay nadie en el universo tan paciente como él. En los días de Noé, por ejemplo, dijo que esperaría 120 años para destruir a los malvados (Gén. 6:3). Noé alcanzó a criar a sus hijos y a construir el arca junto con su familia. Tiempo después, Jehová escuchó con paciencia a Abrahán mientras este le hacía preguntas sobre su decisión de destruir Sodoma y Gomorra. Una persona orgullosa tal vez le hubiera dicho a Abrahán: \"¿Quién te crees que eres para cuestionarme?\". Pero Jehová no hizo eso. Él es humilde y paciente (Gén. 18:20-33)."
+          },
+          {
+            number: 11,
+            content: "Hoy en día, Jehová también está demostrando que es paciente. Está esperando a que llegue el momento fijado para destruir este sistema malvado. ¿Por qué es tan paciente con los seres humanos? \"Porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse\" (lea 2 Pedro 3:9). ¿Ha sido en vano la paciencia de Jehová? ¡Para nada! Millones de personas han llegado a conocerlo, y deseamos que millones más hagan lo mismo. Sin embargo, la paciencia de Dios tiene límites. Él ama a las personas, pero no es permisivo. No dejará que la maldad dure para siempre (Hab. 2:3)."
+          },
+          {
+            number: 12,
+            content: "Durante miles de años, Jesús ha imitado la paciencia de Jehová. Ha visto cómo Satanás ha esparcido mentiras terribles sobre Dios y los seres humanos fieles (Gén. 3:4, 5; Job 1:11; Apoc. 12:10). Jesús también ha visto a las personas sufrir cosas horribles. ¿Nos imaginamos las ganas que tiene de \"deshacer las obras del Diablo\"? (1 Juan 3:8). ¿Qué lo ayuda a esperar con paciencia hasta que Jehová le diga que es hora de acabar con las obras del Diablo por completo? Una de las razones principales es que Jesús es humilde y reconoce que le corresponde a Jehová decidir cuándo es el mejor momento de actuar (Hech. 1:7)."
+          },
+          {
+            number: 13,
+            content: "Cuando Jesús estuvo en la Tierra, también fue paciente con sus apóstoles. Al verlos discutir vez tras vez sobre quién era el más importante, no se desesperaba ni se frustraba. Todo lo contrario, era muy paciente con ellos (Luc. 9:46; 22:24-27). Estaba seguro de que con el tiempo cambiarían. ¿Y nosotros? ¿Hemos cometido el mismo error muchas veces? En ese caso, cuánto agradecemos que nuestro Rey sea tan humilde y paciente."
+          },
+          {
+            number: 14,
+            content: "Para parecernos más a Jehová debemos desarrollar \"la mente de Cristo\" (1 Cor. 2:16). ¿Qué nos ayudará a pensar como Jesús? No hay atajos. Hay que leer los Evangelios y sacar tiempo para meditar en cómo las acciones de Jesús reflejaban su manera de pensar. Además, es indispensable que le pidamos a Jehová que nos ayude a ser humildes como su Hijo. A medida que aprendamos a pensar como Cristo, nos pareceremos más a Dios y seremos más pacientes con nosotros mismos y con nuestros hermanos (Mat. 18:26-30, 35)."
+          },
+          {
+            number: 15,
+            content: "¿Cierto que es un honor que el Soberano del universo les preste una atención especial a quienes suelen pasar desapercibidos? Analicemos varios ejemplos de cómo lo ha hecho a lo largo de los siglos. Quizás algunos de ellos no nos resulten tan familiares, pero Jehová hizo que se incluyeran en la Biblia. En la época de los patriarcas vivió una nodriza llamada Débora, quien sirvió lealmente a las familias de Isaac y Jacob durante unos 125 años. No sabemos mucho más de esta fiel mujer, pero Jehová inspiró a Moisés para que registrara su nombre y un detalle que muestra lo querida que era (Gén. 24:59; 35:8, nota). Siglos después, Jehová escogió a David, un simple pastorcito, para que llegara a ser rey de Israel (2 Sam. 22:1, 36). Poco después de que Jesús nació, Dios les concedió a unos humildes pastores, por medio de un ángel, el honor de ser los primeros en enterarse de que el futuro Mesías había nacido en Belén (Luc. 2:8-11). Y, cuando José y María llevaron a Jesús al templo, Jehová dignificó a Simeón y a Ana —dos personas muy mayores— dándoles la oportunidad de ver a su Hijo (Luc. 2:25-30, 36-38). Sin duda, \"aunque Jehová es elevado, se fija en el humilde\"."
+          },
+          {
+            number: 16,
+            content: "Al igual que Jehová, Jesús dignificó a los humildes. Les enseñó a las personas \"comunes y con poca educación\" la verdad sobre el Reino de Dios (Hech. 4:13; Mat. 11:25). También sanó a los enfermos con cariño, y al hacerlo no solo les devolvió la salud, sino también la dignidad (Luc. 5:13). La noche antes de morir les lavó los pies a sus apóstoles, una tarea que realizaban los sirvientes (Juan 13:5). Y, antes de subir al cielo, les dio a sus seguidores —lo que nos incluye— el honor de llevar a cabo la labor más importante que un ser humano pudiera tener: ayudar a otros a conseguir la vida eterna (Mat. 28:19, 20)."
+          },
+          {
+            number: 17,
+            content: "Seguimos el ejemplo de Jehová al predicar. Les damos a todas las personas el honor de escuchar las buenas noticias, sin importar su cultura, su color de piel o su nivel de educación. También seguimos su ejemplo al tratar a los hermanos. Los consideramos superiores a nosotros independientemente de qué habilidades o responsabilidades tengamos (Filip. 2:3). Jehová se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros de estas y otras maneras (Sof. 3:12; Rom. 12:10)."
+          },
+          {
+            number: 18,
+            content: "Al hacer todo lo posible por imitar la humildad de nuestro cariñoso Padre celestial, nos convertiremos en personas más accesibles, razonables y pacientes. También trataremos a los demás de una manera que los honre, tal como hace Jehová. Recordemos que cada esfuerzo que hacemos por copiar su humildad nos hace más valiosos a sus ojos (Is. 43:4)."
+          }
+        ],
+        reviewQuestions: [
+          {
+            question: "¿Cómo puede la humildad ayudarnos a ser más accesibles?",
+            answer: [
+              "Nos ayuda a evitar defectos que alejan a los demás: envidia, orgullo y rencor.",
+              "Nos ayuda a tener cualidades que atraen: bondad, paciencia y perdón.",
+              "Los ancianos deben asistir presencialmente y predicar con los hermanos para ser más accesibles."
+            ]
+          },
+          {
+            question: "¿Cómo puede la humildad ayudarnos a ser más razonables?",
+            answer: [
+              "Los padres no exigen a sus hijos más de lo que pueden dar.",
+              "Evitan hacer comparaciones injustas entre sus hijos.",
+              "Los ancianos apoyan la decisión de la mayoría si no va contra los principios bíblicos.",
+              "Nos esforzamos por entender el punto de vista de los demás."
+            ]
+          },
+          {
+            question: "¿Cómo puede la humildad ayudarnos a ser más pacientes?",
+            answer: [
+              "Desarrollamos 'la mente de Cristo' leyendo los Evangelios.",
+              "Meditamos en cómo las acciones de Jesús reflejaban su manera de pensar.",
+              "Pedimos a Jehová que nos ayude a ser humildes como su Hijo.",
+              "Seremos más pacientes con nosotros mismos y con los demás."
+            ]
+          }
+        ],
+        finalSong: "Canción 159: Demos gloria a Jehová"
+      },
+      // Artículo 51: "Cómo planear una boda que honre a Jehová" (23 Feb-1 Mar)
+      {
+        metadata: {
+          articleNumber: 51,
+          week: "23 Feb-1 Mar",
+          month: "Diciembre",
+          year: 2025
+        },
+        song: "Canción 132: Ahora ya somos uno",
+        title: "Cómo planear una boda que honre a Jehová",
+        biblicalText: "\"Háganlo todo de forma digna y ordenada\" (1 COR. 14:40).",
+        theme: "Cómo pueden las parejas de novios cristianos honrar a Jehová el día de su boda.",
+        questions: [
+          {
+            number: "1, 2",
+            textEs: "¿Qué desea Jehová para los novios?",
+            textLSM: "",
+            paragraphs: [1, 2],
+            answer: [
+              "Jehová desea que los novios disfruten mucho el día de su boda y tengan un matrimonio muy feliz.",
+              "Es muy importante que su boda honre a Jehová.",
+              "Los principios del artículo ayudarán a todos a honrar a Jehová si asisten o si les piden consejos."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué desea Jehová para las parejas que se casan?",
+                answer: "Que disfruten mucho el día de su boda y tengan un matrimonio muy feliz."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 5:18",
+                purpose: "Alegrarse con la esposa",
+                text: "Alégrate con la esposa de tu juventud."
+              },
+              {
+                reference: "Cantares 3:11",
+                purpose: "El día de la boda es especial",
+                text: "El día de su boda, el día en que su corazón se alegró."
+              }
+            ]
+          },
+          {
+            number: "3",
+            textEs: "¿Qué deben tomar en cuenta las parejas cristianas al organizar su boda, y por qué?",
+            textLSM: "",
+            paragraphs: [3],
+            section: "POR QUÉ HONRAR A JEHOVÁ",
+            answer: [
+              "Las parejas cristianas deben tomar en cuenta los principios que Jehová ha establecido en su Palabra.",
+              "Jehová es el Creador del matrimonio.",
+              "Fue él quien casó a los dos primeros seres humanos, Adán y Eva.",
+              "El punto de vista de Dios debe ser lo más importante para los novios."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué deben los novios tomar en cuenta el punto de vista de Jehová?",
+                answer: "Porque Jehová es el Creador del matrimonio y fue él quien casó a Adán y Eva."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Génesis 1:28; 2:24",
+                purpose: "Jehová creó el matrimonio",
+                text: "Dios los bendijo y les dijo: 'Sean fructíferos y multiplíquense'. Por eso el hombre dejará a su padre y a su madre y se unirá a su esposa, y los dos llegarán a ser una sola carne."
+              }
+            ]
+          },
+          {
+            number: "4",
+            textEs: "¿Cuál es otra buena razón para tomar en cuenta el punto de vista de Jehová al organizar una boda?",
+            textLSM: "",
+            paragraphs: [4],
+            answer: [
+              "Jehová es nuestro Padre celestial y nuestro mejor amigo.",
+              "Queremos proteger nuestra amistad con él y evitar que algo lo hiera u ofenda.",
+              "Al pensar en todo lo que ha hecho y hará por nosotros, merece que lo honremos en nuestra boda."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué relación tenemos con Jehová que nos motiva a honrarlo en nuestra boda?",
+                answer: "Es nuestro Padre celestial y nuestro mejor amigo, y queremos proteger esa amistad."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Hebreos 12:9",
+                purpose: "Jehová es nuestro Padre",
+                text: "Además, teníamos padres terrenales que nos disciplinaban, y los respetábamos. ¿No deberíamos someternos mucho más al Padre de nuestra vida espiritual y vivir?"
+              },
+              {
+                reference: "Salmo 25:14",
+                purpose: "Jehová es nuestro amigo",
+                text: "La amistad íntima con Jehová pertenece a los que le temen, y él les da a conocer su pacto."
+              },
+              {
+                reference: "Salmo 116:12",
+                purpose: "Agradecer a Jehová",
+                text: "¿Qué le devolveré a Jehová por todos los beneficios que me ha dado?"
+              }
+            ]
+          },
+          {
+            number: "5",
+            textEs: "¿Cómo puede ayudar la Biblia a los novios a tomar buenas decisiones sobre su boda?",
+            textLSM: "",
+            paragraphs: [5],
+            section: "CÓMO HONRAR A JEHOVÁ",
+            answer: [
+              "La Biblia no contiene una lista de reglas sobre cómo debe ser una boda.",
+              "Hay un abanico de posibilidades dentro de las circunstancias, costumbres y gustos personales.",
+              "Los cristianos también respetamos las leyes locales.",
+              "Si la pareja se guía por los principios bíblicos, su boda honrará a Jehová."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué libertad tienen los cristianos al planear su boda?",
+                answer: "Hay un abanico de posibilidades dentro de las circunstancias, costumbres y gustos personales, siempre que sigan los principios bíblicos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Mateo 22:21",
+                purpose: "Respetar las leyes locales",
+                text: "Devuelvan a César las cosas de César, y a Dios las cosas de Dios."
+              }
+            ]
+          },
+          {
+            number: "6",
+            textEs: "¿Por qué es importante que los novios cumplan con los requisitos legales para casarse? (Romanos 13:1, 2).",
+            textLSM: "",
+            paragraphs: [6],
+            readText: "LEE Romanos 13:1, 2",
+            answer: [
+              "Las leyes establecen ciertos requisitos que los novios deben cumplir para poder casarse.",
+              "Deben averiguar cuáles son los requisitos que aplican donde viven.",
+              "Si necesitan ayuda, pueden pedírsela a los ancianos."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué deben hacer los novios respecto a los requisitos legales?",
+                answer: "Averiguar cuáles son los requisitos que aplican donde viven y cumplirlos. Pueden pedir ayuda a los ancianos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Romanos 13:1, 2",
+                purpose: "Obedecer las autoridades",
+                text: "Toda persona debe estar sujeta a las autoridades superiores, porque no hay autoridad que no venga de Dios."
+              }
+            ]
+          },
+          {
+            number: "7",
+            textEs: "¿Qué ambiente debe haber en las bodas?",
+            textLSM: "",
+            paragraphs: [7],
+            answer: [
+              "Debe haber un ambiente apropiado que refleje el fruto del espíritu de Dios, no el espíritu del mundo.",
+              "El novio, como cabeza de la nueva familia, es responsable de que la ceremonia sea digna y alegre.",
+              "Un discurso de boda basado en la Biblia beneficia a los asistentes.",
+              "La mayoría de las parejas eligen que la ceremonia tenga lugar en un Salón del Reino."
+            ],
+            flashcards: [
+              {
+                question: "¿Quién es responsable de que la ceremonia sea digna y alegre?",
+                answer: "El novio, como cabeza de la nueva familia."
+              },
+              {
+                question: "¿Qué deben hacer las parejas que desean usar un Salón del Reino?",
+                answer: "Pedírselo por escrito al cuerpo de ancianos con bastante antelación."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Corintios 10:31, 32",
+                purpose: "Hacer todo para la gloria de Dios",
+                text: "Ya sea que coman, ya sea que beban, ya sea que hagan cualquier otra cosa, háganlo todo para la gloria de Dios."
+              },
+              {
+                reference: "Gálatas 5:19-26",
+                purpose: "El fruto del espíritu vs las obras de la carne",
+                text: "El fruto del espíritu es amor, alegría, paz, paciencia, bondad, fe, apacibilidad, autocontrol."
+              }
+            ]
+          },
+          {
+            number: "8",
+            textEs: "¿Qué pueden hacer los novios para que en la celebración haya un ambiente digno? (Romanos 13:13).",
+            textLSM: "",
+            paragraphs: [8],
+            readText: "LEE Romanos 13:13",
+            answer: [
+              "Si deciden celebrar una fiesta, deben evitar que refleje el espíritu del mundo.",
+              "Si sirven bebidas alcohólicas, deben tomar medidas para que nadie beba más de la cuenta.",
+              "La música debe mantenerse a un volumen que permita conversar con comodidad.",
+              "Deben revisar qué tipo de música pondrán y qué dicen las letras."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué deben considerar los novios respecto a la música de la celebración?",
+                answer: "Que sea a un volumen que permita conversar, y revisar el tipo de música y las letras para que nadie se sienta ofendido."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Romanos 13:13",
+                purpose: "Comportarse decentemente",
+                text: "Comportémonos decentemente como de día, no en fiestas descontroladas ni en borracheras."
+              }
+            ]
+          },
+          {
+            number: "9",
+            textEs: "¿Qué debe tomar en cuenta la pareja respecto a lo que se hará durante la celebración?",
+            textLSM: "",
+            paragraphs: [9],
+            answer: [
+              "Si planean que familiares o amigos les dediquen unas palabras, presenten imágenes o video, deben asegurarse de que todo sea apropiado y animador.",
+              "Deben preguntarse si lo que se haga honrará a Jehová.",
+              "Aunque puede haber espacio para algo de humor, deben evitar comentarios indecentes o con connotaciones sexuales.",
+              "Deben asegurarse de que quienes participen conozcan sus deseos y los respeten."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué preguntas deben hacerse los novios sobre el entretenimiento de la boda?",
+                answer: "¿Les parecerá respetuoso a los asistentes? ¿Demostrará respeto por el matrimonio? ¿Honrará a Jehová?"
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Filipenses 4:8",
+                purpose: "Pensar en cosas edificantes",
+                text: "Todas las cosas que son verdaderas, que merecen serio respeto, que son justas, que son castas, que son amables... sigan pensando en estas cosas."
+              },
+              {
+                reference: "Efesios 5:3",
+                purpose: "Evitar inmoralidad",
+                text: "Que entre ustedes ni siquiera se mencionen la inmoralidad sexual ni ninguna clase de inmundicia."
+              }
+            ]
+          },
+          {
+            number: "10",
+            textEs: "¿Por qué deben ser modestas las parejas al organizar su boda? (1 Juan 2:15-17).",
+            textLSM: "",
+            paragraphs: [10],
+            readText: "LEE 1 Juan 2:15-17",
+            answer: [
+              "Jehová valora que sus siervos procuren honrarlo a él en vez de atraer la atención sobre ellos mismos.",
+              "Las parejas modestas evitan gastar una cantidad excesiva de dinero y hacer 'ostentación'.",
+              "Una boda sencilla permite seguir sirviendo a Jehová sin deudas y deja recuerdos muy bonitos.",
+              "Al no complicarse, tienen menos decisiones que tomar y menos estrés."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué beneficios trae elegir una boda sencilla?",
+                answer: "No endeudarse, poder seguir sirviendo a Jehová, menos estrés, menos desacuerdos, y recuerdos bonitos."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Juan 2:15-17",
+                purpose: "No amar al mundo",
+                text: "No amen al mundo ni las cosas del mundo. Si alguno ama al mundo, el amor del Padre no está en él. Porque todo lo que hay en el mundo —el deseo de la carne, el deseo de los ojos y la ostentación de los medios de vida— no se origina del Padre."
+              }
+            ]
+          },
+          {
+            number: "11",
+            textEs: "¿Cómo pueden el novio y la novia demostrar que son modestos en su manera de vestir y arreglarse? (Vea también las imágenes).",
+            textLSM: "",
+            paragraphs: [11],
+            answer: [
+              "Quieren lucir lo mejor posible, e incluso en tiempos bíblicos se prestaba atención al aspecto.",
+              "La ropa debe ser decente y apropiada.",
+              "No deben permitir que la ropa o cualquier cosa material se convierta en el aspecto más destacado de la boda."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué deben recordar los novios sobre su vestimenta?",
+                answer: "Debe ser decente y apropiada, sin que la ropa o cosas materiales se conviertan en lo más destacado de la boda."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Isaías 61:10",
+                purpose: "La vestimenta de la novia",
+                text: "Como un novio se pone un turbante, como una novia se adorna con sus joyas."
+              },
+              {
+                reference: "1 Timoteo 2:9",
+                purpose: "Vestirse con modestia",
+                text: "Que las mujeres se adornen con ropa apropiada, con modestia y buen juicio."
+              },
+              {
+                reference: "1 Pedro 3:3, 4",
+                purpose: "La belleza interior",
+                text: "Que su adorno no sea el exterior... sino la persona interior del corazón, con el adorno incorruptible de un espíritu apacible y tranquilo."
+              }
+            ]
+          },
+          {
+            number: "12",
+            textEs: "¿Por qué deben los novios asegurarse de rechazar las costumbres que no están de acuerdo con lo que dice la Biblia?",
+            textLSM: "",
+            paragraphs: [12],
+            answer: [
+              "En el mundo de Satanás, las bodas suelen incluir muchas costumbres relacionadas con la religión falsa, el ocultismo y las supersticiones.",
+              "Jehová nos advierte que debemos mantenernos alejados de todas esas cosas impuras.",
+              "Si tienen dudas sobre ciertas costumbres, deben investigar su origen y buscar los principios bíblicos antes de decidir."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué deben hacer los novios si tienen dudas sobre ciertas costumbres de boda?",
+                answer: "Investigar su origen y buscar los principios bíblicos aplicables antes de decidir si las incluirán."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Apocalipsis 18:4",
+                purpose: "Salir de Babilonia la Grande",
+                text: "Sálganse de ella, pueblo mío, si no quieren participar de sus pecados."
+              },
+              {
+                reference: "2 Corintios 6:14-17",
+                purpose: "Separarse de lo impuro",
+                text: "No se unan bajo yugo desigual con los incrédulos. Sálganse de en medio de ellos y sepárense, dice Jehová, y dejen de tocar lo impuro."
+              }
+            ]
+          },
+          {
+            number: "13",
+            textEs: "¿Cómo pueden los novios demostrar que ven los regalos como Jehová los ve?",
+            textLSM: "",
+            paragraphs: [13],
+            answer: [
+              "Los novios no quieren que los invitados sientan que están obligados a hacer un regalo.",
+              "Tampoco quieren que piensen que un obsequio sencillo no les parecería suficiente.",
+              "Los siervos de Jehová agradecemos cualquier cosa que otros nos dan por amor y no por obligación."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo deben ver los novios los regalos de boda?",
+                answer: "Deben agradecer cualquier cosa que otros les den por amor, sin hacer sentir obligados a los invitados."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 11:25",
+                purpose: "El gozo de dar",
+                text: "El alma generosa prosperará, y el que riega a otros también será regado."
+              },
+              {
+                reference: "Hechos 20:35",
+                purpose: "Hay más felicidad en dar",
+                text: "Hay más felicidad en dar que en recibir."
+              },
+              {
+                reference: "2 Corintios 9:7",
+                purpose: "Dar con alegría",
+                text: "Que cada uno haga como ha resuelto en su corazón, no de mala gana ni por obligación, porque Dios ama al que da con alegría."
+              }
+            ]
+          },
+          {
+            number: "14",
+            textEs: "¿A qué dificultades se enfrentan algunas parejas?",
+            textLSM: "",
+            paragraphs: [14],
+            section: "CÓMO SOLUCIONAR CIERTAS SITUACIONES",
+            answer: [
+              "Algunas parejas enfrentan el reto de mantener la boda sencilla.",
+              "Decidir a quién invitar puede ser difícil cuando tienen muchos amigos y en su cultura todo el mundo espera ser invitado.",
+              "Algunas personas presionan para que la boda sea más espectacular.",
+              "Lograr que los padres acepten decisiones diferentes a la tradición toma tiempo."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué dificultades pueden enfrentar las parejas al planear su boda?",
+                answer: "Presión para una boda grande, decidir a quién invitar, lograr que los padres acepten decisiones diferentes a la tradición."
+              }
+            ]
+          },
+          {
+            number: "15",
+            textEs: "¿Por qué es importante orar sobre todo lo relacionado con la boda?",
+            textLSM: "",
+            paragraphs: [15],
+            answer: [
+              "Pueden hablarle a Jehová de cualquier decisión que deban tomar y cualquier preocupación.",
+              "Pueden pedirle que los ayude a tomar buenas decisiones, mantener la calma y ser valientes.",
+              "A medida que vean cómo Jehová les responde, su confianza en él se hará más fuerte."
+            ],
+            flashcards: [
+              {
+                question: "¿Por qué es tan importante orar al planear la boda?",
+                answer: "Jehová puede ayudarles a tomar buenas decisiones, mantener la calma, ser valientes, y ver sus respuestas fortalecerá su confianza en él."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Filipenses 4:6, 7",
+                purpose: "Orar sobre las preocupaciones",
+                text: "No se inquieten por nada, sino que en toda ocasión, con oración y súplica junto con acción de gracias, presenten sus peticiones a Dios."
+              },
+              {
+                reference: "1 Pedro 5:7",
+                purpose: "Echar las ansiedades sobre Jehová",
+                text: "Echen sobre él toda su ansiedad, porque él cuida de ustedes."
+              }
+            ]
+          },
+          {
+            number: "16, 17",
+            textEs: "¿Por qué es importante que haya buena comunicación al organizar una boda?",
+            textLSM: "",
+            paragraphs: [16, 17],
+            answer: [
+              "Organizar una boda requiere que la pareja tome muchas decisiones.",
+              "Antes de tomar cada decisión, deben analizar juntos las opciones y los principios bíblicos.",
+              "Al expresar sus opiniones, deben ser amables, comprensivos y flexibles.",
+              "Si los padres no son Testigos, explicarles las decisiones con bondad ayudará."
+            ],
+            flashcards: [
+              {
+                question: "¿Cómo deben comunicarse los novios al planear la boda?",
+                answer: "Analizando juntos las opciones y principios bíblicos, siendo amables, comprensivos y flexibles."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 15:22",
+                purpose: "La importancia del consejo",
+                text: "Los planes fracasan cuando no hay comunicación confidencial, pero con muchos consejeros tienen éxito."
+              },
+              {
+                reference: "Colosenses 4:6",
+                purpose: "Hablar con gracia",
+                text: "Que sus palabras siempre sean agradables, sazonadas con sal, para que sepan cómo responder a cada persona."
+              }
+            ]
+          },
+          {
+            number: "18",
+            textEs: "¿Qué ayudará a los novios a que todo salga como está previsto? (1 Corintios 14:40; vea también la imagen).",
+            textLSM: "",
+            paragraphs: [18],
+            readText: "LEE 1 Corintios 14:40",
+            answer: [
+              "Si planifican las cosas con cuidado, el día de la boda tendrán menos estrés.",
+              "Pueden tener una pequeña reunión con quienes se ofrecieron para ayudar y repasar los preparativos.",
+              "Por respeto a los invitados, deben hacer todo lo posible por cumplir el horario previsto."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué pueden hacer los novios para que el día de la boda haya menos estrés?",
+                answer: "Planificar con cuidado, reunirse con los ayudantes para repasar los preparativos, y cumplir el horario previsto."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "1 Corintios 14:40",
+                purpose: "Hacer todo de forma ordenada",
+                text: "Háganlo todo de forma digna y ordenada."
+              }
+            ]
+          },
+          {
+            number: "19",
+            textEs: "¿Qué ayudará a los novios a controlar lo que pasa durante la recepción?",
+            textLSM: "",
+            paragraphs: [19],
+            answer: [
+              "Si son previsores, se evitarán muchos problemas.",
+              "Si en su zona es común que se presenten personas no invitadas, deben pensar en cómo prevenirlo.",
+              "Si van a asistir familiares no Testigos, deben explicarles cómo son las bodas de los Testigos.",
+              "Pueden pedirle a un hermano maduro que sea el 'director del banquete' para ayudar a mantener todo según lo planeado."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué pueden hacer los novios para controlar lo que pasa en la recepción?",
+                answer: "Ser previsores, explicar a familiares no Testigos cómo son sus bodas, y nombrar a un hermano maduro como 'director del banquete'."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Proverbios 22:3",
+                purpose: "Ser previsores",
+                text: "El prudente ve el peligro y se esconde, pero los inexpertos siguen adelante y sufren las consecuencias."
+              },
+              {
+                reference: "Juan 2:8",
+                purpose: "El director del banquete",
+                text: "Jesús les dijo: 'Saquen un poco ahora y llévenlo al director del banquete'. Y se lo llevaron."
+              }
+            ]
+          },
+          {
+            number: "20",
+            textEs: "¿Qué deben tener en cuenta los novios?",
+            textLSM: "",
+            paragraphs: [20],
+            answer: [
+              "La boda es solo un día, el primero de lo que puede ser una maravillosa vida sirviendo juntos a Jehová.",
+              "Deben hacer todo lo posible por que sea una ocasión digna y sencilla.",
+              "Si se dejan guiar por Jehová, recordarán su boda con una sonrisa."
+            ],
+            flashcards: [
+              {
+                question: "¿Qué perspectiva deben tener los novios sobre su boda?",
+                answer: "Es solo un día, el primero de una maravillosa vida sirviendo juntos a Jehová. Debe ser digna y sencilla."
+              }
+            ],
+            biblicalCards: [
+              {
+                reference: "Salmo 37:3, 4",
+                purpose: "Confiar en Jehová",
+                text: "Confía en Jehová y haz el bien; vive en la tierra y actúa con fidelidad. Deléitate profundamente en Jehová, y él te dará lo que tu corazón desea."
+              }
+            ]
+          }
+        ],
+        paragraphs: [
+          {
+            number: 1,
+            content: "¿TIENES novio o novia? ¿Están comprometidos para casarse? Si es así, ¡felicidades! Claro, seguro que ahora están muy ocupados con los preparativos. Pueden estar seguros de que Jehová desea que disfruten mucho el día de su boda y que tengan un matrimonio muy feliz (Prov. 5:18; Cant. 3:11)."
+          },
+          {
+            number: 2,
+            content: "Es muy importante que su boda honre a Jehová. ¿Por qué? ¿Y cómo pueden asegurarse de ello? En este artículo responderemos estas dos preguntas. Aunque va dirigido principalmente a los novios que están planeando su boda, los principios que analizaremos nos ayudarán a todos a honrar a Jehová si asistimos o si nos piden consejos."
+          },
+          {
+            number: 3,
+            content: "A la hora de organizar su boda, las parejas cristianas deben tomar en cuenta los principios que Jehová ha establecido en su Palabra. ¿Por qué? Porque Jehová es el Creador del matrimonio. De hecho, fue él quien casó a los dos primeros seres humanos, Adán y Eva (Gén. 1:28; 2:24). Así que para ustedes, los novios, el punto de vista de Dios debe ser lo más importante."
+          },
+          {
+            number: 4,
+            content: "Otra buena razón por la que ustedes deben tomar en cuenta el punto de vista de Jehová al organizar su boda es que él es su Padre celestial y su mejor amigo (Heb. 12:9). Por supuesto, quieren proteger su amistad con él y evitar que algo que suceda ese día —o cualquier otro día— lo hiera u ofenda (Sal. 25:14). Al pensar en todo lo que ha hecho y hará por ustedes, ¿verdad que merece que lo honren en su boda? (Sal. 116:12)."
+          },
+          {
+            number: 5,
+            content: "La Biblia no contiene una lista de reglas sobre cómo debe ser una boda o la celebración que tal vez se realice después. Así que hay un abanico de posibilidades dentro de las circunstancias, las costumbres y los gustos personales. Claro, los cristianos verdaderos también respetamos las leyes locales relacionadas con este asunto (Mat. 22:21). Si la pareja se guía por los principios bíblicos, tome las decisiones que tome, su boda honrará a Jehová y lo hará feliz."
+          },
+          {
+            number: 6,
+            content: "En la mayoría de los países, las leyes establecen ciertos requisitos que los novios deben cumplir para poder casarse. Así que averigüen cuáles son los que aplican en el lugar donde ustedes viven. Si necesitan ayuda, pueden pedírsela a los ancianos."
+          },
+          {
+            number: 7,
+            content: "Procuren que su boda refleje el fruto del espíritu de Dios, y no el espíritu del mundo (Gál. 5:19-26). Como el novio será el cabeza de la nueva familia, él es responsable de que la ceremonia sea una ocasión digna y alegre. ¿Qué factores contribuirán a lograrlo? Un discurso de boda basado en la Biblia que se presenta con amor, cariño y dignidad beneficia a los asistentes porque pueden ver que el matrimonio es un regalo de Dios y que la boda es una ocasión importante y seria. Por ese motivo, la mayoría de las parejas eligen que la ceremonia tenga lugar en un Salón del Reino, si es posible. Si una pareja desea usar un Salón del Reino, debe pedírselo por escrito al cuerpo de ancianos con bastante antelación."
+          },
+          {
+            number: 8,
+            content: "Si ustedes deciden celebrar una fiesta, recepción o banquete, ¿qué pueden hacer para que no refleje el espíritu del mundo? La palabra griega que se traduce \"fiestas descontroladas\" se refería a reuniones sociales donde se bebía en exceso y había música hasta altas horas de la noche (vea la nota de estudio \"fiestas descontroladas\", de Romanos 13:13). Si deciden que servirán bebidas alcohólicas, tomen medidas de antemano para que nadie beba más de la cuenta. Si habrá música, asegúrense de que se mantenga a un volumen que permita a los asistentes conversar con comodidad. Además, revisen con cuidado qué tipo de música pondrán y qué dicen las letras de las canciones para que nadie se sienta ofendido."
+          },
+          {
+            number: 9,
+            content: "¿Tienen planeado que algunos familiares o amigos les dediquen unas palabras, presenten algunas imágenes o un video, o que haya algún otro tipo de entretenimiento? Estos detalles le pueden añadir un toque especial a la ocasión. Eso sí, asegúrense de que todo lo que se haga sea apropiado y animador (Filip. 4:8). Pregúntense: \"¿Les parecerá respetuoso y digno a los asistentes? ¿Demostrará respeto por el matrimonio?\". Y lo más importante: \"¿Honrará a Jehová?\". Aunque puede haber espacio para algo de humor, eviten cosas totalmente fuera de lugar, como los comentarios indecentes o que tengan connotaciones sexuales (Efes. 5:3). Asegúrense de que los familiares y amigos que vayan a decir unas palabras conozcan sus deseos y los respeten."
+          },
+          {
+            number: 10,
+            content: "Jehová valora que sus siervos procuren honrarlo a él en vez de atraer la atención sobre ellos mismos de una manera indebida. Por eso, las parejas modestas evitan gastar una cantidad excesiva de dinero y hacer \"ostentación\", es decir, andar presumiendo de lo que tienen. ¿Cómo se beneficiarán ustedes si eligen celebrar una boda sencilla? Fíjense en lo que dice un hermano de Noruega llamado Mike: \"No nos metimos en deudas y pudimos seguir con el precursorado. Aunque fue una boda sencilla, nos dejó recuerdos muy bonitos\". Y una hermana de la India llamada Tabitha explica: \"Como no nos complicamos, tuvimos menos decisiones que tomar y menos desacuerdos. Nos ahorramos un montón de estrés\"."
+          },
+          {
+            number: 11,
+            content: "¿Ya han decidido qué se van a poner? Sin duda, quieren lucir lo mejor posible. Incluso en tiempos bíblicos, el novio y la novia le prestaban mucha atención a su aspecto (Is. 61:10). Claro, la ropa que ustedes elijan tal vez sea más o menos diferente a la que se pondrían en otras ocasiones, pero de todos modos debe ser decente y apropiada (1 Tim. 2:9). No permitan que la ropa —o cualquier otra cosa material— se convierta en el aspecto más destacado de la boda (1 Ped. 3:3, 4)."
+          },
+          {
+            number: 12,
+            content: "En el mundo de Satanás, las bodas suelen incluir muchas costumbres relacionadas con la religión falsa, el ocultismo y las supersticiones. Pero Jehová nos advierte con claridad que debemos mantenernos alejados de todas esas cosas impuras (2 Cor. 6:14-17). Por eso, si tienen dudas sobre ciertas costumbres o tradiciones que son comunes donde ustedes viven, investiguen su origen y busquen los principios bíblicos aplicables antes de decidir si las incluirán o no en su boda."
+          },
+          {
+            number: 13,
+            content: "¿Donde ustedes viven existe la costumbre de que los invitados les hagan regalos a los novios? Es posible que el tipo de regalo que los invitados hagan dependa de su situación económica. Por supuesto, la Biblia anima a los cristianos a dar y dice que hacerlo nos hace felices (Prov. 11:25; Hech. 20:35). Ahora bien, los novios no quieren que los invitados sientan que están obligados a hacerles un regalo o que un obsequio sencillo no les parecería suficiente. Los siervos de Jehová nos esforzamos por ver los regalos como él los ve y agradecemos cualquier cosa que otros nos dan por amor y no por obligación (2 Cor. 9:7)."
+          },
+          {
+            number: 14,
+            content: "Organizar una boda que honre a Jehová tal vez no sea fácil para ustedes. Por ejemplo, mantenerla sencilla quizás se convierta en un reto. Veamos el caso de Charlie, que es de las Islas Salomón: \"Nos costó una barbaridad decidir a quién invitar a la recepción, porque tenemos muchos amigos y en nuestra cultura todo el mundo espera que lo inviten\". Tabitha, mencionada en el párrafo 10, cuenta: \"Donde vivo, lo normal es tener muchísimos invitados. Así que tomó tiempo conseguir que nuestros padres aceptaran nuestra decisión de invitar solamente a unas 100 personas\". Y Sarah, que es de la India, comenta: \"Hay quienes le dan mucha importancia a la posición social. Como mis primos tuvieron una boda muy lujosa, algunas personas me presionaban para que la mía fuera todavía más espectacular\"."
+          },
+          {
+            number: 15,
+            content: "Oren con frecuencia sobre todo lo relacionado con su boda. Pueden hablarle a Jehová de cualquier decisión que deban tomar y cualquier preocupación que tengan (Filip. 4:6, 7 y la nota de estudio \"en cualquier situación\"). También pueden pedirle que los ayude a tomar buenas decisiones, a mantener la calma cuando estén estresados y a ser valientes cuando sea necesario (1 Ped. 5:7). A medida que vean cómo él les responde, su confianza en él se hará más fuerte. Tabitha añade: \"A mi novio y a mí nos preocupaba tener desacuerdos entre nosotros y con nuestras familias. Por eso antes de hablar de nuestros planes siempre hacíamos una oración. Vimos de verdad cómo Jehová nos ayudaba a mantener la paz\"."
+          },
+          {
+            number: 16,
+            content: "Organizar una boda requiere que la pareja tome muchas decisiones, como la fecha, el presupuesto, la lista de invitados, etc. Antes de tomar cada decisión, analicen juntos las opciones, los principios bíblicos aplicables y los consejos que tal vez les den otros cristianos maduros. Al expresar sus opiniones, sean amables, comprensivos y flexibles. Si familiares cercanos —como sus padres— les hacen peticiones razonables, traten de complacerlos. A fin de cuentas, para ellos también es una ocasión especial. Y, si no pueden concederles lo que les piden, explíquenles las razones con tacto y cariño (Col. 4:6). Ayúdenlos a ver que su principal objetivo es disfrutar de un día muy feliz y honrar a Jehová."
+          },
+          {
+            number: 17,
+            content: "¿Y si sus padres no son Testigos? Explicarles sus decisiones puede ser especialmente difícil, pero les irá mejor si lo hacen con bondad. Un hermano de la India llamado Santhosh cuenta: \"Nuestras familias querían que siguiéramos algunos rituales del hinduismo. A mi novia y a mí nos tomó mucho tiempo lograr que entendieran nuestro punto de vista. Decidimos complacerlos en algunos asuntos que pensamos que no desagradarían a Jehová. Por ejemplo, cambiamos el menú y servimos la comida que ellos querían. Además, decidimos que no se cantara ni se bailara, porque ellos no estaban acostumbrados\"."
+          },
+          {
+            number: 18,
+            content: "Si planifican las cosas con cuidado, luego el día de la boda seguramente tendrán menos estrés (lea 1 Corintios 14:40). Wayne, que es de Taiwán, explica: \"Unos días antes de la boda tuvimos una pequeña reunión con quienes se ofrecieron para ayudarnos. Repasamos los preparativos y ensayamos algunas partes de la ceremonia para asegurarnos de que todo fuera sobre ruedas\". Por respeto a los invitados, hagan todo lo posible por cumplir el horario previsto."
+          },
+          {
+            number: 19,
+            content: "Si son previsores, se evitarán muchos problemas (Prov. 22:3). Por ejemplo, ¿en la zona donde ustedes viven es común que en las celebraciones de boda se presenten personas que no hayan sido invitadas? Piensen en lo que pueden hacer para que eso no suceda. Además, si van a asistir familiares que no son Testigos, explíquenles cómo son nuestras bodas y cómo vemos ciertas costumbres. Pueden mostrarles el artículo de jw.org \"¿Cómo son las bodas de los testigos de Jehová?\". Para que ustedes puedan controlar mejor lo que pasa durante la recepción, piensen en la posibilidad de pedirle a un hermano maduro que sea el \"director del banquete\" (Juan 2:8). Si le informan con claridad sus decisiones, podrá ayudarlos a asegurarse de que la boda sea una ocasión digna y todo vaya según lo planeado."
+          },
+          {
+            number: 20,
+            content: "Al pensar en todo lo que implica organizar su boda, tal vez se sientan un poco abrumados. Pero recuerden que la boda es solo un día, el primero de lo que puede ser una maravillosa vida sirviendo juntos a Jehová. Hagan todo lo posible por que sea una ocasión digna y sencilla. Confíen en Jehová. Si se dejan guiar por él, cuando el día de mañana miren atrás, recordarán su boda con una sonrisa y dirán: \"Me encantó, no cambiaría nada\" (Sal. 37:3, 4)."
+          }
+        ],
+        reviewQuestions: [
+          {
+            question: "¿Por qué quieren los novios que su boda honre a Jehová?",
+            answer: [
+              "Porque Jehová es el Creador del matrimonio.",
+              "Porque Jehová es su Padre celestial y su mejor amigo.",
+              "Porque quieren proteger su amistad con él.",
+              "Porque Jehová merece ser honrado por todo lo que ha hecho por ellos."
+            ]
+          },
+          {
+            question: "¿Qué ayudará a la pareja a crear un ambiente digno y apropiado el día de su boda?",
+            answer: [
+              "Que la boda refleje el fruto del espíritu, no el espíritu del mundo.",
+              "Un discurso de boda basado en la Biblia.",
+              "Controlar las bebidas alcohólicas y la música.",
+              "Asegurarse de que el entretenimiento sea apropiado y animador."
+            ]
+          },
+          {
+            question: "¿Cómo se beneficiarán los novios si eligen celebrar una boda sencilla?",
+            answer: [
+              "No se meterán en deudas.",
+              "Podrán seguir sirviendo a Jehová.",
+              "Tendrán menos decisiones que tomar y menos desacuerdos.",
+              "Se ahorrarán mucho estrés.",
+              "Les quedarán recuerdos muy bonitos."
+            ]
+          }
+        ],
+        finalSong: "Canción 107: Dios nos enseñó a amar"
+      }
+      // Agrega más artículos aquí...
     ]
   }
 
   // PUEDES SEGUIR AGREGANDO MÁS MESES:
-  // "2025-11": { articles: [...] },
-  // "2025-12": { articles: [...] },
   // "2026-01": { articles: [...] },
   // ... y así sucesivamente, SIN LÍMITE
 };
@@ -4894,6 +4799,20 @@ export function getAvailableMonths(): string[] {
   return Object.keys(atalayaDatabase).sort();
 }
 
+// Helper para obtener todos los artículos activos de todos los meses
+export function getAllActiveArticles(): ArticleData[] {
+  const allArticles: ArticleData[] = [];
+  for (const month in atalayaDatabase) {
+    const monthArticles = atalayaDatabase[month].articles.filter(article => {
+      if (!article.title || article.title === "") return false;
+      return isArticleActive(article.metadata.articleNumber);
+    });
+    allArticles.push(...monthArticles);
+  }
+  // Ordenar por número de artículo
+  return allArticles.sort((a, b) => a.metadata.articleNumber - b.metadata.articleNumber);
+}
+
 // Helper para obtener el total de artículos en toda la base de datos
 export function getTotalArticles(): number {
   let total = 0;
@@ -4902,7 +4821,3 @@ export function getTotalArticles(): number {
   }
   return total;
 }
-
-// Export temporal para retrocompatibilidad (se puede eliminar después)
-// Por defecto, exporta el artículo 35
-export const atalayaData = atalayaDatabase["2025-08"].articles[1];

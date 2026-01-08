@@ -13,23 +13,23 @@
 
 export const articlesConfig = {
   // Mes actual que se mostrará por defecto
-  defaultMonth: "2025-10", // Octubre 2025
+  defaultMonth: "2025-11", // Noviembre 2025
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    // 36,  // "Que llame a los ancianos" (10-16 Nov)
-    37,  // "La mejor manera de reaccionar ante las injusticias" (17-23 Nov)
-    38,  // "Mostremos que respetamos a los demás" (24-30 Nov)
-    39,  // "Ayudemos de inmediato a quienes tienen 'la actitud correcta'" (1-7 Dic)
-    40,  // "Jehová es nuestra 'máxima alegría'" (8-14 Dic)
-    41,  // "El amor de Dios dura para siempre" (15-21 Dic)
-    42,  // "Cómo mejorar las oraciones" (22-28 Dic)
-    43,  // "No nos olvidemos de orar por otros" (29 Dic - 4 Ene)
+    44,  // "Cómo mantener la alegría en la vejez" (5-11 Ene)
+    45,  // "Cómo mantener la alegría al cuidar de un ser querido" (12-18 Ene)
+    46,  // "Jesús es un Sumo Sacerdote compasivo" (19-25 Ene)
+    47,  // "Tú eres muy valioso" (26 Ene-1 Feb)
+    48,  // "Cómo nos ayuda el libro de Job cuando estamos sufriendo" (2-8 Feb)
+    49,  // "Cómo nos ayuda el libro de Job a dar buenos consejos" (9-15 Feb)
+    50,  // "Imitemos la humildad de Jehová" (16-22 Feb)
+    51,  // "Cómo planear una boda que honre a Jehová" (23 Feb-1 Mar)
   ],
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 40,
+  defaultArticleNumber: 44,
 };
 
 /**

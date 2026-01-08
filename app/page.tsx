@@ -10,19 +10,24 @@ import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
 import { ArticleSummaryCard } from '@/components/ArticleSummaryCard';
-import { atalayaDatabase, getArticleById, getMonthArticles } from '@/data/atalaya-data';
-import { articlesConfig, getDefaultArticleId } from '@/data/articles-config';
+import { getArticleById, getAllActiveArticles } from '@/data/atalaya-data';
+import { getDefaultArticleId } from '@/data/articles-config';
 import { ArticleData } from '@/types/atalaya';
 
 export default function Home() {
   // Estado para manejo de artículos (usa la configuración centralizada)
-  const [currentMonth] = useState<string>(articlesConfig.defaultMonth);
   const [currentArticleId, setCurrentArticleId] = useState<string>(() => {
     // Intentar recuperar el artículo guardado en localStorage
     if (typeof window !== 'undefined') {
       const savedArticleId = localStorage.getItem('atalaya_current_article');
       if (savedArticleId) {
-        return savedArticleId;
+        // Verificar que el artículo guardado todavía existe
+        const savedArticle = getArticleById(savedArticleId);
+        if (savedArticle) {
+          return savedArticleId;
+        }
+        // Si no existe, limpiar localStorage
+        localStorage.removeItem('atalaya_current_article');
       }
     }
     return getDefaultArticleId();
@@ -50,38 +55,35 @@ export default function Home() {
   // Referencia para el menú de opciones de vista
   const viewMenuRef = useRef<HTMLDivElement>(null);
 
-  // Cargar artículos del mes al iniciar
+  // Cargar artículos activos al iniciar
   useEffect(() => {
-    const articles = getMonthArticles(currentMonth);
+    const articles = getAllActiveArticles();
     setMonthArticles(articles);
 
     // Cargar artículo actual
     const article = getArticleById(currentArticleId);
     if (article) {
       setCurrentArticle(article);
+      setIsLoading(false); // Mostrar artículo inmediatamente
     } else {
       setIsLoading(false);
     }
-  }, [currentMonth, currentArticleId]);
+  }, [currentArticleId]);
 
   // Cargar datos LSM, favoritos y tarjetas ocultas cuando cambia el artículo
   useEffect(() => {
     if (!currentArticleId) return;
 
-    setIsLoading(true);
+    // Cargar datos en segundo plano SIN bloquear la UI
     Promise.all([
-      fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.json()),
-      fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.json()),
-      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json())
+      fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
+      fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
+      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({}))
     ])
       .then(([lsmDataResult, favoritesResult, hiddenCardsResult]) => {
         setLsmData(lsmDataResult);
         setFavorites(favoritesResult);
         setHiddenCards(hiddenCardsResult);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
       });
   }, [currentArticleId]);
 
