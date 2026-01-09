@@ -19,15 +19,17 @@ export const atalayaDatabase: AtalayaDatabase = {
         },
         song: "Canción 138: Los cabellos blancos, una hermosa corona",
         title: "Cómo mantener la alegría en la vejez",
+        titleLSM: "Tú, anciano, contento. Disfrutar, seguir.",
         biblicalText: "\"En su vejez seguirán prosperando\" (SAL. 92:14).",
         theme: "Por qué es importante que los cristianos mayores mantengan la alegría y cómo pueden conseguirlo.",
         questions: [
           {
             number: "1, 2",
             textEs: "¿Cómo ve Jehová a los hermanos fieles que están envejeciendo? (Salmo 92:12-14; vea también la imagen).",
-            textLSM: "",
+            textLSM: "¿Ellos, testigos de Jehová? ¿Ancianos Jehová los ve a ellos y los valora?",
             paragraphs: [1, 2],
             readText: "LEE Salmo 92:12-14",
+            infographic: "https://i.imgur.com/jzr4XuK.png",
             answer: [
               "Jehová compara a los hermanos mayores con árboles prósperos.",
               "Los cristianos de edad avanzada son bellísimos a los ojos de Dios.",
@@ -60,8 +62,9 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "3",
             textEs: "Mencione cómo usó Jehová a alguno de sus siervos de edad avanzada para cumplir su voluntad.",
-            textLSM: "",
+            textLSM: "¿Ellos, ancianos Jehová, les da asignaciones?",
             paragraphs: [3],
+            infographic: "https://i.imgur.com/3EjZoaJ.png",
             answer: [
               "Jehová no piensa que perdamos valor con los años.",
               "Sara ya era mayor cuando se le anunció que tendría un hijo del que saldría una nación poderosa.",
@@ -94,9 +97,10 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "4",
             textEs: "Según Proverbios 15:15, ¿qué cualidad ayuda a los hermanos mayores a encarar las dificultades? (Vea también la imagen).",
-            textLSM: "",
+            textLSM: "Imágenes de ellos mayores de edad, problemas aguantar.",
             paragraphs: [4],
             readText: "LEE Proverbios 15:15",
+            infographic: "https://i.imgur.com/R5LL55G.png",
             answer: [
               "La alegría es la cualidad que ayuda a los mayores a encarar las dificultades.",
               "La alegría está estrechamente relacionada con la felicidad, que forma parte del fruto del espíritu.",
@@ -128,9 +132,11 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "5",
             textEs: "¿Qué cosas podrían desanimarnos al hacernos mayores?",
-            textLSM: "",
+            textLSM: "Ancianos a veces entristecer, porque.",
             paragraphs: [5],
             section: "EL RETO DE MANTENER LA ALEGRÍA",
+            sectionLSM: "Ancianos disfrutar siempre, no porque.",
+            infographic: "https://i.imgur.com/gTX2505.png",
             answer: [
               "Nos puede entristecer ser incapaces de hacer lo mismo que antes.",
               "Quizás extrañemos la juventud y la buena salud de otros tiempos.",
@@ -158,8 +164,9 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "6",
             textEs: "a) ¿Qué otras cosas podrían desanimarnos? b) ¿Qué deben tomar en cuenta los hermanos mayores para saber si deberían dejar de conducir?",
-            textLSM: "",
+            textLSM: "a) ¿Necesario otros que les ayuden? ¿Cómo se sienten? b) ¿Carro conducir, seguir o dejar?",
             paragraphs: [6],
+            infographic: "https://i.imgur.com/5zjT0MT.png",
             answer: [
               "Nos puede desanimar ir perdiendo nuestra autonomía.",
               "Es difícil depender de un cuidador o tener que irnos a vivir con algún hijo.",
@@ -188,8 +195,9 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "7",
             textEs: "¿Qué nos ayudará si nos entristece la posibilidad de no ver el fin de este sistema?",
-            textLSM: "",
+            textLSM: "Importante que tú recuerdes que.",
             paragraphs: [7],
+            infographic: "https://i.imgur.com/k4cobxP.png",
             answer: [
               "Recordar que Jehová está esperando pacientemente antes de ponerle fin a este mundo malvado.",
               "Esa paciencia tiene un objetivo: darles tiempo a millones de personas para que conozcan a Dios.",
@@ -222,8 +230,9 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "8",
             textEs: "¿Cómo podrían afectar a los mayores los problemas de la edad?",
-            textLSM: "",
+            textLSM: "Mayores de edad a veces se entrometen y explicar y atacar a todos por qué.",
             paragraphs: [8],
+            infographic: "https://i.imgur.com/cQuApEL.png",
             answer: [
               "Cuando no nos sentimos bien, probablemente digamos o hagamos cosas que después lamentemos.",
               "Eso le pasó al fiel Job: el sufrimiento lo empujó a usar palabras 'impetuosas'.",
@@ -257,9 +266,10 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "9",
             textEs: "¿Por qué es bueno dejarnos ayudar? (Vea también las imágenes).",
-            textLSM: "",
+            textLSM: "Imágenes de consejo 1, ¿qué significa?",
             paragraphs: [9],
             section: "CONSEJOS PARA MANTENER LA ALEGRÍA",
+            sectionLSM: "Consejos 5, ayudarte a ti ya está contento, seguir.",
             answer: [
               "Al principio, podría resultarnos difícil aceptar ayuda.",
               "Gretl dice que le cuesta aceptar ayuda porque no quiere ser una carga para nadie.",
@@ -292,7 +302,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "10",
             textEs: "¿Por qué no debemos olvidarnos de demostrar nuestro agradecimiento? (Vea también la imagen).",
-            textLSM: "",
+            textLSM: "Imágenes de consejo 2, ¿qué significa?",
             paragraphs: [10],
             answer: [
               "Cuando los demás hacen cosas por nosotros, sentimos gratitud, aunque tal vez se nos olvide demostrarla.",
@@ -326,7 +336,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "11",
             textEs: "¿De qué maneras podemos ayudar a los demás? (Vea también la imagen).",
-            textLSM: "",
+            textLSM: "Consejo 3, ¿qué significa?",
             paragraphs: [11],
             answer: [
               "Cuando nos centramos en dar de nuestro tiempo y energías, será menos probable que nos centremos en nuestros propios problemas.",
@@ -355,7 +365,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "12",
             textEs: "¿Qué les promete Jehová en Isaías 46:4 a sus siervos de edad avanzada? (Vea también la imagen).",
-            textLSM: "",
+            textLSM: "Ahí en la Biblia, Isaías 46:4. Promete que.",
             paragraphs: [12],
             readText: "LEE Isaías 46:4",
             answer: [
@@ -395,7 +405,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "13",
             textEs: "De acuerdo con 2 Corintios 4:16-18, ¿qué debemos recordar? (Vea también la imagen).",
-            textLSM: "",
+            textLSM: "De ahí, de la Biblia, Segunda a los Corintios, capítulo 4, versículos 16 al 18. Al 18, extraemos un consejo y el quinto, ¿qué significa?",
             paragraphs: [13],
             readText: "LEE 2 Corintios 4:16-18",
             answer: [
@@ -435,9 +445,10 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "14",
             textEs: "¿Por qué es importante llamar y visitar a los hermanos mayores?",
-            textLSM: "",
+            textLSM: "Igual, mayores de edad van a visitarlos y les regalan videollamadas constantemente. No es muy importante, porque.",
             paragraphs: [14],
             section: "¿CÓMO PODEMOS AYUDAR A LOS MAYORES?",
+            sectionLSM: "Ellos mayores de edad, congregación, es ayudan y la congregación, ¿qué hace?",
             answer: [
               "Las personas mayores suelen sentirse solas.",
               "Pierre dice que como no puede salir de casa en todo el día, se aburre terriblemente.",
@@ -471,7 +482,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "15",
             textEs: "¿Qué pueden hacer juntos jóvenes y ancianos?",
-            textLSM: "",
+            textLSM: "Jóvenes y mayores de edad juntos, ¿qué hacer?",
             paragraphs: [15],
             answer: [
               "No hay que darle tantas vueltas; solo hay que ser un buen amigo.",
@@ -502,7 +513,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "16",
             textEs: "¿Por qué puede ser conveniente acompañar a los mayores al médico?",
-            textLSM: "",
+            textLSM: "Mayores de edad, es necesario que vayan al doctor. Tú los puedes acompañar y les va a beneficiar, porque.",
             paragraphs: [16],
             answer: [
               "Podemos ofrecernos a quedarnos con ellos para asegurarnos de que los tratan bien.",
@@ -531,7 +542,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "17",
             textEs: "¿En qué facetas del ministerio podemos participar con los mayores?",
-            textLSM: "",
+            textLSM: "Ellos mayores de edad predicar, nosotros les podemos ayudar como.",
             paragraphs: [17],
             answer: [
               "Invitarlos a estar en el carrito con nosotros, incluso llevándoles una silla.",
@@ -565,7 +576,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           {
             number: "18",
             textEs: "¿De qué tratará el siguiente artículo de estudio?",
-            textLSM: "",
+            textLSM: "Pregunta próximamente en la atalaya que se va a explicar, las preguntas de repaso.",
             paragraphs: [18],
             answer: [
               "Jehová y toda la congregación aman y valoran a los mayores.",
@@ -611,6 +622,7 @@ export const atalayaDatabase: AtalayaDatabase = {
         reviewQuestions: [
           {
             question: "¿Qué cosas podrían desanimar a los hermanos mayores?",
+            questionLSM: "Mayores de edad a veces se sienten tristes, porque.",
             answer: [
               "Ser incapaces de hacer lo mismo que antes.",
               "Extrañar la juventud y la buena salud de otros tiempos.",
@@ -621,6 +633,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           },
           {
             question: "¿Qué pueden hacer los mayores para mantener la alegría?",
+            questionLSM: "Tú contento, seguir, o sea, que si tú eres mayor, tú eres anciano, tú, contento, disfrutar, siempre, no, porque.",
             answer: [
               "Dejarse ayudar por los demás.",
               "Demostrar agradecimiento con una sonrisa y un 'gracias'.",
@@ -631,6 +644,7 @@ export const atalayaDatabase: AtalayaDatabase = {
           },
           {
             question: "¿Cómo podemos ayudar a los cristianos de edad avanzada?",
+            questionLSM: "La con la congregación, ayudarles, salud a ellos, la congregación, ¿qué hace?",
             answer: [
               "Visitándolos y llamándolos periódicamente.",
               "Siendo buenos amigos y pasando tiempo con ellos.",
