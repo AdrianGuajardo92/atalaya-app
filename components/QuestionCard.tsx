@@ -1049,6 +1049,21 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     <div key={index} className="leading-relaxed text-slate-700 text-lg">
                       <span className="font-bold text-slate-900 mr-2">[{paragraph.number}]</span>
                       {formatContent(paragraph.content)}
+                      {/* Imagen del párrafo (si existe) - Diseño Premium */}
+                      {paragraph.image && (
+                        <div className="mt-4">
+                          <img
+                            src={paragraph.image}
+                            alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
+                            className="w-full rounded-xl shadow-lg border border-slate-200"
+                          />
+                          {paragraph.imageCaption && (
+                            <p className="text-sm text-slate-600 italic mt-3 text-center bg-slate-50 p-3 rounded-lg">
+                              {paragraph.imageCaption}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -1302,6 +1317,24 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </button>
               </div>
             </div>
+
+            {/* IMAGEN ILUSTRATIVA - Si existe (Diseño Premium) */}
+            {question.image && (
+              <div className="px-8 py-6 bg-white">
+                <div className="rounded-xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src={question.image}
+                    alt={question.imageCaption || "Ilustración de la pregunta"}
+                    className="w-full h-auto object-cover"
+                  />
+                  {question.imageCaption && (
+                    <p className="text-sm text-slate-600 italic p-4 bg-slate-50 text-center border-t border-slate-100">
+                      {question.imageCaption}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Contenido Expandible (Respuesta y Tarjetas) */}
             {isExpanded && (

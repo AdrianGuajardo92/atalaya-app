@@ -284,6 +284,46 @@ El diseño ejecutivo se aplica **automáticamente** a todos los artículos del *
 
 **No se requiere ningún cambio para nuevos artículos.** Al agregar el Artículo 44, 45, etc., automáticamente usarán el diseño ejecutivo.
 
+### IMPORTANTE: Imágenes en Preguntas vs Párrafos
+
+**Las imágenes ilustrativas van en las PREGUNTAS, no en los párrafos.**
+
+| Campo | Ubicación | Uso |
+|-------|-----------|-----|
+| `question.image` | En el objeto de la pregunta | ✅ Imagen visible en la tarjeta de pregunta |
+| `paragraph.image` | En el objeto del párrafo | Solo visible en el modal de párrafos |
+
+**Ejemplo CORRECTO** - Agregar imagen a pregunta 10:
+```typescript
+{
+  number: "10",
+  textEs: "¿Por qué...? (Vea también la imagen).",
+  paragraphs: [10],
+  image: "https://i.imgur.com/XXXXX.png",  // ✅ Va aquí
+  answer: [...]
+}
+```
+
+**Ejemplo INCORRECTO** - NO agregar a párrafos:
+```typescript
+// ❌ Esto solo se verá en el modal de párrafos, no en la tarjeta
+{ number: 10, content: "...", image: "https://..." }
+```
+
+### IMPORTANTE: Diseño Ejecutivo (Artículos 43+)
+
+El diseño Ejecutivo tiene su **propio bloque de renderizado** separado. Cuando se agreguen nuevas funcionalidades, deben implementarse en **AMBOS** lugares:
+
+| Funcionalidad | Diseño Original | Diseño Premium |
+|---------------|-----------------|----------------|
+| `question.image` | Línea ~1724 | Línea ~1320 |
+| `paragraph.image` (en modal) | Línea ~2165 | Línea ~1052 |
+
+**Ubicación en `QuestionCard.tsx`:**
+- El diseño Premium comienza con: `if (isPremiumDesign) { return (...` (línea ~1026)
+- Todo el código DESPUÉS de ese bloque es el diseño original
+- Si agregas una funcionalidad de imagen al diseño original, **TAMBIÉN debes agregarla al bloque Premium**
+
 ### Paleta de Colores Ejecutivo
 
 ```
