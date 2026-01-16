@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ArticleData } from '@/types/atalaya';
+import { isExecutiveDesign as checkExecutiveDesign } from '@/data/design-config';
 
 interface TimelineViewProps {
   article: ArticleData;
@@ -23,8 +24,8 @@ export default function TimelineView({
   const [selectedQuestionNumber, setSelectedQuestionNumber] = useState<string>('');
   const [infographicCopied, setInfographicCopied] = useState(false);
 
-  // Determinar si usar diseño ejecutivo (Artículos 43+)
-  const isExecutiveDesign = article.metadata.articleNumber >= 43;
+  // Determinar si usar diseño ejecutivo (usando configuración centralizada)
+  const isExecutiveDesign = checkExecutiveDesign(article.metadata.articleNumber);
 
   // Obtener resumen/oraciones clave de los párrafos relacionados
   const getSummaryForQuestion = (paragraphNumbers: number[]): string => {

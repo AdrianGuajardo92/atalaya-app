@@ -1,5 +1,6 @@
 import { ArticleData, ArticleOverview } from '@/types/atalaya';
-import { getArticleId } from '@/data/atalaya-data';
+import { getArticleId } from '@/data/articles';
+import { isExecutiveDesign } from '@/data/design-config';
 import { useState, useEffect } from 'react';
 
 interface StudyHeaderProps {
@@ -38,8 +39,8 @@ export default function StudyHeader({
   onTitleLSMUpdate,
   overview
 }: StudyHeaderProps) {
-  // Detectar si aplica diseño ejecutivo (Artículo 43 en adelante)
-  const isArticle43 = articleNumber !== undefined && articleNumber >= 43;
+  // Detectar si aplica diseño ejecutivo (usando configuración centralizada)
+  const isArticle43 = articleNumber !== undefined && isExecutiveDesign(articleNumber);
 
   // Estado para editar título LSM
   const [isEditingTitleLSM, setIsEditingTitleLSM] = useState(false);

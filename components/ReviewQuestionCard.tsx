@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ReviewQuestion } from '@/types/atalaya';
+import { isExecutiveDesign } from '@/data/design-config';
 import FlashCards from './FlashCards';
 import BiblicalCards from './BiblicalCards';
 
@@ -97,9 +98,9 @@ export default function ReviewQuestionCard({
 
   const currentLSMText = lsmText || reviewQuestion.questionLSM;
 
-  // Detectar si aplica diseño ejecutivo (Artículo 43 en adelante)
+  // Detectar si aplica diseño ejecutivo (usando configuración centralizada)
   const articleNum = parseInt(articleId.split('-').pop() || '0');
-  const isArticle43 = articleNum >= 43;
+  const isArticle43 = isExecutiveDesign(articleNum);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // DISEÑO EJECUTIVO (Artículo 43 en adelante)

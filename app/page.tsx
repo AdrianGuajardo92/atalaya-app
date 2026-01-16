@@ -10,8 +10,9 @@ import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
 import { ArticleSummaryCard } from '@/components/ArticleSummaryCard';
-import { getArticleById, getAllActiveArticles } from '@/data/atalaya-data';
+import { getArticleById, getAllActiveArticles } from '@/data/articles';
 import { getDefaultArticleId } from '@/data/articles-config';
+import { isExecutiveDesign } from '@/data/design-config';
 import { ArticleData } from '@/types/atalaya';
 
 export default function Home() {
@@ -540,7 +541,7 @@ export default function Home() {
               /* Mostrar pregunta normal */
               <>
                 {/* PÁRRAFOS ANTES DE LA PREGUNTA - Solo en modo paginado para Artículos 43+ */}
-                {currentArticle.metadata.articleNumber >= 43 && (() => {
+                {isExecutiveDesign(currentArticle.metadata.articleNumber) && (() => {
                   const currentQuestion = currentArticle.questions[currentQuestionIndex];
                   const questionParagraphs = currentQuestion.paragraphs || [];
                   const relatedParagraphs = currentArticle.paragraphs.filter(p =>
@@ -671,7 +672,7 @@ export default function Home() {
             {currentReviewIndex === -1 ? (
               /* Estamos en preguntas normales */
               currentQuestionIndex < currentArticle.questions.length - 1 ? (
-                currentArticle.metadata.articleNumber >= 43 ? (
+                isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
                   /* DISEÑO EJECUTIVO - Artículo 43+ */
                   <div className="mt-8">
                     {/* Separador ejecutivo */}
@@ -753,7 +754,7 @@ export default function Home() {
                 )
               ) : (
                 /* En la última pregunta normal, mostrar que vienen las preguntas de repaso */
-                currentArticle.metadata.articleNumber >= 43 ? (
+                isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
                   /* DISEÑO EJECUTIVO */
                   <div className="mt-8">
                     <div className="flex items-center gap-4 mb-6">
@@ -786,7 +787,7 @@ export default function Home() {
             ) : (
               /* Estamos en preguntas de repaso */
               currentReviewIndex < currentArticle.reviewQuestions.length - 1 && (
-                currentArticle.metadata.articleNumber >= 43 ? (
+                isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
                   /* DISEÑO EJECUTIVO */
                   <div className="mt-8">
                     <div className="flex items-center gap-4 mb-6">
@@ -816,7 +817,7 @@ export default function Home() {
             )}
 
             {/* Controles de navegación */}
-            {currentArticle.metadata.articleNumber >= 43 ? (
+            {isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
               /* DISEÑO EJECUTIVO */
               <div className="mt-8 bg-white border border-slate-200 rounded-xl shadow-sm p-6">
                 {/* Contador y barra de progreso */}

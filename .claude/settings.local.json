@@ -30,7 +30,8 @@
       "WebFetch(domain:platform.claude.com)",
       "Bash(git config:*)",
       "Bash(npx vercel --prod)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(npm run article:list:*)"
     ],
     "deny": [],
     "ask": []
