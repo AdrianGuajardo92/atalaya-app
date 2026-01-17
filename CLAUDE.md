@@ -185,6 +185,26 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 - Campo `sectionLSM` para subtítulos en Lengua de Señas Mexicana
 - Se muestra junto al subtítulo en español
 
+**Traducciones LSM en Preguntas:**
+- El usuario proporciona las traducciones LSM en el archivo `preguntas-LSM.md`
+- El campo `textLSM` en cada pregunta contiene la traducción en Lengua de Señas Mexicana
+- Agregar el campo `textLSM` a cada pregunta en `data/atalaya-data.ts`
+
+```typescript
+// En data/atalaya-data.ts - dentro del artículo correspondiente
+{
+  number: "1, 2",
+  textEs: "¿Qué piensa Jehová de sus esfuerzos por cuidar de un ser querido?",
+  textLSM: "JEHOVÁ ¿QUÉ PENSAR ESFUERZO TUYO CUIDAR PERSONA QUERER?",  // ✅ Agregar aquí
+  paragraphs: [1, 2],
+  // ...
+}
+```
+
+- Las traducciones LSM se muestran en MAYÚSCULAS (convención de glosas)
+- Se muestra debajo de la pregunta en español con el icono 🤟
+- Si no hay `textLSM`, se muestra "AGREGAR TRADUCCIÓN" como placeholder editable
+
 ### API Endpoints
 
 | Endpoint | GET | POST |

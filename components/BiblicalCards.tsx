@@ -78,7 +78,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
           return (
             <div
               key={index}
-              className="relative min-h-[250px] cursor-pointer group"
+              className="relative h-[250px] cursor-pointer group"
               style={{ perspective: '1000px' }}
               onClick={() => handleFlip(index)}
             >
@@ -123,23 +123,26 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
               >
                 {/* Frente de la tarjeta (Referencia + Propósito) */}
                 <div
-                  className="absolute w-full min-h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center justify-center"
+                  className="absolute w-full h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                   }}
                 >
-                  <p className="text-center text-slate-800 font-bold text-lg mb-3 font-serif">
-                    {card.reference}
-                  </p>
-                  <p className="text-center text-slate-500 text-sm leading-relaxed max-w-[90%]">
-                    {card.purpose}
-                  </p>
+                  {/* Contenido con scroll */}
+                  <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center">
+                    <p className="text-center text-slate-800 font-bold text-lg mb-3 font-serif">
+                      {card.reference}
+                    </p>
+                    <p className="text-center text-slate-500 text-sm leading-relaxed max-w-[90%]">
+                      {card.purpose}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Reverso de la tarjeta (Texto completo TNM) */}
                 <div
-                  className="absolute w-full min-h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
+                  className="absolute w-full h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
@@ -152,7 +155,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                   </div>
 
                   {/* Texto con scroll */}
-                  <div className="flex-1 overflow-y-auto px-6 py-4 hide-scrollbar flex items-center justify-center">
+                  <div className="flex-1 overflow-y-auto px-6 py-4 hide-scrollbar flex flex-col items-center">
                     <p className="text-center text-white font-medium text-sm leading-relaxed italic">
                       "{card.text}"
                     </p>

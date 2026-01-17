@@ -32,13 +32,14 @@ export const article45: ArticleData = {
   },
   song: "Canción 111: Los motivos de nuestro gozo",
   title: "Cómo mantener la alegría al cuidar de un ser querido",
+  titleLSM: "ELLOS MAYORES DE EDAD O ELLOS ENFERMOS TÚ CUIDARLOS CONTENTO PUEDES",
   biblicalText: "\"Los que siembran con llanto cosecharán con gritos de alegría\" (SAL. 126:5).",
   theme: "Sugerencias que lo ayudarán a mantener la alegría al cuidar de un amigo o un familiar mayor o enfermo.",
   questions: [
     {
       number: "1, 2",
       textEs: "¿Qué piensa Jehová de sus esfuerzos por cuidar de un ser querido? (Proverbios 19:17; vea también las imágenes).",
-      textLSM: "",
+      textLSM: "IMAGÉN TÚ CUIDARLOS JEHOVÁ VERTE A TI CÓMO SE SIENTE",
       paragraphs: [1, 2],
       readText: "LEE Proverbios 19:17",
       answer: [
@@ -78,7 +79,7 @@ export const article45: ArticleData = {
     {
       number: "3",
       textEs: "¿Por qué debió resultarles difícil a Abrahán y Sara cuidar de Taré?",
-      textLSM: "",
+      textLSM: "ABRAM CUIDAR HISTORIA",
       paragraphs: [3],
       answer: [
         "Taré tenía unos 200 años cuando salieron de Ur.",
@@ -113,7 +114,7 @@ export const article45: ArticleData = {
     {
       number: "4",
       textEs: "¿Qué veremos en este artículo?",
-      textLSM: "",
+      textLSM: "ATALAYA QUE APRENDEREMOS",
       paragraphs: [4],
       answer: [
         "Le resultará más fácil seguir cuidando de su ser querido si tiene una actitud alegre.",
@@ -143,9 +144,10 @@ export const article45: ArticleData = {
     {
       number: "5",
       textEs: "¿Por qué es importante mantener la alegría?",
-      textLSM: "",
+      textLSM: "TÚ CUIDAR CONTENTO ES MUY IMPORTANTE PORQUE",
       paragraphs: [5],
       section: "POR QUÉ PUEDE SER DIFÍCIL MANTENER LA ALEGRÍA",
+      sectionLSM: "ELLOS 5 CUIDAR A VECES CONTENTO PORQUE",
       answer: [
         "Si los cuidadores pierden la alegría, es más fácil que se cansen.",
         "Si están cansados, puede que no sean tan amables ni ayuden tanto como les gustaría."
@@ -167,7 +169,7 @@ export const article45: ArticleData = {
     {
       number: "6",
       textEs: "¿Por qué se queman algunos cuidadores?",
-      textLSM: "",
+      textLSM: "ELLOS CUIDAR SENTIR",
       paragraphs: [6],
       answer: [
         "Los cuidadores pueden quemarse física y emocionalmente.",
@@ -192,7 +194,7 @@ export const article45: ArticleData = {
     {
       number: "7",
       textEs: "¿Por qué se sienten culpables o tristes algunos cuidadores?",
-      textLSM: "",
+      textLSM: "ELLOS 5 CUIDAR A VECES SENTIR NO O YO MAL POR QUÉ",
       paragraphs: [7],
       answer: [
         "Jessica se frustra por no poder hacer más y se siente culpable cuando descansa.",
@@ -222,7 +224,7 @@ export const article45: ArticleData = {
     {
       number: "8",
       textEs: "¿Cómo se han sentido algunos cuidadores cuando les han dado las gracias por su ayuda?",
-      textLSM: "",
+      textLSM: "TÚ CUIDAR CONTENTO SEGUIR",
       paragraphs: [8],
       answer: [
         "Los cuidadores pueden sentir que no se valora lo que hacen.",
@@ -251,9 +253,10 @@ export const article45: ArticleData = {
     {
       number: "9",
       textEs: "¿De qué maneras demuestran los cuidadores que son modestos?",
-      textLSM: "",
+      textLSM: "TÚ CUIDAR PENSAR HUMILDE POR QUÉ",
       paragraphs: [9],
       section: "SUGERENCIAS PARA MANTENER LA ALEGRÍA",
+      sectionLSM: "ELLOS DAR LAS GRACIAS ELLOS CÓMO SE SIENTEN",
       answer: [
         "Ninguno de nosotros tiene fuerzas y tiempo sin límites.",
         "Tendrá que determinar lo que puede hacer y lo que no.",
@@ -282,7 +285,7 @@ export const article45: ArticleData = {
     {
       number: "10",
       textEs: "¿Por qué necesitan tener perspicacia los cuidadores? (Proverbios 19:11).",
-      textLSM: "",
+      textLSM: "TÚ CUIDAR NECESARIO PENSAR PERFECTO QUÉ SIGNIFICA PARA FONSI",
       paragraphs: [10],
       readText: "LEE Proverbios 19:11",
       answer: [
@@ -322,7 +325,7 @@ export const article45: ArticleData = {
     {
       number: "11",
       textEs: "¿Para qué cosas importantes deben sacar tiempo los cuidadores todos los días? (Salmo 132:4, 5).",
-      textLSM: "",
+      textLSM: "TÚ OCUPADO PAUSAR BIBLIA LEER ORACIÓN IMPORTANTE POR QUÉ",
       paragraphs: [11],
       readText: "LEE Salmo 132:4, 5",
       answer: [
@@ -397,7 +400,7 @@ export const article45: ArticleData = {
     {
       number: "13",
       textEs: "¿Por qué es buena la risa? (Proverbios 17:22).",
-      textLSM: "",
+      textLSM: "TU VIDA REÍRTE AYUDARTE TU AMIGO CONFIANZA AYUDARTE A TI QUE SIGNIFICA",
       paragraphs: [13],
       readText: "LEE Proverbios 17:22",
       answer: [
@@ -457,7 +460,7 @@ export const article45: ArticleData = {
     {
       number: "15",
       textEs: "¿Cuáles son los beneficios de hablar sobre la vida en el Paraíso?",
-      textLSM: "",
+      textLSM: "TÚ PLATICAR NUEVO MUNDO AYUDARTE",
       paragraphs: [15],
       answer: [
         "El propósito original de Jehová no incluía cuidar de enfermos y mayores.",
@@ -502,9 +505,10 @@ export const article45: ArticleData = {
     {
       number: "16",
       textEs: "¿Qué podemos hacer si en nuestra congregación hay algún cuidador? (Vea también la imagen).",
-      textLSM: "",
+      textLSM: "IMAGÉN TU CONGREGACIÓN DESPUÉS CUIDA AYUDARLO QUE HACER",
       paragraphs: [16],
       section: "QUÉ PODEMOS HACER POR LOS CUIDADORES",
+      sectionLSM: "ELLOS CUIDAR TÚ AYUDARLES",
       answer: [
         "Podemos ofrecernos para atender a la persona a la que están cuidando.",
         "Así le daremos al cuidador tiempo para despejar la mente y atender sus asuntos personales.",
@@ -533,7 +537,7 @@ export const article45: ArticleData = {
     {
       number: "17",
       textEs: "¿Cómo podemos ayudar a los cuidadores durante las reuniones?",
-      textLSM: "",
+      textLSM: "EN TU CONGREGACIÓN EL DESPUÉS CUIDARLO AYUDARLO REUNIONES PRESTAR ATENCIÓN AYUDARLO QUE HACER",
       paragraphs: [17],
       answer: [
         "Los cuidadores pueden no concentrarse en las reuniones porque están atendiendo a su ser querido.",
@@ -552,7 +556,7 @@ export const article45: ArticleData = {
     {
       number: "18",
       textEs: "¿Qué más podemos hacer por los cuidadores?",
-      textLSM: "",
+      textLSM: "EL DESPUÉS CUIDARLO TÚ MÁS AYUDARLE QUE HACER",
       paragraphs: [18],
       answer: [
         "Los ancianos deben pastorear con regularidad a estos hermanos.",
@@ -581,7 +585,7 @@ export const article45: ArticleData = {
     {
       number: "19",
       textEs: "¿Qué esperamos que suceda pronto?",
-      textLSM: "",
+      textLSM: "PRÓXIMAMENTE CAMBIOS QUÉ Y PREGUNTAS DE REPASO",
       paragraphs: [19],
       answer: [
         "Pronto Jehová secará todas las lágrimas de dolor.",
@@ -648,6 +652,7 @@ export const article45: ArticleData = {
   reviewQuestions: [
     {
       question: "¿Qué cosas podrían robarles la alegría a los cuidadores?",
+      questionLSM: "ELLOS 5 DESPUÉS CUIDAR A VECES CONTENTOS DESVANECER POR QUÉ",
       answer: [
         "Quemarse física y emocionalmente por el desgaste de cuidar.",
         "No poder descansar ni desconectar.",
@@ -658,6 +663,7 @@ export const article45: ArticleData = {
     },
     {
       question: "¿Qué pueden hacer los cuidadores para mantener la alegría?",
+      questionLSM: "TÚ CUIDAR CONTENTOS SEGUIR",
       answer: [
         "Ser modestos y conocer sus límites.",
         "Tener perspicacia para comprender el comportamiento del ser querido.",
@@ -670,6 +676,7 @@ export const article45: ArticleData = {
     },
     {
       question: "¿Qué podemos hacer por los cuidadores?",
+      questionLSM: "IMAGÉN ELLOS 5 CUIDAR TÚ AYUDAR QUE HACER",
       answer: [
         "Ofrecernos para atender a la persona que cuidan y darles tiempo para descansar.",
         "Ayudarlos durante las reuniones sentándonos con su ser querido.",

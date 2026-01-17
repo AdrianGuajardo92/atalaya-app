@@ -225,7 +225,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
             <div key={index}>
               {/* Tarjeta principal */}
               <div
-                className="relative min-h-[250px] cursor-pointer group"
+                className="relative h-[250px] cursor-pointer group"
                 style={{ perspective: '1000px' }}
                 onClick={() => {
                   if (!isEditingThisCard) {
@@ -301,14 +301,14 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                 >
                   {/* Frente de la tarjeta (Pregunta) */}
                   <div
-                    className="absolute w-full min-h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col"
+                    className="absolute w-full h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
                     }}
                   >
-                    {/* Contenido de la pregunta */}
-                    <div className="flex-1 flex flex-col items-center justify-center">
+                    {/* Contenido de la pregunta con scroll */}
+                    <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center">
                       <p className="text-center text-slate-700 font-serif text-lg leading-relaxed">
                         {card.question}
                       </p>
@@ -325,7 +325,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingQuestion && (
-                      <div className="mt-4 p-3 bg-slate-50 rounded border border-slate-200 shadow-inner" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex-shrink-0 p-3 mx-6 mb-6 bg-slate-50 rounded border border-slate-200 shadow-inner" onClick={(e) => e.stopPropagation()}>
                         <p className="text-[10px] text-slate-500 mb-1 font-bold uppercase tracking-wider">
                           Editar LSM
                         </p>
@@ -365,7 +365,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                     {/* Botón para editar pregunta */}
                     {!isEditingQuestion && (
-                      <div className="mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex-shrink-0 pb-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={(e) => handleStartEdit(index, 'question', e)}
                           className="text-xs font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wider flex items-center gap-1"
@@ -378,16 +378,18 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                   {/* Reverso de la tarjeta (Respuesta) */}
                   <div
-                    className="absolute w-full min-h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 p-6 flex flex-col"
+                    className="absolute w-full h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
                     }}
                   >
-                    {/* Contenido de la respuesta */}
-                    <div className="flex-1 flex flex-col items-center justify-center text-center">
-                      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mb-3">Respuesta</div>
+                    {/* Header fijo */}
+                    <div className="flex-shrink-0 text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 py-2">Respuesta</div>
+
+                    {/* Contenido de la respuesta con scroll */}
+                    <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center text-center">
                       <p className="text-white font-medium text-lg leading-relaxed">
                         {card.answer}
                       </p>
@@ -404,7 +406,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingAnswer && (
-                      <div className="mt-4 p-3 bg-slate-700/50 rounded border border-slate-600" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex-shrink-0 p-3 mx-6 mb-6 bg-slate-700/50 rounded border border-slate-600" onClick={(e) => e.stopPropagation()}>
                         <p className="text-[10px] text-slate-300 mb-1 font-bold uppercase tracking-wider">
                           Editar LSM
                         </p>
@@ -444,7 +446,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                     {/* Botón para editar respuesta */}
                     {!isEditingAnswer && (
-                      <div className="mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex-shrink-0 pb-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={(e) => handleStartEdit(index, 'answer', e)}
                           className="text-xs font-bold text-slate-500 hover:text-slate-300 uppercase tracking-wider flex items-center gap-1"
