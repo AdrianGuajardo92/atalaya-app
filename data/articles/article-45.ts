@@ -42,6 +42,8 @@ export const article45: ArticleData = {
       textLSM: "IMAGÉN TÚ CUIDARLOS JEHOVÁ VERTE A TI CÓMO SE SIENTE",
       paragraphs: [1, 2],
       readText: "LEE Proverbios 19:17",
+      image: "https://i.imgur.com/mziyOZI.png",
+      imageCaption: "Cuidadores en diferentes circunstancias: una hermana da de comer a su madre, otra le pone los zapatos a su esposo en silla de ruedas, otra le pone un casco a su hijo, un hermano visita a su padre mayor.",
       answer: [
         "Jehová sabe y comprende los sentimientos de los cuidadores.",
         "Cada una de sus lágrimas es muy valiosa para él.",
@@ -509,6 +511,8 @@ export const article45: ArticleData = {
       paragraphs: [16],
       section: "QUÉ PODEMOS HACER POR LOS CUIDADORES",
       sectionLSM: "ELLOS CUIDAR TÚ AYUDARLES",
+      image: "https://i.imgur.com/eOcFEaX.png",
+      imageCaption: "Dos hermanas jóvenes visitan a una hermana mayor para que su cuidadora pueda salir a dar un paseo.",
       answer: [
         "Podemos ofrecernos para atender a la persona a la que están cuidando.",
         "Así le daremos al cuidador tiempo para despejar la mente y atender sus asuntos personales.",
