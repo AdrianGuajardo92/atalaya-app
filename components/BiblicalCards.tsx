@@ -130,7 +130,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                   }}
                 >
                   {/* Contenido con scroll */}
-                  <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center">
+                  <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center justify-center">
                     <p className="text-center text-slate-800 font-bold text-lg mb-3 font-serif">
                       {card.reference}
                     </p>
