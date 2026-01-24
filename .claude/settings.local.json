@@ -31,7 +31,9 @@
       "Bash(git config:*)",
       "Bash(npx vercel --prod)",
       "Bash(npx vercel:*)",
-      "Bash(npm run article:list:*)"
+      "Bash(npm run article:list:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
