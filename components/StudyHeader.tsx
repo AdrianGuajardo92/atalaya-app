@@ -1,4 +1,4 @@
-import { ArticleData, ArticleOverview } from '@/types/atalaya';
+import { ArticleData, ArticleOverview, Question, ReviewQuestion, Paragraph } from '@/types/atalaya';
 import { getArticleId } from '@/data/articles';
 import { isExecutiveDesign } from '@/data/design-config';
 import { useState, useEffect } from 'react';
@@ -19,8 +19,15 @@ interface StudyHeaderProps {
   // Props para LSM
   titleLSM?: string;
   onTitleLSMUpdate?: (text: string) => void;
+  // Infografía principal del artículo
+  headerInfographic?: string;
   // Vista previa del artículo
   overview?: ArticleOverview;
+  // Props para copiar estructura del artículo
+  questions?: Question[];
+  reviewQuestions?: ReviewQuestion[];
+  paragraphs?: Paragraph[];
+  finalSong?: string;
 }
 
 export default function StudyHeader({
@@ -37,10 +44,105 @@ export default function StudyHeader({
   onArticleChange,
   titleLSM,
   onTitleLSMUpdate,
-  overview
+  headerInfographic,
+  overview,
+  questions = [],
+  reviewQuestions = [],
+  paragraphs = [],
+  finalSong
 }: StudyHeaderProps) {
   // Detectar si aplica diseño ejecutivo (usando configuración centralizada)
   const isArticle43 = articleNumber !== undefined && isExecutiveDesign(articleNumber);
+
+  // Estado para feedback del botón copiar
+  const [copyFeedback, setCopyFeedback] = useState<'idle' | 'copied'>('idle');
+
+  // Función para generar el texto estructurado del artículo
+  const generateArticleStructure = (): string => {
+    const lines: string[] = [];
+
+    // Canción inicial
+    lines.push(song);
+    lines.push('');
+
+    // Título
+    lines.push(title);
+    lines.push('');
+
+    // Texto bíblico
+    lines.push(biblicalText);
+    lines.push('');
+
+    // Tema
+    lines.push(theme);
+    lines.push('');
+    lines.push('---');
+    lines.push('');
+
+    // Preguntas con sus párrafos correspondientes
+    let currentSection = '';
+    questions.forEach((question) => {
+      // Si hay un nuevo subtítulo de sección
+      if (question.section && question.section !== currentSection) {
+        currentSection = question.section;
+        lines.push(question.section.toUpperCase());
+        lines.push('');
+      }
+
+      // Número de pregunta y texto
+      lines.push(`${question.number}. ${question.textEs}`);
+
+      // Texto bíblico a leer si existe
+      if (question.readText) {
+        lines.push(question.readText);
+      }
+
+      lines.push('');
+
+      // Párrafos correspondientes a esta pregunta
+      const questionParagraphNumbers = question.paragraphs || [];
+      questionParagraphNumbers.forEach((paragraphNum) => {
+        const paragraph = paragraphs.find(p => p.number === paragraphNum);
+        if (paragraph) {
+          lines.push(`[${paragraph.number}] ${paragraph.content}`);
+          lines.push('');
+        }
+      });
+    });
+
+    // Separador antes de preguntas de repaso
+    lines.push('---');
+    lines.push('');
+    lines.push('¿QUÉ RESPONDERÍAS?');
+    lines.push('');
+
+    // Preguntas de repaso
+    reviewQuestions.forEach((reviewQ, index) => {
+      lines.push(`${index + 1}. ${reviewQ.question}`);
+    });
+
+    // Canción final
+    if (finalSong) {
+      lines.push('');
+      lines.push('---');
+      lines.push('');
+      lines.push(finalSong);
+    }
+
+    return lines.join('\n');
+  };
+
+  // Función para copiar al portapapeles
+  const handleCopyStructure = async () => {
+    const text = generateArticleStructure();
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyFeedback('copied');
+      setTimeout(() => setCopyFeedback('idle'), 2000);
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
+  };
 
   // Estado para editar título LSM
   const [isEditingTitleLSM, setIsEditingTitleLSM] = useState(false);
@@ -105,37 +207,60 @@ export default function StudyHeader({
             >
               Seleccionar Artículo
             </label>
-            <div className="relative">
-              <select
-                id="article-selector-exec"
-                value={currentArticleId || ''}
-                onChange={(e) => onArticleChange(e.target.value)}
-                className="appearance-none pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 cursor-pointer hover:border-slate-300 hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]"
-              >
-                {articles
-                  .filter((article) => article.title !== "")
-                  .map((article) => {
-                    const id = getArticleId(article);
-                    const isSelected = id === currentArticleId;
-                    return (
-                      <option
-                        key={id}
-                        value={id}
-                        className={isSelected ? 'font-semibold bg-slate-100' : ''}
-                      >
-                        {isSelected ? '● ' : '  '}
-                        {`Artículo ${article.metadata.articleNumber} - ${article.title}`}
-                        {` | ${article.metadata.week}`}
-                      </option>
-                    );
-                  })}
-              </select>
-              {/* Flecha personalizada */}
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <select
+                  id="article-selector-exec"
+                  value={currentArticleId || ''}
+                  onChange={(e) => onArticleChange(e.target.value)}
+                  className="appearance-none pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 cursor-pointer hover:border-slate-300 hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]"
+                >
+                  {articles
+                    .filter((article) => article.title !== "")
+                    .map((article) => {
+                      const id = getArticleId(article);
+                      const isSelected = id === currentArticleId;
+                      return (
+                        <option
+                          key={id}
+                          value={id}
+                          className={isSelected ? 'font-semibold bg-slate-100' : ''}
+                        >
+                          {isSelected ? '● ' : '  '}
+                          {`Artículo ${article.metadata.articleNumber} - ${article.title}`}
+                          {` | ${article.metadata.week}`}
+                        </option>
+                      );
+                    })}
+                </select>
+                {/* Flecha personalizada */}
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
               </div>
+
+              {/* Botón Copiar Estructura */}
+              <button
+                onClick={handleCopyStructure}
+                className={`p-2.5 rounded-lg border transition-all ${
+                  copyFeedback === 'copied'
+                    ? 'bg-green-50 border-green-300 text-green-600'
+                    : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700'
+                }`}
+                title="Copiar estructura del artículo"
+              >
+                {copyFeedback === 'copied' ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         )}
@@ -251,6 +376,17 @@ export default function StudyHeader({
           </p>
         </div>
 
+        {/* Infografía Principal del Artículo */}
+        {headerInfographic && (
+          <div className="mb-8">
+            <img
+              src={headerInfographic}
+              alt="Infografía del artículo"
+              className="w-full rounded-xl shadow-md border border-slate-200"
+            />
+          </div>
+        )}
+
         {/* Tema - Sin fondo, texto gris */}
         <div className="text-center">
           <p className="text-base lg:text-lg text-slate-500 leading-relaxed">
@@ -354,25 +490,48 @@ export default function StudyHeader({
           <label htmlFor="article-selector" className="text-sm font-medium text-slate-600">
             Seleccionar Artículo:
           </label>
-          <select
-            id="article-selector"
-            value={currentArticleId || ''}
-            onChange={(e) => onArticleChange(e.target.value)}
-            className="px-5 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 cursor-pointer hover:bg-slate-50 transition-all shadow-sm"
-          >
-            {articles
-              .filter((article) => article.title !== "") // Solo mostrar artículos con contenido
-              .map((article) => {
-                const id = getArticleId(article);
+          <div className="flex items-center gap-2">
+            <select
+              id="article-selector"
+              value={currentArticleId || ''}
+              onChange={(e) => onArticleChange(e.target.value)}
+              className="px-5 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-400 cursor-pointer hover:bg-slate-50 transition-all shadow-sm"
+            >
+              {articles
+                .filter((article) => article.title !== "") // Solo mostrar artículos con contenido
+                .map((article) => {
+                  const id = getArticleId(article);
 
-                return (
-                  <option key={id} value={id}>
-                    {`Artículo ${article.metadata.articleNumber} - ${article.title}`}
-                    {` | ${article.metadata.week}`}
-                  </option>
-                );
-              })}
-          </select>
+                  return (
+                    <option key={id} value={id}>
+                      {`Artículo ${article.metadata.articleNumber} - ${article.title}`}
+                      {` | ${article.metadata.week}`}
+                    </option>
+                  );
+                })}
+            </select>
+
+            {/* Botón Copiar Estructura */}
+            <button
+              onClick={handleCopyStructure}
+              className={`p-2.5 rounded-lg border transition-all ${
+                copyFeedback === 'copied'
+                  ? 'bg-green-50 border-green-300 text-green-600'
+                  : 'bg-white border-slate-300 text-slate-500 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-700'
+              }`}
+              title="Copiar estructura del artículo"
+            >
+              {copyFeedback === 'copied' ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       )}
 

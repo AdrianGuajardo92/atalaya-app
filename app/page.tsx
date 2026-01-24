@@ -463,7 +463,12 @@ export default function Home() {
                 onArticleChange={handleArticleChange}
                 titleLSM={lsmData['title']}
                 onTitleLSMUpdate={handleTitleLSMUpdate}
+                headerInfographic={currentArticle.headerInfographic}
                 overview={currentArticle.overview}
+                questions={currentArticle.questions}
+                reviewQuestions={currentArticle.reviewQuestions}
+                paragraphs={currentArticle.paragraphs}
+                finalSong={currentArticle.finalSong}
               />
             )}
 

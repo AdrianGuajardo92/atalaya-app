@@ -39,6 +39,7 @@ export const article46: ArticleData = {
   title: "Jesús es un Sumo Sacerdote compasivo",
   biblicalText: "\"No tenemos a un sumo sacerdote que no pueda compadecerse de nuestras debilidades\" (HEB. 4:15).",
   theme: "Por qué podemos decir que Jesús es un Sumo Sacerdote compasivo y de qué maneras nos ayuda hoy en día.",
+  headerInfographic: "https://i.imgur.com/pRjuu2s.png",
   questions: [
     {
       number: "1, 2",
@@ -125,6 +126,7 @@ export const article46: ArticleData = {
       textEs: "¿Qué vio Jesús cuando estuvo en la Tierra, y cómo lo preparó eso para ser Sumo Sacerdote? (Vea también la imagen).",
       textLSM: "",
       paragraphs: [5],
+      image: "https://i.imgur.com/QYbkA8f.png",
       answer: [
         "Jesús vio a muchas personas sufrir durante su vida en la Tierra.",
         "Vivió el dolor de perder a seres queridos, incluso por lo visto a José, su padre adoptivo.",
@@ -281,6 +283,7 @@ export const article46: ArticleData = {
       textLSM: "",
       paragraphs: [10],
       section: "IMITAMOS A NUESTRO SUMO SACERDOTE",
+      image: "https://i.imgur.com/NiwTozP.png",
       answer: [
         "Nuestras publicaciones están disponibles en más de 100 lenguas de señas.",
         "Contamos con publicaciones en braille para más de 60 idiomas.",
@@ -316,6 +319,7 @@ export const article46: ArticleData = {
       textLSM: "",
       paragraphs: [11],
       readText: "LEE Hechos 2:5-7, 33",
+      image: "https://i.imgur.com/NJxRAs1.png",
       answer: [
         "Después de resucitar, Jesús derramó espíritu santo para que predicaran 'en su propio idioma'.",
         "La organización produce publicaciones bíblicas en más de 1.100 idiomas.",
