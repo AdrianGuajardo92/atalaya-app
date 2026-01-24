@@ -159,16 +159,9 @@ export default function Timer() {
             className="bg-slate-700 text-white px-1 sm:px-2 py-0.5 sm:py-1 rounded text-center text-xs sm:text-sm w-full cursor-pointer"
             autoFocus
           >
-            <option value="1">1 min</option>
-            <option value="2">2 min</option>
-            <option value="3">3 min</option>
-            <option value="4">4 min</option>
-            <option value="5">5 min</option>
-            <option value="6">6 min</option>
-            <option value="7">7 min</option>
-            <option value="8">8 min</option>
-            <option value="9">9 min</option>
-            <option value="10">10 min</option>
+            {Array.from({ length: 30 }, (_, i) => i + 1).map((min) => (
+              <option key={min} value={min}>{min} min</option>
+            ))}
           </select>
           <div className="hidden sm:block text-xs text-slate-400 text-center">
             Iniciar: {Math.max(0, 60 - (parseInt(delayMinutes) || 0))} min

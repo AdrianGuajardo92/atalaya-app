@@ -539,7 +539,7 @@ export const article46: ArticleData = {
       ]
     }
   ],
-  finalSong: "Canción 13: Cristo es nuestro modelo"
+  finalSong: "Discurso: Sirva a Jehová con corazón completo"
 };
 
 export default article46;
