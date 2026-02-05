@@ -898,8 +898,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
                 <button
                   onClick={() => {
-                    const text = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
-                    navigator.clipboard.writeText(text);
+                    const paragraphsText = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
+                    let answersText = '';
+                    if (question.answer) {
+                      const answers = Array.isArray(question.answer)
+                        ? question.answer
+                        : typeof question.answer === 'string'
+                          ? question.answer.split('.').filter(s => s.trim().length > 0).map(s => s.trim() + '.')
+                          : [String(question.answer)];
+                      answersText = '\n\nRESPUESTA:\n' + answers.map((a, i) => `[${i + 1}] ${a}`).join('\n');
+                    }
+                    navigator.clipboard.writeText(paragraphsText + answersText);
                     setParagraphCopied(true);
                     setTimeout(() => setParagraphCopied(false), 2000);
                   }}
@@ -1923,7 +1932,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     const paragraphsText = relatedParagraphs.map(p =>
                       `Párrafo ${p.number}\n${p.content}`
                     ).join('\n\n');
-                    const fullText = `Pregunta ${question.number}\n${question.textEs}\n\n${paragraphsText}`;
+                    let answersText = '';
+                    if (question.answer) {
+                      const answers = Array.isArray(question.answer)
+                        ? question.answer
+                        : typeof question.answer === 'string'
+                          ? question.answer.split('.').filter(s => s.trim().length > 0).map(s => s.trim() + '.')
+                          : [String(question.answer)];
+                      answersText = '\n\nRESPUESTA:\n' + answers.map((a, i) => `[${i + 1}] ${a}`).join('\n');
+                    }
+                    const fullText = `Pregunta ${question.number}\n${question.textEs}\n\n${paragraphsText}${answersText}`;
 
                     await navigator.clipboard.writeText(fullText);
                     setParagraphCopied(true);
