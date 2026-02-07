@@ -10,13 +10,10 @@ interface ReviewQuestionCardProps {
   index: number;
   lsmText?: string;
   onLSMUpdate?: (index: number, text: string) => void;
-  favorites?: Record<string, boolean>;
-  onToggleFavorite?: (favoriteId: string) => void;
   allLsmData?: Record<string, string>;
   hiddenCards?: Record<string, boolean>;
   onToggleHidden?: (cardId: string) => void;
-  isNavigationMode?: boolean; // Para saber si está en modo paginado o scroll
-  articleId: string; // ID del artículo actual
+  articleId: string;
 }
 
 export default function ReviewQuestionCard({
@@ -24,12 +21,9 @@ export default function ReviewQuestionCard({
   index,
   lsmText,
   onLSMUpdate,
-  favorites = {},
-  onToggleFavorite = () => { },
   allLsmData = {},
   hiddenCards = {},
   onToggleHidden = () => { },
-  isNavigationMode = false,
   articleId
 }: ReviewQuestionCardProps) {
   const [isEditingLSM, setIsEditingLSM] = useState(false);

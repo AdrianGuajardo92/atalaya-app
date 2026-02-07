@@ -510,12 +510,9 @@ export default function Home() {
                     index={index}
                     lsmText={lsmData[`review-${index}`]}
                     onLSMUpdate={handleReviewLSMUpdate}
-                    favorites={favorites}
-                    onToggleFavorite={handleToggleFavorite}
                     allLsmData={lsmData}
                     hiddenCards={hiddenCards}
                     onToggleHidden={handleToggleHidden}
-                    isNavigationMode={false}
                     articleId={currentArticleId}
                   />
                 ))}
@@ -644,12 +641,9 @@ export default function Home() {
                   index={currentReviewIndex}
                   lsmText={lsmData[`review-${currentReviewIndex}`]}
                   onLSMUpdate={handleReviewLSMUpdate}
-                  favorites={favorites}
-                  onToggleFavorite={handleToggleFavorite}
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
-                  isNavigationMode={true}
                   articleId={currentArticleId}
                 />
 
