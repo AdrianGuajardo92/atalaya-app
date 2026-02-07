@@ -68,6 +68,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Estado para flashcards personalizadas
   const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string; isCustom?: boolean }>>([]);
+  // Estado para flashcards slide-down (tarjetas expandidas)
+  const [expandedFlashcards, setExpandedFlashcards] = useState<Set<number>>(new Set());
 
 
   // Estado para puntos clave completados
@@ -1186,6 +1188,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     </div>
                     <div className="flex-1 space-y-4">
 
+                      {/* Label RESPUESTA (solo si hay answerContext) */}
+                      {question.answerContext && question.answerContext.length > 0 && (
+                        <div className="mb-3">
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Respuesta</span>
+                        </div>
+                      )}
+
                       {/* Respuesta Principal Mejorada con numeración */}
                       <div className="prose prose-slate max-w-none">
                         {question.answer && (
@@ -1204,6 +1213,22 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               : <p className="text-lg text-slate-700 leading-relaxed">{String(question.answer)}</p>
                         )}
                       </div>
+
+                      {/* Sección CONTEXTO (solo si existe answerContext) */}
+                      {question.answerContext && question.answerContext.length > 0 && (
+                        <div className="mt-6 border-l-2 border-slate-200 bg-slate-50 rounded-r-lg p-5">
+                          <div className="mb-3">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Contexto</span>
+                          </div>
+                          <div className="space-y-3">
+                            {question.answerContext.map((ctx, idx) => (
+                              <p key={idx} className="text-base text-slate-600 leading-relaxed">
+                                <span className="text-slate-300 font-medium">[{idx + 1}]</span> {ctx}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       {/* Puntos Clave */}
                       {(question.answerBullets || customBullets.length > 0) && (
@@ -1231,10 +1256,72 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                 {/* Grid de Tarjetas (Fondo sutil) */}
                 <div className="bg-slate-50 p-8">
+
+                  {/* Flashcards Slide-Down (prueba: artículo 48, pregunta 1,2) */}
+                  {articleNum === 48 && (question.flashcards || customFlashcards.length > 0) && (
+                    <div className="mb-6">
+                      <div className="flex items-center justify-between mb-4 min-h-[40px]">
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
+                        <div className="text-xs text-slate-400 font-medium">
+                          {customFlashcards.length} {customFlashcards.length === 1 ? 'tarjeta' : 'tarjetas'}
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        {customFlashcards.map((card, index) => {
+                          const cardId = `flashcard-${question.number}-${index}`;
+                          if (hiddenCards[cardId]) return null;
+                          const isOpen = expandedFlashcards.has(index);
+                          return (
+                            <div
+                              key={index}
+                              className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                            >
+                              {/* Pregunta (siempre visible) */}
+                              <button
+                                onClick={() => {
+                                  setExpandedFlashcards(prev => {
+                                    const next = new Set(prev);
+                                    if (next.has(index)) next.delete(index);
+                                    else next.add(index);
+                                    return next;
+                                  });
+                                }}
+                                className="w-full text-left px-5 py-4 flex items-start gap-3 group"
+                              >
+                                <span className={`text-slate-400 mt-0.5 text-sm transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}>
+                                  ▸
+                                </span>
+                                <span className="text-slate-700 font-sans font-semibold text-base leading-relaxed flex-1">
+                                  {card.question}
+                                </span>
+                                <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-400'}`}>
+                                  {isOpen ? 'Ocultar' : 'Ver'}
+                                </span>
+                              </button>
+
+                              {/* Respuesta (slide-down) */}
+                              <div
+                                className={`overflow-hidden transition-all duration-400 ease-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                              >
+                                <div className="px-5 pb-4 pt-0">
+                                  <div className="ml-6 pl-4 border-l-2 border-amber-300">
+                                    <p className="text-slate-600 leading-relaxed text-[15px]">
+                                      {card.answer}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid md:grid-cols-2 gap-6">
 
-                    {/* Tarjetas Didácticas */}
-                    {(question.flashcards || customFlashcards.length > 0) && (
+                    {/* Tarjetas Didácticas (diseño original flip) */}
+                    {!(articleNum === 48) && (question.flashcards || customFlashcards.length > 0) && (
                       <div className="space-y-4">
 
                         <FlashCards

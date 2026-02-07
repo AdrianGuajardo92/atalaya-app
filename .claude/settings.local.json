@@ -33,7 +33,15 @@
       "Bash(npx vercel:*)",
       "Bash(npm run article:list:*)",
       "Bash(grep:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npx --yes pdf-parse:*)",
+      "Bash(npx next build)",
+      "Bash(del \"C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\temp-diciembre.pdf\")",
+      "Bash(del \"C:\\\\Users\\\\Adrian Guajardo\\\\atalaya-app\\\\extract-pdf.mjs\")",
+      "Bash(npx tsc:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File:*)",
+      "Bash(timeout:*)",
+      "Bash(ping:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,31 +1,31 @@
 import { ArticleData } from '@/types/atalaya';
 
 // ============================================
-// TEXTOS BIBLICOS DEL ARTICULO 50
-// "Imitemos la humildad de Jehova"
+// TEXTOS BÍBLICOS DEL ARTÍCULO 50
+// "Imitemos la humildad de Jehová"
 // ============================================
 export const biblicalTexts50: Record<string, { reference: string; text: string }[]> = {
   "LEE Salmo 62:8": [
-    { reference: "Salmo 62:8", text: "Confien en el en todo momento, pueblo mio. Derramen su corazon delante de el. Dios es un refugio para nosotros." }
+    { reference: "Salmo 62:8", text: "Confíen en él en todo momento, pueblo mío. Derramen su corazón delante de él. Dios es un refugio para nosotros." }
   ],
   "LEE Marcos 3:1-6": [
-    { reference: "Marcos 3:1", text: "De nuevo entro en una sinagoga, y habia alli un hombre que tenia una mano seca." },
-    { reference: "Marcos 3:2", text: "Y ellos lo vigilaban de cerca para ver si lo curaria en sabado, con el fin de acusarlo." },
-    { reference: "Marcos 3:3", text: "El le dijo al hombre de la mano seca: 'Levantate y ponte en el medio'." },
-    { reference: "Marcos 3:4", text: "Entonces les pregunto: '¿Que esta permitido hacer en sabado? ¿Una cosa buena o una cosa mala? ¿Salvar una vida o matar?'. Pero ellos se quedaron callados." },
-    { reference: "Marcos 3:5", text: "Despues de mirarlos con indignacion, profundamente entristecido por la insensibilidad de sus corazones, le dijo al hombre: 'Extiende la mano'. El hombre la extendio y la mano le quedo sana." },
+    { reference: "Marcos 3:1", text: "De nuevo entró en una sinagoga, y había allí un hombre que tenía una mano seca." },
+    { reference: "Marcos 3:2", text: "Y ellos lo vigilaban de cerca para ver si lo curaría en sábado, con el fin de acusarlo." },
+    { reference: "Marcos 3:3", text: "Él le dijo al hombre de la mano seca: 'Levántate y ponte en el medio'." },
+    { reference: "Marcos 3:4", text: "Entonces les preguntó: '¿Qué está permitido hacer en sábado? ¿Una cosa buena o una cosa mala? ¿Salvar una vida o matar?'. Pero ellos se quedaron callados." },
+    { reference: "Marcos 3:5", text: "Después de mirarlos con indignación, profundamente entristecido por la insensibilidad de sus corazones, le dijo al hombre: 'Extiende la mano'. El hombre la extendió y la mano le quedó sana." },
     { reference: "Marcos 3:6", text: "Al instante, los fariseos salieron y se pusieron a conspirar con los partidarios de Herodes para matarlo." }
   ],
   "LEE 2 Pedro 3:9": [
-    { reference: "2 Pedro 3:9", text: "Jehova no es lento en cuanto a su promesa, como algunos piensan; mas bien, el tiene paciencia con ustedes porque no quiere que nadie sea destruido, sino que quiere que todos alcancen el arrepentimiento." }
+    { reference: "2 Pedro 3:9", text: "Jehová no es lento en cuanto a su promesa, como algunos piensan; más bien, él tiene paciencia con ustedes porque no quiere que nadie sea destruido, sino que quiere que todos alcancen el arrepentimiento." }
   ],
   "LEE Salmo 138:6": [
-    { reference: "Salmo 138:6", text: "Aunque Jehova esta en las alturas, se fija en el humilde, pero al arrogante solo lo conoce de lejos." }
+    { reference: "Salmo 138:6", text: "Aunque Jehová está en las alturas, se fija en el humilde, pero al arrogante solo lo conoce de lejos." }
   ]
 };
 
 // ============================================
-// DATOS DEL ARTICULO 50
+// DATOS DEL ARTÍCULO 50
 // ============================================
 export const article50: ArticleData = {
   metadata: {
@@ -34,245 +34,245 @@ export const article50: ArticleData = {
     month: "Diciembre",
     year: 2025
   },
-  song: "Cancion 48: Caminemos diariamente con Jehova",
-  title: "Imitemos la humildad de Jehova",
+  song: "Canción 48: Caminemos diariamente con Jehová",
+  title: "Imitemos la humildad de Jehová",
   biblicalText: "\"Imiten a Dios como hijos amados\" (EFES. 5:1).",
-  theme: "Cuatro maneras practicas de imitar la humildad de Jehova.",
+  theme: "Cuatro maneras prácticas de imitar la humildad de Jehová.",
   questions: [
     {
       number: "1",
-      textEs: "¿Por que es tan impresionante pensar en que Jehova es humilde?",
+      textEs: "¿Por qué es tan impresionante pensar en que Jehová es humilde?",
       textLSM: "",
       paragraphs: [1],
       answer: [
         "Las personas que tienen poder en el mundo no suelen ser humildes.",
-        "Sin embargo, Jehova, quien es el Todopoderoso, si lo es.",
-        "La humildad impregna toda su personalidad; no hay ni el mas minimo rastro de orgullo en el.",
-        "Analizaremos cuatro aspectos de la personalidad de Jehova donde se ve reflejada la humildad."
+        "Sin embargo, Jehová, quien es el Todopoderoso, sí lo es.",
+        "La humildad impregna toda su personalidad; no hay ni el más mínimo rastro de orgullo en él.",
+        "Analizaremos cuatro aspectos de la personalidad de Jehová donde se ve reflejada la humildad."
       ],
       flashcards: [
         {
-          question: "¿Que distingue a Jehova de las personas poderosas del mundo?",
-          answer: "Aunque es el Todopoderoso, Jehova es humilde y no hay ni el mas minimo rastro de orgullo en el."
+          question: "¿Qué distingue a Jehová de las personas poderosas del mundo?",
+          answer: "Aunque es el Todopoderoso, Jehová es humilde y no hay ni el más mínimo rastro de orgullo en él."
         }
       ],
       biblicalCards: [
         {
           reference: "Salmo 113:5-8",
-          purpose: "Jehova es humilde a pesar de su grandeza",
-          text: "¿Quien es como Jehova nuestro Dios, que se sienta en las alturas, que se humilla para mirar al cielo y a la tierra? Levanta al de condicion humilde del polvo."
+          purpose: "Jehová es humilde a pesar de su grandeza",
+          text: "¿Quién es como Jehová nuestro Dios, que se sienta en las alturas, que se humilla para mirar al cielo y a la tierra? Levanta al de condición humilde del polvo."
         }
       ]
     },
     {
       number: "2",
-      textEs: "¿Que nos ensena Salmo 62:8 sobre Jehova? (Vea tambien la imagen).",
+      textEs: "¿Qué nos enseña Salmo 62:8 sobre Jehová? (Vea también la imagen).",
       textLSM: "",
       paragraphs: [2],
       section: "JEHOVA ES ACCESIBLE",
       readText: "LEE Salmo 62:8",
       image: "",
-      imageCaption: "Un padre imita la humildad de Jehova y escucha a su hijo sin enojarse porque rompio un jarron mientras jugaba.",
+      imageCaption: "Un padre imita la humildad de Jehová y escucha a su hijo sin enojarse porque rompió un jarrón mientras jugaba.",
       answer: [
         "Las personas orgullosas no suelen ser accesibles.",
-        "Jehova nos invita a acercarnos a el y a contarle todo lo que sentimos y pensamos.",
-        "Asi como un padre carinoso escucha con atencion las preocupaciones de sus hijos, nuestro Padre celestial escucha nuestras oraciones.",
-        "Hizo que muchas oraciones quedaran registradas en la Biblia, lo que demuestra lo facil que es hablar con el."
+        "Jehová nos invita a acercarnos a él y a contarle todo lo que sentimos y pensamos.",
+        "Así como un padre cariñoso escucha con atención las preocupaciones de sus hijos, nuestro Padre celestial escucha nuestras oraciones.",
+        "Hizo que muchas oraciones quedaran registradas en la Biblia, lo que demuestra lo fácil que es hablar con el."
       ],
       flashcards: [
         {
-          question: "¿Por que la humildad de Jehova lo hace accesible?",
-          answer: "Nos invita a acercarnos a el y a contarle todo lo que sentimos y pensamos, escuchando nuestras oraciones con atencion."
+          question: "¿Por qué la humildad de Jehová lo hace accesible?",
+          answer: "Nos invita a acercarnos a él y a contarle todo lo que sentimos y pensamos, escuchando nuestras oraciones con atención."
         }
       ],
       biblicalCards: [
         {
           reference: "Salmo 62:8",
-          purpose: "Podemos confiar en Jehova",
-          text: "Confien en el en todo momento, oh pueblo. Derramen su corazon delante de el. Dios es un refugio para nosotros."
+          purpose: "Podemos confiar en Jehová",
+          text: "Confíen en él en todo momento, oh pueblo. Derramen su corazón delante de él. Dios es un refugio para nosotros."
         }
       ]
     },
     {
       number: "3",
-      textEs: "¿Por que esta usted seguro de que Jehova quiere que le ore siempre?",
+      textEs: "¿Por qué está usted seguro de que Jehová quiere que le ore siempre?",
       textLSM: "",
       paragraphs: [3],
       answer: [
-        "Podemos orarle a Jehova incluso si sentimos que no merecemos su amor.",
-        "La parabola del hijo prodigo muestra un padre compasivo que corrio a abrazar a su hijo que regreso.",
-        "Jehova es como ese padre: cuando escucha la oracion de alguien aplastado, su humildad lo motiva a prestarle toda su atencion.",
-        "Su compasion lo impulsa a 'correr' hacia el para consolarlo y confirmarle su amor."
+        "Podemos orarle a Jehová incluso si sentimos que no merecemos su amor.",
+        "La parábola del hijo pródigo muestra un padre compasivo que corrió a abrazar a su hijo que regresó.",
+        "Jehová es como ese padre: cuando escucha la oración de alguien aplastado, su humildad lo motiva a prestarle toda su atención.",
+        "Su compasión lo impulsa a 'correr' hacia él para consolarlo y confirmarle su amor."
       ],
       flashcards: [
         {
-          question: "¿Como ilustra la parabola del hijo prodigo la accesibilidad de Jehova?",
-          answer: "El padre corrio a abrazar a su hijo que regreso, asi como Jehova esta dispuesto a escuchar a quienes se sienten indignos."
+          question: "¿Cómo ilustra la parábola del hijo pródigo la accesibilidad de Jehová?",
+          answer: "El padre corrió a abrazar a su hijo que regresó, así como Jehová está dispuesto a escuchar a quienes se sienten indignos."
         }
       ],
       biblicalCards: [
         {
           reference: "Lucas 15:17-20",
-          purpose: "El padre del hijo prodigo",
-          text: "Cuando todavia estaba lejos, su padre lo vio y se compadecio de el. Corrio a su encuentro, lo abrazo y lo beso con ternura."
+          purpose: "El padre del hijo pródigo",
+          text: "Cuando todavía estaba lejos, su padre lo vio y se compadeció de él. Corrió a su encuentro, lo abrazó y lo besó con ternura."
         },
         {
-          reference: "Isaias 57:15",
-          purpose: "Jehova consuela a los humildes",
-          text: "El Alto y Elevado, el que habita la eternidad, cuyo nombre es santo, dice: 'Habito en las alturas, en un lugar santo, pero tambien con el aplastado y humilde de espiritu'."
+          reference: "Isaías 57:15",
+          purpose: "Jehová consuela a los humildes",
+          text: "El Alto y Elevado, el que habita la eternidad, cuyo nombre es santo, dice: 'Habito en las alturas, en un lugar santo, pero también con el aplastado y humilde de espíritu'."
         }
       ]
     },
     {
       number: "4",
-      textEs: "¿Como demostro Jesus que era accesible?",
+      textEs: "¿Cómo demostró Jesús que era accesible?",
       textLSM: "",
       paragraphs: [4],
       answer: [
-        "Al igual que Jehova, Jesus es humilde.",
-        "Las personas se sentian con la confianza de acercarse a el y hacerle preguntas con total libertad.",
-        "Si cometian un error, no temblaban de miedo, porque sabian que Jesus era bueno, misericordioso y paciente.",
-        "Sus seguidores llegaron a conocer mejor a Jehova gracias a que Jesus lo imito a la perfeccion."
+        "Al igual que Jehová, Jesús es humilde.",
+        "Las personas se sentían con la confianza de acercarse a él y hacerle preguntas con total libertad.",
+        "Si cometían un error, no temblaban de miedo, porque sabían que Jesús era bueno, misericordioso y paciente.",
+        "Sus seguidores llegaron a conocer mejor a Jehová gracias a que Jesús lo imitó a la perfección."
       ],
       flashcards: [
         {
-          question: "¿Por que las personas no temian acercarse a Jesus?",
-          answer: "Porque sabian que era bueno, misericordioso y paciente, y no temblaban de miedo si cometian un error."
+          question: "¿Por qué las personas no temían acercarse a Jesús?",
+          answer: "Porque sabían que era bueno, misericordioso y paciente, y no temblaban de miedo si cometían un error."
         }
       ],
       biblicalCards: [
         {
           reference: "Juan 14:9",
-          purpose: "Jesus reflejo a su Padre",
-          text: "Jesus le dijo: 'El que me ha visto a mi ha visto tambien al Padre'."
+          purpose: "Jesús reflejó a su Padre",
+          text: "Jesús le dijo: 'El que me ha visto a mí ha visto también al Padre'."
         },
         {
           reference: "Mateo 17:24-27",
-          purpose: "Jesus fue paciente con sus discipulos",
-          text: "Jesus fue paciente al explicar sobre el impuesto del templo y proveyo la solucion de manera bondadosa."
+          purpose: "Jesús fue paciente con sus discípulos",
+          text: "Jesús fue paciente al explicar sobre el impuesto del templo y proveyó la solución de manera bondadosa."
         }
       ]
     },
     {
       number: "5",
-      textEs: "¿Por que nos ayuda la humildad a ser mas accesibles?",
+      textEs: "¿Por qué nos ayuda la humildad a ser más accesibles?",
       textLSM: "",
       paragraphs: [5],
       answer: [
-        "La humildad nos ayuda a evitar defectos que alejan a los demas: envidia, orgullo y rencor.",
-        "Nos ayuda a tener cualidades que atraen: bondad, paciencia y perdon.",
+        "La humildad nos ayuda a evitar defectos que alejan a los demás: envidia, orgullo y rencor.",
+        "Nos ayuda a tener cualidades que atraen: bondad, paciencia y perdón.",
         "Los ancianos deben esforzarse por ser accesibles asistiendo presencialmente a las reuniones.",
         "Deben salir a predicar con los hermanos para que los conozcan mejor y se sientan en confianza."
       ],
       flashcards: [
         {
-          question: "¿Que defectos evita la humildad y que cualidades desarrolla?",
-          answer: "Evita la envidia, el orgullo y el rencor. Desarrolla la bondad, la paciencia y el perdon."
+          question: "¿Qué defectos evita la humildad y qué cualidades desarrolla?",
+          answer: "Evita la envidia, el orgullo y el rencor. Desarrolla la bondad, la paciencia y el perdón."
         }
       ],
       biblicalCards: [
         {
           reference: "Colosenses 3:12-14",
           purpose: "Cualidades que debemos desarrollar",
-          text: "Vistanse de tierna compasion, bondad, humildad, apacibilidad y paciencia. Sigan soportandose unos a otros y perdonandose."
+          text: "Vistanse de tierna compasión, bondad, humildad, apacibilidad y paciencia. Sigan soportándose unos a otros y perdonándose."
         }
       ]
     },
     {
       number: "6, 7",
-      textEs: "Mencione alguna ocasion en la que Jehova concedio las peticiones de sus siervos.",
+      textEs: "Mencione alguna ocasión en la que Jehová concedió las peticiones de sus siervos.",
       textLSM: "",
       paragraphs: [6, 7],
       section: "JEHOVA ES RAZONABLE",
       answer: [
-        "Jehova curo a Miriam de la lepra cuando Moises le rogo por ella.",
-        "No se aferro a su decision de castigarla porque es humilde.",
-        "Cuando el rey Ezequias le rogo con lagrimas que lo curara, Jehova le anadio 15 anos de vida.",
-        "La humildad de Jehova lo impulsa a ser flexible y compasivo."
+        "Jehová curó a Miriam de la lepra cuando Moisés le rogó por ella.",
+        "No se aferró a su decisión de castigarla porque es humilde.",
+        "Cuando el rey Ezequías le rogó con lágrimas que lo curara, Jehová le añadió 15 años de vida.",
+        "La humildad de Jehová lo impulsa a ser flexible y compasivo."
       ],
       flashcards: [
         {
-          question: "¿Como demostro Jehova que es razonable en el caso de Miriam?",
-          answer: "Aunque la castigo con lepra por hablar contra Moises, la curo cuando Moises le rogo por ella."
+          question: "¿Cómo demostró Jehová que es razonable en el caso de Miriam?",
+          answer: "Aunque la castigó con lepra por hablar contra Moisés, la curó cuando Moisés le rogó por ella."
         },
         {
-          question: "¿Cuantos anos anadio Jehova a la vida del rey Ezequias?",
-          answer: "15 anos, despues de que Ezequias le rogo con lagrimas que lo curara."
+          question: "¿Cuántos años añadió Jehová a la vida del rey Ezequías?",
+          answer: "15 años, después de que Ezequías le rogó con lágrimas que lo curara."
         }
       ],
       biblicalCards: [
         {
-          reference: "Numeros 12:1-15",
-          purpose: "Jehova curo a Miriam",
-          text: "Miriam y Aaron empezaron a hablar contra Moises. Jehova se enojo y la castigo con lepra. Moises rogo a Jehova, y el la curo."
+          reference: "Números 12:1-15",
+          purpose: "Jehová curó a Miriam",
+          text: "Miriam y Aarón empezaron a hablar contra Moisés. Jehová se enojó y la castigó con lepra. Moisés rogó a Jehová, y él la curó."
         },
         {
           reference: "2 Reyes 20:1, 5, 6",
-          purpose: "Jehova anadio anos a Ezequias",
-          text: "Jehova dijo: 'He oido tu oracion y he visto tus lagrimas. Te voy a curar y voy a anadir 15 anos a tu vida'."
+          purpose: "Jehová añadió años a Ezequías",
+          text: "Jehová dijo: 'He oído tu oración y he visto tus lágrimas. Te voy a curar y voy a añadir 15 años a tu vida'."
         }
       ]
     },
     {
       number: "8",
-      textEs: "¿Que ejemplos demuestran que Jesus es razonable? (Marcos 3:1-6).",
+      textEs: "¿Qué ejemplos demuestran que Jesús es razonable? (Marcos 3:1-6).",
       textLSM: "",
       paragraphs: [8],
       readText: "LEE Marcos 3:1-6",
       answer: [
-        "Jesus fue razonable y busco la manera de ayudar a la gente siempre que fue posible.",
-        "Sano a las personas en sabado aunque los lideres religiosos se opusieron.",
-        "Sigue demostrando esta cualidad como cabeza de la congregacion cristiana.",
-        "Cuando alguien comete un pecado grave, Jesus es paciente y le da muchas oportunidades de cambiar."
+        "Jesús fue razonable y buscó la manera de ayudar a la gente siempre que fue posible.",
+        "Sanó a las personas en sábado aunque los líderes religiosos se opusieron.",
+        "Sigue demostrando esta cualidad como cabeza de la congregación cristiana.",
+        "Cuando alguien comete un pecado grave, Jesús es paciente y le da muchas oportunidades de cambiar."
       ],
       flashcards: [
         {
-          question: "¿Como demostro Jesus que era razonable respecto al sabado?",
-          answer: "Sano a las personas en sabado aunque los lideres religiosos se opusieron, porque buscaba la manera de ayudar."
+          question: "¿Cómo demostró Jesús que era razonable respecto al sábado?",
+          answer: "Sanó a las personas en sábado aunque los líderes religiosos se opusieron, porque buscaba la manera de ayudar."
         }
       ],
       biblicalCards: [
         {
           reference: "Marcos 3:1-6",
-          purpose: "Jesus sano en sabado",
-          text: "Jesus sano a un hombre con la mano seca en sabado. Les pregunto a los fariseos: '¿Es legal en sabado hacer algo bueno o hacer algo malo, salvar una vida o matarla?'."
+          purpose: "Jesús sanó en sábado",
+          text: "Jesús sanó a un hombre con la mano seca en sábado. Les preguntó a los fariseos: '¿Es legal en sábado hacer algo bueno o hacer algo malo, salvar una vida o matarla?'."
         },
         {
           reference: "Apocalipsis 2:2-5",
-          purpose: "Jesus da oportunidades de arrepentirse",
-          text: "Jesus le dijo a la congregacion de Efeso: 'Recuerda de donde has caido y arrepientete'. Da oportunidades de cambiar."
+          purpose: "Jesús da oportunidades de arrepentirse",
+          text: "Jesús le dijo a la congregación de Efeso: 'Recuerda de dónde has caído y arrepiéntete'. Da oportunidades de cambiar."
         }
       ]
     },
     {
       number: "9",
-      textEs: "¿Como podemos imitar a Jehova y ser razonables? (Vea tambien las imagenes).",
+      textEs: "¿Cómo podemos imitar a Jehová y ser razonables? (Vea también las imágenes).",
       textLSM: "",
       paragraphs: [9],
       image: "",
-      imageCaption: "Los padres son razonables con sus hijos al no exigirles mas de lo que pueden dar en la predicacion.",
+      imageCaption: "Los padres son razonables con sus hijos al no exigirles más de lo que pueden dar en la predicación.",
       answer: [
-        "Los padres razonables no son permisivos, pero tampoco exigen a sus hijos mas de lo que pueden dar.",
+        "Los padres razonables no son permisivos, pero tampoco exigen a sus hijos más de lo que pueden dar.",
         "Jacob fue un buen ejemplo al ser considerado con sus hijos.",
         "Los padres humildes evitan hacer comparaciones injustas entre sus hijos.",
-        "Los ancianos apoyan la decision de la mayoria siempre que no vaya en contra de los principios biblicos."
+        "Los ancianos apoyan la decisión de la mayoría siempre que no vaya en contra de los principios bíblicos."
       ],
       flashcards: [
         {
-          question: "¿Como pueden los padres ser razonables con sus hijos?",
-          answer: "No siendo permisivos pero tampoco exigiendo mas de lo que pueden dar, y evitando comparaciones injustas."
+          question: "¿Cómo pueden los padres ser razonables con sus hijos?",
+          answer: "No siendo permisivos pero tampoco exigiendo más de lo que pueden dar, y evitando comparaciones injustas."
         }
       ],
       biblicalCards: [
         {
-          reference: "Genesis 33:12-14",
+          reference: "Génesis 33:12-14",
           purpose: "Jacob fue considerado con sus hijos",
-          text: "Jacob dijo: 'Mi senor sabe que los ninos son delicados. No debo apresurarlos, sino que ire despacio'."
+          text: "Jacob dijo: 'Mi señor sabe que los niños son delicados. No debo apresurarlos, sino que iré despacio'."
         },
         {
           reference: "Santiago 3:17",
-          purpose: "La sabiduria de arriba es razonable",
-          text: "La sabiduria de arriba es primero pura, luego pacifica, razonable, dispuesta a obedecer, llena de misericordia."
+          purpose: "La sabiduría de arriba es razonable",
+          text: "La sabiduría de arriba es primero pura, luego pacífica, razonable, dispuesta a obedecer, llena de misericordia."
         },
         {
           reference: "Filipenses 4:5",
@@ -283,272 +283,272 @@ export const article50: ArticleData = {
     },
     {
       number: "10",
-      textEs: "¿De que maneras ha demostrado Jehova que es paciente?",
+      textEs: "¿De qué maneras ha demostrado Jehová que es paciente?",
       textLSM: "",
       paragraphs: [10],
       section: "JEHOVA ES PACIENTE",
       answer: [
         "Las personas orgullosas son impacientes; no les gusta que las hagan esperar.",
-        "En los dias de Noe, Jehova dijo que esperaria 120 anos para destruir a los malvados.",
-        "Jehova escucho con paciencia a Abrahan mientras este le hacia preguntas sobre Sodoma y Gomorra.",
-        "No hay nadie en el universo tan paciente como Jehova."
+        "En los días de Noé, Jehová dijo que esperaría 120 años para destruir a los malvados.",
+        "Jehová escuchó con paciencia a Abrahán mientras este le hacía preguntas sobre Sodoma y Gomorra.",
+        "No hay nadie en el universo tan paciente como Jehová."
       ],
       flashcards: [
         {
-          question: "¿Cuantos anos espero Jehova antes de destruir a los malvados en los dias de Noe?",
-          answer: "120 anos, tiempo suficiente para que Noe criara a sus hijos y construyera el arca."
+          question: "¿Cuántos años esperó Jehová antes de destruir a los malvados en los días de Noé?",
+          answer: "120 años, tiempo suficiente para que Noé criara a sus hijos y construyera el arca."
         },
         {
-          question: "¿Como demostro Jehova paciencia con Abrahan?",
-          answer: "Escucho con paciencia sus preguntas sobre la decision de destruir Sodoma y Gomorra sin decirle '¿Quien te crees para cuestionarme?'."
+          question: "¿Cómo demostró Jehová paciencia con Abrahán?",
+          answer: "Escuchó con paciencia sus preguntas sobre la decisión de destruir Sodoma y Gomorra sin decirle '¿Quién te crees para cuestionarme?'."
         }
       ],
       biblicalCards: [
         {
-          reference: "Genesis 6:3",
-          purpose: "Jehova espero 120 anos",
-          text: "Entonces Jehova dijo: 'Mi espiritu no tolerara indefinidamente al hombre. Sus dias seran 120 anos'."
+          reference: "Génesis 6:3",
+          purpose: "Jehová esperó 120 años",
+          text: "Entonces Jehová dijo: 'Mi espíritu no tolerará indefinidamente al hombre. Sus días serán 120 años'."
         },
         {
-          reference: "Genesis 18:20-33",
-          purpose: "Jehova escucho a Abrahan",
-          text: "Abrahan siguio preguntando a Jehova sobre Sodoma, y Jehova respondio pacientemente a cada una de sus preguntas."
+          reference: "Génesis 18:20-33",
+          purpose: "Jehová escuchó a Abrahán",
+          text: "Abrahán siguió preguntando a Jehová sobre Sodoma, y Jehová respondió pacientemente a cada una de sus preguntas."
         }
       ]
     },
     {
       number: "11",
-      textEs: "De acuerdo con 2 Pedro 3:9, ¿por que esta siendo tan paciente Jehova hoy en dia?",
+      textEs: "De acuerdo con 2 Pedro 3:9, ¿por qué está siendo tan paciente Jehová hoy en día?",
       textLSM: "",
       paragraphs: [11],
       readText: "LEE 2 Pedro 3:9",
       answer: [
-        "Jehova esta esperando a que llegue el momento fijado para destruir este sistema malvado.",
+        "Jehová está esperando a que llegue el momento fijado para destruir este sistema malvado.",
         "'No desea que ninguno sea destruido, sino que todos lleguen a arrepentirse'.",
         "Millones de personas han llegado a conocerlo gracias a su paciencia.",
-        "Sin embargo, la paciencia de Dios tiene limites. No dejara que la maldad dure para siempre."
+        "Sin embargo, la paciencia de Dios tiene límites. No dejará que la maldad dure para siempre."
       ],
       flashcards: [
         {
-          question: "Segun 2 Pedro 3:9, ¿por que es paciente Jehova?",
+          question: "Según 2 Pedro 3:9, ¿por qué es paciente Jehová?",
           answer: "Porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse."
         },
         {
-          question: "¿Tiene limites la paciencia de Jehova?",
-          answer: "Si, no dejara que la maldad dure para siempre (Habacuc 2:3)."
+          question: "¿Tiene límites la paciencia de Jehová?",
+          answer: "Sí, no dejará que la maldad dure para siempre (Habacuc 2:3)."
         }
       ],
       biblicalCards: [
         {
           reference: "2 Pedro 3:9",
-          purpose: "La paciencia de Jehova",
-          text: "Jehova no es lento en cuanto a su promesa, sino que tiene paciencia con ustedes porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse."
+          purpose: "La paciencia de Jehová",
+          text: "Jehová no es lento en cuanto a su promesa, sino que tiene paciencia con ustedes porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse."
         },
         {
           reference: "Habacuc 2:3",
-          purpose: "La paciencia tiene limites",
-          text: "Porque la vision es todavia para el tiempo senalado. No mentira. Aunque parezca tardar, esperala; porque sin falta vendra. No se retrasara."
+          purpose: "La paciencia tiene límites",
+          text: "Porque la visión es todavía para el tiempo señalado. No mentirá. Aunque parezca tardar, espérala; porque sin falta vendrá. No se retrasará."
         }
       ]
     },
     {
       number: "12",
-      textEs: "¿Como imita Jesus la paciencia de Jehova?",
+      textEs: "¿Cómo imita Jesús la paciencia de Jehová?",
       textLSM: "",
       paragraphs: [12],
       answer: [
-        "Durante miles de anos, Jesus ha imitado la paciencia de Jehova.",
-        "Ha visto como Satanas ha esparcido mentiras terribles sobre Dios y los seres humanos fieles.",
-        "Jesus tiene muchas ganas de 'deshacer las obras del Diablo'.",
-        "Es humilde y reconoce que le corresponde a Jehova decidir cuando es el mejor momento de actuar."
+        "Durante miles de años, Jesús ha imitado la paciencia de Jehová.",
+        "Ha visto cómo Satanás ha esparcido mentiras terribles sobre Dios y los seres humanos fieles.",
+        "Jesús tiene muchas ganas de 'deshacer las obras del Diablo'.",
+        "Es humilde y reconoce que le corresponde a Jehová decidir cuándo es el mejor momento de actuar."
       ],
       flashcards: [
         {
-          question: "¿Que ayuda a Jesus a esperar con paciencia?",
-          answer: "Es humilde y reconoce que le corresponde a Jehova decidir cuando es el mejor momento de actuar."
+          question: "¿Qué ayuda a Jesús a esperar con paciencia?",
+          answer: "Es humilde y reconoce que le corresponde a Jehová decidir cuándo es el mejor momento de actuar."
         }
       ],
       biblicalCards: [
         {
           reference: "1 Juan 3:8",
-          purpose: "Jesus deshara las obras del Diablo",
-          text: "El que practica el pecado se origina del Diablo, porque el Diablo ha estado pecando desde el principio. Para esto se manifesto el Hijo de Dios: para deshacer las obras del Diablo."
+          purpose: "Jesús deshará las obras del Diablo",
+          text: "El que práctica el pecado se origina del Diablo, porque el Diablo ha estado pecando desde el principio. Para esto se manifestó el Hijo de Dios: para deshacer las obras del Diablo."
         },
         {
           reference: "Hechos 1:7",
-          purpose: "Le corresponde a Jehova decidir",
-          text: "El les dijo: 'No les corresponde a ustedes conocer los tiempos ni las epocas que el Padre ha colocado en su propia jurisdiccion'."
+          purpose: "Le corresponde a Jehová decidir",
+          text: "Él les dijo: 'No les corresponde a ustedes conocer los tiempos ni las épocas que el Padre ha colocado en su propia jurisdicción'."
         }
       ]
     },
     {
       number: "13",
-      textEs: "¿En que situacion demostro Jesus que era paciente con sus apostoles, y por que?",
+      textEs: "¿En qué situación demostró Jesús que era paciente con sus apóstoles, y por qué?",
       textLSM: "",
       paragraphs: [13],
       answer: [
-        "Jesus fue paciente al ver a sus apostoles discutir vez tras vez sobre quien era el mas importante.",
+        "Jesús fue paciente al ver a sus apóstoles discutir vez tras vez sobre quién era el más importante.",
         "No se desesperaba ni se frustraba.",
-        "Estaba seguro de que con el tiempo cambiarian.",
+        "Estaba seguro de que con el tiempo cambiarían.",
         "Agradecemos que nuestro Rey sea tan humilde y paciente con nosotros."
       ],
       flashcards: [
         {
-          question: "¿Como demostro Jesus paciencia con sus apostoles?",
-          answer: "No se desesperaba al verlos discutir sobre quien era el mas importante, porque estaba seguro de que con el tiempo cambiarian."
+          question: "¿Cómo demostró Jesús paciencia con sus apóstoles?",
+          answer: "No se desesperaba al verlos discutir sobre quién era el más importante, porque estaba seguro de que con el tiempo cambiarían."
         }
       ],
       biblicalCards: [
         {
           reference: "Lucas 22:24-27",
-          purpose: "Los apostoles discutian sobre quien era mayor",
-          text: "Surgio una acalorada discusion entre ellos sobre quien de ellos era el mayor. Jesus pacientemente les enseno sobre el servicio humilde."
+          purpose: "Los apóstoles discutían sobre quién era mayor",
+          text: "Surgió una acalorada discusión entre ellos sobre quién de ellos era el mayor. Jesús pacientemente les enseñó sobre el servicio humilde."
         }
       ]
     },
     {
       number: "14",
-      textEs: "¿Que nos ayudara a ser mas pacientes?",
+      textEs: "¿Qué nos ayudará a ser más pacientes?",
       textLSM: "",
       paragraphs: [14],
       answer: [
-        "Para parecernos mas a Jehova debemos desarrollar 'la mente de Cristo'.",
-        "Hay que leer los Evangelios y meditar en como las acciones de Jesus reflejaban su manera de pensar.",
-        "Debemos pedirle a Jehova que nos ayude a ser humildes como su Hijo.",
-        "A medida que aprendamos a pensar como Cristo, seremos mas pacientes con nosotros mismos y con los demas."
+        "Para parecernos más a Jehová debemos desarrollar 'la mente de Cristo'.",
+        "Hay que leer los Evangelios y meditar en cómo las acciones de Jesús reflejaban su manera de pensar.",
+        "Debemos pedirle a Jehová que nos ayude a ser humildes como su Hijo.",
+        "A medida que aprendamos a pensar como Cristo, seremos más pacientes con nosotros mismos y con los demás."
       ],
       flashcards: [
         {
-          question: "¿Que nos ayudara a ser mas pacientes?",
-          answer: "Desarrollar 'la mente de Cristo' leyendo los Evangelios, meditando en sus acciones y pidiendole a Jehova que nos ayude a ser humildes."
+          question: "¿Qué nos ayudará a ser más pacientes?",
+          answer: "Desarrollar 'la mente de Cristo' leyendo los Evangelios, meditando en sus acciones y pidiéndole a Jehová que nos ayude a ser humildes."
         }
       ],
       biblicalCards: [
         {
           reference: "1 Corintios 2:16",
           purpose: "Tener la mente de Cristo",
-          text: "Porque '¿quien ha llegado a conocer la mente de Jehova para que lo instruya?'. Sin embargo, nosotros si tenemos la mente de Cristo."
+          text: "Porque '¿quién ha llegado a conocer la mente de Jehová para que lo instruya?'. Sin embargo, nosotros sí tenemos la mente de Cristo."
         },
         {
           reference: "Mateo 18:26-30, 35",
-          purpose: "Debemos ser pacientes y perdonadores",
-          text: "Jesus enseno la parabola del esclavo que no quiso perdonar, mostrando que debemos ser pacientes con los demas como Dios lo es con nosotros."
+          purpose: "Debemos ser pacientes y perdónadores",
+          text: "Jesús enseñó la parábola del esclavo que no quiso perdonar, mostrando que debemos ser pacientes con los demás como Dios lo es con nosotros."
         }
       ]
     },
     {
       number: "15",
-      textEs: "¿Como ha cumplido Jehova las palabras de Salmo 138:6?",
+      textEs: "¿Cómo ha cumplido Jehová las palabras de Salmo 138:6?",
       textLSM: "",
       paragraphs: [15],
       section: "JEHOVA DIGNIFICA A LOS HUMILDES",
       readText: "LEE Salmo 138:6",
       answer: [
-        "Jehova les presta una atencion especial a quienes suelen pasar desapercibidos.",
-        "La nodriza Debora sirvio fielmente a Isaac y Jacob durante unos 125 anos.",
-        "Jehova escogio a David, un simple pastorcito, para que llegara a ser rey de Israel.",
-        "Dio a unos humildes pastores el honor de ser los primeros en enterarse del nacimiento del Mesias."
+        "Jehová les presta una atención especial a quienes suelen pasar desapercibidos.",
+        "La nodriza Débora sirvió fielmente a Isaac y Jacob durante unos 125 años.",
+        "Jehová escogió a David, un simple pastorcito, para que llegara a ser rey de Israel.",
+        "Dio a unos humildes pastores el honor de ser los primeros en enterarse del nacimiento del Mesías."
       ],
       flashcards: [
         {
-          question: "¿Que ejemplos biblicos muestran que Jehova dignifica a los humildes?",
-          answer: "La nodriza Debora, David el pastorcito, los pastores en el nacimiento de Jesus, y Simeon y Ana en el templo."
+          question: "¿Qué ejemplos bíblicos muestran que Jehová dignifica a los humildes?",
+          answer: "La nodriza Débora, David el pastorcito, los pastores en el nacimiento de Jesús, y Simeón y Ana en el templo."
         }
       ],
       biblicalCards: [
         {
           reference: "Salmo 138:6",
-          purpose: "Jehova se fija en el humilde",
-          text: "Aunque Jehova es elevado, se fija en el humilde; pero al arrogante lo conoce desde lejos."
+          purpose: "Jehová se fija en el humilde",
+          text: "Aunque Jehová es elevado, se fija en el humilde; pero al arrogante lo conoce desde lejos."
         },
         {
           reference: "Lucas 2:8-11",
-          purpose: "Los pastores fueron los primeros en saber del Mesias",
-          text: "Habia unos pastores que vivian a la intemperie, cuidando sus rebanos de noche. Un angel de Jehova se les aparecio y les dijo que el Cristo habia nacido."
+          purpose: "Los pastores fueron los primeros en saber del Mesías",
+          text: "Había unos pastores que vivían a la intemperie, cuidando sus rebaños de noche. Un ángel de Jehová se les apareció y les dijo que el Cristo había nacido."
         }
       ]
     },
     {
       number: "16",
-      textEs: "¿Como imito Jesus a su Padre?",
+      textEs: "¿Cómo imitó Jesús a su Padre?",
       textLSM: "",
       paragraphs: [16],
       answer: [
-        "Jesus dignifico a los humildes ensenandoles a personas 'comunes y con poca educacion'.",
-        "Sano a los enfermos con carino, devolviendoles no solo la salud sino tambien la dignidad.",
-        "La noche antes de morir les lavo los pies a sus apostoles, una tarea de sirvientes.",
-        "Dio a sus seguidores el honor de llevar a cabo la labor mas importante: ayudar a otros a conseguir la vida eterna."
+        "Jesús dignificó a los humildes enseñándoles a personas 'comunes y con poca educación'.",
+        "Sanó a los enfermos con cariño, devolviéndoles no solo la salud sino también la dignidad.",
+        "La noche antes de morir les lavó los pies a sus apóstoles, una tarea de sirvientes.",
+        "Dio a sus seguidores el honor de llevar a cabo la labor más importante: ayudar a otros a conseguir la vida eterna."
       ],
       flashcards: [
         {
-          question: "¿Como dignifico Jesus a los humildes?",
-          answer: "Les enseno a personas comunes, sano enfermos con carino, lavo los pies de sus apostoles y les dio el honor de predicar."
+          question: "¿Cómo dignificó Jesús a los humildes?",
+          answer: "Les enseñó a personas comunes, sanó enfermos con cariño, lavó los pies de sus apóstoles y les dio el honor de predicar."
         }
       ],
       biblicalCards: [
         {
           reference: "Hechos 4:13",
-          purpose: "Jesus enseno a personas comunes",
-          text: "Cuando vieron la valentia de Pedro y Juan, y descubrieron que eran hombres del comun y sin educacion, se quedaron maravillados."
+          purpose: "Jesús enseñó a personas comunes",
+          text: "Cuando vieron la valentía de Pedro y Juan, y descubrieron que eran hombres del común y sin educación, se quedaron maravillados."
         },
         {
           reference: "Juan 13:5",
-          purpose: "Jesus lavo los pies de sus discipulos",
-          text: "Despues echo agua en una palangana y empezo a lavarles los pies a los discipulos y a secarselos con la toalla."
+          purpose: "Jesús lavó los pies de sus discípulos",
+          text: "Después echó agua en una palangana y empezó a lavarles los pies a los discípulos y a secárselos con la toalla."
         }
       ]
     },
     {
       number: "17",
-      textEs: "¿Como podemos imitar a Jehova? (Vea tambien la imagen).",
+      textEs: "¿Cómo podemos imitar a Jehová? (Vea también la imagen).",
       textLSM: "",
       paragraphs: [17],
       image: "",
-      imageCaption: "Imitamos la humildad de Jehova cuando les predicamos a toda clase de personas.",
+      imageCaption: "Imitamos la humildad de Jehová cuando les predicamos a toda clase de personas.",
       answer: [
-        "Seguimos su ejemplo al predicar a todas las personas sin importar su cultura, color de piel o nivel de educacion.",
+        "Seguimos su ejemplo al predicar a todas las personas sin importar su cultura, color de piel o nivel de educación.",
         "Consideramos a los hermanos como superiores a nosotros independientemente de sus habilidades o responsabilidades.",
-        "Jehova se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros."
+        "Jehová se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros."
       ],
       flashcards: [
         {
-          question: "¿Como podemos imitar la humildad de Jehova al predicar?",
-          answer: "Predicando a todas las personas sin importar su cultura, color de piel o nivel de educacion."
+          question: "¿Cómo podemos imitar la humildad de Jehová al predicar?",
+          answer: "Predicando a todas las personas sin importar su cultura, color de piel o nivel de educación."
         }
       ],
       biblicalCards: [
         {
           reference: "Filipenses 2:3",
           purpose: "Considerar a otros como superiores",
-          text: "No hagan nada por espiritu de rivalidad ni por presuncion, sino que con humildad consideren a los demas como superiores a ustedes."
+          text: "No hagan nada por espíritu de rivalidad ni por presunción, sino que con humildad consideren a los demás como superiores a ustedes."
         },
         {
           reference: "Romanos 12:10",
           purpose: "Tomemos la iniciativa de honrar a otros",
-          text: "En el amor fraternal, sean carinosos unos con otros. En cuanto a honrarse unos a otros, tomen la iniciativa."
+          text: "En el amor fraternal, sean cariñosos unos con otros. En cuanto a honrarse unos a otros, tomen la iniciativa."
         }
       ]
     },
     {
       number: "18",
-      textEs: "¿Por que quiere usted imitar la humildad de Jehova?",
+      textEs: "¿Por qué quiere usted imitar la humildad de Jehová?",
       textLSM: "",
       paragraphs: [18],
       answer: [
-        "Al imitar la humildad de Jehova, nos convertiremos en personas mas accesibles, razonables y pacientes.",
-        "Trataremos a los demas de una manera que los honre, tal como hace Jehova.",
-        "Cada esfuerzo que hacemos por copiar su humildad nos hace mas valiosos a sus ojos."
+        "Al imitar la humildad de Jehová, nos convertiremos en personas más accesibles, razonables y pacientes.",
+        "Trataremos a los demás de una manera que los honre, tal como hace Jehová.",
+        "Cada esfuerzo que hacemos por copiar su humildad nos hace más valiosos a sus ojos."
       ],
       flashcards: [
         {
-          question: "¿Que beneficios trae imitar la humildad de Jehova?",
-          answer: "Nos hace mas accesibles, razonables y pacientes, y nos hace mas valiosos a los ojos de Jehova."
+          question: "¿Qué beneficios trae imitar la humildad de Jehová?",
+          answer: "Nos hace más accesibles, razonables y pacientes, y nos hace más valiosos a los ojos de Jehová."
         }
       ],
       biblicalCards: [
         {
-          reference: "Isaias 43:4",
-          purpose: "Somos valiosos para Jehova",
+          reference: "Isaías 43:4",
+          purpose: "Somos valiosos para Jehová",
           text: "Porque eres precioso a mis ojos, has sido honrado y yo te amo."
         }
       ]
@@ -557,106 +557,106 @@ export const article50: ArticleData = {
   paragraphs: [
     {
       number: 1,
-      content: "CUANDO pensamos en las personas que tienen poder en el mundo, ¿diriamos que son humildes? Es muy probable que no. Sin embargo, Jehova, quien es el Todopoderoso, si lo es (Sal. 113:5-8). La humildad impregna toda su personalidad; no hay ni el mas minimo rastro de orgullo en el. En este articulo analizaremos cuatro aspectos de la hermosa personalidad de Jehova y descubriremos como se ve reflejada la humildad en cada uno de ellos. Tambien veremos como imito Jesus esta cualidad de su Padre. Todo esto nos ayudara a acercarnos mas a Jehova y a esforzarnos por ser mas humildes."
+      content: "CUANDO pensamos en las personas que tienen poder en el mundo, ¿diríamos que son humildes? Es muy probable que no. Sin embargo, Jehová, quien es el Todopoderoso, sí lo es (Sal. 113:5-8). La humildad impregna toda su personalidad; no hay ni el más mínimo rastro de orgullo en él. En este artículo analizaremos cuatro aspectos de la hermosa personalidad de Jehová y descubriremos cómo se ve reflejada la humildad en cada uno de ellos. También veremos cómo imitó Jesús esta cualidad de su Padre. Todo esto nos ayudará a acercarnos más a Jehová y a esforzarnos por ser más humildes."
     },
     {
       number: 2,
-      content: "Las personas orgullosas no suelen ser accesibles. Se creen tan importantes que actuan de tal manera que el resto de la gente no se atreve a acercarse a ellas o incluso las evita por completo. ¡Pero que diferente es Jehova! Como es tan humilde, nos invita a acercarnos a el y a contarle todo lo que sentimos y pensamos (lea Salmo 62:8). Asi como un padre carinoso escucha con atencion las preocupaciones de sus hijos, nuestro Padre celestial escucha con atencion las oraciones de sus siervos. De hecho, hizo que muchas de ellas quedaran registradas en la Biblia, lo que demuestra lo facil que es hablar con el y lo abierto que esta a escucharnos."
+      content: "Las personas orgullosas no suelen ser accesibles. Se creen tan importantes que actúan de tal manera que el resto de la gente no se atreve a acercarse a ellas o incluso las evita por completo. ¡Pero qué diferente es Jehová! Como es tan humilde, nos invita a acercarnos a él y a contarle todo lo que sentimos y pensamos (lea Salmo 62:8). Así como un padre cariñoso escucha con atención las preocupaciones de sus hijos, nuestro Padre celestial escucha con atención las oraciones de sus siervos. De hecho, hizo que muchas de ellas quedaran registradas en la Biblia, lo que demuestra lo fácil que es hablar con él y lo abierto que está a escucharnos."
     },
     {
       number: 3,
-      content: "Podemos orarle a Jehova incluso si sentimos que no merecemos su amor. ¿Por que lo sabemos? Por la parabola del hijo prodigo. En ella, Jesus hablo de un padre compasivo que tenia un hijo que se sentia indigno de volver a ser parte de la familia, pues habia cometido muchos errores. ¿Como reacciono el padre cuando el hijo regreso a casa? En cuanto lo vio, \"corrio a su encuentro, lo abrazo y lo beso con ternura\" (Luc. 15:17-20). Pues bien, Jehova es como ese padre. En cuanto escucha la oracion de alguien que esta aplastado por las preocupaciones o por la culpa, su humildad lo motiva a prestarle toda su atencion (Lam. 3:19, 20). Y su compasion lo impulsa a \"correr\" hacia el para consolarlo y confirmarle su amor y su perdon (Is. 57:15). ¿Como lo hace? Muchas veces usa a los ancianos, a los familiares Testigos y a otros hermanos (Sant. 5:14, 15). Jehova nos ayuda porque quiere que estemos cerca de el."
+      content: "Podemos orarle a Jehová incluso si sentimos que no merecemos su amor. ¿Por qué lo sabemos? Por la parábola del hijo pródigo. En ella, Jesús habló de un padre compasivo que tenía un hijo que se sentía indigno de volver a ser parte de la familia, pues había cometido muchos errores. ¿Cómo reaccionó el padre cuando el hijo regresó a casa? En cuanto lo vio, \"corrió a su encuentro, lo abrazó y lo besó con ternura\" (Luc. 15:17-20). Pues bien, Jehová es como ese padre. En cuanto escucha la oración de alguien que está aplastado por las preocupaciones o por la culpa, su humildad lo motiva a prestarle toda su atención (Lam. 3:19, 20). Y su compasión lo impulsa a \"correr\" hacia él para consolarlo y confirmarle su amor y su perdón (Is. 57:15). ¿Cómo lo hace? Muchas veces usa a los ancianos, a los familiares Testigos y a otros hermanos (Sant. 5:14, 15). Jehová nos ayuda porque quiere que estemos cerca de él."
     },
     {
       number: 4,
-      content: "Jesus imita a su Padre. Al igual que Jehova, Jesus es humilde. Por eso, mientras estuvo en la Tierra, las personas se sentian con la confianza de acercarse a el. Le hacian preguntas con total libertad (Mar. 4:10, 11). Y, cuando el les preguntaba que opinaban sobre cierto asunto, le decian abiertamente lo que pensaban (Mat. 16:13-16). Si cometian un error, no temblaban de miedo, porque sabian que Jesus era bueno, misericordioso y paciente (Mat. 17:24-27). Gracias a que Jesus imito a su Padre a la perfeccion, sus seguidores llegaron a conocer mejor a Jehova (Juan 14:9). Aprendieron que Jehova no se parecia en nada a los lideres religiosos de aquel entonces, quienes eran duros, orgullosos e insensibles. Al contrario, es humilde y accesible."
+      content: "Jesús imita a su Padre. Al igual que Jehová, Jesús es humilde. Por eso, mientras estuvo en la Tierra, las personas se sentían con la confianza de acercarse a él. Le hacían preguntas con total libertad (Mar. 4:10, 11). Y, cuando él les preguntaba qué opinaban sobre cierto asunto, le decían abiertamente lo que pensaban (Mat. 16:13-16). Si cometían un error, no temblaban de miedo, porque sabían que Jesús era bueno, misericordioso y paciente (Mat. 17:24-27). Gracias a que Jesús imitó a su Padre a la perfección, sus seguidores llegaron a conocer mejor a Jehová (Juan 14:9). Aprendieron que Jehová no se parecía en nada a los líderes religiosos de aquel entonces, quienes eran duros, orgullosos e insensibles. Al contrario, es humilde y accesible."
     },
     {
       number: 5,
-      content: "La humildad nos hace mas accesibles. ¿Por que? Por un lado, nos ayuda a evitar defectos que alejan a los demas de nosotros, como la envidia, el orgullo y el rencor. Por otro, nos ayuda a tener cualidades que atraen a los demas, como la bondad, la paciencia y el perdon (Col. 3:12-14). Los ancianos en especial deben esforzarse por ser accesibles. Claro esta, para que los hermanos tengan la confianza de acercarse a ellos, primero tienen que poder verlos. Esto quiere decir que los ancianos prefieren asistir a las reuniones presencialmente en vez de conectarse por videoconferencia si no es necesario. Y, en la medida de lo posible, salen a predicar de casa en casa con los hermanos y las hermanas. Asi les permiten conocerlos mejor y sentirse en la confianza de abordarlos siempre que lo necesiten."
+      content: "La humildad nos hace más accesibles. ¿Por qué? Por un lado, nos ayuda a evitar defectos que alejan a los demás de nosotros, como la envidia, el orgullo y el rencor. Por otro, nos ayuda a tener cualidades que atraen a los demás, como la bondad, la paciencia y el perdón (Col. 3:12-14). Los ancianos en especial deben esforzarse por ser accesibles. Claro está, para que los hermanos tengan la confianza de acercarse a ellos, primero tienen que poder verlos. Esto quiere decir que los ancianos prefieren asistir a las reuniones presencialmente en vez de conectarse por videoconferencia si no es necesario. Y, en la medida de lo posible, salen a predicar de casa en casa con los hermanos y las hermanas. Así les permiten conocerlos mejor y sentirse en la confianza de abordarlos siempre que lo necesiten."
     },
     {
       number: 6,
-      content: "Las personas orgullosas suelen ser inflexibles e irrazonables. En cambio, Jehova —que siempre tiene la razon y es infinitamente sabio— es humilde y esta dispuesto a ceder. Por ejemplo, pensemos en como reacciono cuando Miriam, junto con Aaron, empezo a hablar en contra de su hermano Moises, quien era el representante de Dios. Jehova se puso furioso con ella, porque en realidad le estaba faltando el respeto a el. Asi que la castigo con lepra. Ahora bien, Aaron le suplico a Moises que la ayudara, y luego Moises le rogo a Jehova que la curara. ¿Que hizo Dios? ¿Se aferro a su decision de castigarla? Eso es lo que habria hecho alguien orgulloso. Pero Jehova es humilde y por eso le concedio a Moises su peticion y curo a Miriam (Num. 12:1-15)."
+      content: "Las personas orgullosas suelen ser inflexibles e irrazonables. En cambio, Jehová —que siempre tiene la razón y es infinitamente sabio— es humilde y está dispuesto a ceder. Por ejemplo, pensemos en cómo reaccionó cuando Miriam, junto con Aarón, empezó a hablar en contra de su hermano Moisés, quien era el representante de Dios. Jehová se puso furioso con ella, porque en realidad le estaba faltando el respeto a él. Así que la castigó con lepra. Ahora bien, Aarón le suplicó a Moisés que la ayudara, y luego Moisés le rogó a Jehová que la curara. ¿Qué hizo Dios? ¿Se aferró a su decisión de castigarla? Eso es lo que habría hecho alguien orgulloso. Pero Jehová es humilde y por eso le concedió a Moisés su petición y curó a Miriam (Num. 12:1-15)."
     },
     {
       number: 7,
-      content: "Veamos otro caso en el que Jehova demostro que es humilde. Por medio de un profeta, le anuncio al enfermo rey Ezequias que iba a morir. Entonces el rey le rogo a Jehova con los ojos llenos de lagrimas que lo curara. ¿Cual fue la respuesta de Dios? Movido por la compasion, le anadio 15 anos de vida (2 Rey. 20:1, 5, 6). Como vemos, la humildad de Jehova lo impulsa a ser flexible y compasivo."
+      content: "Veamos otro caso en el que Jehová demostró que es humilde. Por medio de un profeta, le anunció al enfermo rey Ezequías que iba a morir. Entonces el rey le rogó a Jehová con los ojos llenos de lágrimas que lo curara. ¿Cuál fue la respuesta de Dios? Movido por la compasión, le añadió 15 años de vida (2 Rey. 20:1, 5, 6). Como vemos, la humildad de Jehová lo impulsa a ser flexible y compasivo."
     },
     {
       number: 8,
-      content: "Mientras estuvo en la Tierra, Jesus fue razonable y busco la manera de ayudar a la gente siempre que fue posible. Por ejemplo, sano a las personas en sabado aunque los insensibles lideres religiosos se opusieron (lea Marcos 3:1-6). Y sigue demostrando esta cualidad como cabeza de la congregacion cristiana. Por ejemplo, cuando alguien comete un pecado grave, Jesus es paciente con el y le da muchas oportunidades de cambiar (Apoc. 2:2-5)."
+      content: "Mientras estuvo en la Tierra, Jesús fue razonable y buscó la manera de ayudar a la gente siempre que fue posible. Por ejemplo, sanó a las personas en sábado aunque los insensibles líderes religiosos se opusieron (lea Marcos 3:1-6). Y sigue demostrando esta cualidad como cabeza de la congregación cristiana. Por ejemplo, cuando alguien comete un pecado grave, Jesús es paciente con él y le da muchas oportunidades de cambiar (Apoc. 2:2-5)."
     },
     {
       number: 9,
-      content: "Tenemos que desarrollar con humildad la manera tan razonable de pensar y actuar de Jehova (Sant. 3:17). Los padres que son razonables no son permisivos, pero tampoco les exigen a sus hijos mas de lo que pueden dar. Un buen ejemplo de esto lo encontramos en Genesis 33:12-14, donde leemos que Jacob fue considerado con sus hijos. Ademas, los padres humildes y razonables evitan hacer comparaciones injustas entre sus hijos. Los ancianos tambien deben ser razonables. En lugar de insistir en su opinion, apoyan la decision de la mayoria de los ancianos siempre y cuando no vaya en contra de los principios biblicos (1 Tim. 3:2, 3). Y todos debemos esforzarnos por entender el punto de vista de los demas aunque sea diferente al nuestro (Rom. 14:1). Cada uno de nosotros procuramos seguir este consejo: \"Que todos sepan que ustedes son personas razonables\" (Filip. 4:5)."
+      content: "Tenemos que desarrollar con humildad la manera tan razonable de pensar y actuar de Jehová (Sant. 3:17). Los padres que son razonables no son permisivos, pero tampoco les exigen a sus hijos más de lo que pueden dar. Un buen ejemplo de esto lo encontramos en Génesis 33:12-14, donde leemos que Jacob fue considerado con sus hijos. Además, los padres humildes y razonables evitan hacer comparaciones injustas entre sus hijos. Los ancianos también deben ser razonables. En lugar de insistir en su opinión, apoyan la decisión de la mayoría de los ancianos siempre y cuando no vaya en contra de los principios bíblicos (1 Tim. 3:2, 3). Y todos debemos esforzarnos por entender el punto de vista de los demás aunque sea diferente al nuestro (Rom. 14:1). Cada uno de nosotros procuramos seguir este consejo: \"Que todos sepan que ustedes son personas razonables\" (Filip. 4:5)."
     },
     {
       number: 10,
-      content: "Probablemente hemos notado que las personas orgullosas son impacientes; no les gusta que las hagan esperar. ¡Que distinto es Jehova! No hay nadie en el universo tan paciente como el. En los dias de Noe, por ejemplo, dijo que esperaria 120 anos para destruir a los malvados (Gen. 6:3). Noe alcanzo a criar a sus hijos y a construir el arca junto con su familia. Tiempo despues, Jehova escucho con paciencia a Abrahan mientras este le hacia preguntas sobre su decision de destruir Sodoma y Gomorra. Una persona orgullosa tal vez le hubiera dicho a Abrahan: \"¿Quien te crees que eres para cuestionarme?\". Pero Jehova no hizo eso. El es humilde y paciente (Gen. 18:20-33)."
+      content: "Probablemente hemos notado que las personas orgullosas son impacientes; no les gusta que las hagan esperar. ¡Qué distinto es Jehová! No hay nadie en el universo tan paciente como él. En los días de Noé, por ejemplo, dijo que esperaría 120 años para destruir a los malvados (Gen. 6:3). Noé alcanzó a criar a sus hijos y a construir el arca junto con su familia. Tiempo después, Jehová escuchó con paciencia a Abrahán mientras este le hacía preguntas sobre su decisión de destruir Sodoma y Gomorra. Una persona orgullosa tal vez le hubiera dicho a Abrahán: \"¿Quién te crees que eres para cuestionarme?\". Pero Jehová no hizo eso. Él es humilde y paciente (Gen. 18:20-33)."
     },
     {
       number: 11,
-      content: "Hoy en dia, Jehova tambien esta demostrando que es paciente. Esta esperando a que llegue el momento fijado para destruir este sistema malvado. ¿Por que es tan paciente con los seres humanos? \"Porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse\" (lea 2 Pedro 3:9). ¿Ha sido en vano la paciencia de Jehova? ¡Para nada! Millones de personas han llegado a conocerlo, y deseamos que millones mas hagan lo mismo. Sin embargo, la paciencia de Dios tiene limites. El ama a las personas, pero no es permisivo. No dejara que la maldad dure para siempre (Hab. 2:3)."
+      content: "Hoy en día, Jehová también está demostrando que es paciente. Está esperando a que llegue el momento fijado para destruir este sistema malvado. ¿Por qué es tan paciente con los seres humanos? \"Porque no desea que ninguno sea destruido, sino que todos lleguen a arrepentirse\" (lea 2 Pedro 3:9). ¿Ha sido en vano la paciencia de Jehová? ¡Para nada! Millones de personas han llegado a conocerlo, y deseamos que millones más hagan lo mismo. Sin embargo, la paciencia de Dios tiene límites. El ama a las personas, pero no es permisivo. No dejará que la maldad dure para siempre (Hab. 2:3)."
     },
     {
       number: 12,
-      content: "Durante miles de anos, Jesus ha imitado la paciencia de Jehova. Ha visto como Satanas ha esparcido mentiras terribles sobre Dios y los seres humanos fieles (Gen. 3:4, 5; Job 1:11; Apoc. 12:10). Jesus tambien ha visto a las personas sufrir cosas horribles. ¿Nos imaginamos las ganas que tiene de \"deshacer las obras del Diablo\"? (1 Juan 3:8). ¿Que lo ayuda a esperar con paciencia hasta que Jehova le diga que es hora de acabar con las obras del Diablo por completo? Una de las razones principales es que Jesus es humilde y reconoce que le corresponde a Jehova decidir cuando es el mejor momento de actuar (Hech. 1:7)."
+      content: "Durante miles de años, Jesús ha imitado la paciencia de Jehová. Ha visto cómo Satanás ha esparcido mentiras terribles sobre Dios y los seres humanos fieles (Gen. 3:4, 5; Job 1:11; Apoc. 12:10). Jesús también ha visto a las personas sufrir cosas horribles. ¿Nos imaginamos las ganas que tiene de \"deshacer las obras del Diablo\"? (1 Juan 3:8). ¿Qué lo ayuda a esperar con paciencia hasta que Jehová le diga que es hora de acabar con las obras del Diablo por completo? Una de las razones principales es que Jesús es humilde y reconoce que le corresponde a Jehová decidir cuándo es el mejor momento de actuar (Hech. 1:7)."
     },
     {
       number: 13,
-      content: "Cuando Jesus estuvo en la Tierra, tambien fue paciente con sus apostoles. Al verlos discutir vez tras vez sobre quien era el mas importante, no se desesperaba ni se frustraba. Todo lo contrario, era muy paciente con ellos (Luc. 9:46; 22:24-27). Estaba seguro de que con el tiempo cambiarian. ¿Y nosotros? ¿Hemos cometido el mismo error muchas veces? En ese caso, cuanto agradecemos que nuestro Rey sea tan humilde y paciente."
+      content: "Cuando Jesús estuvo en la Tierra, también fue paciente con sus apóstoles. Al verlos discutir vez tras vez sobre quién era el más importante, no se desesperaba ni se frustraba. Todo lo contrario, era muy paciente con ellos (Luc. 9:46; 22:24-27). Estaba seguro de que con el tiempo cambiarían. ¿Y nosotros? ¿Hemos cometido el mismo error muchas veces? En ese caso, cuánto agradecemos que nuestro Rey sea tan humilde y paciente."
     },
     {
       number: 14,
-      content: "Para parecernos mas a Jehova debemos desarrollar \"la mente de Cristo\" (1 Cor. 2:16). ¿Que nos ayudara a pensar como Jesus? No hay atajos. Hay que leer los Evangelios y sacar tiempo para meditar en como las acciones de Jesus reflejaban su manera de pensar. Ademas, es indispensable que le pidamos a Jehova que nos ayude a ser humildes como su Hijo. A medida que aprendamos a pensar como Cristo, nos pareceremos mas a Dios y seremos mas pacientes con nosotros mismos y con nuestros hermanos (Mat. 18:26-30, 35)."
+      content: "Para parecernos más a Jehová debemos desarrollar \"la mente de Cristo\" (1 Cor. 2:16). ¿Qué nos ayudará a pensar como Jesús? No hay atajos. Hay que leer los Evangelios y sacar tiempo para meditar en cómo las acciones de Jesús reflejaban su manera de pensar. Además, es indispensable que le pidamos a Jehová que nos ayude a ser humildes como su Hijo. A medida que aprendamos a pensar como Cristo, nos pareceremos más a Dios y seremos más pacientes con nosotros mismos y con nuestros hermanos (Mat. 18:26-30, 35)."
     },
     {
       number: 15,
-      content: "¿Cierto que es un honor que el Soberano del universo les preste una atencion especial a quienes suelen pasar desapercibidos? Analicemos varios ejemplos de como lo ha hecho a lo largo de los siglos. Quizas algunos de ellos no nos resulten tan familiares, pero Jehova hizo que se incluyeran en la Biblia. En la epoca de los patriarcas vivio una nodriza llamada Debora, quien sirvio lealmente a las familias de Isaac y Jacob durante unos 125 anos. No sabemos mucho mas de esta fiel mujer, pero Jehova inspiro a Moises para que registrara su nombre y un detalle que muestra lo querida que era (Gen. 24:59; 35:8, nota). Siglos despues, Jehova escogio a David, un simple pastorcito, para que llegara a ser rey de Israel (2 Sam. 22:1, 36). Poco despues de que Jesus nacio, Dios les concedio a unos humildes pastores, por medio de un angel, el honor de ser los primeros en enterarse de que el futuro Mesias habia nacido en Belen (Luc. 2:8-11). Y, cuando Jose y Maria llevaron a Jesus al templo, Jehova dignifico a Simeon y a Ana —dos personas muy mayores— dandoles la oportunidad de ver a su Hijo (Luc. 2:25-30, 36-38). Sin duda, \"aunque Jehova es elevado, se fija en el humilde\"."
+      content: "¿Cierto que es un honor que el Soberano del universo les preste una atención especial a quienes suelen pasar desapercibidos? Analicemos varios ejemplos de cómo lo ha hecho a lo largo de los siglos. Quizás algunos de ellos no nos resulten tan familiares, pero Jehová hizo que se incluyeran en la Biblia. En la época de los patriarcas vivió una nodriza llamada Débora, quien sirvió lealmente a las familias de Isaac y Jacob durante unos 125 años. No sabemos mucho más de esta fiel mujer, pero Jehová inspiró a Moisés para que registrara su nombre y un detalle que muestra lo querida que era (Gen. 24:59; 35:8, nota). Siglos después, Jehová escogió a David, un simple pastorcito, para que llegara a ser rey de Israel (2 Sam. 22:1, 36). Poco después de que Jesús nació, Dios les concedió a unos humildes pastores, por medio de un ángel, el honor de ser los primeros en enterarse de que el futuro Mesías había nacido en Belén (Luc. 2:8-11). Y, cuando José y María llevaron a Jesús al templo, Jehová dignificó a Simeón y a Ana —dos personas muy mayores— dándoles la oportunidad de ver a su Hijo (Luc. 2:25-30, 36-38). Sin duda, \"aunque Jehová es elevado, se fija en el humilde\"."
     },
     {
       number: 16,
-      content: "Al igual que Jehova, Jesus dignifico a los humildes. Les enseno a las personas \"comunes y con poca educacion\" la verdad sobre el Reino de Dios (Hech. 4:13; Mat. 11:25). Tambien sano a los enfermos con carino, y al hacerlo no solo les devolvio la salud, sino tambien la dignidad (Luc. 5:13). La noche antes de morir les lavo los pies a sus apostoles, una tarea que realizaban los sirvientes (Juan 13:5). Y, antes de subir al cielo, les dio a sus seguidores —lo que nos incluye— el honor de llevar a cabo la labor mas importante que un ser humano pudiera tener: ayudar a otros a conseguir la vida eterna (Mat. 28:19, 20)."
+      content: "Al igual que Jehová, Jesús dignificó a los humildes. Les enseñó a las personas \"comunes y con poca educación\" la verdad sobre el Reino de Dios (Hech. 4:13; Mat. 11:25). También sanó a los enfermos con cariño, y al hacerlo no solo les devolvió la salud, sino también la dignidad (Luc. 5:13). La noche antes de morir les lavó los pies a sus apóstoles, una tarea que realizaban los sirvientes (Juan 13:5). Y, antes de subir al cielo, les dio a sus seguidores —lo que nos incluye— el honor de llevar a cabo la labor más importante que un ser humano pudiera tener: ayudar a otros a conseguir la vida eterna (Mat. 28:19, 20)."
     },
     {
       number: 17,
-      content: "Seguimos el ejemplo de Jehova al predicar. Les damos a todas las personas el honor de escuchar las buenas noticias, sin importar su cultura, su color de piel o su nivel de educacion. Tambien seguimos su ejemplo al tratar a los hermanos. Los consideramos superiores a nosotros independientemente de que habilidades o responsabilidades tengamos (Filip. 2:3). Jehova se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros de estas y otras maneras (Sof. 3:12; Rom. 12:10)."
+      content: "Seguimos el ejemplo de Jehová al predicar. Les damos a todas las personas el honor de escuchar las buenas noticias, sin importar su cultura, su color de piel o su nivel de educación. También seguimos su ejemplo al tratar a los hermanos. Los consideramos superiores a nosotros independientemente de qué habilidades o responsabilidades tengamos (Filip. 2:3). Jehová se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros de estas y otras maneras (Sof. 3:12; Rom. 12:10)."
     },
     {
       number: 18,
-      content: "Al hacer todo lo posible por imitar la humildad de nuestro carinoso Padre celestial, nos convertiremos en personas mas accesibles, razonables y pacientes. Tambien trataremos a los demas de una manera que los honre, tal como hace Jehova. Recordemos que cada esfuerzo que hacemos por copiar su humildad nos hace mas valiosos a sus ojos (Is. 43:4)."
+      content: "Al hacer todo lo posible por imitar la humildad de nuestro cariñoso Padre celestial, nos convertiremos en personas más accesibles, razonables y pacientes. También trataremos a los demás de una manera que los honre, tal como hace Jehová. Recordemos que cada esfuerzo que hacemos por copiar su humildad nos hace más valiosos a sus ojos (Is. 43:4)."
     }
   ],
   reviewQuestions: [
     {
-      question: "¿Como puede la humildad ayudarnos a ser mas accesibles?",
+      question: "¿Cómo puede la humildad ayudarnos a ser más accesibles?",
       answer: [
-        "Nos ayuda a evitar defectos que alejan a los demas: envidia, orgullo y rencor.",
-        "Nos ayuda a tener cualidades que atraen: bondad, paciencia y perdon.",
-        "Los ancianos deben asistir presencialmente y predicar con los hermanos para ser mas accesibles."
+        "Nos ayuda a evitar defectos que alejan a los demás: envidia, orgullo y rencor.",
+        "Nos ayuda a tener cualidades que atraen: bondad, paciencia y perdón.",
+        "Los ancianos deben asistir presencialmente y predicar con los hermanos para ser más accesibles."
       ]
     },
     {
-      question: "¿Como puede la humildad ayudarnos a ser mas razonables?",
+      question: "¿Cómo puede la humildad ayudarnos a ser más razonables?",
       answer: [
-        "Los padres no exigen a sus hijos mas de lo que pueden dar.",
+        "Los padres no exigen a sus hijos más de lo que pueden dar.",
         "Evitan hacer comparaciones injustas entre sus hijos.",
-        "Los ancianos apoyan la decision de la mayoria si no va contra los principios biblicos.",
-        "Nos esforzamos por entender el punto de vista de los demas."
+        "Los ancianos apoyan la decisión de la mayoría si no va contra los principios bíblicos.",
+        "Nos esforzamos por entender el punto de vista de los demás."
       ]
     },
     {
-      question: "¿Como puede la humildad ayudarnos a ser mas pacientes?",
+      question: "¿Cómo puede la humildad ayudarnos a ser más pacientes?",
       answer: [
         "Desarrollamos 'la mente de Cristo' leyendo los Evangelios.",
-        "Meditamos en como las acciones de Jesus reflejaban su manera de pensar.",
-        "Pedimos a Jehova que nos ayude a ser humildes como su Hijo.",
-        "Seremos mas pacientes con nosotros mismos y con los demas."
+        "Meditamos en cómo las acciones de Jesús reflejaban su manera de pensar.",
+        "Pedimos a Jehová que nos ayude a ser humildes como su Hijo.",
+        "Seremos más pacientes con nosotros mismos y con los demás."
       ]
     }
   ],
-  finalSong: "Cancion 159: Demos gloria a Jehova"
+  finalSong: "Canción 159: Demos gloria a Jehová"
 };
 
 export default article50;

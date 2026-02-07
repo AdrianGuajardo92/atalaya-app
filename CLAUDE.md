@@ -6,6 +6,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **NO hacer commit ni push automáticamente.** Esperar a que el usuario lo ordene explícitamente.
 
+## Ortografía y Acentos (OBLIGATORIO)
+
+**SIEMPRE escribir con ortografía correcta en español, incluyendo todos los acentos.** Esto aplica a TODOS los textos en archivos de datos (`data/`), componentes, y cualquier contenido visible al usuario.
+
+**Reglas:**
+1. **Usar acentos correctamente** en todas las palabras: á, é, í, ó, ú, ü, ñ
+2. **Signos de interrogación y exclamación** de apertura y cierre: ¿...? ¡...!
+3. **Nombres propios bíblicos** con acentos: Jehová, Satanás, Moisés, Josué, Edén, etc.
+4. **Verificar la ortografía** antes de guardar cualquier texto en español
+5. **No usar transliteraciones sin acentos** (❌ "Jehova" → ✅ "Jehová", ❌ "Satanas" → ✅ "Satanás")
+
+**Ejemplos:**
+```
+❌ "Jehova permitio que Job sufriera"
+✅ "Jehová permitió que Job sufriera"
+
+❌ "¿Por que permite Dios el sufrimiento?"
+✅ "¿Por qué permite Dios el sufrimiento?"
+
+❌ "Moises escribio este libro"
+✅ "Moisés escribió este libro"
+```
+
 ## Development Commands
 
 ```bash
