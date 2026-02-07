@@ -1,7 +1,6 @@
 ---
 name: build-check
 description: Compila el proyecto y verifica que no haya errores de TypeScript o de build.
-disable-model-invocation: true
 allowed-tools: Bash(npm run build), Bash(npm run lint)
 ---
 

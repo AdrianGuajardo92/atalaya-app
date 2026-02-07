@@ -1,7 +1,6 @@
 ---
 name: ui-review
 description: Especialista en revisar la interfaz de usuario, diseño visual, responsividad móvil y accesibilidad. Úsalo para auditar la UI, encontrar problemas visuales, o mejorar la experiencia de usuario.
-disable-model-invocation: true
 allowed-tools: Read, Glob, Grep
 ---
 

@@ -1,7 +1,6 @@
 ---
 name: clean-code
 description: Especialista en encontrar y eliminar código muerto, imports no usados, variables sin usar, diseños obsoletos y archivos innecesarios. Úsalo para limpiar el codebase.
-disable-model-invocation: true
 allowed-tools: Read, Edit, Glob, Grep, Bash(npm run build), Bash(npm run lint)
 ---
 

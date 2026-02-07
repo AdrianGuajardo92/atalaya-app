@@ -1,7 +1,6 @@
 ---
 name: fix-bug
 description: Especialista en encontrar y corregir bugs. Úsalo cuando algo no funcione correctamente, haya errores en la consola, la app no compile, o el comportamiento no sea el esperado.
-disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(npm run build), Bash(npm run lint)
 ---
 

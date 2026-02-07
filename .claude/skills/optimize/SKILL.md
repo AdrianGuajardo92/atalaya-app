@@ -1,7 +1,6 @@
 ---
 name: optimize
 description: Especialista en refactorizar y optimizar el código de la app. Úsalo para dividir componentes grandes, extraer hooks reutilizables, consolidar llamadas API, agregar memoización y mejorar el rendimiento.
-disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(npm run build)
 ---
 
