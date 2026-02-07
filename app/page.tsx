@@ -309,11 +309,33 @@ export default function Home() {
         onClose={() => setShowPdfUploader(false)}
       />
 
-      {/* Indicador de progreso de scroll (solo en modo scroll) */}
+      {/* Indicador de progreso de scroll circular (solo en modo scroll) */}
       {navigationMode === 'scroll' && showScrollIndicator && (
-        <div className="fixed top-20 right-4 z-10 bg-slate-800 dark:bg-slate-700 text-white rounded-lg shadow-lg px-4 py-2 transition-opacity duration-300">
-          <div className="text-xs font-medium text-slate-300 dark:text-slate-400 mb-1">Progreso</div>
-          <div className="text-2xl font-bold">{scrollProgress}%</div>
+        <div className="fixed top-20 right-4 z-10 transition-opacity duration-300">
+          <div className="relative w-11 h-11">
+            <svg className="w-11 h-11 -rotate-90" viewBox="0 0 44 44">
+              <circle
+                cx="22" cy="22" r="18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                className="text-slate-200 dark:text-slate-600"
+              />
+              <circle
+                cx="22" cy="22" r="18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                className="text-amber-400 dark:text-amber-300 transition-all duration-300"
+                strokeDasharray={`${2 * Math.PI * 18}`}
+                strokeDashoffset={`${2 * Math.PI * 18 * (1 - scrollProgress / 100)}`}
+              />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[10px] font-bold text-slate-700 dark:text-slate-200">{scrollProgress}%</span>
+            </div>
+          </div>
         </div>
       )}
 
@@ -500,10 +522,17 @@ export default function Home() {
 
             {/* Preguntas de Repaso */}
             <div className="mt-12">
-              <div className="bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-950 dark:to-violet-900 rounded-lg shadow-md p-8 mb-8">
-                <h2 className="text-2xl font-bold text-violet-800 dark:text-violet-200 text-center">
-                  ¿QUÉ RESPONDERÍAS?
-                </h2>
+              <div className="relative mb-8 mt-4">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-border"></div>
+                </div>
+                <div className="relative flex justify-center">
+                  <div className="bg-slate-800 dark:bg-slate-700 px-8 py-4 rounded-lg shadow-lg">
+                    <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
+                      ¿Qué responderías?
+                    </h2>
+                  </div>
+                </div>
               </div>
               <div className="space-y-6">
                 {currentArticle.reviewQuestions.map((reviewQ, index) => (
@@ -531,9 +560,9 @@ export default function Home() {
             )}
 
             {/* Canción Final */}
-            <div className="mt-10 bg-gradient-to-b from-surface-alt to-surface rounded-lg shadow-md p-8 text-center border border-border">
+            <div className="mt-10 bg-surface-alt rounded-lg shadow-sm p-8 text-center border border-border">
               <p className="text-lg font-semibold text-text-body">
-                {currentArticle.finalSong}
+                🎵 {currentArticle.finalSong}
               </p>
             </div>
           </>
@@ -776,10 +805,10 @@ export default function Home() {
                   </div>
                 ) : (
                   /* DISEÑO ORIGINAL */
-                  <div className="mt-6 bg-violet-50 dark:bg-violet-950 border-l-2 border-violet-400 dark:border-violet-600 p-4 rounded-lg shadow-sm">
-                    <p className="text-sm font-semibold text-violet-800 dark:text-violet-200 mb-2">📋 Siguiente:</p>
+                  <div className="mt-6 bg-surface-alt border-l-2 border-border-strong p-4 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-text-primary mb-2">📋 Siguiente:</p>
                     <div className="text-sm text-text-body">
-                      <p className="font-semibold text-violet-700 dark:text-violet-300">
+                      <p className="font-semibold text-text-secondary">
                         ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
                       </p>
                     </div>
@@ -806,10 +835,10 @@ export default function Home() {
                   </div>
                 ) : (
                   /* DISEÑO ORIGINAL */
-                  <div className="mt-6 bg-violet-50 dark:bg-violet-950 border-l-2 border-violet-400 dark:border-violet-600 p-4 rounded-lg shadow-sm">
-                    <p className="text-sm font-semibold text-violet-800 dark:text-violet-200 mb-2">📋 Siguiente:</p>
+                  <div className="mt-6 bg-surface-alt border-l-2 border-border-strong p-4 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-text-primary mb-2">📋 Siguiente:</p>
                     <div className="text-sm text-text-body">
-                      <p className="font-semibold text-violet-700 dark:text-violet-300">
+                      <p className="font-semibold text-text-secondary">
                         Pregunta de repaso {currentReviewIndex + 2}
                       </p>
                     </div>

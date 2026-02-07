@@ -1058,7 +1058,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-blue-400 text-xs transition-opacity">✏️</span>
                   </div>
                   <p className="text-text-secondary font-medium text-lg text-center uppercase">
-                    {currentSectionLSMText || <span className="text-text-tertiary italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
+                    {currentSectionLSMText || <span className="text-text-muted italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
                   </p>
                 </div>
               )}
@@ -1078,7 +1078,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {/* Cabecera de la Pregunta */}
             <div className="p-8 pb-4">
               <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase">
+                <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-slate-400">
                   Pregunta {question.number}
                 </span>
                 <div className="flex items-center gap-2">
@@ -1129,7 +1129,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             </div>
 
             {/* Sección Intermedia: LSM y Herramientas */}
-            <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle flex flex-wrap items-center gap-4">
+            <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle dark:border-border flex flex-wrap items-center gap-4">
 
               {/* Botón LSM */}
               <div className="flex-1 min-w-[200px]">
@@ -1160,7 +1160,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                       <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
                     </div>
                     <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
-                      {lsmText || question.textLSM || <span className="text-text-tertiary italic font-normal text-sm">Agregar traducción...</span>}
+                      {lsmText || question.textLSM || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
                     </p>
                   </div>
                 )}
@@ -1171,7 +1171,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
-                    ? 'bg-surface border-border-strong text-text-body'
+                    ? 'bg-surface-raised border-border-strong text-text-body'
                     : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
                     }`}
                 >
@@ -1240,14 +1240,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                       {/* Sección CONTEXTO (solo si existe answerContext) */}
                       {question.answerContext && question.answerContext.length > 0 && (
-                        <div className="mt-6 border-l-2 border-border bg-surface-alt rounded-r-lg p-5">
+                        <div className="mt-6 border-l-2 border-border dark:border-border-strong bg-surface-alt rounded-r-lg p-5">
                           <div className="mb-3">
                             <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Contexto</span>
                           </div>
                           <div className="space-y-3">
                             {question.answerContext.map((ctx, idx) => (
                               <p key={idx} className="text-base text-text-secondary leading-relaxed">
-                                <span className="text-border-strong font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
+                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
                               </p>
                             ))}
                           </div>
@@ -1272,9 +1272,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {/* Línea divisoria elegante */}
                 <div className="px-8 py-4 bg-surface">
                   <div className="flex items-center justify-center gap-4">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50" />
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
                     <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50" />
+                    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
                   </div>
                 </div>
 
@@ -1318,7 +1318,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 <span className="text-text-body font-sans font-semibold text-base leading-relaxed flex-1">
                                   {card.question}
                                 </span>
-                                <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-surface-raised text-text-tertiary'}`}>
+                                <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-surface-raised text-text-secondary'}`}>
                                   {isOpen ? 'Ocultar' : 'Ver'}
                                 </span>
                               </button>

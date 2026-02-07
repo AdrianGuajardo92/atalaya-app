@@ -118,6 +118,13 @@
 - `SummaryView.tsx` does NOT parse bold markdown (renders raw `{sentence}`) -- separate issue
 - LESSON: For dark mode emphasis, luminance-only changes (white vs light gray) are often imperceptible. A hue shift is required for reliable scannability.
 
+## Light Mode Audit (2026-02-07)
+- See `light-mode-audit.md` for full details
+- Key WCAG contrast findings: text-text-tertiary (#94a3b8) vs white = 2.8:1 (FAILS AA); text-text-muted (#64748b) = 4.6:1 (PASSES AA)
+- text-border-strong (#cbd5e1) should NEVER be used as text color (1.8:1 contrast)
+- Amber divider opacity: /50 too subtle in light mode, /70 is minimum for visibility
+- Violet/blue accents outside Executive Design palette need eventual consolidation to slate/amber
+
 ### QuestionCard.tsx Migration Details (2026-02-07)
 - Modals (paragraphs, read text): `bg-slate-900/40` -> `bg-[var(--backdrop)]`, modal body `bg-white` -> `bg-surface`, headers `bg-slate-50` -> `bg-surface-alt`
 - Section header: `border-slate-200` -> `border-border` (bg-slate-800 kept as intentional dark)

@@ -112,7 +112,7 @@ export default function ReviewQuestionCard({
           {/* Cabecera de la Pregunta */}
           <div className="p-8 pb-4">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase">
+              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-slate-400">
                 Pregunta de Repaso {index + 1}
               </span>
             </div>
@@ -140,7 +140,7 @@ export default function ReviewQuestionCard({
           </div>
 
           {/* Sección Intermedia: LSM y Herramientas */}
-          <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle flex flex-wrap items-center gap-4">
+          <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle dark:border-border flex flex-wrap items-center gap-4">
 
             {/* Área LSM */}
             <div className="flex-1 min-w-[200px]">
@@ -173,7 +173,7 @@ export default function ReviewQuestionCard({
                     <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
                   </div>
                   <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
-                    {currentLSMText || <span className="text-text-tertiary italic font-normal text-sm">Agregar traducción...</span>}
+                    {currentLSMText || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
                   </p>
                 </div>
               )}
@@ -184,7 +184,7 @@ export default function ReviewQuestionCard({
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
-                  ? 'bg-surface border-border-strong text-text-body'
+                  ? 'bg-surface-raised border-border-strong text-text-body'
                   : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
                 }`}
               >
@@ -243,9 +243,9 @@ export default function ReviewQuestionCard({
               {/* Línea divisoria elegante */}
               <div className="px-8 py-4 bg-surface">
                 <div className="flex items-center justify-center gap-4">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50 dark:to-amber-600/50" />
-                  <span className="text-amber-400 dark:text-amber-500 text-sm">✦</span>
-                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50 dark:to-amber-600/50" />
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
+                  <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
+                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
                 </div>
               </div>
 
