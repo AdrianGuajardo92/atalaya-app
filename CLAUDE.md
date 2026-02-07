@@ -262,10 +262,10 @@ Las respuestas deben ser **arrays de oraciones clave**, no párrafos largos.
 **Ejemplo CORRECTO:**
 ```typescript
 answer: [
-  "Nuestras oraciones pueden volverse monótonas por el ajetreo de la vida.",
-  "Lo más importante para Jehová es que le hablemos desde el corazón.",
-  "No hay que preocuparnos por usar palabras elegantes.",
-  "Jehová escucha «el ruego de los mansos» porque se preocupa por nosotros."
+  "Nuestras oraciones pueden volverse **monótonas** por el ajetreo de la vida.",
+  "Lo más importante para Jehová es que le hablemos **desde el corazón**.",
+  "No hay que preocuparnos por usar **palabras elegantes**.",
+  "Jehová escucha **«el ruego de los mansos»** porque se preocupa por nosotros."
 ],
 ```
 
@@ -274,6 +274,78 @@ answer: [
 // ❌ Párrafo largo difícil de leer rápido
 answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el ajetreo de la vida (haciendo solo oraciones breves) o porque nos sentimos indignos de contarle a Jehová todo lo que sentimos. Sin embargo, lo más importante para Jehová es que le hablemos desde el corazón y con humildad..."
 ```
+
+### Negritas en Contenido (OBLIGATORIO para artículos nuevos)
+
+**TODOS los artículos nuevos DEBEN usar negritas (`**texto**`) para resaltar palabras y frases clave.** Esto mejora la lectura rápida y ayuda al conductor del estudio a identificar los puntos principales de un vistazo.
+
+#### Dónde aplicar negritas
+
+| Campo | Usa Negritas | Propósito |
+|-------|:---:|-----------|
+| `answer` (respuestas) | ✅ | Conceptos clave de cada oración |
+| `summary` (resumen de párrafo) | ✅ | Datos, nombres y eventos principales |
+| `answerContext` | ✅ | Ideas que profundizan la respuesta |
+| `reviewQuestions.answer` | ✅ | Conceptos finales de repaso |
+| `articleSummary.keyPoints` | ✅ | Puntos clave del resumen final |
+| `content` (párrafo completo) | ❌ | El texto completo se deja sin negritas |
+| `flashcard.answer` | ❌ | Las respuestas de flashcards son directas |
+
+#### Qué resaltar en negritas
+
+1. **Conceptos teológicos centrales**: `**la santificación del nombre de Jehová**`
+2. **Citas o paráfrasis bíblicas**: `**'No hay nadie como él en la tierra'**`
+3. **Números y datos específicos**: `**3.500 años**`, `**10 hijos**`, `**140 años**`
+4. **Nombres propios importantes**: `**Satanás**`, `**Moisés**`, `**Job**`
+5. **Cualidades o atributos**: `**amor**`, `**sabiduría**`, `**justicia**`, `**poder**`
+6. **Acciones o decisiones clave**: `**se mantuvo fiel**`, `**adoraban ídolos**`
+7. **Contrastes importantes**: `**Satanás, no Dios**`
+8. **Comparaciones o analogías**: `**subir a lo alto de una montaña**`
+
+#### Ejemplo CORRECTO con negritas
+
+```typescript
+// ✅ answer con negritas en palabras clave
+answer: [
+  "Nos ayuda a entender **por qué permite Dios el sufrimiento** y responde otras grandes preguntas de la vida.",
+  "Trata la cuestión más importante: **la santificación del nombre de Jehová**.",
+  "Nos enseña sobre las **cualidades de Dios**, como el **amor**, la **sabiduría** y la **justicia**.",
+]
+
+// ✅ summary con negritas en datos y nombres
+summary: "**Satanás** afirmó que Job le daría la espalda a Jehová si sufría. Jehová le **permitió** ponerlo a prueba. El Diablo le quitó sus **rebaños**, mató a sus **10 hijos** y le envió una **terrible enfermedad**. Pero Job se mantuvo **leal**."
+
+// ✅ reviewQuestions.answer con negritas
+answer: [
+  "Nos ayuda a entender quién es el principal causante del sufrimiento: **Satanás, no Dios**.",
+  "Comprendemos mejor **por qué permite Dios el sufrimiento**.",
+  "Aprendemos lo importantes que son para Jehová **la integridad y la fidelidad**.",
+]
+```
+
+#### Ejemplo INCORRECTO
+
+```typescript
+// ❌ Sin negritas - difícil de escanear visualmente
+answer: [
+  "Nos ayuda a entender por qué permite Dios el sufrimiento.",
+  "Trata la cuestión más importante: la santificación del nombre de Jehová.",
+]
+
+// ❌ Demasiadas negritas - pierde el propósito
+answer: [
+  "**Nos ayuda a entender por qué permite Dios el sufrimiento y responde otras grandes preguntas de la vida.**",
+]
+
+// ❌ Negritas en content del párrafo - NO hacer esto
+content: "Job fue un hombre **fiel** que vivió en **Uz**..."  // El content va sin negritas
+```
+
+#### Regla de oro para negritas
+
+> Pregúntate: "Si el conductor solo leyera las palabras en negrita, ¿captaría la idea principal?"
+> - SÍ → Las negritas están bien aplicadas
+> - NO → Falta resaltar el concepto clave o se resaltó lo incorrecto
 
 ### Tarjetas Didácticas - Reglas Estrictas
 

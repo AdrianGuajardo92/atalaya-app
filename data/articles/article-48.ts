@@ -204,7 +204,7 @@ export const article48: ArticleData = {
       textEs: "¿Cómo podría haber ayudado la historia de Job a los israelitas? (Vea también la imagen).",
       textLSM: "",
       paragraphs: [6],
-      image: "",
+      image: "https://i.imgur.com/7J57wEh.png",
       imageCaption: "Los israelitas, que fueron esclavos en Egipto por muchos años, con el tiempo conocieron la historia de Job y seguramente sacaron lecciones prácticas.",
       answer: [
         "Les ayudó a entender que **el causante principal del sufrimiento es Satanás, no Dios**.",
@@ -571,6 +571,7 @@ export const article48: ArticleData = {
       textEs: "¿Cómo podemos usar el libro de Job cuando alguien nos pregunta por qué existe el sufrimiento? (Vea también las imágenes).",
       textLSM: "",
       paragraphs: [15],
+      image: "https://i.imgur.com/qXlNimY.png",
       answer: [
         "**Felicitar a la persona** por su pregunta y contarle que Job, un hombre de la antigüedad, **se preguntó lo mismo** hace miles de años.",
         "Explicarle que **la culpa no era de Dios sino del Diablo**, que quería demostrar que los humanos solo sirven a Dios por interés.",
