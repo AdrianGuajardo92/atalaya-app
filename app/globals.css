@@ -98,6 +98,22 @@
   --foreground: #f1f5f9;
 }
 
+/* ===== DARK MODE: Bold text emphasis ===== */
+/* In dark mode, font-weight alone is insufficient to distinguish bold text
+   from regular text because antialiasing reduces perceived weight differences
+   on light-on-dark surfaces. Pure white (#fff) was tried but the luminance
+   step from slate-200 body text is too subtle.
+   Solution: amber-300 (#fcd34d) adds BOTH a hue shift and luminance change,
+   making bold words immediately scannable. Contrast ratios:
+     vs #0f172a (surface):     ~12.7:1  (WCAG AAA)
+     vs #1e293b (surface-alt): ~10.2:1  (WCAG AAA)
+   The amber family is already in the Executive Design palette (✦ dividers),
+   so it feels native, not foreign. */
+.dark strong,
+.dark b {
+  color: #fcd34d;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

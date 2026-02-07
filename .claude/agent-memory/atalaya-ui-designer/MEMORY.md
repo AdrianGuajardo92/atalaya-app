@@ -104,6 +104,20 @@
 - Tailwind CSS 4 with `@theme inline` for custom tokens
 - `--backdrop` CSS var is NOT registered in `@theme inline`, so must use `bg-[var(--backdrop)]` syntax
 
+### Bold Text Dark Mode Fix (2026-02-07, updated)
+- Problem: `<strong>` tags from `renderBoldText()` had same color as surrounding text in dark mode
+- First attempt: `#ffffff` (pure white) -- FAILED: luminance step from slate-200 (#e2e8f0) too subtle
+- Final solution: `#fcd34d` (amber-300) -- adds BOTH hue shift AND luminance change
+  - vs #0f172a (surface): ~12.7:1 contrast (WCAG AAA)
+  - vs #1e293b (surface-alt): ~10.2:1 contrast (WCAG AAA)
+  - Amber family already in Executive Design (decorative dividers), so feels native
+- Global CSS rule `.dark strong, .dark b { color: #fcd34d; }` in globals.css (~line 106)
+- `renderBoldText()` exists in both `QuestionCard.tsx` (line 274) and `ReviewQuestionCard.tsx` (line 35)
+- It renders plain `<strong>` tags with no class -- CSS rule catches all instances globally
+- Safe because all other bold UI uses Tailwind `font-bold` class on `<span>`/`<h2>` etc., not `<strong>` tags
+- `SummaryView.tsx` does NOT parse bold markdown (renders raw `{sentence}`) -- separate issue
+- LESSON: For dark mode emphasis, luminance-only changes (white vs light gray) are often imperceptible. A hue shift is required for reliable scannability.
+
 ### QuestionCard.tsx Migration Details (2026-02-07)
 - Modals (paragraphs, read text): `bg-slate-900/40` -> `bg-[var(--backdrop)]`, modal body `bg-white` -> `bg-surface`, headers `bg-slate-50` -> `bg-surface-alt`
 - Section header: `border-slate-200` -> `border-border` (bg-slate-800 kept as intentional dark)
