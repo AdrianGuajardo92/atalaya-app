@@ -320,3 +320,44 @@ bg-slate-50 border-l-4 border-slate-300 rounded-r-lg p-6 mb-8
 ```
 text-lg lg:text-xl leading-relaxed italic text-slate-600 font-serif
 ```
+
+## Tarjetas bíblicas (BiblicalCards)
+
+**Componente:** `BiblicalCards.tsx`
+
+**Grid contenedor:**
+```
+grid grid-cols-1 sm:grid-cols-2 gap-4
+```
+
+**Contenedor tarjeta:**
+```
+relative h-[200px] cursor-pointer group
+```
+Style: `perspective: '1000px'`
+
+**Flip container:**
+```
+relative w-full h-full transition-transform duration-700 ease-in-out
+```
+Style: `transformStyle: 'preserve-3d'`, flip con `rotateY(180deg)`
+
+**Frente (referencia + propósito):**
+```
+absolute w-full h-[200px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col
+```
+
+**Reverso (texto TNM):**
+```
+absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col
+```
+
+**Header reverso:**
+```
+text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 py-2
+```
+
+**Texto reverso:**
+```
+text-center text-white font-medium text-sm leading-relaxed italic
+```

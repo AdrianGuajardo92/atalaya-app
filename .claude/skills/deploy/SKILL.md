@@ -1,6 +1,6 @@
 ---
 name: deploy
-description: Haz commit y push de todos los cambios pendientes al repositorio remoto.
+description: Haz commit y push de TODOS los cambios pendientes al repositorio. Úsalo cuando el usuario diga "deploy", "sube los cambios", "push", "haz commit", o "despliega".
 disable-model-invocation: true
 allowed-tools: Bash(git *)
 ---

@@ -46,7 +46,8 @@
       "Bash(wc:*)",
       "WebFetch(domain:addyosmani.com)",
       "Bash(cmd /c \"taskkill /PID 13732 /F\")",
-      "Bash(cmd /c \"taskkill /PID 28604 /F /T\")"
+      "Bash(cmd /c \"taskkill /PID 28604 /F /T\")",
+      "Bash(npx skills add:*)"
     ],
     "deny": [],
     "ask": []

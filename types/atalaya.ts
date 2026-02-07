@@ -54,6 +54,8 @@ export interface ReviewQuestion {
     purpose: string; // Por qué está este texto / para qué sirve
     text: string; // Texto completo de la Traducción del Nuevo Mundo
   }>;
+  image?: string; // URL de imagen ilustrativa
+  imageCaption?: string; // Leyenda de la imagen
   reflectionQuestions?: string[]; // Preguntas de reflexión personal
   practicalApplications?: string[]; // Aplicaciones prácticas concretas
 }

@@ -1,6 +1,6 @@
 ---
 name: vercel
-description: Despliega la aplicación a producción en Vercel.
+description: Despliega la aplicación a producción en Vercel. Úsalo cuando el usuario diga "vercel", "sube a producción", "despliega a producción", o "deploy a vercel".
 disable-model-invocation: true
 allowed-tools: Bash(vercel *)
 ---

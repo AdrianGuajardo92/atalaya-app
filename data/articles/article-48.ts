@@ -778,6 +778,7 @@ export const article48: ArticleData = {
     },
     {
       question: "¿Cómo podemos usar el libro de Job para ayudar a otros?",
+      image: "https://i.imgur.com/qXlNimY.png",
       answer: [
         "Podemos enseñarles que **el causante del sufrimiento es Satanás, no Dios**.",
         "Les ayudamos a ver que **no deben asumir que quienes sufren están cosechando lo que sembraron**.",

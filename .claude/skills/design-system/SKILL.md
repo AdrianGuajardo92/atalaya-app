@@ -118,6 +118,16 @@ bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shad
 + respuesta: ml-6 pl-4 border-l-2 border-amber-300
 ```
 
+### Tarjeta bíblica (BiblicalCards)
+```
+Grid: grid grid-cols-1 sm:grid-cols-2 gap-4
+Contenedor: relative h-[200px] cursor-pointer group (perspective: 1000px)
+Frente: absolute w-full h-[200px] bg-white rounded-xl shadow-sm border border-slate-200
+Reverso: absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700
+Flip: transition-transform duration-700 ease-in-out (rotateY 180deg)
+Header reverso: text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] bg-slate-900/50
+```
+
 ## Animaciones
 
 - Entrada: `animate-fadeIn` (opacity 0→1, translateY -10px→0, 0.2s)

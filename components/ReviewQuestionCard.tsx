@@ -121,6 +121,22 @@ export default function ReviewQuestionCard({
             <h2 className="text-2xl md:text-3xl font-serif text-slate-800 leading-tight mb-2">
               {reviewQuestion.question}
             </h2>
+
+            {/* Imagen ilustrativa */}
+            {reviewQuestion.image && (
+              <div className="mt-4 rounded-lg overflow-hidden border border-slate-200 shadow-sm">
+                <img
+                  src={reviewQuestion.image}
+                  alt={reviewQuestion.imageCaption || 'Imagen ilustrativa'}
+                  className="w-full h-auto"
+                />
+                {reviewQuestion.imageCaption && (
+                  <p className="text-xs text-slate-500 italic px-3 py-2 bg-slate-50 border-t border-slate-100">
+                    {reviewQuestion.imageCaption}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Sección Intermedia: LSM y Herramientas */}
