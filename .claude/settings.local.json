@@ -45,7 +45,8 @@
       "Bash(del \"c:\\\\Users\\\\adria\\\\atalaya-app\\\\data\\\\articles\\\\article-44.ts\")",
       "Bash(wc:*)",
       "WebFetch(domain:addyosmani.com)",
-      "Bash(cmd /c \"taskkill /PID 13732 /F\")"
+      "Bash(cmd /c \"taskkill /PID 13732 /F\")",
+      "Bash(cmd /c \"taskkill /PID 28604 /F /T\")"
     ],
     "deny": [],
     "ask": []

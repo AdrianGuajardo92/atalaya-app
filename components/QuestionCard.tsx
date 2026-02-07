@@ -270,6 +270,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     question.paragraphs.includes(p.number)
   );
 
+  // Función para renderizar **negrita** en texto
+  const renderBoldText = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+      return <span key={index}>{part}</span>;
+    });
+  };
+
   // Función para formatear el contenido con textos bíblicos
   const formatContent = (text: string) => {
     // Buscar patrones de referencias bíblicas entre paréntesis
@@ -880,7 +891,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         .map((p, i) => (
                           <div key={i} className="flex gap-2">
                             <span className="font-bold text-amber-800 text-sm flex-shrink-0">[{p.number}]</span>
-                            <span className="text-base text-slate-700 leading-relaxed">{p.summary}</span>
+                            <span className="text-base text-slate-700 leading-relaxed">{renderBoldText(p.summary!)}</span>
                           </div>
                         ))}
                     </div>
@@ -1214,16 +1225,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           Array.isArray(question.answer)
                             ? question.answer.map((paragraph, idx) => (
                               <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4">
-                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {paragraph}
+                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
                               </p>
                             ))
                             : typeof question.answer === 'string'
                               ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => (
                                 <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4 block">
-                                  <span className="text-slate-400 font-medium">[{idx + 1}]</span> {sentence.trim()}.
+                                  <span className="text-slate-400 font-medium">[{idx + 1}]</span> {renderBoldText(sentence.trim() + '.')}
                                 </p>
                               ))
-                              : <p className="text-lg text-slate-700 leading-relaxed">{String(question.answer)}</p>
+                              : <p className="text-lg text-slate-700 leading-relaxed">{renderBoldText(String(question.answer))}</p>
                         )}
                       </div>
 
@@ -1236,7 +1247,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           <div className="space-y-3">
                             {question.answerContext.map((ctx, idx) => (
                               <p key={idx} className="text-base text-slate-600 leading-relaxed">
-                                <span className="text-slate-300 font-medium">[{idx + 1}]</span> {ctx}
+                                <span className="text-slate-300 font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
                               </p>
                             ))}
                           </div>

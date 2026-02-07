@@ -31,6 +31,17 @@ export default function ReviewQuestionCard({
   const [isSaving, setIsSaving] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true); // Expandido por defecto siempre
 
+  // Función para renderizar **negrita** en texto
+  const renderBoldText = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i}>{part.slice(2, -2)}</strong>;
+      }
+      return <span key={i}>{part}</span>;
+    });
+  };
+
   const handleSaveLSM = async () => {
     setIsSaving(true);
     try {
@@ -184,10 +195,10 @@ export default function ReviewQuestionCard({
                         {Array.isArray(reviewQuestion.answer)
                           ? reviewQuestion.answer.map((paragraph, idx) => (
                               <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4">
-                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {paragraph}
+                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
                               </p>
                             ))
-                          : <p className="text-lg text-slate-700 leading-relaxed">{reviewQuestion.answer}</p>
+                          : <p className="text-lg text-slate-700 leading-relaxed">{renderBoldText(String(reviewQuestion.answer))}</p>
                         }
                       </div>
 
