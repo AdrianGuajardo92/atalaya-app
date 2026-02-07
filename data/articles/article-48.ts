@@ -672,11 +672,13 @@ export const article48: ArticleData = {
   paragraphs: [
     {
       number: 1,
-      content: "¿HA TENIDO usted últimamente el gusto de leer el libro de Job? Aunque se escribió hace unos 3.500 años, se lo sigue considerando una joya de la literatura universal. Se ha destacado la sencillez de su estructura, la belleza de su estilo, la expresividad de su lenguaje y la genialidad de su escritor. Es cierto que Moisés fue quien escribió este magnífico libro, pero su verdadero autor es Jehová (2 Tim. 3:16)."
+      content: "¿HA TENIDO usted últimamente el gusto de leer el libro de Job? Aunque se escribió hace unos 3.500 años, se lo sigue considerando una joya de la literatura universal. Se ha destacado la sencillez de su estructura, la belleza de su estilo, la expresividad de su lenguaje y la genialidad de su escritor. Es cierto que Moisés fue quien escribió este magnífico libro, pero su verdadero autor es Jehová (2 Tim. 3:16).",
+      summary: "El libro de Job se escribió hace unos 3.500 años y se lo sigue considerando una joya de la literatura universal. Moisés fue quien lo escribió, pero su verdadero autor es Jehová (2 Tim. 3:16)."
     },
     {
       number: 2,
-      content: "El libro de Job es una parte clave de la Biblia. ¿Por qué? Una razón es que muestra claramente cuál es la importante cuestión a la que nos enfrentamos todos los seres inteligentes: la santificación del nombre de Jehová. Otra razón es que nos ayuda a conocer mejor las hermosas cualidades de Dios, como el amor, la sabiduría, la justicia y el poder. Por ejemplo, en este libro se llama a Jehová 31 veces el \"Todopoderoso\", más que en todos los demás libros de la Biblia juntos. Una tercera razón es que el libro de Job explica por qué permite Dios el sufrimiento y responde otras grandes preguntas de la vida."
+      content: "El libro de Job es una parte clave de la Biblia. ¿Por qué? Una razón es que muestra claramente cuál es la importante cuestión a la que nos enfrentamos todos los seres inteligentes: la santificación del nombre de Jehová. Otra razón es que nos ayuda a conocer mejor las hermosas cualidades de Dios, como el amor, la sabiduría, la justicia y el poder. Por ejemplo, en este libro se llama a Jehová 31 veces el \"Todopoderoso\", más que en todos los demás libros de la Biblia juntos. Una tercera razón es que el libro de Job explica por qué permite Dios el sufrimiento y responde otras grandes preguntas de la vida.",
+      summary: "El libro de Job muestra la cuestión de la santificación del nombre de Jehová. Nos ayuda a conocer las cualidades de Dios: amor, sabiduría, justicia y poder. Se llama a Jehová 31 veces 'el Todopoderoso', más que en todos los demás libros juntos. También explica por qué permite Dios el sufrimiento."
     },
     {
       number: 3,

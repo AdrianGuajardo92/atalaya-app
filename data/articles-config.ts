@@ -17,10 +17,6 @@ export const articlesConfig = {
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    44,  // "Cómo mantener la alegría en la vejez" (5-11 Ene)
-    45,  // "Cómo mantener la alegría al cuidar de un ser querido" (12-18 Ene)
-    46,  // "Jesús es un Sumo Sacerdote compasivo" (19-25 Ene)
-    47,  // "Tú eres muy valioso" (26 Ene-1 Feb)
     48,  // "Cómo nos ayuda el libro de Job cuando estamos sufriendo" (2-8 Feb)
     49,  // "Cómo nos ayuda el libro de Job a dar buenos consejos" (9-15 Feb)
     50,  // "Imitemos la humildad de Jehová" (16-22 Feb)
@@ -29,7 +25,7 @@ export const articlesConfig = {
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 44,
+  defaultArticleNumber: 48,
 };
 
 /**

@@ -41,7 +41,10 @@
       "Bash(npx tsc:*)",
       "Bash(powershell -ExecutionPolicy Bypass -File:*)",
       "Bash(timeout:*)",
-      "Bash(ping:*)"
+      "Bash(ping:*)",
+      "Bash(del \"c:\\\\Users\\\\adria\\\\atalaya-app\\\\data\\\\articles\\\\article-44.ts\")",
+      "Bash(wc:*)",
+      "WebFetch(domain:addyosmani.com)"
     ],
     "deny": [],
     "ask": []
