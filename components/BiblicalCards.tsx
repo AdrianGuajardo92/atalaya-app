@@ -67,7 +67,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
       </div>
 
       {/* Cuadrícula de tarjetas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {cards.map((card, originalIndex) => {
           const cardId = `biblical-${questionNumber}-${originalIndex}`;
           if (hiddenCards[cardId]) return null; // No mostrar tarjetas ocultas
@@ -78,7 +78,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
           return (
             <div
               key={index}
-              className="relative h-[250px] cursor-pointer group"
+              className="relative h-[200px] cursor-pointer group"
               style={{ perspective: '1000px' }}
               onClick={() => handleFlip(index)}
             >
@@ -123,7 +123,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
               >
                 {/* Frente de la tarjeta (Referencia + Propósito) */}
                 <div
-                  className="absolute w-full h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+                  className="absolute w-full h-[200px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
@@ -142,7 +142,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
 
                 {/* Reverso de la tarjeta (Texto completo TNM) */}
                 <div
-                  className="absolute w-full h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
+                  className="absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
