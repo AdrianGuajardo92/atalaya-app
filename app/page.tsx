@@ -57,6 +57,17 @@ export default function Home() {
   // Referencia para el menú de opciones de vista
   const viewMenuRef = useRef<HTMLDivElement>(null);
 
+  // Función para renderizar **negrita** en texto
+  const renderBoldText = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i}>{part.slice(2, -2)}</strong>;
+      }
+      return <span key={i}>{part}</span>;
+    });
+  };
+
   // Cargar artículos activos al iniciar
   useEffect(() => {
     const articles = getAllActiveArticles();
@@ -624,7 +635,7 @@ export default function Home() {
                                 {paragraph.summary && (
                                   <div className="mt-5 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-700 rounded-lg px-5 py-4">
                                     <p className="text-sm font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider mb-2">💡 Resumen</p>
-                                    <p className="text-base md:text-lg text-amber-900 dark:text-amber-100 italic leading-relaxed">{paragraph.summary}</p>
+                                    <p className="text-base md:text-lg text-amber-900 dark:text-amber-100 italic leading-relaxed">{renderBoldText(paragraph.summary)}</p>
                                   </div>
                                 )}
                               </div>
