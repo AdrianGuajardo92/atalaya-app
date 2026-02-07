@@ -290,7 +290,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       // Si es una referencia bíblica (está entre paréntesis)
       if (part.startsWith('(') && part.endsWith(')')) {
         return (
-          <span key={index} className="text-slate-700 font-medium">
+          <span key={index} className="text-text-body font-medium">
             {part}
           </span>
         );
@@ -305,11 +305,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
     return lines.map((line, index) => (
       <div key={index}>
-        <p className="text-lg font-semibold text-slate-900 leading-relaxed uppercase mb-0">
+        <p className="text-lg font-semibold text-text-primary leading-relaxed uppercase mb-0">
           {line}
         </p>
         {index < lines.length - 1 && (
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent my-3"></div>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-border-strong to-transparent my-3"></div>
         )}
       </div>
     ));
@@ -865,33 +865,33 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     <>
         {/* Modals (Mismos que el diseño original) */}
         {showParagraphsModal && (
-          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-            <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-slate-200">
-              <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-                <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
+              <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
+                <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
                   <span>📖</span> Párrafos de Estudio
                 </h3>
                 <button
                   onClick={() => setShowParagraphsModal(false)}
-                  className="text-slate-400 hover:text-slate-600 transition-colors"
+                  className="text-text-tertiary hover:text-text-secondary transition-colors"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
-              <div className="p-6 overflow-y-auto custom-scrollbar bg-white">
+              <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
                 {/* Sección RESUMEN (si algún párrafo tiene summary) */}
                 {relatedParagraphs.some(p => p.summary) && (
-                  <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-5">
-                    <h4 className="text-xs font-bold text-amber-700 uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                  <div className="mb-6 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-5">
+                    <h4 className="text-xs font-bold text-amber-700 dark:text-amber-300 uppercase tracking-[0.15em] mb-3">Resumen</h4>
                     <div className="space-y-2">
                       {relatedParagraphs
                         .filter(p => p.summary)
                         .map((p, i) => (
                           <div key={i} className="flex gap-2">
-                            <span className="font-bold text-amber-800 text-sm flex-shrink-0">[{p.number}]</span>
-                            <span className="text-base text-slate-700 leading-relaxed">{renderBoldText(p.summary!)}</span>
+                            <span className="font-bold text-amber-800 dark:text-amber-300 text-sm flex-shrink-0">[{p.number}]</span>
+                            <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
                           </div>
                         ))}
                     </div>
@@ -899,8 +899,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 )}
                 <div className="space-y-6">
                   {relatedParagraphs.map((paragraph, index) => (
-                    <div key={index} className="leading-relaxed text-slate-700 text-lg">
-                      <span className="font-bold text-slate-900 mr-2">[{paragraph.number}]</span>
+                    <div key={index} className="leading-relaxed text-text-body text-lg">
+                      <span className="font-bold text-text-primary mr-2">[{paragraph.number}]</span>
                       {formatContent(paragraph.content)}
                       {/* Imagen del párrafo (si existe) - Diseño Premium */}
                       {paragraph.image && (
@@ -908,10 +908,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           <img
                             src={paragraph.image}
                             alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
-                            className="w-full rounded-xl shadow-lg border border-slate-200"
+                            className="w-full rounded-xl shadow-lg border border-border"
                           />
                           {paragraph.imageCaption && (
-                            <p className="text-sm text-slate-600 italic mt-3 text-center bg-slate-50 p-3 rounded-lg">
+                            <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
                               {paragraph.imageCaption}
                             </p>
                           )}
@@ -921,7 +921,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   ))}
                 </div>
               </div>
-              <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+              <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
                 <button
                   onClick={() => {
                     const paragraphsText = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
@@ -938,7 +938,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     setParagraphCopied(true);
                     setTimeout(() => setParagraphCopied(false), 2000);
                   }}
-                  className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-medium flex items-center gap-2 shadow-sm"
+                  className="px-4 py-2 bg-surface border border-border-strong text-text-body rounded-lg hover:bg-surface-alt transition-colors font-medium flex items-center gap-2 shadow-sm"
                 >
                   {paragraphCopied ? '✅ Copiado' : '📋 Copiar'}
                 </button>
@@ -955,34 +955,34 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
         {/* Helper para renderizar modales de textos bíblicos */}
         {showReadTextModal && question.readText && biblicalTexts[question.readText] && (
-          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-            <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-slate-200">
-              <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-                <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+            <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
+              <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
+                <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
                   <span>📖</span> Lectura Bíblica
                 </h3>
                 <button
                   onClick={() => setShowReadTextModal(false)}
-                  className="text-slate-400 hover:text-slate-600 transition-colors"
+                  className="text-text-tertiary hover:text-text-secondary transition-colors"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
-              <div className="p-6 overflow-y-auto custom-scrollbar bg-white">
+              <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
                 <div className="space-y-6">
                   {biblicalTexts[question.readText].map((text, index) => (
-                    <div key={index} className="bg-slate-50 rounded-lg p-5 border-l-4 border-slate-600">
-                      <h4 className="font-bold text-slate-800 mb-2 font-serif">{text.reference}</h4>
-                      <p className="text-slate-700 italic leading-relaxed font-serif text-lg">
+                    <div key={index} className="bg-surface-alt rounded-lg p-5 border-l-4 border-text-secondary">
+                      <h4 className="font-bold text-text-primary mb-2 font-serif">{text.reference}</h4>
+                      <p className="text-text-body italic leading-relaxed font-serif text-lg">
                         &quot;{text.text}&quot;
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
+              <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end">
                 <button
                   onClick={() => setShowReadTextModal(false)}
                   className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium"
@@ -1001,7 +1001,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             <div className="relative">
               {/* Líneas decorativas laterales */}
               <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                <div className="w-full border-t border-slate-200"></div>
+                <div className="w-full border-t border-border"></div>
               </div>
 
               {/* Subtítulo centrado */}
@@ -1017,16 +1017,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {/* Sección LSM del subtítulo */}
             <div className="mt-4 flex justify-center">
               {isEditingSectionLSM ? (
-                <div className="w-full max-w-xl bg-white p-4 rounded-lg border border-blue-200 shadow-md animate-fadeIn">
+                <div className="w-full max-w-xl bg-surface p-4 rounded-lg border border-blue-200 dark:border-blue-800 shadow-md animate-fadeIn">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Editando LSM</span>
+                    <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Editando LSM</span>
                   </div>
                   <textarea
                     value={editedSectionLSM}
                     onChange={(e) => setEditedSectionLSM(e.target.value)}
                     onKeyDown={handleSectionKeyDown}
-                    className="w-full p-3 text-slate-700 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg resize-none uppercase"
+                    className="w-full p-3 text-text-body border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg resize-none uppercase bg-surface"
                     rows={2}
                     placeholder="Escribe el subtítulo en LSM..."
                     autoFocus
@@ -1035,13 +1035,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     <button
                       onClick={handleSaveSectionLSM}
                       disabled={isSavingSection}
-                      className="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium"
+                      className="text-sm bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 font-medium"
                     >
                       {isSavingSection ? 'Guardando...' : '💾 Guardar'}
                     </button>
                     <button
                       onClick={handleCancelSectionEdit}
-                      className="text-sm text-slate-500 px-4 py-2 hover:text-slate-700"
+                      className="text-sm text-text-muted px-4 py-2 hover:text-text-body"
                     >
                       Cancelar
                     </button>
@@ -1050,15 +1050,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               ) : (
                 <div
                   onClick={() => setIsEditingSectionLSM(true)}
-                  className="group/section cursor-pointer px-6 py-3 rounded-lg border border-transparent hover:bg-slate-50 hover:border-slate-200 transition-all max-w-xl w-full"
+                  className="group/section cursor-pointer px-6 py-3 rounded-lg border border-transparent hover:bg-surface-alt hover:border-border transition-all max-w-xl w-full"
                 >
                   <div className="flex items-center justify-center gap-2 mb-1">
                     <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider group-hover/section:text-blue-600">LSM</span>
-                    <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 text-xs transition-opacity">✏️</span>
+                    <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider group-hover/section:text-blue-600 dark:group-hover/section:text-blue-400">LSM</span>
+                    <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-blue-400 text-xs transition-opacity">✏️</span>
                   </div>
-                  <p className="text-slate-600 font-medium text-lg text-center uppercase">
-                    {currentSectionLSMText || <span className="text-slate-400 italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
+                  <p className="text-text-secondary font-medium text-lg text-center uppercase">
+                    {currentSectionLSMText || <span className="text-text-tertiary italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
                   </p>
                 </div>
               )}
@@ -1070,15 +1070,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         <div id={`question-${question.number}`} className="mb-12 scroll-mt-24 transform transition-all duration-500 ease-out">
 
           {/* Tarjeta Principal */}
-          <div className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-surface border border-border rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
 
             {/* Barra lateral decorativa */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]"></div>
 
             {/* Cabecera de la Pregunta */}
             <div className="p-8 pb-4">
               <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">
+                <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase">
                   Pregunta {question.number}
                 </span>
                 <div className="flex items-center gap-2">
@@ -1086,7 +1086,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   {question.infographic && (
                     <button
                       onClick={() => setShowInfographicModal(true)}
-                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200"
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200 dark:border-blue-800"
                       title="Ver infografía"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -1098,10 +1098,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   {/* Botón Párrafos (Diseño Minimalista) */}
                   <button
                     onClick={() => setShowParagraphsModal(true)}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors text-xs font-bold uppercase tracking-wide border border-slate-200"
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-alt text-text-secondary hover:bg-surface-raised hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-wide border border-border"
                   >
                     <span>Párrafos</span>
-                    <span className="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded text-[10px]">
+                    <span className="bg-surface-raised text-text-body px-1.5 py-0.5 rounded text-[10px]">
                       {question.paragraphs.join(', ')}
                     </span>
                   </button>
@@ -1109,7 +1109,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </div>
 
               {/* Texto de la Pregunta */}
-              <h2 className="text-2xl md:text-3xl font-serif text-slate-800 leading-tight mb-2">
+              <h2 className="text-2xl md:text-3xl font-serif text-text-primary leading-tight mb-2">
                 {question.textEs}
               </h2>
 
@@ -1129,38 +1129,38 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             </div>
 
             {/* Sección Intermedia: LSM y Herramientas */}
-            <div className="px-8 py-4 bg-slate-50 border-y border-slate-100 flex flex-wrap items-center gap-4">
+            <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle flex flex-wrap items-center gap-4">
 
               {/* Botón LSM */}
               <div className="flex-1 min-w-[200px]">
                 {isEditingLSM ? (
-                  <div className="bg-white p-2 rounded-lg border border-blue-200 shadow-sm animate-fadeIn">
+                  <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
                     <textarea
                       value={editedLSM}
                       onChange={(e) => setEditedLSM(e.target.value)}
                       onKeyDown={handleKeyDown}
                       onBlur={handleBlurLSM}
-                      className="w-full p-2 text-slate-700 border-none focus:ring-0 text-sm resize-none"
+                      className="w-full p-2 text-text-body border-none focus:ring-0 text-sm resize-none bg-surface"
                       rows={2}
                       placeholder="Escribe la traducción LSM..."
                       autoFocus
                     />
                     <div className="flex justify-end gap-2 mt-2">
-                      <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Guardar</button>
-                      <button onMouseDown={handleCancelEdit} className="text-xs text-slate-500 px-2 py-1">Cancelar</button>
+                      <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">Guardar</button>
+                      <button onMouseDown={handleCancelEdit} className="text-xs text-text-muted px-2 py-1">Cancelar</button>
                     </div>
                   </div>
                 ) : (
                   <div
                     onClick={() => setIsEditingLSM(true)}
-                    className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm transition-all"
+                    className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-surface hover:border-border hover:shadow-sm transition-all"
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-lg">🤟</span>
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wider group-hover/lsm:text-blue-600">LSM</span>
+                      <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
                     </div>
-                    <p className="text-slate-700 font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
-                      {lsmText || question.textLSM || <span className="text-slate-400 italic font-normal text-sm">Agregar traducción...</span>}
+                    <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
+                      {lsmText || question.textLSM || <span className="text-text-tertiary italic font-normal text-sm">Agregar traducción...</span>}
                     </p>
                   </div>
                 )}
@@ -1171,7 +1171,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
-                    ? 'bg-white border-slate-300 text-slate-700'
+                    ? 'bg-surface border-border-strong text-text-body'
                     : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
                     }`}
                 >
@@ -1182,15 +1182,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
             {/* IMAGEN ILUSTRATIVA - Si existe (Diseño Premium) */}
             {question.image && (
-              <div className="px-8 py-6 bg-white">
-                <div className="rounded-xl overflow-hidden shadow-lg border border-slate-200">
+              <div className="px-8 py-6 bg-surface">
+                <div className="rounded-xl overflow-hidden shadow-lg border border-border">
                   <img
                     src={question.image}
                     alt={question.imageCaption || "Ilustración de la pregunta"}
                     className="w-full h-auto object-cover"
                   />
                   {question.imageCaption && (
-                    <p className="text-sm text-slate-600 italic p-4 bg-slate-50 text-center border-t border-slate-100">
+                    <p className="text-sm text-text-secondary italic p-4 bg-surface-alt text-center border-t border-border-subtle">
                       {question.imageCaption}
                     </p>
                   )}
@@ -1203,10 +1203,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="animate-slideDown">
 
                 {/* Sección de Respuesta */}
-                <div className="p-8 bg-white">
+                <div className="p-8 bg-surface">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-lg shadow-sm border border-amber-200">
+                      <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-300 flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-amber-700">
                         💡
                       </div>
                     </div>
@@ -1215,7 +1215,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                       {/* Label RESPUESTA (solo si hay answerContext) */}
                       {question.answerContext && question.answerContext.length > 0 && (
                         <div className="mb-3">
-                          <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Respuesta</span>
+                          <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Respuesta</span>
                         </div>
                       )}
 
@@ -1224,30 +1224,30 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         {question.answer && (
                           Array.isArray(question.answer)
                             ? question.answer.map((paragraph, idx) => (
-                              <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4">
-                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
+                              <p key={idx} className="text-lg text-text-body leading-relaxed mb-4">
+                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
                               </p>
                             ))
                             : typeof question.answer === 'string'
                               ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => (
-                                <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4 block">
-                                  <span className="text-slate-400 font-medium">[{idx + 1}]</span> {renderBoldText(sentence.trim() + '.')}
+                                <p key={idx} className="text-lg text-text-body leading-relaxed mb-4 block">
+                                  <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(sentence.trim() + '.')}
                                 </p>
                               ))
-                              : <p className="text-lg text-slate-700 leading-relaxed">{renderBoldText(String(question.answer))}</p>
+                              : <p className="text-lg text-text-body leading-relaxed">{renderBoldText(String(question.answer))}</p>
                         )}
                       </div>
 
                       {/* Sección CONTEXTO (solo si existe answerContext) */}
                       {question.answerContext && question.answerContext.length > 0 && (
-                        <div className="mt-6 border-l-2 border-slate-200 bg-slate-50 rounded-r-lg p-5">
+                        <div className="mt-6 border-l-2 border-border bg-surface-alt rounded-r-lg p-5">
                           <div className="mb-3">
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Contexto</span>
+                            <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Contexto</span>
                           </div>
                           <div className="space-y-3">
                             {question.answerContext.map((ctx, idx) => (
-                              <p key={idx} className="text-base text-slate-600 leading-relaxed">
-                                <span className="text-slate-300 font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
+                              <p key={idx} className="text-base text-text-secondary leading-relaxed">
+                                <span className="text-border-strong font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
                               </p>
                             ))}
                           </div>
@@ -1259,8 +1259,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         <div className="mt-6 space-y-3">
                           {(customBullets.length > 0 ? customBullets : question.answerBullets as string[]).map((bullet, idx) => (
                             <div key={idx} className="flex gap-3 group/bullet">
-                              <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2.5 group-hover/bullet:bg-blue-500 transition-colors"></div>
-                              <p className="text-slate-600 group-hover/bullet:text-slate-800 transition-colors">{bullet}</p>
+                              <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-blue-400 transition-colors"></div>
+                              <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
                             </div>
                           ))}
                         </div>
@@ -1270,23 +1270,23 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </div>
 
                 {/* Línea divisoria elegante */}
-                <div className="px-8 py-4 bg-white">
+                <div className="px-8 py-4 bg-surface">
                   <div className="flex items-center justify-center gap-4">
                     <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50" />
-                    <span className="text-amber-400 text-sm">✦</span>
+                    <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
                     <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50" />
                   </div>
                 </div>
 
                 {/* Grid de Tarjetas (Fondo sutil) */}
-                <div className="bg-slate-50 p-8">
+                <div className="bg-surface-alt p-8">
 
                   {/* Flashcards Slide-Down (prueba: artículo 48, pregunta 1,2) */}
                   {articleNum === 48 && (question.flashcards || customFlashcards.length > 0) && (
                     <div className="mb-6">
                       <div className="flex items-center justify-between mb-4 min-h-[40px]">
-                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
-                        <div className="text-xs text-slate-400 font-medium">
+                        <div className="text-xs font-bold text-text-muted uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
+                        <div className="text-xs text-text-tertiary font-medium">
                           {customFlashcards.length} {customFlashcards.length === 1 ? 'tarjeta' : 'tarjetas'}
                         </div>
                       </div>
@@ -1298,7 +1298,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           return (
                             <div
                               key={index}
-                              className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                              className="bg-surface rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                             >
                               {/* Pregunta (siempre visible) */}
                               <button
@@ -1312,13 +1312,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 }}
                                 className="w-full text-left px-5 py-4 flex items-start gap-3 group"
                               >
-                                <span className={`text-slate-400 mt-0.5 text-sm transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}>
+                                <span className={`text-text-tertiary mt-0.5 text-sm transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}>
                                   ▸
                                 </span>
-                                <span className="text-slate-700 font-sans font-semibold text-base leading-relaxed flex-1">
+                                <span className="text-text-body font-sans font-semibold text-base leading-relaxed flex-1">
                                   {card.question}
                                 </span>
-                                <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-400'}`}>
+                                <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-surface-raised text-text-tertiary'}`}>
                                   {isOpen ? 'Ocultar' : 'Ver'}
                                 </span>
                               </button>
@@ -1329,7 +1329,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               >
                                 <div className="px-5 pb-4 pt-0">
                                   <div className="ml-6 pl-4 border-l-2 border-amber-300">
-                                    <p className="text-slate-600 leading-relaxed text-[15px]">
+                                    <p className="text-text-secondary leading-relaxed text-[15px]">
                                       {card.answer}
                                     </p>
                                   </div>
@@ -1449,7 +1449,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
             {/* Contenedor de imagen */}
             <div
-              className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-white"
+              className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-surface"
               onClick={(e) => e.stopPropagation()}
             >
               <img

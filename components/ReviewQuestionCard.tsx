@@ -104,34 +104,34 @@ export default function ReviewQuestionCard({
 
   return (
       <div className="mb-8">
-        <div className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
+        <div className="bg-surface border border-border rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
 
           {/* Barra lateral decorativa */}
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]"></div>
 
           {/* Cabecera de la Pregunta */}
           <div className="p-8 pb-4">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">
+              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase">
                 Pregunta de Repaso {index + 1}
               </span>
             </div>
 
             {/* Texto de la Pregunta */}
-            <h2 className="text-2xl md:text-3xl font-serif text-slate-800 leading-tight mb-2">
+            <h2 className="text-2xl md:text-3xl font-serif text-text-primary leading-tight mb-2">
               {reviewQuestion.question}
             </h2>
 
             {/* Imagen ilustrativa */}
             {reviewQuestion.image && (
-              <div className="mt-4 rounded-lg overflow-hidden border border-slate-200 shadow-sm">
+              <div className="mt-4 rounded-lg overflow-hidden border border-border shadow-sm">
                 <img
                   src={reviewQuestion.image}
                   alt={reviewQuestion.imageCaption || 'Imagen ilustrativa'}
                   className="w-full h-auto"
                 />
                 {reviewQuestion.imageCaption && (
-                  <p className="text-xs text-slate-500 italic px-3 py-2 bg-slate-50 border-t border-slate-100">
+                  <p className="text-xs text-text-muted italic px-3 py-2 bg-surface-alt border-t border-border-subtle">
                     {reviewQuestion.imageCaption}
                   </p>
                 )}
@@ -140,40 +140,40 @@ export default function ReviewQuestionCard({
           </div>
 
           {/* Sección Intermedia: LSM y Herramientas */}
-          <div className="px-8 py-4 bg-slate-50 border-y border-slate-100 flex flex-wrap items-center gap-4">
+          <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle flex flex-wrap items-center gap-4">
 
             {/* Área LSM */}
             <div className="flex-1 min-w-[200px]">
               {isEditingLSM ? (
-                <div className="bg-white p-2 rounded-lg border border-blue-200 shadow-sm animate-fadeIn">
+                <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
                   <textarea
                     value={editedLSM}
                     onChange={(e) => setEditedLSM(e.target.value)}
                     onKeyDown={handleKeyDown}
                     onBlur={handleBlurLSM}
-                    className="w-full p-2 text-slate-700 border-none focus:ring-0 text-sm resize-none"
+                    className="w-full p-2 text-text-body border-none focus:ring-0 text-sm resize-none bg-surface"
                     rows={2}
                     placeholder="Escribe la traducción LSM..."
                     autoFocus
                   />
                   <div className="flex justify-end gap-2 mt-2">
-                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 text-white px-2 py-1 rounded">
+                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">
                       {isSaving ? 'Guardando...' : 'Guardar'}
                     </button>
-                    <button onMouseDown={handleCancelEdit} className="text-xs text-slate-500 px-2 py-1">Cancelar</button>
+                    <button onMouseDown={handleCancelEdit} className="text-xs text-text-muted px-2 py-1">Cancelar</button>
                   </div>
                 </div>
               ) : (
                 <div
                   onClick={() => setIsEditingLSM(true)}
-                  className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm transition-all"
+                  className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-surface hover:border-border hover:shadow-sm transition-all"
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider group-hover/lsm:text-blue-600">LSM</span>
+                    <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
                   </div>
-                  <p className="text-slate-700 font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
-                    {currentLSMText || <span className="text-slate-400 italic font-normal text-sm">Agregar traducción...</span>}
+                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
+                    {currentLSMText || <span className="text-text-tertiary italic font-normal text-sm">Agregar traducción...</span>}
                   </p>
                 </div>
               )}
@@ -184,7 +184,7 @@ export default function ReviewQuestionCard({
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
-                  ? 'bg-white border-slate-300 text-slate-700'
+                  ? 'bg-surface border-border-strong text-text-body'
                   : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
                 }`}
               >
@@ -199,10 +199,10 @@ export default function ReviewQuestionCard({
 
               {/* Sección de Respuesta */}
               {reviewQuestion.answer && (
-                <div className="p-8 bg-white">
+                <div className="p-8 bg-surface">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-lg shadow-sm border border-amber-200">
+                      <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-amber-800">
                         💡
                       </div>
                     </div>
@@ -210,11 +210,11 @@ export default function ReviewQuestionCard({
                       <div className="prose prose-slate max-w-none">
                         {Array.isArray(reviewQuestion.answer)
                           ? reviewQuestion.answer.map((paragraph, idx) => (
-                              <p key={idx} className="text-lg text-slate-700 leading-relaxed mb-4">
-                                <span className="text-slate-400 font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
+                              <p key={idx} className="text-lg text-text-body leading-relaxed mb-4">
+                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
                               </p>
                             ))
-                          : <p className="text-lg text-slate-700 leading-relaxed">{renderBoldText(String(reviewQuestion.answer))}</p>
+                          : <p className="text-lg text-text-body leading-relaxed">{renderBoldText(String(reviewQuestion.answer))}</p>
                         }
                       </div>
 
@@ -228,8 +228,8 @@ export default function ReviewQuestionCard({
                             if (!bullet.trim()) return null;
                             return (
                               <div key={idx} className="flex gap-3 group/bullet">
-                                <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2.5 group-hover/bullet:bg-blue-500 transition-colors"></div>
-                                <p className="text-slate-600 group-hover/bullet:text-slate-800 transition-colors">{bullet}</p>
+                                <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-blue-400 transition-colors"></div>
+                                <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
                               </div>
                             );
                           })}
@@ -241,17 +241,17 @@ export default function ReviewQuestionCard({
               )}
 
               {/* Línea divisoria elegante */}
-              <div className="px-8 py-4 bg-white">
+              <div className="px-8 py-4 bg-surface">
                 <div className="flex items-center justify-center gap-4">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50" />
-                  <span className="text-amber-400 text-sm">✦</span>
-                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50" />
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50 dark:to-amber-600/50" />
+                  <span className="text-amber-400 dark:text-amber-500 text-sm">✦</span>
+                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50 dark:to-amber-600/50" />
                 </div>
               </div>
 
               {/* Grid de Tarjetas */}
               {(reviewQuestion.flashcards || reviewQuestion.biblicalCards) && (
-                <div className="bg-slate-50 p-8">
+                <div className="bg-surface-alt p-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Tarjetas Didácticas */}
                     {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (

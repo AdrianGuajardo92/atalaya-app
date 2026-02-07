@@ -191,9 +191,9 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
     <div className="mt-4">
       {/* Header con altura fija para alineación con Textos Clave */}
       <div className="flex items-center justify-between mb-4 min-h-[40px]">
-        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
+        <div className="text-xs font-bold text-text-muted uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
         <div className="flex items-center gap-3">
-          <div className="text-xs text-slate-400 font-medium">
+          <div className="text-xs text-text-tertiary font-medium">
             {visibleCards.length} {visibleCards.length === 1 ? 'tarjeta' : 'tarjetas'}
           </div>
           {onAddCard && (
@@ -238,7 +238,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                 {/* Indicador de tarjeta personalizada */}
                 {card.isCustom && (
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide border border-slate-200">
+                    <span className="bg-surface-raised text-text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide border border-border">
                       Personal
                     </span>
                   </div>
@@ -253,7 +253,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                         e.stopPropagation();
                         handleOpenEditModal(index, card);
                       }}
-                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-white text-slate-400 hover:text-blue-600 hover:bg-blue-50 shadow-sm border border-slate-200 opacity-0 group-hover:opacity-100"
+                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-surface text-text-tertiary hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950 shadow-sm border border-border opacity-0 group-hover:opacity-100"
                       title="Editar tarjeta"
                     >
                       <span className="text-sm">✏️</span>
@@ -283,8 +283,8 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                       }
                     }}
                     className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border ${deleteConfirm === cardId
-                      ? 'bg-red-50 text-red-600 border-red-200 scale-110 opacity-100'
-                      : 'bg-white text-slate-400 border-slate-200 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100'
+                      ? 'bg-red-50 dark:bg-red-950 text-red-600 dark:text-red-400 border-red-200 dark:border-red-800 scale-110 opacity-100'
+                      : 'bg-surface text-text-tertiary border-border hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950 opacity-0 group-hover:opacity-100'
                       }`}
                     title={deleteConfirm === cardId ? 'Clic de nuevo para confirmar' : (card.isCustom ? 'Eliminar tarjeta' : 'Ocultar tarjeta')}
                   >
@@ -301,7 +301,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                 >
                   {/* Frente de la tarjeta (Pregunta) */}
                   <div
-                    className="absolute w-full h-[250px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+                    className="absolute w-full h-[250px] bg-surface rounded-xl shadow-sm border border-border overflow-hidden flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
@@ -309,14 +309,14 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                   >
                     {/* Contenido de la pregunta con scroll */}
                     <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center">
-                      <p className="text-center text-slate-700 font-serif text-lg leading-relaxed">
+                      <p className="text-center text-text-body font-serif text-lg leading-relaxed">
                         {card.question}
                       </p>
                       {/* Mostrar LSM de pregunta si existe y no está editando */}
                       {questionLSM && !isEditingQuestion && (
                         <>
-                          <div className="w-8 h-px bg-slate-200 my-4"></div>
-                          <p className="text-center text-slate-500 font-bold text-sm uppercase tracking-wider">
+                          <div className="w-8 h-px bg-border my-4"></div>
+                          <p className="text-center text-text-muted font-bold text-sm uppercase tracking-wider">
                             🤟 {questionLSM}
                           </p>
                         </>
@@ -325,15 +325,15 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingQuestion && (
-                      <div className="flex-shrink-0 p-3 mx-6 mb-6 bg-slate-50 rounded border border-slate-200 shadow-inner" onClick={(e) => e.stopPropagation()}>
-                        <p className="text-[10px] text-slate-500 mb-1 font-bold uppercase tracking-wider">
+                      <div className="flex-shrink-0 p-3 mx-6 mb-6 bg-surface-alt rounded border border-border shadow-inner" onClick={(e) => e.stopPropagation()}>
+                        <p className="text-[10px] text-text-muted mb-1 font-bold uppercase tracking-wider">
                           Editar LSM
                         </p>
                         <textarea
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="w-full p-2 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-slate-500 text-sm font-medium text-slate-700 bg-white"
+                          className="w-full p-2 border border-border-strong rounded focus:outline-none focus:ring-1 focus:ring-slate-500 text-sm font-medium text-text-body bg-surface"
                           rows={2}
                           placeholder="Escribe en LSM..."
                           autoFocus
@@ -345,7 +345,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                               handleCancelEdit();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 text-slate-500 text-xs hover:text-slate-700 font-medium"
+                            className="px-2 py-1 text-text-muted text-xs hover:text-text-body font-medium"
                           >
                             Cancelar
                           </button>
@@ -368,7 +368,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                       <div className="flex-shrink-0 pb-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={(e) => handleStartEdit(index, 'question', e)}
-                          className="text-xs font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wider flex items-center gap-1"
+                          className="text-xs font-bold text-text-tertiary hover:text-text-secondary uppercase tracking-wider flex items-center gap-1"
                         >
                           {questionLSM ? '✏️ Editar LSM' : '➕ Agregar LSM'}
                         </button>
@@ -376,7 +376,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                     )}
                   </div>
 
-                  {/* Reverso de la tarjeta (Respuesta) */}
+                  {/* Reverso de la tarjeta (Respuesta) - Stays dark intentionally */}
                   <div
                     className="absolute w-full h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
                     style={{
@@ -475,20 +475,20 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
           onClick={handleCloseModal}
         >
           <div
-            className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200"
+            className="bg-surface rounded-xl shadow-2xl max-w-lg w-full overflow-hidden border border-border"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header del modal */}
-            <div className="bg-slate-50 border-b border-slate-200 p-4 flex items-center justify-between">
+            <div className="bg-surface-alt border-b border-border p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="text-xl">🎴</span>
-                <h3 className="text-lg font-bold text-slate-800">
+                <h3 className="text-lg font-bold text-text-primary">
                   {editingCustomCard !== null ? 'Editar Tarjeta' : 'Crear Tarjeta Didáctica'}
                 </h3>
               </div>
               <button
                 onClick={handleCloseModal}
-                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200 transition-colors text-slate-500"
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-raised transition-colors text-text-muted"
                 title="Cerrar"
               >
                 <span className="text-xl">×</span>
@@ -499,14 +499,14 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
             <div className="p-6 space-y-5">
               {/* Campo de pregunta */}
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-2">
                   Pregunta (Frente)
                 </label>
                 <textarea
                   value={newCardQuestion}
                   onChange={(e) => setNewCardQuestion(e.target.value)}
                   placeholder="Escribe la pregunta..."
-                  className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-400 text-slate-700 resize-none transition-all"
+                  className="w-full p-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong text-text-body bg-surface resize-none transition-all"
                   rows={3}
                   autoFocus
                 />
@@ -514,31 +514,31 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
               {/* Campo de respuesta */}
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-2">
                   Respuesta (Reverso)
                 </label>
                 <textarea
                   value={newCardAnswer}
                   onChange={(e) => setNewCardAnswer(e.target.value)}
                   placeholder="Escribe la respuesta..."
-                  className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-400 text-slate-700 resize-none transition-all"
+                  className="w-full p-3 border border-border-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong text-text-body bg-surface resize-none transition-all"
                   rows={4}
                 />
               </div>
             </div>
 
             {/* Footer del modal */}
-            <div className="bg-slate-50 p-4 flex justify-end gap-3 border-t border-slate-200">
+            <div className="bg-surface-alt p-4 flex justify-end gap-3 border-t border-border">
               <button
                 onClick={handleCloseModal}
-                className="px-4 py-2 text-slate-600 hover:text-slate-800 font-medium transition-colors text-sm"
+                className="px-4 py-2 text-text-secondary hover:text-text-primary font-medium transition-colors text-sm"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleSaveCard}
                 disabled={isSavingCard || !newCardQuestion.trim() || !newCardAnswer.trim()}
-                className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-sm"
+                className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 dark:disabled:bg-slate-600 disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-sm"
               >
                 {isSavingCard ? 'Guardando...' : (editingCustomCard !== null ? 'Guardar cambios' : 'Crear tarjeta')}
               </button>

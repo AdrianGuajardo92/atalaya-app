@@ -14,6 +14,7 @@ import { getArticleById, getAllActiveArticles } from '@/data/articles';
 import { getDefaultArticleId } from '@/data/articles-config';
 import { isExecutiveDesign } from '@/data/design-config';
 import { ArticleData } from '@/types/atalaya';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Home() {
   // Estado para manejo de artículos (usa la configuración centralizada)
@@ -279,14 +280,14 @@ export default function Home() {
 
   if (isLoading || !currentArticle) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
-        <div className="text-xl text-slate-600">Cargando...</div>
+      <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)] flex items-center justify-center">
+        <div className="text-xl text-text-secondary">Cargando...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)]">
       {/* Temporizador flotante */}
       <Timer />
 
@@ -296,7 +297,7 @@ export default function Home() {
       {/* Botón de gestión de PDFs - Solo visible en desktop */}
       <button
         onClick={() => setShowPdfUploader(true)}
-        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
+        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
         title="Gestionar PDFs"
       >
         <span className="text-xl">📁</span>
@@ -310,18 +311,20 @@ export default function Home() {
 
       {/* Indicador de progreso de scroll (solo en modo scroll) */}
       {navigationMode === 'scroll' && showScrollIndicator && (
-        <div className="fixed top-20 right-4 z-10 bg-slate-800 text-white rounded-lg shadow-lg px-4 py-2 transition-opacity duration-300">
-          <div className="text-xs font-medium text-slate-300 mb-1">Progreso</div>
+        <div className="fixed top-20 right-4 z-10 bg-slate-800 dark:bg-slate-700 text-white rounded-lg shadow-lg px-4 py-2 transition-opacity duration-300">
+          <div className="text-xs font-medium text-slate-300 dark:text-slate-400 mb-1">Progreso</div>
           <div className="text-2xl font-bold">{scrollProgress}%</div>
         </div>
       )}
 
       {/* Control de modo de vista y navegación - Menú colapsable */}
-      <div ref={viewMenuRef} className="fixed top-4 right-4 z-50">
+      <div ref={viewMenuRef} className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        {/* Botón de tema */}
+        <ThemeToggle />
         {/* Botón principal (siempre visible) */}
         <button
           onClick={() => setShowViewOptions(!showViewOptions)}
-          className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all"
+          className="p-3 bg-surface rounded-full shadow-lg hover:bg-surface-alt transition-all"
           title="Opciones de vista"
         >
           <span className="text-xl">{showViewOptions ? '✕' : '⚙️'}</span>
@@ -329,13 +332,13 @@ export default function Home() {
 
         {/* Menú expandible */}
         {showViewOptions && (
-          <div className="absolute top-14 right-0 bg-white rounded-xl shadow-xl p-3 animate-fadeIn min-w-[200px]">
+          <div className="absolute top-14 right-0 bg-surface rounded-xl shadow-xl p-3 animate-fadeIn min-w-[200px]">
             {/* Fila 1: Tipo de vista */}
             <div className="flex gap-2 mb-2">
               <button
                 onClick={() => { setViewMode('study'); setShowViewOptions(false); }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                  viewMode === 'study' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  viewMode === 'study' ? 'bg-blue-600 dark:bg-blue-500 text-white' : 'bg-surface-raised text-text-body hover:bg-surface-alt'
                 }`}
               >
                 📖 Estudio
@@ -343,7 +346,7 @@ export default function Home() {
               <button
                 onClick={() => { setViewMode('summary'); setShowViewOptions(false); }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                  viewMode === 'summary' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  viewMode === 'summary' ? 'bg-blue-600 dark:bg-blue-500 text-white' : 'bg-surface-raised text-text-body hover:bg-surface-alt'
                 }`}
               >
                 📋 Resumen
@@ -353,7 +356,7 @@ export default function Home() {
               <button
                 onClick={() => { setViewMode('timeline'); setShowViewOptions(false); }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                  viewMode === 'timeline' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  viewMode === 'timeline' ? 'bg-blue-600 dark:bg-blue-500 text-white' : 'bg-surface-raised text-text-body hover:bg-surface-alt'
                 }`}
               >
                 📅 Timeline
@@ -362,16 +365,16 @@ export default function Home() {
 
             {/* Fila 2: Modo de navegación (solo en modo estudio) */}
             {viewMode === 'study' && (
-              <div className="pt-3 border-t border-gray-100">
-                <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-2 px-1">Modo de estudio</p>
+              <div className="pt-3 border-t border-border-subtle">
+                <p className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-2 px-1">Modo de estudio</p>
                 <div className="flex gap-2">
                   {/* Botón ESTUDIAR (scroll) - Preparación personal */}
                   <button
                     onClick={() => { setNavigationMode('scroll'); setShowViewOptions(false); }}
                     className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1.5 ${
                       navigationMode === 'scroll'
-                        ? 'bg-slate-700 text-white shadow-md'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                        ? 'bg-slate-700 dark:bg-slate-600 text-white shadow-md'
+                        : 'bg-surface text-text-secondary border border-border hover:border-border-strong hover:bg-surface-alt'
                     }`}
                   >
                     {/* SVG Libro abierto con marcador - Estilo Lucide */}
@@ -397,8 +400,8 @@ export default function Home() {
                     onClick={() => { setNavigationMode('paginated'); setShowViewOptions(false); }}
                     className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1.5 ${
                       navigationMode === 'paginated'
-                        ? 'bg-slate-700 text-white shadow-md'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                        ? 'bg-slate-700 dark:bg-slate-600 text-white shadow-md'
+                        : 'bg-surface text-text-secondary border border-border hover:border-border-strong hover:bg-surface-alt'
                     }`}
                   >
                     {/* SVG Atril con micrófono - Estilo Lucide */}
@@ -497,8 +500,8 @@ export default function Home() {
 
             {/* Preguntas de Repaso */}
             <div className="mt-12">
-              <div className="bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg shadow-md p-8 mb-8">
-                <h2 className="text-2xl font-bold text-violet-800 text-center">
+              <div className="bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-950 dark:to-violet-900 rounded-lg shadow-md p-8 mb-8">
+                <h2 className="text-2xl font-bold text-violet-800 dark:text-violet-200 text-center">
                   ¿QUÉ RESPONDERÍAS?
                 </h2>
               </div>
@@ -528,8 +531,8 @@ export default function Home() {
             )}
 
             {/* Canción Final */}
-            <div className="mt-10 bg-gradient-to-b from-slate-50 to-white rounded-lg shadow-md p-8 text-center border border-slate-200">
-              <p className="text-lg font-semibold text-slate-700">
+            <div className="mt-10 bg-gradient-to-b from-surface-alt to-surface rounded-lg shadow-md p-8 text-center border border-border">
+              <p className="text-lg font-semibold text-text-body">
                 {currentArticle.finalSong}
               </p>
             </div>
@@ -560,10 +563,10 @@ export default function Home() {
                   return (
                     <div className="mb-6">
                       {/* Contenedor de párrafos con diseño ejecutivo */}
-                      <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
+                      <div className="bg-surface-alt border border-border rounded-xl overflow-hidden">
                         {/* Header del párrafo */}
-                        <div className="bg-white border-b border-slate-200 px-6 md:px-8 py-4 md:py-5">
-                          <span className="text-sm md:text-base font-bold text-slate-600 uppercase tracking-[0.15em]">
+                        <div className="bg-surface border-b border-border px-6 md:px-8 py-4 md:py-5">
+                          <span className="text-sm md:text-base font-bold text-text-secondary uppercase tracking-[0.15em]">
                             {paragraphLabel}
                           </span>
                         </div>
@@ -573,26 +576,26 @@ export default function Home() {
                           {relatedParagraphs.map((paragraph, idx) => (
                             <div key={paragraph.number} className="relative">
                               {/* Barra lateral decorativa */}
-                              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-slate-500 to-slate-400 rounded-full"></div>
+                              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[var(--gradient-to)] to-[var(--gradient-from)] rounded-full"></div>
 
                               <div className="pl-6 md:pl-8">
                                 {/* Número del párrafo */}
                                 {questionParagraphs.length > 1 && (
-                                  <span className="inline-block mb-3 px-3 py-1 bg-slate-200 text-slate-700 text-sm font-bold rounded">
+                                  <span className="inline-block mb-3 px-3 py-1 bg-surface-raised text-text-body text-sm font-bold rounded">
                                     {paragraph.number}
                                   </span>
                                 )}
 
                                 {/* Contenido del párrafo - TAMAÑO GRANDE PARA TABLETS */}
-                                <p className="text-slate-800 leading-[1.8] text-lg md:text-xl font-normal">
+                                <p className="text-text-primary leading-[1.8] text-lg md:text-xl font-normal">
                                   {paragraph.content}
                                 </p>
 
                                 {/* Resumen/Summary si existe */}
                                 {paragraph.summary && (
-                                  <div className="mt-5 bg-amber-50 border border-amber-200 rounded-lg px-5 py-4">
-                                    <p className="text-sm font-bold text-amber-700 uppercase tracking-wider mb-2">💡 Resumen</p>
-                                    <p className="text-base md:text-lg text-amber-900 italic leading-relaxed">{paragraph.summary}</p>
+                                  <div className="mt-5 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-700 rounded-lg px-5 py-4">
+                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider mb-2">💡 Resumen</p>
+                                    <p className="text-base md:text-lg text-amber-900 dark:text-amber-100 italic leading-relaxed">{paragraph.summary}</p>
                                   </div>
                                 )}
                               </div>
@@ -600,7 +603,7 @@ export default function Home() {
                               {/* Separador entre párrafos si hay más de uno */}
                               {idx < relatedParagraphs.length - 1 && (
                                 <div className="mt-6 flex items-center gap-3">
-                                  <div className="flex-1 h-px bg-slate-200"></div>
+                                  <div className="flex-1 h-px bg-border"></div>
                                 </div>
                               )}
                             </div>
@@ -610,9 +613,9 @@ export default function Home() {
 
                       {/* Separador ✦ entre párrafos y pregunta */}
                       <div className="flex items-center gap-4 my-8">
-                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-                        <span className="text-slate-400 text-sm">✦</span>
-                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                        <span className="text-text-tertiary text-sm">✦</span>
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                       </div>
                     </div>
                   );
@@ -658,8 +661,8 @@ export default function Home() {
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}
                 {currentReviewIndex === currentArticle.reviewQuestions.length - 1 && (
-                  <div className="mt-6 bg-gradient-to-b from-slate-50 to-white rounded-lg shadow-md p-8 text-center border border-slate-200">
-                    <p className="text-lg font-semibold text-slate-700">
+                  <div className="mt-6 bg-gradient-to-b from-surface-alt to-surface rounded-lg shadow-md p-8 text-center border border-border">
+                    <p className="text-lg font-semibold text-text-body">
                       {currentArticle.finalSong}
                     </p>
                   </div>
@@ -676,18 +679,18 @@ export default function Home() {
                   <div className="mt-8">
                     {/* Separador ejecutivo */}
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-                      <span className="text-slate-400 text-sm">✦</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                      <span className="text-text-tertiary text-sm">✦</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                     </div>
 
-                    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+                    <div className="bg-surface border border-border rounded-xl shadow-sm p-6">
                       {/* Header ejecutivo */}
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-4 text-center">
+                      <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-4 text-center">
                         Próxima Pregunta
                       </p>
 
-                      {/* SUBTÍTULO de sección */}
+                      {/* SUBTÍTULO de sección - INTENTIONALLY DARK */}
                       {currentArticle.questions[currentQuestionIndex + 1].section && (
                         <div className="bg-slate-800 rounded-lg px-5 py-3 mb-4">
                           <h3 className="text-lg font-bold text-white uppercase tracking-wide text-center">
@@ -698,9 +701,9 @@ export default function Home() {
 
                       {/* Badge de párrafos */}
                       <div className="flex justify-center">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm">
-                          <span className="text-slate-500">Párrafos:</span>
-                          <span className="font-bold text-slate-700">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-surface-alt border border-border rounded-lg text-sm">
+                          <span className="text-text-muted">Párrafos:</span>
+                          <span className="font-bold text-text-body">
                             {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
                           </span>
                         </span>
@@ -708,9 +711,9 @@ export default function Home() {
 
                       {/* ADELANTO del tema */}
                       {currentArticle.questions[currentQuestionIndex + 1].preview && (
-                        <div className="mt-4 bg-slate-50 px-4 py-3 rounded-lg border border-slate-100">
-                          <p className="text-sm text-slate-600 text-center">
-                            <span className="font-medium text-slate-500">Veremos:</span>{' '}
+                        <div className="mt-4 bg-surface-alt px-4 py-3 rounded-lg border border-border-subtle">
+                          <p className="text-sm text-text-secondary text-center">
+                            <span className="font-medium text-text-muted">Veremos:</span>{' '}
                             <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
                           </p>
                         </div>
@@ -719,30 +722,30 @@ export default function Home() {
                   </div>
                 ) : (
                   /* DISEÑO ORIGINAL - Artículos anteriores */
-                  <div className="mt-6 bg-white rounded-lg shadow-md border-2 border-orange-400 overflow-hidden">
-                    <div className="bg-orange-500 px-5 py-2.5">
+                  <div className="mt-6 bg-surface rounded-lg shadow-md border-2 border-orange-400 dark:border-orange-600 overflow-hidden">
+                    <div className="bg-orange-500 dark:bg-orange-600 px-5 py-2.5">
                       <p className="text-sm font-bold text-white flex items-center gap-2">
                         <span>⏭️</span> Próxima pregunta
                       </p>
                     </div>
                     <div className="p-5 space-y-3">
                       {currentArticle.questions[currentQuestionIndex + 1].section && (
-                        <div className="bg-slate-50 border-l-4 border-slate-700 pl-4 py-3 rounded-r">
-                          <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Sección</p>
-                          <h3 className="text-xl font-extrabold text-slate-900 uppercase leading-tight">
+                        <div className="bg-surface-alt border-l-4 border-slate-700 dark:border-slate-500 pl-4 py-3 rounded-r">
+                          <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1.5">Sección</p>
+                          <h3 className="text-xl font-extrabold text-text-primary uppercase leading-tight">
                             {currentArticle.questions[currentQuestionIndex + 1].section}
                           </h3>
                         </div>
                       )}
-                      <div className="text-xs text-slate-500 px-1">
+                      <div className="text-xs text-text-muted px-1">
                         <span className="font-medium">Párrafos del artículo: </span>
-                        <span className="font-bold text-slate-700">
+                        <span className="font-bold text-text-body">
                           {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
                         </span>
                       </div>
                       {currentArticle.questions[currentQuestionIndex + 1].preview && (
-                        <div className="mt-2 bg-orange-50 px-3 py-2 rounded-lg border border-orange-200">
-                          <p className="text-sm text-orange-800">
+                        <div className="mt-2 bg-orange-50 dark:bg-orange-950 px-3 py-2 rounded-lg border border-orange-200 dark:border-orange-800">
+                          <p className="text-sm text-orange-800 dark:text-orange-200">
                             <span className="font-semibold">🎯 Veremos:</span>{' '}
                             <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
                           </p>
@@ -757,26 +760,26 @@ export default function Home() {
                   /* DISEÑO EJECUTIVO */
                   <div className="mt-8">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-                      <span className="text-slate-400 text-sm">✦</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                      <span className="text-text-tertiary text-sm">✦</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                     </div>
-                    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center">
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-3">Siguiente</p>
-                      <p className="text-lg font-semibold text-slate-700">
+                    <div className="bg-surface border border-border rounded-xl shadow-sm p-6 text-center">
+                      <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-3">Siguiente</p>
+                      <p className="text-lg font-semibold text-text-body">
                         ¿Qué responderías?
                       </p>
-                      <p className="text-sm text-slate-500 mt-1">
+                      <p className="text-sm text-text-muted mt-1">
                         {currentArticle.reviewQuestions.length} preguntas de repaso
                       </p>
                     </div>
                   </div>
                 ) : (
                   /* DISEÑO ORIGINAL */
-                  <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
-                    <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
-                    <div className="text-sm text-slate-700">
-                      <p className="font-semibold text-violet-700">
+                  <div className="mt-6 bg-violet-50 dark:bg-violet-950 border-l-2 border-violet-400 dark:border-violet-600 p-4 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-violet-800 dark:text-violet-200 mb-2">📋 Siguiente:</p>
+                    <div className="text-sm text-text-body">
+                      <p className="font-semibold text-violet-700 dark:text-violet-300">
                         ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
                       </p>
                     </div>
@@ -790,23 +793,23 @@ export default function Home() {
                   /* DISEÑO EJECUTIVO */
                   <div className="mt-8">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
-                      <span className="text-slate-400 text-sm">✦</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                      <span className="text-text-tertiary text-sm">✦</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                     </div>
-                    <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 text-center">
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-3">Siguiente</p>
-                      <p className="text-lg font-semibold text-slate-700">
+                    <div className="bg-surface border border-border rounded-xl shadow-sm p-6 text-center">
+                      <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-3">Siguiente</p>
+                      <p className="text-lg font-semibold text-text-body">
                         Pregunta de repaso {currentReviewIndex + 2}
                       </p>
                     </div>
                   </div>
                 ) : (
                   /* DISEÑO ORIGINAL */
-                  <div className="mt-6 bg-violet-50 border-l-2 border-violet-400 p-4 rounded-lg shadow-sm">
-                    <p className="text-sm font-semibold text-violet-800 mb-2">📋 Siguiente:</p>
-                    <div className="text-sm text-slate-700">
-                      <p className="font-semibold text-violet-700">
+                  <div className="mt-6 bg-violet-50 dark:bg-violet-950 border-l-2 border-violet-400 dark:border-violet-600 p-4 rounded-lg shadow-sm">
+                    <p className="text-sm font-semibold text-violet-800 dark:text-violet-200 mb-2">📋 Siguiente:</p>
+                    <div className="text-sm text-text-body">
+                      <p className="font-semibold text-violet-700 dark:text-violet-300">
                         Pregunta de repaso {currentReviewIndex + 2}
                       </p>
                     </div>
@@ -818,18 +821,18 @@ export default function Home() {
             {/* Controles de navegación */}
             {isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
               /* DISEÑO EJECUTIVO */
-              <div className="mt-8 bg-white border border-slate-200 rounded-xl shadow-sm p-6">
+              <div className="mt-8 bg-surface border border-border rounded-xl shadow-sm p-6">
                 {/* Contador y barra de progreso */}
                 <div className="mb-5">
                   <div className="flex justify-between items-center mb-3">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.1em]">
+                    <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.1em]">
                       {currentReviewIndex === -1 ? (
                         <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
                       ) : (
                         <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
                       )}
                     </p>
-                    <span className="text-sm text-slate-400 font-medium">
+                    <span className="text-sm text-text-tertiary font-medium">
                       {currentReviewIndex === -1 ? (
                         <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
                       ) : (
@@ -839,9 +842,9 @@ export default function Home() {
                   </div>
 
                   {/* Barra de progreso ejecutiva */}
-                  <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-slate-500 transition-all duration-300 ease-out"
+                      className="h-full bg-slate-500 dark:bg-slate-400 transition-all duration-300 ease-out"
                       style={{
                         width: currentReviewIndex === -1
                           ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
@@ -858,8 +861,8 @@ export default function Home() {
                     disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
                     className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
                       currentQuestionIndex === 0 && currentReviewIndex === -1
-                        ? 'bg-slate-50 text-slate-300 cursor-not-allowed border border-slate-100'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                        ? 'bg-surface-alt text-text-tertiary cursor-not-allowed border border-border-subtle'
+                        : 'bg-surface text-text-secondary border border-border hover:bg-surface-alt hover:border-border-strong'
                     }`}
                   >
                     ← Anterior
@@ -870,8 +873,8 @@ export default function Home() {
                     disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
                     className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
                       currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                        ? 'bg-slate-100 text-slate-300 cursor-not-allowed'
-                        : 'bg-slate-700 text-white hover:bg-slate-800 shadow-sm'
+                        ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
+                        : 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-800 dark:hover:bg-slate-500 shadow-sm'
                     }`}
                   >
                     Siguiente →
@@ -880,17 +883,17 @@ export default function Home() {
               </div>
             ) : (
               /* DISEÑO ORIGINAL */
-              <div className="mt-8 bg-white rounded-lg shadow-md p-5 border border-slate-200">
+              <div className="mt-8 bg-surface rounded-lg shadow-md p-5 border border-border">
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-2">
-                    <div className="text-lg font-semibold text-slate-700">
+                    <div className="text-lg font-semibold text-text-body">
                       {currentReviewIndex === -1 ? (
                         <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
                       ) : (
                         <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
                       )}
                     </div>
-                    <div className="text-sm text-slate-500 font-medium">
+                    <div className="text-sm text-text-muted font-medium">
                       {currentReviewIndex === -1 ? (
                         <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
                       ) : (
@@ -898,9 +901,9 @@ export default function Home() {
                       )}
                     </div>
                   </div>
-                  <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-border rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 transition-all duration-300 ease-out"
+                      className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 dark:from-indigo-400 dark:to-indigo-500 transition-all duration-300 ease-out"
                       style={{
                         width: currentReviewIndex === -1
                           ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
@@ -915,8 +918,8 @@ export default function Home() {
                     disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
                     className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
                       currentQuestionIndex === 0 && currentReviewIndex === -1
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                        : 'bg-slate-700 text-white hover:bg-slate-800'
+                        ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
+                        : 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-800 dark:hover:bg-slate-500'
                     }`}
                   >
                     ⬅️ Anterior
@@ -926,8 +929,8 @@ export default function Home() {
                     disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
                     className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
                       currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                        : 'bg-slate-700 text-white hover:bg-slate-800'
+                        ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
+                        : 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-800 dark:hover:bg-slate-500'
                     }`}
                   >
                     Siguiente ➡️

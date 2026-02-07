@@ -60,8 +60,8 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
     <div className="mt-4">
       {/* Header con altura fija para alineación con Tarjetas Didácticas */}
       <div className="flex items-center justify-between mb-4 min-h-[40px]">
-        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">📖 Textos Clave</div>
-        <div className="text-xs text-slate-400 font-medium">
+        <div className="text-xs font-bold text-text-muted uppercase tracking-wider">📖 Textos Clave</div>
+        <div className="text-xs text-text-tertiary font-medium">
           {visibleCards.length} {visibleCards.length === 1 ? 'texto' : 'textos'}
         </div>
       </div>
@@ -91,8 +91,8 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                     handleCopyWithContext(card, index);
                   }}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border ${copiedIndex === index
-                      ? 'bg-emerald-50 text-emerald-600 border-emerald-200 scale-110'
-                      : 'bg-white text-slate-400 border-slate-200 hover:text-blue-600 hover:bg-blue-50 opacity-0 group-hover:opacity-100'
+                      ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 scale-110'
+                      : 'bg-surface text-text-tertiary border-border hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 opacity-0 group-hover:opacity-100'
                     }`}
                   title="Copiar texto bíblico con pregunta de contexto"
                 >
@@ -107,7 +107,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                       onToggleHidden(cardId);
                     }
                   }}
-                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border bg-white text-slate-400 border-slate-200 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100"
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border bg-surface text-text-tertiary border-border hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950 opacity-0 group-hover:opacity-100"
                   title="Ocultar texto bíblico"
                 >
                   <span className="text-sm">🗑️</span>
@@ -123,7 +123,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
               >
                 {/* Frente de la tarjeta (Referencia + Propósito) */}
                 <div
-                  className="absolute w-full h-[200px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+                  className="absolute w-full h-[200px] bg-surface rounded-xl shadow-sm border border-border overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
@@ -131,16 +131,16 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                 >
                   {/* Contenido con scroll */}
                   <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center justify-center">
-                    <p className="text-center text-slate-800 font-bold text-lg mb-3 font-serif">
+                    <p className="text-center text-text-primary font-bold text-lg mb-3 font-serif">
                       {card.reference}
                     </p>
-                    <p className="text-center text-slate-500 text-sm leading-relaxed max-w-[90%]">
+                    <p className="text-center text-text-muted text-sm leading-relaxed max-w-[90%]">
                       {card.purpose}
                     </p>
                   </div>
                 </div>
 
-                {/* Reverso de la tarjeta (Texto completo TNM) */}
+                {/* Reverso de la tarjeta (Texto completo TNM) - Stays dark intentionally */}
                 <div
                   className="absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
                   style={{

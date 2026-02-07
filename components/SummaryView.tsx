@@ -64,14 +64,14 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
       <div className="flex gap-3 mb-6 no-print">
         <button
           onClick={handlePrint}
-          className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-surface-raised hover:bg-border rounded-lg text-text-body font-medium transition-colors"
         >
           <span>🖨️</span>
           Imprimir
         </button>
         <button
           onClick={handleCopyAll}
-          className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-surface-raised hover:bg-border rounded-lg text-text-body font-medium transition-colors"
         >
           <span>📋</span>
           Copiar Todo
@@ -87,21 +87,21 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
             <div key={qIndex} className="summary-card">
               {/* Sección (si existe) */}
               {question.section && (
-                <div className="bg-amber-50 border-l-4 border-amber-500 px-4 py-2 mb-3 rounded-r-lg">
-                  <h2 className="font-bold text-amber-800 text-sm uppercase tracking-wide">
+                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 px-4 py-2 mb-3 rounded-r-lg">
+                  <h2 className="font-bold text-amber-800 dark:text-amber-200 text-sm uppercase tracking-wide">
                     {question.section}
                   </h2>
                 </div>
               )}
 
               {/* Tarjeta de pregunta */}
-              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm print:shadow-none print:border-slate-300">
+              <div className="bg-surface border border-border rounded-xl overflow-hidden shadow-sm print:shadow-none print:border-border-strong">
                 {/* Header de pregunta */}
-                <div className="bg-slate-50 px-4 py-3 border-b border-slate-200 flex items-start gap-3">
-                  <span className="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                <div className="bg-surface-alt px-4 py-3 border-b border-border flex items-start gap-3">
+                  <span className="flex-shrink-0 w-10 h-10 bg-blue-600 dark:bg-blue-700 text-white rounded-full flex items-center justify-center font-bold text-sm">
                     {question.number}
                   </span>
-                  <p className="text-slate-800 font-medium leading-relaxed pt-1.5">
+                  <p className="text-text-primary font-medium leading-relaxed pt-1.5">
                     {question.textEs}
                   </p>
                 </div>
@@ -115,7 +115,7 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
                           <span className="flex-shrink-0 w-5 h-5 bg-emerald-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
                             {sIndex + 1}
                           </span>
-                          <span className="text-slate-700 leading-relaxed">
+                          <span className="text-text-body leading-relaxed">
                             {sentence}
                           </span>
                         </div>
@@ -127,7 +127,7 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
                 {/* Si no hay respuesta */}
                 {sentences.length === 0 && (
                   <div className="px-4 py-3">
-                    <p className="text-sm text-slate-500 italic">
+                    <p className="text-sm text-text-muted italic">
                       Sin respuesta disponible
                     </p>
                   </div>
@@ -141,26 +141,26 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
       {/* Preguntas de repaso */}
       {article.reviewQuestions && article.reviewQuestions.length > 0 && (
         <div className="mt-8">
-          <h2 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
             <span className="text-amber-500">❓</span>
             ¿Qué responderías?
           </h2>
           <div className="space-y-3">
             {article.reviewQuestions.map((rq, index) => (
-              <div key={index} className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <p className="text-slate-800 font-medium">{rq.question}</p>
+              <div key={index} className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-700 rounded-lg p-4">
+                <p className="text-text-primary font-medium">{rq.question}</p>
                 {rq.questionLSM && (
                   <>
-                    <div className="w-12 h-px bg-amber-300 my-3"></div>
-                    <p className="text-sm text-amber-700 mb-1 font-semibold">🤟 LSM</p>
-                    <p className="text-amber-900 font-bold uppercase">{rq.questionLSM}</p>
+                    <div className="w-12 h-px bg-amber-300 dark:bg-amber-600 my-3"></div>
+                    <p className="text-sm text-amber-700 dark:text-amber-300 mb-1 font-semibold">🤟 LSM</p>
+                    <p className="text-amber-900 dark:text-amber-100 font-bold uppercase">{rq.questionLSM}</p>
                   </>
                 )}
                 {rq.answer && (
                   <>
-                    <div className="w-12 h-px bg-amber-300 my-3"></div>
-                    <p className="text-sm text-amber-700 mb-1 font-semibold">💬 Respuesta</p>
-                    <p className="text-slate-700 text-sm">{rq.answer}</p>
+                    <div className="w-12 h-px bg-amber-300 dark:bg-amber-600 my-3"></div>
+                    <p className="text-sm text-amber-700 dark:text-amber-300 mb-1 font-semibold">💬 Respuesta</p>
+                    <p className="text-text-body text-sm">{rq.answer}</p>
                   </>
                 )}
               </div>
@@ -170,7 +170,7 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
       )}
 
       {/* Footer */}
-      <div className="mt-8 pt-4 border-t border-slate-200 text-center text-sm text-slate-500 print:mt-4">
+      <div className="mt-8 pt-4 border-t border-border text-center text-sm text-text-muted print:mt-4">
         <p>{article.finalSong}</p>
       </div>
     </div>

@@ -145,10 +145,10 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-[var(--backdrop)] flex items-center justify-center z-50 p-4">
+      <div className="bg-surface rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 text-white p-4 flex justify-between items-center">
           <h2 className="text-xl font-bold">Gestionar PDFs</h2>
           <button
             onClick={onClose}
@@ -163,49 +163,49 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
           {message && (
             <div className={`mb-4 p-3 rounded-lg text-sm ${
               message.type === 'success'
-                ? 'bg-green-100 text-green-800 border border-green-300'
-                : 'bg-red-100 text-red-800 border border-red-300'
+                ? 'bg-green-100 dark:bg-green-950 text-green-800 dark:text-green-200 border border-green-300 dark:border-green-700'
+                : 'bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-200 border border-red-300 dark:border-red-700'
             }`}>
               {message.text}
             </div>
           )}
 
           {/* Formulario de subida */}
-          <div className="mb-6 p-4 bg-slate-50 rounded-lg border-2 border-dashed border-slate-300">
-            <h3 className="font-semibold text-slate-700 mb-3">Subir PDFs</h3>
+          <div className="mb-6 p-4 bg-surface-alt rounded-lg border-2 border-dashed border-border-strong">
+            <h3 className="font-semibold text-text-body mb-3">Subir PDFs</h3>
 
             <div className="space-y-3">
               <div>
-                <label className="block text-sm text-slate-600 mb-1">Seleccionar archivos PDF:</label>
+                <label className="block text-sm text-text-secondary mb-1">Seleccionar archivos PDF:</label>
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept=".pdf"
                   multiple
                   onChange={handleFileSelect}
-                  className="w-full text-sm text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-600 file:text-white file:font-medium file:cursor-pointer hover:file:bg-blue-700"
+                  className="w-full text-sm text-text-secondary file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-600 dark:file:bg-blue-700 file:text-white file:font-medium file:cursor-pointer hover:file:bg-blue-700 dark:hover:file:bg-blue-600"
                 />
               </div>
 
               {/* Lista de archivos seleccionados */}
               {selectedFiles.length > 0 && (
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-700">
+                  <p className="text-sm font-medium text-text-body">
                     Archivos seleccionados ({selectedFiles.length}):
                   </p>
                   {selectedFiles.map((item, index) => (
-                    <div key={index} className="flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-200">
-                      <span className="text-red-600">📄</span>
+                    <div key={index} className="flex items-center gap-2 p-2 bg-surface rounded-lg border border-border">
+                      <span className="text-red-600 dark:text-red-400">📄</span>
                       <input
                         type="text"
                         value={item.customName}
                         onChange={(e) => handleNameChange(index, e.target.value)}
-                        className="flex-1 px-2 py-1 text-sm text-slate-900 font-medium border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="flex-1 px-2 py-1 text-sm text-text-primary font-medium border border-border-strong rounded bg-surface focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="Nombre del archivo"
                       />
                       <button
                         onClick={() => handleRemoveFile(index)}
-                        className="text-red-500 hover:text-red-700 px-2"
+                        className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 px-2"
                         title="Quitar"
                       >
                         ✕
@@ -218,7 +218,7 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
               <button
                 onClick={handleUpload}
                 disabled={selectedFiles.length === 0 || isUploading}
-                className="w-full py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors"
+                className="w-full py-2.5 bg-blue-600 dark:bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-text-tertiary disabled:cursor-not-allowed transition-colors"
               >
                 {isUploading ? 'Subiendo...' : `Subir ${selectedFiles.length > 0 ? selectedFiles.length + ' PDF(s)' : 'PDFs'}`}
               </button>
@@ -227,32 +227,32 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
 
           {/* Lista de PDFs */}
           <div>
-            <h3 className="font-semibold text-slate-700 mb-3">
+            <h3 className="font-semibold text-text-body mb-3">
               PDFs almacenados ({pdfs.length})
             </h3>
 
             {isLoading ? (
-              <p className="text-slate-500 text-sm">Cargando...</p>
+              <p className="text-text-muted text-sm">Cargando...</p>
             ) : pdfs.length === 0 ? (
-              <p className="text-slate-500 text-sm italic">No hay PDFs almacenados</p>
+              <p className="text-text-muted text-sm italic">No hay PDFs almacenados</p>
             ) : (
               <div className="space-y-2">
                 {pdfs.map((pdf) => (
                   <div
                     key={pdf.filename}
-                    className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200"
+                    className="flex items-center justify-between p-3 bg-surface-alt rounded-lg border border-border"
                   >
                     <button
                       onClick={() => setViewingPdf(pdf)}
-                      className="flex items-center gap-2 hover:bg-slate-100 rounded-lg px-2 py-1 -mx-2 -my-1 transition-colors"
+                      className="flex items-center gap-2 hover:bg-surface-raised rounded-lg px-2 py-1 -mx-2 -my-1 transition-colors"
                       title="Ver PDF"
                     >
-                      <span className="text-red-600 text-xl">📄</span>
-                      <span className="font-medium text-slate-800 hover:text-blue-600 transition-colors">{pdf.name}</span>
+                      <span className="text-red-600 dark:text-red-400 text-xl">📄</span>
+                      <span className="font-medium text-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{pdf.name}</span>
                     </button>
                     <button
                       onClick={() => handleDelete(pdf.filename)}
-                      className="px-3 py-1 text-sm text-red-600 hover:bg-red-100 rounded-lg transition-colors"
+                      className="px-3 py-1 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-950 rounded-lg transition-colors"
                     >
                       Eliminar
                     </button>
@@ -263,13 +263,13 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
           </div>
 
           {/* Instrucciones */}
-          <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
-            <h4 className="font-semibold text-amber-800 mb-2">Cómo usar:</h4>
-            <ol className="text-sm text-amber-700 space-y-1 list-decimal list-inside">
+          <div className="mt-6 p-4 bg-amber-50 dark:bg-amber-950 rounded-lg border border-amber-200 dark:border-amber-700">
+            <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">Cómo usar:</h4>
+            <ol className="text-sm text-amber-700 dark:text-amber-300 space-y-1 list-decimal list-inside">
               <li>Sube los PDFs de La Atalaya aquí</li>
               <li>En la terminal, dile a Claude Code:</li>
             </ol>
-            <code className="block mt-2 p-2 bg-amber-100 rounded text-xs text-amber-900">
+            <code className="block mt-2 p-2 bg-amber-100 dark:bg-amber-900 rounded text-xs text-amber-900 dark:text-amber-100">
               &quot;Extrae el artículo 44 del PDF noviembre-2025&quot;
             </code>
           </div>
@@ -278,8 +278,8 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
 
       {/* Modal Visor de PDF */}
       {viewingPdf && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-5xl h-[90vh] flex flex-col overflow-hidden">
+        <div className="fixed inset-0 bg-[var(--backdrop)] flex items-center justify-center z-[60] p-4">
+          <div className="bg-surface rounded-xl shadow-2xl w-full max-w-5xl h-[90vh] flex flex-col overflow-hidden">
             {/* Header del visor */}
             <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white p-4 flex justify-between items-center shrink-0">
               <div className="flex items-center gap-3">
@@ -295,7 +295,7 @@ export default function PdfUploader({ isOpen, onClose }: PdfUploaderProps) {
             </div>
 
             {/* Contenido del PDF */}
-            <div className="flex-1 bg-slate-200">
+            <div className="flex-1 bg-surface-raised">
               <iframe
                 src={`/api/pdfs/${viewingPdf.filename}`}
                 className="w-full h-full border-0"

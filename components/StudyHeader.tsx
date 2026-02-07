@@ -178,27 +178,27 @@ export default function StudyHeader({
     return parts.map((part, index) => {
       if (part.startsWith('"') && part.endsWith('"')) {
         return (
-          <span key={index} className="text-slate-700 font-semibold">
+          <span key={index} className="text-text-body font-semibold">
             {part}
           </span>
         );
       }
-      return <span key={index} className="text-slate-600">{part}</span>;
+      return <span key={index} className="text-text-secondary">{part}</span>;
     });
   };
 
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-lg p-8 md:p-10 mb-8 relative overflow-hidden">
+    <div className="bg-surface border border-border rounded-xl shadow-lg p-8 md:p-10 mb-8 relative overflow-hidden">
       {/* Barra lateral decorativa */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400"></div>
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]"></div>
 
       {/* Selector de Artículo - Diseño Ejecutivo */}
       {articles.length > 0 && onArticleChange && (
-        <div className="mb-8 flex flex-col sm:flex-row items-center justify-center gap-3 pb-6 border-b border-slate-100">
+        <div className="mb-8 flex flex-col sm:flex-row items-center justify-center gap-3 pb-6 border-b border-border-subtle">
           <label
             htmlFor="article-selector-exec"
-            className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em]"
+            className="text-[11px] font-bold text-text-tertiary uppercase tracking-[0.15em]"
           >
             Seleccionar Artículo
           </label>
@@ -208,7 +208,7 @@ export default function StudyHeader({
                 id="article-selector-exec"
                 value={currentArticleId || ''}
                 onChange={(e) => onArticleChange(e.target.value)}
-                className="appearance-none pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 cursor-pointer hover:border-slate-300 hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]"
+                className="appearance-none pl-4 pr-10 py-2.5 bg-surface border border-border rounded-lg text-text-body font-medium focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong cursor-pointer hover:border-border-strong hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]"
               >
                 {articles
                   .filter((article) => article.title !== "")
@@ -219,7 +219,7 @@ export default function StudyHeader({
                       <option
                         key={id}
                         value={id}
-                        className={isSelected ? 'font-semibold bg-slate-100' : ''}
+                        className={isSelected ? 'font-semibold bg-surface-raised' : ''}
                       >
                         {isSelected ? '● ' : '  '}
                         {`Artículo ${article.metadata.articleNumber} - ${article.title}`}
@@ -230,7 +230,7 @@ export default function StudyHeader({
               </select>
               {/* Flecha personalizada */}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
@@ -241,8 +241,8 @@ export default function StudyHeader({
               onClick={handleCopyStructure}
               className={`p-2.5 rounded-lg border transition-all ${
                 copyFeedback === 'copied'
-                  ? 'bg-green-50 border-green-300 text-green-600'
-                  : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700'
+                  ? 'bg-green-50 border-green-300 text-green-600 dark:bg-green-950 dark:border-green-800 dark:text-green-400'
+                  : 'bg-surface border-border text-text-muted hover:border-border-strong hover:bg-surface-alt hover:text-text-body'
               }`}
               title="Copiar estructura del artículo"
             >
@@ -263,15 +263,15 @@ export default function StudyHeader({
       {/* Información del Artículo - Badges Ejecutivos */}
       {articleNumber && week && month && year && (
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold text-sm shadow-sm">
+          <span className="px-4 py-1.5 bg-surface border border-border rounded-lg text-text-body font-bold text-sm shadow-sm">
             Artículo {articleNumber}
           </span>
-          <span className="text-slate-300">•</span>
-          <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-600 font-medium text-sm shadow-sm">
+          <span className="text-text-tertiary">•</span>
+          <span className="px-4 py-1.5 bg-surface border border-border rounded-lg text-text-secondary font-medium text-sm shadow-sm">
             {week}
           </span>
-          <span className="text-slate-300">•</span>
-          <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-500 font-medium text-sm shadow-sm">
+          <span className="text-text-tertiary">•</span>
+          <span className="px-4 py-1.5 bg-surface border border-border rounded-lg text-text-muted font-medium text-sm shadow-sm">
             {month} {year}
           </span>
         </div>
@@ -279,19 +279,19 @@ export default function StudyHeader({
 
       {/* Línea decorativa */}
       <div className="flex items-center gap-4 mb-6">
-        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent"></div>
       </div>
 
       {/* Canción - Sin fondo, con ícono */}
       <div className="text-center mb-6">
-        <p className="text-slate-500 font-medium flex items-center justify-center gap-2">
+        <p className="text-text-muted font-medium flex items-center justify-center gap-2">
           <span className="text-lg">🎵</span>
           <span>{song}</span>
         </p>
       </div>
 
       {/* Título Principal - Azul oscuro, bold, sin fondo */}
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-center text-slate-800 mb-8 leading-tight">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-center text-text-primary mb-8 leading-tight">
         {title}
       </h1>
 
@@ -301,34 +301,34 @@ export default function StudyHeader({
           {!isEditingTitleLSM ? (
             <div
               onClick={() => setIsEditingTitleLSM(true)}
-              className="cursor-pointer bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:shadow-md transition-all group"
+              className="cursor-pointer bg-surface border border-border rounded-xl p-6 hover:border-border-strong hover:shadow-md transition-all group"
             >
               <div className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0 mt-1">🤟</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
+                  <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em] mb-3">
                     Título LSM
                   </p>
                   {titleLSM ? (
-                    <p className="text-xl lg:text-2xl font-bold text-slate-700 leading-relaxed break-words uppercase">
+                    <p className="text-xl lg:text-2xl font-bold text-text-body leading-relaxed break-words uppercase">
                       {titleLSM}
                     </p>
                   ) : (
-                    <p className="text-base text-slate-400 italic group-hover:text-slate-500">
+                    <p className="text-base text-text-tertiary italic group-hover:text-text-muted">
                       Toca para agregar el título en LSM
                     </p>
                   )}
                 </div>
-                <span className="text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                <span className="text-text-tertiary opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
                   ✏️
                 </span>
               </div>
             </div>
           ) : (
-            <div className="bg-white border-2 border-slate-300 rounded-xl p-6 shadow-md">
+            <div className="bg-surface border-2 border-border-strong rounded-xl p-6 shadow-md">
               <div className="flex items-start gap-4 mb-4">
                 <span className="text-2xl flex-shrink-0 mt-1">🤟</span>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] pt-1">
+                <p className="text-xs font-bold text-text-muted uppercase tracking-[0.2em] pt-1">
                   Editando Título LSM
                 </p>
               </div>
@@ -338,7 +338,7 @@ export default function StudyHeader({
                 onKeyPress={handleKeyPressTitleLSM}
                 onBlur={handleBlurTitleLSM}
                 placeholder="Escribe el título en LSM..."
-                className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-300 text-xl lg:text-2xl font-bold text-slate-700 resize-none uppercase"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-border-strong focus:border-border-strong text-xl lg:text-2xl font-bold text-text-body resize-none uppercase bg-surface"
                 rows={3}
                 autoFocus
               />
@@ -354,7 +354,7 @@ export default function StudyHeader({
                     setTitleLSMEdit(titleLSM || '');
                     setIsEditingTitleLSM(false);
                   }}
-                  className="px-5 py-2.5 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm"
+                  className="px-5 py-2.5 bg-surface-raised text-text-secondary rounded-lg hover:bg-[var(--border)] transition-colors font-medium text-sm"
                 >
                   Cancelar
                 </button>
@@ -365,8 +365,8 @@ export default function StudyHeader({
       )}
 
       {/* Texto Bíblico - Fondo gris muy claro con borde izquierdo */}
-      <div className="bg-slate-50 border-l-4 border-slate-300 rounded-r-lg p-6 mb-8">
-        <p className="text-lg lg:text-xl leading-relaxed italic text-slate-600 font-serif">
+      <div className="bg-surface-alt border-l-4 border-border-strong rounded-r-lg p-6 mb-8">
+        <p className="text-lg lg:text-xl leading-relaxed italic text-text-secondary font-serif">
           {formatBiblicalText(biblicalText)}
         </p>
       </div>
@@ -377,24 +377,24 @@ export default function StudyHeader({
           <img
             src={headerInfographic}
             alt="Infografía del artículo"
-            className="w-full rounded-xl shadow-md border border-slate-200"
+            className="w-full rounded-xl shadow-md border border-border"
           />
         </div>
       )}
 
       {/* Tema - Sin fondo, texto gris */}
       <div className="text-center">
-        <p className="text-base lg:text-lg text-slate-500 leading-relaxed">
+        <p className="text-base lg:text-lg text-text-muted leading-relaxed">
           {theme}
         </p>
       </div>
 
       {/* Vista previa del artículo - Diseño Ejecutivo */}
       {overview && (
-        <div className="mt-10 bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <div className="mt-10 bg-surface border border-border rounded-xl shadow-sm overflow-hidden">
+          <div className="bg-surface-alt px-6 py-4 border-b border-border-subtle flex items-center gap-2">
             <span className="text-lg">📑</span>
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">
+            <h3 className="text-xs font-bold text-text-muted uppercase tracking-[0.2em]">
               Resumen del Estudio
             </h3>
           </div>
@@ -403,21 +403,21 @@ export default function StudyHeader({
             {overview.previousArticle && (
               <div className="relative">
                 <div className="mb-3 flex items-center gap-2">
-                  <div className="h-px flex-1 bg-slate-200"></div>
-                  <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
+                  <div className="h-px flex-1 bg-border"></div>
+                  <span className="text-xs font-semibold text-text-tertiary uppercase tracking-widest">
                     Anteriormente
                   </span>
-                  <div className="h-px flex-1 bg-slate-200"></div>
+                  <div className="h-px flex-1 bg-border"></div>
                 </div>
 
-                <div className="bg-slate-50 rounded-lg p-5 border border-slate-100 hover:border-slate-300 transition-colors group">
+                <div className="bg-surface-alt rounded-lg p-5 border border-border-subtle hover:border-border-strong transition-colors group">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-slate-500 bg-white border border-slate-200 px-2 py-1 rounded">
+                    <span className="text-xs font-bold text-text-muted bg-surface border border-border px-2 py-1 rounded">
                       ARTÍCULO {overview.previousArticle.number}
                     </span>
                   </div>
 
-                  <p className="text-slate-800 font-medium mb-3 group-hover:text-slate-900 transition-colors">
+                  <p className="text-text-primary font-medium mb-3 group-hover:text-text-primary transition-colors">
                     {overview.previousArticle.topic}
                   </p>
 
@@ -425,7 +425,7 @@ export default function StudyHeader({
                     {overview.previousArticle.keywords.map((keyword, i) => (
                       <span
                         key={i}
-                        className="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-600 rounded-full text-xs font-medium"
+                        className="px-2.5 py-0.5 bg-surface border border-border text-text-secondary rounded-full text-xs font-medium"
                       >
                         {keyword}
                       </span>
@@ -437,28 +437,28 @@ export default function StudyHeader({
 
             <div>
               <div className="mb-3 flex items-center gap-2">
-                <div className="h-px flex-1 bg-slate-200"></div>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
+                <div className="h-px flex-1 bg-border"></div>
+                <span className="text-xs font-semibold text-text-tertiary uppercase tracking-widest">
                   En este estudio
                 </span>
-                <div className="h-px flex-1 bg-slate-200"></div>
+                <div className="h-px flex-1 bg-border"></div>
               </div>
 
               <div className="space-y-4">
                 {overview.whatWellSee.map((section, index) => (
                   <div key={index} className="flex gap-4 group">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 text-slate-600 font-bold flex items-center justify-center border border-slate-200 group-hover:bg-slate-200 transition-colors">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-surface-raised text-text-secondary font-bold flex items-center justify-center border border-border group-hover:bg-[var(--border)] transition-colors">
                       {index + 1}
                     </div>
                     <div className="flex-1 pt-1">
-                      <p className="text-slate-800 font-medium mb-2 group-hover:text-slate-900 transition-colors">
+                      <p className="text-text-primary font-medium mb-2 group-hover:text-text-primary transition-colors">
                         {section.section}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
                         {section.keywords.map((keyword, i) => (
                           <span
                             key={i}
-                            className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-medium uppercase tracking-tight"
+                            className="px-2 py-0.5 bg-surface-raised text-text-secondary rounded text-[10px] font-medium uppercase tracking-tight"
                           >
                             {keyword}
                           </span>
