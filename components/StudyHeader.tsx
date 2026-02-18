@@ -195,20 +195,20 @@ export default function StudyHeader({
 
       {/* Selector de Artículo - Diseño Ejecutivo */}
       {articles.length > 0 && onArticleChange && (
-        <div className="mb-8 flex flex-col sm:flex-row items-center justify-center gap-3 pb-6 border-b border-border-subtle">
+        <div className="mb-8 flex flex-col items-center justify-center gap-3 pb-6 border-b border-border-subtle">
           <label
             htmlFor="article-selector-exec"
             className="text-[11px] font-bold text-text-tertiary uppercase tracking-[0.15em]"
           >
             Seleccionar Artículo
           </label>
-          <div className="flex items-center gap-2">
-            <div className="relative">
+          <div className="flex items-center gap-2 w-full px-2 sm:px-0 sm:w-auto">
+            <div className="relative flex-1 sm:flex-initial">
               <select
                 id="article-selector-exec"
                 value={currentArticleId || ''}
                 onChange={(e) => onArticleChange(e.target.value)}
-                className="appearance-none pl-4 pr-10 py-2.5 bg-surface border border-border rounded-lg text-text-body font-medium focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong cursor-pointer hover:border-border-strong hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]"
+                className="appearance-none w-full pl-4 pr-10 py-2.5 bg-surface border border-border rounded-lg text-text-body font-medium focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong cursor-pointer hover:border-border-strong hover:shadow-md transition-all text-sm shadow-sm sm:min-w-[320px]"
               >
                 {articles
                   .filter((article) => article.title !== "")
@@ -222,8 +222,7 @@ export default function StudyHeader({
                         className={isSelected ? 'font-semibold bg-surface-raised' : ''}
                       >
                         {isSelected ? '● ' : '  '}
-                        {`Artículo ${article.metadata.articleNumber} - ${article.title}`}
-                        {` | ${article.metadata.week}`}
+                        {`Art. ${article.metadata.articleNumber} | ${article.metadata.week} — ${article.title}`}
                       </option>
                     );
                   })}
