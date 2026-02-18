@@ -394,8 +394,8 @@ export const article50: ArticleData = {
       ],
       flashcards: [
         {
-          question: "¿Cómo demostró Jesús paciencia con sus apóstoles?",
-          answer: "No se desesperaba al verlos discutir sobre quién era el más importante, porque estaba seguro de que con el tiempo cambiarían."
+          question: "¿Qué nos enseña la paciencia de Jesús con los apóstoles sobre nuestros propios errores?",
+          answer: "Que nuestro Rey es tan humilde y paciente que no se desespera cuando cometemos el mismo error muchas veces."
         }
       ],
       biblicalCards: [
@@ -419,8 +419,8 @@ export const article50: ArticleData = {
       ],
       flashcards: [
         {
-          question: "¿Qué nos ayudará a ser más pacientes?",
-          answer: "Desarrollar 'la mente de Cristo' leyendo los Evangelios, meditando en sus acciones y pidiéndole a Jehová que nos ayude a ser humildes."
+          question: "¿Qué significa desarrollar 'la mente de Cristo'?",
+          answer: "Leer los Evangelios, meditar en cómo las acciones de Jesús reflejaban su manera de pensar, y pedirle a Jehová que nos ayude a ser humildes."
         }
       ],
       biblicalCards: [
@@ -451,8 +451,8 @@ export const article50: ArticleData = {
       ],
       flashcards: [
         {
-          question: "¿Qué ejemplos bíblicos muestran que Jehová dignifica a los humildes?",
-          answer: "La nodriza Débora, David el pastorcito, los pastores en el nacimiento de Jesús, y Simeón y Ana en el templo."
+          question: "¿Durante cuántos años sirvió fielmente la nodriza Débora, y por qué es significativo?",
+          answer: "Unos 125 años, sirviendo lealmente a las familias de Isaac y Jacob. Jehová inspiró a Moisés para que registrara su nombre, mostrando que se fija en los humildes."
         }
       ],
       biblicalCards: [
@@ -541,8 +541,8 @@ export const article50: ArticleData = {
       ],
       flashcards: [
         {
-          question: "¿Qué beneficios trae imitar la humildad de Jehová?",
-          answer: "Nos hace más accesibles, razonables y pacientes, y nos hace más valiosos a los ojos de Jehová."
+          question: "¿Cómo ve Jehová los esfuerzos que hacemos por ser humildes?",
+          answer: "Cada esfuerzo por copiar su humildad nos hace más valiosos a sus ojos (Isaías 43:4)."
         }
       ],
       biblicalCards: [
