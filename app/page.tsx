@@ -5,7 +5,6 @@ import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import SummaryView from '@/components/SummaryView';
-import TimelineView from '@/components/TimelineView';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
@@ -38,7 +37,7 @@ export default function Home() {
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
   // Estados existentes
-  const [viewMode, setViewMode] = useState<'study' | 'summary' | 'timeline'>('study');
+  const [viewMode, setViewMode] = useState<'study' | 'summary'>('study');
   const [navigationMode, setNavigationMode] = useState<'scroll' | 'paginated'>('scroll');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
@@ -385,17 +384,6 @@ export default function Home() {
                 📋 Resumen
               </button>
             </div>
-            <div className="flex gap-2 mb-2">
-              <button
-                onClick={() => { setViewMode('timeline'); setShowViewOptions(false); }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                  viewMode === 'timeline' ? 'bg-blue-600 dark:bg-blue-500 text-white' : 'bg-surface-raised text-text-body hover:bg-surface-alt'
-                }`}
-              >
-                📅 Timeline
-              </button>
-            </div>
-
             {/* Fila 2: Modo de navegación (solo en modo estudio) */}
             {viewMode === 'study' && (
               <div className="pt-3 border-t border-border-subtle">
@@ -467,19 +455,7 @@ export default function Home() {
 
       {/* Contenido principal */}
       <div className="max-w-5xl mx-auto px-6 py-12">
-        {/* Vista Timeline */}
-        {viewMode === 'timeline' ? (
-          <TimelineView
-            article={currentArticle}
-            lsmData={lsmData}
-            favorites={favorites}
-            onToggleFavorite={handleToggleFavorite}
-            hiddenCards={hiddenCards}
-            onToggleHidden={handleToggleHidden}
-            onLSMUpdate={handleLSMUpdate}
-            articleId={currentArticleId}
-          />
-        ) : viewMode === 'summary' ? (
+        {viewMode === 'summary' ? (
           <SummaryView article={currentArticle} lsmData={lsmData} />
         ) : (
           <>

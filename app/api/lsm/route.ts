@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { kvGet, kvSet, usingMemoryStore } from '@/lib/kv-store';
 
 // Base key para LSM data - se concatena con el articleId
 const LSM_KEY_PREFIX = 'atalaya-lsm-data';
 
-// Función helper para construir la clave
+// Funcion helper para construir la clave
 function getLSMKey(articleId?: string): string {
   if (!articleId) {
     // Retrocompatibilidad: si no hay articleId, usar clave legacy
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const articleId = searchParams.get('articleId') || undefined;
     const questionNumber = searchParams.get('questionNumber') || undefined;
     const key = getLSMKey(articleId);
-    const data: Record<string, string> = await kv.get(key) || {};
+    const data = await kvGet<Record<string, string>>(key, {});
 
     if (questionNumber) {
       const lsmText = data[questionNumber];
@@ -27,7 +27,8 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(data);
-  } catch {
+  } catch (error) {
+    console.error('Error loading LSM data:', error);
     return NextResponse.json({});
   }
 }
@@ -47,13 +48,17 @@ export async function POST(request: NextRequest) {
 
     const key = getLSMKey(articleId);
 
-    // Obtener datos actuales de Vercel KV para este artículo
-    const currentData: Record<string, string> = await kv.get(key) || {};
+    // Obtener datos actuales de almacenamiento para este articulo
+    const currentData = await kvGet<Record<string, string>>(key, {});
     currentData[questionNumber] = lsmText;
-    await kv.set(key, currentData);
+    await kvSet(key, currentData);
 
     return NextResponse.json({ success: true, data: currentData });
-  } catch {
-    return NextResponse.json({ success: false, error: 'Failed to save' }, { status: 500 });
+  } catch (error) {
+    console.error('Error saving LSM data:', error);
+    const fallbackMessage = usingMemoryStore()
+      ? 'KV is not configured. Data can only be stored in memory during this session.'
+      : 'Failed to save';
+    return NextResponse.json({ success: false, error: fallbackMessage }, { status: 500 });
   }
 }

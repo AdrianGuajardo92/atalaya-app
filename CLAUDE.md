@@ -62,7 +62,6 @@ app/
 
 components/
 ├── QuestionCard.tsx      # Primary study card (largest component)
-├── TimelineView.tsx      # Timeline accordion view
 ├── SummaryView.tsx       # Print-friendly summary view
 ├── FlashCards.tsx        # Interactive flashcards with flip
 ├── BiblicalCards.tsx     # Scripture reference cards

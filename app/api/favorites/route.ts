@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { kvGet, kvSet } from '@/lib/kv-store';
 
 // Base key para favoritos - se concatena con el articleId
 const FAVORITES_KEY_PREFIX = 'atalaya-favorites-data';
 
-// Función helper para construir la clave
+// Funcion helper para construir la clave
 function getFavoritesKey(articleId?: string): string {
   if (!articleId) {
     // Retrocompatibilidad: si no hay articleId, usar clave legacy
@@ -18,9 +18,10 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const articleId = searchParams.get('articleId') || undefined;
     const key = getFavoritesKey(articleId);
-    const data = await kv.get(key) || {};
+    const data = await kvGet<Record<string, boolean>>(key, {});
     return NextResponse.json(data);
-  } catch {
+  } catch (error) {
+    console.error('Error loading favorites data:', error);
     return NextResponse.json({});
   }
 }
@@ -40,8 +41,8 @@ export async function POST(request: NextRequest) {
 
     const key = getFavoritesKey(articleId);
 
-    // Obtener datos actuales de Vercel KV para este artículo
-    const currentData: Record<string, boolean> = await kv.get(key) || {};
+    // Obtener datos actuales de almacenamiento para este articulo
+    const currentData = await kvGet<Record<string, boolean>>(key, {});
 
     if (isFavorite) {
       currentData[favoriteId] = true;
@@ -49,10 +50,11 @@ export async function POST(request: NextRequest) {
       delete currentData[favoriteId];
     }
 
-    await kv.set(key, currentData);
+    await kvSet(key, currentData);
 
     return NextResponse.json({ success: true, data: currentData });
-  } catch {
+  } catch (error) {
+    console.error('Error saving favorites data:', error);
     return NextResponse.json({ success: false, error: 'Failed to save' }, { status: 500 });
   }
 }

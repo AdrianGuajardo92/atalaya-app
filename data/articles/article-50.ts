@@ -249,7 +249,7 @@ export const article50: ArticleData = {
       textEs: "¿Cómo podemos imitar a Jehová y ser razonables? (Vea también las imágenes).",
       textLSM: "",
       paragraphs: [9],
-      image: "",
+      image: "https://i.imgur.com/Evag2ft.png",
       imageCaption: "Los padres son razonables con sus hijos al no exigirles más de lo que pueden dar en la predicación.",
       answer: [
         "Los padres razonables **no son permisivos**, pero tampoco exigen a sus hijos **más de lo que pueden dar**.",
@@ -638,6 +638,7 @@ export const article50: ArticleData = {
     {
       number: 17,
       content: "Seguimos el ejemplo de Jehová al predicar. Les damos a todas las personas el honor de escuchar las buenas noticias, sin importar su cultura, su color de piel o su nivel de educación. También seguimos su ejemplo al tratar a los hermanos. Los consideramos superiores a nosotros independientemente de qué habilidades o responsabilidades tengamos (Filip. 2:3). Jehová se siente muy feliz de ver que somos humildes y tomamos la iniciativa de honrarnos unos a otros de estas y otras maneras (Sof. 3:12; Rom. 12:10).",
+      image: "https://i.imgur.com/LrLbaYG.png",
       summary: "Imitamos a **Jehová** al **predicar a todas las personas** sin importar su cultura, color de piel o educación. Consideramos a los hermanos como **superiores a nosotros**. Jehová se siente **feliz** al ver que **tomamos la iniciativa de honrarnos** unos a otros."
     },
     {
