@@ -380,6 +380,104 @@ R: Dijeron mentiras de él y tuvo que cargar con sus imperfecciones.
 ❌ "¿Qué nos ayudará a abrirle nuestro corazón?" - Es la pregunta principal
 ```
 
+### Textos Clave (biblicalCards) - OBLIGATORIO
+
+**ABSOLUTAMENTE TODOS los textos bíblicos citados en los párrafos de cada pregunta deben tener un `biblicalCard` correspondiente.** Cero excepciones. Si un párrafo cita 5 textos bíblicos, la pregunta debe tener 5 biblicalCards.
+
+#### Proceso paso a paso
+
+1. **Leer el párrafo** (campo `content` en los datos del artículo)
+2. **Extraer TODAS las referencias bíblicas** del texto:
+   - Entre paréntesis: `(Sal. 113:5-8)`, `(Luc. 15:17-20)`
+   - Con "lea": `(lea Salmo 62:8)`
+   - Múltiples separadas por punto y coma: `(Gen. 3:4, 5; Job 1:11; Apoc. 12:10)`
+3. **Buscar el texto TNM 2019** en jw.org para cada referencia
+4. **Crear un `biblicalCard`** para cada una con texto real y propósito
+5. **Verificar** que no falte ninguna referencia
+
+#### Fuente de los textos bíblicos
+
+Buscar en la **Traducción del Nuevo Mundo 2019** desde jw.org:
+```
+https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/{libro}/{capítulo}/
+```
+
+Ejemplos de URLs:
+- Génesis 3: `.../genesis/3/`
+- 1 Timoteo 3: `.../1-timoteo/3/`
+- 2 Samuel 22: `.../2-samuel/22/`
+- Apocalipsis 12: `.../apocalipsis/12/`
+
+#### Formato de cada biblicalCard
+
+```typescript
+{
+  reference: "Libro capítulo:versículos",  // ej: "Génesis 3:4, 5"
+  purpose: "Descripción breve de por qué es texto clave en este párrafo",
+  text: "Texto exacto de la TNM 2019 (versículos clave)"
+}
+```
+
+#### Reglas importantes
+
+| Regla | Detalle |
+|-------|---------|
+| **Cobertura** | TODOS los textos del párrafo, sin excepción |
+| **Texto** | TNM 2019 real, NUNCA resúmenes propios |
+| **Pasajes largos** | Incluir solo versículos clave (ej: Núm. 12:1-15 → usar v.9, 10, 13) |
+| **Orden** | Seguir el orden en que aparecen en el párrafo |
+| **Purpose** | Frase breve que explique por qué este texto es relevante aquí |
+| **Preguntas múltiples** | Si una pregunta cubre párrafos 6 y 7, incluir textos de AMBOS párrafos |
+
+#### Ejemplo CORRECTO
+
+Párrafo menciona: `Gen. 3:4, 5; Job 1:11; Apoc. 12:10`, `1 Juan 3:8`, `Hech. 1:7`
+
+```typescript
+biblicalCards: [
+  {
+    reference: "Génesis 3:4, 5",
+    purpose: "Satanás esparció mentiras terribles sobre Dios",
+    text: "La serpiente le dijo a la mujer: 'De ningún modo morirán. De hecho, Dios sabe que el mismo día en que coman de él se les abrirán los ojos y serán como Dios: conocerán lo bueno y lo malo'."
+  },
+  {
+    reference: "Job 1:11",
+    purpose: "Satanás acusó a los siervos fieles de Dios",
+    text: "'Pero ahora extiende tu mano y golpea todo lo que tiene, y seguro que te maldice en tu misma cara'."
+  },
+  {
+    reference: "Apocalipsis 12:10",
+    purpose: "Satanás acusa a los siervos de Dios día y noche",
+    text: "Ha sido arrojado hacia abajo el acusador de nuestros hermanos, que los acusa día y noche delante de nuestro Dios."
+  },
+  {
+    reference: "1 Juan 3:8",
+    purpose: "Jesús deshará las obras del Diablo",
+    text: "El que practica el pecado se origina del Diablo... Para esto se manifestó el Hijo de Dios: para deshacer las obras del Diablo."
+  },
+  {
+    reference: "Hechos 1:7",
+    purpose: "Le corresponde a Jehová decidir cuándo actuar",
+    text: "Él les dijo: 'No les corresponde a ustedes conocer los tiempos ni las épocas que el Padre ha colocado en su propia jurisdicción'."
+  }
+]
+```
+
+#### Ejemplo INCORRECTO
+
+```typescript
+// ❌ Solo 2 de 5 textos del párrafo
+biblicalCards: [
+  { reference: "1 Juan 3:8", purpose: "...", text: "..." },
+  { reference: "Hechos 1:7", purpose: "...", text: "..." }
+]
+// Faltan Génesis 3:4,5 · Job 1:11 · Apocalipsis 12:10
+
+// ❌ Resumen propio en vez de texto TNM
+{ reference: "Números 12:1-15", text: "Miriam fue castigada con lepra y Moisés le rogó a Jehová que la curara." }
+// Debe ser el texto real de la Biblia, no un resumen
+```
+
 ---
 
 ## Diseño "Ejecutivo" - Sistema de Diseño Premium

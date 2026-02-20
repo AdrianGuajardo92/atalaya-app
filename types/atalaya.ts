@@ -23,10 +23,13 @@ export interface Question {
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
     purpose: string; // Por qué está este texto / para qué sirve
     text: string; // Texto completo de la Traducción del Nuevo Mundo
+    reasoningQuestion?: string; // Pregunta extra para conectar el texto con el párrafo
   }>;
   reflectionQuestions?: string[]; // Preguntas de reflexión personal
   practicalApplications?: string[]; // Aplicaciones prácticas concretas
   infographic?: string; // URL de infografía relacionada con la pregunta (opcional)
+  keyPoint?: string; // Idea principal que no debe faltar en el comentario
+  guidingQuestion?: string; // Pregunta extra si no mencionan el punto clave
 }
 
 export interface Paragraph {

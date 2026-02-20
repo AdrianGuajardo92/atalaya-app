@@ -692,50 +692,65 @@ export default function Home() {
               currentQuestionIndex < currentArticle.questions.length - 1 ? (
                 isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
                   /* DISEÑO EJECUTIVO - Artículo 43+ */
-                  <div className="mt-8">
-                    {/* Separador ejecutivo */}
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                      <span className="text-text-tertiary text-sm">✦</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                    </div>
+                  (() => {
+                    const nextQ = currentArticle.questions[currentQuestionIndex + 1];
+                    const hasSection = !!nextQ.section;
 
-                    <div className="bg-surface border border-border rounded-xl shadow-sm p-6">
-                      {/* Header ejecutivo */}
-                      <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-4 text-center">
-                        Próxima Pregunta
-                      </p>
+                    // Calcular número de subtema
+                    let sectionNumber = 0;
+                    let totalSections = 0;
+                    if (hasSection) {
+                      currentArticle.questions.forEach((q, i) => {
+                        if (q.section) {
+                          totalSections++;
+                          if (i === currentQuestionIndex + 1) sectionNumber = totalSections;
+                        }
+                      });
+                    }
 
-                      {/* SUBTÍTULO de sección - INTENTIONALLY DARK */}
-                      {currentArticle.questions[currentQuestionIndex + 1].section && (
-                        <div className="bg-slate-800 rounded-lg px-5 py-3 mb-4">
-                          <h3 className="text-lg font-bold text-white uppercase tracking-wide text-center">
-                            {currentArticle.questions[currentQuestionIndex + 1].section}
-                          </h3>
+                    return (
+                      <div className="mt-8">
+                        {/* Separador ejecutivo */}
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                          <span className="text-text-tertiary text-sm">✦</span>
+                          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                         </div>
-                      )}
 
-                      {/* Badge de párrafos */}
-                      <div className="flex justify-center">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-surface-alt border border-border rounded-lg text-sm">
-                          <span className="text-text-muted">Párrafos:</span>
-                          <span className="font-bold text-text-body">
-                            {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
-                          </span>
-                        </span>
+                        <div className="bg-surface border border-border rounded-xl p-6 shadow-lg">
+                          {hasSection ? (
+                            /* CON SUBTEMA: layout horizontal */
+                            <div className="bg-slate-800 rounded-lg p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                              <div className="flex flex-col items-start text-left">
+                                <span className="text-slate-400 text-xs font-bold tracking-[0.15em] uppercase mb-2">
+                                  Subtema {sectionNumber} de {totalSections}
+                                </span>
+                                <h2 className="text-white text-xl sm:text-2xl font-extrabold uppercase tracking-wide">
+                                  {nextQ.section}
+                                </h2>
+                              </div>
+                              <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-8 py-3 flex flex-col items-center justify-center shrink-0 min-w-[120px]">
+                                <span className="text-slate-400 text-xs uppercase tracking-widest mb-1">Párrafo</span>
+                                <span className="text-white font-black text-4xl leading-none">
+                                  {nextQ.paragraphs.join(', ')}
+                                </span>
+                              </div>
+                            </div>
+                          ) : (
+                            /* SIN SUBTEMA: solo el párrafo centrado */
+                            <div className="bg-slate-800 rounded-lg p-6 flex items-center justify-center">
+                              <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-8 py-3 flex flex-col items-center justify-center min-w-[120px]">
+                                <span className="text-slate-400 text-xs uppercase tracking-widest mb-1">Párrafo</span>
+                                <span className="text-white font-black text-4xl leading-none">
+                                  {nextQ.paragraphs.join(', ')}
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-
-                      {/* ADELANTO del tema */}
-                      {currentArticle.questions[currentQuestionIndex + 1].preview && (
-                        <div className="mt-4 bg-surface-alt px-4 py-3 rounded-lg border border-border-subtle">
-                          <p className="text-sm text-text-secondary text-center">
-                            <span className="font-medium text-text-muted">Veremos:</span>{' '}
-                            <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                    );
+                  })()
                 ) : (
                   /* DISEÑO ORIGINAL - Artículos anteriores */
                   <div className="mt-6 bg-surface rounded-lg shadow-md border-2 border-orange-400 dark:border-orange-600 overflow-hidden">

@@ -6,6 +6,7 @@ interface BiblicalCard {
   reference: string;
   purpose: string;
   text: string;
+  reasoningQuestion?: string;
 }
 
 interface BiblicalCardsProps {
@@ -91,8 +92,8 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                     handleCopyWithContext(card, index);
                   }}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border ${copiedIndex === index
-                      ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 scale-110'
-                      : 'bg-surface text-text-tertiary border-border hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 opacity-0 group-hover:opacity-100'
+                    ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 scale-110'
+                    : 'bg-surface text-text-tertiary border-border hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 opacity-0 group-hover:opacity-100'
                     }`}
                   title="Copiar texto bíblico con pregunta de contexto"
                 >
@@ -156,9 +157,23 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
 
                   {/* Texto con scroll */}
                   <div className="flex-1 overflow-y-auto px-6 py-4 hide-scrollbar flex flex-col items-center">
-                    <p className="text-center text-white font-medium text-sm leading-relaxed italic">
+                    <p className="text-center text-white font-medium text-sm leading-relaxed italic mb-4">
                       "{card.text}"
                     </p>
+
+                    {card.reasoningQuestion && (
+                      <div className="mt-auto w-full pt-3 border-t border-slate-700/50">
+                        <div className="flex items-start gap-2">
+                          <span className="text-amber-400 text-sm drop-shadow-sm flex-shrink-0 mt-0.5">🗣️</span>
+                          <div className="flex-1">
+                            <span className="text-amber-500 font-bold uppercase tracking-[0.15em] text-[9px] block mb-1">Razonamiento</span>
+                            <p className="text-amber-100 text-[13px] font-medium leading-relaxed text-left">
+                              {card.reasoningQuestion}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

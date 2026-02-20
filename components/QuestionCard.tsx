@@ -95,6 +95,67 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }));
   };
 
+  // --- Estado: ítems marcados como "voy a usar" ---
+  const [usedItems, setUsedItems] = useState<Record<string, boolean>>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(`used-items-${articleId}`);
+      return saved ? JSON.parse(saved) : {};
+    }
+    return {};
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`used-items-${articleId}`, JSON.stringify(usedItems));
+    }
+  }, [usedItems, articleId]);
+
+  const toggleUsedItem = (itemId: string) => {
+    setUsedItems(prev => ({ ...prev, [itemId]: !prev[itemId] }));
+  };
+
+  // Toggle para flashcards: marcar pregunta y respuesta juntas como unidad
+  const toggleFlashcardUsed = (qId: string, aId: string) => {
+    setUsedItems(prev => {
+      const newVal = !prev[qId];
+      return { ...prev, [qId]: newVal, [aId]: newVal };
+    });
+  };
+
+  // Helper: clases para un bloque seleccionable/marcado
+  const usedItemClass = (itemId: string) =>
+    usedItems[itemId]
+      ? 'cursor-pointer rounded-lg transition-all outline outline-2 outline-emerald-400/70 dark:outline-emerald-600/60 bg-emerald-50/50 dark:bg-emerald-900/15 relative pl-9 pr-9'
+      : 'cursor-pointer rounded-lg transition-all hover:bg-surface-raised dark:hover:bg-slate-700/25 relative pl-9 pr-9 group/usable';
+
+  // Badge: checkbox + bookmark cuando el ítem está marcado
+  const UsedBadge = () => (
+    <>
+      <span className="absolute top-1/2 -translate-y-1/2 left-1.5 text-xl select-none leading-none">✅</span>
+      <span className="absolute top-1/2 -translate-y-1/2 right-1.5 text-lg select-none leading-none">🔖</span>
+    </>
+  );
+
+  // Tooltip hover cuando no está marcado
+  const HoverHint = () => (
+    <>
+      <span className="absolute top-1/2 -translate-y-1/2 left-1.5 text-xl select-none leading-none opacity-10 group-hover/usable:opacity-50 transition-opacity">⬜</span>
+      <span className="absolute top-1/2 -translate-y-1/2 right-1.5 text-lg select-none leading-none opacity-0 group-hover/usable:opacity-30 transition-opacity">🔖</span>
+    </>
+  );
+
+  // --- Modo Atalaya: filtrado de items seleccionados ---
+  const isSelectableQ = !!(question.keyPoint || question.guidingQuestion);
+
+  // En modo Atalaya, solo mostrar items que fueron seleccionados
+  const shouldShowInAtlMode = (itemId: string) => {
+    if (!isNavigationMode) return true;
+    return !!usedItems[itemId];
+  };
+
+  // Clase limpia para items en modo Atalaya (sin outline verde ni cursor pointer)
+  const atlModeItemClass = 'rounded-lg px-1 py-1';
+
   // Cargar puntos clave personalizados desde Vercel KV
   useEffect(() => {
     const loadCustomBullets = async () => {
@@ -863,605 +924,836 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   return (
     <>
-        {/* Modals (Mismos que el diseño original) */}
-        {showParagraphsModal && (
-          <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-            <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
-              <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
-                <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
-                  <span>📖</span> Párrafos de Estudio
-                </h3>
-                <button
-                  onClick={() => setShowParagraphsModal(false)}
-                  className="text-text-tertiary hover:text-text-secondary transition-colors"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
-                {/* Sección RESUMEN (si algún párrafo tiene summary) */}
-                {relatedParagraphs.some(p => p.summary) && (
-                  <div className="mb-6 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-5">
-                    <h4 className="text-xs font-bold text-amber-700 dark:text-amber-300 uppercase tracking-[0.15em] mb-3">Resumen</h4>
-                    <div className="space-y-2">
-                      {relatedParagraphs
-                        .filter(p => p.summary)
-                        .map((p, i) => (
-                          <div key={i} className="flex gap-2">
-                            <span className="font-bold text-amber-800 dark:text-amber-300 text-sm flex-shrink-0">[{p.number}]</span>
-                            <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )}
-                <div className="space-y-6">
-                  {relatedParagraphs.map((paragraph, index) => (
-                    <div key={index} className="leading-relaxed text-text-body text-lg">
-                      <span className="font-bold text-text-primary mr-2">[{paragraph.number}]</span>
-                      {formatContent(paragraph.content)}
-                      {/* Imagen del párrafo (si existe) - Diseño Premium */}
-                      {paragraph.image && (
-                        <div className="mt-4">
-                          <img
-                            src={paragraph.image}
-                            alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
-                            className="w-full rounded-xl shadow-lg border border-border"
-                          />
-                          {paragraph.imageCaption && (
-                            <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
-                              {paragraph.imageCaption}
-                            </p>
-                          )}
+      {/* Modals (Mismos que el diseño original) */}
+      {showParagraphsModal && (
+        <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
+            <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
+              <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
+                <span>📖</span> Párrafos de Estudio
+              </h3>
+              <button
+                onClick={() => setShowParagraphsModal(false)}
+                className="text-text-tertiary hover:text-text-secondary transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
+              {/* Sección RESUMEN (si algún párrafo tiene summary) */}
+              {relatedParagraphs.some(p => p.summary) && (
+                <div className="mb-6 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-5">
+                  <h4 className="text-xs font-bold text-amber-700 dark:text-amber-300 uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                  <div className="space-y-2">
+                    {relatedParagraphs
+                      .filter(p => p.summary)
+                      .map((p, i) => (
+                        <div key={i} className="flex gap-2">
+                          <span className="font-bold text-amber-800 dark:text-amber-300 text-sm flex-shrink-0">[{p.number}]</span>
+                          <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
-                <button
-                  onClick={() => {
-                    const paragraphsText = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
-                    let answersText = '';
-                    if (question.answer) {
-                      const answers = Array.isArray(question.answer)
-                        ? question.answer
-                        : typeof question.answer === 'string'
-                          ? question.answer.split('.').filter(s => s.trim().length > 0).map(s => s.trim() + '.')
-                          : [String(question.answer)];
-                      answersText = '\n\nRESPUESTA:\n' + answers.map((a, i) => `[${i + 1}] ${a}`).join('\n');
-                    }
-                    navigator.clipboard.writeText(paragraphsText + answersText);
-                    setParagraphCopied(true);
-                    setTimeout(() => setParagraphCopied(false), 2000);
-                  }}
-                  className="px-4 py-2 bg-surface border border-border-strong text-text-body rounded-lg hover:bg-surface-alt transition-colors font-medium flex items-center gap-2 shadow-sm"
-                >
-                  {paragraphCopied ? '✅ Copiado' : '📋 Copiar'}
-                </button>
-                <button
-                  onClick={() => setShowParagraphsModal(false)}
-                  className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium shadow-sm"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Helper para renderizar modales de textos bíblicos */}
-        {showReadTextModal && question.readText && biblicalTexts[question.readText] && (
-          <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-            <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
-              <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
-                <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
-                  <span>📖</span> Lectura Bíblica
-                </h3>
-                <button
-                  onClick={() => setShowReadTextModal(false)}
-                  className="text-text-tertiary hover:text-text-secondary transition-colors"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
-                <div className="space-y-6">
-                  {biblicalTexts[question.readText].map((text, index) => (
-                    <div key={index} className="bg-surface-alt rounded-lg p-5 border-l-4 border-text-secondary">
-                      <h4 className="font-bold text-text-primary mb-2 font-serif">{text.reference}</h4>
-                      <p className="text-text-body italic leading-relaxed font-serif text-lg">
-                        &quot;{text.text}&quot;
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end">
-                <button
-                  onClick={() => setShowReadTextModal(false)}
-                  className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Subtítulo de Sección - Diseño Ejecutivo */}
-        {question.section && (
-          <div className="mb-8 mt-12">
-            {/* Contenedor del subtítulo */}
-            <div className="relative">
-              {/* Líneas decorativas laterales */}
-              <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                <div className="w-full border-t border-border"></div>
-              </div>
-
-              {/* Subtítulo centrado */}
-              <div className="relative flex justify-center">
-                <div className="bg-slate-800 px-8 py-4 rounded-lg shadow-lg">
-                  <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
-                    {question.section}
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            {/* Sección LSM del subtítulo */}
-            <div className="mt-4 flex justify-center">
-              {isEditingSectionLSM ? (
-                <div className="w-full max-w-xl bg-surface p-4 rounded-lg border border-blue-200 dark:border-blue-800 shadow-md animate-fadeIn">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Editando LSM</span>
+                      ))}
                   </div>
+                </div>
+              )}
+              <div className="space-y-6">
+                {relatedParagraphs.map((paragraph, index) => (
+                  <div key={index} className="leading-relaxed text-text-body text-lg">
+                    <span className="font-bold text-text-primary mr-2">[{paragraph.number}]</span>
+                    {formatContent(paragraph.content)}
+                    {/* Imagen del párrafo (si existe) - Diseño Premium */}
+                    {paragraph.image && (
+                      <div className="mt-4">
+                        <img
+                          src={paragraph.image}
+                          alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
+                          className="w-full rounded-xl shadow-lg border border-border"
+                        />
+                        {paragraph.imageCaption && (
+                          <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
+                            {paragraph.imageCaption}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  const paragraphsText = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
+                  let answersText = '';
+                  if (question.answer) {
+                    const answers = Array.isArray(question.answer)
+                      ? question.answer
+                      : typeof question.answer === 'string'
+                        ? question.answer.split('.').filter(s => s.trim().length > 0).map(s => s.trim() + '.')
+                        : [String(question.answer)];
+                    answersText = '\n\nRESPUESTA:\n' + answers.map((a, i) => `[${i + 1}] ${a}`).join('\n');
+                  }
+                  navigator.clipboard.writeText(paragraphsText + answersText);
+                  setParagraphCopied(true);
+                  setTimeout(() => setParagraphCopied(false), 2000);
+                }}
+                className="px-4 py-2 bg-surface border border-border-strong text-text-body rounded-lg hover:bg-surface-alt transition-colors font-medium flex items-center gap-2 shadow-sm"
+              >
+                {paragraphCopied ? '✅ Copiado' : '📋 Copiar'}
+              </button>
+              <button
+                onClick={() => setShowParagraphsModal(false)}
+                className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium shadow-sm"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Helper para renderizar modales de textos bíblicos */}
+      {showReadTextModal && question.readText && biblicalTexts[question.readText] && (
+        <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
+          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
+            <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
+              <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
+                <span>📖</span> Lectura Bíblica
+              </h3>
+              <button
+                onClick={() => setShowReadTextModal(false)}
+                className="text-text-tertiary hover:text-text-secondary transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
+              <div className="space-y-6">
+                {biblicalTexts[question.readText].map((text, index) => (
+                  <div key={index} className="bg-surface-alt rounded-lg p-5 border-l-4 border-text-secondary">
+                    <h4 className="font-bold text-text-primary mb-2 font-serif">{text.reference}</h4>
+                    <p className="text-text-body italic leading-relaxed font-serif text-lg">
+                      &quot;{text.text}&quot;
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end">
+              <button
+                onClick={() => setShowReadTextModal(false)}
+                className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Subtítulo de Sección - Diseño Ejecutivo */}
+      {question.section && (
+        <div className="mb-8 mt-12">
+          {/* Contenedor del subtítulo */}
+          <div className="relative">
+            {/* Líneas decorativas laterales */}
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t border-border"></div>
+            </div>
+
+            {/* Subtítulo centrado */}
+            <div className="relative flex justify-center">
+              <div className="bg-slate-800 px-8 py-4 rounded-lg shadow-lg">
+                <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
+                  {question.section}
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          {/* Sección LSM del subtítulo */}
+          <div className="mt-4 flex justify-center">
+            {isEditingSectionLSM ? (
+              <div className="w-full max-w-xl bg-surface p-4 rounded-lg border border-blue-200 dark:border-blue-800 shadow-md animate-fadeIn">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">🤟</span>
+                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Editando LSM</span>
+                </div>
+                <textarea
+                  value={editedSectionLSM}
+                  onChange={(e) => setEditedSectionLSM(e.target.value)}
+                  onKeyDown={handleSectionKeyDown}
+                  className="w-full p-3 text-text-body border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg resize-none uppercase bg-surface"
+                  rows={2}
+                  placeholder="Escribe el subtítulo en LSM..."
+                  autoFocus
+                />
+                <div className="flex justify-end gap-2 mt-3">
+                  <button
+                    onClick={handleSaveSectionLSM}
+                    disabled={isSavingSection}
+                    className="text-sm bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 font-medium"
+                  >
+                    {isSavingSection ? 'Guardando...' : '💾 Guardar'}
+                  </button>
+                  <button
+                    onClick={handleCancelSectionEdit}
+                    className="text-sm text-text-muted px-4 py-2 hover:text-text-body"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div
+                onClick={() => setIsEditingSectionLSM(true)}
+                className="group/section cursor-pointer px-6 py-3 rounded-lg border border-transparent hover:bg-surface-alt hover:border-border transition-all max-w-xl w-full"
+              >
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <span className="text-lg">🤟</span>
+                  <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider group-hover/section:text-blue-600 dark:group-hover/section:text-blue-400">LSM</span>
+                  <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-blue-400 text-xs transition-opacity">✏️</span>
+                </div>
+                <p className="text-text-secondary font-medium text-lg text-center uppercase">
+                  {currentSectionLSMText || <span className="text-text-muted italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* DISEÑO PREMIUM */}
+      <div id={`question-${question.number}`} className="mb-12 scroll-mt-24 transform transition-all duration-500 ease-out">
+
+        {/* Tarjeta Principal */}
+        <div className="bg-surface border border-border rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
+
+          {/* Barra lateral decorativa */}
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]"></div>
+
+          {/* Cabecera de la Pregunta */}
+          <div className="p-8 pb-4">
+            <div className="flex justify-between items-start mb-4">
+              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-slate-400">
+                Pregunta {question.number}
+              </span>
+              <div className="flex items-center gap-2">
+                {/* Botón Infografía */}
+                {question.infographic && (
+                  <button
+                    onClick={() => setShowInfographicModal(true)}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200 dark:border-blue-800"
+                    title="Ver infografía"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span>Infografía</span>
+                  </button>
+                )}
+                {/* Botón Párrafos (Diseño Minimalista) */}
+                <button
+                  onClick={() => setShowParagraphsModal(true)}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-alt text-text-secondary hover:bg-surface-raised hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-wide border border-border"
+                >
+                  <span>Párrafos</span>
+                  <span className="bg-surface-raised text-text-body px-1.5 py-0.5 rounded text-[10px]">
+                    {question.paragraphs.join(', ')}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            {/* Texto de la Pregunta */}
+            <h2 className="text-2xl md:text-3xl font-serif text-text-primary leading-tight mb-2">
+              {question.textEs}
+            </h2>
+
+            {/* Lectura Bíblica (Si existe) */}
+            {question.readText && (
+              <div className="mt-4">
+                <button
+                  onClick={() => setShowReadTextModal(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-transform active:scale-95 shadow-md group/btn"
+                >
+                  <span className="text-lg">📖</span>
+                  <span className="font-medium tracking-wide">{question.readText}</span>
+                  <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity ml-1">→</span>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Sección Intermedia: LSM y Herramientas */}
+          <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle dark:border-border flex flex-wrap items-center gap-4">
+
+            {/* Botón LSM */}
+            <div className="flex-1 min-w-[200px]">
+              {isEditingLSM ? (
+                <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
                   <textarea
-                    value={editedSectionLSM}
-                    onChange={(e) => setEditedSectionLSM(e.target.value)}
-                    onKeyDown={handleSectionKeyDown}
-                    className="w-full p-3 text-text-body border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg resize-none uppercase bg-surface"
+                    value={editedLSM}
+                    onChange={(e) => setEditedLSM(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    onBlur={handleBlurLSM}
+                    className="w-full p-2 text-text-body border-none focus:ring-0 text-sm resize-none bg-surface"
                     rows={2}
-                    placeholder="Escribe el subtítulo en LSM..."
+                    placeholder="Escribe la traducción LSM..."
                     autoFocus
                   />
-                  <div className="flex justify-end gap-2 mt-3">
-                    <button
-                      onClick={handleSaveSectionLSM}
-                      disabled={isSavingSection}
-                      className="text-sm bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 font-medium"
-                    >
-                      {isSavingSection ? 'Guardando...' : '💾 Guardar'}
-                    </button>
-                    <button
-                      onClick={handleCancelSectionEdit}
-                      className="text-sm text-text-muted px-4 py-2 hover:text-text-body"
-                    >
-                      Cancelar
-                    </button>
+                  <div className="flex justify-end gap-2 mt-2">
+                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">Guardar</button>
+                    <button onMouseDown={handleCancelEdit} className="text-xs text-text-muted px-2 py-1">Cancelar</button>
                   </div>
                 </div>
               ) : (
                 <div
-                  onClick={() => setIsEditingSectionLSM(true)}
-                  className="group/section cursor-pointer px-6 py-3 rounded-lg border border-transparent hover:bg-surface-alt hover:border-border transition-all max-w-xl w-full"
+                  onClick={() => setIsEditingLSM(true)}
+                  className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-surface hover:border-border hover:shadow-sm transition-all"
                 >
-                  <div className="flex items-center justify-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1">
                     <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider group-hover/section:text-blue-600 dark:group-hover/section:text-blue-400">LSM</span>
-                    <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-blue-400 text-xs transition-opacity">✏️</span>
+                    <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
                   </div>
-                  <p className="text-text-secondary font-medium text-lg text-center uppercase">
-                    {currentSectionLSMText || <span className="text-text-muted italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
+                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
+                    {lsmText || question.textLSM || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
                   </p>
                 </div>
               )}
             </div>
-          </div>
-        )}
 
-        {/* DISEÑO PREMIUM */}
-        <div id={`question-${question.number}`} className="mb-12 scroll-mt-24 transform transition-all duration-500 ease-out">
-
-          {/* Tarjeta Principal */}
-          <div className="bg-surface border border-border rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
-
-            {/* Barra lateral decorativa */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]"></div>
-
-            {/* Cabecera de la Pregunta */}
-            <div className="p-8 pb-4">
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-slate-400">
-                  Pregunta {question.number}
-                </span>
-                <div className="flex items-center gap-2">
-                  {/* Botón Infografía */}
-                  {question.infographic && (
-                    <button
-                      onClick={() => setShowInfographicModal(true)}
-                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200 dark:border-blue-800"
-                      title="Ver infografía"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span>Infografía</span>
-                    </button>
-                  )}
-                  {/* Botón Párrafos (Diseño Minimalista) */}
-                  <button
-                    onClick={() => setShowParagraphsModal(true)}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-alt text-text-secondary hover:bg-surface-raised hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-wide border border-border"
-                  >
-                    <span>Párrafos</span>
-                    <span className="bg-surface-raised text-text-body px-1.5 py-0.5 rounded text-[10px]">
-                      {question.paragraphs.join(', ')}
-                    </span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Texto de la Pregunta */}
-              <h2 className="text-2xl md:text-3xl font-serif text-text-primary leading-tight mb-2">
-                {question.textEs}
-              </h2>
-
-              {/* Lectura Bíblica (Si existe) */}
-              {question.readText && (
-                <div className="mt-4">
-                  <button
-                    onClick={() => setShowReadTextModal(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-transform active:scale-95 shadow-md group/btn"
-                  >
-                    <span className="text-lg">📖</span>
-                    <span className="font-medium tracking-wide">{question.readText}</span>
-                    <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity ml-1">→</span>
-                  </button>
-                </div>
-              )}
+            {/* Botones de Acción */}
+            <div className="flex gap-2">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
+                  ? 'bg-surface-raised border-border-strong text-text-body'
+                  : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
+                  }`}
+              >
+                {isExpanded ? 'Ocultar Respuesta' : 'Ver Respuesta'}
+              </button>
             </div>
+          </div>
 
-            {/* Sección Intermedia: LSM y Herramientas */}
-            <div className="px-8 py-4 bg-surface-alt border-y border-border-subtle dark:border-border flex flex-wrap items-center gap-4">
-
-              {/* Botón LSM */}
-              <div className="flex-1 min-w-[200px]">
-                {isEditingLSM ? (
-                  <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
-                    <textarea
-                      value={editedLSM}
-                      onChange={(e) => setEditedLSM(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      onBlur={handleBlurLSM}
-                      className="w-full p-2 text-text-body border-none focus:ring-0 text-sm resize-none bg-surface"
-                      rows={2}
-                      placeholder="Escribe la traducción LSM..."
-                      autoFocus
-                    />
-                    <div className="flex justify-end gap-2 mt-2">
-                      <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">Guardar</button>
-                      <button onMouseDown={handleCancelEdit} className="text-xs text-text-muted px-2 py-1">Cancelar</button>
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    onClick={() => setIsEditingLSM(true)}
-                    className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-surface hover:border-border hover:shadow-sm transition-all"
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg">🤟</span>
-                      <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
-                    </div>
-                    <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
-                      {lsmText || question.textLSM || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
-                    </p>
-                  </div>
+          {/* IMAGEN ILUSTRATIVA - Si existe (Diseño Premium) */}
+          {question.image && (
+            <div className="px-8 py-6 bg-surface">
+              <div className="rounded-xl overflow-hidden shadow-lg border border-border">
+                <img
+                  src={question.image}
+                  alt={question.imageCaption || "Ilustración de la pregunta"}
+                  className="w-full h-auto object-cover"
+                />
+                {question.imageCaption && (
+                  <p className="text-sm text-text-secondary italic p-4 bg-surface-alt text-center border-t border-border-subtle">
+                    {question.imageCaption}
+                  </p>
                 )}
               </div>
-
-              {/* Botones de Acción */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
-                    ? 'bg-surface-raised border-border-strong text-text-body'
-                    : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
-                    }`}
-                >
-                  {isExpanded ? 'Ocultar Respuesta' : 'Ver Respuesta'}
-                </button>
-              </div>
             </div>
+          )}
 
-            {/* IMAGEN ILUSTRATIVA - Si existe (Diseño Premium) */}
-            {question.image && (
-              <div className="px-8 py-6 bg-surface">
-                <div className="rounded-xl overflow-hidden shadow-lg border border-border">
-                  <img
-                    src={question.image}
-                    alt={question.imageCaption || "Ilustración de la pregunta"}
-                    className="w-full h-auto object-cover"
-                  />
-                  {question.imageCaption && (
-                    <p className="text-sm text-text-secondary italic p-4 bg-surface-alt text-center border-t border-border-subtle">
-                      {question.imageCaption}
-                    </p>
-                  )}
-                </div>
-              </div>
-            )}
+          {/* Contenido Expandible (Respuesta y Tarjetas) */}
+          {isExpanded && (
+            <div className="animate-slideDown">
 
-            {/* Contenido Expandible (Respuesta y Tarjetas) */}
-            {isExpanded && (
-              <div className="animate-slideDown">
-
-                {/* Sección de Respuesta */}
-                <div className="p-8 bg-surface">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-300 flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-amber-700">
-                        💡
-                      </div>
+              {/* Sección de Respuesta */}
+              <div className="p-8 bg-surface">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-300 flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-amber-700">
+                      💡
                     </div>
-                    <div className="flex-1 space-y-4">
+                  </div>
+                  <div className="flex-1 space-y-4">
 
-                      {/* Label RESPUESTA (solo si hay answerContext) */}
-                      {question.answerContext && question.answerContext.length > 0 && (
-                        <div className="mb-3">
-                          <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Respuesta</span>
-                        </div>
-                      )}
+                    {/* Label RESPUESTA (solo si hay answerContext) */}
+                    {question.answerContext && question.answerContext.length > 0 && (
+                      <div className="mb-3">
+                        <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Respuesta</span>
+                      </div>
+                    )}
 
-                      {/* Respuesta Principal Mejorada con numeración */}
-                      <div className="prose prose-slate max-w-none">
-                        {question.answer && (
-                          Array.isArray(question.answer)
-                            ? question.answer.map((paragraph, idx) => (
-                              <p key={idx} className="text-lg text-text-body leading-relaxed mb-4">
-                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
+                    {/* Respuesta Principal con click para marcar */}
+                    <div className="prose prose-slate max-w-none">
+                      {question.answer && (
+                        Array.isArray(question.answer)
+                          ? question.answer.map((paragraph, idx) => {
+                            const itemId = `answer-${articleId}-${question.number}-${idx}`;
+                            const isUsed = usedItems[itemId];
+                            return (
+                              <div
+                                key={idx}
+                                className={isNavigationMode
+                                  ? `mb-3 pl-2 pr-2 py-1 rounded-lg transition-all ${isUsed && isSelectableQ ? 'bg-emerald-500/10 dark:bg-emerald-400/10 border-l-2 border-emerald-400 dark:border-emerald-500' : ''}`
+                                  : `mb-3 pl-2 pr-10 py-1 ${usedItemClass(itemId)}`}
+                                onClick={isNavigationMode ? undefined : () => isSelectableQ && toggleUsedItem(itemId)}
+                              >
+                                {!isNavigationMode && isUsed && <UsedBadge />}
+                                {!isNavigationMode && !isUsed && isSelectableQ && <HoverHint />}
+                                <p className="text-lg text-text-body leading-relaxed m-0">
+                                  <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
+                                </p>
+                              </div>
+                            );
+                          })
+                          : typeof question.answer === 'string'
+                            ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => (
+                              <p key={idx} className="text-lg text-text-body leading-relaxed mb-4 block">
+                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(sentence.trim() + '.')}
                               </p>
                             ))
-                            : typeof question.answer === 'string'
-                              ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => (
-                                <p key={idx} className="text-lg text-text-body leading-relaxed mb-4 block">
-                                  <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(sentence.trim() + '.')}
-                                </p>
-                              ))
-                              : <p className="text-lg text-text-body leading-relaxed">{renderBoldText(String(question.answer))}</p>
-                        )}
-                      </div>
-
-                      {/* Sección CONTEXTO (solo si existe answerContext) */}
-                      {question.answerContext && question.answerContext.length > 0 && (
-                        <div className="mt-6 border-l-2 border-border dark:border-border-strong bg-surface-alt rounded-r-lg p-5">
-                          <div className="mb-3">
-                            <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Contexto</span>
-                          </div>
-                          <div className="space-y-3">
-                            {question.answerContext.map((ctx, idx) => (
-                              <p key={idx} className="text-base text-text-secondary leading-relaxed">
-                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Puntos Clave */}
-                      {(question.answerBullets || customBullets.length > 0) && (
-                        <div className="mt-6 space-y-3">
-                          {(customBullets.length > 0 ? customBullets : question.answerBullets as string[]).map((bullet, idx) => (
-                            <div key={idx} className="flex gap-3 group/bullet">
-                              <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-blue-400 transition-colors"></div>
-                              <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
-                            </div>
-                          ))}
-                        </div>
+                            : <p className="text-lg text-text-body leading-relaxed">{renderBoldText(String(question.answer))}</p>
                       )}
                     </div>
-                  </div>
-                </div>
 
-                {/* Línea divisoria elegante */}
-                <div className="px-8 py-4 bg-surface">
-                  <div className="flex items-center justify-center gap-4">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
-                    <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
-                  </div>
-                </div>
-
-                {/* Grid de Tarjetas (Fondo sutil) */}
-                <div className="bg-surface-alt p-8">
-
-                  {/* Flashcards Slide-Down (prueba: artículo 48, pregunta 1,2) */}
-                  {articleNum === 48 && (question.flashcards || customFlashcards.length > 0) && (
-                    <div className="mb-6">
-                      <div className="flex items-center justify-between mb-4 min-h-[40px]">
-                        <div className="text-xs font-bold text-text-muted uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
-                        <div className="text-xs text-text-tertiary font-medium">
-                          {customFlashcards.length} {customFlashcards.length === 1 ? 'tarjeta' : 'tarjetas'}
+                    {/* Sección CONTEXTO (solo si existe answerContext) */}
+                    {question.answerContext && question.answerContext.length > 0 && (
+                      <div className="mt-6 border-l-2 border-border dark:border-border-strong bg-surface-alt rounded-r-lg p-5">
+                        <div className="mb-3">
+                          <span className="text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]">Contexto</span>
+                        </div>
+                        <div className="space-y-3">
+                          {question.answerContext.map((ctx, idx) => (
+                            <p key={idx} className="text-base text-text-secondary leading-relaxed">
+                              <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(ctx)}
+                            </p>
+                          ))}
                         </div>
                       </div>
-                      <div className="space-y-3">
-                        {customFlashcards.map((card, index) => {
-                          const cardId = `flashcard-${question.number}-${index}`;
-                          if (hiddenCards[cardId]) return null;
-                          const isOpen = expandedFlashcards.has(index);
-                          return (
-                            <div
-                              key={index}
-                              className="bg-surface rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                            >
-                              {/* Pregunta (siempre visible) */}
-                              <button
-                                onClick={() => {
-                                  setExpandedFlashcards(prev => {
-                                    const next = new Set(prev);
-                                    if (next.has(index)) next.delete(index);
-                                    else next.add(index);
-                                    return next;
-                                  });
-                                }}
-                                className="w-full text-left px-5 py-4 flex items-start gap-3 group"
-                              >
-                                <span className={`text-text-tertiary mt-0.5 text-sm transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}>
-                                  ▸
-                                </span>
-                                <span className="text-text-body font-sans font-semibold text-base leading-relaxed flex-1">
-                                  {card.question}
-                                </span>
-                                <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-surface-raised text-text-secondary'}`}>
-                                  {isOpen ? 'Ocultar' : 'Ver'}
-                                </span>
-                              </button>
+                    )}
 
-                              {/* Respuesta (slide-down) */}
+                    {/* Puntos Clave */}
+                    {(question.answerBullets || customBullets.length > 0) && (
+                      <div className="mt-6 space-y-3">
+                        {(customBullets.length > 0 ? customBullets : question.answerBullets as string[]).map((bullet, idx) => (
+                          <div key={idx} className="flex gap-3 group/bullet">
+                            <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-blue-400 transition-colors"></div>
+                            <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Enfoque del Párrafo (Tips para el conductor) */}
+                {(question.keyPoint || question.guidingQuestion) && (
+                  // En modo Atalaya: solo mostrar si al menos un item del enfoque está seleccionado
+                  !isNavigationMode || (
+                    (question.keyPoint && shouldShowInAtlMode(`keypoint-${articleId}-${question.number}`)) ||
+                    (question.guidingQuestion && shouldShowInAtlMode(`guiding-${articleId}-${question.number}`))
+                  )
+                ) && (
+                  <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-slate-700 dark:bg-slate-800/40 shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-amber-600 dark:from-amber-500 dark:to-orange-500"></div>
+                    <div className="flex items-start gap-4">
+                      <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">💡</div>
+                      <div className="flex-1 space-y-4">
+                        <h3 className="text-sm font-extrabold text-amber-800 dark:text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                          Enfoque del Párrafo
+                          <span className="text-[10px] font-medium bg-amber-200 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full border dark:border-amber-700/50">Exclusivo Conductor</span>
+                        </h3>
+
+                        {question.keyPoint && shouldShowInAtlMode(`keypoint-${articleId}-${question.number}`) && (() => {
+                          const itemId = `keypoint-${articleId}-${question.number}`;
+                          const isUsed = usedItems[itemId];
+                          return (
+                            <div className="space-y-1.5">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-base">🎯</span>
+                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-slate-400 uppercase tracking-wider">Punto Clave</span>
+                              </div>
                               <div
-                                className={`overflow-hidden transition-all duration-400 ease-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                                className={isNavigationMode ? atlModeItemClass : `${usedItemClass(itemId)} px-1 py-1`}
+                                onClick={isNavigationMode ? undefined : () => toggleUsedItem(itemId)}
                               >
-                                <div className="px-5 pb-4 pt-0">
-                                  <div className="ml-6 pl-4 border-l-2 border-amber-300">
-                                    <p className="text-text-secondary leading-relaxed text-[15px]">
-                                      {card.answer}
-                                    </p>
-                                  </div>
+                                {!isNavigationMode && isUsed && <UsedBadge />}
+                                {!isNavigationMode && !isUsed && <HoverHint />}
+                                <p className="text-base md:text-lg font-medium text-amber-900 dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-amber-100 dark:border-slate-700 shadow-inner dark:shadow-black/20 m-0">
+                                  {question.keyPoint}
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        {question.guidingQuestion && shouldShowInAtlMode(`guiding-${articleId}-${question.number}`) && (() => {
+                          const itemId = `guiding-${articleId}-${question.number}`;
+                          const isUsed = usedItems[itemId];
+                          return (
+                            <div className="space-y-1.5">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-base">🆘</span>
+                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-slate-400 uppercase tracking-wider">Si no lo mencionan, pregunta:</span>
+                              </div>
+                              <div
+                                className={isNavigationMode ? atlModeItemClass : `${usedItemClass(itemId)} px-1 py-1`}
+                                onClick={isNavigationMode ? undefined : () => toggleUsedItem(itemId)}
+                              >
+                                {!isNavigationMode && isUsed && <UsedBadge />}
+                                {!isNavigationMode && !isUsed && <HoverHint />}
+                                <p className="text-base md:text-lg text-amber-800 dark:text-slate-300 italic font-serif leading-relaxed px-3 py-1 border-l-2 border-amber-300 dark:border-slate-600 m-0">
+                                  "{question.guidingQuestion}"
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Línea divisoria entre Enfoque del Párrafo y Textos Clave */}
+                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
+                  <div className="flex items-center gap-3 mt-5">
+                    <div className="flex-1 h-px bg-gradient-to-r from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-amber-700/40 dark:via-slate-700 dark:to-blue-800/40"></div>
+                    <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Textos</span>
+                    <div className="flex-1 h-px bg-gradient-to-l from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-amber-700/40 dark:via-slate-700 dark:to-blue-800/40"></div>
+                  </div>
+                )}
+
+                {/* Textos Clave en panel (para preguntas con keyPoint/guidingQuestion) */}
+                {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
+                  // En modo Atalaya: solo mostrar si al menos un texto bíblico está seleccionado
+                  !isNavigationMode || question.biblicalCards.some((_, idx) =>
+                    shouldShowInAtlMode(`biblical-panel-${articleId}-${question.number}-${idx}`) ||
+                    shouldShowInAtlMode(`biblical-reason-${articleId}-${question.number}-${idx}`)
+                  )
+                ) && (
+                  <div className="mt-3 p-5 rounded-xl border border-blue-200/50 bg-blue-50/30 dark:border-slate-700 dark:bg-slate-800/30 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-blue-400 to-indigo-600 dark:from-blue-500 dark:to-indigo-700"></div>
+                    <div className="flex items-start gap-4">
+                      <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">📖</div>
+                      <div className="flex-1 space-y-5">
+                        <h3 className="text-sm font-extrabold text-blue-800 dark:text-blue-400 uppercase tracking-widest flex items-center gap-2">
+                          Textos Clave
+                          <span className="text-[10px] font-medium bg-blue-200 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded-full border dark:border-blue-700/50">Razona con la Biblia</span>
+                        </h3>
+                        {question.biblicalCards.map((card, idx) => {
+                          const itemId = `biblical-panel-${articleId}-${question.number}-${idx}`;
+                          const rId = `biblical-reason-${articleId}-${question.number}-${idx}`;
+                          const isUsed = usedItems[itemId];
+                          // Modo Atalaya: filtrar tarjetas no seleccionadas
+                          if (isNavigationMode && !shouldShowInAtlMode(itemId) && !shouldShowInAtlMode(rId)) return null;
+                          return (
+                            <div key={idx} className="space-y-2">
+                              {/* Referencia + propósito */}
+                              <div className="flex items-start gap-2">
+                                <span className="text-base mt-0.5">📌</span>
+                                <div>
+                                  <span className="font-bold text-base text-blue-900 dark:text-blue-300 font-serif">{card.reference}</span>
+                                  <span className="text-text-secondary dark:text-slate-400 text-sm ml-2 italic">— {card.purpose}</span>
                                 </div>
                               </div>
+                              {/* Texto bíblico clicable */}
+                              {shouldShowInAtlMode(itemId) && (
+                                <div
+                                  className={isNavigationMode ? `ml-6 ${atlModeItemClass}` : `ml-6 ${usedItemClass(itemId)}`}
+                                  onClick={isNavigationMode ? undefined : () => toggleUsedItem(itemId)}
+                                >
+                                  {!isNavigationMode && isUsed && <UsedBadge />}
+                                  {!isNavigationMode && !isUsed && <HoverHint />}
+                                  <p className="text-base text-text-body dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-blue-100 dark:border-slate-700 italic m-0">
+                                    "{card.text}"
+                                  </p>
+                                </div>
+                              )}
+                              {/* Razonamiento */}
+                              {card.reasoningQuestion && shouldShowInAtlMode(rId) && (() => {
+                                const rUsed = usedItems[rId];
+                                return (
+                                  <div className="ml-6 space-y-1">
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-base">🗣️</span>
+                                      <span className="text-[11px] font-bold text-blue-700/80 dark:text-slate-400 uppercase tracking-wider">Razona con la congregación:</span>
+                                    </div>
+                                    <div
+                                      className={isNavigationMode ? usedItemClass(rId).replace('cursor-pointer', '') : `${usedItemClass(rId)}`}
+                                      onClick={isNavigationMode ? undefined : () => toggleUsedItem(rId)}
+                                    >
+                                      {!isNavigationMode && rUsed && <UsedBadge />}
+                                      {!isNavigationMode && !rUsed && <HoverHint />}
+                                      <p className="text-base text-blue-800 dark:text-slate-300 italic font-serif leading-relaxed px-3 py-1 border-l-2 border-blue-300 dark:border-slate-600 m-0">
+                                        "{card.reasoningQuestion}"
+                                      </p>
+                                    </div>
+                                  </div>
+                                );
+                              })()}
+                              {idx < (question.biblicalCards?.length ?? 0) - 1 && (
+                                <div className="ml-6 mt-3 h-px bg-blue-100 dark:bg-slate-700"></div>
+                              )}
                             </div>
                           );
                         })}
                       </div>
                     </div>
-                  )}
-
-                  <div className="grid md:grid-cols-2 gap-6">
-
-                    {/* Tarjetas Didácticas (diseño original flip) */}
-                    {!(articleNum === 48) && (question.flashcards || customFlashcards.length > 0) && (
-                      <div className="space-y-4">
-
-                        <FlashCards
-                          cards={customFlashcards}
-                          questionNumber={question.number}
-                          lsmData={allLsmData}
-                          onLSMUpdate={onLSMUpdate || (() => { })}
-                          hiddenCards={hiddenCards}
-                          onToggleHidden={onToggleHidden}
-                          articleId={articleId}
-                          onAddCard={handleAddFlashcard}
-                          onEditCard={handleEditFlashcard}
-                          onDeleteCard={handleDeleteFlashcard}
-                        />
-                      </div>
-                    )}
-
-                    {/* Textos Bíblicos */}
-                    {question.biblicalCards && (
-                      <div className="space-y-4">
-
-                        <BiblicalCards
-                          cards={question.biblicalCards}
-                          questionNumber={question.number}
-                          hiddenCards={hiddenCards}
-                          onToggleHidden={onToggleHidden}
-                        />
-                      </div>
-                    )}
                   </div>
+                )}
+
+                {/* Divisor Textos Clave → Tarjetas */}
+                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
+                  <div className="flex items-center gap-3 mt-5">
+                    <div className="flex-1 h-px bg-gradient-to-r from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-blue-800/40 dark:via-slate-700 dark:to-purple-800/40"></div>
+                    <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Tarjetas</span>
+                    <div className="flex-1 h-px bg-gradient-to-l from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-blue-800/40 dark:via-slate-700 dark:to-purple-800/40"></div>
+                  </div>
+                )}
+
+                {/* Tarjetas Didácticas en panel (para preguntas con keyPoint/guidingQuestion) */}
+                {(question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
+                  // En modo Atalaya: solo mostrar si al menos una flashcard está seleccionada
+                  !isNavigationMode || customFlashcards.some((_, idx) =>
+                    shouldShowInAtlMode(`fc-q-${articleId}-${question.number}-${idx}`)
+                  )
+                ) && (
+                  <div className="mt-3 p-5 rounded-xl border border-purple-200/50 bg-purple-50/30 dark:border-slate-700 dark:bg-slate-800/25 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-purple-400 to-violet-600 dark:from-purple-500 dark:to-violet-700"></div>
+                    <div className="flex items-start gap-4">
+                      <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">🏂</div>
+                      <div className="flex-1 space-y-5">
+                        <h3 className="text-sm font-extrabold text-purple-800 dark:text-purple-400 uppercase tracking-widest">
+                          Tarjetas Didácticas
+                        </h3>
+                        {customFlashcards.map((card, idx) => {
+                          const qId = `fc-q-${articleId}-${question.number}-${idx}`;
+                          const aId = `fc-a-${articleId}-${question.number}-${idx}`;
+                          const qUsed = usedItems[qId];
+                          // Modo Atalaya: filtrar flashcards no seleccionadas (pregunta controla ambas)
+                          if (isNavigationMode && !shouldShowInAtlMode(qId)) return null;
+                          return (
+                            <div key={idx} className="space-y-2">
+                              {/* Pregunta - con checkbox único que controla pregunta + respuesta */}
+                              <div
+                                className={isNavigationMode ? `flex items-start gap-2 px-2 py-1 ${atlModeItemClass}` : `flex items-start gap-2 px-2 py-1 ${usedItemClass(qId)}`}
+                                onClick={isNavigationMode ? undefined : () => toggleFlashcardUsed(qId, aId)}
+                              >
+                                {!isNavigationMode && qUsed && <UsedBadge />}
+                                {!isNavigationMode && !qUsed && <HoverHint />}
+                                <span className="text-base mt-0.5 flex-shrink-0">❓</span>
+                                <p className="font-semibold text-base text-purple-900 dark:text-purple-200 leading-relaxed m-0">{card.question}</p>
+                              </div>
+                              {/* Respuesta - sin checkbox propio, sigue a la pregunta */}
+                              {card.answer && (
+                                <div className="ml-6 rounded-lg px-1 py-1">
+                                  <p className="text-base text-text-body dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-purple-100 dark:border-slate-700 m-0">
+                                    {card.answer}
+                                  </p>
+                                </div>
+                              )}
+                              {idx < customFlashcards.length - 1 && (
+                                <div className="ml-6 mt-3 h-px bg-purple-100 dark:bg-slate-700"></div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Línea divisoria elegante */}
+              <div className="px-8 py-4 bg-surface">
+                <div className="flex items-center justify-center gap-4">
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
+                  <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
+                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
                 </div>
-
               </div>
-            )}
 
-          </div>
-        </div>
+              {/* Grid de Tarjetas (Fondo sutil) */}
+              <div className="bg-surface-alt p-8">
 
-        {/* Modal de infografía para diseño premium */}
-        {showInfographicModal && question.infographic && (
-          <div
-            className="fixed inset-0 z-50 bg-black/95 flex flex-col"
-            onClick={() => setShowInfographicModal(false)}
-          >
-            {/* Header compacto */}
-            <div className="flex-shrink-0 h-12 bg-slate-800 px-4 flex items-center justify-between">
-              <span className="text-white text-sm font-medium flex items-center gap-2">
-                Infografía - Pregunta {question.number}
-              </span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={async (e) => {
-                    e.stopPropagation();
-                    const textToCopy = `Infografía - Pregunta ${question.number}\n\n${question.textEs}\n\nURL: ${question.infographic}`;
-                    await navigator.clipboard.writeText(textToCopy);
-                    setInfographicCopied(true);
-                    setTimeout(() => setInfographicCopied(false), 2000);
-                  }}
-                  className={`p-2 rounded-lg ${infographicCopied ? 'bg-green-500' : 'bg-white/20 hover:bg-white/30'} transition-all`}
-                  title={infographicCopied ? '¡Copiado!' : 'Copiar enlace'}
-                >
-                  {infographicCopied ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
+                {/* Flashcards Slide-Down (prueba: artículo 48, pregunta 1,2) */}
+                {articleNum === 48 && (question.flashcards || customFlashcards.length > 0) && (
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-4 min-h-[40px]">
+                      <div className="text-xs font-bold text-text-muted uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
+                      <div className="text-xs text-text-tertiary font-medium">
+                        {customFlashcards.length} {customFlashcards.length === 1 ? 'tarjeta' : 'tarjetas'}
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      {customFlashcards.map((card, index) => {
+                        const cardId = `flashcard-${question.number}-${index}`;
+                        if (hiddenCards[cardId]) return null;
+                        const isOpen = expandedFlashcards.has(index);
+                        return (
+                          <div
+                            key={index}
+                            className="bg-surface rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                          >
+                            {/* Pregunta (siempre visible) */}
+                            <button
+                              onClick={() => {
+                                setExpandedFlashcards(prev => {
+                                  const next = new Set(prev);
+                                  if (next.has(index)) next.delete(index);
+                                  else next.add(index);
+                                  return next;
+                                });
+                              }}
+                              className="w-full text-left px-5 py-4 flex items-start gap-3 group"
+                            >
+                              <span className={`text-text-tertiary mt-0.5 text-sm transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}>
+                                ▸
+                              </span>
+                              <span className="text-text-body font-sans font-semibold text-base leading-relaxed flex-1">
+                                {card.question}
+                              </span>
+                              <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-surface-raised text-text-secondary'}`}>
+                                {isOpen ? 'Ocultar' : 'Ver'}
+                              </span>
+                            </button>
+
+                            {/* Respuesta (slide-down) */}
+                            <div
+                              className={`overflow-hidden transition-all duration-400 ease-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                            >
+                              <div className="px-5 pb-4 pt-0">
+                                <div className="ml-6 pl-4 border-l-2 border-amber-300">
+                                  <p className="text-text-secondary leading-relaxed text-[15px]">
+                                    {card.answer}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <div className="grid md:grid-cols-2 gap-6">
+
+                  {/* Tarjetas Didácticas (flip cards): solo para preguntas SIN panel de conductor */}
+                  {!(articleNum === 48) && (question.flashcards || customFlashcards.length > 0) && !(question.keyPoint || question.guidingQuestion) && (
+                    <div className="space-y-4">
+
+                      <FlashCards
+                        cards={customFlashcards}
+                        questionNumber={question.number}
+                        lsmData={allLsmData}
+                        onLSMUpdate={onLSMUpdate || (() => { })}
+                        hiddenCards={hiddenCards}
+                        onToggleHidden={onToggleHidden}
+                        articleId={articleId}
+                        onAddCard={handleAddFlashcard}
+                        onEditCard={handleEditFlashcard}
+                        onDeleteCard={handleDeleteFlashcard}
+                      />
+                    </div>
                   )}
-                </button>
-                <button
-                  onClick={() => setShowInfographicModal(false)}
-                  className="p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-all"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
 
-            {/* BOTÓN GRANDE DE CERRAR - Fácil de tocar en móvil/tablet */}
-            <div className="flex-shrink-0 px-4 py-2 bg-black">
+                  {/* Textos Bíblicos (flip cards): solo para preguntas SIN panel de conductor) */}
+                  {question.biblicalCards && !(question.keyPoint || question.guidingQuestion) && (
+                    <div className="space-y-4">
+
+                      <BiblicalCards
+                        cards={question.biblicalCards}
+                        questionNumber={question.number}
+                        hiddenCards={hiddenCards}
+                        onToggleHidden={onToggleHidden}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          )}
+
+        </div>
+      </div>
+
+      {/* Modal de infografía para diseño premium */}
+      {showInfographicModal && question.infographic && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex flex-col"
+          onClick={() => setShowInfographicModal(false)}
+        >
+          {/* Header compacto */}
+          <div className="flex-shrink-0 h-12 bg-slate-800 px-4 flex items-center justify-between">
+            <span className="text-white text-sm font-medium flex items-center gap-2">
+              Infografía - Pregunta {question.number}
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={async (e) => {
+                  e.stopPropagation();
+                  const textToCopy = `Infografía - Pregunta ${question.number}\n\n${question.textEs}\n\nURL: ${question.infographic}`;
+                  await navigator.clipboard.writeText(textToCopy);
+                  setInfographicCopied(true);
+                  setTimeout(() => setInfographicCopied(false), 2000);
+                }}
+                className={`p-2 rounded-lg ${infographicCopied ? 'bg-green-500' : 'bg-white/20 hover:bg-white/30'} transition-all`}
+                title={infographicCopied ? '¡Copiado!' : 'Copiar enlace'}
+              >
+                {infographicCopied ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                )}
+              </button>
               <button
                 onClick={() => setShowInfographicModal(false)}
-                className="w-full py-4 bg-red-600 hover:bg-red-500 active:bg-red-700
+                className="p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-all"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* BOTÓN GRANDE DE CERRAR - Fácil de tocar en móvil/tablet */}
+          <div className="flex-shrink-0 px-4 py-2 bg-black">
+            <button
+              onClick={() => setShowInfographicModal(false)}
+              className="w-full py-4 bg-red-600 hover:bg-red-500 active:bg-red-700
                            text-white font-semibold text-lg rounded-xl
                            flex items-center justify-center gap-3
                            transition-all duration-150
                            shadow-lg hover:shadow-xl
                            touch-manipulation
                            min-h-[56px]"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span>CERRAR INFOGRAFÍA</span>
-              </button>
-            </div>
-
-            {/* Contenedor de imagen */}
-            <div
-              className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-surface"
-              onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={question.infographic}
-                alt={`Infografía para la pregunta ${question.number}`}
-                className="max-w-full object-contain"
-                style={{ maxHeight: 'calc(100vh - 140px)' }}
-              />
-            </div>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>CERRAR INFOGRAFÍA</span>
+            </button>
           </div>
-        )}
-      </>
-    );
+
+          {/* Contenedor de imagen */}
+          <div
+            className="flex-1 overflow-hidden flex items-center justify-center p-2 bg-surface"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={question.infographic}
+              alt={`Infografía para la pregunta ${question.number}`}
+              className="max-w-full object-contain"
+              style={{ maxHeight: 'calc(100vh - 140px)' }}
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
