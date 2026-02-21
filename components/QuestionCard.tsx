@@ -1332,8 +1332,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   </div>
                 </div>
 
-                {/* Enfoque del Párrafo (Tips para el conductor) */}
-                {(question.keyPoint || question.guidingQuestion) && (
+                {/* Enfoque del Párrafo (Tips para el conductor) - Solo en modo Estudiar */}
+                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && (
                   <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-slate-700 dark:bg-slate-800/40 shadow-sm relative overflow-hidden group">
                     <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-amber-600 dark:from-amber-500 dark:to-orange-500"></div>
                     <div className="flex items-start gap-4">
@@ -1395,7 +1395,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 )}
 
                 {/* Línea divisoria entre Enfoque del Párrafo y Textos Clave */}
-                {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
+                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
                   <div className="flex items-center gap-3 mt-5">
                     <div className="flex-1 h-px bg-gradient-to-r from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-amber-700/40 dark:via-slate-700 dark:to-blue-800/40"></div>
                     <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Textos</span>
@@ -1481,8 +1481,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   </div>
                 )}
 
-                {/* Tarjetas Didácticas en panel (para preguntas con keyPoint/guidingQuestion) */}
-                {(question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
+                {/* Tarjetas Didácticas en panel (para preguntas con keyPoint/guidingQuestion) - Solo en modo Estudiar */}
+                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
                   <div className="mt-3 p-5 rounded-xl border border-purple-200/50 bg-purple-50/30 dark:border-slate-700 dark:bg-slate-800/25 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-purple-400 to-violet-600 dark:from-purple-500 dark:to-violet-700"></div>
                     <div className="flex items-start gap-4">
@@ -1602,8 +1602,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                 <div className="grid md:grid-cols-2 gap-6">
 
-                  {/* Tarjetas Didácticas (flip cards): solo para preguntas SIN panel de conductor */}
-                  {!(articleNum === 48) && (question.flashcards || customFlashcards.length > 0) && !(question.keyPoint || question.guidingQuestion) && (
+                  {/* Tarjetas Didácticas (flip cards): solo para preguntas SIN panel de conductor - Solo en modo Estudiar */}
+                  {!isNavigationMode && !(articleNum === 48) && (question.flashcards || customFlashcards.length > 0) && !(question.keyPoint || question.guidingQuestion) && (
                     <div className="space-y-4">
 
                       <FlashCards
