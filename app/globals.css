@@ -235,3 +235,39 @@ body {
 .animate-slideUp {
   animation: slideUp 0.2s ease-out;
 }
+
+/* Timer range slider */
+.timer-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #475569;
+}
+
+.timer-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #34d399;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.timer-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #475569;
+}
+
+.timer-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #34d399;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  cursor: pointer;
+}
