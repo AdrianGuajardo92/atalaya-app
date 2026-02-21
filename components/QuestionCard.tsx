@@ -124,17 +124,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     </>
   );
 
-  // --- Modo Atalaya: filtrado de items seleccionados ---
+  // --- Selección de items ---
   const isSelectableQ = !!(question.keyPoint || question.guidingQuestion);
-
-  // En modo Atalaya, solo mostrar items que fueron seleccionados
-  const shouldShowInAtlMode = (itemId: string) => {
-    if (!isNavigationMode) return true;
-    return !!usedItems[itemId];
-  };
-
-  // Clase limpia para items en modo Atalaya (sin outline verde ni cursor pointer)
-  const atlModeItemClass = 'rounded-lg px-1 py-1';
 
   // Cargar puntos clave personalizados desde Vercel KV
   useEffect(() => {
@@ -1290,13 +1281,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             return (
                               <div
                                 key={idx}
-                                className={isNavigationMode
-                                  ? `mb-3 pl-2 pr-2 py-1 rounded-lg transition-all ${isUsed && isSelectableQ ? 'bg-emerald-500/10 dark:bg-emerald-400/10 border-l-2 border-emerald-400 dark:border-emerald-500' : ''}`
-                                  : `mb-3 pl-2 pr-10 py-1 ${usedItemClass(itemId)}`}
-                                onClick={isNavigationMode ? undefined : () => isSelectableQ && toggleUsedItem(itemId)}
+                                className={`mb-3 pl-2 pr-10 py-1 ${usedItemClass(itemId)}`}
+                                onClick={() => isSelectableQ && toggleUsedItem(itemId)}
                               >
-                                {!isNavigationMode && isUsed && <UsedBadge />}
-                                {!isNavigationMode && !isUsed && isSelectableQ && <HoverHint />}
+                                {isUsed && <UsedBadge />}
+                                {!isUsed && isSelectableQ && <HoverHint />}
                                 <p className="text-lg text-text-body leading-relaxed m-0">
                                   <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
                                 </p>
@@ -1345,12 +1334,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                 {/* Enfoque del Párrafo (Tips para el conductor) */}
                 {(question.keyPoint || question.guidingQuestion) && (
-                  // En modo Atalaya: solo mostrar si al menos un item del enfoque está seleccionado
-                  !isNavigationMode || (
-                    (question.keyPoint && shouldShowInAtlMode(`keypoint-${articleId}-${question.number}`)) ||
-                    (question.guidingQuestion && shouldShowInAtlMode(`guiding-${articleId}-${question.number}`))
-                  )
-                ) && (
                   <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-slate-700 dark:bg-slate-800/40 shadow-sm relative overflow-hidden group">
                     <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-amber-600 dark:from-amber-500 dark:to-orange-500"></div>
                     <div className="flex items-start gap-4">
@@ -1361,7 +1344,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           <span className="text-[10px] font-medium bg-amber-200 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full border dark:border-amber-700/50">Exclusivo Conductor</span>
                         </h3>
 
-                        {question.keyPoint && shouldShowInAtlMode(`keypoint-${articleId}-${question.number}`) && (() => {
+                        {question.keyPoint && (() => {
                           const itemId = `keypoint-${articleId}-${question.number}`;
                           const isUsed = usedItems[itemId];
                           return (
@@ -1371,11 +1354,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 <span className="text-[11px] font-bold text-amber-700/80 dark:text-slate-400 uppercase tracking-wider">Punto Clave</span>
                               </div>
                               <div
-                                className={isNavigationMode ? atlModeItemClass : `${usedItemClass(itemId)} px-1 py-1`}
-                                onClick={isNavigationMode ? undefined : () => toggleUsedItem(itemId)}
+                                className={`${usedItemClass(itemId)} px-1 py-1`}
+                                onClick={() => toggleUsedItem(itemId)}
                               >
-                                {!isNavigationMode && isUsed && <UsedBadge />}
-                                {!isNavigationMode && !isUsed && <HoverHint />}
+                                {isUsed && <UsedBadge />}
+                                {!isUsed && <HoverHint />}
                                 <p className="text-base md:text-lg font-medium text-amber-900 dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-amber-100 dark:border-slate-700 shadow-inner dark:shadow-black/20 m-0">
                                   {question.keyPoint}
                                 </p>
@@ -1384,7 +1367,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           );
                         })()}
 
-                        {question.guidingQuestion && shouldShowInAtlMode(`guiding-${articleId}-${question.number}`) && (() => {
+                        {question.guidingQuestion && (() => {
                           const itemId = `guiding-${articleId}-${question.number}`;
                           const isUsed = usedItems[itemId];
                           return (
@@ -1394,11 +1377,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 <span className="text-[11px] font-bold text-amber-700/80 dark:text-slate-400 uppercase tracking-wider">Si no lo mencionan, pregunta:</span>
                               </div>
                               <div
-                                className={isNavigationMode ? atlModeItemClass : `${usedItemClass(itemId)} px-1 py-1`}
-                                onClick={isNavigationMode ? undefined : () => toggleUsedItem(itemId)}
+                                className={`${usedItemClass(itemId)} px-1 py-1`}
+                                onClick={() => toggleUsedItem(itemId)}
                               >
-                                {!isNavigationMode && isUsed && <UsedBadge />}
-                                {!isNavigationMode && !isUsed && <HoverHint />}
+                                {isUsed && <UsedBadge />}
+                                {!isUsed && <HoverHint />}
                                 <p className="text-base md:text-lg text-amber-800 dark:text-slate-300 italic font-serif leading-relaxed px-3 py-1 border-l-2 border-amber-300 dark:border-slate-600 m-0">
                                   "{question.guidingQuestion}"
                                 </p>
@@ -1412,7 +1395,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 )}
 
                 {/* Línea divisoria entre Enfoque del Párrafo y Textos Clave */}
-                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
+                {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
                   <div className="flex items-center gap-3 mt-5">
                     <div className="flex-1 h-px bg-gradient-to-r from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-amber-700/40 dark:via-slate-700 dark:to-blue-800/40"></div>
                     <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Textos</span>
@@ -1422,12 +1405,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                 {/* Textos Clave en panel (para preguntas con keyPoint/guidingQuestion) */}
                 {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
-                  // En modo Atalaya: solo mostrar si al menos un texto bíblico está seleccionado
-                  !isNavigationMode || question.biblicalCards.some((_, idx) =>
-                    shouldShowInAtlMode(`biblical-panel-${articleId}-${question.number}-${idx}`) ||
-                    shouldShowInAtlMode(`biblical-reason-${articleId}-${question.number}-${idx}`)
-                  )
-                ) && (
                   <div className="mt-3 p-5 rounded-xl border border-blue-200/50 bg-blue-50/30 dark:border-slate-700 dark:bg-slate-800/30 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-blue-400 to-indigo-600 dark:from-blue-500 dark:to-indigo-700"></div>
                     <div className="flex items-start gap-4">
@@ -1441,8 +1418,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           const itemId = `biblical-panel-${articleId}-${question.number}-${idx}`;
                           const rId = `biblical-reason-${articleId}-${question.number}-${idx}`;
                           const isUsed = usedItems[itemId];
-                          // Modo Atalaya: filtrar tarjetas no seleccionadas
-                          if (isNavigationMode && !shouldShowInAtlMode(itemId) && !shouldShowInAtlMode(rId)) return null;
                           return (
                             <div key={idx} className="space-y-2">
                               {/* Referencia + propósito */}
@@ -1454,20 +1429,18 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 </div>
                               </div>
                               {/* Texto bíblico clicable */}
-                              {shouldShowInAtlMode(itemId) && (
-                                <div
-                                  className={isNavigationMode ? `ml-6 ${atlModeItemClass}` : `ml-6 ${usedItemClass(itemId)}`}
-                                  onClick={isNavigationMode ? undefined : () => toggleUsedItem(itemId)}
-                                >
-                                  {!isNavigationMode && isUsed && <UsedBadge />}
-                                  {!isNavigationMode && !isUsed && <HoverHint />}
+                              <div
+                                className={`ml-6 ${usedItemClass(itemId)}`}
+                                onClick={() => toggleUsedItem(itemId)}
+                              >
+                                {isUsed && <UsedBadge />}
+                                {!isUsed && <HoverHint />}
                                   <p className="text-base text-text-body dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-blue-100 dark:border-slate-700 italic m-0">
                                     "{card.text}"
                                   </p>
                                 </div>
-                              )}
                               {/* Razonamiento */}
-                              {card.reasoningQuestion && shouldShowInAtlMode(rId) && (() => {
+                              {card.reasoningQuestion && (() => {
                                 const rUsed = usedItems[rId];
                                 return (
                                   <div className="ml-6 space-y-1">
@@ -1476,11 +1449,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                       <span className="text-[11px] font-bold text-blue-700/80 dark:text-slate-400 uppercase tracking-wider">Razona con la congregación:</span>
                                     </div>
                                     <div
-                                      className={isNavigationMode ? usedItemClass(rId).replace('cursor-pointer', '') : `${usedItemClass(rId)}`}
-                                      onClick={isNavigationMode ? undefined : () => toggleUsedItem(rId)}
+                                      className={`${usedItemClass(rId)}`}
+                                      onClick={() => toggleUsedItem(rId)}
                                     >
-                                      {!isNavigationMode && rUsed && <UsedBadge />}
-                                      {!isNavigationMode && !rUsed && <HoverHint />}
+                                      {rUsed && <UsedBadge />}
+                                      {!rUsed && <HoverHint />}
                                       <p className="text-base text-blue-800 dark:text-slate-300 italic font-serif leading-relaxed px-3 py-1 border-l-2 border-blue-300 dark:border-slate-600 m-0">
                                         "{card.reasoningQuestion}"
                                       </p>
@@ -1500,7 +1473,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 )}
 
                 {/* Divisor Textos Clave → Tarjetas */}
-                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
+                {(question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
                   <div className="flex items-center gap-3 mt-5">
                     <div className="flex-1 h-px bg-gradient-to-r from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-blue-800/40 dark:via-slate-700 dark:to-purple-800/40"></div>
                     <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Tarjetas</span>
@@ -1510,11 +1483,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                 {/* Tarjetas Didácticas en panel (para preguntas con keyPoint/guidingQuestion) */}
                 {(question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
-                  // En modo Atalaya: solo mostrar si al menos una flashcard está seleccionada
-                  !isNavigationMode || customFlashcards.some((_, idx) =>
-                    shouldShowInAtlMode(`fc-q-${articleId}-${question.number}-${idx}`)
-                  )
-                ) && (
                   <div className="mt-3 p-5 rounded-xl border border-purple-200/50 bg-purple-50/30 dark:border-slate-700 dark:bg-slate-800/25 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-purple-400 to-violet-600 dark:from-purple-500 dark:to-violet-700"></div>
                     <div className="flex items-start gap-4">
@@ -1527,17 +1495,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           const qId = `fc-q-${articleId}-${question.number}-${idx}`;
                           const aId = `fc-a-${articleId}-${question.number}-${idx}`;
                           const qUsed = usedItems[qId];
-                          // Modo Atalaya: filtrar flashcards no seleccionadas (pregunta controla ambas)
-                          if (isNavigationMode && !shouldShowInAtlMode(qId)) return null;
                           return (
                             <div key={idx} className="space-y-2">
                               {/* Pregunta - con checkbox único que controla pregunta + respuesta */}
                               <div
-                                className={isNavigationMode ? `flex items-start gap-2 px-2 py-1 ${atlModeItemClass}` : `flex items-start gap-2 px-2 py-1 ${usedItemClass(qId)}`}
-                                onClick={isNavigationMode ? undefined : () => toggleFlashcardUsed(qId, aId)}
+                                className={`flex items-start gap-2 px-2 py-1 ${usedItemClass(qId)}`}
+                                onClick={() => toggleFlashcardUsed(qId, aId)}
                               >
-                                {!isNavigationMode && qUsed && <UsedBadge />}
-                                {!isNavigationMode && !qUsed && <HoverHint />}
+                                {qUsed && <UsedBadge />}
+                                {!qUsed && <HoverHint />}
                                 <span className="text-base mt-0.5 flex-shrink-0">❓</span>
                                 <p className="font-semibold text-base text-purple-900 dark:text-purple-200 leading-relaxed m-0">{card.question}</p>
                               </div>
