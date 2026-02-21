@@ -823,37 +823,33 @@ export default function Home() {
                           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                         </div>
 
-                        <div className="bg-surface border border-border rounded-xl p-6 shadow-lg">
-                          {hasSection ? (
-                            /* CON SUBTEMA: layout horizontal */
-                            <div className="bg-slate-800 rounded-lg p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                              <div className="flex flex-col items-start text-left">
-                                <span className="text-slate-400 text-xs font-bold tracking-[0.15em] uppercase mb-2">
-                                  Subtema {sectionNumber} de {totalSections}
-                                </span>
-                                <h2 className="text-white text-xl sm:text-2xl font-extrabold uppercase tracking-wide">
-                                  {nextQ.section}
-                                </h2>
-                              </div>
-                              <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-8 py-3 flex flex-col items-center justify-center shrink-0 min-w-[120px]">
-                                <span className="text-slate-400 text-xs uppercase tracking-widest mb-1">Párrafo</span>
-                                <span className="text-white font-black text-4xl leading-none">
-                                  {nextQ.paragraphs.join(', ')}
-                                </span>
-                              </div>
+                        {hasSection ? (
+                          /* CON SUBTEMA */
+                          <div className="text-center space-y-4">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
+                              <span className="text-amber-400 text-[11px] font-bold tracking-[0.15em] uppercase">
+                                Subtema {sectionNumber} de {totalSections}
+                              </span>
                             </div>
-                          ) : (
-                            /* SIN SUBTEMA: solo el párrafo centrado */
-                            <div className="bg-slate-800 rounded-lg p-6 flex items-center justify-center">
-                              <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-8 py-3 flex flex-col items-center justify-center min-w-[120px]">
-                                <span className="text-slate-400 text-xs uppercase tracking-widest mb-1">Párrafo</span>
-                                <span className="text-white font-black text-4xl leading-none">
-                                  {nextQ.paragraphs.join(', ')}
-                                </span>
-                              </div>
+                            <h2 className="text-2xl md:text-3xl font-serif font-bold text-text-primary uppercase tracking-wide leading-tight">
+                              {nextQ.section}
+                            </h2>
+                            <div className="flex items-center justify-center gap-3 pt-1">
+                              <div className="h-px w-12 bg-gradient-to-r from-transparent to-border-strong"></div>
+                              <span className="text-text-tertiary text-xs font-bold tracking-[0.2em] uppercase">
+                                Párrafo {nextQ.paragraphs.join(', ')}
+                              </span>
+                              <div className="h-px w-12 bg-gradient-to-l from-transparent to-border-strong"></div>
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        ) : (
+                          /* SIN SUBTEMA: solo el párrafo */
+                          <div className="text-center py-2">
+                            <span className="text-text-tertiary text-xs font-bold tracking-[0.2em] uppercase">
+                              Párrafo {nextQ.paragraphs.join(', ')}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     );
                   })()
