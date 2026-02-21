@@ -44,6 +44,7 @@ export default function Home() {
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>({});
+  const [usedItems, setUsedItems] = useState<Record<string, boolean>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
@@ -90,12 +91,14 @@ export default function Home() {
     Promise.all([
       fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
       fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
-      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({}))
+      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
+      fetch(`/api/used-items?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({}))
     ])
-      .then(([lsmDataResult, favoritesResult, hiddenCardsResult]) => {
+      .then(([lsmDataResult, favoritesResult, hiddenCardsResult, usedItemsResult]) => {
         setLsmData(lsmDataResult);
         setFavorites(favoritesResult);
         setHiddenCards(hiddenCardsResult);
+        setUsedItems(usedItemsResult);
       });
   }, [currentArticleId]);
 
@@ -284,6 +287,81 @@ export default function Home() {
         const newHidden = { ...prev };
         delete newHidden[cardId];
         return newHidden;
+      });
+    }
+  };
+
+  const handleToggleUsedItem = async (itemId: string) => {
+    const isUsed = !usedItems[itemId];
+
+    setUsedItems(prev => {
+      const next = { ...prev };
+      if (isUsed) {
+        next[itemId] = true;
+      } else {
+        delete next[itemId];
+      }
+      return next;
+    });
+
+    try {
+      await fetch('/api/used-items', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId: currentArticleId, itemId, isUsed })
+      });
+    } catch {
+      setUsedItems(prev => {
+        const next = { ...prev };
+        if (!isUsed) {
+          next[itemId] = true;
+        } else {
+          delete next[itemId];
+        }
+        return next;
+      });
+    }
+  };
+
+  const handleToggleFlashcardUsed = async (qId: string, aId: string) => {
+    const isUsed = !usedItems[qId];
+
+    setUsedItems(prev => {
+      const next = { ...prev };
+      if (isUsed) {
+        next[qId] = true;
+        next[aId] = true;
+      } else {
+        delete next[qId];
+        delete next[aId];
+      }
+      return next;
+    });
+
+    try {
+      await Promise.all([
+        fetch('/api/used-items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ articleId: currentArticleId, itemId: qId, isUsed })
+        }),
+        fetch('/api/used-items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ articleId: currentArticleId, itemId: aId, isUsed })
+        })
+      ]);
+    } catch {
+      setUsedItems(prev => {
+        const next = { ...prev };
+        if (!isUsed) {
+          next[qId] = true;
+          next[aId] = true;
+        } else {
+          delete next[qId];
+          delete next[aId];
+        }
+        return next;
       });
     }
   };
@@ -502,6 +580,9 @@ export default function Home() {
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
+                  usedItems={usedItems}
+                  onToggleUsedItem={handleToggleUsedItem}
+                  onToggleFlashcardUsed={handleToggleFlashcardUsed}
                   articleId={currentArticleId}
                 />
               ))}
@@ -649,6 +730,9 @@ export default function Home() {
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
+                  usedItems={usedItems}
+                  onToggleUsedItem={handleToggleUsedItem}
+                  onToggleFlashcardUsed={handleToggleFlashcardUsed}
                   articleId={currentArticleId}
                 />
               </>

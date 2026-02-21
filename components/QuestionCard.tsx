@@ -18,13 +18,16 @@ interface QuestionCardProps {
   allLsmData: Record<string, string>; // Todos los datos LSM (incluye flashcards)
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
   onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
+  usedItems: Record<string, boolean>; // Items marcados como "voy a usar"
+  onToggleUsedItem: (itemId: string) => void; // Callback para marcar/desmarcar item
+  onToggleFlashcardUsed: (qId: string, aId: string) => void; // Callback para flashcards (Q+A juntas)
   articleId: string; // ID del artículo actual
 }
 
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden, articleId }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, onToggleFlashcardUsed, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [showInfographicModal, setShowInfographicModal] = useState(false);
   const [showReadTextModal, setShowReadTextModal] = useState(false);
@@ -95,32 +98,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }));
   };
 
-  // --- Estado: ítems marcados como "voy a usar" ---
-  const [usedItems, setUsedItems] = useState<Record<string, boolean>>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(`used-items-${articleId}`);
-      return saved ? JSON.parse(saved) : {};
-    }
-    return {};
-  });
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(`used-items-${articleId}`, JSON.stringify(usedItems));
-    }
-  }, [usedItems, articleId]);
-
-  const toggleUsedItem = (itemId: string) => {
-    setUsedItems(prev => ({ ...prev, [itemId]: !prev[itemId] }));
-  };
-
-  // Toggle para flashcards: marcar pregunta y respuesta juntas como unidad
-  const toggleFlashcardUsed = (qId: string, aId: string) => {
-    setUsedItems(prev => {
-      const newVal = !prev[qId];
-      return { ...prev, [qId]: newVal, [aId]: newVal };
-    });
-  };
+  // usedItems, onToggleUsedItem y onToggleFlashcardUsed ahora vienen de props (persistidos vía API)
+  const toggleUsedItem = onToggleUsedItem;
+  const toggleFlashcardUsed = onToggleFlashcardUsed;
 
   // Helper: clases para un bloque seleccionable/marcado
   const usedItemClass = (itemId: string) =>
