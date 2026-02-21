@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "next-dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Users/adria/Dev/atalaya-app/node_modules/next/dist/bin/next", "dev", "-p", "9000"],
+      "port": 9000
+    }
+  ]
+}
