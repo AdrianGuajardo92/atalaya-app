@@ -42,9 +42,27 @@ export default function Home() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
-  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
-  const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>({});
-  const [usedItems, setUsedItems] = useState<Record<string, boolean>>({});
+  const [favorites, setFavorites] = useState<Record<string, boolean>>(() => {
+    if (typeof window !== 'undefined') {
+      const cached = localStorage.getItem(`atalaya-favorites-cache:${currentArticleId}`);
+      return cached ? JSON.parse(cached) : {};
+    }
+    return {};
+  });
+  const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>(() => {
+    if (typeof window !== 'undefined') {
+      const cached = localStorage.getItem(`atalaya-hidden-cache:${currentArticleId}`);
+      return cached ? JSON.parse(cached) : {};
+    }
+    return {};
+  });
+  const [usedItems, setUsedItems] = useState<Record<string, boolean>>(() => {
+    if (typeof window !== 'undefined') {
+      const cached = localStorage.getItem(`atalaya-used-items-cache:${currentArticleId}`);
+      return cached ? JSON.parse(cached) : {};
+    }
+    return {};
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
@@ -83,22 +101,51 @@ export default function Home() {
     }
   }, [currentArticleId]);
 
+  // Persistir estado en localStorage como caché (solo si hay datos)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentArticleId && Object.keys(favorites).length > 0) {
+      localStorage.setItem(`atalaya-favorites-cache:${currentArticleId}`, JSON.stringify(favorites));
+    }
+  }, [favorites, currentArticleId]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentArticleId && Object.keys(hiddenCards).length > 0) {
+      localStorage.setItem(`atalaya-hidden-cache:${currentArticleId}`, JSON.stringify(hiddenCards));
+    }
+  }, [hiddenCards, currentArticleId]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentArticleId && Object.keys(usedItems).length > 0) {
+      localStorage.setItem(`atalaya-used-items-cache:${currentArticleId}`, JSON.stringify(usedItems));
+    }
+  }, [usedItems, currentArticleId]);
+
   // Cargar datos LSM, favoritos y tarjetas ocultas cuando cambia el artículo
   useEffect(() => {
     if (!currentArticleId) return;
 
-    // Cargar datos en segundo plano SIN bloquear la UI
+    // Primero: cargar caché local del artículo para mostrar datos inmediatamente
+    if (typeof window !== 'undefined') {
+      const cachedFavorites = localStorage.getItem(`atalaya-favorites-cache:${currentArticleId}`);
+      const cachedHidden = localStorage.getItem(`atalaya-hidden-cache:${currentArticleId}`);
+      const cachedUsed = localStorage.getItem(`atalaya-used-items-cache:${currentArticleId}`);
+      if (cachedFavorites) setFavorites(JSON.parse(cachedFavorites));
+      if (cachedHidden) setHiddenCards(JSON.parse(cachedHidden));
+      if (cachedUsed) setUsedItems(JSON.parse(cachedUsed));
+    }
+
+    // Luego: sincronizar con API en background (null = fallo, no sobrescribir)
     Promise.all([
-      fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
-      fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
-      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({})),
-      fetch(`/api/used-items?articleId=${currentArticleId}`).then(res => res.json()).catch(() => ({}))
+      fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null),
+      fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null),
+      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null),
+      fetch(`/api/used-items?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null)
     ])
       .then(([lsmDataResult, favoritesResult, hiddenCardsResult, usedItemsResult]) => {
-        setLsmData(lsmDataResult);
-        setFavorites(favoritesResult);
-        setHiddenCards(hiddenCardsResult);
-        setUsedItems(usedItemsResult);
+        if (lsmDataResult !== null) setLsmData(lsmDataResult);
+        if (favoritesResult !== null) setFavorites(favoritesResult);
+        if (hiddenCardsResult !== null) setHiddenCards(hiddenCardsResult);
+        if (usedItemsResult !== null) setUsedItems(usedItemsResult);
       });
   }, [currentArticleId]);
 
