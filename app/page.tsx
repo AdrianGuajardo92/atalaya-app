@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import StudyHeader from '@/components/StudyHeader';
 import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
@@ -74,6 +74,68 @@ export default function Home() {
 
   // Referencia para el menú de opciones de vista
   const viewMenuRef = useRef<HTMLDivElement>(null);
+
+  // Refs para debounced sync — evita race conditions en read-modify-write del KV
+  const usedItemsRef = useRef(usedItems);
+  usedItemsRef.current = usedItems;
+  const favoritesRef = useRef(favorites);
+  favoritesRef.current = favorites;
+  const hiddenCardsRef = useRef(hiddenCards);
+  hiddenCardsRef.current = hiddenCards;
+  const articleIdRef = useRef(currentArticleId);
+  articleIdRef.current = currentArticleId;
+
+  const saveUsedItemsTimer = useRef<ReturnType<typeof setTimeout>>();
+  const saveFavoritesTimer = useRef<ReturnType<typeof setTimeout>>();
+  const saveHiddenCardsTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeout(saveUsedItemsTimer.current);
+      clearTimeout(saveFavoritesTimer.current);
+      clearTimeout(saveHiddenCardsTimer.current);
+    };
+  }, []);
+
+  const syncUsedItems = useCallback(() => {
+    clearTimeout(saveUsedItemsTimer.current);
+    saveUsedItemsTimer.current = setTimeout(async () => {
+      try {
+        await fetch('/api/used-items', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ articleId: articleIdRef.current, data: usedItemsRef.current })
+        });
+      } catch { /* localStorage cache serves as fallback */ }
+    }, 300);
+  }, []);
+
+  const syncFavorites = useCallback(() => {
+    clearTimeout(saveFavoritesTimer.current);
+    saveFavoritesTimer.current = setTimeout(async () => {
+      try {
+        await fetch('/api/favorites', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ articleId: articleIdRef.current, data: favoritesRef.current })
+        });
+      } catch { /* localStorage cache serves as fallback */ }
+    }, 300);
+  }, []);
+
+  const syncHiddenCards = useCallback(() => {
+    clearTimeout(saveHiddenCardsTimer.current);
+    saveHiddenCardsTimer.current = setTimeout(async () => {
+      try {
+        await fetch('/api/hidden-cards', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ articleId: articleIdRef.current, data: hiddenCardsRef.current })
+        });
+      } catch { /* localStorage cache serves as fallback */ }
+    }, 300);
+  }, []);
 
   // Función para renderizar **negrita** en texto
   const renderBoldText = (text: string) => {
@@ -277,105 +339,44 @@ export default function Home() {
     }
   };
 
-  const handleToggleFavorite = async (favoriteId: string) => {
-    const isFavorite = !favorites[favoriteId];
-
-    // Actualizar estado local inmediatamente para mejor UX
+  const handleToggleFavorite = (favoriteId: string) => {
     setFavorites(prev => {
-      const newFavorites = { ...prev };
-      if (isFavorite) {
-        newFavorites[favoriteId] = true;
+      const next = { ...prev };
+      if (!prev[favoriteId]) {
+        next[favoriteId] = true;
       } else {
-        delete newFavorites[favoriteId];
+        delete next[favoriteId];
       }
-      return newFavorites;
+      return next;
     });
-
-    // Guardar en backend con articleId
-    try {
-      await fetch('/api/favorites', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ articleId: currentArticleId, favoriteId, isFavorite })
-      });
-    } catch {
-      // Revertir cambio si falla
-      setFavorites(prev => {
-        const newFavorites = { ...prev };
-        if (!isFavorite) {
-          newFavorites[favoriteId] = true;
-        } else {
-          delete newFavorites[favoriteId];
-        }
-        return newFavorites;
-      });
-    }
+    syncFavorites();
   };
 
-  const handleToggleHidden = async (cardId: string) => {
-    const isHidden = true; // Siempre ocultar cuando se hace clic
-
-    // Actualizar estado local inmediatamente
+  const handleToggleHidden = (cardId: string) => {
     setHiddenCards(prev => ({
       ...prev,
       [cardId]: true
     }));
-
-    // Guardar en backend con articleId
-    try {
-      await fetch('/api/hidden-cards', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ articleId: currentArticleId, cardId, isHidden })
-      });
-    } catch {
-      // Revertir cambio si falla
-      setHiddenCards(prev => {
-        const newHidden = { ...prev };
-        delete newHidden[cardId];
-        return newHidden;
-      });
-    }
+    syncHiddenCards();
   };
 
-  const handleToggleUsedItem = async (itemId: string) => {
-    const isUsed = !usedItems[itemId];
-
+  const handleToggleUsedItem = (itemId: string) => {
     setUsedItems(prev => {
       const next = { ...prev };
-      if (isUsed) {
+      if (!prev[itemId]) {
         next[itemId] = true;
       } else {
         delete next[itemId];
       }
       return next;
     });
-
-    try {
-      await fetch('/api/used-items', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ articleId: currentArticleId, itemId, isUsed })
-      });
-    } catch {
-      setUsedItems(prev => {
-        const next = { ...prev };
-        if (!isUsed) {
-          next[itemId] = true;
-        } else {
-          delete next[itemId];
-        }
-        return next;
-      });
-    }
+    syncUsedItems();
   };
 
-  const handleToggleFlashcardUsed = async (qId: string, aId: string) => {
-    const isUsed = !usedItems[qId];
-
+  const handleToggleFlashcardUsed = (qId: string, aId: string) => {
     setUsedItems(prev => {
       const next = { ...prev };
-      if (isUsed) {
+      if (!prev[qId]) {
         next[qId] = true;
         next[aId] = true;
       } else {
@@ -384,33 +385,7 @@ export default function Home() {
       }
       return next;
     });
-
-    try {
-      await Promise.all([
-        fetch('/api/used-items', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ articleId: currentArticleId, itemId: qId, isUsed })
-        }),
-        fetch('/api/used-items', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ articleId: currentArticleId, itemId: aId, isUsed })
-        })
-      ]);
-    } catch {
-      setUsedItems(prev => {
-        const next = { ...prev };
-        if (!isUsed) {
-          next[qId] = true;
-          next[aId] = true;
-        } else {
-          delete next[qId];
-          delete next[aId];
-        }
-        return next;
-      });
-    }
+    syncUsedItems();
   };
 
   if (isLoading || !currentArticle) {

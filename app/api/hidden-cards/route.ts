@@ -58,3 +58,25 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Failed to save' }, { status: 500 });
   }
 }
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { articleId, data } = body;
+
+    if (!articleId) {
+      return NextResponse.json(
+        { success: false, error: 'articleId is required' },
+        { status: 400 }
+      );
+    }
+
+    const key = getHiddenCardsKey(articleId);
+    await kvSet(key, data ?? {});
+
+    return NextResponse.json({ success: true, data });
+  } catch (error) {
+    console.error('Error saving hidden cards (PUT):', error);
+    return NextResponse.json({ success: false, error: 'Failed to save' }, { status: 500 });
+  }
+}
