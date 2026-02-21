@@ -85,21 +85,21 @@ export default function Home() {
   const articleIdRef = useRef(currentArticleId);
   articleIdRef.current = currentArticleId;
 
-  const saveUsedItemsTimer = useRef<ReturnType<typeof setTimeout>>();
-  const saveFavoritesTimer = useRef<ReturnType<typeof setTimeout>>();
-  const saveHiddenCardsTimer = useRef<ReturnType<typeof setTimeout>>();
+  const saveUsedItemsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const saveFavoritesTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const saveHiddenCardsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Cleanup timers on unmount
   useEffect(() => {
     return () => {
-      clearTimeout(saveUsedItemsTimer.current);
-      clearTimeout(saveFavoritesTimer.current);
-      clearTimeout(saveHiddenCardsTimer.current);
+      if (saveUsedItemsTimer.current) clearTimeout(saveUsedItemsTimer.current);
+      if (saveFavoritesTimer.current) clearTimeout(saveFavoritesTimer.current);
+      if (saveHiddenCardsTimer.current) clearTimeout(saveHiddenCardsTimer.current);
     };
   }, []);
 
   const syncUsedItems = useCallback(() => {
-    clearTimeout(saveUsedItemsTimer.current);
+    if (saveUsedItemsTimer.current) clearTimeout(saveUsedItemsTimer.current);
     saveUsedItemsTimer.current = setTimeout(async () => {
       try {
         await fetch('/api/used-items', {
@@ -112,7 +112,7 @@ export default function Home() {
   }, []);
 
   const syncFavorites = useCallback(() => {
-    clearTimeout(saveFavoritesTimer.current);
+    if (saveFavoritesTimer.current) clearTimeout(saveFavoritesTimer.current);
     saveFavoritesTimer.current = setTimeout(async () => {
       try {
         await fetch('/api/favorites', {
@@ -125,7 +125,7 @@ export default function Home() {
   }, []);
 
   const syncHiddenCards = useCallback(() => {
-    clearTimeout(saveHiddenCardsTimer.current);
+    if (saveHiddenCardsTimer.current) clearTimeout(saveHiddenCardsTimer.current);
     saveHiddenCardsTimer.current = setTimeout(async () => {
       try {
         await fetch('/api/hidden-cards', {
