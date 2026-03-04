@@ -13,19 +13,16 @@
 
 export const articlesConfig = {
   // Mes actual que se mostrará por defecto
-  defaultMonth: "2025-11", // Noviembre 2025
+  defaultMonth: "2026-01", // Enero 2026
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    48,  // "Cómo nos ayuda el libro de Job cuando estamos sufriendo" (2-8 Feb)
-    49,  // "Cómo nos ayuda el libro de Job a dar buenos consejos" (9-15 Feb)
-    50,  // "Imitemos la humildad de Jehová" (16-22 Feb)
-    51,  // "Cómo planear una boda que honre a Jehová" (23 Feb-1 Mar)
+    52,  // "Sigamos satisfaciendo nuestras 'necesidades espirituales'" (2-8 Mar)
   ],
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 48,
+  defaultArticleNumber: 52,
 };
 
 /**
