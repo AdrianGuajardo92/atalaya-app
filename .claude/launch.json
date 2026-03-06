@@ -4,8 +4,10 @@
     {
       "name": "next-dev",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["C:/Users/adria/Dev/atalaya-app/node_modules/next/dist/bin/next", "dev", "-p", "9000"],
-      "port": 9000
+      "runtimeArgs": ["C:/Users/adria/Dev/atalaya-app/node_modules/next/dist/bin/next", "dev"],
+      "port": 9000,
+      "autoPort": true
     }
-  ]
+  ],
+  "autoVerify": false
 }
