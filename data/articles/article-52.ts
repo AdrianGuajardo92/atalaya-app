@@ -36,6 +36,7 @@ export const article52: ArticleData = {
   title: "Sigamos satisfaciendo nuestras «necesidades espirituales»",
   biblicalText: "\"Felices los que reconocen sus necesidades espirituales\" (MAT. 5:3).",
   theme: "Qué hacer para seguir beneficiándonos del alimento, la ropa y la protección espirituales que Jehová nos da.",
+  headerInfographic: "https://i.imgur.com/XUt8QrA.png",
   questions: [
     // ─── PREGUNTA 1 ───
     {
@@ -152,7 +153,7 @@ export const article52: ArticleData = {
       textEs: "¿Qué cualidades demostró la mujer fenicia, y qué hizo Jesús? (Vea también la imagen).",
       textLSM: "",
       paragraphs: [5],
-      // TODO: Agregar image y imageCaption (mujer fenicia de rodillas pidiendo ayuda a Jesús)
+      image: "https://i.imgur.com/l2c9848.png",
       keyPoint: "La mujer demostró humildad (no se ofendió), persistencia (rogó una y otra vez) y fe (confió en Jesús), y él expulsó al demonio.",
       guidingQuestion: "¿Cómo demostró la mujer fenicia humildad cuando Jesús la comparó a un perrito?",
       answer: [
@@ -515,7 +516,7 @@ export const article52: ArticleData = {
       paragraphs: [14, 15],
       section: "SEAMOS COMO DAVID: BUSQUEMOS SIEMPRE EL COBIJO DE JEHOVÁ",
       readText: "LEE Salmo 27:5",
-      // TODO: Agregar image y imageCaption (hermana levanta la mano en el Estudio de La Atalaya)
+      image: "https://i.imgur.com/zAdzbJh.png",
       keyPoint: "Jehová protege asegurándose de que nada destruya nuestra fe, ayudándonos con las preocupaciones y dándonos una familia espiritual y pastores.",
       guidingQuestion: "¿De cuántas maneras protege Jehová a su pueblo según los párrafos 14 y 15?",
       answer: [
@@ -662,7 +663,7 @@ export const article52: ArticleData = {
       textLSM: "",
       paragraphs: [18],
       section: "NO DEJEMOS DE SATISFACER NUESTRAS NECESIDADES ESPIRITUALES",
-      // TODO: Agregar image y imageCaption (hermana estudia La Atalaya, lleva comida a matrimonio, ancianos la pastorean)
+      image: "https://i.imgur.com/RcV3ANF.png",
       keyPoint: "Vivimos rodeados de personas infelices que no reconocen sus necesidades espirituales; debemos seguir alimentándonos, vistiéndonos y cobijándonos espiritualmente.",
       guidingQuestion: "¿Qué errores cometen las personas que son infelices según el párrafo?",
       answer: [
