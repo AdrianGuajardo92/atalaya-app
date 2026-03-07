@@ -84,6 +84,19 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     return {};
   });
 
+  // Bloquear scroll del body cuando hay un modal abierto
+  useEffect(() => {
+    const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal;
+    if (anyModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showParagraphsModal, showInfographicModal, showReadTextModal]);
+
   // Guardar puntos clave completados en localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -933,7 +946,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </svg>
               </button>
             </div>
-            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
+            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain">
               {/* Sección RESUMEN (si algún párrafo tiene summary) */}
               {relatedParagraphs.some(p => p.summary) && (
                 <div className="mb-6 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-5">
@@ -1023,7 +1036,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </svg>
               </button>
             </div>
-            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface">
+            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain">
               <div className="space-y-6">
                 {biblicalTexts[question.readText].map((text, index) => (
                   <div key={index} className="bg-surface-alt rounded-lg p-5 border-l-4 border-text-secondary">

@@ -40,6 +40,16 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
   const [editingCustomCard, setEditingCustomCard] = useState<number | null>(null);
   const [isSavingCard, setIsSavingCard] = useState(false);
 
+  // Bloquear scroll del body cuando el modal está abierto
+  useEffect(() => {
+    if (showCreateModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [showCreateModal]);
+
   // Efecto para resetear confirmación de borrado al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = () => {
