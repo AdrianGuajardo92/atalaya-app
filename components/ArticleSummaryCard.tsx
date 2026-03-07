@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ArticleSummary } from '@/types/atalaya';
+import { copyToClipboard } from '@/lib/clipboard';
 
 interface ArticleSummaryCardProps {
   summary: ArticleSummary;
@@ -31,7 +32,7 @@ export function ArticleSummaryCard({ summary, articleTitle }: ArticleSummaryCard
   const handleCopy = async () => {
     const text = formatSummaryForClipboard(summary, articleTitle);
     try {
-      await navigator.clipboard.writeText(text);
+      await copyToClipboard(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {

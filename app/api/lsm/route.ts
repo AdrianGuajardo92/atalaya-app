@@ -62,3 +62,61 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: fallbackMessage }, { status: 500 });
   }
 }
+
+// PUT: Importación masiva de traducciones LSM
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { articleId, data, mode = 'merge' } = body;
+
+    if (!articleId) {
+      return NextResponse.json(
+        { success: false, error: 'articleId is required' },
+        { status: 400 }
+      );
+    }
+
+    if (!data || typeof data !== 'object' || Array.isArray(data)) {
+      return NextResponse.json(
+        { success: false, error: 'data must be a non-null object' },
+        { status: 400 }
+      );
+    }
+
+    // Validar que todos los valores sean strings
+    for (const [k, v] of Object.entries(data)) {
+      if (typeof v !== 'string') {
+        return NextResponse.json(
+          { success: false, error: `El valor de la clave "${k}" debe ser string, recibió ${typeof v}` },
+          { status: 400 }
+        );
+      }
+    }
+
+    const key = getLSMKey(articleId);
+
+    let finalData: Record<string, string>;
+    if (mode === 'replace') {
+      finalData = data as Record<string, string>;
+    } else {
+      // merge: leer existentes, mezclar nuevos encima
+      const currentData = await kvGet<Record<string, string>>(key, {});
+      finalData = { ...currentData, ...data };
+    }
+
+    await kvSet(key, finalData);
+
+    return NextResponse.json({
+      success: true,
+      data: finalData,
+      imported: Object.keys(data).length,
+      total: Object.keys(finalData).length
+    });
+  } catch (error) {
+    console.error('Error bulk saving LSM data:', error);
+    const fallbackMessage = usingMemoryStore()
+      ? 'KV is not configured. Data can only be stored in memory during this session.'
+      : 'Failed to save';
+    return NextResponse.json({ success: false, error: fallbackMessage }, { status: 500 });
+  }
+}

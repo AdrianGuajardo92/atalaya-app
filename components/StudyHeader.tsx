@@ -1,5 +1,6 @@
 import { ArticleData, ArticleOverview, Question, ReviewQuestion, Paragraph } from '@/types/atalaya';
 import { getArticleId } from '@/data/articles';
+import { copyToClipboard } from '@/lib/clipboard';
 import { useState, useEffect } from 'react';
 
 interface StudyHeaderProps {
@@ -132,7 +133,7 @@ export default function StudyHeader({
   const handleCopyStructure = async () => {
     const text = generateArticleStructure();
     try {
-      await navigator.clipboard.writeText(text);
+      await copyToClipboard(text);
       setCopyFeedback('copied');
       setTimeout(() => setCopyFeedback('idle'), 2000);
     } catch (err) {

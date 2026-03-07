@@ -8,6 +8,7 @@ import SummaryView from '@/components/SummaryView';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
+import LsmBulkImport from '@/components/LsmBulkImport';
 import { ArticleSummaryCard } from '@/components/ArticleSummaryCard';
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
 import { getDefaultArticleId } from '@/data/articles-config';
@@ -67,6 +68,7 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showPdfUploader, setShowPdfUploader] = useState(false);
+  const [showLsmImport, setShowLsmImport] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
 
   // Referencia para hacer scroll al contenido
@@ -419,6 +421,15 @@ export default function Home() {
         onClose={() => setShowPdfUploader(false)}
       />
 
+      {/* Modal de importación masiva de LSM */}
+      <LsmBulkImport
+        isOpen={showLsmImport}
+        onClose={() => setShowLsmImport(false)}
+        articleId={currentArticleId}
+        currentLsmData={lsmData}
+        onImportComplete={(newData) => setLsmData(newData)}
+      />
+
       {/* Indicador de progreso de scroll circular (solo en modo scroll) */}
       {navigationMode === 'scroll' && showScrollIndicator && (
         <div className="fixed top-20 right-4 z-10 transition-opacity duration-300">
@@ -451,6 +462,14 @@ export default function Home() {
 
       {/* Control de modo de vista y navegación - Menú colapsable */}
       <div ref={viewMenuRef} className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        {/* Botón de importación masiva LSM */}
+        <button
+          onClick={() => setShowLsmImport(true)}
+          className="relative w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-surface hover:bg-surface-alt transition-all duration-200 shadow-sm"
+          title="Importar LSM en bloque"
+        >
+          <span className="text-lg">🤟</span>
+        </button>
         {/* Botón de tema */}
         <ThemeToggle />
         {/* Botón principal (siempre visible) */}

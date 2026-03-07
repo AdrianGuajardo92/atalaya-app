@@ -1,6 +1,7 @@
 'use client';
 
 import { ArticleData, Question } from '@/types/atalaya';
+import { copyToClipboard } from '@/lib/clipboard';
 
 interface SummaryViewProps {
   article: ArticleData;
@@ -35,7 +36,7 @@ export default function SummaryView({ article, lsmData }: SummaryViewProps) {
     });
 
     try {
-      await navigator.clipboard.writeText(text);
+      await copyToClipboard(text);
       alert('Resumen copiado al portapapeles');
     } catch {
       alert('Error al copiar');

@@ -44,6 +44,7 @@ export const article52: ArticleData = {
       textLSM: "",
       paragraphs: [1],
       readText: "LEE Mateo 5:3",
+      infographic: "https://i.imgur.com/XgMRmuf.png",
       keyPoint: "Jehová nos creó con necesidades espirituales además de las básicas, y para ser felices debemos reconocerlas y nunca dejar de satisfacerlas.",
       guidingQuestion: "¿Qué tres necesidades básicas menciona el párrafo, y qué necesidad adicional nos dio Jehová?",
       answer: [
@@ -77,6 +78,7 @@ export const article52: ArticleData = {
       textEs: "¿Qué ejemplo nos ayuda a entender lo que significa reconocer nuestras necesidades espirituales?",
       textLSM: "",
       paragraphs: [2],
+      infographic: "https://i.imgur.com/0hzXtv1.png",
       keyPoint: "Reconocer nuestras necesidades espirituales es como ser un mendigo que sabe que necesita ayuda desesperadamente y está dispuesto a buscarla.",
       guidingQuestion: "¿A quién se compara a los que reconocen sus necesidades espirituales, y por qué?",
       answer: [
@@ -99,6 +101,7 @@ export const article52: ArticleData = {
       textEs: "¿Qué veremos en este artículo?",
       textLSM: "",
       paragraphs: [3],
+      infographic: "https://i.imgur.com/W7GWPjo.png",
       keyPoint: "El artículo analiza el ejemplo de la mujer fenicia y tres hombres espirituales (Pedro, Pablo y David) para aprender a satisfacer nuestras necesidades espirituales.",
       guidingQuestion: "¿Qué tres cualidades imprescindibles demostró la mujer fenicia?",
       answer: [
@@ -120,6 +123,7 @@ export const article52: ArticleData = {
       textEs: "¿Qué quería la mujer fenicia que Jesús hiciera por ella?",
       textLSM: "",
       paragraphs: [4],
+      infographic: "https://i.imgur.com/GCTW0he.png",
       section: "UN EJEMPLO DE HUMILDAD, PERSISTENCIA Y FE",
       keyPoint: "La mujer fenicia buscó a Jesús con urgencia porque su hija estaba cruelmente poseída por un demonio, y se arrodilló suplicándole ayuda.",
       guidingQuestion: "¿Cómo se acercó la mujer fenicia a Jesús, y por qué le suplicó ayuda?",

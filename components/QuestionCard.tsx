@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import { getAllBiblicalTexts } from '@/data/articles';
+import { copyToClipboard } from '@/lib/clipboard';
 import FlashCards from './FlashCards';
 import BiblicalCards from './BiblicalCards';
 
@@ -975,7 +976,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             </div>
             <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
               <button
-                onClick={() => {
+                onClick={async () => {
                   const paragraphsText = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
                   let answersText = '';
                   if (question.answer) {
@@ -986,7 +987,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         : [String(question.answer)];
                     answersText = '\n\nRESPUESTA:\n' + answers.map((a, i) => `[${i + 1}] ${a}`).join('\n');
                   }
-                  navigator.clipboard.writeText(paragraphsText + answersText);
+                  await copyToClipboard(paragraphsText + answersText);
                   setParagraphCopied(true);
                   setTimeout(() => setParagraphCopied(false), 2000);
                 }}
@@ -1075,13 +1076,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Editando LSM</span>
                 </div>
                 <textarea
+                  ref={(el) => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }}
                   value={editedSectionLSM}
                   onChange={(e) => setEditedSectionLSM(e.target.value)}
                   onKeyDown={handleSectionKeyDown}
                   className="w-full p-3 text-text-body border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg resize-none uppercase bg-surface"
                   rows={2}
                   placeholder="Escribe el subtítulo en LSM..."
-                  autoFocus
                 />
                 <div className="flex justify-end gap-2 mt-3">
                   <button
@@ -1188,6 +1189,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               {isEditingLSM ? (
                 <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
                   <textarea
+                    ref={(el) => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }}
                     value={editedLSM}
                     onChange={(e) => setEditedLSM(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -1195,7 +1197,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     className="w-full p-2 text-text-body border-none focus:ring-0 text-sm resize-none bg-surface"
                     rows={2}
                     placeholder="Escribe la traducción LSM..."
-                    autoFocus
                   />
                   <div className="flex justify-end gap-2 mt-2">
                     <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">Guardar</button>
@@ -1658,7 +1659,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 onClick={async (e) => {
                   e.stopPropagation();
                   const textToCopy = `Infografía - Pregunta ${question.number}\n\n${question.textEs}\n\nURL: ${question.infographic}`;
-                  await navigator.clipboard.writeText(textToCopy);
+                  await copyToClipboard(textToCopy);
                   setInfographicCopied(true);
                   setTimeout(() => setInfographicCopied(false), 2000);
                 }}

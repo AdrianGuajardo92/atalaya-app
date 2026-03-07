@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { copyToClipboard } from '@/lib/clipboard';
 
 interface BiblicalCard {
   reference: string;
@@ -49,7 +50,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
     const textToCopy = `Dame mas contexto de este texto biblico: ${card.reference}\n\n"${card.text}"`;
 
     try {
-      await navigator.clipboard.writeText(textToCopy);
+      await copyToClipboard(textToCopy);
       setCopiedIndex(index);
       setTimeout(() => setCopiedIndex(null), 2000);
     } catch (err) {
