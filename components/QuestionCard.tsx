@@ -84,16 +84,31 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     return {};
   });
 
-  // Bloquear scroll del body cuando hay un modal abierto
+  // Bloquear scroll del body cuando hay un modal abierto (funciona en iOS/móviles)
   useEffect(() => {
     const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal;
     if (anyModalOpen) {
-      document.body.style.overflow = 'hidden';
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = '';
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY, 10) * -1);
+      }
     }
     return () => {
-      document.body.style.overflow = '';
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY, 10) * -1);
+      }
     };
   }, [showParagraphsModal, showInfographicModal, showReadTextModal]);
 
