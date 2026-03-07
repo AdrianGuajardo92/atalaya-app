@@ -9,7 +9,7 @@ import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
 import PdfUploader from '@/components/PdfUploader';
 import LsmBulkImport from '@/components/LsmBulkImport';
-import { ArticleSummaryCard } from '@/components/ArticleSummaryCard';
+
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
 import { getDefaultArticleId } from '@/data/articles-config';
 import { isExecutiveDesign } from '@/data/design-config';
@@ -575,7 +575,7 @@ export default function Home() {
       {/* Contenido principal */}
       <div className="max-w-5xl mx-auto px-6 py-12">
         {viewMode === 'summary' ? (
-          <SummaryView article={currentArticle} lsmData={lsmData} />
+          <SummaryView article={currentArticle} />
         ) : (
           <>
             {/* Header: Siempre en Scroll, Solo en primera página en Paginado */}
@@ -616,8 +616,6 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${question.number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={false}
-                  favorites={favorites}
-                  onToggleFavorite={handleToggleFavorite}
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
@@ -659,14 +657,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-
-            {/* Resumen para el Comentario Final */}
-            {currentArticle.articleSummary && (
-              <ArticleSummaryCard
-                summary={currentArticle.articleSummary}
-                articleTitle={currentArticle.title}
-              />
-            )}
 
             {/* Canción Final */}
             <div className="mt-10 bg-surface-alt rounded-lg shadow-sm p-8 text-center border border-border">
@@ -766,8 +756,6 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${currentArticle.questions[currentQuestionIndex].number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={true}
-                  favorites={favorites}
-                  onToggleFavorite={handleToggleFavorite}
                   allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
@@ -790,15 +778,6 @@ export default function Home() {
                   onToggleHidden={handleToggleHidden}
                   articleId={currentArticleId}
                 />
-
-                {/* Resumen para el Comentario Final - Solo en la última pregunta de repaso */}
-                {currentReviewIndex === currentArticle.reviewQuestions.length - 1 &&
-                 currentArticle.articleSummary && (
-                  <ArticleSummaryCard
-                    summary={currentArticle.articleSummary}
-                    articleTitle={currentArticle.title}
-                  />
-                )}
 
                 {/* Canción Final - Solo en la última pregunta de repaso */}
                 {currentReviewIndex === currentArticle.reviewQuestions.length - 1 && (

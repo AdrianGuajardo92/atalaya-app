@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **NO hacer commit ni push automáticamente.** Esperar a que el usuario lo ordene explícitamente.
 
+## Comentarios Finales (ELIMINADO)
+
+**NO crear `articleSummary` ni comentarios finales.** Esta funcionalidad fue eliminada. No agregar `ArticleSummary`, `keyPoints` ni `centralIdea` a los artículos.
+
 ## Ortografía y Acentos (OBLIGATORIO)
 
 **SIEMPRE escribir con ortografía correcta en español, incluyendo todos los acentos.** Esto aplica a TODOS los textos en archivos de datos (`data/`), componentes, y cualquier contenido visible al usuario.
@@ -147,12 +151,6 @@ interface ArticleData {
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[];
   finalSong: string;                 // Canción final
-  articleSummary?: ArticleSummary;   // Resumen para comentario final
-}
-
-interface ArticleSummary {
-  keyPoints: { order, statement, bibleReference?, paragraphSource? }[];
-  centralIdea: string;               // Idea principal del artículo
 }
 ```
 
@@ -286,7 +284,6 @@ answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el aj
 | `summary` (resumen de párrafo) | ✅ | Datos, nombres y eventos principales |
 | `answerContext` | ✅ | Ideas que profundizan la respuesta |
 | `reviewQuestions.answer` | ✅ | Conceptos finales de repaso |
-| `articleSummary.keyPoints` | ✅ | Puntos clave del resumen final |
 | `content` (párrafo completo) | ❌ | El texto completo se deja sin negritas |
 | `flashcard.answer` | ❌ | Las respuestas de flashcards son directas |
 

@@ -5,10 +5,9 @@ import { copyToClipboard } from '@/lib/clipboard';
 
 interface SummaryViewProps {
   article: ArticleData;
-  lsmData: Record<string, string>;
 }
 
-export default function SummaryView({ article, lsmData }: SummaryViewProps) {
+export default function SummaryView({ article }: SummaryViewProps) {
   // Función para obtener oraciones clave de la respuesta
   const getAnswerSentences = (question: Question): string[] => {
     if (!question.answer) return [];

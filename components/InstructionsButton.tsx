@@ -1075,7 +1075,7 @@ Al final del estudio, hay **3 preguntas de repaso** que resumen los puntos princ
       await copyToClipboard(promptInstructions);
       setShowCopied(true);
       setTimeout(() => setShowCopied(false), 2000);
-    } catch (err) {
+    } catch {
       alert('Error al copiar. Intenta de nuevo.');
     }
   };
@@ -1085,7 +1085,7 @@ Al final del estudio, hay **3 preguntas de repaso** que resumen los puntos princ
       await copyToClipboard(studyProtocol);
       setShowCopiedStudy(true);
       setTimeout(() => setShowCopiedStudy(false), 2000);
-    } catch (err) {
+    } catch {
       alert('Error al copiar. Intenta de nuevo.');
     }
   };

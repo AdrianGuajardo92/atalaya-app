@@ -76,17 +76,6 @@ export interface ArticleOverview {
   }[];
 }
 
-// Resumen del artículo para el comentario final de la reunión
-export interface ArticleSummary {
-  keyPoints: {
-    order: number;           // Orden cronológico en el artículo
-    statement: string;       // Oración clave
-    bibleReference?: string; // Referencia bíblica si aplica
-    paragraphSource?: number; // De qué párrafo viene
-  }[];
-  centralIdea: string;       // Idea principal del artículo
-}
-
 export interface AtalayaStudy {
   song: string;
   title: string;
@@ -99,7 +88,6 @@ export interface AtalayaStudy {
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[]; // Preguntas de repaso
   finalSong: string; // Canción final
-  articleSummary?: ArticleSummary; // Resumen para el comentario final
 }
 
 // Metadatos de un artículo de estudio

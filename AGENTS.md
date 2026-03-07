@@ -147,12 +147,6 @@ interface ArticleData {
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[];
   finalSong: string;                 // Canción final
-  articleSummary?: ArticleSummary;   // Resumen para comentario final
-}
-
-interface ArticleSummary {
-  keyPoints: { order, statement, bibleReference?, paragraphSource? }[];
-  centralIdea: string;               // Idea principal del artículo
 }
 ```
 
@@ -286,7 +280,6 @@ answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el aj
 | `summary` (resumen de párrafo) | ✅ | Datos, nombres y eventos principales |
 | `answerContext` | ✅ | Ideas que profundizan la respuesta |
 | `reviewQuestions.answer` | ✅ | Conceptos finales de repaso |
-| `articleSummary.keyPoints` | ✅ | Puntos clave del resumen final |
 | `content` (párrafo completo) | ❌ | El texto completo se deja sin negritas |
 | `flashcard.answer` | ❌ | Las respuestas de flashcards son directas |
 

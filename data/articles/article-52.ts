@@ -801,40 +801,5 @@ export const article52: ArticleData = {
       ]
     }
   ],
-  finalSong: "Canción 162: Mi necesidad espiritual",
-  articleSummary: {
-    keyPoints: [
-      {
-        order: 1,
-        statement: "Jehová nos creó con **necesidades espirituales** además de las básicas; para ser felices debemos reconocerlas como **«mendigos del espíritu»**.",
-        bibleReference: "Mateo 5:3",
-        paragraphSource: 1
-      },
-      {
-        order: 2,
-        statement: "La **mujer fenicia** demostró **humildad, persistencia y fe**, tres cualidades imprescindibles para satisfacer nuestras necesidades espirituales.",
-        bibleReference: "Mateo 15:21-28",
-        paragraphSource: 5
-      },
-      {
-        order: 3,
-        statement: "Como **Pedro**, debemos alimentarnos del **alimento sólido** y aceptar los cambios de entendimiento **sin demora**.",
-        bibleReference: "Hebreos 5:14-6:1",
-        paragraphSource: 8
-      },
-      {
-        order: 4,
-        statement: "Como **Pablo**, debemos ponernos la **nueva personalidad** con esfuerzo continuo, dependiendo de **«la fuerza que Dios da»**.",
-        bibleReference: "Colosenses 3:8-10",
-        paragraphSource: 12
-      },
-      {
-        order: 5,
-        statement: "Como **David**, debemos buscar el **cobijo de Jehová** al tomar decisiones y refugiarnos en la **oración**.",
-        bibleReference: "Salmo 27:5",
-        paragraphSource: 16
-      }
-    ],
-    centralIdea: "Para ser verdaderamente felices, debemos reconocer nuestras necesidades espirituales y seguir satisfaciéndolas con el alimento, la ropa y el cobijo espirituales que Jehová nos da."
-  }
+  finalSong: "Canción 162: Mi necesidad espiritual"
 };

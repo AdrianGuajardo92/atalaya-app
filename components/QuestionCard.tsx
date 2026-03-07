@@ -14,8 +14,6 @@ interface QuestionCardProps {
   sectionLsmText?: string;
   onLSMUpdate?: (questionNumber: string, text: string) => void;
   isNavigationMode?: boolean; // Nueva prop para saber si estamos en modo navegación
-  favorites: Record<string, boolean>; // Estado de favoritos
-  onToggleFavorite: (favoriteId: string) => void; // Callback para marcar/desmarcar favorito
   allLsmData: Record<string, string>; // Todos los datos LSM (incluye flashcards)
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
   onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
@@ -28,14 +26,13 @@ interface QuestionCardProps {
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, favorites, onToggleFavorite, allLsmData, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, onToggleFlashcardUsed, articleId }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, allLsmData, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, onToggleFlashcardUsed, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [showInfographicModal, setShowInfographicModal] = useState(false);
   const [showReadTextModal, setShowReadTextModal] = useState(false);
   const [paragraphCopied, setParagraphCopied] = useState(false);
   const [infographicCopied, setInfographicCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
-  const [showFlashcards, setShowFlashcards] = useState(isNavigationMode); // Flashcards visibles en navegación
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || question.textLSM || '');
   const [isEditingSectionLSM, setIsEditingSectionLSM] = useState(false);
@@ -49,7 +46,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [customBullets, setCustomBullets] = useState<string[]>([]);
   const [isAddingBullet, setIsAddingBullet] = useState(false);
   const [newBulletText, setNewBulletText] = useState('');
-  const [isSavingBullets, setIsSavingBullets] = useState(false);
   // Estado para marcar bullets como respuesta directa o entrelazados
   const [bulletTypes, setBulletTypes] = useState<Record<number, 'direct' | 'interlaced'>>({});
 
@@ -59,7 +55,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [customReflections, setCustomReflections] = useState<string[]>([]);
   const [isAddingReflection, setIsAddingReflection] = useState(false);
   const [newReflectionText, setNewReflectionText] = useState('');
-  const [isSavingReflections, setIsSavingReflections] = useState(false);
 
   // Estado para aplicaciones prácticas
   const [editingApplicationIndex, setEditingApplicationIndex] = useState<number | null>(null);
@@ -67,7 +62,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [customApplications, setCustomApplications] = useState<string[]>([]);
   const [isAddingApplication, setIsAddingApplication] = useState(false);
   const [newApplicationText, setNewApplicationText] = useState('');
-  const [isSavingApplications, setIsSavingApplications] = useState(false);
 
   // Estado para flashcards personalizadas
   const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string; isCustom?: boolean }>>([]);
@@ -76,14 +70,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
 
   // Estado para puntos clave completados
-  const [completedBullets, setCompletedBullets] = useState<Record<string, boolean>>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(`completed-bullets-${articleId}`);
-      return saved ? JSON.parse(saved) : {};
-    }
-    return {};
-  });
-
   // Bloquear scroll del body cuando hay un modal abierto (funciona en iOS/móviles)
   useEffect(() => {
     const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal;
@@ -111,21 +97,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       }
     };
   }, [showParagraphsModal, showInfographicModal, showReadTextModal]);
-
-  // Guardar puntos clave completados en localStorage
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(`completed-bullets-${articleId}`, JSON.stringify(completedBullets));
-    }
-  }, [completedBullets, articleId]);
-
-  // Función para marcar/desmarcar un punto clave como completado
-  const toggleBulletCompleted = (bulletId: string) => {
-    setCompletedBullets(prev => ({
-      ...prev,
-      [bulletId]: !prev[bulletId]
-    }));
-  };
 
   // usedItems, onToggleUsedItem y onToggleFlashcardUsed ahora vienen de props (persistidos vía API)
   const toggleUsedItem = onToggleUsedItem;
@@ -291,7 +262,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     setEditedLSM(lsmText || question.textLSM || '');
     setEditedSectionLSM(sectionLsmText || question.sectionLSM || '');
     setIsExpanded(isNavigationMode);
-    setShowFlashcards(isNavigationMode);
   }, [question.number, lsmText, sectionLsmText, isNavigationMode, question.textLSM, question.sectionLSM]);
 
   // Cerrar modal con tecla Escape
@@ -378,38 +348,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       }
       return <span key={index}>{part}</span>;
     });
-  };
-
-  // Función para formatear texto LSM con líneas divisorias
-  const formatLSMText = (text: string) => {
-    const lines = text.split('\n').filter(line => line.trim() !== '');
-
-    return lines.map((line, index) => (
-      <div key={index}>
-        <p className="text-lg font-semibold text-text-primary leading-relaxed uppercase mb-0">
-          {line}
-        </p>
-        {index < lines.length - 1 && (
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-border-strong to-transparent my-3"></div>
-        )}
-      </div>
-    ));
-  };
-
-  // Función para formatear texto LSM de secciones con líneas divisorias
-  const formatSectionLSMText = (text: string) => {
-    const lines = text.split('\n').filter(line => line.trim() !== '');
-
-    return lines.map((line, index) => (
-      <div key={index}>
-        <h3 className="text-xl font-bold tracking-wide uppercase mb-0">
-          {line}
-        </h3>
-        {index < lines.length - 1 && (
-          <div className="w-24 h-px bg-white/40 mx-auto my-2"></div>
-        )}
-      </div>
-    ));
   };
 
   const handleSaveLSM = async () => {
@@ -521,20 +459,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }
   };
 
-  // Guardar sección al perder foco (clic fuera)
-  const handleBlurSectionLSM = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    const relatedTarget = e.relatedTarget as HTMLElement;
-    if (relatedTarget && (relatedTarget.tagName === 'BUTTON')) {
-      return;
-    }
-    if (!isSavingSection) {
-      handleSaveSectionLSM();
-    }
-  };
-
   // Funciones para editar puntos clave
   const saveBulletsToKV = async (bullets: string[]) => {
-    setIsSavingBullets(true);
     try {
       const response = await fetch('/api/lsm', {
         method: 'POST',
@@ -554,8 +480,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       console.error('Error saving bullets:', error);
       alert('Error al guardar. Intenta de nuevo.');
       return false;
-    } finally {
-      setIsSavingBullets(false);
     }
   };
 
@@ -573,72 +497,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     } catch (error) {
       console.error('Error saving bullet types:', error);
     }
-  };
-
-  const toggleDirectType = async (index: number) => {
-    // Función para marcar/desmarcar como respuesta directa
-    let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
-
-    setBulletTypes(prevTypes => {
-      const currentType = prevTypes[index];
-      let newType: 'direct' | 'interlaced' | undefined;
-
-      // Si es directa, desmarcar. Si no es directa, marcar como directa
-      if (currentType === 'direct') {
-        newType = undefined;
-      } else {
-        newType = 'direct';
-      }
-
-      const newTypes = { ...prevTypes };
-      if (newType === undefined) {
-        delete newTypes[index];
-      } else {
-        newTypes[index] = newType;
-      }
-
-      newTypesResult = newTypes;
-      return newTypes;
-    });
-
-    // Guardar después de actualizar el estado
-    await saveBulletTypesToKV(newTypesResult);
-  };
-
-  const toggleInterlacedType = async (index: number) => {
-    // Función para marcar/desmarcar como entrelazado
-    let newTypesResult: Record<number, 'direct' | 'interlaced'> = {};
-
-    setBulletTypes(prevTypes => {
-      const currentType = prevTypes[index];
-      let newType: 'direct' | 'interlaced' | undefined;
-
-      // Si es entrelazado, desmarcar. Si no es entrelazado, marcar como entrelazado
-      if (currentType === 'interlaced') {
-        newType = undefined;
-      } else {
-        newType = 'interlaced';
-      }
-
-      const newTypes = { ...prevTypes };
-      if (newType === undefined) {
-        delete newTypes[index];
-      } else {
-        newTypes[index] = newType;
-      }
-
-      newTypesResult = newTypes;
-      return newTypes;
-    });
-
-    // Guardar después de actualizar el estado
-    await saveBulletTypesToKV(newTypesResult);
-  };
-
-  const handleStartEditBullet = (index: number, text: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setEditingBulletIndex(index);
-    setEditedBulletText(text);
   };
 
   const handleSaveBullet = async () => {
@@ -721,7 +579,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Funciones para manejar preguntas de reflexión
   const saveReflectionsToKV = async (reflections: string[]) => {
-    setIsSavingReflections(true);
     try {
       const response = await fetch('/api/lsm', {
         method: 'POST',
@@ -738,8 +595,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       console.error('Error saving reflections:', error);
       alert('Error al guardar. Intenta de nuevo.');
       return false;
-    } finally {
-      setIsSavingReflections(false);
     }
   };
 
@@ -806,7 +661,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Funciones para manejar aplicaciones prácticas
   const saveApplicationsToKV = async (applications: string[]) => {
-    setIsSavingApplications(true);
     try {
       const response = await fetch('/api/lsm', {
         method: 'POST',
@@ -823,8 +677,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       console.error('Error saving applications:', error);
       alert('Error al guardar. Intenta de nuevo.');
       return false;
-    } finally {
-      setIsSavingApplications(false);
     }
   };
 

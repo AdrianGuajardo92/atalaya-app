@@ -31,7 +31,6 @@ if (files.length === 0) {
   console.log('   (No hay artículos)');
 } else {
   files.forEach(file => {
-    const num = file.match(/article-(\d+)/)?.[1];
     console.log(`   📄 ${file}`);
   });
 }
