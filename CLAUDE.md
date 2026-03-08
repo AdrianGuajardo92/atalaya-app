@@ -59,8 +59,9 @@ app/
 ├── api/                  # REST API endpoints
 │   ├── favorites/        # Bookmark management
 │   ├── hidden-cards/     # Card visibility
-│   ├── lsm/              # Mexican Sign Language texts
-│   └── pdfs/             # PDF upload/management
+│   ├── lsm/              # Mexican Sign Language texts (GET/POST/PUT)
+│   ├── pdfs/             # PDF upload/management
+│   └── used-items/       # Tracking de items usados
 ├── page.tsx              # Main study page
 └── layout.tsx            # Root layout with PWA config
 
@@ -73,11 +74,19 @@ components/
 ├── StudyHeader.tsx
 ├── Timer.tsx
 ├── PdfUploader.tsx
+├── LsmBulkImport.tsx     # Importación masiva de traducciones LSM
+├── ThemeProvider.tsx      # Proveedor de tema (dark/light)
+├── ThemeToggle.tsx        # Toggle de tema
+├── ConsoleFilter.tsx     # Filtro de consola
 └── InstructionsButton.tsx
 
 data/
-├── atalaya-data.ts       # Article database (~4600 lines)
-└── articles-config.ts    # Active articles configuration
+├── articles/             # Artículos individuales
+│   ├── article-52.ts     # Artículo 52 (ejemplo)
+│   └── index.ts          # Registro central de artículos
+├── articles-config.ts    # Configuración de artículos activos
+├── biblical-texts.ts     # Textos bíblicos compartidos
+└── design-config.ts      # Configuración de diseño
 
 types/
 └── atalaya.ts            # Core TypeScript interfaces
@@ -85,10 +94,12 @@ types/
 
 ### Data Flow
 
-1. Articles stored in `data/atalaya-data.ts` indexed by year-month (e.g., "2025-10")
-2. User selections persist to localStorage (article ID)
-3. Favorites, LSM texts, hidden cards persist to Vercel KV via API routes
-4. Components fetch/update via `/api/*` endpoints
+1. Cada artículo vive en su propio archivo: `data/articles/article-XX.ts`
+2. Los artículos se registran en `data/articles/index.ts` (articlesMap + biblicalTextsMap)
+3. La configuración de artículos activos está en `data/articles-config.ts`
+4. User selections persist to localStorage (article ID)
+5. Favorites, LSM texts, hidden cards, used items persist to Vercel KV via API routes
+6. Components fetch/update via `/api/*` endpoints
 
 ### Key Type Interfaces
 
@@ -96,8 +107,10 @@ types/
 interface Question {
   number: string;                    // ej: "1, 2" o "3"
   textEs: string;                    // Pregunta en español
-  textLSM?: string;                  // Pregunta en LSM
+  textLSM?: string;                  // Pregunta en LSM ("" si no hay traducción)
   paragraphs: number[];              // Números de párrafos relacionados
+  keyPoint?: string;                 // Idea principal (OBLIGATORIO en artículos nuevos)
+  guidingQuestion?: string;          // Pregunta de respaldo (OBLIGATORIO en artículos nuevos)
   section?: string;                  // Subtítulo de sección en español
   sectionLSM?: string;               // Subtítulo de sección en LSM
   readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
@@ -113,9 +126,9 @@ interface Question {
 
 interface Paragraph {
   number: number;
-  content: string;                   // Contenido con textos bíblicos
-  summary?: string;                  // Oraciones clave para el conductor
-  image?: string;                    // URL de imagen ilustrativa
+  content: string;                   // Contenido con textos bíblicos (SIN negritas)
+  summary?: string;                  // Resumen con **negritas** para el conductor
+  image?: string;                    // URL de imagen (solo visible en modal de párrafos)
   imageCaption?: string;             // Leyenda de la imagen
 }
 
@@ -137,7 +150,8 @@ interface FlashCard {
 interface BiblicalCard {
   reference: string;                 // ej: "Proverbios 28:13"
   purpose: string;                   // Por qué está este texto
-  text: string;                      // Texto completo TNM
+  text: string;                      // Texto completo TNM 2019
+  reasoningQuestion?: string;        // Pregunta para razonar con la congregación
 }
 
 interface ArticleData {
@@ -147,6 +161,7 @@ interface ArticleData {
   titleLSM?: string;                 // Título en LSM
   biblicalText: string;              // Texto bíblico principal
   theme: string;                     // Tema del artículo
+  headerInfographic?: string;        // URL de infografía principal del artículo
   questions: Question[];
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[];
@@ -179,14 +194,11 @@ interface ArticleData {
 
 **Textos Bíblicos (readText):**
 - El campo `readText` en las preguntas indica qué texto bíblico leer (ej: "LEE Jeremías 12:1")
-- El **contenido** del texto bíblico debe agregarse en `components/QuestionCard.tsx`
-- Buscar el objeto `biblicalTexts` al inicio del archivo (~línea 24)
-- Agregar entrada con la clave exacta del `readText`:
+- El **contenido** del texto bíblico se exporta desde el archivo del artículo como `biblicalTextsXX`:
 
 ```typescript
-// En components/QuestionCard.tsx
-const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
-  // ... entradas existentes ...
+// En data/articles/article-XX.ts
+export const biblicalTextsXX: Record<string, { reference: string; text: string }[]> = {
   "LEE Jeremías 12:1": [
     { reference: "Jeremías 12:1", text: "Tú siempre eres justo, oh, Jehová..." }
   ],
@@ -198,6 +210,7 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 };
 ```
 
+- Se registra en `data/articles/index.ts` dentro de `biblicalTextsMap`
 - Usar texto de la **Traducción del Nuevo Mundo (edición 2019)**
 - La clave debe coincidir **exactamente** con el valor de `readText`
 
@@ -208,10 +221,10 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 **Traducciones LSM en Preguntas:**
 - El usuario proporciona las traducciones LSM en el archivo `preguntas-LSM.md`
 - El campo `textLSM` en cada pregunta contiene la traducción en Lengua de Señas Mexicana
-- Agregar el campo `textLSM` a cada pregunta en `data/atalaya-data.ts`
+- Agregar el campo `textLSM` a cada pregunta en `data/articles/article-XX.ts`
 
 ```typescript
-// En data/atalaya-data.ts - dentro del artículo correspondiente
+// En data/articles/article-XX.ts - dentro del artículo correspondiente
 {
   number: "1, 2",
   textEs: "¿Qué piensa Jehová de sus esfuerzos por cuidar de un ser querido?",
@@ -227,12 +240,13 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 
 ### API Endpoints
 
-| Endpoint | GET | POST |
-|----------|-----|------|
-| `/api/favorites` | Get favorites for article | Toggle favorite |
-| `/api/lsm` | Get LSM texts | Save LSM text |
-| `/api/hidden-cards` | Get hidden cards | Toggle visibility |
-| `/api/pdfs` | List PDFs | Upload PDF |
+| Endpoint | GET | POST | PUT |
+|----------|-----|------|-----|
+| `/api/favorites` | Get favorites for article | Toggle favorite | - |
+| `/api/lsm` | Get LSM texts | Save LSM text | Update LSM text |
+| `/api/hidden-cards` | Get hidden cards | Toggle visibility | - |
+| `/api/pdfs` | List PDFs | Upload PDF | - |
+| `/api/used-items` | Get used items | Toggle used state | - |
 
 ### PWA Configuration
 
@@ -488,7 +502,7 @@ El diseño ejecutivo se aplica **automáticamente** a todos los artículos del *
 | Componente | Condición | Variable |
 |------------|-----------|----------|
 | `StudyHeader.tsx` | `articleNumber >= 43` | `isArticle43` |
-| `QuestionCard.tsx` | `articleNum >= 43` | `isPremiumDesign` |
+| `QuestionCard.tsx` | `articleNum >= 43` | `articleNum` (parseado de articleId) |
 | `ReviewQuestionCard.tsx` | `articleNum >= 43` | `isArticle43` |
 
 **No se requiere ningún cambio para nuevos artículos.** Al agregar el Artículo 44, 45, etc., automáticamente usarán el diseño ejecutivo.
@@ -521,17 +535,11 @@ El diseño ejecutivo se aplica **automáticamente** a todos los artículos del *
 
 ### IMPORTANTE: Diseño Ejecutivo (Artículos 43+)
 
-El diseño Ejecutivo tiene su **propio bloque de renderizado** separado. Cuando se agreguen nuevas funcionalidades, deben implementarse en **AMBOS** lugares:
+El diseño Ejecutivo tiene su **propio bloque de renderizado** separado en `QuestionCard.tsx`. Cuando se agreguen nuevas funcionalidades, deben implementarse en **AMBOS** bloques:
 
-| Funcionalidad | Diseño Original | Diseño Premium |
-|---------------|-----------------|----------------|
-| `question.image` | Línea ~1724 | Línea ~1320 |
-| `paragraph.image` (en modal) | Línea ~2165 | Línea ~1052 |
-
-**Ubicación en `QuestionCard.tsx`:**
-- El diseño Premium comienza con: `if (isPremiumDesign) { return (...` (línea ~1026)
-- Todo el código DESPUÉS de ese bloque es el diseño original
-- Si agregas una funcionalidad de imagen al diseño original, **TAMBIÉN debes agregarla al bloque Premium**
+- El bloque Premium se activa cuando `articleNum >= 43`
+- Buscar el condicional que separa ambos bloques de renderizado
+- Si agregas una funcionalidad al diseño original, **TAMBIÉN debes agregarla al bloque Premium**
 
 ### Paleta de Colores Ejecutivo
 

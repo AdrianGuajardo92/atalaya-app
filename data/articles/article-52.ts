@@ -29,7 +29,7 @@ export const article52: ArticleData = {
   metadata: {
     articleNumber: 52,
     week: "2-8 Mar",
-    month: "Enero",
+    month: "Marzo",
     year: 2026
   },
   song: "Canción 97: Nuestra vida depende de la Palabra de Dios",
