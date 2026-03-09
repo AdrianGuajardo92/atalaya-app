@@ -345,7 +345,7 @@ export default function StudyHeader({
               <div className="flex gap-3 mt-4">
                 <button
                   onClick={handleSaveTitleLSM}
-                  className="px-5 py-2.5 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium text-sm"
+                  className="px-5 py-2.5 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium text-sm"
                 >
                   💾 Guardar
                 </button>

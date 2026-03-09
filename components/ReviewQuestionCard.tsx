@@ -112,7 +112,7 @@ export default function ReviewQuestionCard({
           {/* Cabecera de la Pregunta */}
           <div className="p-8 pb-4">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-slate-400">
+              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-[#8B8980]">
                 Pregunta de Repaso {index + 1}
               </span>
             </div>
@@ -145,7 +145,7 @@ export default function ReviewQuestionCard({
             {/* Área LSM */}
             <div className="flex-1 min-w-[200px]">
               {isEditingLSM ? (
-                <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
+                <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-[#3E2E28] shadow-sm animate-fadeIn">
                   <textarea
                     value={editedLSM}
                     onChange={(e) => setEditedLSM(e.target.value)}
@@ -157,7 +157,7 @@ export default function ReviewQuestionCard({
                     autoFocus
                   />
                   <div className="flex justify-end gap-2 mt-2">
-                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">
+                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-[#D97757] text-white px-2 py-1 rounded">
                       {isSaving ? 'Guardando...' : 'Guardar'}
                     </button>
                     <button onMouseDown={handleCancelEdit} className="text-xs text-text-muted px-2 py-1">Cancelar</button>
@@ -170,7 +170,7 @@ export default function ReviewQuestionCard({
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
+                    <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-[#D97757]">LSM</span>
                   </div>
                   <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
                     {currentLSMText || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
@@ -185,7 +185,7 @@ export default function ReviewQuestionCard({
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
                   ? 'bg-surface-raised border-border-strong text-text-body'
-                  : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
+                  : 'bg-slate-800 dark:bg-[#1C1919] border-slate-800 dark:border-[#1C1919] text-white hover:bg-slate-900 dark:hover:bg-[#141212]'
                 }`}
               >
                 {isExpanded ? 'Ocultar Respuesta' : 'Ver Respuesta'}
@@ -202,7 +202,7 @@ export default function ReviewQuestionCard({
                 <div className="p-8 bg-surface">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-amber-800">
+                      <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-[#3E2E28] text-amber-600 dark:text-[#D97757] flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-[#5C3828]">
                         💡
                       </div>
                     </div>
@@ -228,7 +228,7 @@ export default function ReviewQuestionCard({
                             if (!bullet.trim()) return null;
                             return (
                               <div key={idx} className="flex gap-3 group/bullet">
-                                <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-blue-400 transition-colors"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-[#D97757] transition-colors"></div>
                                 <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
                               </div>
                             );
@@ -244,7 +244,7 @@ export default function ReviewQuestionCard({
               <div className="px-8 py-4 bg-surface">
                 <div className="flex items-center justify-center gap-4">
                   <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
-                  <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
+                  <span className="text-amber-400 dark:text-[#E09070] text-sm">✦</span>
                   <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
                 </div>
               </div>

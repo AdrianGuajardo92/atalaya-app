@@ -409,7 +409,7 @@ export default function Home() {
       {/* Botón de gestión de PDFs - Solo visible en desktop */}
       <button
         onClick={() => setShowPdfUploader(true)}
-        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
+        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-blue-600 dark:bg-[#D97757] hover:bg-blue-700 dark:hover:bg-[#C4694D] text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
         title="Gestionar PDFs"
       >
         <span className="text-xl">📁</span>
@@ -440,7 +440,7 @@ export default function Home() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="3"
-                className="text-slate-200 dark:text-slate-600"
+                className="text-slate-200 dark:text-[#4A4A45]"
               />
               <circle
                 cx="22" cy="22" r="18"
@@ -448,13 +448,13 @@ export default function Home() {
                 stroke="currentColor"
                 strokeWidth="3"
                 strokeLinecap="round"
-                className="text-amber-400 dark:text-amber-300 transition-all duration-300"
+                className="text-amber-400 dark:text-[#E09070] transition-all duration-300"
                 strokeDasharray={`${2 * Math.PI * 18}`}
                 strokeDashoffset={`${2 * Math.PI * 18 * (1 - scrollProgress / 100)}`}
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-[10px] font-bold text-slate-700 dark:text-slate-200">{scrollProgress}%</span>
+              <span className="text-[10px] font-bold text-slate-700 dark:text-[#C2C0B6]">{scrollProgress}%</span>
             </div>
           </div>
         </div>
@@ -462,108 +462,92 @@ export default function Home() {
 
       {/* Control de modo de vista y navegación - Menú colapsable */}
       <div ref={viewMenuRef} className="fixed top-4 right-4 z-50 flex items-center gap-2">
-        {/* Botón de importación masiva LSM */}
-        <button
-          onClick={() => setShowLsmImport(true)}
-          className="relative w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-surface hover:bg-surface-alt transition-all duration-200 shadow-sm"
-          title="Importar LSM en bloque"
-        >
-          <span className="text-lg">🤟</span>
-        </button>
+        {/* Botón de importación masiva LSM (solo dev) */}
+        {process.env.NODE_ENV === 'development' && (
+          <button
+            onClick={() => setShowLsmImport(true)}
+            className="relative w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-surface hover:bg-surface-alt transition-all duration-200 shadow-sm"
+            title="Importar LSM en bloque"
+          >
+            <span className="text-lg">🤟</span>
+          </button>
+        )}
         {/* Botón de tema */}
         <ThemeToggle />
         {/* Botón principal (siempre visible) */}
         <button
           onClick={() => setShowViewOptions(!showViewOptions)}
-          className="p-3 bg-surface rounded-full shadow-lg hover:bg-surface-alt transition-all"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-[#30302E]/80 backdrop-blur-sm shadow-lg border border-slate-200/50 dark:border-[#3A3A37]/50 hover:scale-105 active:scale-95 transition-all"
           title="Opciones de vista"
         >
-          <span className="text-xl">{showViewOptions ? '✕' : '⚙️'}</span>
+          {showViewOptions ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
+          )}
         </button>
 
         {/* Menú expandible */}
         {showViewOptions && (
-          <div className="absolute top-14 right-0 bg-surface rounded-xl shadow-xl p-3 animate-fadeIn min-w-[200px]">
-            {/* Fila 1: Tipo de vista */}
-            <div className="flex gap-2 mb-2">
+          <div className="absolute top-14 right-0 bg-white/95 dark:bg-[#30302E]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 dark:border-[#3A3A37]/50 p-4 animate-fadeIn w-[230px]">
+            {/* Vista: segmented control */}
+            <p className="text-[11px] font-semibold text-slate-400 dark:text-[#7D7B73] uppercase tracking-[0.15em] mb-2 px-1">Vista</p>
+            <div className="bg-slate-100 dark:bg-[#3A3A37]/40 rounded-xl p-1 flex">
               <button
                 onClick={() => { setViewMode('study'); setShowViewOptions(false); }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                  viewMode === 'study' ? 'bg-blue-600 dark:bg-blue-500 text-white' : 'bg-surface-raised text-text-body hover:bg-surface-alt'
+                className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
+                  viewMode === 'study'
+                    ? 'bg-white dark:bg-[#4A4A45] text-slate-800 dark:text-white shadow-sm'
+                    : 'text-slate-500 dark:text-[#8B8980] hover:text-slate-700 dark:hover:text-[#A9A79E]'
                 }`}
               >
-                📖 Estudio
+                Estudio
               </button>
               <button
                 onClick={() => { setViewMode('summary'); setShowViewOptions(false); }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
-                  viewMode === 'summary' ? 'bg-blue-600 dark:bg-blue-500 text-white' : 'bg-surface-raised text-text-body hover:bg-surface-alt'
+                className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
+                  viewMode === 'summary'
+                    ? 'bg-white dark:bg-[#4A4A45] text-slate-800 dark:text-white shadow-sm'
+                    : 'text-slate-500 dark:text-[#8B8980] hover:text-slate-700 dark:hover:text-[#A9A79E]'
                 }`}
               >
-                📋 Resumen
+                Resumen
               </button>
             </div>
-            {/* Fila 2: Modo de navegación (solo en modo estudio) */}
+
+            {/* Modo de navegación (solo en modo estudio) */}
             {viewMode === 'study' && (
-              <div className="pt-3 border-t border-border-subtle">
-                <p className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-2 px-1">Modo de estudio</p>
-                <div className="flex gap-2">
-                  {/* Botón ESTUDIAR (scroll) - Preparación personal */}
+              <div className="mt-4 pt-3 border-t border-slate-100 dark:border-[#3A3A37]/40">
+                <p className="text-[11px] font-semibold text-slate-400 dark:text-[#7D7B73] uppercase tracking-[0.15em] mb-2 px-1">Modo</p>
+                <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => { setNavigationMode('scroll'); setShowViewOptions(false); }}
-                    className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1.5 ${
+                    className={`p-3 rounded-xl text-xs font-medium transition-all flex flex-col items-center gap-2 ${
                       navigationMode === 'scroll'
-                        ? 'bg-slate-700 dark:bg-slate-600 text-white shadow-md'
-                        : 'bg-surface text-text-secondary border border-border hover:border-border-strong hover:bg-surface-alt'
+                        ? 'bg-slate-800 dark:bg-[#4A4A45] text-white shadow-md'
+                        : 'bg-slate-50 dark:bg-[#3A3A37]/30 text-slate-500 dark:text-[#8B8980] hover:bg-slate-100 dark:hover:bg-[#3A3A37]/50'
                     }`}
                   >
-                    {/* SVG Libro abierto con marcador - Estilo Lucide */}
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-                      <path d="M8 7h6" />
-                      <path d="M8 11h8" />
+                      <path d="M8 7h6" /><path d="M8 11h8" />
                     </svg>
-                    <span>Estudiar</span>
+                    Estudiar
                   </button>
-
-                  {/* Botón ATALAYA (paginado) - Reunión/Conducción */}
                   <button
                     onClick={() => { setNavigationMode('paginated'); setShowViewOptions(false); }}
-                    className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1.5 ${
+                    className={`p-3 rounded-xl text-xs font-medium transition-all flex flex-col items-center gap-2 ${
                       navigationMode === 'paginated'
-                        ? 'bg-slate-700 dark:bg-slate-600 text-white shadow-md'
-                        : 'bg-surface text-text-secondary border border-border hover:border-border-strong hover:bg-surface-alt'
+                        ? 'bg-slate-800 dark:bg-[#4A4A45] text-white shadow-md'
+                        : 'bg-slate-50 dark:bg-[#3A3A37]/30 text-slate-500 dark:text-[#8B8980] hover:bg-slate-100 dark:hover:bg-[#3A3A37]/50'
                     }`}
                   >
-                    {/* SVG Atril con micrófono - Estilo Lucide */}
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {/* Atril/Podio */}
-                      <path d="M8 6h8" />
-                      <path d="M6 10h12" />
-                      <path d="M7 10l1 10h8l1-10" />
-                      <path d="M12 6V3" />
-                      {/* Micrófono */}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M8 6h8" /><path d="M6 10h12" />
+                      <path d="M7 10l1 10h8l1-10" /><path d="M12 6V3" />
                       <circle cx="12" cy="2" r="1" fill="currentColor" />
                     </svg>
-                    <span>Atalaya</span>
+                    Atalaya
                   </button>
                 </div>
               </div>
@@ -634,7 +618,7 @@ export default function Home() {
                   <div className="w-full border-t border-border"></div>
                 </div>
                 <div className="relative flex justify-center">
-                  <div className="bg-slate-800 dark:bg-slate-700 px-8 py-4 rounded-lg shadow-lg">
+                  <div className="bg-slate-800 dark:bg-[#1C1919] px-8 py-4 rounded-lg shadow-lg">
                     <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
                       ¿Qué responderías?
                     </h2>
@@ -721,9 +705,9 @@ export default function Home() {
 
                                 {/* Resumen/Summary si existe */}
                                 {paragraph.summary && (
-                                  <div className="mt-5 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-700 rounded-lg px-5 py-4">
-                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider mb-2">💡 Resumen</p>
-                                    <p className="text-base md:text-lg text-amber-900 dark:text-amber-100 italic leading-relaxed">{renderBoldText(paragraph.summary)}</p>
+                                  <div className="mt-5 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#8B5A40] rounded-lg px-5 py-4">
+                                    <p className="text-sm font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-wider mb-2">💡 Resumen</p>
+                                    <p className="text-base md:text-lg text-amber-900 dark:text-[#F0D0C0] italic leading-relaxed">{renderBoldText(paragraph.summary)}</p>
                                   </div>
                                 )}
                               </div>
@@ -861,7 +845,7 @@ export default function Home() {
                     </div>
                     <div className="p-5 space-y-3">
                       {currentArticle.questions[currentQuestionIndex + 1].section && (
-                        <div className="bg-surface-alt border-l-4 border-slate-700 dark:border-slate-500 pl-4 py-3 rounded-r">
+                        <div className="bg-surface-alt border-l-4 border-slate-700 dark:border-[#4A4A45] pl-4 py-3 rounded-r">
                           <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1.5">Sección</p>
                           <h3 className="text-xl font-extrabold text-text-primary uppercase leading-tight">
                             {currentArticle.questions[currentQuestionIndex + 1].section}
@@ -975,7 +959,7 @@ export default function Home() {
                   {/* Barra de progreso ejecutiva */}
                   <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-slate-500 dark:bg-slate-400 transition-all duration-300 ease-out"
+                      className="h-full bg-slate-500 dark:bg-[#8B8980] transition-all duration-300 ease-out"
                       style={{
                         width: currentReviewIndex === -1
                           ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
@@ -1005,7 +989,7 @@ export default function Home() {
                     className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
                       currentReviewIndex === currentArticle.reviewQuestions.length - 1
                         ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                        : 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-800 dark:hover:bg-slate-500 shadow-sm'
+                        : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45] shadow-sm'
                     }`}
                   >
                     Siguiente →
@@ -1050,7 +1034,7 @@ export default function Home() {
                     className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
                       currentQuestionIndex === 0 && currentReviewIndex === -1
                         ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                        : 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-800 dark:hover:bg-slate-500'
+                        : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45]'
                     }`}
                   >
                     ⬅️ Anterior
@@ -1061,7 +1045,7 @@ export default function Home() {
                     className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
                       currentReviewIndex === currentArticle.reviewQuestions.length - 1
                         ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                        : 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-800 dark:hover:bg-slate-500'
+                        : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45]'
                     }`}
                   >
                     Siguiente ➡️

@@ -816,14 +816,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain">
               {/* Sección RESUMEN (si algún párrafo tiene summary) */}
               {relatedParagraphs.some(p => p.summary) && (
-                <div className="mb-6 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-5">
-                  <h4 className="text-xs font-bold text-amber-700 dark:text-amber-300 uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                <div className="mb-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
+                  <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">Resumen</h4>
                   <div className="space-y-2">
                     {relatedParagraphs
                       .filter(p => p.summary)
                       .map((p, i) => (
                         <div key={i} className="flex gap-2">
-                          <span className="font-bold text-amber-800 dark:text-amber-300 text-sm flex-shrink-0">[{p.number}]</span>
+                          <span className="font-bold text-amber-800 dark:text-[#E09070] text-sm flex-shrink-0">[{p.number}]</span>
                           <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
                         </div>
                       ))}
@@ -877,7 +877,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </button>
               <button
                 onClick={() => setShowParagraphsModal(false)}
-                className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium shadow-sm"
+                className="px-4 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium shadow-sm"
               >
                 Cerrar
               </button>
@@ -918,7 +918,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end">
               <button
                 onClick={() => setShowReadTextModal(false)}
-                className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors font-medium"
+                className="px-4 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium"
               >
                 Cerrar
               </button>
@@ -939,7 +939,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
             {/* Subtítulo centrado */}
             <div className="relative flex justify-center">
-              <div className="bg-slate-800 px-8 py-4 rounded-lg shadow-lg">
+              <div className="bg-slate-800 dark:bg-[#1C1919] px-8 py-4 rounded-lg shadow-lg">
                 <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
                   {question.section}
                 </h2>
@@ -950,10 +950,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           {/* Sección LSM del subtítulo */}
           <div className="mt-4 flex justify-center">
             {isEditingSectionLSM ? (
-              <div className="w-full max-w-xl bg-surface p-4 rounded-lg border border-blue-200 dark:border-blue-800 shadow-md animate-fadeIn">
+              <div className="w-full max-w-xl bg-surface p-4 rounded-lg border border-blue-200 dark:border-[#3E2E28] shadow-md animate-fadeIn">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">🤟</span>
-                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Editando LSM</span>
+                  <span className="text-xs font-bold text-blue-600 dark:text-[#D97757] uppercase tracking-wider">Editando LSM</span>
                 </div>
                 <textarea
                   ref={(el) => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }}
@@ -968,7 +968,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   <button
                     onClick={handleSaveSectionLSM}
                     disabled={isSavingSection}
-                    className="text-sm bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 font-medium"
+                    className="text-sm bg-blue-600 dark:bg-[#D97757] text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-[#C4694D] transition-colors disabled:opacity-50 font-medium"
                   >
                     {isSavingSection ? 'Guardando...' : '💾 Guardar'}
                   </button>
@@ -987,8 +987,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               >
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <span className="text-lg">🤟</span>
-                  <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider group-hover/section:text-blue-600 dark:group-hover/section:text-blue-400">LSM</span>
-                  <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-blue-400 text-xs transition-opacity">✏️</span>
+                  <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider group-hover/section:text-blue-600 dark:group-hover/section:text-[#D97757]">LSM</span>
+                  <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-[#D97757] text-xs transition-opacity">✏️</span>
                 </div>
                 <p className="text-text-secondary font-medium text-lg text-center uppercase">
                   {currentSectionLSMText || <span className="text-text-muted italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
@@ -1011,7 +1011,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           {/* Cabecera de la Pregunta */}
           <div className="p-8 pb-4">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-slate-400">
+              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-[#8B8980]">
                 Pregunta {question.number}
               </span>
               <div className="flex items-center gap-2">
@@ -1019,7 +1019,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {question.infographic && (
                   <button
                     onClick={() => setShowInfographicModal(true)}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200 dark:border-blue-800"
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-[#332520] text-blue-600 dark:text-[#D97757] hover:bg-blue-100 dark:hover:bg-[#3E2E28] hover:text-blue-700 dark:hover:text-[#E8A68B] transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200 dark:border-[#3E2E28]"
                     title="Ver infografía"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -1051,7 +1051,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="mt-4">
                 <button
                   onClick={() => setShowReadTextModal(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-transform active:scale-95 shadow-md group/btn"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-transform active:scale-95 shadow-md group/btn"
                 >
                   <span className="text-lg">📖</span>
                   <span className="font-medium tracking-wide">{question.readText}</span>
@@ -1067,7 +1067,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
             {/* Botón LSM */}
             <div className="flex-1 min-w-[200px]">
               {isEditingLSM ? (
-                <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-blue-800 shadow-sm animate-fadeIn">
+                <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-[#3E2E28] shadow-sm animate-fadeIn">
                   <textarea
                     ref={(el) => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }}
                     value={editedLSM}
@@ -1079,7 +1079,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     placeholder="Escribe la traducción LSM..."
                   />
                   <div className="flex justify-end gap-2 mt-2">
-                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-blue-500 text-white px-2 py-1 rounded">Guardar</button>
+                    <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-[#D97757] text-white px-2 py-1 rounded">Guardar</button>
                     <button onMouseDown={handleCancelEdit} className="text-xs text-text-muted px-2 py-1">Cancelar</button>
                   </div>
                 </div>
@@ -1090,7 +1090,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-lg">🤟</span>
-                    <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-blue-400">LSM</span>
+                    <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-[#D97757]">LSM</span>
                   </div>
                   <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
                     {lsmText || question.textLSM || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
@@ -1105,7 +1105,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border ${isExpanded
                   ? 'bg-surface-raised border-border-strong text-text-body'
-                  : 'bg-slate-800 border-slate-800 text-white hover:bg-slate-900'
+                  : 'bg-slate-800 dark:bg-[#1C1919] border-slate-800 dark:border-[#1C1919] text-white hover:bg-slate-900 dark:hover:bg-[#141212]'
                   }`}
               >
                 {isExpanded ? 'Ocultar Respuesta' : 'Ver Respuesta'}
@@ -1139,7 +1139,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="p-8 bg-surface">
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 mt-1">
-                    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-300 flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-amber-700">
+                    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-[#3E2E28] text-amber-600 dark:text-[#E09070] flex items-center justify-center text-lg shadow-sm border border-amber-200 dark:border-[#8B5A40]">
                       💡
                     </div>
                   </div>
@@ -1204,7 +1204,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                       <div className="mt-6 space-y-3">
                         {(customBullets.length > 0 ? customBullets : question.answerBullets as string[]).map((bullet, idx) => (
                           <div key={idx} className="flex gap-3 group/bullet">
-                            <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-blue-400 transition-colors"></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-[#D97757] transition-colors"></div>
                             <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
                           </div>
                         ))}
@@ -1215,14 +1215,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
                 {/* Enfoque del Párrafo (Tips para el conductor) - Solo en modo Estudiar */}
                 {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && (
-                  <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-slate-700 dark:bg-slate-800/40 shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-amber-600 dark:from-amber-500 dark:to-orange-500"></div>
+                  <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-[#3A3A37] dark:bg-[#30302E]/40 shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-amber-600 dark:from-[#D97757] dark:to-orange-500"></div>
                     <div className="flex items-start gap-4">
                       <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">💡</div>
                       <div className="flex-1 space-y-4">
-                        <h3 className="text-sm font-extrabold text-amber-800 dark:text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                        <h3 className="text-sm font-extrabold text-amber-800 dark:text-[#D97757] uppercase tracking-widest flex items-center gap-2">
                           Enfoque del Párrafo
-                          <span className="text-[10px] font-medium bg-amber-200 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full border dark:border-amber-700/50">Exclusivo Conductor</span>
+                          <span className="text-[10px] font-medium bg-amber-200 dark:bg-[#3E2E28]/60 text-amber-800 dark:text-[#E09070] px-2 py-0.5 rounded-full border dark:border-[#8B5A40]/50">Exclusivo Conductor</span>
                         </h3>
 
                         {question.keyPoint && (() => {
@@ -1232,7 +1232,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             <div className="space-y-1.5">
                               <div className="flex items-center gap-1.5">
                                 <span className="text-base">🎯</span>
-                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-slate-400 uppercase tracking-wider">Punto Clave</span>
+                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-[#8B8980] uppercase tracking-wider">Punto Clave</span>
                               </div>
                               <div
                                 className={`${usedItemClass(itemId)} px-1 py-1`}
@@ -1240,7 +1240,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               >
                                 {isUsed && <UsedBadge />}
                                 {!isUsed && <HoverHint />}
-                                <p className="text-base md:text-lg font-medium text-amber-900 dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-amber-100 dark:border-slate-700 shadow-inner dark:shadow-black/20 m-0">
+                                <p className="text-base md:text-lg font-medium text-amber-900 dark:text-[#C2C0B6] leading-relaxed bg-white/40 dark:bg-[#262624]/50 p-3 rounded-lg border border-amber-100 dark:border-[#3A3A37] shadow-inner dark:shadow-black/20 m-0">
                                   {question.keyPoint}
                                 </p>
                               </div>
@@ -1255,7 +1255,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             <div className="space-y-1.5">
                               <div className="flex items-center gap-1.5">
                                 <span className="text-base">🆘</span>
-                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-slate-400 uppercase tracking-wider">Si no lo mencionan, pregunta:</span>
+                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-[#8B8980] uppercase tracking-wider">Si no lo mencionan, pregunta:</span>
                               </div>
                               <div
                                 className={`${usedItemClass(itemId)} px-1 py-1`}
@@ -1263,7 +1263,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               >
                                 {isUsed && <UsedBadge />}
                                 {!isUsed && <HoverHint />}
-                                <p className="text-base md:text-lg text-amber-800 dark:text-slate-300 italic font-serif leading-relaxed px-3 py-1 border-l-2 border-amber-300 dark:border-slate-600 m-0">
+                                <p className="text-base md:text-lg text-amber-800 dark:text-[#A9A79E] italic font-serif leading-relaxed px-3 py-1 border-l-2 border-amber-300 dark:border-[#4A4A45] m-0">
                                   "{question.guidingQuestion}"
                                 </p>
                               </div>
@@ -1278,22 +1278,22 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {/* Línea divisoria entre Enfoque del Párrafo y Textos Clave */}
                 {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
                   <div className="flex items-center gap-3 mt-5">
-                    <div className="flex-1 h-px bg-gradient-to-r from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-amber-700/40 dark:via-slate-700 dark:to-blue-800/40"></div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-[#8B5A40]/40 dark:via-[#3A3A37] dark:to-[#3E2E28]/40"></div>
                     <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Textos</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-amber-700/40 dark:via-slate-700 dark:to-blue-800/40"></div>
+                    <div className="flex-1 h-px bg-gradient-to-l from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-[#8B5A40]/40 dark:via-[#3A3A37] dark:to-[#3E2E28]/40"></div>
                   </div>
                 )}
 
                 {/* Textos Clave en panel (para preguntas con keyPoint/guidingQuestion) */}
                 {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
-                  <div className="mt-3 p-5 rounded-xl border border-blue-200/50 bg-blue-50/30 dark:border-slate-700 dark:bg-slate-800/30 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-blue-400 to-indigo-600 dark:from-blue-500 dark:to-indigo-700"></div>
+                  <div className="mt-3 p-5 rounded-xl border border-blue-200/50 bg-blue-50/30 dark:border-[#3A3A37] dark:bg-[#30302E]/30 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-blue-400 to-indigo-600 dark:from-[#D97757] dark:to-indigo-700"></div>
                     <div className="flex items-start gap-4">
                       <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">📖</div>
                       <div className="flex-1 space-y-5">
-                        <h3 className="text-sm font-extrabold text-blue-800 dark:text-blue-400 uppercase tracking-widest flex items-center gap-2">
+                        <h3 className="text-sm font-extrabold text-blue-800 dark:text-[#D97757] uppercase tracking-widest flex items-center gap-2">
                           Textos Clave
-                          <span className="text-[10px] font-medium bg-blue-200 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded-full border dark:border-blue-700/50">Razona con la Biblia</span>
+                          <span className="text-[10px] font-medium bg-blue-200 dark:bg-[#3E2E28]/60 text-blue-800 dark:text-[#E8A68B] px-2 py-0.5 rounded-full border dark:border-[#D97757]/50">Razona con la Biblia</span>
                         </h3>
                         {question.biblicalCards.map((card, idx) => {
                           const itemId = `biblical-panel-${articleId}-${question.number}-${idx}`;
@@ -1305,8 +1305,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               <div className="flex items-start gap-2">
                                 <span className="text-base mt-0.5">📌</span>
                                 <div>
-                                  <span className="font-bold text-base text-blue-900 dark:text-blue-300 font-serif">{card.reference}</span>
-                                  <span className="text-text-secondary dark:text-slate-400 text-sm ml-2 italic">— {card.purpose}</span>
+                                  <span className="font-bold text-base text-blue-900 dark:text-[#E8A68B] font-serif">{card.reference}</span>
+                                  <span className="text-text-secondary dark:text-[#8B8980] text-sm ml-2 italic">— {card.purpose}</span>
                                 </div>
                               </div>
                               {/* Texto bíblico clicable */}
@@ -1316,7 +1316,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               >
                                 {isUsed && <UsedBadge />}
                                 {!isUsed && <HoverHint />}
-                                  <p className="text-base text-text-body dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-blue-100 dark:border-slate-700 italic m-0">
+                                  <p className="text-base text-text-body dark:text-[#C2C0B6] leading-relaxed bg-white/40 dark:bg-[#262624]/50 p-3 rounded-lg border border-blue-100 dark:border-[#3A3A37] italic m-0">
                                     "{card.text}"
                                   </p>
                                 </div>
@@ -1327,7 +1327,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                   <div className="ml-6 space-y-1">
                                     <div className="flex items-center gap-1.5">
                                       <span className="text-base">🗣️</span>
-                                      <span className="text-[11px] font-bold text-blue-700/80 dark:text-slate-400 uppercase tracking-wider">Razona con la congregación:</span>
+                                      <span className="text-[11px] font-bold text-blue-700/80 dark:text-[#8B8980] uppercase tracking-wider">Razona con la congregación:</span>
                                     </div>
                                     <div
                                       className={`${usedItemClass(rId)}`}
@@ -1335,7 +1335,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                     >
                                       {rUsed && <UsedBadge />}
                                       {!rUsed && <HoverHint />}
-                                      <p className="text-base text-blue-800 dark:text-slate-300 italic font-serif leading-relaxed px-3 py-1 border-l-2 border-blue-300 dark:border-slate-600 m-0">
+                                      <p className="text-base text-blue-800 dark:text-[#A9A79E] italic font-serif leading-relaxed px-3 py-1 border-l-2 border-blue-300 dark:border-[#4A4A45] m-0">
                                         "{card.reasoningQuestion}"
                                       </p>
                                     </div>
@@ -1343,7 +1343,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 );
                               })()}
                               {idx < (question.biblicalCards?.length ?? 0) - 1 && (
-                                <div className="ml-6 mt-3 h-px bg-blue-100 dark:bg-slate-700"></div>
+                                <div className="ml-6 mt-3 h-px bg-blue-100 dark:bg-[#3A3A37]"></div>
                               )}
                             </div>
                           );
@@ -1356,20 +1356,20 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {/* Divisor Textos Clave → Tarjetas */}
                 {(question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
                   <div className="flex items-center gap-3 mt-5">
-                    <div className="flex-1 h-px bg-gradient-to-r from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-blue-800/40 dark:via-slate-700 dark:to-purple-800/40"></div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-[#3E2E28]/40 dark:via-[#3A3A37] dark:to-purple-800/40"></div>
                     <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Tarjetas</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-blue-800/40 dark:via-slate-700 dark:to-purple-800/40"></div>
+                    <div className="flex-1 h-px bg-gradient-to-l from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-[#3E2E28]/40 dark:via-[#3A3A37] dark:to-purple-800/40"></div>
                   </div>
                 )}
 
                 {/* Tarjetas Didácticas en panel (para preguntas con keyPoint/guidingQuestion) - Solo en modo Estudiar */}
                 {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
-                  <div className="mt-3 p-5 rounded-xl border border-purple-200/50 bg-purple-50/30 dark:border-slate-700 dark:bg-slate-800/25 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-purple-400 to-violet-600 dark:from-purple-500 dark:to-violet-700"></div>
+                  <div className="mt-3 p-5 rounded-xl border border-purple-200/50 bg-purple-50/30 dark:border-[#3A3A37] dark:bg-[#1C1919]/60 shadow-sm relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-purple-400 dark:bg-[#D97757]"></div>
                     <div className="flex items-start gap-4">
                       <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">🏂</div>
                       <div className="flex-1 space-y-5">
-                        <h3 className="text-sm font-extrabold text-purple-800 dark:text-purple-400 uppercase tracking-widest">
+                        <h3 className="text-sm font-extrabold text-purple-800 dark:text-[#E8A68B] uppercase tracking-widest">
                           Tarjetas Didácticas
                         </h3>
                         {customFlashcards.map((card, idx) => {
@@ -1386,18 +1386,18 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 {qUsed && <UsedBadge />}
                                 {!qUsed && <HoverHint />}
                                 <span className="text-base mt-0.5 flex-shrink-0">❓</span>
-                                <p className="font-semibold text-base text-purple-900 dark:text-purple-200 leading-relaxed m-0">{card.question}</p>
+                                <p className="font-semibold text-base text-purple-900 dark:text-[#C2C0B6] leading-relaxed m-0">{card.question}</p>
                               </div>
                               {/* Respuesta - sin checkbox propio, sigue a la pregunta */}
                               {card.answer && (
                                 <div className="ml-6 rounded-lg px-1 py-1">
-                                  <p className="text-base text-text-body dark:text-slate-200 leading-relaxed bg-white/40 dark:bg-slate-900/50 p-3 rounded-lg border border-purple-100 dark:border-slate-700 m-0">
+                                  <p className="text-base text-text-body dark:text-[#A9A79E] leading-relaxed bg-white/40 dark:bg-[#262624]/40 p-3 rounded-lg border border-purple-100 dark:border-[#30302E] m-0">
                                     {card.answer}
                                   </p>
                                 </div>
                               )}
                               {idx < customFlashcards.length - 1 && (
-                                <div className="ml-6 mt-3 h-px bg-purple-100 dark:bg-slate-700"></div>
+                                <div className="ml-6 mt-3 h-px bg-purple-100 dark:bg-[#30302E]"></div>
                               )}
                             </div>
                           );
@@ -1412,7 +1412,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               <div className="px-8 py-4 bg-surface">
                 <div className="flex items-center justify-center gap-4">
                   <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
-                  <span className="text-amber-400 dark:text-amber-300 text-sm">✦</span>
+                  <span className="text-amber-400 dark:text-[#E09070] text-sm">✦</span>
                   <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
                 </div>
               </div>
@@ -1530,7 +1530,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           onClick={() => setShowInfographicModal(false)}
         >
           {/* Header compacto */}
-          <div className="flex-shrink-0 h-12 bg-slate-800 px-4 flex items-center justify-between">
+          <div className="flex-shrink-0 h-12 bg-slate-800 dark:bg-[#1C1919] px-4 flex items-center justify-between">
             <span className="text-white text-sm font-medium flex items-center gap-2">
               Infografía - Pregunta {question.number}
             </span>

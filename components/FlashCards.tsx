@@ -280,7 +280,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                         e.stopPropagation();
                         handleOpenEditModal(index, card);
                       }}
-                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-surface text-text-tertiary hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950 shadow-sm border border-border opacity-0 group-hover:opacity-100"
+                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-surface text-text-tertiary hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-[#332520] shadow-sm border border-border opacity-0 group-hover:opacity-100"
                       title="Editar tarjeta"
                     >
                       <span className="text-sm">✏️</span>
@@ -405,7 +405,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                   {/* Reverso de la tarjeta (Respuesta) - Stays dark intentionally */}
                   <div
-                    className="absolute w-full h-[250px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
+                    className="absolute w-full h-[250px] bg-slate-800 dark:bg-[#1C1919] rounded-xl shadow-lg border border-slate-700 dark:border-[#3A3A37] overflow-hidden flex flex-col"
                     style={{
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
@@ -413,7 +413,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                     }}
                   >
                     {/* Header fijo */}
-                    <div className="flex-shrink-0 text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 py-2">Respuesta</div>
+                    <div className="flex-shrink-0 text-[10px] text-slate-400 dark:text-[#8B8980] font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 dark:bg-[#141212]/60 py-2">Respuesta</div>
 
                     {/* Contenido de la respuesta con scroll */}
                     <div className="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col items-center text-center">
@@ -423,8 +423,8 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                       {/* Mostrar LSM de respuesta si existe y no está editando */}
                       {answerLSM && !isEditingAnswer && (
                         <>
-                          <div className="w-8 h-px bg-slate-600 my-4"></div>
-                          <p className="text-slate-300 font-bold text-sm uppercase tracking-wider">
+                          <div className="w-8 h-px bg-slate-600 dark:bg-[#3A3A37] my-4"></div>
+                          <p className="text-slate-300 dark:text-[#A9A79E] font-bold text-sm uppercase tracking-wider">
                             🤟 {answerLSM}
                           </p>
                         </>
@@ -433,15 +433,15 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
                     {/* Editor LSM dentro de la tarjeta */}
                     {isEditingAnswer && (
-                      <div className="flex-shrink-0 p-3 mx-6 mb-6 bg-slate-700/50 rounded border border-slate-600" onClick={(e) => e.stopPropagation()}>
-                        <p className="text-[10px] text-slate-300 mb-1 font-bold uppercase tracking-wider">
+                      <div className="flex-shrink-0 p-3 mx-6 mb-6 bg-slate-700/50 dark:bg-[#262624]/60 rounded border border-slate-600 dark:border-[#3A3A37]" onClick={(e) => e.stopPropagation()}>
+                        <p className="text-[10px] text-slate-300 dark:text-[#A9A79E] mb-1 font-bold uppercase tracking-wider">
                           Editar LSM
                         </p>
                         <textarea
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="w-full p-2 border border-slate-500 rounded focus:outline-none focus:ring-1 focus:ring-slate-400 text-sm font-medium text-white bg-slate-800"
+                          className="w-full p-2 border border-slate-500 dark:border-[#3A3A37] rounded focus:outline-none focus:ring-1 focus:ring-slate-400 dark:focus:ring-[#D97757] text-sm font-medium text-white bg-slate-800 dark:bg-[#1C1919]"
                           rows={2}
                           placeholder="Escribe en LSM..."
                           autoFocus
@@ -453,7 +453,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
                               handleCancelEdit();
                             }}
                             disabled={isSaving}
-                            className="px-2 py-1 text-slate-400 text-xs hover:text-slate-200 font-medium"
+                            className="px-2 py-1 text-slate-400 dark:text-[#8B8980] text-xs hover:text-slate-200 dark:hover:text-[#C2C0B6] font-medium"
                           >
                             Cancelar
                           </button>
@@ -565,7 +565,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
               <button
                 onClick={handleSaveCard}
                 disabled={isSavingCard || !newCardQuestion.trim() || !newCardAnswer.trim()}
-                className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 dark:disabled:bg-slate-600 disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-sm"
+                className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors disabled:bg-slate-300 dark:disabled:bg-[#4A4A45] disabled:cursor-not-allowed flex items-center gap-2 text-sm shadow-sm"
               >
                 {isSavingCard ? 'Guardando...' : (editingCustomCard !== null ? 'Guardar cambios' : 'Crear tarjeta')}
               </button>

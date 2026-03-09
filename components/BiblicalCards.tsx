@@ -94,7 +94,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                   }}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm border ${copiedIndex === index
                     ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 scale-110'
-                    : 'bg-surface text-text-tertiary border-border hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 opacity-0 group-hover:opacity-100'
+                    : 'bg-surface text-text-tertiary border-border hover:text-blue-600 dark:hover:text-[#D97757] hover:bg-blue-50 dark:hover:bg-[#332520] opacity-0 group-hover:opacity-100'
                     }`}
                   title="Copiar texto bíblico con pregunta de contexto"
                 >
@@ -144,7 +144,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
 
                 {/* Reverso de la tarjeta (Texto completo TNM) - Stays dark intentionally */}
                 <div
-                  className="absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col"
+                  className="absolute w-full h-[200px] bg-slate-800 dark:bg-[#1C1919] rounded-xl shadow-lg border border-slate-700 dark:border-[#3A3A37] overflow-hidden flex flex-col"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
@@ -152,7 +152,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                   }}
                 >
                   {/* Referencia fija arriba */}
-                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 py-2 flex-shrink-0">
+                  <div className="text-[10px] text-slate-400 dark:text-[#8B8980] font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 dark:bg-[#141212]/60 py-2 flex-shrink-0">
                     {card.reference}
                   </div>
 
@@ -163,7 +163,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
                     </p>
 
                     {card.reasoningQuestion && (
-                      <div className="mt-auto w-full pt-3 border-t border-slate-700/50">
+                      <div className="mt-auto w-full pt-3 border-t border-slate-700/50 dark:border-[#3A3A37]/50">
                         <div className="flex items-start gap-2">
                           <span className="text-amber-400 text-sm drop-shadow-sm flex-shrink-0 mt-0.5">🗣️</span>
                           <div className="flex-1">

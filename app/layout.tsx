@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import ConsoleFilter from "@/components/ConsoleFilter";
+import DevClickToSource from "@/components/DevClickToSource";
 import ThemeProvider from "@/components/ThemeProvider";
 
 const geistSans = Geist({
@@ -65,6 +66,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ConsoleFilter />
+          <DevClickToSource />
           {children}
         </ThemeProvider>
       </body>

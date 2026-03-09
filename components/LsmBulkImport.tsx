@@ -130,7 +130,7 @@ export default function LsmBulkImport({ isOpen, onClose, articleId, currentLsmDa
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-slate-700 dark:to-slate-800 text-white p-4 flex justify-between items-center flex-shrink-0">
+        <div className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-[#3A3A37] dark:to-[#30302E] text-white p-4 flex justify-between items-center flex-shrink-0">
           <div className="flex items-center gap-3">
             <span className="text-2xl">🤟</span>
             <div>
@@ -219,13 +219,13 @@ export default function LsmBulkImport({ isOpen, onClose, articleId, currentLsmDa
                   </div>
                 )}
                 {diff.updatedKeys.length > 0 && (
-                  <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800">
-                    <div className="text-xl font-bold text-amber-700 dark:text-amber-400">{diff.updatedKeys.length}</div>
-                    <div className="text-xs text-amber-600 dark:text-amber-500">Actualizadas</div>
+                  <div className="p-2 rounded-lg bg-amber-100 dark:bg-[#3E2E28]/30 border border-amber-200 dark:border-[#5C3828]">
+                    <div className="text-xl font-bold text-amber-700 dark:text-[#D97757]">{diff.updatedKeys.length}</div>
+                    <div className="text-xs text-amber-600 dark:text-[#D97757]">Actualizadas</div>
                   </div>
                 )}
                 {diff.unchangedKeys.length > 0 && (
-                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-[#30302E]/50 border border-slate-200 dark:border-[#3A3A37]">
                     <div className="text-xl font-bold text-text-muted">{diff.unchangedKeys.length}</div>
                     <div className="text-xs text-text-muted">Sin cambio</div>
                   </div>
@@ -241,8 +241,8 @@ export default function LsmBulkImport({ isOpen, onClose, articleId, currentLsmDa
                     </div>
                   ))}
                   {diff.updatedKeys.map(k => (
-                    <div key={k} className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
-                      <span className="font-mono bg-amber-100 dark:bg-amber-900/40 px-1.5 py-0.5 rounded">{k}</span>
+                    <div key={k} className="flex items-center gap-2 text-amber-700 dark:text-[#D97757]">
+                      <span className="font-mono bg-amber-100 dark:bg-[#3E2E28]/40 px-1.5 py-0.5 rounded">{k}</span>
                       <span className="text-text-muted truncate flex-1">{parseResult.data![k]}</span>
                     </div>
                   ))}

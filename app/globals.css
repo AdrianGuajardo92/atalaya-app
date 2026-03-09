@@ -57,61 +57,55 @@
 
 .dark {
   /* ===== SURFACE TOKENS ===== */
-  --surface:          #0f172a;
-  --surface-alt:      #1e293b;
-  --surface-raised:   #334155;
-  --surface-overlay:  #1e293b;
+  /* Paleta cálida: #262624 · #30302E · #D97757 · #C2C0B6 */
+  --surface:          #262624;
+  --surface-alt:      #30302E;
+  --surface-raised:   #3A3A37;
+  --surface-overlay:  #30302E;
 
   /* ===== TEXT TOKENS ===== */
-  --text-primary:     #f1f5f9;
-  --text-secondary:   #cbd5e1;
-  --text-tertiary:    #64748b;
-  --text-body:        #e2e8f0;
-  --text-muted:       #94a3b8;
+  --text-primary:     #C2C0B6;
+  --text-secondary:   #A9A79E;
+  --text-tertiary:    #7D7B73;
+  --text-body:        #B5B3AA;
+  --text-muted:       #8B8980;
 
   /* ===== BORDER TOKENS ===== */
-  --border:           #334155;
-  --border-strong:    #475569;
-  --border-subtle:    #1e293b;
+  --border:           #3A3A37;
+  --border-strong:    #4A4A45;
+  --border-subtle:    #2E2E2B;
 
   /* ===== GRADIENT TOKENS ===== */
-  --gradient-from:    #475569;
-  --gradient-to:      #334155;
-  --gradient-page-from: #0f172a;
-  --gradient-page-to:   #1e293b;
+  --gradient-from:    #4A4A45;
+  --gradient-to:      #3A3A37;
+  --gradient-page-from: #262624;
+  --gradient-page-to:   #30302E;
 
   /* ===== BACKDROP ===== */
-  --backdrop:         rgba(0, 0, 0, 0.7);
+  --backdrop:         rgba(30, 30, 28, 0.75);
 
   /* ===== ACCENT COLORS ===== */
-  --accent: #60a5fa;
-  --accent-dark: #3b82f6;
-  --success: #34d399;
-  --success-light: #064e3b;
-  --warning: #fbbf24;
-  --warning-light: #78350f;
-  --info: #22d3ee;
-  --info-light: #164e63;
+  --accent:           #E09070;
+  --accent-dark:      #D97757;
+  --success:          #6BBF8E;
+  --success-light:    #2A3E30;
+  --warning:          #E0A86B;
+  --warning-light:    #3E3228;
+  --info:             #7DB8C4;
+  --info-light:       #2A3538;
 
   /* ===== LEGACY (compatibilidad) ===== */
-  --background: #0f172a;
-  --foreground: #f1f5f9;
+  --background:       #262624;
+  --foreground:       #C2C0B6;
 }
 
 /* ===== DARK MODE: Bold text emphasis ===== */
-/* In dark mode, font-weight alone is insufficient to distinguish bold text
-   from regular text because antialiasing reduces perceived weight differences
-   on light-on-dark surfaces. Pure white (#fff) was tried but the luminance
-   step from slate-200 body text is too subtle.
-   Solution: amber-300 (#fcd34d) adds BOTH a hue shift and luminance change,
-   making bold words immediately scannable. Contrast ratios:
-     vs #0f172a (surface):     ~12.7:1  (WCAG AAA)
-     vs #1e293b (surface-alt): ~10.2:1  (WCAG AAA)
-   The amber family is already in the Executive Design palette (✦ dividers),
-   so it feels native, not foreign. */
+/* Terracota claro para negritas: contraste suficiente sobre #262624 (~8:1)
+   y sobre #30302E (~6.5:1), ambos WCAG AA+.
+   Se integra con el acento principal #D97757 de la paleta cálida. */
 .dark strong,
 .dark b {
-  color: #fcd34d;
+  color: #E8A68B;
 }
 
 @theme inline {

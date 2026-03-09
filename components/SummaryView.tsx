@@ -87,8 +87,8 @@ export default function SummaryView({ article }: SummaryViewProps) {
             <div key={qIndex} className="summary-card">
               {/* Sección (si existe) */}
               {question.section && (
-                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 px-4 py-2 mb-3 rounded-r-lg">
-                  <h2 className="font-bold text-amber-800 dark:text-amber-200 text-sm uppercase tracking-wide">
+                <div className="bg-amber-50 dark:bg-[#332520] border-l-4 border-amber-500 px-4 py-2 mb-3 rounded-r-lg">
+                  <h2 className="font-bold text-amber-800 dark:text-[#E8A68B] text-sm uppercase tracking-wide">
                     {question.section}
                   </h2>
                 </div>
@@ -98,7 +98,7 @@ export default function SummaryView({ article }: SummaryViewProps) {
               <div className="bg-surface border border-border rounded-xl overflow-hidden shadow-sm print:shadow-none print:border-border-strong">
                 {/* Header de pregunta */}
                 <div className="bg-surface-alt px-4 py-3 border-b border-border flex items-start gap-3">
-                  <span className="flex-shrink-0 w-10 h-10 bg-blue-600 dark:bg-blue-700 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                  <span className="flex-shrink-0 w-10 h-10 bg-blue-600 dark:bg-[#D97757] text-white rounded-full flex items-center justify-center font-bold text-sm">
                     {question.number}
                   </span>
                   <p className="text-text-primary font-medium leading-relaxed pt-1.5">
@@ -147,19 +147,19 @@ export default function SummaryView({ article }: SummaryViewProps) {
           </h2>
           <div className="space-y-3">
             {article.reviewQuestions.map((rq, index) => (
-              <div key={index} className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-700 rounded-lg p-4">
+              <div key={index} className="bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#8B5A40] rounded-lg p-4">
                 <p className="text-text-primary font-medium">{rq.question}</p>
                 {rq.questionLSM && (
                   <>
-                    <div className="w-12 h-px bg-amber-300 dark:bg-amber-600 my-3"></div>
-                    <p className="text-sm text-amber-700 dark:text-amber-300 mb-1 font-semibold">🤟 LSM</p>
-                    <p className="text-amber-900 dark:text-amber-100 font-bold uppercase">{rq.questionLSM}</p>
+                    <div className="w-12 h-px bg-amber-300 dark:bg-[#D97757] my-3"></div>
+                    <p className="text-sm text-amber-700 dark:text-[#E09070] mb-1 font-semibold">🤟 LSM</p>
+                    <p className="text-amber-900 dark:text-[#F0D0C0] font-bold uppercase">{rq.questionLSM}</p>
                   </>
                 )}
                 {rq.answer && (
                   <>
-                    <div className="w-12 h-px bg-amber-300 dark:bg-amber-600 my-3"></div>
-                    <p className="text-sm text-amber-700 dark:text-amber-300 mb-1 font-semibold">💬 Respuesta</p>
+                    <div className="w-12 h-px bg-amber-300 dark:bg-[#D97757] my-3"></div>
+                    <p className="text-sm text-amber-700 dark:text-[#E09070] mb-1 font-semibold">💬 Respuesta</p>
                     <p className="text-text-body text-sm">{rq.answer}</p>
                   </>
                 )}
