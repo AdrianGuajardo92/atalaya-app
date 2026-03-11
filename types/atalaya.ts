@@ -38,6 +38,7 @@ export interface Paragraph {
   summary?: string; // Oraciones clave del párrafo para el conductor
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
+  videoLSM?: string; // URL del video en LSM para este párrafo (opcional)
 }
 
 export interface ReviewQuestion {

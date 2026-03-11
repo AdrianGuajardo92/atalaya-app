@@ -6,6 +6,7 @@ import { getAllBiblicalTexts } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
 import FlashCards from './FlashCards';
 import BiblicalCards from './BiblicalCards';
+import VideoLSM from './VideoLSM';
 
 interface QuestionCardProps {
   question: Question;
@@ -69,6 +70,12 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string; isCustom?: boolean }>>([]);
   // Estado para flashcards slide-down (tarjetas expandidas)
   const [expandedFlashcards, setExpandedFlashcards] = useState<Set<number>>(new Set());
+
+  // Estado para videos LSM de párrafos
+  const [videoUrls, setVideoUrls] = useState<Record<number, string>>({});
+  const [activeVideoParaNum, setActiveVideoParaNum] = useState<number | null>(null);
+  const [isAddingVideoUrl, setIsAddingVideoUrl] = useState<number | null>(null); // párrafo al que se le está agregando video
+  const [newVideoUrl, setNewVideoUrl] = useState('');
 
 
   // Estado para puntos clave completados
@@ -258,6 +265,33 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     };
     loadCustomFlashcards();
   }, [articleId, question.number, question.flashcards]);
+
+  // Cargar URLs de videos LSM desde Vercel KV cuando se abre el modal de párrafos
+  useEffect(() => {
+    if (!showParagraphsModal) return;
+    const loadVideoUrls = async () => {
+      const urls: Record<number, string> = {};
+      for (const p of relatedParagraphs) {
+        try {
+          const response = await fetch(`/api/lsm?articleId=${articleId}&questionNumber=video-p${p.number}`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.lsmText && data.lsmText.trim()) {
+              urls[p.number] = data.lsmText;
+            }
+          }
+        } catch (error) {
+          console.error(`Error loading video URL for paragraph ${p.number}:`, error);
+        }
+      }
+      setVideoUrls(urls);
+      // Auto-seleccionar el primer párrafo con video para el panel desktop
+      const firstWithVideo = relatedParagraphs.find(p => urls[p.number] || p.videoLSM);
+      if (firstWithVideo) setActiveVideoParaNum(firstWithVideo.number);
+    };
+    loadVideoUrls();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showParagraphsModal, articleId]);
 
   // Sincronizar estados cuando cambia la pregunta o el modo de navegación
   useEffect(() => {
@@ -819,7 +853,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       {/* Modals (Mismos que el diseño original) */}
       {showParagraphsModal && (
         <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
+          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl md:max-w-6xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
             <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
               <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
                 <span>📖</span> Párrafos de Estudio
@@ -833,46 +867,250 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </svg>
               </button>
             </div>
-            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain">
-              {/* Sección RESUMEN (si algún párrafo tiene summary) */}
-              {relatedParagraphs.some(p => p.summary) && (
-                <div className="mb-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
-                  <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">Resumen</h4>
-                  <div className="space-y-2">
-                    {relatedParagraphs
-                      .filter(p => p.summary)
-                      .map((p, i) => (
-                        <div key={i} className="flex gap-2">
-                          <span className="font-bold text-amber-800 dark:text-[#E09070] text-sm flex-shrink-0">[{p.number}]</span>
-                          <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
-                        </div>
-                      ))}
+            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain md:flex md:gap-6">
+              {/* Panel izquierdo: Párrafos */}
+              <div className="md:flex-1 md:min-w-0">
+                {/* Sección RESUMEN (si algún párrafo tiene summary) */}
+                {relatedParagraphs.some(p => p.summary) && (
+                  <div className="mb-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
+                    <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                    <div className="space-y-2">
+                      {relatedParagraphs
+                        .filter(p => p.summary)
+                        .map((p, i) => (
+                          <div key={i} className="flex gap-2">
+                            <span className="font-bold text-amber-800 dark:text-[#E09070] text-sm flex-shrink-0">[{p.number}]</span>
+                            <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
+                          </div>
+                        ))}
+                    </div>
                   </div>
-                </div>
-              )}
-              <div className="space-y-6">
-                {relatedParagraphs.map((paragraph, index) => (
-                  <div key={index} className="leading-relaxed text-text-body text-lg">
-                    <span className="font-bold text-text-primary mr-2">[{paragraph.number}]</span>
-                    {formatContent(paragraph.content)}
-                    {/* Imagen del párrafo (si existe) - Diseño Premium */}
-                    {paragraph.image && (
-                      <div className="mt-4">
-                        <img
-                          src={paragraph.image}
-                          alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
-                          className="w-full rounded-xl shadow-lg border border-border"
-                        />
-                        {paragraph.imageCaption && (
-                          <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
-                            {paragraph.imageCaption}
-                          </p>
+                )}
+                <div className="space-y-6">
+                  {relatedParagraphs.map((paragraph, index) => {
+                    const paraVideoUrl = videoUrls[paragraph.number] || paragraph.videoLSM;
+                    return (
+                      <div key={index} className="leading-relaxed text-text-body text-lg">
+                        {/* Encabezado del párrafo con botón de video */}
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1">
+                            <span className="font-bold text-text-primary mr-2">[{paragraph.number}]</span>
+                            {formatContent(paragraph.content)}
+                          </div>
+                          {/* Indicador de video disponible (desktop: cambia el panel derecho) */}
+                          {paraVideoUrl && (
+                            <button
+                              onClick={() => setActiveVideoParaNum(paragraph.number)}
+                              className={`hidden md:flex flex-shrink-0 items-center gap-1 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
+                                activeVideoParaNum === paragraph.number
+                                  ? 'bg-blue-100 dark:bg-[#3E2E28] text-blue-700 dark:text-[#E8A68B] border border-blue-300 dark:border-[#5C3828]'
+                                  : 'bg-surface-alt text-text-tertiary border border-transparent hover:border-border hover:text-text-secondary'
+                              }`}
+                              title="Ver video en el panel lateral"
+                            >
+                              🤟
+                            </button>
+                          )}
+                        </div>
+                        {/* Imagen del párrafo (si existe) */}
+                        {paragraph.image && (
+                          <div className="mt-4">
+                            <img
+                              src={paragraph.image}
+                              alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
+                              className="w-full rounded-xl shadow-lg border border-border"
+                            />
+                            {paragraph.imageCaption && (
+                              <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
+                                {paragraph.imageCaption}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                        {/* Video LSM inline (solo mobile < md) */}
+                        {paraVideoUrl && (
+                          <div className="md:hidden">
+                            <VideoLSM src={paraVideoUrl} paragraphNumber={paragraph.number} onRemove={async () => {
+                              const newUrls = { ...videoUrls };
+                              delete newUrls[paragraph.number];
+                              setVideoUrls(newUrls);
+                              try {
+                                await fetch('/api/lsm', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ articleId, questionNumber: `video-p${paragraph.number}`, lsmText: '' })
+                                });
+                              } catch (e) { console.error('Error removing video URL:', e); }
+                            }} />
+                          </div>
+                        )}
+                        {/* Botón agregar video (solo si no tiene, mobile) */}
+                        {!paraVideoUrl && (
+                          <div className="md:hidden mt-3">
+                            {isAddingVideoUrl === paragraph.number ? (
+                              <div className="flex gap-2 items-center animate-fadeIn">
+                                <input
+                                  type="url"
+                                  value={newVideoUrl}
+                                  onChange={(e) => setNewVideoUrl(e.target.value)}
+                                  placeholder="Pega la URL del video..."
+                                  className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-surface text-text-body focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                  autoFocus
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter' && newVideoUrl.trim()) {
+                                      const url = newVideoUrl.trim();
+                                      setVideoUrls(prev => ({ ...prev, [paragraph.number]: url }));
+                                      fetch('/api/lsm', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ articleId, questionNumber: `video-p${paragraph.number}`, lsmText: url })
+                                      }).catch(err => console.error('Error saving video URL:', err));
+                                      setNewVideoUrl('');
+                                      setIsAddingVideoUrl(null);
+                                    } else if (e.key === 'Escape') {
+                                      setNewVideoUrl('');
+                                      setIsAddingVideoUrl(null);
+                                    }
+                                  }}
+                                />
+                                <button onClick={() => { setNewVideoUrl(''); setIsAddingVideoUrl(null); }} className="text-text-tertiary hover:text-text-secondary text-sm">✕</button>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => setIsAddingVideoUrl(paragraph.number)}
+                                className="text-xs text-text-muted hover:text-blue-600 dark:hover:text-[#D97757] transition-colors flex items-center gap-1"
+                              >
+                                <span>🤟</span> Agregar video LSM...
+                              </button>
+                            )}
+                          </div>
                         )}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
+
+              {/* Panel derecho: Video LSM sticky (solo desktop >= md) */}
+              {(() => {
+                const hasAnyVideo = relatedParagraphs.some(p => videoUrls[p.number] || p.videoLSM);
+                // Determinar el párrafo activo para el video
+                const effectiveParaNum = activeVideoParaNum ?? relatedParagraphs.find(p => videoUrls[p.number] || p.videoLSM)?.number ?? null;
+                const activeVideoUrl = effectiveParaNum ? (videoUrls[effectiveParaNum] || relatedParagraphs.find(p => p.number === effectiveParaNum)?.videoLSM) : null;
+
+                return (
+                  <div className="hidden md:block md:w-[40%] md:flex-shrink-0">
+                    <div className="md:sticky md:top-0 space-y-4">
+                      {activeVideoUrl && effectiveParaNum ? (
+                        <VideoLSM
+                          key={effectiveParaNum}
+                          src={activeVideoUrl}
+                          paragraphNumber={effectiveParaNum}
+                          compact
+                          onRemove={async () => {
+                            const newUrls = { ...videoUrls };
+                            delete newUrls[effectiveParaNum];
+                            setVideoUrls(newUrls);
+                            setActiveVideoParaNum(null);
+                            try {
+                              await fetch('/api/lsm', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ articleId, questionNumber: `video-p${effectiveParaNum}`, lsmText: '' })
+                              });
+                            } catch (e) { console.error('Error removing video URL:', e); }
+                          }}
+                        />
+                      ) : (
+                        <div className="rounded-xl border border-dashed border-border p-6 flex flex-col items-center justify-center text-center bg-surface-alt min-h-[200px]">
+                          <span className="text-3xl mb-2">🤟</span>
+                          <p className="text-sm text-text-muted">
+                            {hasAnyVideo
+                              ? 'Selecciona un párrafo con 🤟 para ver su video'
+                              : 'Aún no hay videos LSM para estos párrafos'
+                            }
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Selector de párrafos con video */}
+                      {hasAnyVideo && (
+                        <div className="flex flex-wrap gap-2">
+                          {relatedParagraphs.map(p => {
+                            const pUrl = videoUrls[p.number] || p.videoLSM;
+                            if (!pUrl) return null;
+                            return (
+                              <button
+                                key={p.number}
+                                onClick={() => setActiveVideoParaNum(p.number)}
+                                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                                  effectiveParaNum === p.number
+                                    ? 'bg-blue-100 dark:bg-[#3E2E28] text-blue-700 dark:text-[#E8A68B] border-blue-300 dark:border-[#5C3828]'
+                                    : 'bg-surface-alt text-text-secondary border-border hover:border-border-strong'
+                                }`}
+                              >
+                                🤟 Párrafo {p.number}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {/* Agregar video (desktop) */}
+                      <div className="border-t border-border-subtle pt-3">
+                        {isAddingVideoUrl !== null ? (
+                          <div className="space-y-2 animate-fadeIn">
+                            <label className="text-xs font-bold text-text-tertiary uppercase tracking-wider">Agregar video al párrafo {isAddingVideoUrl}</label>
+                            <div className="flex gap-2">
+                              <input
+                                type="url"
+                                value={newVideoUrl}
+                                onChange={(e) => setNewVideoUrl(e.target.value)}
+                                placeholder="URL del video..."
+                                className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-surface text-text-body focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                autoFocus
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' && newVideoUrl.trim()) {
+                                    const pNum = isAddingVideoUrl;
+                                    const url = newVideoUrl.trim();
+                                    setVideoUrls(prev => ({ ...prev, [pNum]: url }));
+                                    setActiveVideoParaNum(pNum);
+                                    fetch('/api/lsm', {
+                                      method: 'POST',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({ articleId, questionNumber: `video-p${pNum}`, lsmText: url })
+                                    }).catch(err => console.error('Error saving video URL:', err));
+                                    setNewVideoUrl('');
+                                    setIsAddingVideoUrl(null);
+                                  } else if (e.key === 'Escape') {
+                                    setNewVideoUrl('');
+                                    setIsAddingVideoUrl(null);
+                                  }
+                                }}
+                              />
+                              <button onClick={() => { setNewVideoUrl(''); setIsAddingVideoUrl(null); }} className="text-text-tertiary hover:text-text-secondary">✕</button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap gap-2">
+                            {relatedParagraphs
+                              .filter(p => !videoUrls[p.number] && !p.videoLSM)
+                              .map(p => (
+                                <button
+                                  key={p.number}
+                                  onClick={() => setIsAddingVideoUrl(p.number)}
+                                  className="text-xs text-text-muted hover:text-blue-600 dark:hover:text-[#D97757] transition-colors flex items-center gap-1 px-2 py-1 rounded border border-dashed border-border hover:border-blue-300 dark:hover:border-[#5C3828]"
+                                >
+                                  + Párrafo {p.number}
+                                </button>
+                              ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
             <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
               <button
