@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import { getAllBiblicalTexts } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
@@ -35,8 +35,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || question.textLSM || '');
+  const lsmTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [isEditingSectionLSM, setIsEditingSectionLSM] = useState(false);
   const [editedSectionLSM, setEditedSectionLSM] = useState(sectionLsmText || question.sectionLSM || '');
+  const sectionLsmTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isSavingSection, setIsSavingSection] = useState(false);
 
@@ -263,6 +265,24 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     setEditedSectionLSM(sectionLsmText || question.sectionLSM || '');
     setIsExpanded(isNavigationMode);
   }, [question.number, lsmText, sectionLsmText, isNavigationMode, question.textLSM, question.sectionLSM]);
+
+  // Enfocar y posicionar cursor al final SOLO al entrar en modo edición LSM
+  useEffect(() => {
+    if (isEditingLSM && lsmTextareaRef.current) {
+      const el = lsmTextareaRef.current;
+      el.focus();
+      el.setSelectionRange(el.value.length, el.value.length);
+    }
+  }, [isEditingLSM]);
+
+  // Enfocar y posicionar cursor al final SOLO al entrar en modo edición sección LSM
+  useEffect(() => {
+    if (isEditingSectionLSM && sectionLsmTextareaRef.current) {
+      const el = sectionLsmTextareaRef.current;
+      el.focus();
+      el.setSelectionRange(el.value.length, el.value.length);
+    }
+  }, [isEditingSectionLSM]);
 
   // Cerrar modal con tecla Escape
   useEffect(() => {
@@ -956,7 +976,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   <span className="text-xs font-bold text-blue-600 dark:text-[#D97757] uppercase tracking-wider">Editando LSM</span>
                 </div>
                 <textarea
-                  ref={(el) => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }}
+                  ref={sectionLsmTextareaRef}
                   value={editedSectionLSM}
                   onChange={(e) => setEditedSectionLSM(e.target.value)}
                   onKeyDown={handleSectionKeyDown}
@@ -1069,7 +1089,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               {isEditingLSM ? (
                 <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-[#3E2E28] shadow-sm animate-fadeIn">
                   <textarea
-                    ref={(el) => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }}
+                    ref={lsmTextareaRef}
                     value={editedLSM}
                     onChange={(e) => setEditedLSM(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -1216,7 +1236,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {/* Enfoque del Párrafo (Tips para el conductor) - Solo en modo Estudiar */}
                 {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && (
                   <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-[#3A3A37] dark:bg-[#30302E]/40 shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-amber-600 dark:from-[#D97757] dark:to-orange-500"></div>
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-500 dark:bg-[#C49A6C]"></div>
                     <div className="flex items-start gap-4">
                       <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">💡</div>
                       <div className="flex-1 space-y-4">
@@ -1287,7 +1307,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {/* Textos Clave en panel (para preguntas con keyPoint/guidingQuestion) */}
                 {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
                   <div className="mt-3 p-5 rounded-xl border border-blue-200/50 bg-blue-50/30 dark:border-[#3A3A37] dark:bg-[#30302E]/30 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-blue-400 to-indigo-600 dark:from-[#D97757] dark:to-indigo-700"></div>
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500 dark:bg-[#8FA7A0]"></div>
                     <div className="flex items-start gap-4">
                       <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">📖</div>
                       <div className="flex-1 space-y-5">
