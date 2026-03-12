@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 interface VideoLSMProps {
   src: string;
@@ -14,7 +14,17 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   const [hasError, setHasError] = useState(false);
   const [tapFeedback, setTapFeedback] = useState<'play' | 'pause' | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const twoFingerStartTime = useRef<number | null>(null);
+
+  // Auto-scroll para centrar el dropdown cuando se expande en móvil
+  useEffect(() => {
+    if (isExpanded && !compact && containerRef.current) {
+      setTimeout(() => {
+        containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  }, [isExpanded, compact]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     if (e.touches.length === 2) {
@@ -109,7 +119,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
 
   // Modo normal: colapsable (para inline debajo de párrafos)
   return (
-    <div className="mt-4">
+    <div className="mt-4" ref={containerRef}>
       {!isExpanded ? (
         // Botón colapsado
         <button
