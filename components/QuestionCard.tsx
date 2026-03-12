@@ -1,12 +1,67 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import { getAllBiblicalTexts } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
 import FlashCards from './FlashCards';
 import BiblicalCards from './BiblicalCards';
 import VideoLSM from './VideoLSM';
+
+// ─── Componente compartido para mostrar versículos bíblicos ───────────────────
+function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
+  title: string;
+  label: string;
+  verses: { reference: string; text: string }[];
+  onClose: () => void;
+  zIndex?: number;
+}) {
+  return (
+    <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn" style={{ zIndex }}>
+      <div className="bg-surface rounded-2xl shadow-2xl max-w-xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-border">
+        <div className="relative px-7 pt-6 pb-5 bg-surface-alt border-b border-border-subtle">
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60" />
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold text-amber-600 dark:text-amber-500 uppercase tracking-[0.2em] mb-1.5">{label}</p>
+              <h3 className="text-xl font-serif font-bold text-text-primary leading-tight">{title}</h3>
+            </div>
+            <button onClick={onClose} className="flex-shrink-0 mt-0.5 p-1.5 rounded-lg text-text-tertiary hover:text-text-secondary hover:bg-surface-raised transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto custom-scrollbar overscroll-contain px-7 py-6 space-y-5 bg-surface">
+          {verses.map((verse, i) => (
+            <div key={i}>
+              <p className="text-xs font-bold text-amber-600 dark:text-amber-500 uppercase tracking-widest mb-2">{verse.reference}</p>
+              <p className="font-serif text-xl leading-[1.85] text-text-body">
+                <span className="text-amber-500 dark:text-amber-400 mr-1 select-none">&ldquo;</span>
+                {verse.text}
+                {i === verses.length - 1 && <span className="text-amber-500 dark:text-amber-400 ml-0.5 select-none">&rdquo;</span>}
+              </p>
+              {i < verses.length - 1 && (
+                <div className="mt-5 flex items-center gap-3">
+                  <div className="flex-1 h-px bg-border-subtle" />
+                  <span className="text-amber-400 dark:text-amber-500 text-xs opacity-60">✦</span>
+                  <div className="flex-1 h-px bg-border-subtle" />
+                </div>
+              )}
+            </div>
+          ))}
+          <p className="text-xs text-text-tertiary text-center pt-2 border-t border-border-subtle">Traducción del Nuevo Mundo — 2019</p>
+        </div>
+        <div className="px-7 py-3.5 border-t border-border-subtle bg-surface-alt flex justify-end">
+          <button onClick={onClose} className="px-5 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium text-sm">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface QuestionCardProps {
   question: Question;
@@ -34,6 +89,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const paraImageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const [showInfographicModal, setShowInfographicModal] = useState(false);
   const [showReadTextModal, setShowReadTextModal] = useState(false);
+  const [inlineRefModal, setInlineRefModal] = useState<{ title: string; verses: { reference: string; text: string }[] } | null>(null);
   const [paragraphCopied, setParagraphCopied] = useState(false);
   const [infographicCopied, setInfographicCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
@@ -83,7 +139,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Bloquear scroll del body cuando hay un modal abierto
   useEffect(() => {
-    const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal || !!showParagraphImageModal;
+    const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal || !!showParagraphImageModal || !!inlineRefModal;
     
     // Solo actuamos si estamos en el cliente
     if (typeof window === 'undefined') return;
@@ -120,7 +176,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         document.body.style.width = '';
       }
     };
-  }, [showParagraphsModal, showInfographicModal, showReadTextModal]);
+  }, [showParagraphsModal, showInfographicModal, showReadTextModal, showParagraphImageModal, inlineRefModal]);
 
   // usedItems, onToggleUsedItem y onToggleFlashcardUsed ahora vienen de props (persistidos vía API)
   const toggleUsedItem = onToggleUsedItem;
@@ -365,23 +421,69 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     });
   };
 
+  // Índice de versículos pre-construido para búsqueda O(1) en lugar de O(N) por render
+  const verseIndex = useMemo(() => {
+    const map = new Map<string, { reference: string; text: string }[]>();
+    for (const card of (question.biblicalCards ?? [])) {
+      const nums = card.reference.match(/\d+:\d+/g) ?? [];
+      for (const n of nums) {
+        const existing = map.get(n) ?? [];
+        existing.push({ reference: card.reference, text: card.text });
+        map.set(n, existing);
+      }
+    }
+    return map;
+  }, [question.biblicalCards]);
+
   // Función para formatear el contenido con textos bíblicos
-  const formatContent = (text: string) => {
-    // Buscar patrones de referencias bíblicas entre paréntesis
+  const formatContent = useCallback((text: string) => {
     const parts = text.split(/(\([^)]+\))/g);
+    const btnCls = 'inline text-amber-700 dark:text-amber-500 font-semibold underline decoration-dotted underline-offset-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors cursor-pointer';
 
     return parts.map((part, index) => {
-      // Si es una referencia bíblica (está entre paréntesis)
-      if (part.startsWith('(') && part.endsWith(')')) {
-        return (
-          <span key={index} className="text-text-body font-medium">
-            {part}
-          </span>
-        );
+      if (!part.startsWith('(') || !part.endsWith(')')) {
+        return <span key={index}>{part}</span>;
       }
-      return <span key={index}>{part}</span>;
+
+      const inner = part.slice(1, -1).trim();
+
+      // Caso 1: "(lea X)" → buscar en biblicalTexts por clave "LEE X"
+      const leaMatch = inner.match(/^lea\s+(.+)$/i);
+      if (leaMatch) {
+        const verses = biblicalTexts[`LEE ${leaMatch[1].trim()}`];
+        if (verses) {
+          return (
+            <button key={index} onClick={() => setInlineRefModal({ title: leaMatch[1].trim(), verses })} className={btnCls}>
+              {part}
+            </button>
+          );
+        }
+      }
+
+      // Caso 2: cualquier referencia con patrón capítulo:versículo — búsqueda O(1) con índice
+      const verseNums = inner.match(/\d+:\d+/g);
+      if (verseNums?.length) {
+        const seen = new Set<string>();
+        const matched: { reference: string; text: string }[] = [];
+        for (const v of verseNums) {
+          for (const card of (verseIndex.get(v) ?? [])) {
+            if (!seen.has(card.reference)) { seen.add(card.reference); matched.push(card); }
+          }
+        }
+        if (matched.length) {
+          const title = matched.length === 1 ? matched[0].reference : inner;
+          return (
+            <button key={index} onClick={() => setInlineRefModal({ title, verses: matched })} className={btnCls}>
+              {part}
+            </button>
+          );
+        }
+      }
+
+      // Sin coincidencia: estilo neutro
+      return <span key={index} className="text-text-body font-medium">{part}</span>;
     });
-  };
+  }, [verseIndex, setInlineRefModal]);
 
   const handleSaveLSM = async () => {
     setIsSaving(true);
@@ -1173,45 +1275,24 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         </div>
       )}
 
-      {/* Helper para renderizar modales de textos bíblicos */}
+      {/* Modales de texto bíblico — usan el componente BibleVerseModal compartido */}
+      {inlineRefModal && (
+        <BibleVerseModal
+          title={inlineRefModal.title}
+          label="Texto Bíblico"
+          verses={inlineRefModal.verses}
+          onClose={() => setInlineRefModal(null)}
+          zIndex={55}
+        />
+      )}
       {showReadTextModal && question.readText && biblicalTexts[question.readText] && (
-        <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
-            <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
-              <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
-                <span>📖</span> Lectura Bíblica
-              </h3>
-              <button
-                onClick={() => setShowReadTextModal(false)}
-                className="text-text-tertiary hover:text-text-secondary transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain">
-              <div className="space-y-6">
-                {biblicalTexts[question.readText].map((text, index) => (
-                  <div key={index} className="bg-surface-alt rounded-lg p-5 border-l-4 border-text-secondary">
-                    <h4 className="font-bold text-text-primary mb-2 font-serif">{text.reference}</h4>
-                    <p className="text-text-body italic leading-relaxed font-serif text-lg">
-                      &quot;{text.text}&quot;
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end">
-              <button
-                onClick={() => setShowReadTextModal(false)}
-                className="px-4 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium"
-              >
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
+        <BibleVerseModal
+          title={question.readText.replace(/^LEA\s+/i, '')}
+          label="Lectura Bíblica"
+          verses={biblicalTexts[question.readText]}
+          onClose={() => setShowReadTextModal(false)}
+          zIndex={50}
+        />
       )}
 
       {/* Subtítulo de Sección - Diseño Ejecutivo */}
