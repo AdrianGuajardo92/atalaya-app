@@ -138,42 +138,42 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
 
   // Bloquear scroll del body cuando hay un modal abierto
+  const scrollLocked = useRef(false);
+
   useEffect(() => {
     const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal || !!showParagraphImageModal || !!inlineRefModal;
-    
-    // Solo actuamos si estamos en el cliente
+
     if (typeof window === 'undefined') return;
-    
-    if (anyModalOpen) {
-      // Guardar la posición actual para restaurarla después
+
+    if (anyModalOpen && !scrollLocked.current) {
+      // Primera apertura: guardar posición y bloquear
       const currentScrollY = window.scrollY;
       document.body.style.setProperty('--scroll-y', `${currentScrollY}px`);
-      // Evitar que el body haga scroll
       document.body.style.position = 'fixed';
       document.body.style.top = `-${currentScrollY}px`;
       document.body.style.width = '100%';
-    } else {
-      // Al cerrar, restaurar posición y permisos de scroll
+      scrollLocked.current = true;
+    } else if (!anyModalOpen && scrollLocked.current) {
+      // Todos cerrados: restaurar posición
       const scrollY = document.body.style.getPropertyValue('--scroll-y');
-      
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      
+      scrollLocked.current = false;
+
       if (scrollY) {
-        // Envolver en setTimeout asegura que el render del DOM termine antes de scrollear
         setTimeout(() => {
-          window.scrollTo(0, parseInt(scrollY || '0') * 1);
+          window.scrollTo(0, parseInt(scrollY || '0'));
         }, 0);
       }
     }
-    
+
     return () => {
-      // Cleanup de seguridad por si el componente se desmonta mientras hay un modal abierto
-      if (anyModalOpen) {
+      if (scrollLocked.current) {
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
+        scrollLocked.current = false;
       }
     };
   }, [showParagraphsModal, showInfographicModal, showReadTextModal, showParagraphImageModal, inlineRefModal]);
