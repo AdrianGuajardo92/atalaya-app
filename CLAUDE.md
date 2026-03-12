@@ -33,6 +33,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ✅ "Moisés escribió este libro"
 ```
 
+## Gestión de Artículos y Videos LSM (Regla Crítica)
+
+**Cuando se elimine un artículo de estudio antiguo, ES OBLIGATORIO eliminar también todos los videos LSM asociados a ese artículo.**
+- Los videos de la aplicación se alojan localmente y se envían a GitHub/Vercel (usualmente en la ruta `public/videos/`).
+- Al borrar el archivo de datos principal del artículo (ej. `article-43.ts`), debes **SIEMPRE** buscar y eliminar los archivos de video `.mp4` correspondientes a esa semana.
+- **Propósito:** Evitar que el repositorio crezca indefinidamente, ya que GitHub y Vercel tienen límites estrictos de almacenamiento y ancho de banda. No dejar videos "fantasma".
+
 ## Development Commands
 
 ```bash
