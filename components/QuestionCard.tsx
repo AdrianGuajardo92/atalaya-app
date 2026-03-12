@@ -78,31 +78,43 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [newVideoUrl, setNewVideoUrl] = useState('');
 
 
-  // Estado para puntos clave completados
-  // Bloquear scroll del body cuando hay un modal abierto (funciona en iOS/móviles)
+  // Bloquear scroll del body cuando hay un modal abierto
   useEffect(() => {
     const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal;
+    
+    // Solo actuamos si estamos en el cliente
+    if (typeof window === 'undefined') return;
+    
     if (anyModalOpen) {
-      const scrollY = window.scrollY;
+      // Guardar la posición actual para restaurarla después
+      const currentScrollY = window.scrollY;
+      document.body.style.setProperty('--scroll-y', `${currentScrollY}px`);
+      // Evitar que el body haga scroll
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
+      document.body.style.top = `-${currentScrollY}px`;
       document.body.style.width = '100%';
     } else {
-      const scrollY = document.body.style.top;
+      // Al cerrar, restaurar posición y permisos de scroll
+      const scrollY = document.body.style.getPropertyValue('--scroll-y');
+      
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
+      
       if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY, 10) * -1);
+        // Envolver en setTimeout asegura que el render del DOM termine antes de scrollear
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(scrollY || '0') * 1);
+        }, 0);
       }
     }
+    
     return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY, 10) * -1);
+      // Cleanup de seguridad por si el componente se desmonta mientras hay un modal abierto
+      if (anyModalOpen) {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
       }
     };
   }, [showParagraphsModal, showInfographicModal, showReadTextModal]);
@@ -330,45 +342,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     return () => document.removeEventListener('keydown', handleEscape);
   }, [showParagraphsModal]);
 
-  // Bloquear scroll del body cuando el modal de infografía está abierto
-  useEffect(() => {
-    if (showInfographicModal) {
-      const scrollY = window.scrollY;
 
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
 
-      return () => {
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, scrollY);
-      };
-    }
-  }, [showInfographicModal]);
 
-  // Bloquear scroll del body cuando el modal de párrafos está abierto
-  useEffect(() => {
-    if (showParagraphsModal) {
-      const scrollY = window.scrollY;
-
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-
-      return () => {
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, scrollY);
-      };
-    }
-  }, [showParagraphsModal]);
 
   // Obtener los párrafos relacionados con esta pregunta
   const relatedParagraphs = paragraphs.filter(p =>

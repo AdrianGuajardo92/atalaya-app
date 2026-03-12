@@ -87,9 +87,9 @@ export const article53: ArticleData = {
       keyPoint: "El artículo examinará por qué Pablo se sentía 'desdichado', qué lo ayudó y qué podemos hacer nosotros.",
       guidingQuestion: "¿Qué tres aspectos sobre Pablo analizaremos en este artículo?",
       answer: [
-        "Veremos por qué el apóstol a veces se sentía **\"desdichado\"**.",
-        "Analizaremos qué lo ayudó a **lidiar** con los sentimientos negativos.",
-        "Examinaremos qué podemos hacer **nosotros** para ganar también la batalla.",
+        "**Él a veces se sentía triste porque...** (Veremos por qué el apóstol a veces se sentía \"desdichado\").",
+        "**Él contento seguir, ¿cómo?** (Analizaremos qué lo ayudó a lidiar con los sentimientos negativos).",
+        "**Tú puedes contento seguir, ¿qué tienes que hacer?** (Examinaremos qué podemos hacer nosotros para ganar también la batalla).",
       ],
       flashcards: [
         {
