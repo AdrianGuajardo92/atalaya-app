@@ -39,6 +39,7 @@ export interface Paragraph {
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
   videoLSM?: string; // URL del video en LSM para este párrafo (opcional)
+  note?: string; // Nota al pie del párrafo (información adicional)
 }
 
 export interface ReviewQuestion {

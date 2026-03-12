@@ -29,6 +29,9 @@ const biblicalTexts = getAllBiblicalTexts();
 
 export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, allLsmData, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, onToggleFlashcardUsed, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
+  const [showParagraphImageModal, setShowParagraphImageModal] = useState<string | null>(null);
+  const [expandedParaImages, setExpandedParaImages] = useState<Set<number>>(new Set());
+  const paraImageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const [showInfographicModal, setShowInfographicModal] = useState(false);
   const [showReadTextModal, setShowReadTextModal] = useState(false);
   const [paragraphCopied, setParagraphCopied] = useState(false);
@@ -80,7 +83,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Bloquear scroll del body cuando hay un modal abierto
   useEffect(() => {
-    const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal;
+    const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal || !!showParagraphImageModal;
     
     // Solo actuamos si estamos en el cliente
     if (typeof window === 'undefined') return;
@@ -826,26 +829,66 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   return (
     <>
+      {/* Lightbox infografía de párrafo (mobile) */}
+      {showParagraphImageModal && (
+        <div
+          className="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4 animate-fadeIn"
+          onClick={() => setShowParagraphImageModal(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+            onClick={() => setShowParagraphImageModal(null)}
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <img
+            src={showParagraphImageModal}
+            alt="Infografía"
+            className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
+            onClick={e => e.stopPropagation()}
+          />
+        </div>
+      )}
+
       {/* Modals (Mismos que el diseño original) */}
       {showParagraphsModal && (
         <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl md:max-w-6xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border">
-            <div className="p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
+          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl md:max-w-6xl xl:max-w-[90vw] 2xl:max-w-[85vw] w-full max-h-[85vh] flex flex-col overflow-hidden border border-border">
+            <div className="py-2.5 px-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
               <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
                 <span>📖</span> Párrafos de Estudio
               </h3>
-              <button
-                onClick={() => setShowParagraphsModal(false)}
-                className="text-text-tertiary hover:text-text-secondary transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-2">
+                {/* Botón infografía: solo mobile, solo si hay imagen en algún párrafo */}
+                {relatedParagraphs.some(p => p.image) && (
+                  <button
+                    onClick={() => {
+                      const img = relatedParagraphs.find(p => p.image)?.image!;
+                      setShowParagraphImageModal(img);
+                    }}
+                    className="md:hidden p-1.5 rounded-lg bg-blue-50 dark:bg-[#332520] border border-blue-200 dark:border-[#5C3828] text-blue-700 dark:text-[#E8A68B] transition-colors"
+                    title="Ver infografía"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </button>
+                )}
+                <button
+                  onClick={() => setShowParagraphsModal(false)}
+                  className="text-text-tertiary hover:text-text-secondary transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
-            <div className="p-6 overflow-y-auto custom-scrollbar bg-surface overscroll-contain md:flex md:gap-6">
+            <div className="flex-1 overflow-y-auto custom-scrollbar bg-surface md:overflow-hidden md:flex md:gap-6">
               {/* Panel izquierdo: Párrafos */}
-              <div className="md:flex-1 md:min-w-0">
+              <div className="flex-1 min-w-0 md:overflow-y-auto md:custom-scrollbar md:overscroll-contain p-6">
                 {/* Sección RESUMEN (si algún párrafo tiene summary) */}
                 {relatedParagraphs.some(p => p.summary) && (
                   <div className="mb-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
@@ -873,33 +916,62 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             <span className="font-bold text-text-primary mr-2">[{paragraph.number}]</span>
                             {formatContent(paragraph.content)}
                           </div>
-                          {/* Indicador de video disponible (desktop: cambia el panel derecho) */}
-                          {paraVideoUrl && (
-                            <button
-                              onClick={() => setActiveVideoParaNum(paragraph.number)}
-                              className={`hidden md:flex flex-shrink-0 items-center gap-1 px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
-                                activeVideoParaNum === paragraph.number
-                                  ? 'bg-blue-100 dark:bg-[#3E2E28] text-blue-700 dark:text-[#E8A68B] border border-blue-300 dark:border-[#5C3828]'
-                                  : 'bg-surface-alt text-text-tertiary border border-transparent hover:border-border hover:text-text-secondary'
-                              }`}
-                              title="Ver video en el panel lateral"
-                            >
-                              🤟
-                            </button>
-                          )}
                         </div>
-                        {/* Imagen del párrafo (si existe) */}
+                        {/* Nota al pie del párrafo (si existe) */}
+                        {paragraph.note && (
+                          <div className="mt-4 flex gap-2.5 rounded-lg border border-border-subtle bg-surface-alt px-4 py-3">
+                            <span className="mt-0.5 flex-shrink-0 text-sm text-text-tertiary">📝</span>
+                            <p className="text-sm text-text-secondary leading-relaxed italic">{paragraph.note}</p>
+                          </div>
+                        )}
+                        {/* Infografía en acordeón: solo desktop, al fondo del párrafo */}
                         {paragraph.image && (
-                          <div className="mt-4">
-                            <img
-                              src={paragraph.image}
-                              alt={paragraph.imageCaption || `Imagen del párrafo ${paragraph.number}`}
-                              className="w-full rounded-xl shadow-lg border border-border"
-                            />
-                            {paragraph.imageCaption && (
-                              <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
-                                {paragraph.imageCaption}
-                              </p>
+                          <div
+                            ref={el => { if (el) paraImageRefs.current.set(paragraph.number, el); }}
+                            className="hidden md:block mt-4"
+                          >
+                            <button
+                              onClick={() => {
+                                const isOpening = !expandedParaImages.has(paragraph.number);
+                                setExpandedParaImages(prev => {
+                                  const next = new Set(prev);
+                                  next.has(paragraph.number) ? next.delete(paragraph.number) : next.add(paragraph.number);
+                                  return next;
+                                });
+                                if (isOpening) {
+                                  setTimeout(() => {
+                                    paraImageRefs.current.get(paragraph.number)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                  }, 50);
+                                }
+                              }}
+                              className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg border border-border bg-surface-alt hover:bg-surface-raised transition-colors text-sm font-bold text-text-secondary"
+                            >
+                              <div className="flex items-center gap-2">
+                                <svg className="w-4 h-4 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span>Infografía</span>
+                              </div>
+                              <svg
+                                className={`w-4 h-4 text-text-tertiary transition-transform duration-200 ${expandedParaImages.has(paragraph.number) ? 'rotate-180' : ''}`}
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </button>
+                            {expandedParaImages.has(paragraph.number) && (
+                              <div className="mt-3 animate-fadeIn">
+                                <img
+                                  src={paragraph.image}
+                                  alt={paragraph.imageCaption || `Infografía del párrafo ${paragraph.number}`}
+                                  className="w-full rounded-xl shadow-lg border border-border"
+                                />
+                                {paragraph.imageCaption && (
+                                  <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
+                                    {paragraph.imageCaption}
+                                  </p>
+                                )}
+                              </div>
                             )}
                           </div>
                         )}
@@ -975,8 +1047,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 const activeVideoUrl = effectiveParaNum ? (videoUrls[effectiveParaNum] || relatedParagraphs.find(p => p.number === effectiveParaNum)?.videoLSM) : null;
 
                 return (
-                  <div className="hidden md:block md:w-[40%] md:flex-shrink-0">
-                    <div className="md:sticky md:top-0 space-y-4">
+                  <div className="hidden md:flex md:w-[40%] xl:w-[45%] md:flex-shrink-0 flex-col p-6 pl-0">
+                    <div className="space-y-4">
                       {activeVideoUrl && effectiveParaNum ? (
                         <VideoLSM
                           key={effectiveParaNum}
@@ -1006,29 +1078,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               : 'Aún no hay videos LSM para estos párrafos'
                             }
                           </p>
-                        </div>
-                      )}
-
-                      {/* Selector de párrafos con video */}
-                      {hasAnyVideo && (
-                        <div className="flex flex-wrap gap-2">
-                          {relatedParagraphs.map(p => {
-                            const pUrl = videoUrls[p.number] || p.videoLSM;
-                            if (!pUrl) return null;
-                            return (
-                              <button
-                                key={p.number}
-                                onClick={() => setActiveVideoParaNum(p.number)}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
-                                  effectiveParaNum === p.number
-                                    ? 'bg-blue-100 dark:bg-[#3E2E28] text-blue-700 dark:text-[#E8A68B] border-blue-300 dark:border-[#5C3828]'
-                                    : 'bg-surface-alt text-text-secondary border-border hover:border-border-strong'
-                                }`}
-                              >
-                                🤟 Párrafo {p.number}
-                              </button>
-                            );
-                          })}
                         </div>
                       )}
 
@@ -1088,10 +1137,14 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 );
               })()}
             </div>
-            <div className="p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
+            <div className="py-2.5 px-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
               <button
                 onClick={async () => {
-                  const paragraphsText = relatedParagraphs.map(p => `[${p.number}] ${p.content}`).join('\n\n');
+                  const paragraphsText = relatedParagraphs.map(p => {
+                    let text = `[${p.number}] ${p.content}`;
+                    if (p.note) text += `\n\nNota: ${p.note}`;
+                    return text;
+                  }).join('\n\n');
                   let answersText = '';
                   if (question.answer) {
                     const answers = Array.isArray(question.answer)

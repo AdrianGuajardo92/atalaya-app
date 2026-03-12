@@ -681,6 +681,8 @@ export const article53: ArticleData = {
       number: 6,
       content: "Una espina en la carne. Pablo escribió que había algo que le causaba mucho dolor, y lo comparó a \"una espina en la carne\" (2 Cor. 12:7). No explicó si se trataba de un problema físico, emocional o de otra clase. Sin embargo, sus palabras dan a entender que era algo que le hacía sufrir muchísimo.",
       summary: "Pablo comparó algo que le causaba mucho dolor a **\"una espina en la carne\"** (2 Cor. 12:7). No explicó si era un problema **físico** o **emocional**, pero le hacía **sufrir muchísimo**.",
+      note: "Las cartas de Pablo indican que tenía problemas con la vista, algo que le habría dificultado escribir y realizar su ministerio (Gál. 4:15; 6:11). O es posible que se refiriera a la ansiedad que le producían algunos falsos maestros (2 Cor. 10:10; 11:5, 13). En cualquier caso, era algo que lo atormentaba.",
+      image: "https://i.imgur.com/fMwkEok.png",
       videoLSM: "/videos/Parrafo_6.mp4",
     },
     {

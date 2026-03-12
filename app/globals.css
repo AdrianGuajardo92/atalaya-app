@@ -145,6 +145,43 @@ body {
   }
 }
 
+/* ===== CUSTOM SCROLLBAR ===== */
+/* Modo claro */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--surface-alt);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) var(--surface-alt);
+}
+
+/* Modo oscuro — acento cálido */
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: #1E1E1C;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4A4A45;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #D97757;
+}
+.dark .custom-scrollbar {
+  scrollbar-color: #4A4A45 #1E1E1C;
+}
+
 /* Ocultar scrollbar en navegadores webkit (Chrome, Safari, Edge) */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 interface VideoLSMProps {
   src: string;
@@ -12,6 +12,36 @@ interface VideoLSMProps {
 export default function VideoLSM({ src, paragraphNumber, onRemove, compact = false }: VideoLSMProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [tapFeedback, setTapFeedback] = useState<'play' | 'pause' | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const twoFingerStartTime = useRef<number | null>(null);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      twoFingerStartTime.current = Date.now();
+    } else {
+      twoFingerStartTime.current = null;
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (twoFingerStartTime.current === null) return;
+    const elapsed = Date.now() - twoFingerStartTime.current;
+    twoFingerStartTime.current = null;
+    // Solo si fue un toque rápido (< 300ms) con 2 dedos
+    if (elapsed < 300 && e.changedTouches.length > 0) {
+      const video = videoRef.current;
+      if (!video) return;
+      if (video.paused) {
+        video.play();
+        setTapFeedback('play');
+      } else {
+        video.pause();
+        setTapFeedback('pause');
+      }
+      setTimeout(() => setTapFeedback(null), 700);
+    }
+  }, []);
 
   if (hasError) {
     return (
@@ -51,16 +81,28 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             </button>
           )}
         </div>
-        <video
-          src={src}
-          controls
-          playsInline
-          preload="metadata"
-          className="w-full aspect-video bg-black"
-          onError={() => setHasError(true)}
-        >
-          Tu navegador no soporta la reproducción de video.
-        </video>
+        <div className="relative">
+          <video
+            ref={videoRef}
+            src={src}
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full aspect-video bg-black"
+            onError={() => setHasError(true)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            Tu navegador no soporta la reproducción de video.
+          </video>
+          {tapFeedback && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="bg-black/50 rounded-full p-4 animate-fadeIn">
+                <span className="text-4xl">{tapFeedback === 'pause' ? '⏸️' : '▶️'}</span>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -116,17 +158,29 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               </button>
             </div>
           </div>
-          <video
-            src={src}
-            controls
-            playsInline
-            autoPlay
-            preload="metadata"
-            className="w-full aspect-video bg-black"
-            onError={() => setHasError(true)}
-          >
-            Tu navegador no soporta la reproducción de video.
-          </video>
+          <div className="relative">
+            <video
+              ref={videoRef}
+              src={src}
+              controls
+              playsInline
+              autoPlay
+              preload="metadata"
+              className="w-full aspect-video bg-black"
+              onError={() => setHasError(true)}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              Tu navegador no soporta la reproducción de video.
+            </video>
+            {tapFeedback && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="bg-black/50 rounded-full p-4 animate-fadeIn">
+                  <span className="text-4xl">{tapFeedback === 'pause' ? '⏸️' : '▶️'}</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
