@@ -167,16 +167,26 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
         }, 0);
       }
     }
+    // Sin cleanup aquí: el cleanup de useEffect se ejecuta en cada cambio de
+    // dependencia, lo cual interfiere con modales anidados (ej: texto bíblico
+    // dentro de párrafos). El cleanup de unmount se maneja por separado.
+  }, [showParagraphsModal, showInfographicModal, showReadTextModal, showParagraphImageModal, inlineRefModal]);
 
+  // Cleanup solo al desmontar el componente (no en cambios de dependencias)
+  useEffect(() => {
     return () => {
       if (scrollLocked.current) {
+        const scrollY = document.body.style.getPropertyValue('--scroll-y');
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
         scrollLocked.current = false;
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0'));
+        }
       }
     };
-  }, [showParagraphsModal, showInfographicModal, showReadTextModal, showParagraphImageModal, inlineRefModal]);
+  }, []);
 
   // usedItems, onToggleUsedItem y onToggleFlashcardUsed ahora vienen de props (persistidos vía API)
   const toggleUsedItem = onToggleUsedItem;
