@@ -139,6 +139,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Bloquear scroll del body cuando hay un modal abierto
   const scrollLocked = useRef(false);
+  const savedScrollY = useRef(0);
 
   useEffect(() => {
     const anyModalOpen = showParagraphsModal || showInfographicModal || showReadTextModal || !!showParagraphImageModal || !!inlineRefModal;
@@ -146,37 +147,34 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     if (typeof window === 'undefined') return;
 
     if (anyModalOpen && !scrollLocked.current) {
-      // Primera apertura: guardar posición y bloquear
-      const currentScrollY = window.scrollY;
-      document.body.style.setProperty('--scroll-y', `${currentScrollY}px`);
+      // Primera apertura: guardar posición en ref y bloquear
+      savedScrollY.current = window.scrollY;
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${currentScrollY}px`;
+      document.body.style.top = `-${savedScrollY.current}px`;
       document.body.style.width = '100%';
       scrollLocked.current = true;
     } else if (!anyModalOpen && scrollLocked.current) {
       // Todos cerrados: restaurar posición
-      const scrollY = document.body.style.getPropertyValue('--scroll-y');
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
       scrollLocked.current = false;
 
-      if (scrollY) {
-        setTimeout(() => {
-          window.scrollTo(0, parseInt(scrollY || '0'));
-        }, 0);
-      }
+      window.scrollTo(0, savedScrollY.current);
     }
+    // Sin cleanup aquí — las transiciones se manejan explícitamente arriba
+  }, [showParagraphsModal, showInfographicModal, showReadTextModal, showParagraphImageModal, inlineRefModal]);
 
+  // Cleanup de seguridad solo al desmontar el componente
+  useEffect(() => {
     return () => {
       if (scrollLocked.current) {
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        scrollLocked.current = false;
       }
     };
-  }, [showParagraphsModal, showInfographicModal, showReadTextModal, showParagraphImageModal, inlineRefModal]);
+  }, []);
 
   // usedItems, onToggleUsedItem y onToggleFlashcardUsed ahora vienen de props (persistidos vía API)
   const toggleUsedItem = onToggleUsedItem;
