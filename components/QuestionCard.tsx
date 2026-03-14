@@ -91,6 +91,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [showReadTextModal, setShowReadTextModal] = useState(false);
   const [inlineRefModal, setInlineRefModal] = useState<{ title: string; verses: { reference: string; text: string }[] } | null>(null);
   const [paragraphCopied, setParagraphCopied] = useState(false);
+  const [copiedAnswerId, setCopiedAnswerId] = useState<string | null>(null);
   const [infographicCopied, setInfographicCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [isEditingLSM, setIsEditingLSM] = useState(false);
@@ -1536,27 +1537,69 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         Array.isArray(question.answer)
                           ? question.answer.map((paragraph, idx) => {
                             const itemId = `answer-${articleId}-${question.number}-${idx}`;
+                            const copyId = `copy-${question.number}-${idx}`;
                             const isUsed = usedItems[itemId];
                             return (
                               <div
                                 key={idx}
-                                className={`mb-3 pl-2 pr-10 py-1 ${usedItemClass(itemId)}`}
+                                className={`group/answer mb-3 pl-2 pr-2 py-1 flex items-start gap-1 ${usedItemClass(itemId)}`}
                                 onClick={() => isSelectableQ && toggleUsedItem(itemId)}
                               >
-                                {isUsed && <UsedBadge />}
-                                {!isUsed && isSelectableQ && <HoverHint />}
-                                <p className="text-lg text-text-body leading-relaxed m-0">
-                                  <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
-                                </p>
+                                <div className="flex-1 min-w-0">
+                                  {isUsed && <UsedBadge />}
+                                  {!isUsed && isSelectableQ && <HoverHint />}
+                                  <p className="text-lg text-text-body leading-relaxed m-0">
+                                    <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
+                                  </p>
+                                </div>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    const cleanText = paragraph.replace(/\*\*/g, '');
+                                    copyToClipboard(cleanText);
+                                    setCopiedAnswerId(copyId);
+                                    setTimeout(() => setCopiedAnswerId(null), 1500);
+                                  }}
+                                  className="flex-shrink-0 mt-1 p-1.5 rounded-lg opacity-0 group-hover/answer:opacity-100 focus:opacity-100 transition-opacity text-text-tertiary hover:text-text-primary hover:bg-surface-alt"
+                                  title="Copiar respuesta"
+                                >
+                                  {copiedAnswerId === copyId ? (
+                                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                  ) : (
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                  )}
+                                </button>
                               </div>
                             );
                           })
                           : typeof question.answer === 'string'
-                            ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => (
-                              <p key={idx} className="text-lg text-text-body leading-relaxed mb-4 block">
-                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(sentence.trim() + '.')}
-                              </p>
-                            ))
+                            ? question.answer.split('.').filter(s => s.trim().length > 0).map((sentence, idx) => {
+                              const copyId = `copy-str-${question.number}-${idx}`;
+                              const sentenceText = sentence.trim() + '.';
+                              return (
+                                <div key={idx} className="group/answer mb-4 flex items-start gap-1">
+                                  <p className="flex-1 min-w-0 text-lg text-text-body leading-relaxed m-0">
+                                    <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(sentenceText)}
+                                  </p>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      copyToClipboard(sentenceText.replace(/\*\*/g, ''));
+                                      setCopiedAnswerId(copyId);
+                                      setTimeout(() => setCopiedAnswerId(null), 1500);
+                                    }}
+                                    className="flex-shrink-0 mt-1 p-1.5 rounded-lg opacity-40 md:opacity-0 group-hover/answer:opacity-100 focus:opacity-100 transition-opacity text-text-tertiary hover:text-text-primary hover:bg-surface-alt"
+                                    title="Copiar respuesta"
+                                  >
+                                    {copiedAnswerId === copyId ? (
+                                      <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                    ) : (
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                                    )}
+                                  </button>
+                                </div>
+                              );
+                            })
                             : <p className="text-lg text-text-body leading-relaxed">{renderBoldText(String(question.answer))}</p>
                       )}
                     </div>
