@@ -382,8 +382,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
 
   // Obtener los párrafos relacionados con esta pregunta
-  const relatedParagraphs = paragraphs.filter(p =>
-    question.paragraphs.includes(p.number)
+  const relatedParagraphs = useMemo(() =>
+    paragraphs.filter(p => question.paragraphs.includes(p.number)),
+    [paragraphs, question.paragraphs]
   );
 
   // Función para renderizar **negrita** en texto
@@ -857,6 +858,13 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // RENDERIZADO PREMIUM/EJECUTIVO
   const articleNum = parseInt(articleId.split('-').pop() || '0');
+
+  // Variables derivadas para video LSM consolidado (modo navegación)
+  const navParasWithVideo = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
+  const navFirstVideoUrl = navParasWithVideo.length > 0
+    ? (videoUrls[navParasWithVideo[0].number] || navParasWithVideo[0].videoLSM)
+    : null;
+  const navConsolidatedLabel = relatedParagraphs.map(p => p.number).join(', ');
 
   return (
     <>
@@ -1390,6 +1398,160 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       {/* DISEÑO PREMIUM */}
       <div id={`question-${question.number}`} className="mb-12 scroll-mt-24 transform transition-all duration-500 ease-out">
 
+        {/* Párrafos inline (solo en modo Atalaya/navegación) */}
+        {isNavigationMode && (
+          <div className="bg-surface-alt border border-border rounded-xl overflow-hidden mb-6">
+            {/* Header */}
+            <div className="bg-surface border-b border-border px-6 md:px-8 py-4 md:py-5">
+              <span className="text-sm md:text-base font-bold text-text-secondary uppercase tracking-[0.15em]">
+                {relatedParagraphs.length === 1
+                  ? `Párrafo ${relatedParagraphs[0].number}`
+                  : `Párrafos ${question.paragraphs.join(', ')}`}
+              </span>
+            </div>
+
+            {/* Resumen (si algún párrafo tiene summary) */}
+            {relatedParagraphs.some(p => p.summary) && (
+              <div className="mx-6 md:mx-8 mt-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
+                <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                <div className="space-y-2">
+                  {relatedParagraphs
+                    .filter(p => p.summary)
+                    .map((p, i) => (
+                      <div key={i} className="flex gap-2">
+                        <span className="font-bold text-amber-800 dark:text-[#E09070] text-sm flex-shrink-0">[{p.number}]</span>
+                        <span className="text-base text-text-body leading-relaxed">{renderBoldText(p.summary!)}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Contenido de los párrafos */}
+            <div className="p-6 md:p-8 space-y-6">
+              {relatedParagraphs.map((paragraph, idx) => (
+                <div key={paragraph.number} className="relative">
+                  {/* Barra lateral decorativa */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[var(--gradient-to)] to-[var(--gradient-from)] rounded-full"></div>
+
+                  <div className="pl-6 md:pl-8">
+                    {/* Número del párrafo */}
+                    {relatedParagraphs.length > 1 && (
+                      <span className="inline-block mb-3 px-3 py-1 bg-surface-raised text-text-body text-sm font-bold rounded">
+                        {paragraph.number}
+                      </span>
+                    )}
+
+                    {/* Contenido con textos bíblicos clickeables */}
+                    <p className="text-text-primary leading-[1.8] text-lg md:text-xl font-normal">
+                      {formatContent(paragraph.content)}
+                    </p>
+
+                    {/* Nota */}
+                    {paragraph.note && (
+                      <div className="mt-4 flex gap-2.5 rounded-lg border border-border-subtle bg-surface px-4 py-3">
+                        <span className="mt-0.5 flex-shrink-0 text-sm text-text-tertiary">📝</span>
+                        <p className="text-sm text-text-secondary leading-relaxed italic">{paragraph.note}</p>
+                      </div>
+                    )}
+
+                    {/* Imagen */}
+                    {paragraph.image && (
+                      <div className="mt-4">
+                        <img
+                          src={paragraph.image}
+                          alt={paragraph.imageCaption || `Infografía del párrafo ${paragraph.number}`}
+                          className="w-full rounded-xl shadow-lg border border-border cursor-pointer"
+                          onClick={() => setShowParagraphImageModal(paragraph.image!)}
+                        />
+                        {paragraph.imageCaption && (
+                          <p className="text-sm text-text-secondary italic mt-3 text-center bg-surface-alt p-3 rounded-lg">
+                            {paragraph.imageCaption}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Separador entre párrafos */}
+                  {idx < relatedParagraphs.length - 1 && (
+                    <div className="mt-6 flex items-center gap-3">
+                      <div className="flex-1 h-px bg-border"></div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Video LSM consolidado */}
+            {navParasWithVideo.length > 0 && navFirstVideoUrl ? (
+              <div className="px-6 md:px-8 pb-6">
+                <VideoLSM
+                  src={navFirstVideoUrl}
+                  paragraphNumber={navConsolidatedLabel}
+                  questionTextLSM={editedLSM.trim() || question.textEs}
+                  onRemove={async () => {
+                    const newUrls = { ...videoUrls };
+                    for (const p of navParasWithVideo) {
+                      delete newUrls[p.number];
+                    }
+                    setVideoUrls(newUrls);
+                    try {
+                      await Promise.all(navParasWithVideo.map(p =>
+                        fetch('/api/lsm', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ articleId, questionNumber: `video-p${p.number}`, lsmText: '' })
+                        })
+                      ));
+                    } catch (e) { console.error('Error removing video URL:', e); }
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="px-6 md:px-8 pb-6">
+                {isAddingVideoUrl === relatedParagraphs[0]?.number ? (
+                  <div className="flex gap-2 items-center animate-fadeIn">
+                    <input
+                      type="url"
+                      value={newVideoUrl}
+                      onChange={(e) => setNewVideoUrl(e.target.value)}
+                      placeholder="Pega la URL del video LSM..."
+                      className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-surface text-text-body focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      autoFocus
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && newVideoUrl.trim()) {
+                          const url = newVideoUrl.trim();
+                          const firstParaNum = relatedParagraphs[0].number;
+                          setVideoUrls(prev => ({ ...prev, [firstParaNum]: url }));
+                          fetch('/api/lsm', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ articleId, questionNumber: `video-p${firstParaNum}`, lsmText: url })
+                          }).catch(err => console.error('Error saving video URL:', err));
+                          setNewVideoUrl('');
+                          setIsAddingVideoUrl(null);
+                        } else if (e.key === 'Escape') {
+                          setNewVideoUrl('');
+                          setIsAddingVideoUrl(null);
+                        }
+                      }}
+                    />
+                    <button onClick={() => { setNewVideoUrl(''); setIsAddingVideoUrl(null); }} className="text-text-tertiary hover:text-text-secondary text-sm">✕</button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setIsAddingVideoUrl(relatedParagraphs[0]?.number)}
+                    className="text-xs text-text-muted hover:text-blue-600 dark:hover:text-[#D97757] transition-colors flex items-center gap-1"
+                  >
+                    <span>🤟</span> Agregar video LSM...
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Tarjeta Principal */}
         <div className="bg-surface border border-border rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300">
 
@@ -1416,16 +1578,18 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     <span>Infografía</span>
                   </button>
                 )}
-                {/* Botón Párrafos (Diseño Minimalista) */}
-                <button
-                  onClick={() => setShowParagraphsModal(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-alt text-text-secondary hover:bg-surface-raised hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-wide border border-border"
-                >
-                  <span>Párrafos</span>
-                  <span className="bg-surface-raised text-text-body px-1.5 py-0.5 rounded text-[10px]">
-                    {question.paragraphs.join(', ')}
-                  </span>
-                </button>
+                {/* Botón Párrafos (Diseño Minimalista) - Solo en modo no-navegación */}
+                {!isNavigationMode && (
+                  <button
+                    onClick={() => setShowParagraphsModal(true)}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-alt text-text-secondary hover:bg-surface-raised hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-wide border border-border"
+                  >
+                    <span>Párrafos</span>
+                    <span className="bg-surface-raised text-text-body px-1.5 py-0.5 rounded text-[10px]">
+                      {question.paragraphs.join(', ')}
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
 
