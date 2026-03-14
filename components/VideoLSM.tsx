@@ -238,7 +238,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             )}
           </div>
           {questionTextLSM && (
-            <p className="text-xs text-text-secondary mt-1 leading-snug">{questionTextLSM}</p>
+            <p className="text-xs text-text-secondary mt-1 leading-snug truncate">{questionTextLSM}</p>
           )}
         </div>
         <div className="relative">
@@ -285,14 +285,15 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
       ) : (
         // Video expandido
         <div className="rounded-xl overflow-hidden border border-border shadow-lg bg-surface animate-fadeIn">
-          <div className="flex items-center justify-between px-4 py-2.5 bg-surface-alt border-b border-border-subtle">
-            <div className="flex items-center gap-2">
-              <span className="text-base">🤟</span>
-              <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider">
-                LSM — Párrafo {paragraphNumber}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
+          <div className="px-4 py-2.5 bg-surface-alt border-b border-border-subtle">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-base">🤟</span>
+                <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider">
+                  LSM — Párrafo {paragraphNumber}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
               {onRemove && (
                 <button
                   onClick={onRemove}
@@ -312,6 +313,10 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
                 </svg>
               </button>
             </div>
+            </div>
+            {questionTextLSM && (
+              <p className="text-xs text-text-secondary mt-1 leading-snug truncate">{questionTextLSM}</p>
+            )}
           </div>
           <div className="relative">
             <video

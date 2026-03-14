@@ -925,7 +925,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </button>
               </div>
               </div>
-              <p className="text-sm text-text-secondary mt-1.5 leading-snug line-clamp-2">{question.textEs}</p>
+              <p className="text-sm text-text-secondary mt-1.5 leading-snug truncate">{question.textEs}</p>
             </div>
             <div className="flex-1 overflow-y-auto custom-scrollbar bg-surface md:overflow-hidden md:flex md:gap-6">
               {/* Panel izquierdo: Párrafos */}
@@ -1019,7 +1019,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         {/* Video LSM inline (solo mobile < md) */}
                         {paraVideoUrl && (
                           <div className="md:hidden">
-                            <VideoLSM src={paraVideoUrl} paragraphNumber={paragraph.number} onRemove={async () => {
+                            <VideoLSM src={paraVideoUrl} paragraphNumber={paragraph.number} questionTextLSM={editedLSM.trim() || question.textEs} onRemove={async () => {
                               const newUrls = { ...videoUrls };
                               delete newUrls[paragraph.number];
                               setVideoUrls(newUrls);
@@ -1096,7 +1096,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           src={activeVideoUrl}
                           paragraphNumber={effectiveParaNum}
                           compact
-                          questionTextLSM={currentLSMText || question.textEs}
+                          questionTextLSM={editedLSM.trim() || question.textEs}
                           onRemove={async () => {
                             const newUrls = { ...videoUrls };
                             delete newUrls[effectiveParaNum];
