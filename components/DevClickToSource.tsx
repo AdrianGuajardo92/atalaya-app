@@ -263,17 +263,31 @@ export default function DevClickToSource() {
     };
   }, [active, isInspectorEl]);
 
-  // ─── Click handler
+  // ─── Alt+Click toggle (mousedown para capturar antes que click)
+  useEffect(() => {
+    function handleAltToggle(e: MouseEvent) {
+      if (!e.altKey) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      const wasActive = activeRef.current;
+      setActive(!wasActive);
+      if (wasActive) { setCaptured([]); setHover(null); }
+    }
+    document.addEventListener('mousedown', handleAltToggle, true);
+    return () => document.removeEventListener('mousedown', handleAltToggle, true);
+  }, []);
+
+  // ─── Click handler (inspección de elementos)
   useEffect(() => {
     async function handleClick(e: MouseEvent) {
-      // Alt+click = toggle inspector
-      if (e.altKey) { e.preventDefault(); e.stopPropagation(); setActive(v => !v); if (activeRef.current) { setCaptured([]); setHover(null); } return; }
+      // Ignorar Alt+Click (manejado en mousedown)
+      if (e.altKey) { e.preventDefault(); e.stopImmediatePropagation(); return; }
       if (!activeRef.current) return;
+      const el = e.target as HTMLElement;
+      // Dejar pasar clicks en elementos del inspector (botón lupa, panel, etc.)
+      if (isInspectorEl(el)) return;
       e.preventDefault();
       e.stopPropagation();
-
-      const el = e.target as HTMLElement;
-      if (isInspectorEl(el)) return;
 
       const context = buildRichContext(el);
       const screenshot = await captureScreenshot(el);

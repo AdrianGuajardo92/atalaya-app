@@ -69,7 +69,7 @@ export default function BiblicalCards({ cards, questionNumber, hiddenCards, onTo
       </div>
 
       {/* Cuadrícula de tarjetas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((card, originalIndex) => {
           const cardId = `biblical-${questionNumber}-${originalIndex}`;
           if (hiddenCards[cardId]) return null; // No mostrar tarjetas ocultas

@@ -7,7 +7,7 @@ import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import SummaryView from '@/components/SummaryView';
 import Timer from '@/components/Timer';
 import InstructionsButton from '@/components/InstructionsButton';
-import PdfUploader from '@/components/PdfUploader';
+import PlaylistModal from '@/components/PlaylistModal';
 import LsmBulkImport from '@/components/LsmBulkImport';
 
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
@@ -67,7 +67,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
-  const [showPdfUploader, setShowPdfUploader] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false);
   const [showLsmImport, setShowLsmImport] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
 
@@ -391,20 +391,23 @@ export default function Home() {
       {/* Botón de instrucciones */}
       <InstructionsButton />
 
-      {/* Botón de gestión de PDFs - Solo visible en desktop */}
+      {/* Botón de lista de reproducción - Solo visible en desktop */}
       <button
-        onClick={() => setShowPdfUploader(true)}
-        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-blue-600 dark:bg-[#D97757] hover:bg-blue-700 dark:hover:bg-[#C4694D] text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
-        title="Gestionar PDFs"
+        onClick={() => setShowPlaylist(true)}
+        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-slate-700 dark:bg-[#3A3A37] hover:bg-slate-800 dark:hover:bg-[#4A4A45] text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
+        title="Lista de Reproducción"
       >
-        <span className="text-xl">📁</span>
+        <span className="text-xl">🎵</span>
       </button>
 
-      {/* Modal de gestión de PDFs */}
-      <PdfUploader
-        isOpen={showPdfUploader}
-        onClose={() => setShowPdfUploader(false)}
-      />
+      {/* Modal de lista de reproducción */}
+      {currentArticle && (
+        <PlaylistModal
+          isOpen={showPlaylist}
+          onClose={() => setShowPlaylist(false)}
+          article={currentArticle}
+        />
+      )}
 
       {/* Modal de importación masiva de LSM */}
       <LsmBulkImport

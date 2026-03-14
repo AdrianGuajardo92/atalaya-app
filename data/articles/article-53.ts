@@ -304,33 +304,24 @@ export const article53: ArticleData = {
       ],
     },
     // ==========================================
-    // PREGUNTA 9, 10
+    // PREGUNTA 9
     // ==========================================
     {
-      number: "9, 10",
-      textEs: "¿Qué ayudó a Pablo a luchar contra los sentimientos negativos? (Efesios 1:7; vea también la imagen).",
+      number: "9",
+      textEs: "¿Qué ayudó a Pablo a luchar contra los sentimientos negativos?",
       textLSM: "",
-      paragraphs: [9, 10],
-      readText: "LEE Efesios 1:7",
-      keyPoint: "Pablo meditaba en el rescate y lo veía como un regalo personal de Jehová, lo que le ayudó a mantener la alegría.",
+      paragraphs: [9],
+      keyPoint: "Pablo no perdía la alegría gracias a las buenas noticias sobre las congregaciones, sus buenos amigos y la aprobación de Jehová.",
       guidingQuestion: "¿Qué cosas específicas le ayudaban a Pablo a no perder la alegría?",
-      image: "https://i.imgur.com/eqKlDLm.png",
-      imageCaption: "Aunque Pablo a veces se sentía culpable al recordar su pasado, meditar en el rescate le fue de gran ayuda. (Vea los párrafos 9 y 10).",
       answer: [
         "Se sentía feliz al oír **buenas noticias** sobre las congregaciones (2 Cor. 7:6, 7).",
         "Lo llenaba de alegría contar con **buenos amigos** (2 Tim. 1:4) y saber que tenía la **aprobación de Jehová** (2 Tim. 1:3).",
         "Incluso **preso en Roma**, animó a los cristianos: **\"Alégrense siempre a causa del Señor\"** (Filip. 4:4).",
-        "Meditar en el **rescate** y verlo como un regalo personal lo convenció de que Jehová había **perdonado** sus pecados (Efes. 1:7).",
-        "Gracias al **sacrificio de Jesús**, Pablo pudo servir a Dios con **alegría** (Heb. 9:12-14).",
       ],
       flashcards: [
         {
           question: "¿Qué hacía Pablo cuando lo asaltaba un pensamiento negativo?",
           answer: "Enseguida procuraba cambiar el chip y centrar su mente en ideas positivas.",
-        },
-        {
-          question: "¿Cómo veía Pablo el rescate según Gálatas 2:20?",
-          answer: "Lo veía como un regalo personal de Jehová: 'El Hijo de Dios me amó y se entregó por mí'.",
         },
       ],
       biblicalCards: [
@@ -354,6 +345,32 @@ export const article53: ArticleData = {
           purpose: "Incluso preso en Roma, Pablo animaba a los demás a alegrarse",
           text: "Alégrense siempre a causa del Señor. Una vez más les digo: ¡alégrense!",
         },
+      ],
+    },
+    // ==========================================
+    // PREGUNTA 10
+    // ==========================================
+    {
+      number: "10",
+      textEs: "¿Qué más ayudó a Pablo a luchar contra los sentimientos negativos? (Efesios 1:7; vea también la imagen).",
+      textLSM: "IMAGEN PABLO PENSAR QUE",
+      paragraphs: [10],
+      readText: "LEE Efesios 1:7",
+      keyPoint: "Pablo meditaba en el rescate y lo veía como un regalo personal de Jehová, lo que le ayudó a mantener la alegría.",
+      guidingQuestion: "¿Cómo le ayudó a Pablo meditar en el rescate?",
+      image: "https://i.imgur.com/eqKlDLm.png",
+      imageCaption: "Aunque Pablo a veces se sentía culpable al recordar su pasado, meditar en el rescate le fue de gran ayuda. (Vea el párrafo 10).",
+      answer: [
+        "Meditar en el **rescate** y verlo como un regalo personal lo convenció de que Jehová había **perdonado** sus pecados (Efes. 1:7).",
+        "Gracias al **sacrificio de Jesús**, Pablo pudo servir a Dios con **alegría** (Heb. 9:12-14).",
+      ],
+      flashcards: [
+        {
+          question: "¿Cómo veía Pablo el rescate según Gálatas 2:20?",
+          answer: "Lo veía como un regalo personal de Jehová: 'El Hijo de Dios me amó y se entregó por mí'.",
+        },
+      ],
+      biblicalCards: [
         {
           reference: "Gálatas 2:20",
           purpose: "Pablo veía el rescate como un regalo personal",
