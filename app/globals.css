@@ -267,6 +267,62 @@ body {
   animation: slideUp 0.2s ease-out;
 }
 
+/* Slide-in desde la izquierda para modal de párrafos (desktop) */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.paragraphs-modal-backdrop {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.paragraphs-modal-content {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.paragraphs-modal-backdrop-exit {
+  animation: fadeOut 0.4s ease-in forwards;
+}
+
+.paragraphs-modal-content-exit {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@media (min-width: 768px) {
+  .paragraphs-modal-backdrop {
+    animation: fadeIn 0.4s ease-out;
+  }
+  .paragraphs-modal-content {
+    animation: slideInFromLeft 0.45s cubic-bezier(0.55, 0, 1, 0.45);
+  }
+  .paragraphs-modal-content-exit {
+    animation: slideOutToLeft 0.45s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  }
+}
+
 /* Timer range slider */
 .timer-slider::-webkit-slider-runnable-track {
   height: 6px;

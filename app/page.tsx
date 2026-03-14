@@ -375,21 +375,6 @@ export default function Home() {
     syncUsedItems();
   };
 
-  const handleToggleFlashcardUsed = (qId: string, aId: string) => {
-    setUsedItems(prev => {
-      const next = { ...prev };
-      if (!prev[qId]) {
-        next[qId] = true;
-        next[aId] = true;
-      } else {
-        delete next[qId];
-        delete next[aId];
-      }
-      return next;
-    });
-    syncUsedItems();
-  };
-
   if (isLoading || !currentArticle) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)] flex items-center justify-center">
@@ -600,12 +585,10 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${question.number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={false}
-                  allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
-                  onToggleFlashcardUsed={handleToggleFlashcardUsed}
                   articleId={currentArticleId}
                 />
               ))}
@@ -740,12 +723,10 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${currentArticle.questions[currentQuestionIndex].number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={true}
-                  allLsmData={lsmData}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
-                  onToggleFlashcardUsed={handleToggleFlashcardUsed}
                   articleId={currentArticleId}
                 />
               </>

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import { getAllBiblicalTexts } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
-import FlashCards from './FlashCards';
 import BiblicalCards from './BiblicalCards';
 import VideoLSM from './VideoLSM';
 
@@ -70,20 +69,19 @@ interface QuestionCardProps {
   sectionLsmText?: string;
   onLSMUpdate?: (questionNumber: string, text: string) => void;
   isNavigationMode?: boolean; // Nueva prop para saber si estamos en modo navegación
-  allLsmData: Record<string, string>; // Todos los datos LSM (incluye flashcards)
   hiddenCards: Record<string, boolean>; // Tarjetas ocultas
   onToggleHidden: (cardId: string) => void; // Callback para ocultar/mostrar tarjeta
   usedItems: Record<string, boolean>; // Items marcados como "voy a usar"
   onToggleUsedItem: (itemId: string) => void; // Callback para marcar/desmarcar item
-  onToggleFlashcardUsed: (qId: string, aId: string) => void; // Callback para flashcards (Q+A juntas)
   articleId: string; // ID del artículo actual
 }
 
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, allLsmData, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, onToggleFlashcardUsed, articleId }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
+  const [paragraphsModalClosing, setParagraphsModalClosing] = useState(false);
   const [showParagraphImageModal, setShowParagraphImageModal] = useState<string | null>(null);
   const [expandedParaImages, setExpandedParaImages] = useState<Set<number>>(new Set());
   const paraImageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
@@ -124,11 +122,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [customApplications, setCustomApplications] = useState<string[]>([]);
   const [isAddingApplication, setIsAddingApplication] = useState(false);
   const [newApplicationText, setNewApplicationText] = useState('');
-
-  // Estado para flashcards personalizadas
-  const [customFlashcards, setCustomFlashcards] = useState<Array<{ question: string; answer: string; isCustom?: boolean }>>([]);
-  // Estado para flashcards slide-down (tarjetas expandidas)
-  const [expandedFlashcards, setExpandedFlashcards] = useState<Set<number>>(new Set());
 
   // Estado para videos LSM de párrafos
   const [videoUrls, setVideoUrls] = useState<Record<number, string>>({});
@@ -188,9 +181,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     };
   }, []);
 
-  // usedItems, onToggleUsedItem y onToggleFlashcardUsed ahora vienen de props (persistidos vía API)
+  // usedItems y onToggleUsedItem ahora vienen de props (persistidos vía API)
   const toggleUsedItem = onToggleUsedItem;
-  const toggleFlashcardUsed = onToggleFlashcardUsed;
 
   // Helper: clases para un bloque seleccionable/marcado
   const usedItemClass = (itemId: string) =>
@@ -213,9 +205,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       <span className="absolute top-1/2 -translate-y-1/2 right-1.5 text-lg select-none leading-none opacity-0 group-hover/usable:opacity-30 transition-opacity">🔖</span>
     </>
   );
-
-  // --- Selección de items ---
-  const isSelectableQ = !!(question.keyPoint || question.guidingQuestion);
 
   // Cargar puntos clave personalizados desde Vercel KV
   useEffect(() => {
@@ -315,38 +304,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     loadCustomApplications();
   }, [articleId, question.number, question.practicalApplications]);
 
-  // Cargar flashcards personalizadas desde Vercel KV
-  useEffect(() => {
-    const loadCustomFlashcards = async () => {
-      try {
-        const response = await fetch(`/api/lsm?articleId=${articleId}&questionNumber=flashcards-${question.number}`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.lsmText !== undefined && data.lsmText !== null) {
-            // Si hay datos guardados (incluso si es array vacío), usarlos
-            setCustomFlashcards(JSON.parse(data.lsmText));
-          } else {
-            // Solo usar originales si nunca se ha guardado nada
-            const originalFlashcards = question.flashcards || [];
-            // Normalizar al formato de objetos
-            const normalized = Array.isArray(originalFlashcards) && typeof originalFlashcards[0] === 'string'
-              ? (originalFlashcards as string[]).map((q: string) => ({ question: q, answer: '' }))
-              : originalFlashcards as Array<{ question: string; answer: string }>;
-            setCustomFlashcards(normalized);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading custom flashcards:', error);
-        const originalFlashcards = question.flashcards || [];
-        const normalized = Array.isArray(originalFlashcards) && typeof originalFlashcards[0] === 'string'
-          ? (originalFlashcards as string[]).map((q: string) => ({ question: q, answer: '' }))
-          : originalFlashcards as Array<{ question: string; answer: string }>;
-        setCustomFlashcards(normalized);
-      }
-    };
-    loadCustomFlashcards();
-  }, [articleId, question.number, question.flashcards]);
-
   // Cargar URLs de videos LSM desde Vercel KV cuando se abre el modal de párrafos
   useEffect(() => {
     if (!showParagraphsModal) return;
@@ -399,17 +356,26 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }
   }, [isEditingSectionLSM]);
 
+  // Cerrar modal de párrafos con animación de salida
+  const closeParagraphsModal = useCallback(() => {
+    setParagraphsModalClosing(true);
+    setTimeout(() => {
+      setShowParagraphsModal(false);
+      setParagraphsModalClosing(false);
+    }, 450);
+  }, []);
+
   // Cerrar modal con tecla Escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && showParagraphsModal) {
-        setShowParagraphsModal(false);
+      if (e.key === 'Escape' && showParagraphsModal && !paragraphsModalClosing) {
+        closeParagraphsModal();
       }
     };
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [showParagraphsModal]);
+  }, [showParagraphsModal, paragraphsModalClosing, closeParagraphsModal]);
 
 
 
@@ -886,53 +852,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }
   };
 
-  // Funciones para manejar flashcards
-  const saveFlashcardsToKV = async (flashcards: Array<{ question: string; answer: string; isCustom?: boolean }>) => {
-    try {
-      const response = await fetch('/api/lsm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleId: articleId,
-          questionNumber: `flashcards-${question.number}`,
-          lsmText: JSON.stringify(flashcards)
-        })
-      });
-      if (!response.ok) throw new Error('Error al guardar');
-      return true;
-    } catch (error) {
-      console.error('Error saving flashcards:', error);
-      alert('Error al guardar. Intenta de nuevo.');
-      return false;
-    }
-  };
-
-  const handleDeleteFlashcard = async (index: number) => {
-    const newFlashcards = customFlashcards.filter((_, i) => i !== index);
-    const success = await saveFlashcardsToKV(newFlashcards);
-    if (success) {
-      setCustomFlashcards(newFlashcards);
-    }
-  };
-
-  const handleAddFlashcard = async (card: { question: string; answer: string; isCustom?: boolean }) => {
-    const newCard = { question: card.question, answer: card.answer, isCustom: true };
-    const newFlashcards = [...customFlashcards, newCard];
-    const success = await saveFlashcardsToKV(newFlashcards);
-    if (success) {
-      setCustomFlashcards(newFlashcards);
-    }
-  };
-
-  const handleEditFlashcard = async (index: number, card: { question: string; answer: string; isCustom?: boolean }) => {
-    const newFlashcards = [...customFlashcards];
-    newFlashcards[index] = { question: card.question, answer: card.answer, isCustom: customFlashcards[index].isCustom };
-    const success = await saveFlashcardsToKV(newFlashcards);
-    if (success) {
-      setCustomFlashcards(newFlashcards);
-    }
-  };
-
   const currentLSMText = lsmText || question.textLSM;
   const currentSectionLSMText = sectionLsmText || question.sectionLSM;
 
@@ -966,11 +885,19 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
       {/* Modals (Mismos que el diseño original) */}
       {showParagraphsModal && (
-        <div className="fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-surface rounded-xl shadow-2xl max-w-2xl md:max-w-6xl xl:max-w-[90vw] 2xl:max-w-[85vw] w-full max-h-[85vh] flex flex-col overflow-hidden border border-border">
-            <div className="py-2.5 px-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt">
+        <div className={`fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 paragraphs-modal-backdrop ${paragraphsModalClosing ? 'paragraphs-modal-backdrop-exit' : ''}`}>
+          <div className={`bg-surface rounded-xl shadow-2xl max-w-2xl md:max-w-6xl xl:max-w-[90vw] 2xl:max-w-[85vw] w-full max-h-[85vh] flex flex-col overflow-hidden border border-border paragraphs-modal-content ${paragraphsModalClosing ? 'paragraphs-modal-content-exit' : ''}`}>
+            <div className="py-2.5 px-5 border-b border-border-subtle bg-surface-alt">
+              <div className="flex justify-between items-center">
               <h3 className="text-lg font-bold text-text-primary flex items-center gap-2">
                 <span>📖</span> Párrafos de Estudio
+                <div className="flex items-center gap-1.5 ml-1">
+                  {question.paragraphs.map((num) => (
+                    <span key={num} className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-800 text-xs font-bold shadow-sm">
+                      {num}
+                    </span>
+                  ))}
+                </div>
               </h3>
               <div className="flex items-center gap-2">
                 {/* Botón infografía: solo mobile, solo si hay imagen en algún párrafo */}
@@ -989,7 +916,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   </button>
                 )}
                 <button
-                  onClick={() => setShowParagraphsModal(false)}
+                  onClick={closeParagraphsModal}
                   className="text-text-tertiary hover:text-text-secondary transition-colors"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -997,6 +924,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   </svg>
                 </button>
               </div>
+              </div>
+              <p className="text-sm text-text-secondary mt-1.5 leading-snug line-clamp-2">{question.textEs}</p>
             </div>
             <div className="flex-1 overflow-y-auto custom-scrollbar bg-surface md:overflow-hidden md:flex md:gap-6">
               {/* Panel izquierdo: Párrafos */}
@@ -1167,6 +1096,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                           src={activeVideoUrl}
                           paragraphNumber={effectiveParaNum}
                           compact
+                          questionTextLSM={currentLSMText || question.textEs}
                           onRemove={async () => {
                             const newUrls = { ...videoUrls };
                             delete newUrls[effectiveParaNum];
@@ -1249,7 +1179,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 );
               })()}
             </div>
-            <div className="py-2.5 px-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
+            <div className="py-0.5 px-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3">
               <button
                 onClick={async () => {
                   const paragraphsText = relatedParagraphs.map(p => {
@@ -1275,7 +1205,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {paragraphCopied ? '✅ Copiado' : '📋 Copiar'}
               </button>
               <button
-                onClick={() => setShowParagraphsModal(false)}
+                onClick={closeParagraphsModal}
                 className="px-4 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium shadow-sm"
               >
                 Cerrar
@@ -1541,10 +1471,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                               <div
                                 key={idx}
                                 className={`mb-3 pl-2 pr-10 py-1 ${usedItemClass(itemId)}`}
-                                onClick={() => isSelectableQ && toggleUsedItem(itemId)}
+                                onClick={() => toggleUsedItem(itemId)}
                               >
                                 {isUsed && <UsedBadge />}
-                                {!isUsed && isSelectableQ && <HoverHint />}
+                                {!isUsed && <HoverHint />}
                                 <p className="text-lg text-text-body leading-relaxed m-0">
                                   <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
                                 </p>
@@ -1591,199 +1521,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   </div>
                 </div>
 
-                {/* Enfoque del Párrafo (Tips para el conductor) - Solo en modo Estudiar */}
-                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && (
-                  <div className="mt-8 p-5 rounded-xl border border-amber-200/50 bg-amber-50/50 dark:border-[#3A3A37] dark:bg-[#30302E]/40 shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-500 dark:bg-[#C49A6C]"></div>
-                    <div className="flex items-start gap-4">
-                      <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">💡</div>
-                      <div className="flex-1 space-y-4">
-                        <h3 className="text-sm font-extrabold text-amber-800 dark:text-[#D97757] uppercase tracking-widest flex items-center gap-2">
-                          Enfoque del Párrafo
-                          <span className="text-[10px] font-medium bg-amber-200 dark:bg-[#3E2E28]/60 text-amber-800 dark:text-[#E09070] px-2 py-0.5 rounded-full border dark:border-[#8B5A40]/50">Exclusivo Conductor</span>
-                        </h3>
-
-                        {question.keyPoint && (() => {
-                          const itemId = `keypoint-${articleId}-${question.number}`;
-                          const isUsed = usedItems[itemId];
-                          return (
-                            <div className="space-y-1.5">
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-base">🎯</span>
-                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-[#8B8980] uppercase tracking-wider">Punto Clave</span>
-                              </div>
-                              <div
-                                className={`${usedItemClass(itemId)} px-1 py-1`}
-                                onClick={() => toggleUsedItem(itemId)}
-                              >
-                                {isUsed && <UsedBadge />}
-                                {!isUsed && <HoverHint />}
-                                <p className="text-base md:text-lg font-medium text-amber-900 dark:text-[#C2C0B6] leading-relaxed bg-white/40 dark:bg-[#262624]/50 p-3 rounded-lg border border-amber-100 dark:border-[#3A3A37] shadow-inner dark:shadow-black/20 m-0">
-                                  {question.keyPoint}
-                                </p>
-                              </div>
-                            </div>
-                          );
-                        })()}
-
-                        {question.guidingQuestion && (() => {
-                          const itemId = `guiding-${articleId}-${question.number}`;
-                          const isUsed = usedItems[itemId];
-                          return (
-                            <div className="space-y-1.5">
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-base">🆘</span>
-                                <span className="text-[11px] font-bold text-amber-700/80 dark:text-[#8B8980] uppercase tracking-wider">Si no lo mencionan, pregunta:</span>
-                              </div>
-                              <div
-                                className={`${usedItemClass(itemId)} px-1 py-1`}
-                                onClick={() => toggleUsedItem(itemId)}
-                              >
-                                {isUsed && <UsedBadge />}
-                                {!isUsed && <HoverHint />}
-                                <p className="text-base md:text-lg text-amber-800 dark:text-[#A9A79E] italic font-serif leading-relaxed px-3 py-1 border-l-2 border-amber-300 dark:border-[#4A4A45] m-0">
-                                  "{question.guidingQuestion}"
-                                </p>
-                              </div>
-                            </div>
-                          );
-                        })()}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Línea divisoria entre Enfoque del Párrafo y Textos Clave */}
-                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
-                  <div className="flex items-center gap-3 mt-5">
-                    <div className="flex-1 h-px bg-gradient-to-r from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-[#8B5A40]/40 dark:via-[#3A3A37] dark:to-[#3E2E28]/40"></div>
-                    <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Textos</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-amber-300/60 via-border-subtle to-blue-300/60 dark:from-[#8B5A40]/40 dark:via-[#3A3A37] dark:to-[#3E2E28]/40"></div>
-                  </div>
-                )}
-
-                {/* Textos Clave en panel (para preguntas con keyPoint/guidingQuestion) */}
-                {(question.keyPoint || question.guidingQuestion) && question.biblicalCards && question.biblicalCards.length > 0 && (
-                  <div className="mt-3 p-5 rounded-xl border border-blue-200/50 bg-blue-50/30 dark:border-[#3A3A37] dark:bg-[#30302E]/30 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500 dark:bg-[#8FA7A0]"></div>
-                    <div className="flex items-start gap-4">
-                      <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">📖</div>
-                      <div className="flex-1 space-y-5">
-                        <h3 className="text-sm font-extrabold text-blue-800 dark:text-[#D97757] uppercase tracking-widest flex items-center gap-2">
-                          Textos Clave
-                          <span className="text-[10px] font-medium bg-blue-200 dark:bg-[#3E2E28]/60 text-blue-800 dark:text-[#E8A68B] px-2 py-0.5 rounded-full border dark:border-[#D97757]/50">Razona con la Biblia</span>
-                        </h3>
-                        {question.biblicalCards.map((card, idx) => {
-                          const itemId = `biblical-panel-${articleId}-${question.number}-${idx}`;
-                          const rId = `biblical-reason-${articleId}-${question.number}-${idx}`;
-                          const isUsed = usedItems[itemId];
-                          return (
-                            <div key={idx} className="space-y-2">
-                              {/* Referencia + propósito */}
-                              <div className="flex items-start gap-2">
-                                <span className="text-base mt-0.5">📌</span>
-                                <div>
-                                  <span className="font-bold text-base text-blue-900 dark:text-[#E8A68B] font-serif">{card.reference}</span>
-                                  <span className="text-text-secondary dark:text-[#8B8980] text-sm ml-2 italic">— {card.purpose}</span>
-                                </div>
-                              </div>
-                              {/* Texto bíblico clicable */}
-                              <div
-                                className={`ml-6 ${usedItemClass(itemId)}`}
-                                onClick={() => toggleUsedItem(itemId)}
-                              >
-                                {isUsed && <UsedBadge />}
-                                {!isUsed && <HoverHint />}
-                                  <p className="text-base text-text-body dark:text-[#C2C0B6] leading-relaxed bg-white/40 dark:bg-[#262624]/50 p-3 rounded-lg border border-blue-100 dark:border-[#3A3A37] italic m-0">
-                                    "{card.text}"
-                                  </p>
-                                </div>
-                              {/* Razonamiento */}
-                              {card.reasoningQuestion && (() => {
-                                const rUsed = usedItems[rId];
-                                return (
-                                  <div className="ml-6 space-y-1">
-                                    <div className="flex items-center gap-1.5">
-                                      <span className="text-base">🗣️</span>
-                                      <span className="text-[11px] font-bold text-blue-700/80 dark:text-[#8B8980] uppercase tracking-wider">Razona con la congregación:</span>
-                                    </div>
-                                    <div
-                                      className={`${usedItemClass(rId)}`}
-                                      onClick={() => toggleUsedItem(rId)}
-                                    >
-                                      {rUsed && <UsedBadge />}
-                                      {!rUsed && <HoverHint />}
-                                      <p className="text-base text-blue-800 dark:text-[#A9A79E] italic font-serif leading-relaxed px-3 py-1 border-l-2 border-blue-300 dark:border-[#4A4A45] m-0">
-                                        "{card.reasoningQuestion}"
-                                      </p>
-                                    </div>
-                                  </div>
-                                );
-                              })()}
-                              {idx < (question.biblicalCards?.length ?? 0) - 1 && (
-                                <div className="ml-6 mt-3 h-px bg-blue-100 dark:bg-[#3A3A37]"></div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Divisor Textos Clave → Tarjetas */}
-                {(question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
-                  <div className="flex items-center gap-3 mt-5">
-                    <div className="flex-1 h-px bg-gradient-to-r from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-[#3E2E28]/40 dark:via-[#3A3A37] dark:to-purple-800/40"></div>
-                    <span className="text-text-tertiary text-[11px] font-bold uppercase tracking-widest px-1 select-none">Tarjetas</span>
-                    <div className="flex-1 h-px bg-gradient-to-l from-blue-300/60 via-border-subtle to-purple-300/60 dark:from-[#3E2E28]/40 dark:via-[#3A3A37] dark:to-purple-800/40"></div>
-                  </div>
-                )}
-
-                {/* Tarjetas Didácticas en panel (para preguntas con keyPoint/guidingQuestion) - Solo en modo Estudiar */}
-                {!isNavigationMode && (question.keyPoint || question.guidingQuestion) && customFlashcards.length > 0 && (
-                  <div className="mt-3 p-5 rounded-xl border border-purple-200/50 bg-purple-50/30 dark:border-[#3A3A37] dark:bg-[#1C1919]/60 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-purple-400 dark:bg-[#D97757]"></div>
-                    <div className="flex items-start gap-4">
-                      <div className="text-2xl mt-0.5 drop-shadow-sm flex-shrink-0">🏂</div>
-                      <div className="flex-1 space-y-5">
-                        <h3 className="text-sm font-extrabold text-purple-800 dark:text-[#E8A68B] uppercase tracking-widest">
-                          Tarjetas Didácticas
-                        </h3>
-                        {customFlashcards.map((card, idx) => {
-                          const qId = `fc-q-${articleId}-${question.number}-${idx}`;
-                          const aId = `fc-a-${articleId}-${question.number}-${idx}`;
-                          const qUsed = usedItems[qId];
-                          return (
-                            <div key={idx} className="space-y-2">
-                              {/* Pregunta - con checkbox único que controla pregunta + respuesta */}
-                              <div
-                                className={`flex items-start gap-2 px-2 py-1 ${usedItemClass(qId)}`}
-                                onClick={() => toggleFlashcardUsed(qId, aId)}
-                              >
-                                {qUsed && <UsedBadge />}
-                                {!qUsed && <HoverHint />}
-                                <span className="text-base mt-0.5 flex-shrink-0">❓</span>
-                                <p className="font-semibold text-base text-purple-900 dark:text-[#C2C0B6] leading-relaxed m-0">{card.question}</p>
-                              </div>
-                              {/* Respuesta - sin checkbox propio, sigue a la pregunta */}
-                              {card.answer && (
-                                <div className="ml-6 rounded-lg px-1 py-1">
-                                  <p className="text-base text-text-body dark:text-[#A9A79E] leading-relaxed bg-white/40 dark:bg-[#262624]/40 p-3 rounded-lg border border-purple-100 dark:border-[#30302E] m-0">
-                                    {card.answer}
-                                  </p>
-                                </div>
-                              )}
-                              {idx < customFlashcards.length - 1 && (
-                                <div className="ml-6 mt-3 h-px bg-purple-100 dark:bg-[#30302E]"></div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Línea divisoria elegante */}
@@ -1798,90 +1535,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               {/* Grid de Tarjetas (Fondo sutil) */}
               <div className="bg-surface-alt p-8">
 
-                {/* Flashcards Slide-Down (prueba: artículo 48, pregunta 1,2) */}
-                {articleNum === 48 && (question.flashcards || customFlashcards.length > 0) && (
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-4 min-h-[40px]">
-                      <div className="text-xs font-bold text-text-muted uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
-                      <div className="text-xs text-text-tertiary font-medium">
-                        {customFlashcards.length} {customFlashcards.length === 1 ? 'tarjeta' : 'tarjetas'}
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      {customFlashcards.map((card, index) => {
-                        const cardId = `flashcard-${question.number}-${index}`;
-                        if (hiddenCards[cardId]) return null;
-                        const isOpen = expandedFlashcards.has(index);
-                        return (
-                          <div
-                            key={index}
-                            className="bg-surface rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                          >
-                            {/* Pregunta (siempre visible) */}
-                            <button
-                              onClick={() => {
-                                setExpandedFlashcards(prev => {
-                                  const next = new Set(prev);
-                                  if (next.has(index)) next.delete(index);
-                                  else next.add(index);
-                                  return next;
-                                });
-                              }}
-                              className="w-full text-left px-5 py-4 flex items-start gap-3 group"
-                            >
-                              <span className={`text-text-tertiary mt-0.5 text-sm transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}>
-                                ▸
-                              </span>
-                              <span className="text-text-body font-sans font-semibold text-base leading-relaxed flex-1">
-                                {card.question}
-                              </span>
-                              <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full transition-colors ${isOpen ? 'bg-slate-800 text-white' : 'bg-surface-raised text-text-secondary'}`}>
-                                {isOpen ? 'Ocultar' : 'Ver'}
-                              </span>
-                            </button>
-
-                            {/* Respuesta (slide-down) */}
-                            <div
-                              className={`overflow-hidden transition-all duration-400 ease-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
-                            >
-                              <div className="px-5 pb-4 pt-0">
-                                <div className="ml-6 pl-4 border-l-2 border-amber-300">
-                                  <p className="text-text-secondary leading-relaxed text-[15px]">
-                                    {card.answer}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
                 <div className="grid md:grid-cols-2 gap-6">
 
-                  {/* Tarjetas Didácticas (flip cards): solo para preguntas SIN panel de conductor - Solo en modo Estudiar */}
-                  {!isNavigationMode && !(articleNum === 48) && (question.flashcards || customFlashcards.length > 0) && !(question.keyPoint || question.guidingQuestion) && (
-                    <div className="space-y-4">
-
-                      <FlashCards
-                        cards={customFlashcards}
-                        questionNumber={question.number}
-                        lsmData={allLsmData}
-                        onLSMUpdate={onLSMUpdate || (() => { })}
-                        hiddenCards={hiddenCards}
-                        onToggleHidden={onToggleHidden}
-                        articleId={articleId}
-                        onAddCard={handleAddFlashcard}
-                        onEditCard={handleEditFlashcard}
-                        onDeleteCard={handleDeleteFlashcard}
-                      />
-                    </div>
-                  )}
-
-                  {/* Textos Bíblicos (flip cards): solo para preguntas SIN panel de conductor) */}
-                  {question.biblicalCards && !(question.keyPoint || question.guidingQuestion) && (
+                  {/* Textos Bíblicos (flip cards) */}
+                  {question.biblicalCards && (
                     <div className="space-y-4">
 
                       <BiblicalCards
