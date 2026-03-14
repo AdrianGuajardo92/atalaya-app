@@ -1,6 +1,6 @@
 import { ArticleData } from '@/types/atalaya';
 
-export type PlaylistItemType = 'song' | 'title' | 'biblical-text' | 'section' | 'paragraph' | 'read-text' | 'image';
+export type PlaylistItemType = 'song' | 'title' | 'biblical-text' | 'theme' | 'section' | 'paragraph' | 'read-text' | 'image';
 
 export interface PlaylistItem {
   type: PlaylistItemType;
@@ -26,7 +26,12 @@ export function generatePlaylist(article: ArticleData): PlaylistItem[] {
   // 3. Texto bíblico
   items.push({ type: 'biblical-text', content: article.biblicalText, indent: false });
 
-  // 4. Recorrer preguntas en orden
+  // 4. Tema del artículo
+  if (article.theme) {
+    items.push({ type: 'theme', content: article.theme, indent: false });
+  }
+
+  // 5. Recorrer preguntas en orden
   let isFirstAfterSection = false;
 
   for (const question of article.questions) {
@@ -65,7 +70,7 @@ export function generatePlaylist(article: ArticleData): PlaylistItem[] {
     }
   }
 
-  // 5. Canción final
+  // 6. Canción final
   items.push({ type: 'song', content: article.finalSong, indent: false });
 
   return items;
@@ -85,6 +90,8 @@ export function playlistToText(items: PlaylistItem[]): string {
         return item.content;
       case 'biblical-text':
         return item.content;
+      case 'theme':
+        return `💡 ${item.content}`;
       case 'section':
         return `\n📌 ${item.content}`;
       case 'paragraph':

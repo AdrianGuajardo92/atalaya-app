@@ -104,6 +104,14 @@ function PlaylistRow({ item }: { item: PlaylistItem }) {
         </div>
       );
 
+    case 'theme':
+      return (
+        <div className="py-1.5 flex items-start gap-2">
+          <span className="text-sm">💡</span>
+          <span className="text-text-tertiary text-xs leading-relaxed">{item.content}</span>
+        </div>
+      );
+
     case 'section':
       return (
         <div className="pt-3 pb-1">

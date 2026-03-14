@@ -1776,25 +1776,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </div>
               </div>
 
-              {/* Grid de Tarjetas (Fondo sutil) */}
-              <div className="bg-surface-alt p-8">
-
-                <div className="grid md:grid-cols-2 gap-6">
-
-                  {/* Textos Bíblicos (flip cards) */}
-                  {question.biblicalCards && (
-                    <div className="space-y-4">
-
-                      <BiblicalCards
-                        cards={question.biblicalCards}
-                        questionNumber={question.number}
-                        hiddenCards={hiddenCards}
-                        onToggleHidden={onToggleHidden}
-                      />
-                    </div>
-                  )}
+              {/* Textos Bíblicos (Fondo sutil) */}
+              {question.biblicalCards && (
+                <div className="bg-surface-alt p-8">
+                  <BiblicalCards
+                    cards={question.biblicalCards}
+                    questionNumber={question.number}
+                    hiddenCards={hiddenCards}
+                    onToggleHidden={onToggleHidden}
+                  />
                 </div>
-              </div>
+              )}
 
             </div>
           )}
