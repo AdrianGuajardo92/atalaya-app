@@ -224,7 +224,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             <div className="flex items-center gap-2">
               <span className="text-base">🤟</span>
               <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider">
-                LSM — Párrafo {paragraphNumber}
+                LSM — {String(paragraphNumber).includes(',') ? 'Párrafos' : 'Párrafo'} {paragraphNumber}
               </span>
             </div>
             {onRemove && (
@@ -275,7 +275,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             🤟
           </div>
           <span className="text-sm font-bold text-text-secondary uppercase tracking-wider group-hover/video:text-text-primary transition-colors">
-            Ver en LSM — Párrafo {paragraphNumber}
+            Ver en LSM — {String(paragraphNumber).includes(',') ? 'Párrafos' : 'Párrafo'} {paragraphNumber}
           </span>
           <svg className="w-4 h-4 text-text-tertiary ml-auto group-hover/video:text-text-secondary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
@@ -290,7 +290,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               <div className="flex items-center gap-2">
                 <span className="text-base">🤟</span>
                 <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider">
-                  LSM — Párrafo {paragraphNumber}
+                  LSM — {String(paragraphNumber).includes(',') ? 'Párrafos' : 'Párrafo'} {paragraphNumber}
                 </span>
               </div>
               <div className="flex items-center gap-2">

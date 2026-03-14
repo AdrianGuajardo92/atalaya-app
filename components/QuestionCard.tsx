@@ -1016,8 +1016,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             )}
                           </div>
                         )}
-                        {/* Video LSM inline (solo mobile < md) */}
-                        {paraVideoUrl && (
+                        {/* Video LSM inline (solo mobile < md) - solo cuando es párrafo único */}
+                        {paraVideoUrl && relatedParagraphs.length === 1 && (
                           <div className="md:hidden">
                             <VideoLSM src={paraVideoUrl} paragraphNumber={paragraph.number} questionTextLSM={editedLSM.trim() || question.textEs} onRemove={async () => {
                               const newUrls = { ...videoUrls };
@@ -1033,8 +1033,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             }} />
                           </div>
                         )}
-                        {/* Botón agregar video (solo si no tiene, mobile) */}
-                        {!paraVideoUrl && (
+                        {/* Botón agregar video (solo si no tiene, mobile, párrafo único) */}
+                        {!paraVideoUrl && relatedParagraphs.length === 1 && (
                           <div className="md:hidden mt-3">
                             {isAddingVideoUrl === paragraph.number ? (
                               <div className="flex gap-2 items-center animate-fadeIn">
@@ -1078,6 +1078,86 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     );
                   })}
                 </div>
+                {/* Video LSM consolidado para múltiples párrafos (solo mobile < md) */}
+                {relatedParagraphs.length > 1 && (() => {
+                  const parasWithVideo = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
+                  const firstVideoUrl = parasWithVideo.length > 0
+                    ? (videoUrls[parasWithVideo[0].number] || parasWithVideo[0].videoLSM)
+                    : null;
+                  const consolidatedLabel = relatedParagraphs.map(p => p.number).join(', ');
+
+                  if (firstVideoUrl) {
+                    return (
+                      <div className="md:hidden">
+                        <VideoLSM
+                          src={firstVideoUrl}
+                          paragraphNumber={`${consolidatedLabel}`}
+                          questionTextLSM={editedLSM.trim() || question.textEs}
+                          onRemove={async () => {
+                            // Eliminar todos los videos de los párrafos agrupados
+                            const newUrls = { ...videoUrls };
+                            for (const p of parasWithVideo) {
+                              delete newUrls[p.number];
+                            }
+                            setVideoUrls(newUrls);
+                            try {
+                              await Promise.all(parasWithVideo.map(p =>
+                                fetch('/api/lsm', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ articleId, questionNumber: `video-p${p.number}`, lsmText: '' })
+                                })
+                              ));
+                            } catch (e) { console.error('Error removing video URL:', e); }
+                          }}
+                        />
+                      </div>
+                    );
+                  }
+
+                  // Botón para agregar video cuando no hay ninguno
+                  return (
+                    <div className="md:hidden mt-3">
+                      {isAddingVideoUrl === relatedParagraphs[0].number ? (
+                        <div className="flex gap-2 items-center animate-fadeIn">
+                          <input
+                            type="url"
+                            value={newVideoUrl}
+                            onChange={(e) => setNewVideoUrl(e.target.value)}
+                            placeholder="Pega la URL del video..."
+                            className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-surface text-text-body focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            autoFocus
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' && newVideoUrl.trim()) {
+                                const url = newVideoUrl.trim();
+                                const firstParaNum = relatedParagraphs[0].number;
+                                setVideoUrls(prev => ({ ...prev, [firstParaNum]: url }));
+                                fetch('/api/lsm', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ articleId, questionNumber: `video-p${firstParaNum}`, lsmText: url })
+                                }).catch(err => console.error('Error saving video URL:', err));
+                                setNewVideoUrl('');
+                                setIsAddingVideoUrl(null);
+                              } else if (e.key === 'Escape') {
+                                setNewVideoUrl('');
+                                setIsAddingVideoUrl(null);
+                              }
+                            }}
+                          />
+                          <button onClick={() => { setNewVideoUrl(''); setIsAddingVideoUrl(null); }} className="text-text-tertiary hover:text-text-secondary text-sm">✕</button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setIsAddingVideoUrl(relatedParagraphs[0].number)}
+                          className="text-xs text-text-muted hover:text-blue-600 dark:hover:text-[#D97757] transition-colors flex items-center gap-1"
+                        >
+                          <span>🤟</span> Agregar video LSM...
+                        </button>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* Panel derecho: Video LSM sticky (solo desktop >= md) */}
