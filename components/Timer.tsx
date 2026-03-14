@@ -158,12 +158,12 @@ export default function Timer() {
       }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
-      className="bg-slate-800 text-white rounded-lg shadow-2xl p-1.5 sm:p-3 min-w-[90px] sm:min-w-[140px] select-none overflow-hidden"
+      className="bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg shadow-2xl p-1.5 sm:p-3 min-w-[90px] sm:min-w-[140px] select-none overflow-hidden border border-slate-700 dark:border-[#3A3A37]"
     >
       {isEditing ? (
         <div className="flex flex-col gap-2 p-1 w-48 sm:w-56" onClick={e => e.stopPropagation()} onMouseDown={e => e.stopPropagation()} onTouchStart={e => e.stopPropagation()}>
           <div className="flex flex-col gap-1">
-            <div className="text-[10px] sm:text-xs text-slate-300 font-medium pb-1 border-b border-slate-600 mb-1">
+            <div className="text-[10px] sm:text-xs text-slate-300 dark:text-[#8B8980] font-medium pb-1 border-b border-slate-600 dark:border-[#3A3A37] mb-1">
               Orden del programa:
             </div>
             <button
@@ -171,16 +171,16 @@ export default function Timer() {
               onClick={() => { setMeetingOrder('normal'); setRealStartTime('16:30'); }}
               className="flex items-center gap-2 cursor-pointer text-[11px] sm:text-xs text-left"
             >
-              <span className={`w-3 h-3 rounded-full border-2 flex-shrink-0 ${meetingOrder === 'normal' ? 'border-slate-400 bg-slate-400' : 'border-slate-500 bg-transparent'}`} />
-              <span className={meetingOrder === 'normal' ? 'text-white' : 'text-slate-200'}>Normal (Después del discurso)</span>
+              <span className={`w-3 h-3 rounded-full border-2 flex-shrink-0 ${meetingOrder === 'normal' ? 'border-slate-400 bg-slate-400' : 'border-slate-500 dark:border-[#6B6960] bg-transparent'}`} />
+              <span className={meetingOrder === 'normal' ? 'text-white' : 'text-slate-200 dark:text-[#A8A69D]'}>Normal (Después del discurso)</span>
             </button>
             <button
               type="button"
               onClick={() => { setMeetingOrder('inverted'); setRealStartTime('16:05'); }}
               className="flex items-center gap-2 cursor-pointer text-[11px] sm:text-xs text-left"
             >
-              <span className={`w-3 h-3 rounded-full border-2 flex-shrink-0 ${meetingOrder === 'inverted' ? 'border-slate-400 bg-slate-400' : 'border-slate-500 bg-transparent'}`} />
-              <span className={meetingOrder === 'inverted' ? 'text-white' : 'text-slate-200'}>Invertido (Antes del discurso)</span>
+              <span className={`w-3 h-3 rounded-full border-2 flex-shrink-0 ${meetingOrder === 'inverted' ? 'border-slate-400 bg-slate-400' : 'border-slate-500 dark:border-[#6B6960] bg-transparent'}`} />
+              <span className={meetingOrder === 'inverted' ? 'text-white' : 'text-slate-200 dark:text-[#A8A69D]'}>Invertido (Antes del discurso)</span>
             </button>
           </div>
 
@@ -191,7 +191,7 @@ export default function Timer() {
                 {realStartTime
                   ? `${parseInt(realStartTime.split(':')[0]) > 12 ? parseInt(realStartTime.split(':')[0]) - 12 : realStartTime.split(':')[0]}:${realStartTime.split(':')[1]}`
                   : `4:${meetingOrder === 'normal' ? '30' : '05'}`}
-                <span className="text-[10px] text-slate-400 font-normal ml-1">PM</span>
+                <span className="text-[10px] text-slate-400 dark:text-[#8B8980] font-normal ml-1">PM</span>
               </div>
               <div className="text-[10px] text-emerald-400 font-medium mt-0.5">
                 {calculateMinutes() > 0 ? `${calculateMinutes()} min` : 'Selecciona la hora'}
@@ -207,7 +207,7 @@ export default function Timer() {
                   const currentMin = realStartTime ? parseInt(realStartTime.split(':')[1]) : (meetingOrder === 'normal' ? 30 : 5);
                   if (currentMin > minVal) setRealStartTime(`16:${(currentMin - 1).toString().padStart(2, '0')}`);
                 }}
-                className="w-7 h-7 rounded-md bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-sm font-bold text-slate-300 flex-shrink-0 transition-colors"
+                className="w-10 h-12 md:w-8 md:h-8 rounded-lg md:rounded-md bg-slate-700 dark:bg-[#30302E] hover:bg-slate-600 dark:hover:bg-[#3A3A37] active:bg-slate-500 flex items-center justify-center text-base md:text-sm font-bold text-slate-300 dark:text-[#8B8980] flex-shrink-0 transition-colors"
               >
                 −
               </button>
@@ -227,14 +227,14 @@ export default function Timer() {
                   const currentMin = realStartTime ? parseInt(realStartTime.split(':')[1]) : (meetingOrder === 'normal' ? 30 : 5);
                   if (currentMin < maxVal) setRealStartTime(`16:${(currentMin + 1).toString().padStart(2, '0')}`);
                 }}
-                className="w-7 h-7 rounded-md bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-sm font-bold text-slate-300 flex-shrink-0 transition-colors"
+                className="w-10 h-12 md:w-8 md:h-8 rounded-lg md:rounded-md bg-slate-700 dark:bg-[#30302E] hover:bg-slate-600 dark:hover:bg-[#3A3A37] active:bg-slate-500 flex items-center justify-center text-base md:text-sm font-bold text-slate-300 dark:text-[#8B8980] flex-shrink-0 transition-colors"
               >
                 +
               </button>
             </div>
 
             {/* Marcas de referencia */}
-            <div className="flex justify-between text-[9px] text-slate-500 font-mono px-8">
+            <div className="flex justify-between text-[9px] text-slate-500 dark:text-[#6B6960] font-mono px-8">
               {meetingOrder === 'normal'
                 ? [25, 30, 35, 40, 45].map(m => <span key={m}>:{m}</span>)
                 : [0, 5, 10, 15].map(m => <span key={m}>:{m.toString().padStart(2, '0')}</span>)
@@ -251,7 +251,7 @@ export default function Timer() {
             </button>
             <button
               onClick={() => setIsEditing(false)}
-              className="flex-1 bg-slate-600 hover:bg-slate-700 px-2 py-1.5 rounded text-xs transition-colors font-medium cursor-pointer"
+              className="flex-1 bg-slate-600 dark:bg-[#3A3A37] hover:bg-slate-700 dark:hover:bg-[#4A4A45] px-2 py-1.5 rounded text-xs transition-colors font-medium cursor-pointer"
             >
               ✕
             </button>
@@ -271,7 +271,7 @@ export default function Timer() {
           <div className="flex gap-0.5 sm:gap-1 justify-center" onClick={e => e.stopPropagation()}>
             <button
               onClick={() => setIsRunning(!isRunning)}
-              className="bg-slate-700 hover:bg-slate-800 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
+              className="bg-slate-700 dark:bg-[#30302E] hover:bg-slate-800 dark:hover:bg-[#3A3A37] px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
             >
               {isRunning ? '⏸' : '▶'}
             </button>
@@ -280,7 +280,7 @@ export default function Timer() {
                 setIsRunning(false);
                 setTotalSeconds(60 * 60);
               }}
-              className="bg-slate-600 hover:bg-slate-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
+              className="bg-slate-600 dark:bg-[#3A3A37] hover:bg-slate-700 dark:hover:bg-[#4A4A45] px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
             >
               ↻
             </button>
@@ -289,7 +289,7 @@ export default function Timer() {
                 setRealStartTime(meetingOrder === 'normal' ? '16:30' : '16:05');
                 setIsEditing(true);
               }}
-              className="bg-slate-600 hover:bg-slate-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
+              className="bg-slate-600 dark:bg-[#3A3A37] hover:bg-slate-700 dark:hover:bg-[#4A4A45] px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium shadow-sm"
             >
               ⚙
             </button>
