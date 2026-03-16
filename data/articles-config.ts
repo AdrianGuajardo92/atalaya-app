@@ -17,8 +17,8 @@ export const articlesConfig = {
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    52,  // "Sigamos satisfaciendo nuestras 'necesidades espirituales'" (2-8 Mar)
     53,  // "Cómo vencer los sentimientos negativos" (9-15 Mar)
+    54,  // "¿Qué hará usted para demostrar que agradece el rescate?" (23-29 Mar)
   ],
 
   // Artículo que se mostrará por defecto al cargar la app

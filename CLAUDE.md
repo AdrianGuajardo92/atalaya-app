@@ -64,11 +64,10 @@ npm run lint     # Run ESLint
 ```
 app/
 ├── api/                  # REST API endpoints
-│   ├── favorites/        # Bookmark management
-│   ├── hidden-cards/     # Card visibility
+│   ├── favorites/        # Bookmark management (GET/POST/PUT)
+│   ├── hidden-cards/     # Card visibility (GET/POST/PUT)
 │   ├── lsm/              # Mexican Sign Language texts (GET/POST/PUT)
-│   ├── pdfs/             # PDF upload/management
-│   └── used-items/       # Tracking de items usados
+│   └── used-items/       # Tracking de items usados (GET/POST/PUT)
 ├── page.tsx              # Main study page
 └── layout.tsx            # Root layout with PWA config
 
@@ -79,24 +78,34 @@ components/
 ├── BiblicalCards.tsx     # Scripture reference cards
 ├── ReviewQuestionCard.tsx
 ├── StudyHeader.tsx
-├── Timer.tsx
-├── PdfUploader.tsx
+├── Timer.tsx             # Timer flotante con drag, edición de tiempo y dark mode
+├── PlaylistModal.tsx     # Modal de playlist del artículo (canciones, párrafos, imágenes)
+├── VideoLSM.tsx          # Reproductor de video LSM con controles (play/pause, velocidad, seek)
 ├── LsmBulkImport.tsx     # Importación masiva de traducciones LSM
 ├── ThemeProvider.tsx      # Proveedor de tema (dark/light)
 ├── ThemeToggle.tsx        # Toggle de tema
 ├── ConsoleFilter.tsx     # Filtro de consola
+├── DevClickToSource.tsx  # Herramienta de desarrollo
 └── InstructionsButton.tsx
 
 data/
 ├── articles/             # Artículos individuales
-│   ├── article-52.ts     # Artículo 52 (ejemplo)
-│   └── index.ts          # Registro central de artículos
-├── articles-config.ts    # Configuración de artículos activos
+│   ├── article-53.ts     # Artículo 53 (ejemplo actual)
+│   └── index.ts          # Registro central de artículos (articlesMap + biblicalTextsMap)
+├── articles-config.ts    # Configuración de artículos activos y mes por defecto
 ├── biblical-texts.ts     # Textos bíblicos compartidos
-└── design-config.ts      # Configuración de diseño
+└── design-config.ts      # Configuración de diseño ejecutivo (umbral artículo 43+)
+
+lib/
+├── kv-store.ts           # Abstracción de almacenamiento KV (Vercel KV con fallback a memoria)
+├── clipboard.ts          # Utilidad de copiar al portapapeles
+└── generatePlaylist.ts   # Genera estructura de playlist desde datos del artículo
 
 types/
 └── atalaya.ts            # Core TypeScript interfaces
+
+public/
+└── videos/               # Videos LSM por párrafo (Parrafo_X.mp4, Parrafos_X_y_Y.mp4)
 ```
 
 ### Data Flow
@@ -121,13 +130,17 @@ interface Question {
   section?: string;                  // Subtítulo de sección en español
   sectionLSM?: string;               // Subtítulo de sección en LSM
   readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
+  preview?: string;                  // Adelanto del tema para el conductor del estudio
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
   answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
-  flashcards?: FlashCard[];          // Tarjetas didácticas
+  answerContext?: string[];          // Contexto adicional separado de la respuesta directa
+  answerBullets?: string | string[]; // Puntos clave en formato bullets (editables en UI)
+  answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipo de cada bullet (directo o entrelazado)
+  flashcards?: string[] | FlashCard[]; // Tarjetas didácticas (string[] o objetos para retrocompatibilidad)
   biblicalCards?: BiblicalCard[];    // Tarjetas bíblicas
-  reflectionQuestions?: string[];    // Preguntas de reflexión personal
-  practicalApplications?: string[];  // Aplicaciones prácticas
+  reflectionQuestions?: string[];    // Preguntas de reflexión personal (editables en UI)
+  practicalApplications?: string[];  // Aplicaciones prácticas (editables en UI)
   infographic?: string;              // URL de infografía (botón en UI)
 }
 
@@ -137,14 +150,22 @@ interface Paragraph {
   summary?: string;                  // Resumen con **negritas** para el conductor
   image?: string;                    // URL de imagen (solo visible en modal de párrafos)
   imageCaption?: string;             // Leyenda de la imagen
+  videoLSM?: string;                 // URL del video LSM para este párrafo (ej: "/videos/Parrafo_3.mp4")
+  note?: string;                     // Nota al pie del párrafo (información adicional)
 }
 
 interface ReviewQuestion {
   question: string;                  // Pregunta de repaso en español
   questionLSM?: string;              // Pregunta en LSM
   answer?: string | string[];        // Oraciones clave de la respuesta
-  flashcards?: FlashCard[];
+  answerBullets?: string | string[]; // Puntos clave en formato bullets
+  answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipo de cada bullet
+  flashcards?: string[] | FlashCard[]; // Tarjetas didácticas (string[] o objetos)
   biblicalCards?: BiblicalCard[];
+  image?: string;                    // URL de imagen ilustrativa
+  imageCaption?: string;             // Leyenda de la imagen
+  reflectionQuestions?: string[];    // Preguntas de reflexión personal
+  practicalApplications?: string[];  // Aplicaciones prácticas
 }
 
 interface FlashCard {
@@ -161,18 +182,40 @@ interface BiblicalCard {
   reasoningQuestion?: string;        // Pregunta para razonar con la congregación
 }
 
-interface ArticleData {
-  metadata: { articleNumber, week, month, year };
+// Vista previa del artículo: conexión con el anterior + lo que veremos
+interface ArticleOverview {
+  previousArticle?: {
+    number: number;
+    topic: string;                   // Tema corto del artículo anterior
+    keywords: string[];              // Palabras clave
+  };
+  whatWellSee: {
+    section: string;                 // Título/tema de la sección
+    keywords: string[];              // Palabras clave de esa sección
+  }[];
+}
+
+interface AtalayaStudy {
   song: string;
   title: string;
   titleLSM?: string;                 // Título en LSM
   biblicalText: string;              // Texto bíblico principal
   theme: string;                     // Tema del artículo
   headerInfographic?: string;        // URL de infografía principal del artículo
+  overview?: ArticleOverview;        // Vista previa: conexión con el anterior + lo que veremos
   questions: Question[];
   paragraphs: Paragraph[];
   reviewQuestions: ReviewQuestion[];
   finalSong: string;                 // Canción final
+}
+
+interface ArticleData extends AtalayaStudy {
+  metadata: {
+    articleNumber: number;
+    week: string;                    // ej: "9-15 Mar"
+    month: string;                   // ej: "Enero"
+    year: number;                    // ej: 2026
+  };
 }
 ```
 
@@ -245,15 +288,98 @@ export const biblicalTextsXX: Record<string, { reference: string; text: string }
 - Se muestra debajo de la pregunta en español con el icono 🤟
 - Si no hay `textLSM`, se muestra "AGREGAR TRADUCCIÓN" como placeholder editable
 
+**Notas al pie de párrafo (note):**
+- El campo `note` en párrafos contiene información adicional que aparece como nota al pie
+- Se usa para aclaraciones, datos extra o explicaciones que complementan el contenido
+- Ejemplo: aclarar qué pudo haber sido "la espina en la carne" de Pablo
+
+**Answer Bullets (answerBullets):**
+- Puntos clave adicionales que complementan la respuesta (`answer`)
+- Editables en la UI por el usuario
+- Cada bullet puede marcarse como `'direct'` o `'interlaced'` con `answerBulletsTypes`
+- Se persisten en Vercel KV via `/api/lsm`
+
+**Reflexiones y Aplicaciones (reflectionQuestions / practicalApplications):**
+- Preguntas de reflexión personal y aplicaciones prácticas editables en la UI
+- Disponibles tanto en `Question` como en `ReviewQuestion`
+- Se persisten en Vercel KV via `/api/lsm`
+
 ### API Endpoints
 
 | Endpoint | GET | POST | PUT |
 |----------|-----|------|-----|
-| `/api/favorites` | Get favorites for article | Toggle favorite | - |
+| `/api/favorites` | Get favorites for article | Toggle favorite | Update |
 | `/api/lsm` | Get LSM texts | Save LSM text | Update LSM text |
-| `/api/hidden-cards` | Get hidden cards | Toggle visibility | - |
-| `/api/pdfs` | List PDFs | Upload PDF | - |
-| `/api/used-items` | Get used items | Toggle used state | - |
+| `/api/hidden-cards` | Get hidden cards | Toggle visibility | Update |
+| `/api/used-items` | Get used items | Toggle used state | Update |
+
+### Videos LSM por Párrafo
+
+Cada párrafo del artículo puede tener un video en Lengua de Señas Mexicana (LSM). Los videos se almacenan localmente en `public/videos/` y se referencian en el campo `videoLSM` de cada párrafo.
+
+**Convención de nombres:**
+- Prefijo de artículo: `aXX_` (ej: `a54_`) para evitar conflictos entre artículos
+- Párrafo individual: `aXX_Parrafo_X.mp4` (ej: `a54_Parrafo_3.mp4`)
+- Párrafos compartidos: `aXX_Parrafos_X_y_Y.mp4` (ej: `a54_Parrafos_1_y_2.mp4`)
+
+**REGLA: Párrafos agrupados en una misma pregunta DEBEN compartir un solo video.**
+Cuando una pregunta cubre varios párrafos (ej: "1, 2"), se deben **unir los videos individuales** en uno solo con ffmpeg y ambos párrafos deben apuntar al mismo archivo:
+
+```bash
+# Instalar ffmpeg temporalmente
+npm install --save-dev ffmpeg-static
+
+# Unir videos (ejemplo: párrafos 1 y 2)
+FFMPEG=$(node -e "console.log(require('ffmpeg-static'))")
+echo "file 'a54_Parrafo_1.mp4'" > concat.txt
+echo "file 'a54_Parrafo_2.mp4'" >> concat.txt
+"$FFMPEG" -y -f concat -safe 0 -i concat.txt -c copy a54_Parrafos_1_y_2.mp4
+
+# Eliminar los individuales y desinstalar ffmpeg
+rm a54_Parrafo_1.mp4 a54_Parrafo_2.mp4
+npm uninstall ffmpeg-static
+```
+
+**Referencia en datos (párrafos compartidos):**
+```typescript
+// Ambos párrafos apuntan al MISMO video
+{ number: 1, content: "...", summary: "...", videoLSM: "/videos/a54_Parrafos_1_y_2.mp4" },
+{ number: 2, content: "...", summary: "...", videoLSM: "/videos/a54_Parrafos_1_y_2.mp4" },
+```
+
+**Referencia en datos (párrafo individual):**
+```typescript
+{ number: 3, content: "...", summary: "...", videoLSM: "/videos/a54_Parrafo_3.mp4" },
+```
+
+**Componente VideoLSM.tsx:**
+- Reproductor con controles: play/pause, velocidad (1x-2x), seek +-5s, reiniciar
+- Toque con dos dedos en móvil para play/pause
+- Auto-scroll al centro en móvil
+- Modo compacto para sidebar
+- Soporte dark mode
+
+**REGLA CRÍTICA:** Al eliminar un artículo, SIEMPRE eliminar también sus videos de `public/videos/`.
+
+### Sistema de Playlist
+
+El `PlaylistModal.tsx` genera una lista ordenada de todos los elementos del artículo:
+- Canciones (inicial y final)
+- Título y texto bíblico
+- Tema del artículo
+- Párrafos con sus imágenes
+- Textos bíblicos a leer (readText)
+
+Se puede copiar al portapapeles para referencia rápida.
+
+### Dark Mode
+
+La app soporta modo oscuro/claro:
+- `ThemeProvider.tsx` gestiona el tema con React Context
+- `ThemeToggle.tsx` es el botón de toggle
+- Tema persistido en localStorage
+- Variables CSS en `globals.css` para ambos temas
+- Todos los componentes (Timer, VideoLSM, modals, tarjetas) soportan dark mode
 
 ### PWA Configuration
 
@@ -504,7 +630,17 @@ A partir del **Artículo 43**, se implementa un diseño visual "Ejecutivo" que e
 
 ### Cuándo Aplicar el Diseño Ejecutivo
 
-El diseño ejecutivo se aplica **automáticamente** a todos los artículos del **43 en adelante**.
+El diseño ejecutivo se aplica **automáticamente** a todos los artículos del **43 en adelante**. El umbral se configura en `data/design-config.ts`:
+
+```typescript
+export const designConfig = {
+  executiveDesignStartsAt: 43,
+};
+
+export function isExecutiveDesign(articleNumber: number): boolean {
+  return articleNumber >= designConfig.executiveDesignStartsAt;
+}
+```
 
 | Componente | Condición | Variable |
 |------------|-----------|----------|
