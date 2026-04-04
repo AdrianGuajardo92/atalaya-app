@@ -19,6 +19,7 @@ export const articlesConfig = {
   activeArticles: [
     53,  // "Cómo vencer los sentimientos negativos" (9-15 Mar)
     54,  // "¿Qué hará usted para demostrar que agradece el rescate?" (23-29 Mar)
+    55,  // "Sazonemos la verdad con palabras agradables" (30 Mar - 5 Abr)
   ],
 
   // Artículo que se mostrará por defecto al cargar la app
