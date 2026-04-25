@@ -42,10 +42,12 @@ console.log(`\n   Total: ${files.length} artículo(s)\n`);
 try {
   const configPath = path.join(__dirname, '../data/articles-config.ts');
   const configContent = fs.readFileSync(configPath, 'utf-8');
-  const activeMatch = configContent.match(/activeArticles:\s*\[([\s\S]*?)\]/);
+  const activeMatches = [...configContent.matchAll(/activeArticles:\s*\[([\s\S]*?)\]/g)];
+  const activeMatch = activeMatches[activeMatches.length - 1];
 
   if (activeMatch) {
-    const activeNumbers = activeMatch[1].match(/\d+/g) || [];
+    const activeBlock = activeMatch[1].replace(/\/\/.*$/gm, '');
+    const activeNumbers = activeBlock.match(/\d+/g) || [];
     console.log('🔘 Artículos activos (visibles en la app):');
     console.log(`   [${activeNumbers.join(', ')}]\n`);
   }

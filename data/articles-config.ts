@@ -11,20 +11,22 @@
  * - Para ocultar el artículo 36: quita el 36 del array
  */
 
-export const articlesConfig = {
+export const articlesConfig: {
+  defaultMonth: string;
+  activeArticles: number[];
+  defaultArticleNumber: number | null;
+} = {
   // Mes actual que se mostrará por defecto
-  defaultMonth: "2026-01", // Enero 2026
+  defaultMonth: "2026-04", // Abril 2026
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    53,  // "Cómo vencer los sentimientos negativos" (9-15 Mar)
-    54,  // "¿Qué hará usted para demostrar que agradece el rescate?" (23-29 Mar)
-    55,  // "Sazonemos la verdad con palabras agradables" (30 Mar - 5 Abr)
+    58,  // "Siga progresando hacia el bautismo" (20-26 Abr)
   ],
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 53,
+  defaultArticleNumber: 58,
 };
 
 /**
@@ -33,6 +35,7 @@ export const articlesConfig = {
 export function getDefaultArticleId(): string {
   const month = articlesConfig.defaultMonth;
   const articleNum = articlesConfig.defaultArticleNumber || articlesConfig.activeArticles[0];
+  if (!articleNum) return "";
   return `${month}-article-${articleNum}`;
 }
 

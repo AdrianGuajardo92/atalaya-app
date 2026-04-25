@@ -90,7 +90,7 @@ components/
 
 data/
 ├── articles/             # Artículos individuales
-│   ├── article-53.ts     # Artículo 53 (ejemplo actual)
+│   ├── article-XX.ts     # Archivo individual por artículo
 │   └── index.ts          # Registro central de artículos (articlesMap + biblicalTextsMap)
 ├── articles-config.ts    # Configuración de artículos activos y mes por defecto
 ├── biblical-texts.ts     # Textos bíblicos compartidos
@@ -105,7 +105,7 @@ types/
 └── atalaya.ts            # Core TypeScript interfaces
 
 public/
-└── videos/               # Videos LSM por párrafo (Parrafo_X.mp4, Parrafos_X_y_Y.mp4)
+└── videos/               # Videos LSM por párrafo (aXX_Parrafo_X.mp4, aXX_Parrafos_X_y_Y.mp4)
 ```
 
 ### Data Flow
@@ -150,7 +150,7 @@ interface Paragraph {
   summary?: string;                  // Resumen con **negritas** para el conductor
   image?: string;                    // URL de imagen (solo visible en modal de párrafos)
   imageCaption?: string;             // Leyenda de la imagen
-  videoLSM?: string;                 // URL del video LSM para este párrafo (ej: "/videos/Parrafo_3.mp4")
+  videoLSM?: string;                 // URL del video LSM para este párrafo (ej: "/videos/aXX_Parrafo_3.mp4")
   note?: string;                     // Nota al pie del párrafo (información adicional)
 }
 
@@ -318,9 +318,9 @@ export const biblicalTextsXX: Record<string, { reference: string; text: string }
 Cada párrafo del artículo puede tener un video en Lengua de Señas Mexicana (LSM). Los videos se almacenan localmente en `public/videos/` y se referencian en el campo `videoLSM` de cada párrafo.
 
 **Convención de nombres:**
-- Prefijo de artículo: `aXX_` (ej: `a54_`) para evitar conflictos entre artículos
-- Párrafo individual: `aXX_Parrafo_X.mp4` (ej: `a54_Parrafo_3.mp4`)
-- Párrafos compartidos: `aXX_Parrafos_X_y_Y.mp4` (ej: `a54_Parrafos_1_y_2.mp4`)
+- Prefijo de artículo: `aXX_` para evitar conflictos entre artículos
+- Párrafo individual: `aXX_Parrafo_X.mp4`
+- Párrafos compartidos: `aXX_Parrafos_X_y_Y.mp4`
 
 **REGLA: Párrafos agrupados en una misma pregunta DEBEN compartir un solo video.**
 Cuando una pregunta cubre varios párrafos (ej: "1, 2"), se deben **unir los videos individuales** en uno solo con ffmpeg y ambos párrafos deben apuntar al mismo archivo:
@@ -331,25 +331,25 @@ npm install --save-dev ffmpeg-static
 
 # Unir videos (ejemplo: párrafos 1 y 2)
 FFMPEG=$(node -e "console.log(require('ffmpeg-static'))")
-echo "file 'a54_Parrafo_1.mp4'" > concat.txt
-echo "file 'a54_Parrafo_2.mp4'" >> concat.txt
-"$FFMPEG" -y -f concat -safe 0 -i concat.txt -c copy a54_Parrafos_1_y_2.mp4
+echo "file 'aXX_Parrafo_1.mp4'" > concat.txt
+echo "file 'aXX_Parrafo_2.mp4'" >> concat.txt
+"$FFMPEG" -y -f concat -safe 0 -i concat.txt -c copy aXX_Parrafos_1_y_2.mp4
 
 # Eliminar los individuales y desinstalar ffmpeg
-rm a54_Parrafo_1.mp4 a54_Parrafo_2.mp4
+rm aXX_Parrafo_1.mp4 aXX_Parrafo_2.mp4
 npm uninstall ffmpeg-static
 ```
 
 **Referencia en datos (párrafos compartidos):**
 ```typescript
 // Ambos párrafos apuntan al MISMO video
-{ number: 1, content: "...", summary: "...", videoLSM: "/videos/a54_Parrafos_1_y_2.mp4" },
-{ number: 2, content: "...", summary: "...", videoLSM: "/videos/a54_Parrafos_1_y_2.mp4" },
+{ number: 1, content: "...", summary: "...", videoLSM: "/videos/aXX_Parrafos_1_y_2.mp4" },
+{ number: 2, content: "...", summary: "...", videoLSM: "/videos/aXX_Parrafos_1_y_2.mp4" },
 ```
 
 **Referencia en datos (párrafo individual):**
 ```typescript
-{ number: 3, content: "...", summary: "...", videoLSM: "/videos/a54_Parrafo_3.mp4" },
+{ number: 3, content: "...", summary: "...", videoLSM: "/videos/aXX_Parrafo_3.mp4" },
 ```
 
 **Componente VideoLSM.tsx:**

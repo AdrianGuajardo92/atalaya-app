@@ -161,6 +161,7 @@ export default function Home() {
       setCurrentArticle(article);
       setIsLoading(false); // Mostrar artículo inmediatamente
     } else {
+      setCurrentArticle(null);
       setIsLoading(false);
     }
   }, [currentArticleId]);
@@ -375,10 +376,28 @@ export default function Home() {
     syncUsedItems();
   };
 
-  if (isLoading || !currentArticle) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)] flex items-center justify-center">
         <div className="text-xl text-text-secondary">Cargando...</div>
+      </div>
+    );
+  }
+
+  if (!currentArticle) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)] flex items-center justify-center px-6">
+        <div className="max-w-md rounded-xl border border-border bg-surface p-8 text-center shadow-lg">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-text-muted">
+            Biblioteca vacía
+          </p>
+          <h1 className="mt-4 font-serif text-3xl font-bold text-text-primary">
+            No hay artículos activos
+          </h1>
+          <p className="mt-3 text-text-secondary">
+            Agrega un nuevo artículo en los datos del proyecto para volver a mostrar el estudio.
+          </p>
+        </div>
       </div>
     );
   }
