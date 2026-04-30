@@ -6,8 +6,6 @@ import QuestionCard from '@/components/QuestionCard';
 import ReviewQuestionCard from '@/components/ReviewQuestionCard';
 import SummaryView from '@/components/SummaryView';
 import Timer from '@/components/Timer';
-import InstructionsButton from '@/components/InstructionsButton';
-import PlaylistModal from '@/components/PlaylistModal';
 import LsmBulkImport from '@/components/LsmBulkImport';
 
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
@@ -67,7 +65,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
-  const [showPlaylist, setShowPlaylist] = useState(false);
   const [showLsmImport, setShowLsmImport] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
 
@@ -406,27 +403,6 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)]">
       {/* Temporizador flotante */}
       <Timer />
-
-      {/* Botón de instrucciones */}
-      <InstructionsButton />
-
-      {/* Botón de lista de reproducción - Solo visible en desktop */}
-      <button
-        onClick={() => setShowPlaylist(true)}
-        className="hidden xl:block fixed bottom-4 right-4 z-20 bg-slate-700 dark:bg-[#3A3A37] hover:bg-slate-800 dark:hover:bg-[#4A4A45] text-white p-3 rounded-full shadow-lg transition-all hover:scale-105"
-        title="Lista de Reproducción"
-      >
-        <span className="text-xl">🎵</span>
-      </button>
-
-      {/* Modal de lista de reproducción */}
-      {currentArticle && (
-        <PlaylistModal
-          isOpen={showPlaylist}
-          onClose={() => setShowPlaylist(false)}
-          article={currentArticle}
-        />
-      )}
 
       {/* Modal de importación masiva de LSM */}
       <LsmBulkImport

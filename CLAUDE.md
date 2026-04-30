@@ -131,6 +131,7 @@ interface Question {
   sectionLSM?: string;               // Subtítulo de sección en LSM
   readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
   preview?: string;                  // Adelanto del tema para el conductor del estudio
+  videoLSM?: string;                 // Video LSM unido para preguntas con varios párrafos
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
   answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
@@ -150,7 +151,7 @@ interface Paragraph {
   summary?: string;                  // Resumen con **negritas** para el conductor
   image?: string;                    // URL de imagen (solo visible en modal de párrafos)
   imageCaption?: string;             // Leyenda de la imagen
-  videoLSM?: string;                 // URL del video LSM para este párrafo (ej: "/videos/aXX_Parrafo_3.mp4")
+  videoLSM?: string;                 // URL del video LSM individual para este párrafo
   note?: string;                     // Nota al pie del párrafo (información adicional)
 }
 
@@ -313,44 +314,49 @@ export const biblicalTextsXX: Record<string, { reference: string; text: string }
 | `/api/hidden-cards` | Get hidden cards | Toggle visibility | Update |
 | `/api/used-items` | Get used items | Toggle used state | Update |
 
-### Videos LSM por Párrafo
+### Videos LSM por Párrafo y Preguntas Agrupadas
 
 Cada párrafo del artículo puede tener un video en Lengua de Señas Mexicana (LSM). Los videos se almacenan localmente en `public/videos/` y se referencian en el campo `videoLSM` de cada párrafo.
 
 **Convención de nombres:**
-- Prefijo de artículo: `aXX_` para evitar conflictos entre artículos
-- Párrafo individual: `aXX_Parrafo_X.mp4`
-- Párrafos compartidos: `aXX_Parrafos_X_y_Y.mp4`
+- Carpeta por artículo: `public/videos/article-XX/`
+- Párrafo individual: `article-XX-p01-lsm.mp4`, `article-XX-p02-lsm.mp4`, etc.
+- Pregunta con párrafos agrupados: `article-XX-p01-p02-lsm.mp4`, `article-XX-p06-p08-lsm.mp4`, etc.
 
-**REGLA: Párrafos agrupados en una misma pregunta DEBEN compartir un solo video.**
-Cuando una pregunta cubre varios párrafos (ej: "1, 2"), se deben **unir los videos individuales** en uno solo con ffmpeg y ambos párrafos deben apuntar al mismo archivo:
+**REGLA: si una pregunta cubre varios párrafos, el video debe verse de corrido.**
+Cuando una pregunta cubre 2 o más párrafos (ej: `1, 2`), se debe crear un **video unido** para la pregunta y ponerlo en `question.videoLSM`. Los párrafos conservan sus clips individuales en `paragraph.videoLSM`.
 
 ```bash
-# Instalar ffmpeg temporalmente
-npm install --save-dev ffmpeg-static
-
-# Unir videos (ejemplo: párrafos 1 y 2)
-FFMPEG=$(node -e "console.log(require('ffmpeg-static'))")
-echo "file 'aXX_Parrafo_1.mp4'" > concat.txt
-echo "file 'aXX_Parrafo_2.mp4'" >> concat.txt
-"$FFMPEG" -y -f concat -safe 0 -i concat.txt -c copy aXX_Parrafos_1_y_2.mp4
-
-# Eliminar los individuales y desinstalar ffmpeg
-rm aXX_Parrafo_1.mp4 aXX_Parrafo_2.mp4
-npm uninstall ffmpeg-static
+# Si se recorta desde el video fuente y avconvert está disponible:
+avconvert --source SOURCE.mp4 \
+  --preset PresetPassthrough \
+  --start 31.632 \
+  --duration 91.057 \
+  --output public/videos/article-XX/article-XX-p01-p02-lsm.mp4 \
+  --replace
 ```
 
-**Referencia en datos (párrafos compartidos):**
+**Referencia en datos (pregunta agrupada):**
 ```typescript
-// Ambos párrafos apuntan al MISMO video
-{ number: 1, content: "...", summary: "...", videoLSM: "/videos/aXX_Parrafos_1_y_2.mp4" },
-{ number: 2, content: "...", summary: "...", videoLSM: "/videos/aXX_Parrafos_1_y_2.mp4" },
+{
+  number: "1, 2",
+  textEs: "¿...?",
+  paragraphs: [1, 2],
+  videoLSM: "/videos/article-XX/article-XX-p01-p02-lsm.mp4",
+}
 ```
 
-**Referencia en datos (párrafo individual):**
+**Referencia en datos (párrafos individuales):**
 ```typescript
-{ number: 3, content: "...", summary: "...", videoLSM: "/videos/aXX_Parrafo_3.mp4" },
+{ number: 1, content: "...", summary: "...", videoLSM: "/videos/article-XX/article-XX-p01-lsm.mp4" },
+{ number: 2, content: "...", summary: "...", videoLSM: "/videos/article-XX/article-XX-p02-lsm.mp4" },
+{ number: 3, content: "...", summary: "...", videoLSM: "/videos/article-XX/article-XX-p03-lsm.mp4" },
 ```
+
+**Comportamiento del modal de párrafos:**
+- Si la pregunta tiene `question.videoLSM`, se muestra **un solo reproductor** con todos los párrafos unidos.
+- Si no hay `question.videoLSM`, se usan los videos individuales de `paragraph.videoLSM`.
+- No eliminar los clips individuales al crear el video unido; pueden hacer falta cuando el párrafo se consulte por separado o para reutilización.
 
 **Componente VideoLSM.tsx:**
 - Reproductor con controles: play/pause, velocidad (1x-2x), seek +-5s, reiniciar

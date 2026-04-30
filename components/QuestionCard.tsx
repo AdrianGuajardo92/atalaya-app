@@ -860,6 +860,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const articleNum = parseInt(articleId.split('-').pop() || '0');
 
   // Variables derivadas para videos LSM por párrafo (modo navegación)
+  const groupedVideoUrl = relatedParagraphs.length > 1 ? question.videoLSM : undefined;
+  const groupedParagraphLabel = relatedParagraphs.map(p => p.number).join(', ');
   const navParasWithVideo = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
   const navFirstVideoUrl = navParasWithVideo.length > 0
     ? (videoUrls[navParasWithVideo[0].number] || navParasWithVideo[0].videoLSM)
@@ -1089,6 +1091,18 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {relatedParagraphs.length > 1 && (() => {
                   const parasWithVideo = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
 
+                  if (groupedVideoUrl) {
+                    return (
+                      <div className="md:hidden">
+                        <VideoLSM
+                          src={groupedVideoUrl}
+                          paragraphNumber={groupedParagraphLabel}
+                          questionTextLSM={editedLSM.trim() || question.textEs}
+                        />
+                      </div>
+                    );
+                  }
+
                   if (parasWithVideo.length > 0) {
                     return (
                       <div className="md:hidden space-y-3">
@@ -1166,7 +1180,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
               {/* Panel derecho: Video LSM sticky (solo desktop >= md) */}
               {(() => {
-                const hasAnyVideo = relatedParagraphs.some(p => videoUrls[p.number] || p.videoLSM);
+                const hasAnyVideo = Boolean(groupedVideoUrl) || relatedParagraphs.some(p => videoUrls[p.number] || p.videoLSM);
                 const videoChoices = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
                 // Determinar el párrafo activo para el video
                 const effectiveParaNum = activeVideoParaNum ?? relatedParagraphs.find(p => videoUrls[p.number] || p.videoLSM)?.number ?? null;
@@ -1175,6 +1189,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 return (
                   <div className="hidden md:flex md:w-[40%] xl:w-[45%] md:flex-shrink-0 flex-col p-6 pl-0">
                     <div className="space-y-4">
+                      {groupedVideoUrl ? (
+                        <VideoLSM
+                          key={groupedVideoUrl}
+                          src={groupedVideoUrl}
+                          paragraphNumber={groupedParagraphLabel}
+                          compact
+                          questionTextLSM={editedLSM.trim() || question.textEs}
+                        />
+                      ) : (
+                        <>
                       {videoChoices.length > 1 && (
                         <div className="flex flex-wrap gap-2">
                           {videoChoices.map((paragraph) => {
@@ -1226,6 +1250,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             }
                           </p>
                         </div>
+                      )}
+                        </>
                       )}
 
                       {/* Agregar video (desktop) */}
@@ -1500,8 +1526,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               ))}
             </div>
 
-            {/* Videos LSM por párrafo */}
-            {navParasWithVideo.length > 0 && navFirstVideoUrl ? (
+            {/* Video LSM unido para preguntas agrupadas */}
+            {groupedVideoUrl ? (
+              <div className="px-6 md:px-8 pb-6">
+                <VideoLSM
+                  src={groupedVideoUrl}
+                  paragraphNumber={groupedParagraphLabel}
+                  questionTextLSM={editedLSM.trim() || question.textEs}
+                />
+              </div>
+            ) : navParasWithVideo.length > 0 && navFirstVideoUrl ? (
               <div className="px-6 md:px-8 pb-6 space-y-3">
                 {navParasWithVideo.map((paragraph) => {
                   const paraVideoUrl = videoUrls[paragraph.number] || paragraph.videoLSM;

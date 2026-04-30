@@ -46,6 +46,7 @@ export const article59: ArticleData = {
       textEs: "¿Cómo podemos prepararnos para los problemas que tal vez afrontemos en nuestra vida cristiana? Ponga un ejemplo.",
       textLSM: "",
       paragraphs: [1, 2],
+      videoLSM: "/videos/article-59/article-59-p01-p02-lsm.mp4",
       keyPoint: "Podemos prepararnos pensando de antemano en posibles dificultades y decidiendo cómo actuar para proteger nuestra relación con Jehová.",
       guidingQuestion: "¿Qué ejemplo muestra la importancia de prepararse antes de que llegue una dificultad?",
       answer: [

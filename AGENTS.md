@@ -104,6 +104,7 @@ interface Question {
   section?: string;                  // Subtítulo de sección en español
   sectionLSM?: string;               // Subtítulo de sección en LSM
   readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
+  videoLSM?: string;                 // Video LSM unido para preguntas con varios párrafos
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
   answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
@@ -120,6 +121,7 @@ interface Paragraph {
   summary?: string;                  // Oraciones clave para el conductor
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
+  videoLSM?: string;                 // URL del video LSM individual para este párrafo
 }
 
 interface ReviewQuestion {
@@ -236,6 +238,42 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 | `/api/lsm` | Get LSM texts | Save LSM text |
 | `/api/hidden-cards` | Get hidden cards | Toggle visibility |
 | `/api/pdfs` | List PDFs | Upload PDF |
+
+### Videos LSM por Párrafo y Preguntas Agrupadas
+
+Cada párrafo puede tener su clip individual en `paragraph.videoLSM`. Si una pregunta cubre 2 o más párrafos (por ejemplo, `1, 2`), también debe tener un video unido en `question.videoLSM` para que el usuario lo vea de corrido.
+
+**Reglas:**
+- Guardar videos en una carpeta por artículo: `public/videos/article-XX/`.
+- Nombrar clips individuales como `article-XX-p01-lsm.mp4`, `article-XX-p02-lsm.mp4`, etc.
+- Nombrar clips unidos como `article-XX-p01-p02-lsm.mp4` o `article-XX-p06-p08-lsm.mp4`.
+- Mantener los clips individuales en `paragraph.videoLSM`.
+- Poner el clip unido solo en `question.videoLSM`.
+- El modal debe preferir `question.videoLSM`; si no existe, usa `paragraph.videoLSM`.
+
+**Ejemplo:**
+```typescript
+{
+  number: "1, 2",
+  textEs: "¿...?",
+  paragraphs: [1, 2],
+  videoLSM: "/videos/article-59/article-59-p01-p02-lsm.mp4",
+}
+
+{ number: 1, content: "...", summary: "...", videoLSM: "/videos/article-59/article-59-p01-lsm.mp4" }
+{ number: 2, content: "...", summary: "...", videoLSM: "/videos/article-59/article-59-p02-lsm.mp4" }
+```
+
+Cuando se recorta desde un video fuente y `ffmpeg/ffprobe` no están instalados, usar `avconvert` si está disponible:
+
+```bash
+avconvert --source SOURCE.mp4 \
+  --preset PresetPassthrough \
+  --start START \
+  --duration DURATION \
+  --output public/videos/article-XX/article-XX-p01-p02-lsm.mp4 \
+  --replace
+```
 
 ### PWA Configuration
 
