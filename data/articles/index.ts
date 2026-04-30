@@ -5,6 +5,7 @@ import { isArticleActive } from '../articles-config';
 // IMPORTAR TODOS LOS ARTÍCULOS
 // ============================================
 import { article58, biblicalTexts58 } from './article-58';
+import { article59, biblicalTexts59 } from './article-59';
 
 // ============================================
 // MAPAS DE DATOS
@@ -13,11 +14,13 @@ import { article58, biblicalTexts58 } from './article-58';
 // Mapa de todos los artículos por número
 export const articlesMap: Record<number, ArticleData> = {
   58: article58,
+  59: article59,
 };
 
 // Mapa de textos bíblicos por artículo
 export const biblicalTextsMap: Record<number, Record<string, { reference: string; text: string }[]>> = {
   58: biblicalTexts58,
+  59: biblicalTexts59,
 };
 
 // ============================================
@@ -92,4 +95,5 @@ export function getTotalArticles(): number {
 // Re-exportar los artículos individuales para acceso directo si es necesario
 export {
   article58, biblicalTexts58,
+  article59, biblicalTexts59,
 };

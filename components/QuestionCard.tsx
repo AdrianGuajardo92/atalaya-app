@@ -859,12 +859,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   // RENDERIZADO PREMIUM/EJECUTIVO
   const articleNum = parseInt(articleId.split('-').pop() || '0');
 
-  // Variables derivadas para video LSM consolidado (modo navegación)
+  // Variables derivadas para videos LSM por párrafo (modo navegación)
   const navParasWithVideo = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
   const navFirstVideoUrl = navParasWithVideo.length > 0
     ? (videoUrls[navParasWithVideo[0].number] || navParasWithVideo[0].videoLSM)
     : null;
-  const navConsolidatedLabel = relatedParagraphs.map(p => p.number).join(', ');
 
   return (
     <>
@@ -1086,39 +1085,36 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     );
                   })}
                 </div>
-                {/* Video LSM consolidado para múltiples párrafos (solo mobile < md) */}
+                {/* Videos LSM por párrafo para grupos (solo mobile < md) */}
                 {relatedParagraphs.length > 1 && (() => {
                   const parasWithVideo = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
-                  const firstVideoUrl = parasWithVideo.length > 0
-                    ? (videoUrls[parasWithVideo[0].number] || parasWithVideo[0].videoLSM)
-                    : null;
-                  const consolidatedLabel = relatedParagraphs.map(p => p.number).join(', ');
 
-                  if (firstVideoUrl) {
+                  if (parasWithVideo.length > 0) {
                     return (
-                      <div className="md:hidden">
-                        <VideoLSM
-                          src={firstVideoUrl}
-                          paragraphNumber={`${consolidatedLabel}`}
-                          questionTextLSM={editedLSM.trim() || question.textEs}
-                          onRemove={async () => {
-                            // Eliminar todos los videos de los párrafos agrupados
-                            const newUrls = { ...videoUrls };
-                            for (const p of parasWithVideo) {
-                              delete newUrls[p.number];
-                            }
-                            setVideoUrls(newUrls);
-                            try {
-                              await Promise.all(parasWithVideo.map(p =>
-                                fetch('/api/lsm', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ articleId, questionNumber: `video-p${p.number}`, lsmText: '' })
-                                })
-                              ));
-                            } catch (e) { console.error('Error removing video URL:', e); }
-                          }}
-                        />
+                      <div className="md:hidden space-y-3">
+                        {parasWithVideo.map((paragraph) => {
+                          const paraVideoUrl = videoUrls[paragraph.number] || paragraph.videoLSM;
+                          return (
+                            <VideoLSM
+                              key={paragraph.number}
+                              src={paraVideoUrl!}
+                              paragraphNumber={paragraph.number}
+                              questionTextLSM={editedLSM.trim() || question.textEs}
+                              onRemove={async () => {
+                                const newUrls = { ...videoUrls };
+                                delete newUrls[paragraph.number];
+                                setVideoUrls(newUrls);
+                                try {
+                                  await fetch('/api/lsm', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ articleId, questionNumber: `video-p${paragraph.number}`, lsmText: '' })
+                                  });
+                                } catch (e) { console.error('Error removing video URL:', e); }
+                              }}
+                            />
+                          );
+                        })}
                       </div>
                     );
                   }
@@ -1171,6 +1167,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               {/* Panel derecho: Video LSM sticky (solo desktop >= md) */}
               {(() => {
                 const hasAnyVideo = relatedParagraphs.some(p => videoUrls[p.number] || p.videoLSM);
+                const videoChoices = relatedParagraphs.filter(p => videoUrls[p.number] || p.videoLSM);
                 // Determinar el párrafo activo para el video
                 const effectiveParaNum = activeVideoParaNum ?? relatedParagraphs.find(p => videoUrls[p.number] || p.videoLSM)?.number ?? null;
                 const activeVideoUrl = effectiveParaNum ? (videoUrls[effectiveParaNum] || relatedParagraphs.find(p => p.number === effectiveParaNum)?.videoLSM) : null;
@@ -1178,6 +1175,26 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 return (
                   <div className="hidden md:flex md:w-[40%] xl:w-[45%] md:flex-shrink-0 flex-col p-6 pl-0">
                     <div className="space-y-4">
+                      {videoChoices.length > 1 && (
+                        <div className="flex flex-wrap gap-2">
+                          {videoChoices.map((paragraph) => {
+                            const isActiveVideo = paragraph.number === effectiveParaNum;
+                            return (
+                              <button
+                                key={paragraph.number}
+                                onClick={() => setActiveVideoParaNum(paragraph.number)}
+                                className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                                  isActiveVideo
+                                    ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
+                                    : 'bg-surface text-text-secondary border-border hover:border-border-strong hover:bg-surface-alt'
+                                }`}
+                              >
+                                Párrafo {paragraph.number}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
                       {activeVideoUrl && effectiveParaNum ? (
                         <VideoLSM
                           key={effectiveParaNum}
@@ -1483,30 +1500,32 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               ))}
             </div>
 
-            {/* Video LSM consolidado */}
+            {/* Videos LSM por párrafo */}
             {navParasWithVideo.length > 0 && navFirstVideoUrl ? (
-              <div className="px-6 md:px-8 pb-6">
-                <VideoLSM
-                  src={navFirstVideoUrl}
-                  paragraphNumber={navConsolidatedLabel}
-                  questionTextLSM={editedLSM.trim() || question.textEs}
-                  onRemove={async () => {
-                    const newUrls = { ...videoUrls };
-                    for (const p of navParasWithVideo) {
-                      delete newUrls[p.number];
-                    }
-                    setVideoUrls(newUrls);
-                    try {
-                      await Promise.all(navParasWithVideo.map(p =>
-                        fetch('/api/lsm', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ articleId, questionNumber: `video-p${p.number}`, lsmText: '' })
-                        })
-                      ));
-                    } catch (e) { console.error('Error removing video URL:', e); }
-                  }}
-                />
+              <div className="px-6 md:px-8 pb-6 space-y-3">
+                {navParasWithVideo.map((paragraph) => {
+                  const paraVideoUrl = videoUrls[paragraph.number] || paragraph.videoLSM;
+                  return (
+                    <VideoLSM
+                      key={paragraph.number}
+                      src={paraVideoUrl!}
+                      paragraphNumber={paragraph.number}
+                      questionTextLSM={editedLSM.trim() || question.textEs}
+                      onRemove={async () => {
+                        const newUrls = { ...videoUrls };
+                        delete newUrls[paragraph.number];
+                        setVideoUrls(newUrls);
+                        try {
+                          await fetch('/api/lsm', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ articleId, questionNumber: `video-p${paragraph.number}`, lsmText: '' })
+                          });
+                        } catch (e) { console.error('Error removing video URL:', e); }
+                      }}
+                    />
+                  );
+                })}
               </div>
             ) : (
               <div className="px-6 md:px-8 pb-6">
@@ -1874,4 +1893,3 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     </>
   );
 }
-
