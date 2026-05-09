@@ -8,6 +8,7 @@ export interface Question {
   readText?: string; // Texto bíblico a leer (ej: "LEE Ezequiel 34:15, 16") (opcional)
   preview?: string; // Adelanto del tema para el conductor del estudio (opcional)
   videoLSM?: string; // URL del video en LSM para preguntas que agrupan varios párrafos (opcional)
+  questionVideoLSM?: string; // URL del video corto que muestra SOLO la pregunta señada en LSM
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
   answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)

@@ -6,6 +6,7 @@ import { isArticleActive } from '../articles-config';
 // ============================================
 import { article58, biblicalTexts58 } from './article-58';
 import { article59, biblicalTexts59 } from './article-59';
+import { article60, biblicalTexts60 } from './article-60';
 
 // ============================================
 // MAPAS DE DATOS
@@ -15,12 +16,14 @@ import { article59, biblicalTexts59 } from './article-59';
 export const articlesMap: Record<number, ArticleData> = {
   58: article58,
   59: article59,
+  60: article60,
 };
 
 // Mapa de textos bíblicos por artículo
 export const biblicalTextsMap: Record<number, Record<string, { reference: string; text: string }[]>> = {
   58: biblicalTexts58,
   59: biblicalTexts59,
+  60: biblicalTexts60,
 };
 
 // ============================================
@@ -96,4 +99,5 @@ export function getTotalArticles(): number {
 export {
   article58, biblicalTexts58,
   article59, biblicalTexts59,
+  article60, biblicalTexts60,
 };

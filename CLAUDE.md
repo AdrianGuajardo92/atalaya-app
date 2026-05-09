@@ -132,6 +132,7 @@ interface Question {
   readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
   preview?: string;                  // Adelanto del tema para el conductor del estudio
   videoLSM?: string;                 // Video LSM unido para preguntas con varios párrafos
+  questionVideoLSM?: string;         // Video LSM corto que muestra SOLO la pregunta señada
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
   answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
@@ -322,6 +323,8 @@ Cada párrafo del artículo puede tener un video en Lengua de Señas Mexicana (L
 - Carpeta por artículo: `public/videos/article-XX/`
 - Párrafo individual: `article-XX-p01-lsm.mp4`, `article-XX-p02-lsm.mp4`, etc.
 - Pregunta con párrafos agrupados: `article-XX-p01-p02-lsm.mp4`, `article-XX-p06-p08-lsm.mp4`, etc.
+- **Pregunta señada (NUEVO)**: `article-XX-q01-lsm.mp4`, `article-XX-q02-lsm.mp4`, etc. — clip corto (3-15s) con SOLO la pregunta en LSM
+- Pregunta agrupada señada: `article-XX-q11-q12-lsm.mp4` (cuando una pregunta cubre varios párrafos)
 
 **REGLA: si una pregunta cubre varios párrafos, el video debe verse de corrido.**
 Cuando una pregunta cubre 2 o más párrafos (ej: `1, 2`), se debe crear un **video unido** para la pregunta y ponerlo en `question.videoLSM`. Los párrafos conservan sus clips individuales en `paragraph.videoLSM`.
@@ -357,6 +360,26 @@ avconvert --source SOURCE.mp4 \
 - Si la pregunta tiene `question.videoLSM`, se muestra **un solo reproductor** con todos los párrafos unidos.
 - Si no hay `question.videoLSM`, se usan los videos individuales de `paragraph.videoLSM`.
 - No eliminar los clips individuales al crear el video unido; pueden hacer falta cuando el párrafo se consulte por separado o para reutilización.
+
+**NUEVO: Video LSM de la pregunta (`questionVideoLSM`):**
+A partir del Artículo 60, cada pregunta puede tener `question.questionVideoLSM` con el video corto que muestra SOLO la pregunta señada en LSM (sin el contenido del párrafo). Es un clip de 3-15 segundos que se reconoce en el video fuente porque aparece un **icono de pregunta** (?) en la esquina inferior-derecha cuando el presentador firma la pregunta.
+
+```typescript
+{
+  number: "1",
+  textEs: "¿Qué debemos cultivar, y por qué?",
+  paragraphs: [1],
+  questionVideoLSM: "/videos/article-XX/article-XX-q01-lsm.mp4",  // ← clip corto solo de la pregunta
+  // ...
+}
+```
+
+**Renderizado:** se muestra un mini-reproductor `VideoLSM` en modo `compact` dentro de la sección intermedia LSM de la tarjeta de pregunta (junto al texto en glosas), reutilizando el componente `VideoLSM`. Permite al conductor ver la pregunta tanto en texto como señada. Implementado en [components/QuestionCard.tsx](components/QuestionCard.tsx).
+
+**Cómo identificar timestamps en el video fuente:**
+1. Extraer frames cada 1s con ffmpeg recortando la esquina superior-izquierda (donde aparece el número de párrafo) y aplicar OCR con tesseract para detectar cuando cambia el número (límites entre segmentos).
+2. Extraer frames cada 1s recortando la esquina inferior-derecha (donde aparece el icono `?`) y filtrar por tamaño de archivo: imágenes >500 bytes contienen el icono.
+3. La pregunta es el rango donde aparece el icono `?`; el párrafo es lo anterior.
 
 **Componente VideoLSM.tsx:**
 - Reproductor con controles: play/pause, velocidad (1x-2x), seek +-5s, reiniciar

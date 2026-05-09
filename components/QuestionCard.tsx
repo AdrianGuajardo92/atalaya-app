@@ -1716,6 +1716,18 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {isExpanded ? 'Ocultar Respuesta' : 'Ver Respuesta'}
               </button>
             </div>
+
+            {/* Video LSM de la Pregunta (NUEVO) - solo si existe questionVideoLSM */}
+            {question.questionVideoLSM && (
+              <div className="w-full mt-2">
+                <VideoLSM
+                  src={question.questionVideoLSM}
+                  paragraphNumber={`Pregunta ${question.number}`}
+                  questionTextLSM={editedLSM.trim() || question.textLSM || question.textEs}
+                  compact={true}
+                />
+              </div>
+            )}
           </div>
 
           {/* IMAGEN ILUSTRATIVA - Si existe (Diseño Premium) */}
