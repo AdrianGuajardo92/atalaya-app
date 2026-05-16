@@ -1,6 +1,6 @@
 ---
 name: article-editor
-description: Especialista en agregar, editar y mantener artículos de estudio de La Atalaya. Úsalo cuando el usuario quiera agregar un nuevo artículo, editar preguntas, añadir respuestas, flashcards, tarjetas bíblicas, imágenes, infografías, traducciones LSM, resúmenes de párrafos, o aplicar formato de negritas.
+description: Especialista en agregar, editar y mantener artículos de estudio de La Atalaya. Úsalo cuando el usuario quiera agregar un nuevo artículo, editar preguntas, añadir respuestas, flashcards, tarjetas bíblicas, imágenes, infografías, traducciones LSM, resúmenes de párrafos, comentarios de "Cómo comentarlo" o aplicar formato de negritas.
 ---
 
 # Editor de Artículos de La Atalaya
@@ -10,6 +10,25 @@ description: Especialista en agregar, editar y mantener artículos de estudio de
 Cada artículo vive en su propio archivo: `data/articles/article-XX.ts` (ej: `article-48.ts`).
 La configuración de artículos activos está en `data/articles-config.ts`.
 Los tipos están en `types/atalaya.ts`.
+
+## Cómo comentarlo (OBLIGATORIO en estudios nuevos)
+
+Cuando agregues un artículo nuevo o modifiques preguntas, respuestas, párrafos o `biblicalCards`, también debes revisar y aplicar la skill local:
+
+```text
+.agents/skills/como-comentarlo/SKILL.md
+```
+
+Úsala para crear o mejorar comentarios naturales de "Yo podría comentar" y comentarios sencillos para textos bíblicos. Estos comentarios son parte del contenido de estudio, no un extra opcional.
+
+Reglas rápidas:
+- No copies el campo `answer`.
+- No copies frases completas del párrafo.
+- Escribe como una persona que va a comentar en la reunión.
+- Usa lenguaje sencillo, claro y fácil de entender.
+- Si hay `biblicalCards`, agrega o mejora también el comentario de cómo usar cada texto bíblico.
+- Guarda los comentarios siguiendo el patrón actual del proyecto: `commentSuggestion` en los datos o el mapa central de `lib/commentGuidance.ts`, según corresponda.
+- Antes de cerrar, verifica que cada pregunta y cada texto bíblico solicitado tengan comentario.
 
 ## Formato de negritas (OBLIGATORIO)
 

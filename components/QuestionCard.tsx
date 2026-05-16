@@ -6,6 +6,7 @@ import { getAllBiblicalTexts } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
 import BiblicalCards from './BiblicalCards';
 import VideoLSM from './VideoLSM';
+import CommentGuide from './CommentGuide';
 
 // ─── Componente compartido para mostrar versículos bíblicos ───────────────────
 function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
@@ -1827,6 +1828,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                         ))}
                       </div>
                     )}
+
+                    <CommentGuide question={question} paragraphs={paragraphs} articleNumber={articleNum} />
                   </div>
                 </div>
 

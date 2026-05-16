@@ -12,6 +12,7 @@ export interface Question {
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
   answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)
+  commentSuggestion?: string; // Sugerencia sencilla para comentar la pregunta central
   answerContext?: string[]; // Contexto adicional separado de la respuesta directa
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
@@ -26,6 +27,7 @@ export interface Question {
     purpose: string; // Por qué está este texto / para qué sirve
     text: string; // Texto completo de la Traducción del Nuevo Mundo
     reasoningQuestion?: string; // Pregunta extra para conectar el texto con el párrafo
+    commentSuggestion?: string; // Sugerencia sencilla para comentar este texto bíblico
   }>;
   reflectionQuestions?: string[]; // Preguntas de reflexión personal
   practicalApplications?: string[]; // Aplicaciones prácticas concretas
@@ -48,6 +50,7 @@ export interface ReviewQuestion {
   question: string; // Pregunta de repaso en español
   questionLSM?: string; // Pregunta de repaso en LSM
   answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)
+  commentSuggestion?: string; // Sugerencia sencilla para comentar la pregunta de repaso
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
   flashcards?: string[] | Array<{
@@ -60,6 +63,7 @@ export interface ReviewQuestion {
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
     purpose: string; // Por qué está este texto / para qué sirve
     text: string; // Texto completo de la Traducción del Nuevo Mundo
+    commentSuggestion?: string; // Sugerencia sencilla para comentar este texto bíblico
   }>;
   image?: string; // URL de imagen ilustrativa
   imageCaption?: string; // Leyenda de la imagen

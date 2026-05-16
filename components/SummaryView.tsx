@@ -2,6 +2,7 @@
 
 import { ArticleData, Question } from '@/types/atalaya';
 import { copyToClipboard } from '@/lib/clipboard';
+import { buildBiblicalComments, buildQuestionComment } from '@/lib/commentGuidance';
 
 interface SummaryViewProps {
   article: ArticleData;
@@ -31,6 +32,21 @@ export default function SummaryView({ article }: SummaryViewProps) {
       sentences.forEach((s, i) => {
         text += `  ${i + 1}. ${s}\n`;
       });
+      const comment = buildQuestionComment(q, article.metadata.articleNumber);
+      if (comment) {
+        text += `  Cómo comentarlo: ${comment}\n`;
+      }
+      const relatedParagraphs = article.paragraphs.filter((paragraph) => q.paragraphs.includes(paragraph.number));
+      const biblicalComments = buildBiblicalComments(q.biblicalCards, {
+        questionText: q.textEs,
+        paragraphs: relatedParagraphs,
+      });
+      if (biblicalComments.length > 0) {
+        text += `  Cómo comentar textos bíblicos:\n`;
+        biblicalComments.forEach((item) => {
+          text += `    - ${item.reference}: ${item.comment}\n`;
+        });
+      }
       text += '\n';
     });
 
@@ -82,6 +98,12 @@ export default function SummaryView({ article }: SummaryViewProps) {
       <div className="space-y-4">
         {article.questions.map((question, qIndex) => {
           const sentences = getAnswerSentences(question);
+          const relatedParagraphs = article.paragraphs.filter((paragraph) => question.paragraphs.includes(paragraph.number));
+          const questionComment = buildQuestionComment(question, article.metadata.articleNumber);
+          const biblicalComments = buildBiblicalComments(question.biblicalCards, {
+            questionText: question.textEs,
+            paragraphs: relatedParagraphs,
+          });
 
           return (
             <div key={qIndex} className="summary-card">
@@ -121,6 +143,32 @@ export default function SummaryView({ article }: SummaryViewProps) {
                         </div>
                       ))}
                     </div>
+
+                    {questionComment && (
+                      <div className="mt-4 rounded-lg border border-border-subtle bg-surface-alt p-3">
+                        <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.15em] text-text-muted">
+                          Cómo comentarlo
+                        </p>
+                        <p className="text-sm leading-relaxed text-text-body">
+                          {questionComment}
+                        </p>
+                      </div>
+                    )}
+
+                    {biblicalComments.length > 0 && (
+                      <div className="mt-3 rounded-lg border border-border-subtle bg-surface-alt p-3">
+                        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.15em] text-text-muted">
+                          Cómo comentar textos bíblicos
+                        </p>
+                        <div className="space-y-2">
+                          {biblicalComments.map((item, index) => (
+                            <div key={`${item.reference}-${index}`} className="text-sm leading-relaxed text-text-secondary">
+                              <span className="font-bold text-text-primary">{item.reference}:</span> {item.comment}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 

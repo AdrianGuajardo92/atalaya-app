@@ -1,6 +1,6 @@
 ---
 name: atalaya-revista-importer
-description: Importa revistas de estudio de La Atalaya por mes y año en este proyecto. Úsalo cuando el usuario pida agregar todos los estudios de una revista, por ejemplo marzo de 2026, con artículos, preguntas, párrafos, respuestas, textos bíblicos TNM, imágenes oficiales de jw.org e integración en data/articles.
+description: Importa revistas de estudio de La Atalaya por mes y año en este proyecto. Úsalo cuando el usuario pida agregar todos los estudios de una revista, por ejemplo marzo de 2026, con artículos, preguntas, párrafos, respuestas, textos bíblicos TNM, comentarios de "Cómo comentarlo", imágenes oficiales de jw.org e integración en data/articles.
 ---
 
 # Importador de Revistas de La Atalaya
@@ -16,6 +16,7 @@ Esta skill reproduce el flujo usado para importar la revista de estudio de marzo
   - Imágenes oficiales en `question.image`, no en párrafos.
   - `biblicalTextsXX` para cada `readText`.
   - `biblicalCards` con textos reales de la Traducción del Nuevo Mundo.
+  - Comentarios naturales de "Cómo comentarlo" para preguntas y textos bíblicos.
   - `data/articles/index.ts` actualizado.
   - `data/articles-config.ts` actualizado.
 
@@ -28,7 +29,26 @@ Esta skill reproduce el flujo usado para importar la revista de estudio de marzo
 5. Las respuestas (`answer`) deben ser arrays de oraciones breves con negritas en conceptos clave.
 6. Los resúmenes de párrafo (`summary`) deben ser resúmenes reales, no copias ni recortes del párrafo.
 7. El contenido completo del párrafo (`content`) no lleva negritas.
-8. Si una revista incluye material que no sea artículo de estudio, como “Personaje bíblico”, no lo importes como artículo de estudio.
+8. Al crear estudios nuevos, es obligatorio leer y aplicar `.agents/skills/como-comentarlo/SKILL.md`.
+9. Si una revista incluye material que no sea artículo de estudio, como “Personaje bíblico”, no lo importes como artículo de estudio.
+
+## Cómo Comentarlo en Artículos Nuevos
+
+Después de generar preguntas, respuestas, párrafos, resúmenes y `biblicalCards`, lee:
+
+```text
+.agents/skills/como-comentarlo/SKILL.md
+```
+
+Aplica esa skill antes de cerrar la importación:
+
+- Crea comentarios naturales de "Yo podría comentar" para cada pregunta del artículo.
+- Si el proyecto está usando `commentSuggestion` en los datos, guarda ahí los comentarios.
+- Si el proyecto está usando `lib/commentGuidance.ts` como mapa central, actualiza ese mapa sin crear otra arquitectura.
+- Para cada `biblicalCard`, agrega o mejora el comentario sencillo de cómo usar ese texto bíblico, si el tipo y el patrón actual lo permiten.
+- No copies el `answer`, el `summary` ni frases largas del `content`.
+- El comentario debe ayudar al usuario a participar en la reunión con palabras claras y humanas.
+- Verifica cobertura: ninguna pregunta del artículo nuevo debe quedar sin "Cómo comentarlo".
 
 ## Resúmenes de Párrafos
 
@@ -85,6 +105,7 @@ summary: "¿Cómo demostramos que nos interesamos por las personas? Tratando de 
    - Asegúrate de que todos los textos citados en los párrafos estén en `biblicalCards`.
    - Reescribe todos los `summary` como resúmenes reales: sencillos, breves, ligados a la respuesta y con negritas útiles.
    - Verifica que ningún `summary` sea una copia larga del `content`, una pregunta, una frase cortada o un recorte con `...`.
+   - Aplica `.agents/skills/como-comentarlo/SKILL.md` y agrega comentarios naturales para las preguntas y textos bíblicos nuevos.
 
 6. Ejecuta verificación técnica:
    ```bash
@@ -125,6 +146,9 @@ python3 .agents/skills/atalaya-revista-importer/scripts/import_watchtower_issue.
 - [ ] Cada archivo nuevo exporta `biblicalTextsXX` y `articleXX`.
 - [ ] Cada párrafo tiene un `summary` real, breve, sencillo y conectado con su pregunta.
 - [ ] Ningún `summary` es una copia de las primeras frases del párrafo ni termina con `...`.
+- [ ] Se leyó y aplicó `.agents/skills/como-comentarlo/SKILL.md`.
+- [ ] Cada pregunta nueva tiene un comentario natural de "Cómo comentarlo".
+- [ ] Los textos bíblicos nuevos tienen comentarios sencillos cuando el patrón actual del proyecto lo permite.
 - [ ] `index.ts` importa, mapea y reexporta los nuevos artículos.
 - [ ] `articles-config.ts` muestra los artículos activos correctos.
 - [ ] `npx tsc --noEmit` pasa.
