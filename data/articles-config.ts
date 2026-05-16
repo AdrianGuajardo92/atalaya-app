@@ -21,9 +21,6 @@ export const articlesConfig: {
 
   // Artículos activos (visibles) - solo pon los números de los artículos que quieres mostrar
   activeArticles: [
-    59,  // "Cómo prepararse para las dificultades que vengan después del bautismo" (27 Abr-3 May)
-    60,  // "Mejoremos nuestro 'arte de enseñar' en la predicación" (4-10 May)
-    61,  // "Confiemos en el Soberano del universo" (11-17 May)
     62,  // "Cómo luchar contra las distracciones" (18-24 May)
     63,  // "Sea perspicaz y tendrá éxito" (25-31 May)
     64,  // "Por qué somos felices aunque nos odien" (1-7 Jun)
@@ -31,7 +28,7 @@ export const articlesConfig: {
 
   // Artículo que se mostrará por defecto al cargar la app
   // Si es null, se usará el primer artículo activo
-  defaultArticleNumber: 61,
+  defaultArticleNumber: 62,
 };
 
 /**
