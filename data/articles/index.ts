@@ -7,6 +7,10 @@ import { isArticleActive } from '../articles-config';
 import { article58, biblicalTexts58 } from './article-58';
 import { article59, biblicalTexts59 } from './article-59';
 import { article60, biblicalTexts60 } from './article-60';
+import { article61, biblicalTexts61 } from './article-61';
+import { article62, biblicalTexts62 } from './article-62';
+import { article63, biblicalTexts63 } from './article-63';
+import { article64, biblicalTexts64 } from './article-64';
 
 // ============================================
 // MAPAS DE DATOS
@@ -17,6 +21,10 @@ export const articlesMap: Record<number, ArticleData> = {
   58: article58,
   59: article59,
   60: article60,
+  61: article61,
+  62: article62,
+  63: article63,
+  64: article64,
 };
 
 // Mapa de textos bíblicos por artículo
@@ -24,6 +32,10 @@ export const biblicalTextsMap: Record<number, Record<string, { reference: string
   58: biblicalTexts58,
   59: biblicalTexts59,
   60: biblicalTexts60,
+  61: biblicalTexts61,
+  62: biblicalTexts62,
+  63: biblicalTexts63,
+  64: biblicalTexts64,
 };
 
 // ============================================
@@ -100,4 +112,8 @@ export {
   article58, biblicalTexts58,
   article59, biblicalTexts59,
   article60, biblicalTexts60,
+  article61, biblicalTexts61,
+  article62, biblicalTexts62,
+  article63, biblicalTexts63,
+  article64, biblicalTexts64,
 };
