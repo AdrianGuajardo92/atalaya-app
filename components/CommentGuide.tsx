@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { Paragraph, Question } from '@/types/atalaya';
 import { buildBiblicalComments, buildQuestionComment } from '@/lib/commentGuidance';
 import { copyToClipboard } from '@/lib/clipboard';
@@ -15,7 +15,10 @@ function CopyButton({ text, copied, onCopy }: { text: string; copied: boolean; o
   return (
     <button
       type="button"
-      onClick={() => onCopy(text)}
+      onClick={(event) => {
+        event.stopPropagation();
+        onCopy(text);
+      }}
       className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border transition-all ${
         copied
           ? 'border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-400'
@@ -38,6 +41,7 @@ function CopyButton({ text, copied, onCopy }: { text: string; copied: boolean; o
 
 export default function CommentGuide({ question, paragraphs, articleNumber }: CommentGuideProps) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [flippedBiblicalCards, setFlippedBiblicalCards] = useState<Set<number>>(new Set());
   const questionComment = buildQuestionComment(question, articleNumber);
   const biblicalComments = buildBiblicalComments(question.biblicalCards, {
     questionText: question.textEs,
@@ -53,6 +57,26 @@ export default function CommentGuide({ question, paragraphs, articleNumber }: Co
       setTimeout(() => setCopiedKey(null), 1800);
     } catch (error) {
       console.error('Error al copiar comentario:', error);
+    }
+  };
+
+  const toggleBiblicalCard = (index: number) => {
+    setFlippedBiblicalCards((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
+  const handleBiblicalCardKeyDown = (event: KeyboardEvent<HTMLDivElement>, index: number) => {
+    if (event.target !== event.currentTarget) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleBiblicalCard(index);
     }
   };
 
@@ -88,24 +112,88 @@ export default function CommentGuide({ question, paragraphs, articleNumber }: Co
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.15em] text-text-muted">
               Cómo comentar textos bíblicos
             </p>
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2">
               {biblicalComments.map((item, index) => {
                 const key = `biblical-${index}`;
+                const isFlipped = flippedBiblicalCards.has(index);
                 return (
-                  <div key={`${item.reference}-${index}`} className="rounded-lg border border-border-subtle bg-surface p-4">
-                    <div className="mb-2 flex items-center justify-between gap-3">
-                      <span className="font-serif text-sm font-bold text-text-primary">
-                        {item.reference}
-                      </span>
-                      <CopyButton
-                        text={`${item.reference}\n${item.comment}`}
-                        copied={copiedKey === key}
-                        onCopy={(text) => handleCopy(key, text)}
-                      />
+                  <div
+                    key={`${item.reference}-${index}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={isFlipped}
+                    aria-label={`${item.reference}. ${isFlipped ? 'Mostrando el texto bíblico' : 'Mostrando el comentario'}`}
+                    className="relative h-[250px] cursor-pointer outline-none group"
+                    style={{ perspective: '1000px' }}
+                    onClick={() => toggleBiblicalCard(index)}
+                    onKeyDown={(event) => handleBiblicalCardKeyDown(event, index)}
+                  >
+                    <div
+                      className="relative h-full w-full transition-transform duration-700 ease-in-out"
+                      style={{
+                        transformStyle: 'preserve-3d',
+                        transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0 flex flex-col overflow-hidden rounded-xl border border-border-subtle bg-surface shadow-sm transition-shadow group-hover:shadow-md"
+                        style={{
+                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: 'hidden',
+                        }}
+                      >
+                        <div className="flex items-start justify-between gap-3 border-b border-border-subtle bg-surface-alt px-4 py-3">
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-tertiary">
+                              Texto bíblico
+                            </span>
+                            <p className="mt-1 font-serif text-base font-bold text-text-primary">
+                              {item.reference}
+                            </p>
+                          </div>
+                          <CopyButton
+                            text={`${item.reference}\n${item.comment}`}
+                            copied={copiedKey === key}
+                            onCopy={(text) => handleCopy(key, text)}
+                          />
+                        </div>
+                        <div className="flex-1 overflow-y-auto p-4 hide-scrollbar">
+                          <p className="text-sm leading-relaxed text-text-secondary">
+                            {item.comment}
+                          </p>
+                        </div>
+                        <div className="border-t border-border-subtle bg-surface-alt px-4 py-2">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-muted">
+                            Toca para ver el texto
+                          </p>
+                        </div>
+                      </div>
+
+                      <div
+                        className="absolute inset-0 flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg"
+                        style={{
+                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: 'hidden',
+                          transform: 'rotateY(180deg)',
+                        }}
+                      >
+                        <div className="border-b border-slate-700 bg-slate-900/60 px-4 py-3 text-center">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                            {item.reference}
+                          </span>
+                        </div>
+                        <div className="flex-1 overflow-y-auto px-5 py-4 hide-scrollbar">
+                          <p className="font-serif text-base italic leading-relaxed text-white">
+                            &ldquo;{item.text || 'Texto bíblico no disponible.'}&rdquo;
+                          </p>
+                        </div>
+                        <div className="border-t border-slate-700 bg-slate-900/40 px-4 py-2">
+                          <p className="text-center text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                            Toca para volver al comentario
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-sm leading-relaxed text-text-secondary">
-                      {item.comment}
-                    </p>
                   </div>
                 );
               })}

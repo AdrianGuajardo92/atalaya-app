@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { ReviewQuestion } from '@/types/atalaya';
 import FlashCards from './FlashCards';
-import BiblicalCards from './BiblicalCards';
 
 interface ReviewQuestionCardProps {
   reviewQuestion: ReviewQuestion;
@@ -249,46 +248,29 @@ export default function ReviewQuestionCard({
                 </div>
               </div>
 
-              {/* Grid de Tarjetas */}
-              {(reviewQuestion.flashcards || reviewQuestion.biblicalCards) && (
+              {/* Tarjetas Didácticas */}
+              {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (
                 <div className="bg-surface-alt p-8">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Tarjetas Didácticas */}
-                    {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (
-                      <div className="space-y-4">
-                        <FlashCards
-                          cards={
-                            typeof reviewQuestion.flashcards[0] === 'string'
-                              ? (reviewQuestion.flashcards as string[]).map((q) => ({ question: q, answer: '' }))
-                              : reviewQuestion.flashcards as Array<{ question: string; answer: string; questionLSM?: string; answerLSM?: string }>
-                          }
-                          questionNumber={`review-${index}`}
-                          lsmData={allLsmData}
-                          onLSMUpdate={(key, text) => {
-                            fetch('/api/lsm', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({ articleId: articleId, questionNumber: key, lsmText: text })
-                            });
-                          }}
-                          hiddenCards={hiddenCards}
-                          onToggleHidden={onToggleHidden}
-                          articleId={articleId}
-                        />
-                      </div>
-                    )}
-
-                    {/* Textos Bíblicos */}
-                    {reviewQuestion.biblicalCards && reviewQuestion.biblicalCards.length > 0 && (
-                      <div className="space-y-4">
-                        <BiblicalCards
-                          cards={reviewQuestion.biblicalCards}
-                          questionNumber={`review-${index}`}
-                          hiddenCards={hiddenCards}
-                          onToggleHidden={onToggleHidden}
-                        />
-                      </div>
-                    )}
+                  <div className="space-y-4">
+                    <FlashCards
+                      cards={
+                        typeof reviewQuestion.flashcards[0] === 'string'
+                          ? (reviewQuestion.flashcards as string[]).map((q) => ({ question: q, answer: '' }))
+                          : reviewQuestion.flashcards as Array<{ question: string; answer: string; questionLSM?: string; answerLSM?: string }>
+                      }
+                      questionNumber={`review-${index}`}
+                      lsmData={allLsmData}
+                      onLSMUpdate={(key, text) => {
+                        fetch('/api/lsm', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ articleId: articleId, questionNumber: key, lsmText: text })
+                        });
+                      }}
+                      hiddenCards={hiddenCards}
+                      onToggleHidden={onToggleHidden}
+                      articleId={articleId}
+                    />
                   </div>
                 </div>
               )}

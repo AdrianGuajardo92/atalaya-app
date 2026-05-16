@@ -216,7 +216,7 @@ export default function FlashCards({ cards, questionNumber, lsmData, onLSMUpdate
 
   return (
     <div className="mt-4">
-      {/* Header con altura fija para alineación con Textos Clave */}
+      {/* Header con altura fija para mantener estable la tarjeta */}
       <div className="flex items-center justify-between mb-4 min-h-[40px]">
         <div className="text-xs font-bold text-text-muted uppercase tracking-wider">🎴 Tarjetas Didácticas</div>
         <div className="flex items-center gap-3">

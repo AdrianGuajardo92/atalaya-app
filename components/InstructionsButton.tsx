@@ -23,7 +23,6 @@ Una app Next.js para dirigir el estudio de La Atalaya. Tiene soporte bilingüe: 
 - \`components/QuestionCard.tsx\` - Muestra las preguntas con diseño de tarjetas
 - \`components/ReviewQuestionCard.tsx\` - Muestra las preguntas de repaso
 - \`components/FlashCards.tsx\` - Tarjetas didácticas amarillas
-- \`components/BiblicalCards.tsx\` - Tarjetas de textos bíblicos moradas
 - \`components/StudyHeader.tsx\` - Encabezado del estudio
 - \`components/Timer.tsx\` - Temporizador flotante
 - \`app/page.tsx\` - Página principal

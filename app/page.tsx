@@ -67,6 +67,7 @@ export default function Home() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showLsmImport, setShowLsmImport] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
 
   // Referencia para hacer scroll al contenido
   const contentRef = useRef<HTMLDivElement>(null);
@@ -401,8 +402,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)]">
-      {/* Temporizador flotante */}
-      <Timer />
+      {/* Temporizador flotante: oculto por defecto y activable desde el engrane */}
+      {showTimer && <Timer />}
 
       {/* Modal de importación masiva de LSM */}
       <LsmBulkImport
@@ -535,6 +536,35 @@ export default function Home() {
                 </div>
               </div>
             )}
+
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-[#3A3A37]/40">
+              <p className="text-[11px] font-semibold text-slate-400 dark:text-[#7D7B73] uppercase tracking-[0.15em] mb-2 px-1">Herramientas</p>
+              <button
+                type="button"
+                onClick={() => setShowTimer((current) => !current)}
+                aria-pressed={showTimer}
+                className="w-full rounded-lg border border-slate-200 dark:border-[#3A3A37]/70 bg-white dark:bg-[#2A2826] px-3 py-2 text-xs font-medium text-slate-700 dark:text-[#C2C0B6] shadow-sm outline-none transition-all hover:bg-slate-50 dark:hover:bg-[#34312F] focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 flex items-center justify-between gap-3"
+              >
+                <span className="flex items-center gap-2">
+                  <svg className={showTimer ? 'text-amber-500' : 'text-slate-400 dark:text-[#8B8980]'} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                  Cronómetro
+                </span>
+                <span
+                  className={`relative h-4 w-8 flex-shrink-0 rounded-full transition-colors ${
+                    showTimer ? 'bg-amber-400' : 'bg-slate-300 dark:bg-[#5A5850]'
+                  }`}
+                >
+                  <span
+                    className={`absolute left-0.5 top-0.5 h-3 w-3 rounded-full bg-white shadow-sm transition-transform ${
+                      showTimer ? 'translate-x-4' : 'translate-x-0'
+                    }`}
+                  />
+                </span>
+              </button>
+            </div>
           </div>
         )}
       </div>

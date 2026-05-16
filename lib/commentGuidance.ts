@@ -18,6 +18,7 @@ interface BiblicalCommentContext {
 export interface BiblicalComment {
   reference: string;
   comment: string;
+  text: string;
 }
 
 const PROPER_STARTS = [
@@ -414,6 +415,7 @@ export function buildBiblicalComment(card: BiblicalCommentSource, context?: Bibl
     return {
       reference: card.reference,
       comment: cleanStudyText(card.commentSuggestion),
+      text: cleanStudyText(card.text),
     };
   }
 
@@ -426,12 +428,14 @@ export function buildBiblicalComment(card: BiblicalCommentSource, context?: Bibl
     return {
       reference: card.reference,
       comment: `Yo podría comentar: "Con ${card.reference} destacaría que ${prepareQuotedComment(bibleInsight)}. ${contextSentence} ${buildBiblicalApplicationSentence(contextIdea)}"`,
+      text: cleanStudyText(card.text),
     };
   }
 
   return {
     reference: card.reference,
     comment: `Yo podría comentar: "Con ${card.reference} podría explicar que ${prepareQuotedComment(bibleInsight)}. ${contextSentence} ${buildBiblicalApplicationSentence(contextIdea)}"`,
+    text: cleanStudyText(card.text),
   };
 }
 

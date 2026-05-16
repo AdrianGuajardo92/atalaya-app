@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import { getAllBiblicalTexts } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
-import BiblicalCards from './BiblicalCards';
 import VideoLSM from './VideoLSM';
 import CommentGuide from './CommentGuide';
 
@@ -80,7 +79,7 @@ interface QuestionCardProps {
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, hiddenCards, onToggleHidden, usedItems, onToggleUsedItem, articleId }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, usedItems, onToggleUsedItem, articleId }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [paragraphsModalClosing, setParagraphsModalClosing] = useState(false);
   const [showParagraphImageModal, setShowParagraphImageModal] = useState<string | null>(null);
@@ -914,8 +913,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 {relatedParagraphs.some(p => p.image) && (
                   <button
                     onClick={() => {
-                      const img = relatedParagraphs.find(p => p.image)?.image!;
-                      setShowParagraphImageModal(img);
+                      const img = relatedParagraphs.find(p => p.image)?.image;
+                      if (img) setShowParagraphImageModal(img);
                     }}
                     className="md:hidden p-1.5 rounded-lg bg-blue-50 dark:bg-[#332520] border border-blue-200 dark:border-[#5C3828] text-blue-700 dark:text-[#E8A68B] transition-colors"
                     title="Ver infografía"
@@ -1834,27 +1833,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </div>
 
               </div>
-
-              {/* Línea divisoria elegante */}
-              <div className="px-8 py-4 bg-surface">
-                <div className="flex items-center justify-center gap-4">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
-                  <span className="text-amber-400 dark:text-[#E09070] text-sm">✦</span>
-                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
-                </div>
-              </div>
-
-              {/* Textos Bíblicos (Fondo sutil) */}
-              {question.biblicalCards && (
-                <div className="bg-surface-alt p-8">
-                  <BiblicalCards
-                    cards={question.biblicalCards}
-                    questionNumber={question.number}
-                    hiddenCards={hiddenCards}
-                    onToggleHidden={onToggleHidden}
-                  />
-                </div>
-              )}
 
             </div>
           )}
