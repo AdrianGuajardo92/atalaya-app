@@ -8,7 +8,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 **Espejo Cursor:** [`.claude/skills/`](.claude/skills/) — se sincroniza con `./scripts/sync-skills.sh` (no editar manualmente).
 
-Skills exclusivas del dominio: `article-editor`, `atalaya-revista-importer`, `como-comentarlo`, `respuestas-conductor`, `design-system`, `study-lifecycle`, `lsm-video`, `lsm-translations`, `kv-maintenance`, `box-supplement`, etc.
+Skills exclusivas del dominio: `article-editor`, `atalaya-revista-importer`, `como-comentarlo`, `respuestas-conductor`, `design-system`, `study-lifecycle`, `lsm-video`, `lsm-question-clips`, `lsm-translations`, `kv-maintenance`, `box-supplement`, etc.
 
 Tras editar skills en `.agents/skills/`, ejecutar `npm run skills:sync`.
 

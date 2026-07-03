@@ -311,9 +311,24 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     loadCustomApplications();
   }, [articleId, question.number, question.practicalApplications]);
 
+  // Obtener los párrafos relacionados con esta pregunta
+  const relatedParagraphs = useMemo(() =>
+    paragraphs.filter(p => question.paragraphs.includes(p.number)),
+    [paragraphs, question.paragraphs]
+  );
+
   // Cargar URLs de videos LSM desde Vercel KV cuando se abre el modal de párrafos
   useEffect(() => {
-    if (!showParagraphsModal) return;
+    if (!showParagraphsModal) {
+      setVideoUrls({});
+      setActiveVideoParaNum(null);
+      return;
+    }
+
+    const firstLocalVideo = relatedParagraphs.find(p => p.videoLSM);
+    setActiveVideoParaNum(firstLocalVideo?.number ?? null);
+
+    let cancelled = false;
     const loadVideoUrls = async () => {
       const urls: Record<number, string> = {};
       for (const p of relatedParagraphs) {
@@ -329,14 +344,17 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           console.error(`Error loading video URL for paragraph ${p.number}:`, error);
         }
       }
+      if (cancelled) return;
       setVideoUrls(urls);
       // Auto-seleccionar el primer párrafo con video para el panel desktop
       const firstWithVideo = relatedParagraphs.find(p => urls[p.number] || p.videoLSM);
-      if (firstWithVideo) setActiveVideoParaNum(firstWithVideo.number);
+      setActiveVideoParaNum(firstWithVideo?.number ?? null);
     };
     loadVideoUrls();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showParagraphsModal, articleId]);
+    return () => {
+      cancelled = true;
+    };
+  }, [showParagraphsModal, articleId, relatedParagraphs]);
 
   // Sincronizar estados cuando cambia la pregunta o el modo de navegación
   useEffect(() => {
@@ -383,17 +401,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [showParagraphsModal, paragraphsModalClosing, closeParagraphsModal]);
-
-
-
-
-
-  // Obtener los párrafos relacionados con esta pregunta
-  const relatedParagraphs = useMemo(() =>
-    paragraphs.filter(p => question.paragraphs.includes(p.number)),
-    [paragraphs, question.paragraphs]
-  );
-
   const paragraphsWithSidebar = useMemo(
     () => getParagraphsWithSidebar(relatedParagraphs),
     [relatedParagraphs]

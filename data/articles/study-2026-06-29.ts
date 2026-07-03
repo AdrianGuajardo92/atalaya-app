@@ -107,6 +107,7 @@ export const study20260629: ArticleData = {
   "questions": [
     {
       "number": "1",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q01-lsm.mp4",
       "textEs": "¿Por qué son un regalo de Jehová los buenos amigos?",
       "textLSM": "",
       "paragraphs": [
@@ -144,6 +145,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "2",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q02-lsm.mp4",
       "textEs": "¿Por qué es importante que el esposo y la esposa sigan fortaleciendo su amistad? (Mateo 19:6).",
       "textLSM": "",
       "paragraphs": [
@@ -173,6 +175,8 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "3, 4",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q3-q4-lsm.mp4",
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p03-p04-lsm.mp4",
       "textEs": "¿Qué nos ayudará a encontrar un buen esposo o esposa? (Proverbios 18:22).",
       "textLSM": "",
       "paragraphs": [
@@ -213,6 +217,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "5",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q05-lsm.mp4",
       "textEs": "¿Por qué es importante que la persona que elijamos sea un Testigo bautizado?",
       "textLSM": "",
       "paragraphs": [
@@ -264,6 +269,8 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "6, 7",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q6-q7-lsm.mp4",
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p06-p07-lsm.mp4",
       "textEs": "¿Qué preguntas debe hacerse usted si está interesado en alguien?",
       "textLSM": "",
       "paragraphs": [
@@ -302,6 +309,8 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "8, 9",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q8-q9-lsm.mp4",
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p08-p09-lsm.mp4",
       "textEs": "¿Qué ayudará a alguien a decidir si debe casarse o no con una persona? (Vea también la imagen).",
       "textLSM": "",
       "paragraphs": [
@@ -334,6 +343,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "10",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q10-lsm.mp4",
       "textEs": "¿Por qué es bueno que el esposo y la esposa saquen tiempo para estar juntos?",
       "textLSM": "",
       "paragraphs": [
@@ -356,6 +366,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "11",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q11-lsm.mp4",
       "textEs": "¿Qué puede poner en peligro la amistad del esposo y la esposa?",
       "textLSM": "",
       "paragraphs": [
@@ -377,6 +388,8 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "12, 13",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q12-q13-lsm.mp4",
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p12-p13-lsm.mp4",
       "textEs": "a) ¿Qué han hecho algunos matrimonios para asegurarse de pasar tiempo juntos? (Vea también la imagen). b) ¿Qué importancia debemos darle a la relación con nuestro esposo o esposa? (Vea el recuadro “ ¿Qué lugar ocupa en nuestra vida?”).",
       "textLSM": "",
       "paragraphs": [
@@ -475,6 +488,8 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "14, 15",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q14-q15-lsm.mp4",
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p14-p15-lsm.mp4",
       "textEs": "¿Por qué deben esforzarse el esposo y la esposa por resolver los problemas que aparezcan en su matrimonio? Ponga un ejemplo.",
       "textLSM": "",
       "paragraphs": [
@@ -522,6 +537,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "16",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q16-lsm.mp4",
       "textEs": "Según 1 Corintios 13:4-8a, ¿qué puede ayudar a un matrimonio que tiene graves problemas? (Vea también la imagen y el recuadro “ Ayudas para fortalecer su amistad”).",
       "textLSM": "",
       "paragraphs": [
@@ -575,6 +591,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": "17",
+      "questionVideoLSM": "/videos/study-2026-06-29/study-2026-06-29-q17-lsm.mp4",
       "textEs": "¿Cómo pueden ser felices quienes están pensando en casarse y quienes ya están casados?",
       "textLSM": "",
       "paragraphs": [
@@ -613,66 +630,79 @@ export const study20260629: ArticleData = {
   "paragraphs": [
     {
       "number": 1,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p01-lsm.mp4",
       "content": "LOS buenos amigos son un regalo de Jehová (Sant. 1:17). Lo aman a él y también a nosotros. Se alegran cuando estamos felices, nos consuelan cuando estamos tristes y nos aconsejan con franqueza cuando lo necesitamos. Son leales y confiables. Sin duda, los amigos así “alegran el corazón” (Prov. 27:9).",
       "summary": "Los **buenos amigos** son un **regalo de Jehová** que nos consuelan, aconsejan y alegran el corazón."
     },
     {
       "number": 2,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p02-lsm.mp4",
       "content": "Pues bien, el esposo y la esposa deben esforzarse por ser mejores amigos. No deberían descuidar su amistad, sino seguir fortaleciéndola todo el tiempo. De lo contrario, podrían empezar a sentirse solos, frustrados y hasta enojados. En cambio, si se esfuerzan para que su amistad continúe creciendo, disfrutarán de la relación más estrecha que puede haber entre dos personas (lea Mateo 19:6). En este artículo veremos lo que pueden hacer el esposo y la esposa para seguir reforzando su amistad. Pero primero analizaremos qué ayudará a un cristiano soltero a elegir bien la persona que será su mejor amiga el resto de su vida.",
       "summary": "El esposo y la esposa deben **fortalecer su amistad** para disfrutar la relación más estrecha posible."
     },
     {
       "number": 3,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p03-lsm.mp4",
       "content": "Las grandes decisiones pueden afectar el resto de nuestra vida para bien o para mal, así que antes de tomarlas debemos pensar con cuidado. Hay que analizar bien los posibles pros y contras.",
       "summary": "Antes de decidir con quién casarse, debemos **analizar con cuidado** las consecuencias a largo plazo."
     },
     {
       "number": 4,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p04-lsm.mp4",
       "content": "Una de las decisiones más importantes es elegir con quién nos casaremos, pues esa persona será nuestra amiga el resto de nuestra vida. Como Jehová fue quien creó el matrimonio, lo más lógico es que sigamos su guía a la hora de tomar esa decisión. Él quiere que encontremos un buen esposo o esposa y siempre sabe lo que es mejor para nosotros (lea Proverbios 18:22; Is. 48:17, 18). Los principios que hallamos en su Palabra pueden ayudar a un cristiano a encontrar una persona adecuada para él.",
       "summary": "Seguir la **guía de Jehová** nos ayuda a encontrar un buen esposo o esposa."
     },
     {
       "number": 5,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p05-lsm.mp4",
       "content": "Cuando nos bautizamos, llegamos a ser amigos de Dios (Sal. 25:14). Por eso, si usted desea casarse, debe elegir a alguien que ya sea amigo de Jehová (1 Cor. 7:39). Así demostrará que respeta las normas de Jehová y podrá ver a su esposo o esposa como una bendición que viene de él (Prov. 19:14). También se ahorrará los problemas de estar “bajo un yugo desigual con los no creyentes” (2 Cor. 6:14). Sería insensato salir con alguien que no es Testigo quizás porque no haya encontrado a nadie adecuado en el pueblo de Jehová. Tampoco estaría bien tratar de justificarse pensando que con el tiempo puede que acepte la verdad.",
       "summary": "Debemos elegir a alguien que ya sea **amigo de Jehová**, no estar bajo un **yugo desigual**."
     },
     {
       "number": 6,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p06-lsm.mp4",
       "content": "Ahora bien, no piense que cualquier persona bautizada será adecuada para usted. Si está interesado en alguien, pregúntese: “¿Cómo trata a la familia? ¿Es considerado y respetuoso? ¿Qué clase de amigos tiene? ¿Cómo actúa cuando surge un desacuerdo? ¿Insiste en salirse con la suya, o está dispuesto a ceder cuando no se viola ningún principio bíblico? ¿Qué actitud tiene hacia el dinero?”.",
       "summary": "Conviene hacerse **preguntas prácticas** sobre carácter, familia, amistades y actitud."
     },
     {
       "number": 7,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p07-lsm.mp4",
       "content": "También es bueno que se pregunte: “¿Se nota que ama profundamente a Jehová? ¿Se está esforzando por ponerse ‘la nueva personalidad’? ¿Me ayudará a servir más a Jehová? ¿Tenemos las mismas metas espirituales? ¿Veo posible que cada uno llegue a convertirse en el mejor amigo del otro?” (Col. 3:9, 10). La hermana debe preguntarse si él podrá ser, además de su mejor amigo, un buen cabeza de familia (1 Cor. 11:3). Y el hermano debe preguntarse si ella estará dispuesta a aceptar su autoridad como cabeza a pesar de las imperfecciones de él. Claro está, toma tiempo responder estas preguntas. Así que aproveche el noviazgo para conocer bien a la persona.",
       "summary": "Durante el noviazgo hay que evaluar metas espirituales, respeto y disposición para el matrimonio."
     },
     {
       "number": 8,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p08-lsm.mp4",
       "content": "Durante el noviazgo, algo que lo ayudará a tomar una buena decisión es tratar de averiguar cómo es en realidad la persona. Pregúnteles a otros qué opinan de su reputación y sus cualidades. Por ejemplo, ¿tiene fama de ser humilde, amable y razonable? Sarah, una hermana de la Guayana Francesa que se casó con un hermano llamado Daniel, dice: “Les pedí opiniones sobre Daniel a varias personas. Hablé con su compañero de precursorado con el que vivía, con un anciano de su congregación, con amigos en común y con hermanas de su congregación”. También podría preguntarle con tacto a la persona si hay algo de su pasado o su presente que usted debería saber, pues hay ciertas cosas que después podrían causar graves problemas en el matrimonio.",
       "summary": "Investigar la **reputación real** de la persona ayuda a tomar una buena decisión."
     },
     {
       "number": 9,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p09-lsm.mp4",
       "content": "Si usted tiene serias dudas sobre la persona o si algunos amigos maduros le comentan algo que les preocupa, tómeselo en serio. Eso lo ayudará a decidir si debe casarse o no con la persona. A continuación, analizaremos cómo pueden fortalecer su amistad quienes ya están casados.",
       "summary": "Las **dudas serias** y las preocupaciones de amigos maduros deben tomarse en cuenta."
     },
     {
       "number": 10,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p10-lsm.mp4",
       "content": "El esposo y la esposa fortalecen su amistad y su matrimonio sacando tiempo para estar juntos aunque estén muy ocupados. Eso les permite hablar de lo que les pasó durante el día, contarse sus pensamientos y sentimientos más profundos, mostrarse cariño y simplemente hacer cosas divertidas juntos.",
       "summary": "Sacar **tiempo juntos** fortalece la comunicación, el cariño y la diversión en pareja."
     },
     {
       "number": 11,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p11-lsm.mp4",
       "content": "Si el esposo y la esposa son buenos amigos, preferirán estar juntos y no separados. Claro, quizás haya momentos en los que temporalmente no puedan estar juntos. Pero estar alejados el uno del otro por largos periodos de tiempo puede ser peligroso. Por ejemplo, hay quienes han aceptado un trabajo en el extranjero y han tenido que estar lejos de su familia durante mucho tiempo. Aunque es posible que esa decisión traiga beneficios económicos, también puede causar graves daños en el matrimonio.",
       "summary": "Estar **separados por mucho tiempo** puede dañar gravemente la amistad matrimonial."
     },
     {
       "number": 12,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p12-lsm.mp4",
       "content": "Veamos lo que han hecho algunos matrimonios para asegurarse de pasar tiempo juntos con regularidad. Leah, de Guam, dice: “A mi esposo y a mí nos encanta hacer juntos una gran variedad de cosas. Pocas veces participamos en actividades sociales en las que no esté el otro”. Roxanne, de Estados Unidos, añade: “Cada vez estamos más ocupados, así que tuvimos que incluir en nuestro horario ratos para estar juntos, tal como hacemos con otros asuntos importantes” (compare con Amós 3:3). Un hermano de Francia llamado Damien explica: “Hemos visto que es bueno interesarnos en las cosas que le gusta hacer al otro, y con el tiempo hemos llegado a disfrutarlas también” (Mat. 7:12). Y Katie, también de Estados Unidos, dice: “A veces guardamos los teléfonos para que no nos distraigan”.",
       "summary": "Varios matrimonios **programan tiempo juntos** e interés mutuo en las actividades del otro."
     },
     {
       "number": 13,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p13-lsm.mp4",
       "content": "Por encima de todo, pasen tiempo juntos en actividades espirituales. Myriam, de Francia, cuenta: “Empezamos el día leyendo la Biblia y luego comentamos lo que nos gustó y lo que podemos aplicar en nuestra vida. Esos momentos son muy especiales”. Y añade: “También me encanta que oremos juntos porque así puedo escuchar lo mucho que mi esposo ama a Jehová”. Katie, mencionada antes, explica: “Lo que más nos gusta hacer juntos es predicar. Nos une mucho oír cómo el otro habla de Jehová, y seguimos aprendiendo cosas nuevas el uno del otro” (Prov. 27:17).",
       "summary": "Las actividades **espirituales en pareja**, como estudio y oración, unen más a los esposos.",
       "sidebar": {
@@ -687,16 +717,19 @@ export const study20260629: ArticleData = {
     },
     {
       "number": 14,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p14-lsm.mp4",
       "content": "Debido a la imperfección, los matrimonios pasarán por problemas. La Biblia dice de manera realista que los casados “tendrán dificultades en la vida” (1 Cor. 7:28). Una nota de estudio de este versículo explica que esta expresión “alude a los problemas y dificultades que suelen sufrir los que se casan”. Incluso en los matrimonios más unidos surgirán desacuerdos. Cuando aparecen esos problemas, el esposo y la esposa deben esforzarse por permanecer unidos y resolverlos. ¿Por qué?",
       "summary": "Los matrimonios enfrentarán **problemas**, pero deben esforzarse por permanecer unidos."
     },
     {
       "number": 15,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p15-lsm.mp4",
       "content": "Pensemos en una obra de arte o una construcción famosa. Si sufre algún daño, lo más seguro es que sus dueños decidan restaurarla. Es posible que dediquen enormes cantidades de dinero y otros recursos a la restauración, que puede durar años. ¿Por qué lo hacen? Porque para ellos esa obra de arte tiene mucho valor. Igualmente, todos los matrimonios son muy valiosos. Y, tal como una obra de arte que ha sufrido daños se puede restaurar, un matrimonio que pasa por problemas graves se puede salvar. Seguramente, el proceso de “restauración” requerirá tiempo y empeño, pero Jehová se sentirá feliz al ver que el esposo y la esposa se esfuerzan por fortalecer su vínculo y permanecer unidos (Mal. 2:16). Así demuestran amor y respeto no solo el uno por el otro, sino también por Jehová, quien creó el matrimonio.",
       "summary": "Como una **obra de arte valiosa**, un matrimonio dañado puede **restaurarse** con empeño."
     },
     {
       "number": 16,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p16-lsm.mp4",
       "content": "Si surgen problemas en su matrimonio, no se apresure a separarse de su pareja (1 Cor. 7:10, 11). Más bien, pregúntese: “¿Puedo hacer más para fortalecer nuestra amistad?”. Repase lo que la Biblia dice sobre mostrar amor y piense si puede mejorar en alguna de las facetas que se mencionan en 1 Corintios 13:4-8a (léalo). En lugar de buscar una manera de salir de su matrimonio, busque una manera de volver a entrar en el corazón de su esposo o esposa. Céntrese en lo que usted puede hacer para reparar su relación. Pida la guía de Jehová. Busque información en las publicaciones y los videos, y consulte con los ancianos y otros hermanos maduros. Recuerde que el matrimonio cristiano es como “una cuerda triple” y que Jehová es el hilo más fuerte. Así que, si los dos se apoyan en él, su matrimonio no se romperá fácilmente (Ecl. 4:12).",
       "summary": "Ante problemas graves, conviene fortalecer el **amor bíblico** y apoyarse en **Jehová**.",
       "sidebar": {
@@ -712,6 +745,7 @@ export const study20260629: ArticleData = {
     },
     {
       "number": 17,
+      "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p17-lsm.mp4",
       "content": "Jehová desea que todos sus siervos sean felices, incluidos quienes están pensando en casarse y quienes ya están casados. Si usted está soltero y quiere casarse, elija con cuidado a su amigo y compañero para toda la vida. Y, si está casado, siga fortaleciendo su amistad con su pareja. Esfuércese por resolver los problemas que surjan en su matrimonio apoyándose siempre en la ayuda de Jehová. Si lo hace, disfrutará de la vida con su amado esposo o esposa (Ecl. 9:9).",
       "summary": "**Jehová** quiere que seamos felices al elegir bien la pareja y fortalecer la amistad conyugal."
     }
