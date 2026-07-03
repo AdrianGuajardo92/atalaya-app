@@ -1,6 +1,6 @@
 ---
 name: code-conventions
-description: Convenciones de código del proyecto atalaya-app. Referencia automática sobre patrones, estructura, tipos y estilo del proyecto. Úsalo cuando necesites entender cómo está organizado el proyecto o qué patrones seguir.
+description: Convenciones de código del proyecto atalaya-app. Referencia sobre patrones, estructura, tipos, APIs y estilo. Úsalo para entender cómo está organizado el proyecto o qué patrones seguir.
 user-invocable: false
 ---
 
@@ -8,58 +8,111 @@ user-invocable: false
 
 ## Stack
 
-- Next.js 16 con App Router
-- React 19 con Client Components (`'use client'`)
-- TypeScript 5 strict mode
-- Tailwind CSS 4
-- Vercel KV (Redis) para persistencia
-- PWA con next-pwa
+- Next.js 16 (App Router)
+- React 19 — mayoría Client Components (`'use client'`)
+- TypeScript 5 strict
+- Tailwind CSS 4 + tokens en `app/globals.css`
+- Vercel KV (`lib/kv-store.ts`) con fallback en memoria
+- PWA (`next-pwa` en `next.config.ts`; deshabilitada en dev)
+- Dev server: **`npm run dev`** → `http://localhost:9000`
 
 ## Estructura de datos
 
-### Artículos de estudio
-- Cada artículo en su propio archivo: `data/articles/article-XX.ts`
-- Configuración de artículos activos: `data/articles-config.ts`
-- Datos legacy (artículos antiguos): `data/atalaya-data.ts`
-- Interfaces: `types/atalaya.ts`
+| Ruta | Propósito |
+|------|-----------|
+| `data/articles/study-YYYY-MM-DD.ts` | Un estudio por archivo (`metadata.studyId`) |
+| `data/articles/index.ts` | `studiesMap`, `biblicalTextsMap`, `getBiblicalTextsForStudy()` |
+| `data/articles-config.ts` | `activeStudyIds`, `defaultStudyId`, `defaultMonth` |
+| `data/design-config.ts` | `isExecutiveDesign()` (umbral artículo 43+; sin `articleNumber` → ejecutivo) |
+| `types/atalaya.ts` | Interfaces core |
+| `lib/commentGuidance.ts` | Comentarios "Cómo comentarlo" |
+| `lib/generatePlaylist.ts` | Playlist del estudio |
+| `lib/sectionUtils.ts` | Subtítulos `section` solo en 1ª pregunta del bloque |
+| `lib/sidebarPlacement.ts` | Dónde renderizar `paragraph.sidebar` (tarjeta vs flujo de párrafo) |
+| `lib/formatSidebarRichText.tsx` | Marcado `**` / `***` y refs bíblicas azules en recuadros |
+| `lib/resolveScriptureRef.ts` | Resuelve refs parentéticas TNM (sidebar → `BibleVerseModal`) |
+| `components/ParagraphSidebarBox.tsx` | UI del recuadro `boxSupplement` |
 
-### Componentes principales
-- `components/QuestionCard.tsx`: Componente principal (~2500 líneas, tiene dos bloques: premium y original)
-- `components/ReviewQuestionCard.tsx`: Preguntas de repaso
-- `components/BiblicalCards.tsx`: Tarjetas bíblicas con flip 3D
-- `components/FlashCards.tsx`: Tarjetas didácticas
+## Componentes principales
 
-## Patrones de código
-
-- Todos los componentes usan `'use client'`
-- Estado con React hooks (useState, useEffect)
-- Fetch con JSON para API calls
-- Tailwind para todos los estilos (sin CSS modules)
-- Variables CSS para colores del tema
+| Componente | Rol |
+|------------|-----|
+| `QuestionCard.tsx` | Tarjeta de pregunta (~1900 líneas, diseño unificado con tokens) |
+| `ReviewQuestionCard.tsx` | Preguntas de repaso |
+| `CommentGuide.tsx` | "Cómo comentarlo" + flip cards bíblicas |
+| `AnswerItemsList.tsx` | Respuestas para el conductor |
+| `VideoLSM.tsx` | Reproductor LSM |
+| `StudyHeader.tsx` | Header (sin `'use client'` explícito) |
+| `SummaryView.tsx` | Vista imprimible |
+| `ThemeProvider.tsx` / `ThemeToggle.tsx` | Dark mode |
+| `Timer.tsx`, `PlaylistModal.tsx` | Utilidades de estudio |
+| `ParagraphSidebarBox.tsx` | Recuadros laterales (`boxSupplement`) |
 
 ## Diseño ejecutivo (artículos 43+)
 
-- Se activa automáticamente cuando `articleNumber >= 43`
-- `QuestionCard.tsx` tiene dos bloques de renderizado: premium (~línea 1026) y original (después)
-- Cualquier nueva funcionalidad debe implementarse en AMBOS bloques
-- Paleta: whites, slates, amber para acentos
-- Tipografía: font-serif para títulos, uppercase tracking para labels
+- Umbral en `data/design-config.ts` (`executiveDesignStartsAt: 43`)
+- `isExecutiveDesign()` en `app/page.tsx` condiciona previews de navegación
+- Componentes principales ya usan tokens CSS unificados (no hay dos bloques separados en QuestionCard)
+
+## Patrones de código
+
+- Estado con hooks (`useState`, `useEffect`)
+- API: `fetch` + JSON
+- Estilos: Tailwind + tokens (`bg-surface`, `text-text-primary`, etc.)
+- Textos bíblicos: export `biblicalTextsYYYYMMDD` por estudio en el mismo archivo; `getBiblicalTextsForStudy(studyId)` en runtime. Refs del recuadro usan claves TNM (`"Filipenses 1:10"`), no solo `LEE ...`
 
 ## Formato de texto en datos
 
-- `**negritas**` en campos `answer` y `summary` para resaltar palabras clave
-- Nombres propios, conceptos clave, citas textuales y cifras van en negrita
-- Ortografía con acentos correctos: Jehová, Satanás, Moisés, Josué, Edén
+- `**negritas**` en `answer`, `summary`, `answerContext`, `reviewQuestions.answer`
+- Ortografía con acentos: Jehová, Satanás, Moisés, Josué, Edén
+- `content` de párrafos **sin** negritas
+- `paragraph.sidebar` (`ParagraphSidebar`): `title`, `intro?`, `items?` — recuadros de jw.org; `**` / `***` en intro/items; imagen en `question.image`, no en párrafo
 
-## API Endpoints
+### Recuadros (`boxSupplement`) en UI
 
-- `/api/favorites`: GET/POST favoritos por artículo
-- `/api/lsm`: GET/POST textos en Lengua de Señas Mexicana
-- `/api/hidden-cards`: GET/POST tarjetas ocultas
-- `/api/pdfs`: GET/POST archivos PDF
+| Archivo | Responsabilidad |
+|---------|-----------------|
+| `lib/sidebarPlacement.ts` | `shouldShowSidebarOnQuestionCard` (imagen → recuadro en tarjeta) vs `shouldShowSidebarInParagraphFlow` |
+| `lib/formatSidebarRichText.tsx` | Prefijos bold+italic, refs `(Filip. 1:10)` en azul clicables |
+| `lib/resolveScriptureRef.ts` | Lookup TNM desde `biblicalTexts` del estudio + `biblicalCards`; usado por `QuestionCard` |
+| `components/ParagraphSidebarBox.tsx` | Caja visual amber/cyan; usa `formatSidebarRichText` |
+| Importador `parse_box_supplement` | `rich_text_content()` → `***texto***` desde HTML jw.org |
+
+### Modales de estudio
+
+| Modal | Comportamiento |
+|-------|----------------|
+| Modal de párrafos (`QuestionCard`) | Clases `paragraphs-modal-backdrop` / `paragraphs-modal-panel` (~0.28s); cierre con clic en backdrop |
+| `BibleVerseModal` (inline en `QuestionCard`) | `font-sans text-lg md:text-xl`; overlay con `onClick={onClose}`; refs del recuadro abren aquí |
+
+## API Endpoints (GET / POST / PUT)
+
+| Endpoint | Uso |
+|----------|-----|
+| `/api/favorites` | Favoritos por artículo |
+| `/api/lsm` | Textos LSM editables |
+| `/api/hidden-cards` | Visibilidad de tarjetas |
+| `/api/used-items` | Items marcados como usados |
+
+## Scripts npm útiles
+
+```bash
+npm run dev          # puerto 9000
+npm run build
+npm run lint         # eslint
+npm run article:list
+npm run article:remove
+npm run cleanup-kv
+./scripts/sync-skills.sh   # .agents/skills → .claude/skills
+```
+
+## Skills del proyecto
+
+- Canónica: `.agents/skills/`
+- Espejo Cursor: `.claude/skills/` (sincronizar con `sync-skills.sh`)
 
 ## Breakpoints responsive
 
-- `sm`: 640px (grid 2 columnas para BiblicalCards)
-- `md`: 768px (layouts de tablet)
-- `lg`: 1024px (layouts de desktop)
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px

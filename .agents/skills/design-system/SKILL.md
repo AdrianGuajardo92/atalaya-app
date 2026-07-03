@@ -1,136 +1,116 @@
 ---
 name: design-system
-description: Sistema de diseño ejecutivo del proyecto. Úsalo cuando crees o modifiques componentes visuales, modales, tarjetas, botones, o cualquier elemento de UI. Referencia obligatoria para mantener consistencia visual.
+description: Sistema de diseño del proyecto atalaya-app. Úsalo al crear o modificar componentes visuales, modales, tarjetas, botones, dark mode o cualquier UI. Referencia obligatoria para consistencia visual.
 user-invocable: false
 ---
 
-# Sistema de Diseño Ejecutivo - Atalaya App
+# Sistema de Diseño — Atalaya App
 
-Referencia de patrones visuales extraídos de los componentes reales. SIEMPRE seguir estos patrones al crear o modificar UI.
-
-Para patrones detallados con clases Tailwind exactas, consulta [patterns.md](patterns.md).
+Patrones extraídos de los componentes reales. Para clases exactas, consulta [patterns.md](patterns.md).
 
 ## Reglas fundamentales
 
 1. **SIEMPRE** revisar componentes existentes antes de crear algo nuevo
-2. **NUNCA** inventar colores o estilos fuera de esta paleta
-3. Los artículos 43+ usan diseño ejecutivo automáticamente
-4. Cualquier funcionalidad nueva debe implementarse en AMBOS bloques de `QuestionCard.tsx` (premium y original)
+2. Usar **tokens CSS semánticos** (`bg-surface`, `text-text-primary`) — no clases slate/white fijas salvo acentos puntuales
+3. **Dark mode:** todos los componentes deben verse bien con `.dark` (`ThemeProvider`)
+4. Artículos 43+ activan estilo ejecutivo vía `isExecutiveDesign()` en [`data/design-config.ts`](../../data/design-config.ts); la UI principal ya usa tokens unificados en [`QuestionCard.tsx`](../../components/QuestionCard.tsx) (un solo bloque de render)
+5. Tarjetas bíblicas con flip 3D viven en [`CommentGuide.tsx`](../../components/CommentGuide.tsx), no en un componente `BiblicalCards.tsx` separado
 
-## Paleta de colores
+## Tokens CSS (fuente: `app/globals.css`)
 
-| Uso | Clase Tailwind |
-|-----|---------------|
-| Fondo principal | `bg-white` |
-| Fondo secundario | `bg-slate-50` |
-| Fondo hover | `bg-slate-100` |
-| Texto principal | `text-slate-800` |
-| Texto secundario | `text-slate-700` / `text-slate-600` |
-| Texto terciario | `text-slate-400` |
-| Bordes | `border-slate-200` |
-| Bordes hover | `border-slate-300` |
-| Acento dorado | `amber-100` a `amber-400` |
-| Acento azul | `blue-50` a `blue-600` |
-| Fondo oscuro | `bg-slate-800` / `bg-slate-900` |
+| Token | Clase Tailwind | Uso |
+|-------|----------------|-----|
+| `--surface` | `bg-surface` | Fondo principal |
+| `--surface-alt` | `bg-surface-alt` | Fondos secundarios, headers |
+| `--surface-raised` | `bg-surface-raised` | Hover, elevación |
+| `--text-primary` | `text-text-primary` | Títulos |
+| `--text-body` | `text-text-body` | Cuerpo |
+| `--text-secondary` | `text-text-secondary` | Secundario |
+| `--text-tertiary` | `text-text-tertiary` | Labels, hints |
+| `--border` | `border-border` | Bordes normales |
+| `--border-strong` | `border-border-strong` | Bordes activos |
+
+Dark mode: paleta cálida (`#262624`, `#D97757`, `#C2C0B6`). Negritas en `.dark strong` usan `#E8A68B`.
 
 ## Tipografía
 
-| Uso | Clases |
-|-----|--------|
-| Títulos | `font-serif font-bold text-slate-800` |
-| Labels | `text-xs font-bold text-slate-400 uppercase tracking-[0.2em]` |
-| Cuerpo | `text-slate-700 leading-relaxed` |
-| LSM | `text-slate-700 font-medium text-lg uppercase` |
-| Texto bíblico | `text-lg italic text-slate-600 font-serif` |
+| Uso | Fuente / clases |
+|-----|-----------------|
+| UI general | Geist (`--font-geist-sans`) |
+| Títulos serif | Playfair Display (`font-serif`, `--font-playfair`) |
+| Labels | `text-xs font-bold text-text-tertiary uppercase tracking-[0.2em]` |
+| LSM | `font-medium text-lg uppercase` |
+| Texto bíblico en tarjetas / CommentGuide | `text-lg italic font-serif text-text-secondary` |
+| Texto bíblico en `BibleVerseModal` (refs del recuadro) | `font-sans text-lg md:text-xl text-text-body` — legible, no serif |
+
+## Acentos decorativos (ejecutivo)
+
+- Barra lateral: `w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]`
+- Línea divisoria: gradiente amber + símbolo `✦`
+- Subtítulos de sección: fondo oscuro, texto blanco, uppercase
 
 ## Componentes clave
 
-### Contenedor tarjeta
+| Componente | Notas |
+|------------|-------|
+| `QuestionCard.tsx` | Tarjeta principal; tokens semánticos; expansión `animate-slideDown` |
+| `ReviewQuestionCard.tsx` | Mismo lenguaje visual |
+| `CommentGuide.tsx` | Flip cards bíblicas `h-[250px]`, grid `md:grid-cols-2` |
+| `AnswerItemsList.tsx` | Respuestas principales/secundarias con followUp |
+| `VideoLSM.tsx` | Reproductor LSM (compact + full) |
+| `ThemeToggle.tsx` | Toggle dark/light |
+| `StudyHeader.tsx` | Header del estudio |
+| `ParagraphSidebarBox.tsx` | Recuadros `boxSupplement`; orden PDF: tras `question.image` |
+
+## Recuadros de estudio (boxSupplement)
+
+Orden visual obligatorio cuando hay imagen de pregunta: **imagen → recuadro** (como en el PDF de La Atalaya).
+
+- **Datos:** `question.image` + `paragraph.sidebar` (campos separados; no mezclar con `note`)
+- **Colocación:** [`lib/sidebarPlacement.ts`](../../lib/sidebarPlacement.ts)
+  - Con `question.image` → `ParagraphSidebarBox` en tarjeta, tras la imagen (`className="mt-0"`)
+  - Sin imagen → recuadro en flujo del párrafo (modal / navegación inline)
+  - Con imagen → **no** bloque suelto del recuadro tras Resumen en modal
+- **Render:** [`components/ParagraphSidebarBox.tsx`](../../components/ParagraphSidebarBox.tsx) + [`lib/formatSidebarRichText.tsx`](../../lib/formatSidebarRichText.tsx)
+- **Prohibido:** `formatContent` / `renderBoldText` de párrafos para recuadros
+- **Marcado en datos:** `**negrita**`, `***negrita+cursiva***` (prefijos de lista); importador: `rich_text_content()` en `parse_box_supplement`
+- **Refs bíblicas:** `text-[#006FB3] dark:text-sky-400 font-medium` en paréntesis detectados
+- **Estilos caja:** `border-t-4 border-cyan-900`, `bg-amber-50 dark:bg-[#332520]`, título `text-cyan-900 dark:text-cyan-300`
+
+Ver clases exactas en [patterns.md](patterns.md) → «Recuadro de estudio».
+
+## Animaciones (`app/globals.css`)
+
+- `animate-fadeIn` — overlays genéricos (0.2s)
+- `paragraphs-modal-backdrop` / `paragraphs-modal-panel` — modal de párrafos (~0.28s apertura desktop)
+- `animate-slideDown` — expansión de secciones en QuestionCard/ReviewQuestionCard (0.4s)
+- `animate-slideUp` — entradas suaves
+- Hover: `transition-shadow duration-300`; click: `active:scale-95`
+
+## Modales de estudio
+
+### Modal de párrafos
+
+- Backdrop: `paragraphs-modal-backdrop` + clic fuera cierra
+- Panel: `paragraphs-modal-panel`
+- No duplicar recuadro tras Resumen si ya está en tarjeta (`sidebarPlacement`)
+
+### BibleVerseModal (refs del recuadro)
+
+- Componente inline en `QuestionCard.tsx`
+- Tipografía **sans** (`font-sans text-lg md:text-xl`) para lectura rápida
+- Overlay con `onClick={onClose}` — clic fuera cierra
+- Se abre al clic en refs azules de `formatSidebarRichText`
+
+## Modal genérico (patrón)
+
 ```
-bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative
-+ barra lateral: absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400
+Overlay: fixed inset-0 z-50 backdrop + animate-fadeIn
+Contenedor: bg-surface rounded-xl shadow-2xl border border-border
+Header: bg-surface-alt border-b border-border-subtle
+Footer: bg-surface-alt border-t border-border-subtle
 ```
 
-### Modal overlay
-```
-fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn
-```
+## Regla al agregar funcionalidad UI
 
-### Modal contenedor
-```
-bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-slate-200
-```
-
-### Modal header
-```
-p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50
-```
-
-### Modal footer
-```
-p-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3
-```
-
-### Línea divisoria decorativa
-```
-flex items-center justify-center gap-4
-+ líneas: flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50
-+ símbolo central: text-amber-400 text-sm → ✦
-```
-
-### Subtítulo de sección
-```
-bg-slate-800 px-8 py-4 rounded-lg shadow-lg
-+ texto: text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]
-```
-
-### Botón primario (oscuro)
-```
-bg-slate-800 border-slate-800 text-white hover:bg-slate-900 rounded-lg px-4 py-2 font-medium text-sm shadow-sm
-```
-
-### Botón secundario (claro)
-```
-bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg px-4 py-2 font-medium shadow-sm
-```
-
-### Botón pill (pequeño)
-```
-px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border
-+ variante slate: bg-slate-50 text-slate-600 border-slate-200
-+ variante blue: bg-blue-50 text-blue-600 border-blue-200
-```
-
-### Badge información
-```
-px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-sm shadow-sm
-+ separador: text-slate-300 → •
-```
-
-### Ícono respuesta
-```
-w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shadow-sm border border-amber-200 → 💡
-```
-
-### Tarjeta flashcard
-```
-bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow
-+ respuesta: ml-6 pl-4 border-l-2 border-amber-300
-```
-
-### Tarjeta bíblica (BiblicalCards)
-```
-Grid: grid grid-cols-1 sm:grid-cols-2 gap-4
-Contenedor: relative h-[200px] cursor-pointer group (perspective: 1000px)
-Frente: absolute w-full h-[200px] bg-white rounded-xl shadow-sm border border-slate-200
-Reverso: absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700
-Flip: transition-transform duration-700 ease-in-out (rotateY 180deg)
-Header reverso: text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] bg-slate-900/50
-```
-
-## Animaciones
-
-- Entrada: `animate-fadeIn` (opacity 0→1, translateY -10px→0, 0.2s)
-- Expansión: `transition-all duration-400 ease-out` con max-height
-- Hover: `transition-shadow duration-300` / `transition-all`
-- Click: `active:scale-95`
+Implementar en los componentes que realmente renderizan la feature (normalmente `QuestionCard.tsx` y `ReviewQuestionCard.tsx` si aplica a ambos). Verificar **light y dark mode**.

@@ -1,107 +1,63 @@
 import { ArticleData } from '@/types/atalaya';
-import { isArticleActive } from '../articles-config';
-
-// ============================================
-// IMPORTAR TODOS LOS ARTÍCULOS
-// ============================================
-import { article58, biblicalTexts58 } from './article-58';
-import { article62, biblicalTexts62 } from './article-62';
-import { article63, biblicalTexts63 } from './article-63';
-import { article64, biblicalTexts64 } from './article-64';
+import { isStudyActive } from '../articles-config';
+import { study20260629, biblicalTexts20260629 } from './study-2026-06-29';
 
 // ============================================
 // MAPAS DE DATOS
 // ============================================
 
-// Mapa de todos los artículos por número
-export const articlesMap: Record<number, ArticleData> = {
-  58: article58,
-  62: article62,
-  63: article63,
-  64: article64,
+export const studiesMap: Record<string, ArticleData> = {
+  '2026-06-29': study20260629,
 };
 
-// Mapa de textos bíblicos por artículo
-export const biblicalTextsMap: Record<number, Record<string, { reference: string; text: string }[]>> = {
-  58: biblicalTexts58,
-  62: biblicalTexts62,
-  63: biblicalTexts63,
-  64: biblicalTexts64,
+export const biblicalTextsMap: Record<string, Record<string, { reference: string; text: string }[]>> = {
+  '2026-06-29': biblicalTexts20260629,
 };
+
+/** @deprecated Usar studiesMap */
+export const articlesMap: Record<number, ArticleData> = {};
 
 // ============================================
 // FUNCIONES HELPER
 // ============================================
 
-/**
- * Obtener artículo por ID
- * @param articleId ID en formato "2025-11-article-44"
- */
-export function getArticleById(articleId: string): ArticleData | undefined {
-  const parts = articleId.split('-');
-  if (parts.length < 4) return undefined;
-  const articleNum = parseInt(parts[3]);
-  return articlesMap[articleNum];
+export function getArticleById(studyId: string): ArticleData | undefined {
+  return studiesMap[studyId];
 }
 
-/**
- * Obtener ID de un artículo
- */
 export function getArticleId(article: ArticleData): string {
-  const monthMap: Record<string, string> = {
-    "Enero": "01", "Febrero": "02", "Marzo": "03", "Abril": "04",
-    "Mayo": "05", "Junio": "06", "Julio": "07", "Agosto": "08",
-    "Septiembre": "09", "Octubre": "10", "Noviembre": "11", "Diciembre": "12"
-  };
-  const monthNum = monthMap[article.metadata.month] || "01";
-  return `${article.metadata.year}-${monthNum}-article-${article.metadata.articleNumber}`;
+  return article.metadata.studyId;
 }
 
-/**
- * Obtener todos los artículos activos
- */
 export function getAllActiveArticles(): ArticleData[] {
-  return Object.values(articlesMap)
-    .filter(article => isArticleActive(article.metadata.articleNumber))
-    .sort((a, b) => a.metadata.articleNumber - b.metadata.articleNumber);
+  return Object.values(studiesMap)
+    .filter(article => isStudyActive(article.metadata.studyId))
+    .sort((a, b) => a.metadata.studyId.localeCompare(b.metadata.studyId));
 }
 
-/**
- * Obtener textos bíblicos de un artículo específico
- */
-export function getBiblicalTextsForArticle(articleNumber: number): Record<string, { reference: string; text: string }[]> {
-  return biblicalTextsMap[articleNumber] || {};
+export function getBiblicalTextsForStudy(studyId: string): Record<string, { reference: string; text: string }[]> {
+  return biblicalTextsMap[studyId] || {};
 }
 
-/**
- * Obtener todos los textos bíblicos combinados (para compatibilidad)
- */
+/** @deprecated Usar getBiblicalTextsForStudy */
+export function getBiblicalTextsForArticle(studyId: string): Record<string, { reference: string; text: string }[]> {
+  return getBiblicalTextsForStudy(studyId);
+}
+
 export function getAllBiblicalTexts(): Record<string, { reference: string; text: string }[]> {
   const combined: Record<string, { reference: string; text: string }[]> = {};
-  for (const articleNum in biblicalTextsMap) {
-    Object.assign(combined, biblicalTextsMap[articleNum]);
+  for (const studyId in biblicalTextsMap) {
+    Object.assign(combined, biblicalTextsMap[studyId]);
   }
   return combined;
 }
 
-/**
- * Listar números de artículos disponibles
- */
-export function getAvailableArticleNumbers(): number[] {
-  return Object.keys(articlesMap).map(Number).sort((a, b) => a - b);
+export function getAvailableStudyIds(): string[] {
+  return Object.keys(studiesMap).sort();
 }
 
-/**
- * Obtener total de artículos en el sistema
- */
 export function getTotalArticles(): number {
-  return Object.keys(articlesMap).length;
+  return Object.keys(studiesMap).length;
 }
 
-// Re-exportar los artículos individuales para acceso directo si es necesario
-export {
-  article58, biblicalTexts58,
-  article62, biblicalTexts62,
-  article63, biblicalTexts63,
-  article64, biblicalTexts64,
-};
+export { study20260629, biblicalTexts20260629 };

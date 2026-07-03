@@ -21,6 +21,15 @@ export default function PlaylistModal({ isOpen, onClose, article }: PlaylistModa
     };
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
+
   const playlist = generatePlaylist(article);
 
   const handleCopy = async () => {
@@ -37,8 +46,10 @@ export default function PlaylistModal({ isOpen, onClose, article }: PlaylistModa
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)' }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="playlist-modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--backdrop)] backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -50,8 +61,8 @@ export default function PlaylistModal({ isOpen, onClose, article }: PlaylistModa
           <div className="flex items-center gap-3">
             <span className="text-2xl">🎵</span>
             <div>
-              <h2 className="text-lg font-bold">Lista de Reproducción</h2>
-              <p className="text-xs text-white/70">Art. {article.metadata.articleNumber} &middot; {article.metadata.week}</p>
+              <h2 id="playlist-modal-title" className="text-lg font-bold">Lista de Reproducción</h2>
+              <p className="text-xs text-white/70">{article.metadata.week}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/80 hover:text-white text-2xl leading-none">&times;</button>

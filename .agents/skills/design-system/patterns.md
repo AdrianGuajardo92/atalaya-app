@@ -1,363 +1,133 @@
-# Patrones Detallados - Clases Tailwind Exactas
+# Patrones Tailwind — Atalaya App
 
-Referencia completa con las clases Tailwind exactas de cada componente.
+Usar tokens semánticos de `app/globals.css`. Evitar `bg-white` / `text-slate-800` en componentes nuevos.
 
-## Contenedor principal (tarjeta de pregunta)
-
-**Componente:** `QuestionCard.tsx` ~línea 1062 | `ReviewQuestionCard.tsx` ~línea 96
+## Contenedor tarjeta de pregunta
 
 ```
-bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative group hover:shadow-xl transition-shadow duration-300
+bg-surface border border-border rounded-xl shadow-lg overflow-hidden relative
++ barra lateral: absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gradient-from)] to-[var(--gradient-to)]
 ```
 
-Barra lateral decorativa:
+## Cabecera de pregunta
+
 ```
-absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400
+Label: text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase
+Título: text-2xl md:text-3xl font-serif text-text-primary leading-tight
 ```
 
-## Labels y cabeceras
+## Sección LSM
 
-**Label de pregunta:** `QuestionCard.tsx` ~línea 1070
 ```
-text-xs font-bold text-slate-400 tracking-[0.2em] uppercase
-```
-
-**Título de pregunta:** `QuestionCard.tsx` ~línea 1101
-```
-text-2xl md:text-3xl font-serif text-slate-800 leading-tight mb-2
+px-8 py-4 bg-surface-alt border-y border-border-subtle
+Texto LSM: text-text-body font-medium text-lg uppercase
 ```
 
-**Label ámbar (resúmenes):** `QuestionCard.tsx` ~línea 876
+## Respuestas numeradas
+
 ```
-text-xs font-bold text-amber-700 uppercase tracking-[0.15em] mb-3
+Número: text-text-tertiary font-mono text-sm → [1] [2] [3]
+Texto: text-text-body leading-relaxed
 ```
 
-## Sección intermedia (LSM y herramientas)
+## Línea divisoria decorativa
 
-**Contenedor:** `QuestionCard.tsx` ~línea 1121
 ```
-px-8 py-4 bg-slate-50 border-y border-slate-100 flex flex-wrap items-center gap-4
-```
-
-**LSM editando:**
-```
-bg-white p-2 rounded-lg border border-blue-200 shadow-sm animate-fadeIn
-```
-
-**LSM inactivo:**
-```
-group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm transition-all
-```
-
-**Label LSM:**
-```
-text-xs font-bold text-slate-500 uppercase tracking-wider group-hover/lsm:text-blue-600
-```
-
-**Texto LSM:**
-```
-text-slate-700 font-medium text-lg leading-snug min-h-[1.5rem] uppercase
-```
-
-## Botones de acción
-
-**Ver/Ocultar respuesta (expandido):**
-```
-px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border bg-white border-slate-300 text-slate-700
-```
-
-**Ver/Ocultar respuesta (colapsado):**
-```
-px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm border bg-slate-800 border-slate-800 text-white hover:bg-slate-900
-```
-
-**Botón infografía:**
-```
-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition-colors text-xs font-bold uppercase tracking-wide border border-blue-200
-```
-
-**Botón párrafos:**
-```
-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors text-xs font-bold uppercase tracking-wide border border-slate-200
-```
-
-**Botón lectura bíblica:**
-```
-inline-flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-transform active:scale-95 shadow-md
-```
-
-**Botón copiar:**
-```
-px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-medium flex items-center gap-2 shadow-sm
+flex items-center gap-4
+Líneas: flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent
+Centro: text-amber-400 text-sm → ✦
 ```
 
 ## Subtítulo de sección
 
-**Componente:** `QuestionCard.tsx` ~línea 998
-
 ```
-bg-slate-800 px-8 py-4 rounded-lg shadow-lg
-```
-
-Texto:
-```
-text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]
+Contenedor: bg-slate-800 dark:bg-surface-raised px-8 py-4 rounded-lg shadow-lg
+Texto: text-xl md:text-2xl font-bold text-white dark:text-text-primary uppercase tracking-[0.15em]
 ```
 
-## Imagen ilustrativa
-
-**Contenedor:** `QuestionCard.tsx` ~línea 1174
-```
-px-8 py-6 bg-white
-```
-
-**Wrapper:**
-```
-rounded-xl overflow-hidden shadow-lg border border-slate-200
-```
-
-**Imagen:**
-```
-w-full h-auto object-cover
-```
-
-**Caption:**
-```
-text-sm text-slate-600 italic p-4 bg-slate-50 text-center border-t border-slate-100
-```
-
-## Sección de respuesta
-
-**Contenedor:** `QuestionCard.tsx` ~línea 1195
-```
-p-8 bg-white
-```
-
-**Ícono respuesta (círculo):**
-```
-w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-lg shadow-sm border border-amber-200
-```
-
-**Párrafo numerado:**
-```
-text-lg text-slate-700 leading-relaxed mb-4
-```
-
-**Numeración:**
-```
-text-slate-400 font-medium → [{n}]
-```
-
-## Contexto adicional
-
-**Contenedor:**
-```
-mt-6 border-l-2 border-slate-200 bg-slate-50 rounded-r-lg p-5
-```
-
-**Texto:**
-```
-text-base text-slate-600 leading-relaxed
-```
-
-## Puntos clave (bullets)
-
-**Item:**
-```
-flex gap-3 group/bullet
-```
-
-**Punto:**
-```
-w-1.5 h-1.5 rounded-full bg-slate-300 mt-2.5 group-hover/bullet:bg-blue-500 transition-colors
-```
-
-**Texto:**
-```
-text-slate-600 group-hover/bullet:text-slate-800 transition-colors
-```
-
-## Línea divisoria
+## Modal
 
 ```
-flex items-center justify-center gap-4
+Overlay: fixed inset-0 bg-[var(--backdrop)] backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn
+Contenedor: bg-surface rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-border
+Header: p-5 border-b border-border-subtle flex justify-between items-center bg-surface-alt
+Footer: p-4 border-t border-border-subtle bg-surface-alt flex justify-end gap-3
 ```
 
-Líneas:
+## Botones
+
 ```
-flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/50
-flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/50
+Primario: bg-slate-800 dark:bg-surface-raised border border-border-strong text-white dark:text-text-primary hover:opacity-90 rounded-lg px-4 py-2 font-medium text-sm shadow-sm
+Secundario: bg-surface border border-border-strong text-text-body hover:bg-surface-alt rounded-lg px-4 py-2 font-medium shadow-sm
+Pill: px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border border-border
 ```
 
-Símbolo: `text-amber-400 text-sm` → ✦
+## CommentGuide — tarjeta bíblica flip
 
-## Tarjetas flashcard (slide-down)
-
-**Grid contenedor:**
 ```
-bg-slate-50 p-8
-```
-
-**Tarjeta individual:**
-```
-bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow
+Grid: grid grid-cols-1 md:grid-cols-2 gap-4
+Contenedor: relative h-[250px] cursor-pointer (perspective: 1000px)
+Frente: absolute w-full h-[250px] bg-surface rounded-xl shadow-sm border border-border
+Reverso: absolute w-full h-[250px] bg-slate-800 dark:bg-surface-raised rounded-xl shadow-lg border border-border-strong
+Flip: transition-transform duration-700 ease-in-out (rotateY 180deg)
 ```
 
-**Botón pregunta:**
-```
-w-full text-left px-5 py-4 flex items-start gap-3
-```
+## AnswerItemsList
 
-**Flecha expandible:**
 ```
-text-slate-400 mt-0.5 text-sm transition-transform duration-300
-```
-
-**Texto pregunta:**
-```
-text-slate-700 font-sans font-semibold text-base leading-relaxed flex-1
-```
-
-**Badge ver/ocultar:**
-```
-text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full
-+ abierto: bg-slate-800 text-white
-+ cerrado: bg-slate-100 text-slate-400
-```
-
-**Respuesta slide-down:**
-```
-overflow-hidden transition-all duration-400 ease-out
-+ abierto: max-h-[500px] opacity-100
-+ cerrado: max-h-0 opacity-0
-```
-
-**Borde respuesta:**
-```
-ml-6 pl-4 border-l-2 border-amber-300
-```
-
-## Modal de párrafos
-
-**Overlay:**
-```
-fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn
-```
-
-**Contenedor:**
-```
-bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden border border-slate-200
-```
-
-**Header:**
-```
-p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50
-```
-
-**Título:**
-```
-text-lg font-bold text-slate-800 flex items-center gap-2
-```
-
-**Botón cerrar:**
-```
-text-slate-400 hover:text-slate-600 transition-colors
-```
-
-**Contenido scrolleable:**
-```
-p-6 overflow-y-auto custom-scrollbar bg-white
-```
-
-**Footer:**
-```
-p-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3
-```
-
-## Modal infografía (fullscreen)
-
-**Overlay:**
-```
-fixed inset-0 z-50 bg-black/95 flex flex-col
-```
-
-**Header:**
-```
-flex-shrink-0 h-12 bg-slate-800 px-4 flex items-center justify-between
-```
-
-**Botón cerrar móvil:**
-```
-w-full py-4 bg-red-600 hover:bg-red-500 active:bg-red-700 text-white font-semibold text-lg rounded-xl flex items-center justify-center gap-3 shadow-lg min-h-[56px]
+Principales: numeración [n], text-lg text-text-body
+Secundarias: border-l-2 border-border bg-surface-alt, label "Del párrafo"
+followUp: text-[10px] uppercase text-amber-700 "Si no lo mencionan"
+Click para marcar usado: ✅/🔖 en QuestionCard
 ```
 
 ## Badges (StudyHeader)
 
-**Badge artículo:**
 ```
-px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold text-sm shadow-sm
-```
-
-**Badge semana:**
-```
-px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-600 font-medium text-sm shadow-sm
+px-4 py-1.5 bg-surface border border-border rounded-lg text-text-body font-bold text-sm shadow-sm
+Separador: text-text-tertiary → •
 ```
 
-## Select artículos
+## Expansión de sección
 
 ```
-appearance-none pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 cursor-pointer hover:border-slate-300 hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]
+animate-slideDown
 ```
 
-## Texto bíblico (StudyHeader)
+Definida en `app/globals.css` (0.4s ease-out, max-height + opacity).
 
-**Contenedor:**
-```
-bg-slate-50 border-l-4 border-slate-300 rounded-r-lg p-6 mb-8
-```
+## Recuadro de estudio (ParagraphSidebarBox)
 
-**Texto:**
-```
-text-lg lg:text-xl leading-relaxed italic text-slate-600 font-serif
-```
+Orden en tarjeta: `question.image` → recuadro(s) → respuestas. Sin imagen: recuadro en flujo del párrafo (modal).
 
-## Tarjetas bíblicas (BiblicalCards)
+**Colocación:** `lib/sidebarPlacement.ts` — con `question.image`, no mostrar recuadro suelto tras Resumen en modal.
 
-**Componente:** `BiblicalCards.tsx`
+**Formateo:** [`lib/formatSidebarRichText.tsx`](../../lib/formatSidebarRichText.tsx) — **no** usar `formatContent` de párrafos ni `renderBoldText` de `QuestionCard`. Referencias `(Filip. 1:10)` son botones azules clicables cuando `QuestionCard` pasa `onScriptureClick` + `resolveScriptureRef` (modal `BibleVerseModal`).
 
-**Grid contenedor:**
 ```
-grid grid-cols-1 sm:grid-cols-2 gap-4
-```
-
-**Contenedor tarjeta:**
-```
-relative h-[200px] cursor-pointer group
-```
-Style: `perspective: '1000px'`
-
-**Flip container:**
-```
-relative w-full h-full transition-transform duration-700 ease-in-out
-```
-Style: `transformStyle: 'preserve-3d'`, flip con `rotateY(180deg)`
-
-**Frente (referencia + propósito):**
-```
-absolute w-full h-[200px] bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col
+Contenedor: mt-4 rounded-lg border-t-4 border-cyan-900 dark:border-cyan-600 bg-amber-50 dark:bg-[#332520] px-4 py-4
+Título: text-base md:text-lg font-bold text-cyan-900 dark:text-cyan-300
+Intro/items: text-sm text-text-body dark:text-[#C2C0B6], lista decimal ml-5 space-y-3
+Prefijo de ítem (listItem): font-bold italic text-text-primary (ej. "Jehová.")
+Referencias bíblicas: text-[#006FB3] dark:text-sky-400 font-medium
+Tras imagen en tarjeta: className mt-0 en el recuadro
+Importador: rich_text_content → ***texto*** para bold+italic en datos
 ```
 
-**Reverso (texto TNM):**
+Reglas en `lib/sidebarPlacement.ts`: con `question.image`, el recuadro va en la tarjeta; sin imagen, en el flujo del párrafo (modal/navegación).
+
+## Modal de párrafos
+
 ```
-absolute w-full h-[200px] bg-slate-800 rounded-xl shadow-lg border border-slate-700 overflow-hidden flex flex-col
+Backdrop: paragraphs-modal-backdrop (animate-fadeIn ~0.28s) — onClick cierra
+Panel: paragraphs-modal-panel
 ```
 
-**Header reverso:**
-```
-text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center bg-slate-900/50 py-2
-```
+## BibleVerseModal (refs clicables del recuadro)
 
-**Texto reverso:**
 ```
-text-center text-white font-medium text-sm leading-relaxed italic
+Overlay: fixed inset-0 z-[60] — onClick={onClose}
+Contenido: bg-surface rounded-xl shadow-2xl border border-border p-6 md:p-8
+Texto versículo: font-sans text-lg md:text-xl text-text-body leading-relaxed
+Referencia: text-sm font-bold text-text-tertiary uppercase tracking-wider
 ```

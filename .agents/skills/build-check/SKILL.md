@@ -1,19 +1,42 @@
 ---
 name: build-check
-description: Compila el proyecto y verifica que no haya errores de TypeScript o de build.
-allowed-tools: Bash(npm run build), Bash(npm run lint)
+description: Compila el proyecto y verifica errores de TypeScript, build y lint. Úsalo antes de cerrar cambios importantes o al validar artículos nuevos.
+allowed-tools: Bash(npm run build), Bash(npm run lint), Bash(npm run dev *)
 ---
 
 # Verificar Build del Proyecto
 
-Ejecuta estos pasos en orden:
+## Pasos
 
-1. Ejecuta `npm run build` para compilar el proyecto
-2. Si hay errores de TypeScript, muestra cada error con su archivo y línea
-3. Si hay errores de lint, ejecuta `npm run lint` y muestra los problemas
-4. Si todo pasa correctamente, confirma que el build está limpio
+1. `npm run build` — compilar Next.js + TypeScript
+2. Si falla, mostrar cada error con archivo y línea
+3. Opcional: `npm run lint` (eslint directo, no `next lint`)
+4. Si todo pasa, confirmar build limpio
 
-Si hay errores:
-- Muestra un resumen claro de cada error
-- Sugiere cómo corregirlos
-- Pregunta al usuario si quiere que los corrija automáticamente
+## Tras cambios UI de estudio
+
+Verificar manualmente en light y dark mode:
+- Modal de párrafos: animación y cierre con clic en backdrop
+- Refs azules del recuadro abren `BibleVerseModal` con texto TNM
+- Recuadro tras imagen (orden PDF) sin duplicado en modal
+
+## Dev server
+
+```bash
+npm run dev   # http://localhost:9000
+```
+
+## Si hay errores
+
+- Resumen claro por error
+- Sugerir corrección
+- Preguntar si el usuario quiere corrección automática
+
+## Scripts relacionados
+
+```bash
+npm run article:list
+npm run article:remove
+npm run cleanup-kv
+./scripts/sync-skills.sh
+```

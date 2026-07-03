@@ -29,6 +29,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   const [playbackRate, setPlaybackRate] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const twoFingerStartTime = useRef<number | null>(null);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -118,12 +119,23 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     });
   }, []);
 
-  // Atajos de teclado globales
+  // Atajos de teclado solo cuando el reproductor es visible en pantalla
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting && entry.intersectionRatio > 0.25),
+      { threshold: [0, 0.25, 0.5] }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isVisible) return;
       const tag = (e.target as HTMLElement)?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-      // Solo responder si este video es visible
       if (!videoRef.current) return;
 
       switch (e.key) {
@@ -151,7 +163,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [togglePlayPause, restartVideo, seekVideo, stepSpeed]);
+  }, [togglePlayPause, restartVideo, seekVideo, stepSpeed, isVisible]);
 
   const feedbackOverlay = tapFeedback && (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -218,7 +230,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   // Modo compacto: siempre expandido (para panel lateral)
   if (compact) {
     return (
-      <div className="rounded-xl overflow-hidden border border-border shadow-sm bg-surface">
+      <div ref={containerRef} className="rounded-xl overflow-hidden border border-border shadow-sm bg-surface">
         <div className="px-3 py-2 bg-surface-alt border-b border-border-subtle">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">

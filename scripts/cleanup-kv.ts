@@ -1,43 +1,38 @@
 /**
- * Limpia datos de Vercel KV para artículos eliminados
+ * Limpia datos de Vercel KV para estudios eliminados
  *
  * Uso:
- *   npm run cleanup-kv -- --article=44    # Limpia solo el artículo 44
- *   npm run cleanup-kv -- --all           # Limpia todos los artículos no activos
- *
- * Nota: Requiere que las variables de entorno KV_REST_API_URL y KV_REST_API_TOKEN
- * estén configuradas (ya sea en .env.local o en el entorno).
+ *   npm run cleanup-kv -- --study=2026-06-29
+ *   npm run cleanup-kv -- --all
  */
 
 import { kv } from '@vercel/kv';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Parsear argumentos
 const args = process.argv.slice(2);
-const articleArg = args.find(arg => arg.startsWith('--article='));
+const studyArg = args.find((arg) => arg.startsWith('--study='));
 const cleanAll = args.includes('--all');
 
-if (!articleArg && !cleanAll) {
+if (!studyArg && !cleanAll) {
   console.log('\n📋 Uso del script cleanup-kv:\n');
-  console.log('   npm run cleanup-kv -- --article=44    # Limpia el artículo 44');
-  console.log('   npm run cleanup-kv -- --all           # Limpia todos los no activos\n');
+  console.log('   npm run cleanup-kv -- --study=2026-06-29');
+  console.log('   npm run cleanup-kv -- --all\n');
   process.exit(0);
 }
 
-const specificArticle = articleArg ? parseInt(articleArg.split('=')[1]) : null;
+const specificStudyId = studyArg ? studyArg.split('=')[1] : null;
 
-// Obtener artículos activos de la configuración
-function getActiveArticles(): number[] {
+function getActiveStudyIds(): string[] {
   try {
     const configPath = path.join(__dirname, '../data/articles-config.ts');
     const configContent = fs.readFileSync(configPath, 'utf-8');
-    const activeMatch = configContent.match(/activeArticles:\s*\[([\s\S]*?)\]/);
+    const activeMatch = configContent.match(/activeStudyIds:\s*\[([\s\S]*?)\]/);
     if (activeMatch) {
-      return (activeMatch[1].match(/\d+/g) || []).map(Number);
+      return activeMatch[1].match(/"\d{4}-\d{2}-\d{2}"/g)?.map((s) => s.replace(/"/g, '')) || [];
     }
   } catch {
-    // Ignorar errores
+    // Ignorar
   }
   return [];
 }
@@ -45,38 +40,26 @@ function getActiveArticles(): number[] {
 async function cleanup() {
   console.log('\n🧹 Limpiando datos de Vercel KV...\n');
 
-  const prefixes = [
-    'atalaya-favorites-data',
-    'atalaya-lsm-data',
-    'atalaya-hidden-cards-data'
-  ];
-
+  const prefixes = ['atalaya-favorites', 'atalaya-lsm', 'atalaya-hidden-cards', 'atalaya-used-items'];
   let deletedCount = 0;
-  const activeArticles = getActiveArticles();
+  const activeStudyIds = getActiveStudyIds();
 
   for (const prefix of prefixes) {
     try {
-      // Buscar todas las claves con este prefijo
       const pattern = `${prefix}:*`;
       const keys = await kv.keys(pattern);
 
       for (const key of keys) {
-        // Extraer el número de artículo de la clave
-        // Formato: atalaya-xxx-data:2025-11-article-44
-        const articleMatch = key.match(/article-(\d+)/);
-        if (!articleMatch) continue;
+        const studyMatch = key.match(/(\d{4}-\d{2}-\d{2})/);
+        if (!studyMatch) continue;
 
-        const articleNum = parseInt(articleMatch[1]);
-
-        // Decidir si eliminar
+        const studyId = studyMatch[1];
         let shouldDelete = false;
 
-        if (specificArticle !== null) {
-          // Modo específico: solo eliminar si coincide
-          shouldDelete = articleNum === specificArticle;
+        if (specificStudyId !== null) {
+          shouldDelete = studyId === specificStudyId;
         } else if (cleanAll) {
-          // Modo --all: eliminar si no está activo
-          shouldDelete = !activeArticles.includes(articleNum);
+          shouldDelete = !activeStudyIds.includes(studyId);
         }
 
         if (shouldDelete) {
@@ -97,9 +80,8 @@ async function cleanup() {
   console.log(`\n✨ Limpieza completada: ${deletedCount} clave(s) eliminada(s)\n`);
 }
 
-// Ejecutar
-cleanup().catch(error => {
+cleanup().catch((error) => {
   console.error('\n❌ Error al ejecutar limpieza:', error);
-  console.log('\n💡 Asegúrate de que las variables KV_REST_API_URL y KV_REST_API_TOKEN están configuradas.\n');
+  console.log('\n💡 Configura KV_REST_API_URL y KV_REST_API_TOKEN.\n');
   process.exit(1);
 });

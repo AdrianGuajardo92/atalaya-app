@@ -1,3 +1,9 @@
+export interface AnswerItem {
+  text: string;
+  followUp?: string;
+  secondary?: boolean;
+}
+
 export interface Question {
   number: string; // e.g., "1, 2" or "3"
   textEs: string; // Pregunta en español
@@ -11,29 +17,30 @@ export interface Question {
   questionVideoLSM?: string; // URL del video corto que muestra SOLO la pregunta señada en LSM
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
-  answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)
+  answer?: string | string[]; // Legacy: oraciones clave (usar answers)
+  answers?: AnswerItem[]; // Respuestas principales y secundarias con followUp
   commentSuggestion?: string; // Sugerencia sencilla para comentar la pregunta central
-  answerContext?: string[]; // Contexto adicional separado de la respuesta directa
+  answerContext?: string[]; // Legacy: contexto adicional (usar answers con secondary)
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
-  flashcards?: string[] | Array<{
-    question: string; // Pregunta de la tarjeta didáctica
-    answer: string; // Respuesta de la tarjeta
-    questionLSM?: string; // Pregunta en LSM
-    answerLSM?: string; // Respuesta en LSM
-  }>; // Puede ser array de strings o array de objetos (para retrocompatibilidad)
   biblicalCards?: Array<{
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
-    purpose: string; // Por qué está este texto / para qué sirve
+    purpose: string; // Contexto enriquecido: por qué está en el párrafo, qué enseña y cómo ayuda (flip card)
     text: string; // Texto completo de la Traducción del Nuevo Mundo
     reasoningQuestion?: string; // Pregunta extra para conectar el texto con el párrafo
-    commentSuggestion?: string; // Sugerencia sencilla para comentar este texto bíblico
+    commentSuggestion?: string; // Obsoleto en flip cards; usar solo purpose
   }>;
   reflectionQuestions?: string[]; // Preguntas de reflexión personal
   practicalApplications?: string[]; // Aplicaciones prácticas concretas
   infographic?: string; // URL de infografía relacionada con la pregunta (opcional)
   keyPoint?: string; // Idea principal que no debe faltar en el comentario
   guidingQuestion?: string; // Pregunta extra si no mencionan el punto clave
+}
+
+export interface ParagraphSidebar {
+  title: string;
+  intro?: string;
+  items?: string[]; // Puntos del recuadro (lista numerada o con viñetas)
 }
 
 export interface Paragraph {
@@ -44,26 +51,22 @@ export interface Paragraph {
   imageCaption?: string; // Leyenda de la imagen (opcional)
   videoLSM?: string; // URL del video en LSM para este párrafo (opcional)
   note?: string; // Nota al pie del párrafo (información adicional)
+  sidebar?: ParagraphSidebar; // Recuadro lateral de jw.org (boxSupplement)
 }
 
 export interface ReviewQuestion {
   question: string; // Pregunta de repaso en español
   questionLSM?: string; // Pregunta de repaso en LSM
-  answer?: string | string[]; // Oraciones clave de la respuesta (array o string para compatibilidad)
+  answer?: string | string[]; // Legacy: oraciones clave (usar answers)
+  answers?: AnswerItem[];
   commentSuggestion?: string; // Sugerencia sencilla para comentar la pregunta de repaso
   answerBullets?: string | string[]; // Puntos clave de la respuesta en formato bullets (string con \n o array)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipos de cada punto clave (directo o entrelazado)
-  flashcards?: string[] | Array<{
-    question: string; // Pregunta de la tarjeta didáctica
-    answer: string; // Respuesta de la tarjeta
-    questionLSM?: string; // Pregunta en LSM
-    answerLSM?: string; // Respuesta en LSM
-  }>; // Puede ser array de strings o array de objetos (para retrocompatibilidad)
   biblicalCards?: Array<{
     reference: string; // Referencia bíblica (ej: "Proverbios 28:13")
-    purpose: string; // Por qué está este texto / para qué sirve
+    purpose: string; // Contexto enriquecido: por qué está en el párrafo, qué enseña y cómo ayuda (flip card)
     text: string; // Texto completo de la Traducción del Nuevo Mundo
-    commentSuggestion?: string; // Sugerencia sencilla para comentar este texto bíblico
+    commentSuggestion?: string; // Obsoleto en flip cards; usar solo purpose
   }>;
   image?: string; // URL de imagen ilustrativa
   imageCaption?: string; // Leyenda de la imagen
@@ -100,10 +103,11 @@ export interface AtalayaStudy {
 
 // Metadatos de un artículo de estudio
 export interface ArticleMetadata {
-  articleNumber: number; // Número de artículo (ej: 34, 35)
-  week: string; // Semana (ej: "4-10 Nov")
-  month: string; // Mes (ej: "Noviembre")
-  year: number; // Año (ej: 2025)
+  studyId: string; // Identificador por fecha de inicio de semana (ej: "2026-06-29")
+  articleNumber?: number; // Legacy: número impreso en revistas antiguas
+  week: string; // Semana (ej: "29 Jun-5 Jul")
+  month: string; // Mes (ej: "Junio")
+  year: number; // Año (ej: 2026)
 }
 
 // Artículo completo con metadatos

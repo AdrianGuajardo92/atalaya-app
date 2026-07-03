@@ -1,6 +1,6 @@
 import { ArticleData } from '@/types/atalaya';
 
-export type PlaylistItemType = 'song' | 'title' | 'biblical-text' | 'theme' | 'section' | 'paragraph' | 'read-text' | 'image';
+export type PlaylistItemType = 'song' | 'title' | 'biblical-text' | 'theme' | 'section' | 'paragraph' | 'read-text' | 'image' | 'sidebar' | 'review';
 
 export interface PlaylistItem {
   type: PlaylistItemType;
@@ -33,11 +33,13 @@ export function generatePlaylist(article: ArticleData): PlaylistItem[] {
 
   // 5. Recorrer preguntas en orden
   let isFirstAfterSection = false;
+  let prevSection = '';
 
   for (const question of article.questions) {
-    // Si la pregunta tiene subtítulo de sección
-    if (question.section) {
+    // Si la pregunta inicia un subtítulo de sección nuevo
+    if (question.section && question.section !== prevSection) {
       items.push({ type: 'section', content: question.section, indent: false });
+      prevSection = question.section;
       isFirstAfterSection = true;
     }
 
@@ -68,9 +70,27 @@ export function generatePlaylist(article: ArticleData): PlaylistItem[] {
         imageUrl: question.image,
       });
     }
+
+    for (const paraNum of question.paragraphs) {
+      const paragraph = article.paragraphs.find((p) => p.number === paraNum);
+      if (paragraph?.sidebar) {
+        items.push({
+          type: 'sidebar',
+          content: `Recuadro p.${paraNum}: ${paragraph.sidebar.title}`,
+          indent: true,
+        });
+      }
+    }
   }
 
-  // 6. Canción final
+  if (article.reviewQuestions?.length) {
+    items.push({ type: 'review', content: '¿Qué responderías?', indent: false });
+    for (const rq of article.reviewQuestions) {
+      items.push({ type: 'review', content: rq.question, indent: true });
+    }
+  }
+
+  // Canción final
   items.push({ type: 'song', content: article.finalSong, indent: false });
 
   return items;
@@ -100,6 +120,10 @@ export function playlistToText(items: PlaylistItem[]): string {
         return `📖 ${item.content}`;
       case 'image':
         return `🖼️ Imagen`;
+      case 'sidebar':
+        return `${prefix}📦 ${item.content}`;
+      case 'review':
+        return item.indent ? `${prefix}❓ ${item.content}` : `\n❓ ${item.content}`;
       default:
         return item.content;
     }

@@ -7,8 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "article:remove": "npx tsx scripts/article-remove.ts",
-    "article:list": "npx tsx scripts/article-list.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "skills:sync": "./scripts/sync-skills.sh",
+    "study:remove": "npx tsx scripts/study-remove.ts",
+    "study:list": "npx tsx scripts/study-list.ts",
+    "article:remove": "npx tsx scripts/study-remove.ts",
+    "article:list": "npx tsx scripts/study-list.ts",
     "cleanup-kv": "npx tsx scripts/cleanup-kv.ts"
   },
   "dependencies": {
@@ -29,6 +34,7 @@
     "html2canvas": "^1.4.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^4.1.9"
   }
 }

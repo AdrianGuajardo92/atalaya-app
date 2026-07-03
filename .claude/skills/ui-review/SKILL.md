@@ -1,51 +1,64 @@
 ---
 name: ui-review
-description: Especialista en revisar la interfaz de usuario, diseño visual, responsividad móvil y accesibilidad. Úsalo para auditar la UI, encontrar problemas visuales, mejorar la experiencia de usuario, o verificar cómo se ve la app en dispositivos específicos (Samsung Galaxy Z Fold 6, iPhone, tablets).
+description: Especialista en revisar la interfaz de usuario, diseño visual, responsividad móvil, dark mode y accesibilidad. Úsalo para auditar la UI, encontrar problemas visuales o verificar dispositivos (Samsung Galaxy Z Fold 6, iPhone, tablets).
 ---
 
 # Revisor de UI
 
-Revisa la interfaz de usuario del proyecto. Analiza:
+Revisa la interfaz del proyecto. Consulta también `.agents/skills/design-system/SKILL.md`.
 
 ## 1. Diseño visual
 
-- Consistencia con la paleta de colores (whites, slates, amber para ejecutivo)
-- Tipografía correcta (font-serif para títulos, Inter para cuerpo)
-- Espaciado y alineación
-- Sombras y bordes coherentes
+- Tokens CSS semánticos (`bg-surface`, `text-text-primary`, `border-border`)
+- **Dark mode:** verificar con `ThemeToggle` — paleta cálida en `.dark`
+- Tipografía: Geist (UI) + Playfair Display (`font-serif` en títulos)
+- Espaciado, sombras y bordes coherentes
+- Acentos amber en líneas divisorias y followUps de respuestas
 
 ## 2. Responsividad
 
-Breakpoints de Tailwind:
-- `sm` (640px): BiblicalCards grid 2 columnas
-- `md` (768px): Layouts de tablet
-- `lg` (1024px): Layouts de desktop
+Breakpoints Tailwind:
+- `sm` (640px): layouts móvil grande
+- `md` (768px): tablet; CommentGuide grid 2 columnas
+- `lg` (1024px): desktop
 
-Dispositivos clave del usuario:
-- **Samsung Galaxy Z Fold 6**: pantalla interior ~674px CSS (entre sm y md)
-- Verificar que modales funcionen en móvil
-- Sidebar overlay en móvil
-- Tamaños de fuente legibles en pantallas pequeñas
+Dispositivos clave:
+- **Samsung Galaxy Z Fold 6**: ~674px CSS (entre sm y md)
+- Modales usables en móvil; cierre con clic en backdrop (párrafos + `BibleVerseModal`)
+- Fuentes legibles en pantallas pequeñas
+- `VideoLSM` compact en tarjetas de pregunta
 
 ## 3. Diseño ejecutivo (artículos 43+)
 
-- Barra lateral decorativa con gradiente slate
-- Labels uppercase con tracking
-- Línea divisoria con símbolo decorativo
-- BiblicalCards: `h-[200px]`, grid `sm:grid-cols-2`
-- FlashCards: slide-down con borde amber
-- Subtítulos con fondo slate-800
+- Barra lateral con gradiente en tarjetas
+- Labels uppercase con `tracking-[0.2em]`
+- Línea divisoria con símbolo `✦`
+- CommentGuide flip cards: `h-[250px]`, grid `md:grid-cols-2`
+- Subtítulos con fondo oscuro centrado
+- Expansión de secciones: `animate-slideDown`
 
-## 4. Accesibilidad
+## 4. Componentes a revisar
 
-- Contraste de colores suficiente
+| Componente | Qué verificar |
+|------------|---------------|
+| `QuestionCard.tsx` | Tokens light/dark, LSM, videos, imágenes, modal párrafos, `BibleVerseModal` |
+| `ParagraphSidebarBox.tsx` | Orden imagen→recuadro, refs azules clicables, dark mode amber/cyan |
+| `ReviewQuestionCard.tsx` | Consistencia con QuestionCard |
+| `CommentGuide.tsx` | Flip cards, comentarios, accesibilidad |
+| `StudyHeader.tsx` | Badges, selector de artículos |
+| `VideoLSM.tsx` | Controles, modo compact |
+| `Timer.tsx` | Drag, dark mode |
+
+## 5. Accesibilidad
+
+- Contraste suficiente (especialmente dark mode y negritas `#E8A68B`)
 - Textos alternativos en imágenes
-- Navegación con teclado
-- Tamaños de botones adecuados para touch (min 44x44px)
+- Flip cards con `role="button"` y `aria-pressed` en CommentGuide
+- Botones touch ≥44×44px
 
 ## Formato del reporte
 
 Presentar hallazgos por severidad:
-- **Critico**: Problemas que rompen la funcionalidad
+- **Crítico**: Problemas que rompen la funcionalidad
 - **Mayor**: Problemas visuales notables
 - **Menor**: Mejoras opcionales de pulido

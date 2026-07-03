@@ -8,7 +8,11 @@ import { copyToClipboard } from '@/lib/clipboard';
 interface CommentGuideProps {
   question: Question;
   paragraphs?: Paragraph[];
-  articleNumber?: number;
+  studyId?: string;
+}
+
+function formatBiblicalCommentCopy(item: { reference: string; contextNote: string }): string {
+  return `${item.reference}\n\nPor qué está en este párrafo:\n${item.contextNote}`;
 }
 
 function CopyButton({ text, copied, onCopy }: { text: string; copied: boolean; onCopy: (text: string) => void }) {
@@ -39,10 +43,10 @@ function CopyButton({ text, copied, onCopy }: { text: string; copied: boolean; o
   );
 }
 
-export default function CommentGuide({ question, paragraphs, articleNumber }: CommentGuideProps) {
+export default function CommentGuide({ question, paragraphs, studyId }: CommentGuideProps) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [flippedBiblicalCards, setFlippedBiblicalCards] = useState<Set<number>>(new Set());
-  const questionComment = buildQuestionComment(question, articleNumber);
+  const questionComment = buildQuestionComment(question, studyId);
   const biblicalComments = buildBiblicalComments(question.biblicalCards, {
     questionText: question.textEs,
     paragraphs,
@@ -123,7 +127,7 @@ export default function CommentGuide({ question, paragraphs, articleNumber }: Co
                     tabIndex={0}
                     aria-pressed={isFlipped}
                     aria-label={`${item.reference}. ${isFlipped ? 'Mostrando el texto bíblico' : 'Mostrando el comentario'}`}
-                    className="relative h-[250px] cursor-pointer outline-none group"
+                    className="relative h-[280px] cursor-pointer outline-none group"
                     style={{ perspective: '1000px' }}
                     onClick={() => toggleBiblicalCard(index)}
                     onKeyDown={(event) => handleBiblicalCardKeyDown(event, index)}
@@ -152,14 +156,17 @@ export default function CommentGuide({ question, paragraphs, articleNumber }: Co
                             </p>
                           </div>
                           <CopyButton
-                            text={`${item.reference}\n${item.comment}`}
+                            text={formatBiblicalCommentCopy(item)}
                             copied={copiedKey === key}
                             onCopy={(text) => handleCopy(key, text)}
                           />
                         </div>
                         <div className="flex-1 overflow-y-auto p-4 hide-scrollbar">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-muted mb-1.5">
+                            Por qué está en este párrafo
+                          </p>
                           <p className="text-sm leading-relaxed text-text-secondary">
-                            {item.comment}
+                            {item.contextNote}
                           </p>
                         </div>
                         <div className="border-t border-border-subtle bg-surface-alt px-4 py-2">
@@ -170,25 +177,25 @@ export default function CommentGuide({ question, paragraphs, articleNumber }: Co
                       </div>
 
                       <div
-                        className="absolute inset-0 flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800 shadow-lg"
+                        className="absolute inset-0 flex flex-col overflow-hidden rounded-xl border border-border bg-surface-raised shadow-lg"
                         style={{
                           backfaceVisibility: 'hidden',
                           WebkitBackfaceVisibility: 'hidden',
                           transform: 'rotateY(180deg)',
                         }}
                       >
-                        <div className="border-b border-slate-700 bg-slate-900/60 px-4 py-3 text-center">
-                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                        <div className="border-b border-border-subtle bg-surface-alt px-4 py-3 text-center">
+                          <span className="font-serif text-sm font-bold uppercase tracking-[0.15em] text-text-primary">
                             {item.reference}
                           </span>
                         </div>
                         <div className="flex-1 overflow-y-auto px-5 py-4 hide-scrollbar">
-                          <p className="font-serif text-base italic leading-relaxed text-white">
+                          <p className="text-base leading-7 text-text-body md:text-lg">
                             &ldquo;{item.text || 'Texto bíblico no disponible.'}&rdquo;
                           </p>
                         </div>
-                        <div className="border-t border-slate-700 bg-slate-900/40 px-4 py-2">
-                          <p className="text-center text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                        <div className="border-t border-border-subtle bg-surface-alt px-4 py-2">
+                          <p className="text-center text-[10px] font-bold uppercase tracking-[0.15em] text-text-muted">
                             Toca para volver al comentario
                           </p>
                         </div>

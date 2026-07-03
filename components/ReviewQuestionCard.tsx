@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { ReviewQuestion } from '@/types/atalaya';
-import FlashCards from './FlashCards';
+import CommentGuide from './CommentGuide';
+import AnswerItemsList from './AnswerItemsList';
+import { getReviewAnswerItems } from '@/lib/answerItems';
 
 interface ReviewQuestionCardProps {
   reviewQuestion: ReviewQuestion;
@@ -197,7 +199,7 @@ export default function ReviewQuestionCard({
             <div className="animate-slideDown">
 
               {/* Sección de Respuesta */}
-              {reviewQuestion.answer && (
+              {getReviewAnswerItems(reviewQuestion).length > 0 && (
                 <div className="p-8 bg-surface">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 mt-1">
@@ -206,16 +208,10 @@ export default function ReviewQuestionCard({
                       </div>
                     </div>
                     <div className="flex-1 space-y-4">
-                      <div className="prose prose-slate max-w-none">
-                        {Array.isArray(reviewQuestion.answer)
-                          ? reviewQuestion.answer.map((paragraph, idx) => (
-                              <p key={idx} className="text-lg text-text-body leading-relaxed mb-4">
-                                <span className="text-text-tertiary font-medium">[{idx + 1}]</span> {renderBoldText(paragraph)}
-                              </p>
-                            ))
-                          : <p className="text-lg text-text-body leading-relaxed">{renderBoldText(String(reviewQuestion.answer))}</p>
-                        }
-                      </div>
+                      <AnswerItemsList
+                        items={getReviewAnswerItems(reviewQuestion)}
+                        renderBoldText={renderBoldText}
+                      />
 
                       {/* Puntos Clave */}
                       {reviewQuestion.answerBullets && (
@@ -234,43 +230,19 @@ export default function ReviewQuestionCard({
                           })}
                         </div>
                       )}
+                      {reviewQuestion.commentSuggestion && (
+                        <CommentGuide
+                          question={{
+                            number: `repaso-${index + 1}`,
+                            textEs: reviewQuestion.question,
+                            answer: reviewQuestion.answer,
+                            commentSuggestion: reviewQuestion.commentSuggestion,
+                            paragraphs: [],
+                          }}
+                          studyId={articleId}
+                        />
+                      )}
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Línea divisoria elegante */}
-              <div className="px-8 py-4 bg-surface">
-                <div className="flex items-center justify-center gap-4">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-amber-300/70" />
-                  <span className="text-amber-400 dark:text-[#E09070] text-sm">✦</span>
-                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-300/70" />
-                </div>
-              </div>
-
-              {/* Tarjetas Didácticas */}
-              {reviewQuestion.flashcards && reviewQuestion.flashcards.length > 0 && (
-                <div className="bg-surface-alt p-8">
-                  <div className="space-y-4">
-                    <FlashCards
-                      cards={
-                        typeof reviewQuestion.flashcards[0] === 'string'
-                          ? (reviewQuestion.flashcards as string[]).map((q) => ({ question: q, answer: '' }))
-                          : reviewQuestion.flashcards as Array<{ question: string; answer: string; questionLSM?: string; answerLSM?: string }>
-                      }
-                      questionNumber={`review-${index}`}
-                      lsmData={allLsmData}
-                      onLSMUpdate={(key, text) => {
-                        fetch('/api/lsm', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ articleId: articleId, questionNumber: key, lsmText: text })
-                        });
-                      }}
-                      hiddenCards={hiddenCards}
-                      onToggleHidden={onToggleHidden}
-                      articleId={articleId}
-                    />
                   </div>
                 </div>
               )}

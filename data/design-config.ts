@@ -12,6 +12,7 @@ export const designConfig = {
 /**
  * Verifica si un artículo usa el diseño ejecutivo
  */
-export function isExecutiveDesign(articleNumber: number): boolean {
+export function isExecutiveDesign(articleNumber?: number): boolean {
+  if (articleNumber == null) return true;
   return articleNumber >= designConfig.executiveDesignStartsAt;
 }

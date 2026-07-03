@@ -10,7 +10,7 @@ import LsmBulkImport from '@/components/LsmBulkImport';
 
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
 import { getDefaultArticleId } from '@/data/articles-config';
-import { isExecutiveDesign } from '@/data/design-config';
+import { countUniqueSections, isFirstQuestionInSection, sectionIndexAt } from '@/lib/sectionUtils';
 import { ArticleData } from '@/types/atalaya';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -582,7 +582,7 @@ export default function Home() {
                 title={currentArticle.title}
                 biblicalText={currentArticle.biblicalText}
                 theme={currentArticle.theme}
-                articleNumber={currentArticle.metadata.articleNumber}
+                studyId={currentArticle.metadata.studyId}
                 week={currentArticle.metadata.week}
                 month={currentArticle.metadata.month}
                 year={currentArticle.metadata.year}
@@ -615,9 +615,11 @@ export default function Home() {
                   isNavigationMode={false}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
+                  allLsmData={lsmData}
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
                   articleId={currentArticleId}
+                  showSectionHeader={isFirstQuestionInSection(currentArticle.questions, index)}
                 />
               ))}
             </div>
@@ -677,9 +679,11 @@ export default function Home() {
                   isNavigationMode={true}
                   hiddenCards={hiddenCards}
                   onToggleHidden={handleToggleHidden}
+                  allLsmData={lsmData}
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
                   articleId={currentArticleId}
+                  showSectionHeader={isFirstQuestionInSection(currentArticle.questions, currentQuestionIndex)}
                 />
               </>
             ) : (
@@ -709,283 +713,139 @@ export default function Home() {
 
             {/* Vista previa de lo que viene */}
             {currentReviewIndex === -1 ? (
-              /* Estamos en preguntas normales */
               currentQuestionIndex < currentArticle.questions.length - 1 ? (
-                isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
-                  /* DISEÑO EJECUTIVO - Artículo 43+ */
-                  (() => {
-                    const nextQ = currentArticle.questions[currentQuestionIndex + 1];
-                    const hasSection = !!nextQ.section;
+                (() => {
+                  const nextIndex = currentQuestionIndex + 1;
+                  const nextQ = currentArticle.questions[nextIndex];
+                  const hasSection = isFirstQuestionInSection(currentArticle.questions, nextIndex);
+                  const totalSections = countUniqueSections(currentArticle.questions);
+                  const sectionNumber = hasSection ? sectionIndexAt(currentArticle.questions, nextIndex) : 0;
 
-                    // Calcular número de subtema
-                    let sectionNumber = 0;
-                    let totalSections = 0;
-                    if (hasSection) {
-                      currentArticle.questions.forEach((q, i) => {
-                        if (q.section) {
-                          totalSections++;
-                          if (i === currentQuestionIndex + 1) sectionNumber = totalSections;
-                        }
-                      });
-                    }
+                  return (
+                    <div className="mt-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                        <span className="text-text-tertiary text-sm">✦</span>
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                      </div>
 
-                    return (
-                      <div className="mt-8">
-                        {/* Separador ejecutivo */}
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                          <span className="text-text-tertiary text-sm">✦</span>
-                          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                        </div>
-
-                        {hasSection ? (
-                          /* CON SUBTEMA */
-                          <div className="text-center space-y-4">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
-                              <span className="text-amber-400 text-[11px] font-bold tracking-[0.15em] uppercase">
-                                Subtema {sectionNumber} de {totalSections}
-                              </span>
-                            </div>
-                            <h2 className="text-2xl md:text-3xl font-serif font-bold text-text-primary uppercase tracking-wide leading-tight">
-                              {nextQ.section}
-                            </h2>
-                            <div className="flex items-center justify-center gap-3 pt-1">
-                              <div className="h-px w-12 bg-gradient-to-r from-transparent to-border-strong"></div>
-                              <span className="text-text-tertiary text-xs font-bold tracking-[0.2em] uppercase">
-                                Párrafo {nextQ.paragraphs.join(', ')}
-                              </span>
-                              <div className="h-px w-12 bg-gradient-to-l from-transparent to-border-strong"></div>
-                            </div>
+                      {hasSection ? (
+                        <div className="text-center space-y-4">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
+                            <span className="text-amber-400 text-[11px] font-bold tracking-[0.15em] uppercase">
+                              Subtema {sectionNumber} de {totalSections}
+                            </span>
                           </div>
-                        ) : (
-                          /* SIN SUBTEMA: solo el párrafo */
-                          <div className="text-center py-2">
+                          <h2 className="text-2xl md:text-3xl font-serif font-bold text-text-primary uppercase tracking-wide leading-tight">
+                            {nextQ.section}
+                          </h2>
+                          <div className="flex items-center justify-center gap-3 pt-1">
+                            <div className="h-px w-12 bg-gradient-to-r from-transparent to-border-strong"></div>
                             <span className="text-text-tertiary text-xs font-bold tracking-[0.2em] uppercase">
                               Párrafo {nextQ.paragraphs.join(', ')}
                             </span>
+                            <div className="h-px w-12 bg-gradient-to-l from-transparent to-border-strong"></div>
                           </div>
-                        )}
-                      </div>
-                    );
-                  })()
-                ) : (
-                  /* DISEÑO ORIGINAL - Artículos anteriores */
-                  <div className="mt-6 bg-surface rounded-lg shadow-md border-2 border-orange-400 dark:border-orange-600 overflow-hidden">
-                    <div className="bg-orange-500 dark:bg-orange-600 px-5 py-2.5">
-                      <p className="text-sm font-bold text-white flex items-center gap-2">
-                        <span>⏭️</span> Próxima pregunta
-                      </p>
-                    </div>
-                    <div className="p-5 space-y-3">
-                      {currentArticle.questions[currentQuestionIndex + 1].section && (
-                        <div className="bg-surface-alt border-l-4 border-slate-700 dark:border-[#4A4A45] pl-4 py-3 rounded-r">
-                          <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1.5">Sección</p>
-                          <h3 className="text-xl font-extrabold text-text-primary uppercase leading-tight">
-                            {currentArticle.questions[currentQuestionIndex + 1].section}
-                          </h3>
                         </div>
-                      )}
-                      <div className="text-xs text-text-muted px-1">
-                        <span className="font-medium">Párrafos del artículo: </span>
-                        <span className="font-bold text-text-body">
-                          {currentArticle.questions[currentQuestionIndex + 1].paragraphs.join(', ')}
-                        </span>
-                      </div>
-                      {currentArticle.questions[currentQuestionIndex + 1].preview && (
-                        <div className="mt-2 bg-orange-50 dark:bg-orange-950 px-3 py-2 rounded-lg border border-orange-200 dark:border-orange-800">
-                          <p className="text-sm text-orange-800 dark:text-orange-200">
-                            <span className="font-semibold">🎯 Veremos:</span>{' '}
-                            <span className="italic">{currentArticle.questions[currentQuestionIndex + 1].preview}</span>
-                          </p>
+                      ) : (
+                        <div className="text-center py-2">
+                          <span className="text-text-tertiary text-xs font-bold tracking-[0.2em] uppercase">
+                            Párrafo {nextQ.paragraphs.join(', ')}
+                          </span>
                         </div>
                       )}
                     </div>
-                  </div>
-                )
+                  );
+                })()
               ) : (
-                /* En la última pregunta normal, mostrar que vienen las preguntas de repaso */
-                isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
-                  /* DISEÑO EJECUTIVO */
-                  <div className="mt-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                      <span className="text-text-tertiary text-sm">✦</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                    </div>
-                    <div className="bg-surface border border-border rounded-xl shadow-sm p-6 text-center">
-                      <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-3">Siguiente</p>
-                      <p className="text-lg font-semibold text-text-body">
-                        ¿Qué responderías?
-                      </p>
-                      <p className="text-sm text-text-muted mt-1">
-                        {currentArticle.reviewQuestions.length} preguntas de repaso
-                      </p>
-                    </div>
+                <div className="mt-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                    <span className="text-text-tertiary text-sm">✦</span>
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                   </div>
-                ) : (
-                  /* DISEÑO ORIGINAL */
-                  <div className="mt-6 bg-surface-alt border-l-2 border-border-strong p-4 rounded-lg shadow-sm">
-                    <p className="text-sm font-semibold text-text-primary mb-2">📋 Siguiente:</p>
-                    <div className="text-sm text-text-body">
-                      <p className="font-semibold text-text-secondary">
-                        ¿Qué responderías? ({currentArticle.reviewQuestions.length} preguntas de repaso)
-                      </p>
-                    </div>
+                  <div className="bg-surface border border-border rounded-xl shadow-sm p-6 text-center">
+                    <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-3">Siguiente</p>
+                    <p className="text-lg font-semibold text-text-body">¿Qué responderías?</p>
+                    <p className="text-sm text-text-muted mt-1">
+                      {currentArticle.reviewQuestions.length} preguntas de repaso
+                    </p>
                   </div>
-                )
+                </div>
               )
             ) : (
-              /* Estamos en preguntas de repaso */
               currentReviewIndex < currentArticle.reviewQuestions.length - 1 && (
-                isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
-                  /* DISEÑO EJECUTIVO */
-                  <div className="mt-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                      <span className="text-text-tertiary text-sm">✦</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
-                    </div>
-                    <div className="bg-surface border border-border rounded-xl shadow-sm p-6 text-center">
-                      <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-3">Siguiente</p>
-                      <p className="text-lg font-semibold text-text-body">
-                        Pregunta de repaso {currentReviewIndex + 2}
-                      </p>
-                    </div>
+                <div className="mt-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
+                    <span className="text-text-tertiary text-sm">✦</span>
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"></div>
                   </div>
-                ) : (
-                  /* DISEÑO ORIGINAL */
-                  <div className="mt-6 bg-surface-alt border-l-2 border-border-strong p-4 rounded-lg shadow-sm">
-                    <p className="text-sm font-semibold text-text-primary mb-2">📋 Siguiente:</p>
-                    <div className="text-sm text-text-body">
-                      <p className="font-semibold text-text-secondary">
-                        Pregunta de repaso {currentReviewIndex + 2}
-                      </p>
-                    </div>
+                  <div className="bg-surface border border-border rounded-xl shadow-sm p-6 text-center">
+                    <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.15em] mb-3">Siguiente</p>
+                    <p className="text-lg font-semibold text-text-body">
+                      Pregunta de repaso {currentReviewIndex + 2}
+                    </p>
                   </div>
-                )
+                </div>
               )
             )}
 
             {/* Controles de navegación */}
-            {isExecutiveDesign(currentArticle.metadata.articleNumber) ? (
-              /* DISEÑO EJECUTIVO */
-              <div className="mt-8 bg-surface border border-border rounded-xl shadow-sm p-6">
-                {/* Contador y barra de progreso */}
-                <div className="mb-5">
-                  <div className="flex justify-between items-center mb-3">
-                    <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.1em]">
-                      {currentReviewIndex === -1 ? (
-                        <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
-                      ) : (
-                        <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
-                      )}
-                    </p>
-                    <span className="text-sm text-text-tertiary font-medium">
-                      {currentReviewIndex === -1 ? (
-                        <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
-                      ) : (
-                        <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
-                      )}
-                    </span>
-                  </div>
-
-                  {/* Barra de progreso ejecutiva */}
-                  <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-slate-500 dark:bg-[#8B8980] transition-all duration-300 ease-out"
-                      style={{
-                        width: currentReviewIndex === -1
-                          ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
-                          : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`
-                      }}
-                    ></div>
-                  </div>
+            <div className="mt-8 bg-surface border border-border rounded-xl shadow-sm p-6">
+              <div className="mb-5">
+                <div className="flex justify-between items-center mb-3">
+                  <p className="text-xs font-bold text-text-tertiary uppercase tracking-[0.1em]">
+                    {currentReviewIndex === -1 ? (
+                      <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
+                    ) : (
+                      <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
+                    )}
+                  </p>
+                  <span className="text-sm text-text-tertiary font-medium">
+                    {currentReviewIndex === -1 ? (
+                      <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
+                    ) : (
+                      <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
+                    )}
+                  </span>
                 </div>
-
-                {/* Botones ejecutivos */}
-                <div className="flex justify-between items-center gap-4">
-                  <button
-                    onClick={handlePrevious}
-                    disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
-                    className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
-                      currentQuestionIndex === 0 && currentReviewIndex === -1
-                        ? 'bg-surface-alt text-text-tertiary cursor-not-allowed border border-border-subtle'
-                        : 'bg-surface text-text-secondary border border-border hover:bg-surface-alt hover:border-border-strong'
-                    }`}
-                  >
-                    ← Anterior
-                  </button>
-
-                  <button
-                    onClick={handleNext}
-                    disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
-                    className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
-                      currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                        ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                        : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45] shadow-sm'
-                    }`}
-                  >
-                    Siguiente →
-                  </button>
+                <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-slate-500 dark:bg-[#8B8980] transition-all duration-300 ease-out"
+                    style={{
+                      width: currentReviewIndex === -1
+                        ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
+                        : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`,
+                    }}
+                  />
                 </div>
               </div>
-            ) : (
-              /* DISEÑO ORIGINAL */
-              <div className="mt-8 bg-surface rounded-lg shadow-md p-5 border border-border">
-                <div className="mb-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <div className="text-lg font-semibold text-text-body">
-                      {currentReviewIndex === -1 ? (
-                        <>Pregunta {currentQuestionIndex + 1} de {currentArticle.questions.length}</>
-                      ) : (
-                        <>Repaso {currentReviewIndex + 1} de {currentArticle.reviewQuestions.length}</>
-                      )}
-                    </div>
-                    <div className="text-sm text-text-muted font-medium">
-                      {currentReviewIndex === -1 ? (
-                        <>{Math.round(((currentQuestionIndex + 1) / currentArticle.questions.length) * 100)}%</>
-                      ) : (
-                        <>{Math.round(((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100)}%</>
-                      )}
-                    </div>
-                  </div>
-                  <div className="w-full h-2 bg-border rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 dark:from-indigo-400 dark:to-indigo-500 transition-all duration-300 ease-out"
-                      style={{
-                        width: currentReviewIndex === -1
-                          ? `${((currentQuestionIndex + 1) / currentArticle.questions.length) * 100}%`
-                          : `${((currentReviewIndex + 1) / currentArticle.reviewQuestions.length) * 100}%`
-                      }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <button
-                    onClick={handlePrevious}
-                    disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
-                    className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
-                      currentQuestionIndex === 0 && currentReviewIndex === -1
-                        ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                        : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45]'
-                    }`}
-                  >
-                    ⬅️ Anterior
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
-                    className={`px-6 py-3 rounded-lg font-medium transition-all shadow-sm ${
-                      currentReviewIndex === currentArticle.reviewQuestions.length - 1
-                        ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                        : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45]'
-                    }`}
-                  >
-                    Siguiente ➡️
-                  </button>
-                </div>
+              <div className="flex justify-between items-center gap-4">
+                <button
+                  onClick={handlePrevious}
+                  disabled={currentQuestionIndex === 0 && currentReviewIndex === -1}
+                  className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
+                    currentQuestionIndex === 0 && currentReviewIndex === -1
+                      ? 'bg-surface-alt text-text-tertiary cursor-not-allowed border border-border-subtle'
+                      : 'bg-surface text-text-secondary border border-border hover:bg-surface-alt hover:border-border-strong'
+                  }`}
+                >
+                  ← Anterior
+                </button>
+                <button
+                  onClick={handleNext}
+                  disabled={currentReviewIndex === currentArticle.reviewQuestions.length - 1}
+                  className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
+                    currentReviewIndex === currentArticle.reviewQuestions.length - 1
+                      ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
+                      : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45] shadow-sm'
+                  }`}
+                >
+                  Siguiente →
+                </button>
               </div>
-            )}
+            </div>
           </div>
         )}
           </>

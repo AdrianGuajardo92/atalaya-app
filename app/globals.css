@@ -267,6 +267,21 @@ body {
   animation: slideUp 0.2s ease-out;
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s ease-out forwards;
+}
+
 /* Slide-in desde la izquierda para modal de párrafos (desktop) */
 @keyframes slideInFromLeft {
   from {
@@ -304,22 +319,22 @@ body {
 }
 
 .paragraphs-modal-backdrop-exit {
-  animation: fadeOut 0.4s ease-in forwards;
+  animation: fadeOut 0.25s ease-in forwards;
 }
 
 .paragraphs-modal-content-exit {
-  animation: fadeOut 0.3s ease-in forwards;
+  animation: fadeOut 0.22s ease-in forwards;
 }
 
 @media (min-width: 768px) {
   .paragraphs-modal-backdrop {
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn 0.25s ease-out;
   }
   .paragraphs-modal-content {
-    animation: slideInFromLeft 0.45s cubic-bezier(0.55, 0, 1, 0.45);
+    animation: slideInFromLeft 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .paragraphs-modal-content-exit {
-    animation: slideOutToLeft 0.45s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+    animation: slideOutToLeft 0.25s cubic-bezier(0.64, 0, 0.78, 0) forwards;
   }
 }
 
@@ -357,4 +372,16 @@ body {
   border: 2px solid #34d399;
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
   cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slideDown,
+  .animate-fadeIn,
+  .animate-slideUp {
+    animation: none !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
 }

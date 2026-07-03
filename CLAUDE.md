@@ -74,7 +74,7 @@ app/
 components/
 ├── QuestionCard.tsx      # Primary study card (largest component)
 ├── SummaryView.tsx       # Print-friendly summary view
-├── FlashCards.tsx        # Interactive flashcards with flip
+├── AnswerItemsList.tsx   # Respuestas principales/secundarias con followUp
 ├── BiblicalCards.tsx     # Scripture reference cards
 ├── ReviewQuestionCard.tsx
 ├── StudyHeader.tsx
@@ -89,17 +89,22 @@ components/
 └── InstructionsButton.tsx
 
 data/
-├── articles/             # Artículos individuales
-│   ├── article-XX.ts     # Archivo individual por artículo
-│   └── index.ts          # Registro central de artículos (articlesMap + biblicalTextsMap)
-├── articles-config.ts    # Configuración de artículos activos y mes por defecto
-├── biblical-texts.ts     # Textos bíblicos compartidos
+├── articles/             # Estudios individuales
+│   ├── study-YYYY-MM-DD.ts  # Archivo por semana (metadata.studyId)
+│   └── index.ts          # studiesMap + biblicalTextsMap + getBiblicalTextsForStudy()
+├── articles-config.ts    # activeStudyIds, defaultStudyId
+├── biblical-texts.ts     # Textos bíblicos compartidos (legacy)
 └── design-config.ts      # Configuración de diseño ejecutivo (umbral artículo 43+)
 
 lib/
 ├── kv-store.ts           # Abstracción de almacenamiento KV (Vercel KV con fallback a memoria)
 ├── clipboard.ts          # Utilidad de copiar al portapapeles
-└── generatePlaylist.ts   # Genera estructura de playlist desde datos del artículo
+├── generatePlaylist.ts   # Genera estructura de playlist desde datos del estudio
+├── answerItems.ts        # Normalizador AnswerItem → UI
+├── sidebarPlacement.ts   # Colocación de recuadros (tarjeta vs modal)
+├── formatSidebarRichText.tsx  # Rich text de recuadros + refs azules
+├── resolveScriptureRef.ts     # Resolución TNM para refs clicables del recuadro
+└── sectionUtils.ts       # Subtítulos section solo en 1ª pregunta del bloque
 
 types/
 └── atalaya.ts            # Core TypeScript interfaces
@@ -110,16 +115,22 @@ public/
 
 ### Data Flow
 
-1. Cada artículo vive en su propio archivo: `data/articles/article-XX.ts`
-2. Los artículos se registran en `data/articles/index.ts` (articlesMap + biblicalTextsMap)
-3. La configuración de artículos activos está en `data/articles-config.ts`
-4. User selections persist to localStorage (article ID)
+1. Cada estudio vive en su propio archivo: `data/articles/study-YYYY-MM-DD.ts`
+2. Los estudios se registran en `data/articles/index.ts` (`studiesMap` + `biblicalTextsMap`)
+3. La configuración de estudios activos está en `data/articles-config.ts` (`activeStudyIds`)
+4. User selections persist to localStorage (study ID)
 5. Favorites, LSM texts, hidden cards, used items persist to Vercel KV via API routes
 6. Components fetch/update via `/api/*` endpoints
 
 ### Key Type Interfaces
 
 ```typescript
+interface AnswerItem {
+  text: string;                      // Respuesta con **negritas**
+  followUp?: string;                 // Pregunta si nadie menciona la idea
+  secondary?: boolean;               // true = detalle del párrafo
+}
+
 interface Question {
   number: string;                    // ej: "1, 2" o "3"
   textEs: string;                    // Pregunta en español
@@ -135,11 +146,11 @@ interface Question {
   questionVideoLSM?: string;         // Video LSM corto que muestra SOLO la pregunta señada
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
-  answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
-  answerContext?: string[];          // Contexto adicional separado de la respuesta directa
+  answers?: AnswerItem[];            // Respuestas para el conductor (preferido)
+  answer?: string | string[];        // legacy — solo lectura
+  answerContext?: string[];          // legacy — solo lectura
   answerBullets?: string | string[]; // Puntos clave en formato bullets (editables en UI)
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipo de cada bullet (directo o entrelazado)
-  flashcards?: string[] | FlashCard[]; // Tarjetas didácticas (string[] o objetos para retrocompatibilidad)
   biblicalCards?: BiblicalCard[];    // Tarjetas bíblicas
   reflectionQuestions?: string[];    // Preguntas de reflexión personal (editables en UI)
   practicalApplications?: string[];  // Aplicaciones prácticas (editables en UI)
@@ -159,22 +170,15 @@ interface Paragraph {
 interface ReviewQuestion {
   question: string;                  // Pregunta de repaso en español
   questionLSM?: string;              // Pregunta en LSM
-  answer?: string | string[];        // Oraciones clave de la respuesta
+  answers?: AnswerItem[];            // Respuestas para el conductor (preferido)
+  answer?: string | string[];        // legacy — solo lectura
   answerBullets?: string | string[]; // Puntos clave en formato bullets
   answerBulletsTypes?: ('direct' | 'interlaced')[]; // Tipo de cada bullet
-  flashcards?: string[] | FlashCard[]; // Tarjetas didácticas (string[] o objetos)
   biblicalCards?: BiblicalCard[];
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
   reflectionQuestions?: string[];    // Preguntas de reflexión personal
   practicalApplications?: string[];  // Aplicaciones prácticas
-}
-
-interface FlashCard {
-  question: string;
-  answer: string;
-  questionLSM?: string;
-  answerLSM?: string;
 }
 
 interface BiblicalCard {
@@ -461,7 +465,7 @@ answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el aj
 | `answerContext` | ✅ | Ideas que profundizan la respuesta |
 | `reviewQuestions.answer` | ✅ | Conceptos finales de repaso |
 | `content` (párrafo completo) | ❌ | El texto completo se deja sin negritas |
-| `flashcard.answer` | ❌ | Las respuestas de flashcards son directas |
+| `answers[].text` | ✅ | Conceptos clave de cada respuesta |
 
 #### Qué resaltar en negritas
 
@@ -860,7 +864,7 @@ text-slate-700 leading-relaxed
 </div>
 ```
 
-#### 9. Tarjetas (FlashCards / BiblicalCards)
+#### 9. Tarjetas (CommentGuide / BiblicalCards)
 ```jsx
 {/* Tarjeta con flip */}
 <div className="min-h-[250px]" style={{ perspective: '1000px' }}>

@@ -8,7 +8,18 @@ const withPWA = withPWAInit({
   disable: process.env.NODE_ENV === "development",
   runtimeCaching: [
     {
-      urlPattern: /^https:\/\/.*\.vercel\.app\/api\/.*/i,
+      urlPattern: /\.(?:mp4|webm)$/i,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "videos-lsm-cache",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 30 * 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /^https?:\/\/.*\/api\/.*/i,
       handler: "NetworkFirst",
       options: {
         cacheName: "api-cache",

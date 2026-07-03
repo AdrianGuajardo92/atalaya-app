@@ -85,34 +85,28 @@ The current design system for articles 43+ uses this visual language:
 5. Cards with flip: `min-h-[250px]` with perspective 1000px
 6. Animations: `slideDown` (0.4s) and `fadeIn` (0.3s) ease-out
 
-### Critical Architecture: Dual Rendering Blocks
+### Architecture: diseño unificado
 
-The `QuestionCard.tsx` component (~2000+ lines) has **TWO separate rendering paths**:
-- **Premium Design block**: `if (isPremiumDesign) { return (...` (articles 43+)
-- **Original Design block**: Everything after that block
+`QuestionCard.tsx`, `ReviewQuestionCard.tsx` y `StudyHeader.tsx` usan **un solo bloque** con tokens semánticos (`bg-surface`, `text-text-primary`, etc.) definidos en `app/globals.css`. Ver `.agents/skills/design-system/SKILL.md`.
 
-**CRITICAL RULE**: When modifying visual features, you MUST implement changes in BOTH blocks. Key locations:
-- `question.image` → Premium ~line 1320, Original ~line 1724
-- `paragraph.image` (modal) → Premium ~line 1052, Original ~line 2165
+Comentarios bíblicos: `CommentGuide.tsx` (no existe `BiblicalCards.tsx`).
+Recuadros: `ParagraphSidebarBox.tsx` + `lib/sidebarPlacement.ts`.
 
 ### Component Map
 
-| Component | Purpose | Size |
-|-----------|---------|------|
-| `components/QuestionCard.tsx` | Main study card | ~2000+ lines (largest) |
-| `components/StudyHeader.tsx` | Article header | Medium |
-| `components/ReviewQuestionCard.tsx` | Review questions | Medium |
-| `components/FlashCards.tsx` | Flashcard interactions | Medium |
-| `components/BiblicalCards.tsx` | Scripture cards | Medium |
-| `components/TimelineView.tsx` | Timeline accordion | Medium |
-| `components/SummaryView.tsx` | Print-friendly summary | Medium |
-| `app/globals.css` | Global styles, CSS variables, animations | Core |
-| `app/layout.tsx` | Root layout with PWA config | Core |
+| Component | Purpose |
+|-----------|---------|
+| `components/QuestionCard.tsx` | Main study card |
+| `components/StudyHeader.tsx` | Study header |
+| `components/ReviewQuestionCard.tsx` | Review questions |
+| `components/FlashCards.tsx` | Flashcard interactions |
+| `components/CommentGuide.tsx` | Cómo comentarlo + flip bíblico |
+| `components/SummaryView.tsx` | Print-friendly summary |
+| `app/globals.css` | Tokens, dark mode, animations |
 
-### Design System Threshold
-- Articles **< 43**: Original design (varied colors, simpler layout)
-- Articles **>= 43**: Executive Design (slate palette, serif titles, premium feel)
-- The threshold is detected via `isPremiumDesign` / `isArticle43` variables
+### Design System
+- Estudios por `studyId`: diseño ejecutivo por defecto (`isExecutiveDesign(undefined) === true`)
+- Umbral legacy: artículo >= 43 en `data/design-config.ts`
 
 ---
 
@@ -126,7 +120,7 @@ The `QuestionCard.tsx` component (~2000+ lines) has **TWO separate rendering pat
 
 4. **Recommend Improvements** - If you notice something could be better while working, mention it. Example: "While implementing dark mode, I noticed the contrast ratio on the labels is only 3.2:1. I recommend changing to slate-500 for AA compliance."
 
-5. **Implement in Both Blocks** - For QuestionCard changes, ALWAYS update both Premium and Original rendering paths.
+5. **Implement once** — Un solo bloque de render en tarjetas; seguir tokens de `design-system`.
 
 6. **Ensure Responsive Design** - Test mentally on mobile (375px), tablet (768px), and desktop (1280px+). Use Tailwind responsive prefixes.
 
@@ -144,7 +138,7 @@ The `QuestionCard.tsx` component (~2000+ lines) has **TWO separate rendering pat
 ## Quality Checks Before Finishing
 
 - [ ] Design rationale explained for non-trivial changes
-- [ ] Both rendering blocks updated (if modifying QuestionCard)
+- [ ] Single unified design block (tokens from design-system)
 - [ ] Responsive design verified (mobile + desktop classes)
 - [ ] Accessibility checked (contrast, focus, touch targets)
 - [ ] Spanish text has correct accents and punctuation
@@ -170,7 +164,7 @@ Examples of what to record:
 
 # Persistent Agent Memory
 
-You have a persistent Persistent Agent Memory directory at `C:\Users\adria\atalaya-app\.claude\agent-memory\atalaya-ui-designer\`. Its contents persist across conversations.
+You have a persistent agent memory directory at `.claude/agent-memory/atalaya-ui-designer/`.
 
 As you work, consult your memory files to build on previous experience. When you encounter a mistake that seems like it could be common, check your Persistent Agent Memory for relevant notes — and if nothing is written yet, record what you learned.
 

@@ -9,6 +9,7 @@ interface StudyHeaderProps {
   biblicalText: string;
   theme: string;
   // Nuevas props para manejo de artículos
+  studyId?: string;
   articleNumber?: number;
   week?: string;
   month?: string;
@@ -223,7 +224,7 @@ export default function StudyHeader({
                         className={isSelected ? 'font-semibold bg-surface-raised' : ''}
                       >
                         {isSelected ? '● ' : '  '}
-                        {`Art. ${article.metadata.articleNumber} | ${article.metadata.week} — ${article.title}`}
+                        {`${article.metadata.week} — ${article.title}`}
                       </option>
                     );
                   })}
@@ -261,13 +262,9 @@ export default function StudyHeader({
       )}
 
       {/* Información del Artículo - Badges Ejecutivos */}
-      {articleNumber && week && month && year && (
+      {week && month && year && (
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           <span className="px-4 py-1.5 bg-surface border border-border rounded-lg text-text-body font-bold text-sm shadow-sm">
-            Artículo {articleNumber}
-          </span>
-          <span className="text-text-tertiary">•</span>
-          <span className="px-4 py-1.5 bg-surface border border-border rounded-lg text-text-secondary font-medium text-sm shadow-sm">
             {week}
           </span>
           <span className="text-text-tertiary">•</span>

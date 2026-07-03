@@ -1,23 +1,29 @@
 ---
 name: deploy
-description: Haz commit y push de TODOS los cambios pendientes al repositorio. Úsalo cuando el usuario diga "deploy", "sube los cambios", "push", "haz commit", o "despliega".
+description: Prepara commit y push de cambios al repositorio remoto. Úsalo SOLO cuando el usuario pida explícitamente "haz commit", "push", "sube los cambios" o "guarda en git". NO usar para desplegar a Vercel (usa la skill vercel).
 disable-model-invocation: true
 allowed-tools: Bash(git *)
 ---
 
-# Deploy - Commit y Push
+# Git — Commit y Push
 
-Haz commit y push de TODOS los cambios pendientes. Sigue estos pasos:
+**Política del proyecto:** NO hacer commit ni push automáticamente. Solo ejecutar cuando el usuario lo ordene **explícitamente**.
 
-1. Ejecuta `git status` y `git diff --stat` para ver todos los cambios
-2. Analiza TODOS los cambios: archivos modificados, nuevos (untracked) y eliminados
-3. Haz `git add` de TODOS los archivos pendientes, incluyendo archivos nuevos (untracked). Usa `git add -A` para no dejar nada fuera. Las ÚNICAS excepciones son: .env, credenciales, secrets, o archivos con información sensible.
-4. Crea un commit con mensaje detallado en español que:
-   - Tenga un título corto y descriptivo (máx 70 caracteres)
-   - Liste los cambios principales como bullet points en el body
-   - Termine con Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
-5. Haz `git push` al remoto
+## Pasos
 
-Si no hay cambios pendientes, informa al usuario.
-NO pidas confirmación, ejecuta todo directamente.
-NUNCA dejes archivos fuera del commit a menos que sean credenciales o .env.
+1. `git status` y `git diff --stat` — revisar cambios
+2. **Confirmar con el usuario** qué incluir si hay dudas (videos grandes, archivos sensibles)
+3. `git add` solo archivos relevantes (usar `git add -A` si el usuario pidió subir todo)
+4. **Nunca** incluir: `.env`, credenciales, secrets
+5. Commit con mensaje en español (título ≤70 caracteres + bullets en el body)
+6. `git push` solo si el usuario lo pidió
+
+## Excepciones
+
+- Si no hay cambios pendientes, informar al usuario
+- Si un hook pre-commit falla, corregir y crear un **nuevo** commit (no `--amend` salvo que el usuario lo pida)
+- **Nunca** `push --force` a main/master sin confirmación explícita
+
+## No confundir con Vercel
+
+"Deploy" en producción = `vercel --prod` (ver skill `vercel` y `DEPLOY-VERCEL.md`).

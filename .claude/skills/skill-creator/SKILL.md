@@ -6,6 +6,8 @@ license: Complete terms in LICENSE.txt
 
 # Skill Creator
 
+> **Atalaya-app:** La fuente canónica de skills del proyecto es `.agents/skills/`. Tras editar skills o features UI de estudio (recuadros, modales, importador), ejecuta `./scripts/sync-skills.sh` para actualizar el espejo `.claude/skills/`. Para convenciones de formato Cursor, consulta también la skill global `create-skill` en `~/.cursor/skills-cursor/`.
+
 This skill provides guidance for creating effective skills.
 
 ## About Skills

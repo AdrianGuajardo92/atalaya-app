@@ -2,6 +2,16 @@
 
 This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
+## Agent Skills
+
+**Fuente canónica:** [`.agents/skills/`](.agents/skills/) — edita siempre aquí.
+
+**Espejo Cursor:** [`.claude/skills/`](.claude/skills/) — se sincroniza con `./scripts/sync-skills.sh` (no editar manualmente).
+
+Skills exclusivas del dominio: `article-editor`, `atalaya-revista-importer`, `como-comentarlo`, `respuestas-conductor`, `design-system`, `study-lifecycle`, `lsm-video`, `lsm-translations`, `kv-maintenance`, `box-supplement`, etc.
+
+Tras editar skills en `.agents/skills/`, ejecutar `npm run skills:sync`.
+
 ## Git Policy
 
 **NO hacer commit ni push automáticamente.** Esperar a que el usuario lo ordene explícitamente.
@@ -63,24 +73,39 @@ app/
 │   ├── favorites/        # Bookmark management
 │   ├── hidden-cards/     # Card visibility
 │   ├── lsm/              # Mexican Sign Language texts
-│   └── pdfs/             # PDF upload/management
+│   └── used-items/       # Tracking de ítems usados en reunión
 ├── page.tsx              # Main study page
 └── layout.tsx            # Root layout with PWA config
 
 components/
 ├── QuestionCard.tsx      # Primary study card (largest component)
 ├── SummaryView.tsx       # Print-friendly summary view
-├── FlashCards.tsx        # Interactive flashcards with flip
-├── BiblicalCards.tsx     # Scripture reference cards
+├── AnswerItemsList.tsx   # Respuestas principales/secundarias con followUp
+├── CommentGuide.tsx      # "Cómo comentarlo" + flip bíblico
+├── ParagraphSidebarBox.tsx  # Recuadros laterales (boxSupplement)
 ├── ReviewQuestionCard.tsx
 ├── StudyHeader.tsx
 ├── Timer.tsx
-├── PdfUploader.tsx
+├── VideoLSM.tsx
+├── PlaylistModal.tsx
 └── InstructionsButton.tsx
 
 data/
-├── atalaya-data.ts       # Article database (~4600 lines)
-└── articles-config.ts    # Active articles configuration
+├── articles/             # Estudios individuales
+│   ├── study-YYYY-MM-DD.ts  # Un estudio por semana (studyId = fecha inicio)
+│   └── index.ts          # studiesMap + biblicalTextsMap + getBiblicalTextsForStudy()
+├── articles-config.ts    # activeStudyIds, defaultStudyId
+└── design-config.ts      # isExecutiveDesign()
+
+lib/
+├── kv-store.ts
+├── answerItems.ts        # Normalizador AnswerItem → UI
+├── commentGuidance.ts
+├── sidebarPlacement.ts
+├── formatSidebarRichText.tsx
+├── resolveScriptureRef.ts
+├── sectionUtils.ts
+└── generatePlaylist.ts
 
 types/
 └── atalaya.ts            # Core TypeScript interfaces
@@ -88,14 +113,22 @@ types/
 
 ### Data Flow
 
-1. Articles stored in `data/atalaya-data.ts` indexed by year-month (e.g., "2025-10")
-2. User selections persist to localStorage (article ID)
-3. Favorites, LSM texts, hidden cards persist to Vercel KV via API routes
-4. Components fetch/update via `/api/*` endpoints
+1. Cada estudio vive en `data/articles/study-YYYY-MM-DD.ts` con `metadata.studyId`
+2. Registro en `data/articles/index.ts` (`studiesMap`, `biblicalTextsMap`)
+3. Estudios activos en `data/articles-config.ts` (`activeStudyIds`)
+4. User selections persist to localStorage (study ID)
+5. Favorites, LSM texts, hidden cards persist to Vercel KV via API routes
+6. Components fetch/update via `/api/*` endpoints
 
 ### Key Type Interfaces
 
 ```typescript
+interface AnswerItem {
+  text: string;                      // Respuesta con **negritas**
+  followUp?: string;                 // Pregunta si nadie menciona la idea
+  secondary?: boolean;               // true = detalle del párrafo
+}
+
 interface Question {
   number: string;                    // ej: "1, 2" o "3"
   textEs: string;                    // Pregunta en español
@@ -107,8 +140,9 @@ interface Question {
   videoLSM?: string;                 // Video LSM unido para preguntas con varios párrafos
   image?: string;                    // URL de imagen ilustrativa
   imageCaption?: string;             // Leyenda de la imagen
-  answer?: string | string[];        // Oraciones clave (array para nuevos, string para antiguos)
-  flashcards?: FlashCard[];          // Tarjetas didácticas
+  answers?: AnswerItem[];            // Respuestas para el conductor (preferido)
+  answer?: string | string[];        // legacy — solo lectura
+  answerContext?: string[];          // legacy — solo lectura
   biblicalCards?: BiblicalCard[];    // Tarjetas bíblicas
   reflectionQuestions?: string[];    // Preguntas de reflexión personal
   practicalApplications?: string[];  // Aplicaciones prácticas
@@ -127,16 +161,9 @@ interface Paragraph {
 interface ReviewQuestion {
   question: string;                  // Pregunta de repaso en español
   questionLSM?: string;              // Pregunta en LSM
-  answer?: string | string[];        // Oraciones clave de la respuesta
-  flashcards?: FlashCard[];
+  answers?: AnswerItem[];            // Respuestas para el conductor (preferido)
+  answer?: string | string[];        // legacy — solo lectura
   biblicalCards?: BiblicalCard[];
-}
-
-interface FlashCard {
-  question: string;
-  answer: string;
-  questionLSM?: string;
-  answerLSM?: string;
 }
 
 interface BiblicalCard {
@@ -146,7 +173,7 @@ interface BiblicalCard {
 }
 
 interface ArticleData {
-  metadata: { articleNumber, week, month, year };
+  metadata: { studyId: string; articleNumber?: number; week, month, year };
   song: string;
   title: string;
   titleLSM?: string;                 // Título en LSM
@@ -184,27 +211,10 @@ interface ArticleData {
 
 **Textos Bíblicos (readText):**
 - El campo `readText` en las preguntas indica qué texto bíblico leer (ej: "LEE Jeremías 12:1")
-- El **contenido** del texto bíblico debe agregarse en `components/QuestionCard.tsx`
-- Buscar el objeto `biblicalTexts` al inicio del archivo (~línea 24)
-- Agregar entrada con la clave exacta del `readText`:
-
-```typescript
-// En components/QuestionCard.tsx
-const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
-  // ... entradas existentes ...
-  "LEE Jeremías 12:1": [
-    { reference: "Jeremías 12:1", text: "Tú siempre eres justo, oh, Jehová..." }
-  ],
-  "LEE Salmo 42:1-4": [
-    { reference: "Salmo 42:1", text: "Como el ciervo que brama..." },
-    { reference: "Salmo 42:2", text: "Mi alma tiene sed de Dios..." },
-    // ... un objeto por cada versículo
-  ]
-};
-```
-
+- El **contenido** se exporta desde el archivo del estudio como `biblicalTextsYYYYMMDD` y se registra en `biblicalTextsMap` (`data/articles/index.ts`)
+- Incluir también refs del recuadro lateral (`sidebar`) para clics en `ParagraphSidebarBox`
 - Usar texto de la **Traducción del Nuevo Mundo (edición 2019)**
-- La clave debe coincidir **exactamente** con el valor de `readText`
+- La clave debe coincidir **exactamente** con el valor de `readText` o la referencia del recuadro
 
 **Secciones LSM:**
 - Campo `sectionLSM` para subtítulos en Lengua de Señas Mexicana
@@ -213,16 +223,15 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 **Traducciones LSM en Preguntas:**
 - El usuario proporciona las traducciones LSM en el archivo `preguntas-LSM.md`
 - El campo `textLSM` en cada pregunta contiene la traducción en Lengua de Señas Mexicana
-- Agregar el campo `textLSM` a cada pregunta en `data/atalaya-data.ts`
+- Agregar el campo `textLSM` a cada pregunta en `data/articles/study-YYYY-MM-DD.ts`
 
 ```typescript
-// En data/atalaya-data.ts - dentro del artículo correspondiente
+// En data/articles/study-2026-06-29.ts
 {
   number: "1, 2",
   textEs: "¿Qué piensa Jehová de sus esfuerzos por cuidar de un ser querido?",
-  textLSM: "JEHOVÁ ¿QUÉ PENSAR ESFUERZO TUYO CUIDAR PERSONA QUERER?",  // ✅ Agregar aquí
+  textLSM: "JEHOVÁ ¿QUÉ PENSAR ESFUERZO TUYO CUIDAR PERSONA QUERER?",
   paragraphs: [1, 2],
-  // ...
 }
 ```
 
@@ -232,12 +241,12 @@ const biblicalTexts: Record<string, { reference: string; text: string }[]> = {
 
 ### API Endpoints
 
-| Endpoint | GET | POST |
-|----------|-----|------|
-| `/api/favorites` | Get favorites for article | Toggle favorite |
-| `/api/lsm` | Get LSM texts | Save LSM text |
-| `/api/hidden-cards` | Get hidden cards | Toggle visibility |
-| `/api/pdfs` | List PDFs | Upload PDF |
+| Endpoint | GET | POST | PUT |
+|----------|-----|------|-----|
+| `/api/favorites` | Get favorites | Toggle favorite | Update |
+| `/api/lsm` | Get LSM texts | Save LSM text | Update |
+| `/api/hidden-cards` | Get hidden cards | Toggle visibility | Update |
+| `/api/used-items` | Get used items | Toggle used state | Update |
 
 ### Videos LSM por Párrafo y Preguntas Agrupadas
 
@@ -286,31 +295,23 @@ Service worker caching strategies:
 
 ## Content Guidelines
 
-### Formato de Respuestas (answer)
+### Formato de Respuestas (`answers`)
 
-Las respuestas deben ser **arrays de oraciones clave**, no párrafos largos.
+Usar `answers: AnswerItem[]` — ver skill `.agents/skills/respuestas-conductor/SKILL.md`.
 
 **Reglas:**
-1. Cada oración = **una idea completa y directa**
-2. Máximo **1-2 líneas** por oración
-3. Lenguaje **simple y claro**
-4. Incluir **referencias bíblicas** si son parte de la respuesta
-5. Típicamente **3-5 oraciones** por respuesta
+1. 2–3 respuestas **principales** + 1–3 **secundarias** (`secondary: true`)
+2. Cada item = **una idea completa** (1–2 líneas)
+3. `followUp`: pregunta breve si nadie menciona la idea (~12 palabras)
+4. **Negritas** solo en el concepto clave de `text`
 
 **Ejemplo CORRECTO:**
 ```typescript
-answer: [
-  "Nuestras oraciones pueden volverse **monótonas** por el ajetreo de la vida.",
-  "Lo más importante para Jehová es que le hablemos **desde el corazón**.",
-  "No hay que preocuparnos por usar **palabras elegantes**.",
-  "Jehová escucha **«el ruego de los mansos»** porque se preocupa por nosotros."
+answers: [
+  { text: "Los buenos amigos son un **regalo de Jehová** (Sant. 1:17).", followUp: "¿Qué dice Santiago sobre todo don bueno?" },
+  { text: "Son **leales** y nos consuelan cuando estamos tristes.", followUp: "¿Qué hacen cuando estamos felices?" },
+  { text: "Los amigos así “**alegran el corazón**” (Prov. 27:9).", secondary: true },
 ],
-```
-
-**Ejemplo INCORRECTO:**
-```typescript
-// ❌ Párrafo largo difícil de leer rápido
-answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el ajetreo de la vida (haciendo solo oraciones breves) o porque nos sentimos indignos de contarle a Jehová todo lo que sentimos. Sin embargo, lo más importante para Jehová es que le hablemos desde el corazón y con humildad..."
 ```
 
 ### Negritas en Contenido (OBLIGATORIO para artículos nuevos)
@@ -321,12 +322,10 @@ answer: "Nuestras oraciones pueden volverse monótonas o superficiales por el aj
 
 | Campo | Usa Negritas | Propósito |
 |-------|:---:|-----------|
-| `answer` (respuestas) | ✅ | Conceptos clave de cada oración |
+| `answers[].text` (respuestas) | ✅ | Conceptos clave de cada respuesta |
 | `summary` (resumen de párrafo) | ✅ | Datos, nombres y eventos principales |
-| `answerContext` | ✅ | Ideas que profundizan la respuesta |
-| `reviewQuestions.answer` | ✅ | Conceptos finales de repaso |
+| `reviewQuestions.answers` | ✅ | Conceptos finales de repaso |
 | `content` (párrafo completo) | ❌ | El texto completo se deja sin negritas |
-| `flashcard.answer` | ❌ | Las respuestas de flashcards son directas |
 
 #### Qué resaltar en negritas
 
@@ -384,39 +383,18 @@ content: "Job fue un hombre **fiel** que vivió en **Uz**..."  // El content va 
 > - SÍ → Las negritas están bien aplicadas
 > - NO → Falta resaltar el concepto clave o se resaltó lo incorrecto
 
-### Tarjetas Didácticas - Reglas Estrictas
+### Respuestas secundarias — Reglas
 
-**Las tarjetas didácticas SÍ son:**
-- ✅ Preguntas que profundizan en el **TEMA del párrafo**
-- ✅ Preguntas sobre ejemplos o historias **mencionadas en el párrafo**
-- ✅ Preguntas sobre aplicaciones prácticas **basadas en el párrafo**
-- ✅ Detalles específicos del contenido que vale la pena recordar
+Los detalles del párrafo van en `answers` con `secondary: true` — ver skill `respuestas-conductor`.
 
-**Las tarjetas didácticas NO son:**
-- ❌ Repetición de la pregunta principal
-- ❌ Datos bíblicos irrelevantes al tema (ej: "¿Quién escribió el Salmo X?")
-- ❌ Información que no está en el contenido del párrafo
-- ❌ Preguntas genéricas sobre textos citados
+**SÍ incluir como secundarias:**
+- Ejemplos y experiencias mencionadas en el párrafo
+- Detalles que enriquecen pero no contestan directamente la pregunta
+- Datos específicos que vale la pena recordar
 
-**Regla de oro:**
-> "¿Esta pregunta me ayuda a entender o recordar algo específico del párrafo?"
-> - SÍ → Es una buena tarjeta didáctica
-> - NO → No debe ser una tarjeta didáctica
-
-**Ejemplo CORRECTO** (Párrafo sobre ver a Jehová como amigo):
-```
-P: ¿Cómo debemos ver a Jehová para que sea más fácil hablarle?
-R: Como un amigo fiel que quiere lo mejor para nosotros.
-
-P: ¿Qué problemas enfrentó el salmista según el párrafo?
-R: Dijeron mentiras de él y tuvo que cargar con sus imperfecciones.
-```
-
-**Ejemplo INCORRECTO:**
-```
-❌ "¿Quién escribió el Salmo 119?" - Irrelevante al tema
-❌ "¿Qué nos ayudará a abrirle nuestro corazón?" - Es la pregunta principal
-```
+**NO duplicar:**
+- La respuesta principal (pregunta impresa)
+- Información que no está en el párrafo
 
 ### Textos Clave (biblicalCards) - OBLIGATORIO
 
@@ -520,19 +498,20 @@ biblicalCards: [
 
 ## Diseño "Ejecutivo" - Sistema de Diseño Premium
 
-A partir del **Artículo 43**, se implementa un diseño visual "Ejecutivo" que es más sobrio, profesional y elegante. Este diseño debe aplicarse a **todos los artículos nuevos (43 en adelante)**.
+Todos los estudios usan un **diseño ejecutivo unificado** con tokens semánticos (`bg-surface`, `text-text-primary`, etc.) definidos en `app/globals.css`. Ver `.agents/skills/design-system/SKILL.md`.
 
 ### Cuándo Aplicar el Diseño Ejecutivo
 
-El diseño ejecutivo se aplica **automáticamente** a todos los artículos del **43 en adelante**.
+`isExecutiveDesign(articleNumber)` en `data/design-config.ts` devuelve `true` si `articleNumber >= 43` **o si es `undefined`** (estudios por `studyId` sin número legacy).
 
-| Componente | Condición | Variable |
-|------------|-----------|----------|
-| `StudyHeader.tsx` | `articleNumber >= 43` | `isArticle43` |
-| `QuestionCard.tsx` | `articleNum >= 43` | `isPremiumDesign` |
-| `ReviewQuestionCard.tsx` | `articleNum >= 43` | `isArticle43` |
+| Componente | Estado |
+|------------|--------|
+| `QuestionCard.tsx` | Un solo bloque de render con tokens |
+| `ReviewQuestionCard.tsx` | Mismo estilo ejecutivo |
+| `StudyHeader.tsx` | Badges, barra lateral, selector |
+| `CommentGuide.tsx` | Flip cards bíblicas integradas |
 
-**No se requiere ningún cambio para nuevos artículos.** Al agregar el Artículo 44, 45, etc., automáticamente usarán el diseño ejecutivo.
+**Al agregar funcionalidades nuevas en UI**, implementarlas una sola vez siguiendo `design-system` (no hay bloque legacy duplicado en tarjetas).
 
 ### IMPORTANTE: Imágenes en Preguntas vs Párrafos
 
@@ -560,19 +539,11 @@ El diseño ejecutivo se aplica **automáticamente** a todos los artículos del *
 { number: 10, content: "...", image: "https://..." }
 ```
 
-### IMPORTANTE: Diseño Ejecutivo (Artículos 43+)
+### Recuadros laterales (`sidebar` / boxSupplement)
 
-El diseño Ejecutivo tiene su **propio bloque de renderizado** separado. Cuando se agreguen nuevas funcionalidades, deben implementarse en **AMBOS** lugares:
-
-| Funcionalidad | Diseño Original | Diseño Premium |
-|---------------|-----------------|----------------|
-| `question.image` | Línea ~1724 | Línea ~1320 |
-| `paragraph.image` (en modal) | Línea ~2165 | Línea ~1052 |
-
-**Ubicación en `QuestionCard.tsx`:**
-- El diseño Premium comienza con: `if (isPremiumDesign) { return (...` (línea ~1026)
-- Todo el código DESPUÉS de ese bloque es el diseño original
-- Si agregas una funcionalidad de imagen al diseño original, **TAMBIÉN debes agregarla al bloque Premium**
+- Datos en `paragraph.sidebar` (`title`, `intro?`, `items?`)
+- UI: `ParagraphSidebarBox.tsx` con refs bíblicas clicables
+- Colocación: `lib/sidebarPlacement.ts` (imagen de pregunta → recuadro en tarjeta; sin imagen → flujo de párrafo)
 
 ### Paleta de Colores Ejecutivo
 
@@ -721,7 +692,7 @@ text-slate-700 leading-relaxed
 </div>
 ```
 
-#### 9. Tarjetas (FlashCards / BiblicalCards)
+#### 9. Tarjetas (CommentGuide — flip bíblico)
 ```jsx
 {/* Tarjeta con flip */}
 <div className="min-h-[250px]" style={{ perspective: '1000px' }}>
