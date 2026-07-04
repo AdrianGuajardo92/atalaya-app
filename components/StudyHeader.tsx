@@ -1,7 +1,7 @@
 import { ArticleData, ArticleOverview, Question, ReviewQuestion, Paragraph } from '@/types/atalaya';
 import { getArticleId } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface StudyHeaderProps {
   song: string;
@@ -16,6 +16,7 @@ interface StudyHeaderProps {
   year?: number;
   articles?: ArticleData[];
   currentArticleId?: string;
+  currentStudyId?: string;
   onArticleChange?: (articleId: string) => void;
   // Props para LSM
   titleLSM?: string;
@@ -41,6 +42,7 @@ export default function StudyHeader({
   year,
   articles = [],
   currentArticleId,
+  currentStudyId,
   onArticleChange,
   titleLSM,
   onTitleLSMUpdate,
@@ -53,6 +55,39 @@ export default function StudyHeader({
 }: StudyHeaderProps) {
   // Estado para feedback del botón copiar
   const [copyFeedback, setCopyFeedback] = useState<'idle' | 'copied'>('idle');
+  const [isArticleDropdownOpen, setIsArticleDropdownOpen] = useState(false);
+  const articleDropdownRef = useRef<HTMLDivElement>(null);
+
+  const availableArticles = articles.filter((article) => article.title !== "");
+  const selectedArticle = availableArticles.find((article) => getArticleId(article) === currentArticleId);
+
+  useEffect(() => {
+    if (!isArticleDropdownOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!articleDropdownRef.current?.contains(event.target as Node)) {
+        setIsArticleDropdownOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsArticleDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isArticleDropdownOpen]);
+
+  const handleDropdownArticleChange = (articleId: string) => {
+    onArticleChange?.(articleId);
+    setIsArticleDropdownOpen(false);
+  };
 
   // Función para generar el texto estructurado del artículo
   const generateArticleStructure = (): string => {
@@ -198,42 +233,77 @@ export default function StudyHeader({
       {articles.length > 0 && onArticleChange && (
         <div className="mb-8 flex flex-col items-center justify-center gap-3 pb-6 border-b border-border-subtle">
           <label
-            htmlFor="article-selector-exec"
+            htmlFor="article-selector-exec-button"
             className="text-[11px] font-bold text-text-tertiary uppercase tracking-[0.15em]"
           >
             Seleccionar Artículo
           </label>
           <div className="flex items-center gap-2 w-full px-2 sm:px-0 sm:w-auto">
-            <div className="relative flex-1 sm:flex-initial">
-              <select
-                id="article-selector-exec"
-                value={currentArticleId || ''}
-                onChange={(e) => onArticleChange(e.target.value)}
-                className="appearance-none w-full pl-4 pr-10 py-2.5 bg-surface border border-border rounded-lg text-text-body font-medium focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong cursor-pointer hover:border-border-strong hover:shadow-md transition-all text-sm shadow-sm sm:min-w-[320px]"
+            <div ref={articleDropdownRef} className="relative flex-1 sm:flex-initial">
+              <button
+                id="article-selector-exec-button"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded={isArticleDropdownOpen}
+                onClick={() => setIsArticleDropdownOpen((isOpen) => !isOpen)}
+                className="w-full pl-4 pr-10 py-2.5 bg-surface border border-border rounded-lg text-left text-text-body font-medium focus:outline-none focus:ring-2 focus:ring-border focus:border-border-strong cursor-pointer hover:border-border-strong hover:shadow-md transition-all text-sm shadow-sm sm:min-w-[420px]"
               >
-                {articles
-                  .filter((article) => article.title !== "")
-                  .map((article) => {
-                    const id = getArticleId(article);
-                    const isSelected = id === currentArticleId;
-                    return (
-                      <option
-                        key={id}
-                        value={id}
-                        className={isSelected ? 'font-semibold bg-surface-raised' : ''}
-                      >
-                        {isSelected ? '● ' : '  '}
-                        {`${article.metadata.week} — ${article.title}`}
-                      </option>
-                    );
-                  })}
-              </select>
+                <span className="block truncate">
+                  {selectedArticle ? (
+                    <>
+                      <span className="text-text-secondary">● </span>
+                      {`${selectedArticle.metadata.week} — ${selectedArticle.title}`}
+                    </>
+                  ) : (
+                    'Seleccionar estudio'
+                  )}
+                </span>
+              </button>
               {/* Flecha personalizada */}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                 <svg className="h-4 w-4 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
+
+              {isArticleDropdownOpen && (
+                <div
+                  role="listbox"
+                  aria-labelledby="article-selector-exec-button"
+                  className="absolute left-0 right-0 top-full z-40 mt-2 max-h-80 overflow-y-auto rounded-lg border border-border bg-surface shadow-2xl"
+                >
+                  {availableArticles.map((article) => {
+                    const id = getArticleId(article);
+                    const isSelected = id === currentArticleId;
+                    const isCurrentStudy = id === currentStudyId;
+                    const optionClassName = isCurrentStudy
+                      ? 'bg-amber-50 text-amber-950 border-amber-300 dark:bg-[#332520] dark:text-[#F2D5C8] dark:border-[#D97757]/70'
+                      : isSelected
+                        ? 'bg-surface-raised text-text-primary border-border-strong'
+                        : 'bg-surface text-text-body border-transparent hover:bg-surface-alt hover:text-text-primary';
+
+                    return (
+                      <button
+                        key={id}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={() => handleDropdownArticleChange(id)}
+                        className={`flex w-full items-start gap-2 border-l-4 px-4 py-3 text-left text-sm font-medium transition-colors ${optionClassName}`}
+                      >
+                        <span className={`mt-0.5 text-base leading-none ${isSelected ? 'opacity-100' : 'opacity-0'}`}>
+                          ●
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="font-bold">{article.metadata.week}</span>
+                          <span className="mx-1 text-text-tertiary">—</span>
+                          <span>{article.title}</span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* Botón Copiar Estructura */}

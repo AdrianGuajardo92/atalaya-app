@@ -38,18 +38,21 @@ Dos exports obligatorios: `biblicalTextsYYYYMMDD` y `studyYYYYMMDD` (ver plantil
 
 `metadata.studyId` es obligatorio (ej. `"2026-06-29"`). `articleNumber` es opcional (legacy); si falta, el diseño ejecutivo aplica por defecto (`isExecutiveDesign(undefined) === true`).
 
-### Paso 2: Campos OBLIGATORIOS de cada pregunta
+### Paso 2: Campos de cada pregunta
+
+El tipo permite algunos campos opcionales para compatibilidad, pero en estudios nuevos la convención editorial del proyecto exige completar los campos de conducción aunque el validador los reporte sólo como warning o no los revise aún.
 
 | Campo | Descripción |
 |-------|-------------|
 | `number` | "1", "6, 7", etc. |
 | `textEs` | Pregunta en español |
-| `textLSM` | Traducción LSM (`""` si no hay) |
 | `paragraphs` | Números de párrafos relacionados |
-| `keyPoint` | Idea principal que no debe faltar en el comentario |
-| `guidingQuestion` | Pregunta de respaldo si no mencionan el keyPoint |
-| `answers` | Ver skill dueña `respuestas-conductor` |
-| `biblicalCards` | **TODOS** los textos bíblicos citados en los párrafos; `purpose` lo redacta `como-comentarlo` |
+| `textLSM` | Convención editorial: glosa LSM o `""` si no hay |
+| `keyPoint` | Convención editorial: idea principal que no debe faltar en el comentario |
+| `guidingQuestion` | Convención editorial: pregunta de respaldo si no mencionan el keyPoint |
+| `answers` | Convención editorial; ver skill dueña `respuestas-conductor` |
+| `commentSuggestion` | Convención editorial; lo usa `SummaryView` y copiado, no es bloque propio en la tarjeta principal |
+| `biblicalCards` | Convención editorial: textos bíblicos citados en los párrafos; `purpose` lo redacta `como-comentarlo` |
 
 ### Paso 3: Campos de cada párrafo
 
@@ -59,6 +62,14 @@ Dos exports obligatorios: `biblicalTextsYYYYMMDD` y `studyYYYYMMDD` (ver plantil
 | `content` | * | Texto completo (SIN negritas) |
 | `summary` | * | Resumen con **negritas** (1 oración clara, 20–40 palabras) |
 | `sidebar` | Si hay recuadro | `title`, `intro?`, `items?` — ver sección Recuadros |
+
+### Campos opcionales que la UI sí renderiza
+
+- `titleLSM`: glosa LSM del título; puede venir de datos o de `/api/lsm` con clave `title`.
+- `headerInfographic`: infografía superior del estudio en `StudyHeader`.
+- `overview`: vista previa del artículo anterior y lo que se verá.
+- `question.image` / `imageCaption`: imagen visible en la tarjeta; si hay recuadro, el orden visual es imagen → recuadro.
+- `question.videoLSM`, `question.questionVideoLSM` y `paragraph.videoLSM`: ver skills LSM.
 
 ### Paso 4: Registrar
 
@@ -89,6 +100,8 @@ npm run build
 Ver skill dueña: `.agents/skills/como-comentarlo/SKILL.md`.
 
 Regla de propiedad: esta área incluye `question.commentSuggestion`, `reviewQuestions.commentSuggestion` y `biblicalCards.purpose`. No usar `biblicalCards.commentSuggestion`.
+
+Estado UI actual: `commentSuggestion` se muestra en `SummaryView` y en el texto copiable. En la tarjeta principal, `CommentGuide` muestra tarjetas bíblicas (`biblicalCards.purpose`); no muestra un bloque propio para `question.commentSuggestion`. En repaso, `reviewQuestions.commentSuggestion` no tiene salida fiable si no hay `biblicalCards`.
 
 ---
 
@@ -161,7 +174,7 @@ Reglas de propiedad:
 1. Borrar `data/articles/study-YYYY-MM-DD.ts`
 2. Quitar de `index.ts` (`studiesMap`, `biblicalTextsMap`) y `articles-config.ts` (`activeStudyIds`)
 3. Limpiar entradas en `lib/commentGuidance.ts` si existen
-4. **OBLIGATORIO:** eliminar videos LSM asociados en `public/videos/`
+4. **OBLIGATORIO:** eliminar manualmente videos LSM asociados en `public/videos/`; `npm run study:remove` sólo avisa si encuentra la carpeta.
 
 ## Prohibiciones del proyecto
 

@@ -34,9 +34,7 @@ Usar `npm run study:audit:bible-modals:active` si solo importa lo visible en la 
 3. Si se editaron skills, correr:
 
 ```bash
-npm run skills:validate
-npm run skills:sync
-diff -qr .agents/skills .claude/skills
+npm run skills:check
 ```
 
 4. Ejecutar pruebas proporcionales:
@@ -51,6 +49,12 @@ git diff --check
 
 `scripts/validate-study-data.ts` usa `lib/articleValidation.ts` y revisa datos registrados en `studiesMap` / `biblicalTextsMap`.
 
+Interpretación:
+
+- **Error automático:** corregir antes de cerrar salvo instrucción explícita del usuario.
+- **Warning automático:** revisar; puede bloquear si se corre `--strict` o si afecta al alcance pedido.
+- **Convención editorial:** requiere lectura y criterio; no declararla aprobada solo porque el comando pasó.
+
 Errores estructurales:
 
 - `metadata.studyId` no coincide con la clave del mapa.
@@ -60,8 +64,8 @@ Errores estructurales:
 - Una pregunta apunta a párrafos inexistentes.
 - `readText` no coincide exactamente con una clave de `biblicalTexts`.
 - Entradas bíblicas sin `reference` o sin `text`.
-- Falta `biblicalCard` para una referencia bíblica citada en el párrafo.
 - Faltan entradas TNM para refs del recuadro (`sidebar`).
+- Falta `biblicalCard` para una referencia bíblica citada en el párrafo.
 
 Warnings editoriales:
 
@@ -74,6 +78,12 @@ Warnings editoriales:
 - Refs del recuadro no están cubiertas por `biblicalCards`.
 - LSM no está en MAYÚSCULAS cuando existe.
 - Campos legacy (`answer`, `answerContext`, `answerBullets`, `flashcards`) aparecen en preguntas nuevas.
+
+Convenciones editoriales que pueden no ser errores técnicos todavía:
+
+- `keyPoint`, `guidingQuestion`, `textLSM`, `answers`, `commentSuggestion` y `biblicalCards` son esperados en estudios nuevos aunque TypeScript permita omitir algunos.
+- `question.commentSuggestion` se verifica como contenido para `SummaryView`/copiado; la tarjeta principal muestra sobre todo `biblicalCards.purpose`.
+- En repaso, `reviewQuestions.commentSuggestion` puede no verse en tarjeta si no hay `biblicalCards`; no declararlo validado visualmente sin revisar la UI o ajustar el componente.
 
 ## Qué valida la auditoría de modales bíblicos
 

@@ -36,6 +36,23 @@ Al corregir párrafos: **no recortar, borrar, reemplazar ni ajustar `q*.mp4` ni 
 { number: "1", questionVideoLSM: "/videos/.../study-2026-06-29-q01-lsm.mp4" }
 ```
 
+## Overrides KV en `QuestionCard`
+
+`QuestionCard` carga overrides de videos por párrafo desde `/api/lsm` con `questionNumber=video-pN`.
+
+| Clave KV | Valor | Efecto |
+|----------|-------|--------|
+| `video-p1` | URL string | Reemplaza `paragraph.videoLSM` del párrafo 1 en tarjetas/modales de párrafos |
+| `video-p12` | URL string | Reemplaza `paragraph.videoLSM` del párrafo 12 |
+| `video-pN` con `""` | string vacío | Elimina el override; vuelve a usar `paragraph.videoLSM` si existe |
+
+Alcance:
+
+- La clave vive dentro del objeto KV `atalaya-lsm-data:${articleId}`.
+- `video-pN` solo afecta videos de párrafo (`p*.mp4` o URL externa equivalente).
+- No sustituye `questionVideoLSM` (`q*.mp4`).
+- No sustituye `question.videoLSM` unido para preguntas agrupadas; si `question.videoLSM` existe, el modal de grupo lo prefiere sobre videos individuales.
+
 ## Reglas
 
 - Si una pregunta cubre 2+ párrafos: video unido en `question.videoLSM`; mantener clips individuales en `paragraph.videoLSM`
@@ -55,6 +72,31 @@ avconvert --source SOURCE.mp4 --preset PresetPassthrough \
   --output public/videos/study-YYYY-MM-DD/study-YYYY-MM-DD-p01-lsm.mp4 --replace
 ```
 
+## Configuración por estudio
+
+Cada estudio puede tener una cantidad distinta de párrafos, preguntas agrupadas y clips unidos. No hardcodear 17 párrafos, 12 preguntas ni grupos de un estudio anterior: la fuente de verdad debe ser `scripts/lsm/study-configs/${STUDY_ID}.json`.
+
+Campos esperados:
+
+```json
+{
+  "studyId": "2026-07-06",
+  "expectedParagraphCount": 18,
+  "questionLabels": ["1-2", "3", "4", "...", "18"],
+  "joinedParagraphs": [[1, 2]]
+}
+```
+
+| Campo | Uso |
+|-------|-----|
+| `expectedParagraphCount` | Total real de párrafos individuales que deben generar `p01`...`pNN` |
+| `questionLabels` | Labels de preguntas señadas para `q*.mp4`; los grupos usan guion, por ejemplo `"1-2"` |
+| `joinedParagraphs` | Pares o rangos unidos que requieren `question.videoLSM`, por ejemplo `[[1, 2]]` |
+
+Conteo esperado para QA: `expectedParagraphCount + joinedParagraphs.length + questionLabels.length`.
+
+Si no existe config para un estudio, los scripts conservan un default legacy compatible con `study-2026-06-29`; para estudios nuevos, crear siempre el JSON explícito antes de detectar, recortar o auditar.
+
 ## Flujo para corregir párrafos
 
 ### 1. Preparar variables
@@ -65,6 +107,15 @@ export SOURCE="/path/to/w_LSM_source.mp4"
 export SEGMENTS="scripts/lsm/segments-${STUDY_ID}.json"
 export OUT_DIR="public/videos/study-${STUDY_ID}"
 ```
+
+### Estado real de scripts
+
+- `cut-from-segments.sh` acepta `SEGMENTS` y `SOURCE`; deriva `STUDY_ID` desde `segments-YYYY-MM-DD.json` o usa `STUDY_ID` del entorno.
+- `detect-segments.sh` acepta `STUDY_ID` por entorno y escribe `scripts/lsm/segments-${STUDY_ID}.json` si no se pasa output explícito.
+- `qa-audit-clips.sh` acepta `STUDY_ID` del entorno y lee `expectedParagraphCount`, `questionLabels` y `joinedParagraphs` desde la config del estudio.
+- `lsm_config.py` centraliza defaults, nombres `q*.mp4`, rangos `--only` y mapeos de preguntas; si cambia la estructura de un estudio, ajustar la config, no los scripts.
+- `detect-questions.sh` pertenece a `lsm-question-clips`; acepta `STUDY_ID`, `SEGMENTS`, `CSV` y `CALIBRATE_SECOND` por entorno.
+- `build-segments.py` es legacy para preguntas: su `questions[]` usa OCR/`br > 500` y no debe usarse para `questionVideoLSM`.
 
 ### 2. Detectar o ajustar límites
 
@@ -95,9 +146,11 @@ Si se re-recortan clips existentes, quitar únicamente clips de párrafo para qu
 
 ```bash
 rm -f "${OUT_DIR}"/study-"${STUDY_ID}"-p*.mp4
-bash scripts/lsm/cut-from-segments.sh "$SEGMENTS" "$SOURCE" --only p:1-17
+bash scripts/lsm/cut-from-segments.sh "$SEGMENTS" "$SOURCE" --only p:all
 bash scripts/lsm/cut-from-segments.sh "$SEGMENTS" "$SOURCE" --only j:all
 ```
+
+`p:all` usa `expectedParagraphCount`; `j:all` usa `joinedParagraphs`. Para recortes parciales, usar `p:N`, `p:N-M` o `j:N-M` según el grupo configurado.
 
 Si solo se corrige una frontera, recortar únicamente los clips afectados con `avconvert --replace`: los dos individuales vecinos y cualquier unido que dependa de ellos.
 
@@ -114,7 +167,7 @@ El `rm -f` es necesario porque `cut-from-segments.sh` omite archivos existentes.
 
 ### 4. QA visual obligatorio
 
-Este QA es con artefactos locales (`report.csv`, PNG y contact sheets), no con Browser/Chrome/Playwright.
+Este QA es con artefactos locales (`report.csv` y PNG), no con Browser/Chrome/Playwright.
 
 ```bash
 bash scripts/lsm/qa-audit-clips.sh
@@ -123,11 +176,11 @@ bash scripts/lsm/qa-audit-clips.sh
 Verificar:
 
 - `scripts/lsm/qa-audit/${STUDY_ID}/report.csv`: todos los `p*` y `p*-p*` en `OK`.
-- `paragraph-boundaries-contact.png`: cada inicio/final conserva el número de párrafo correcto.
-- `joined-paragraph-boundaries-contact.png`: cada clip unido empieza en el primer párrafo del grupo y termina en el último, sin entrar al `?` ni al siguiente párrafo.
+- `pNN/start.png`, `pNN/mid.png`, `pNN/end.png`: cada inicio/final conserva el número de párrafo correcto.
+- `pNN-pMM/start.png`, `pNN-pMM/mid.png`, `pNN-pMM/end.png`: cada clip unido empieza en el primer párrafo del grupo y termina en el último, sin entrar al `?` ni al siguiente párrafo.
 - `report.csv` confirma duración contra el JSON, pero no basta solo. La aprobación real requiere inspección visual de `start.png` y `end.png` para confirmar que no empieza tarde ni termina en otro segmento.
 
-Si las láminas no existen, generarlas desde los PNG `start.png` y `end.png` que produce `qa-audit-clips.sh`, o revisar directamente esas imágenes por carpeta (`p01/`, `p03-p04/`, etc.).
+`qa-audit-clips.sh` no genera contact sheets por sí solo. Si existen `paragraph-boundaries-contact.png` o `joined-paragraph-boundaries-contact.png`, son artefactos manuales o de corridas previas; se pueden usar como ayuda, pero el script sólo garantiza `report.csv` y los PNG por carpeta.
 
 ### 5. Verificar en la app cuando esté autorizado
 
@@ -135,7 +188,7 @@ Por regla de `AGENTS.md`, no usar Navegador/Chrome/Playwright por iniciativa pro
 
 ## Ejemplo real: `study-2026-06-29`
 
-Patrón probado al corregir límites:
+Patrón específico de ese estudio, mantenido como ejemplo histórico, no como regla universal:
 
 - `p01`-`p17`: clips individuales limpios.
 - Unidos necesarios: `p03-p04`, `p06-p07`, `p08-p09`, `p12-p13`, `p14-p15`.
@@ -143,14 +196,25 @@ Patrón probado al corregir límites:
 - El QA final mostró `34 clips checked, issues: 0` incluyendo preguntas, pero esta skill solo corrige los `p*`.
 - Cuando un final mostraba el siguiente número o el `?`, se movió el límite hacia atrás y se recortaron solo los derivados afectados.
 
+## Ejemplo real: `study-2026-07-06`
+
+Patrón específico del estudio “¿Por qué son importantes los principios bíblicos?”:
+
+- `expectedParagraphCount: 18`.
+- `questionLabels`: `["1-2", "3", ..., "18"]`.
+- `joinedParagraphs`: `[[1, 2]]`.
+- QA esperado: 18 clips individuales + 1 unido + 17 clips de pregunta = 36 clips.
+
 ## Preguntas (`questionVideoLSM`)
 
 Clip corto (3-15 s) con icono `?` en esquina inferior-derecha. Flujo completo de detección, recorte en lotes, QA visual y cableado TS: skill [`lsm-question-clips`](../lsm-question-clips/SKILL.md).
 
 ## Checklist por estudio nuevo
 
-- [ ] Clip por cada párrafo
-- [ ] Video unido por pregunta multi-párrafo
+- [ ] Existe `scripts/lsm/study-configs/${STUDY_ID}.json` para cualquier patrón que no sea el default legacy
+- [ ] `expectedParagraphCount` coincide con la cantidad real de párrafos del estudio
+- [ ] Clip por cada párrafo `p01`...`pNN` definido por `expectedParagraphCount`
+- [ ] Video unido por cada entrada de `joinedParagraphs`
 - [ ] QA visual de inicio/final revisado para individuales y unidos
 - [ ] Si no hay captura de duraciones, límites alineados por fotogramas del video fuente
 - [ ] Inicio/final muestran el número de párrafo correcto y no entran al siguiente párrafo ni al icono `?`

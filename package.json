@@ -11,6 +11,8 @@
     "test:watch": "vitest",
     "skills:sync": "./scripts/sync-skills.sh",
     "skills:validate": "python3 scripts/validate-skills.py",
+    "skills:diff": "diff -ru -x .DS_Store .agents/skills .claude/skills",
+    "skills:check": "npm run skills:validate && npm run skills:sync && npm run skills:diff",
     "study:validate": "npx tsx scripts/validate-study-data.ts",
     "study:validate:active": "npx tsx scripts/validate-study-data.ts --active",
     "study:audit:bible-modals": "npx tsx scripts/audit-bible-modals.ts",

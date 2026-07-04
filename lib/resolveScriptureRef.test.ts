@@ -34,6 +34,33 @@ describe('resolveScriptureRef', () => {
     ]);
   });
 
+  it('expande rangos de versículos', () => {
+    expect(parseScriptureReferences('2 Cor. 6:14-18; Efes. 5:10, 11')).toEqual([
+      '2 Corintios 6:14',
+      '2 Corintios 6:15',
+      '2 Corintios 6:16',
+      '2 Corintios 6:17',
+      '2 Corintios 6:18',
+      'Efesios 5:10',
+      'Efesios 5:11',
+    ]);
+  });
+
+  it('parsea lee y abreviaturas compactas de publicaciones', () => {
+    expect(parseScriptureReferences('lee Mateo 6:33; 1Co 10:21; 2Co 6:14-15; Ef 5:10, 11')).toEqual([
+      'Mateo 6:33',
+      '1 Corintios 10:21',
+      '2 Corintios 6:14',
+      '2 Corintios 6:15',
+      'Efesios 5:10',
+      'Efesios 5:11',
+    ]);
+  });
+
+  it('parsea compara con en español', () => {
+    expect(parseScriptureReferences('compara con Proverbios 18:17')).toEqual(['Proverbios 18:17']);
+  });
+
   it('prefiere textos individuales exactos sobre una tarjeta combinada', () => {
     const lookup = buildReferenceLookup([
       { reference: 'Isaías 48:17', text: 'Texto del versículo 17.' },
@@ -51,5 +78,14 @@ describe('resolveScriptureRef', () => {
       { reference: 'Isaías 48:17', text: 'Texto del versículo 17.' },
       { reference: 'Isaías 48:18', text: 'Texto del versículo 18.' },
     ]);
+  });
+
+  it('registra cada versículo de una tarjeta con rango', () => {
+    const lookup = buildReferenceLookup([
+      { reference: '2 Corintios 6:14-18', text: 'Texto combinado.' },
+    ]);
+
+    expect(lookup.get('2 Corintios 6:14')?.text).toBe('Texto combinado.');
+    expect(lookup.get('2 Corintios 6:18')?.text).toBe('Texto combinado.');
   });
 });

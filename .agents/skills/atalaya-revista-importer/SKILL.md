@@ -18,6 +18,7 @@ Esta skill reproduce el flujo usado para importar la revista de estudio de marzo
   - `biblicalTexts` para cada `readText` **y** refs TNM del recuadro (`sidebar`).
   - `biblicalCards` con textos reales de la Traducción del Nuevo Mundo.
   - Comentarios naturales de "Cómo comentarlo" para preguntas y `biblicalCards.purpose` enriquecido para textos bíblicos.
+  - Campos modernos de cabecera cuando haya datos: `titleLSM`, `headerInfographic`, `overview`.
   - `data/articles/index.ts` actualizado (`studiesMap`, `biblicalTextsMap`).
   - `data/articles-config.ts` actualizado (`activeStudyIds`, `defaultStudyId`).
 
@@ -27,7 +28,7 @@ Esta skill reproduce el flujo usado para importar la revista de estudio de marzo
 2. Usa siempre ortografía correcta en español: Jehová, Satanás, Moisés, Josué, Edén, ¿...?, ¡...!
 3. No inventes textos bíblicos. Si falta un texto, vuelve a consultarlo en jw.org.
 4. Las imágenes visibles van en `question.image`. Usa la URL directa de mayor tamaño disponible, normalmente `data-zoom` con `_xl.jpg`.
-5. Las respuestas del conductor usan `answers: AnswerItem[]` según `.agents/skills/respuestas-conductor/SKILL.md`.
+5. Las respuestas finales del conductor usan `answers: AnswerItem[]` según `.agents/skills/respuestas-conductor/SKILL.md`. El script actual puede generar `answer` legacy como borrador; no cerrar una importación nueva sin migrarlo.
 6. Los resúmenes de párrafo (`summary`) deben ser resúmenes reales, no copias ni recortes del párrafo.
 7. El contenido completo del párrafo (`content`) no lleva negritas.
 8. Al crear estudios nuevos, es obligatorio leer y aplicar las skills dueñas de contenido: `respuestas-conductor`, `como-comentarlo` y `box-supplement` si hay recuadros.
@@ -198,22 +199,23 @@ Cuando la pregunta dice «Vea también la imagen» y «Vea el recuadro…», el 
    - Asegúrate de que todos los textos citados en los párrafos estén en `biblicalCards`.
    - Reescribe todos los `summary` como resúmenes reales: sencillos, breves, ligados a la respuesta y con negritas útiles.
    - Verifica que ningún `summary` sea una copia larga del `content`, una pregunta, una frase cortada o un recorte con `...`.
-   - Aplica `respuestas-conductor` para `answers`.
+   - Aplica `respuestas-conductor` para migrar cualquier `answer` legacy del script a `answers`.
    - Aplica `como-comentarlo` para comentarios naturales de preguntas y `biblicalCards.purpose`.
 
 ## Post-import obligatorio (el script NO genera todo)
 
-El script `import_watchtower_issue.py` produce borradores. **Completar manualmente:**
+El script `import_watchtower_issue.py` produce borradores. En especial, hoy puede escribir `answer` legacy y repaso con `answer`; eso sirve sólo como materia prima. **Completar manualmente antes de cerrar:**
 
 | Campo | Script | Acción post-import |
 |-------|:------:|-------------------|
 | `keyPoint` | Parcial | Verificar cada pregunta |
 | `guidingQuestion` | No | Agregar en cada pregunta |
-| `answers` | Sí | Ver skill `respuestas-conductor` — principales + secundarias + followUp |
+| `answers` | Borrador legacy (`answer`) | Migrar a `answers: AnswerItem[]` con principales + secundarias + followUp |
 | `commentSuggestion` | No | Aplicar skill `como-comentarlo` |
 | `summary` | Borrador genérico | Reescribir (20–40 palabras, no copia del párrafo) |
 | `biblicalCards.purpose` | Genérico | Reescribir propósito específico con `como-comentarlo` |
 | `paragraph.sidebar` | Sí (`parse_box_supplement`) | Verificar título, intro, items; prefijos `***` en ítems; imagen en `question.image` |
+| `reviewQuestions.answers` | Borrador legacy (`answer`) | Migrar si el repaso se va a conducir con respuestas enriquecidas |
 | Videos LSM | No | Agregar en `public/videos/` si aplica |
 
 6. Ejecuta verificación técnica automatizada:
@@ -275,6 +277,7 @@ Este checklist requiere lectura y criterio editorial; no lo declares como "pasó
 - [ ] Se leyó y aplicó `.agents/skills/como-comentarlo/SKILL.md`.
 - [ ] Si hubo recuadros, se leyó y aplicó `.agents/skills/box-supplement/SKILL.md`.
 - [ ] Cada pregunta nueva tiene `guidingQuestion` y `answers` (skill `respuestas-conductor`).
+- [ ] No quedan `answer`, `answerContext` ni `flashcards` en estudios nuevos salvo pedido explícito de conservar legacy.
 - [ ] Cada pregunta nueva tiene `commentSuggestion` (comentario natural).
 - [ ] Cada `biblicalCards.purpose` explica por qué el texto está en el párrafo.
 - [ ] No existe `biblicalCards.commentSuggestion`.

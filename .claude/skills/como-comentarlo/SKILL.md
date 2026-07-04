@@ -53,9 +53,16 @@ En `lib/commentGuidance.ts`, `buildQuestionComment()` usa este orden:
 3. **Fallback automático desde `answer`** — copia la respuesta oficial (evitar dejar esto activo en estudios nuevos)
 4. Fallback desde `keyPoint` si no hay `answer`
 
-**Importante:** Si no pones `commentSuggestion` en el artículo, la UI puede mostrar texto copiado del `answer`. Eso viola las reglas de esta skill. Siempre escribe `commentSuggestion` explícito en estudios nuevos.
+**Importante:** Si no pones `commentSuggestion` en el artículo, `SummaryView` y el texto copiable pueden caer en un fallback desde `answers`/`answer`. Eso viola las reglas de esta skill cuando se esperan comentarios naturales. Siempre escribe `commentSuggestion` explícito en estudios nuevos.
 
 Para textos bíblicos, `buildBiblicalComment()` usa el campo `purpose` de la `biblicalCard` como explicación breve; si falta, genera texto explicativo desde el párrafo y el versículo.
+
+## Salida visible actual
+
+- `question.commentSuggestion` se muestra de forma fiable en `SummaryView` y en el texto copiado desde esa vista.
+- La tarjeta principal (`QuestionCard`) no tiene un bloque propio para el comentario central de la pregunta; su `CommentGuide` está enfocado en tarjetas bíblicas.
+- `reviewQuestions.commentSuggestion` existe como dato editorial, pero hoy no tiene salida fiable por sí solo: `ReviewQuestionCard` llama a `CommentGuide`, y ese componente solo renderiza si hay `biblicalCards`. Si el comentario de repaso debe verse, primero confirma o ajusta la UI.
+- `biblicalCards.purpose` sí se consume en tarjetas bíblicas y en `SummaryView`; es la vía fiable para explicar textos bíblicos.
 
 ## Flujo de trabajo
 
@@ -68,6 +75,7 @@ Para textos bíblicos, `buildBiblicalComment()` usa el campo `purpose` de la `bi
    - **Preferir** `commentSuggestion` en `data/articles/study-YYYY-MM-DD.ts` (preguntas y `reviewQuestions`).
    - Solo usar `QUESTION_COMMENT_SUGGESTIONS` en `lib/commentGuidance.ts` si el proyecto mantiene overrides centralizados.
    - No crees una arquitectura paralela si ya existe un camino claro.
+   - Para visibilidad inmediata, recuerda que `question.commentSuggestion` se revisa en `SummaryView`; no esperes un bloque propio en la tarjeta de pregunta.
 7. Verifica cobertura: ninguna pregunta, repaso ni `biblicalCards.purpose` solicitado debe quedar incompleto.
 8. Ejecuta verificación técnica sobre los archivos tocados y reporta cualquier falla con claridad.
 
@@ -99,7 +107,7 @@ Evita siempre:
 
 ## Comentarios de preguntas
 
-Aplica también a **`reviewQuestions`** cuando tengan `commentSuggestion`.
+Aplica también a **`reviewQuestions`** cuando tengan `commentSuggestion`, pero no prometas que se verá en la UI actual salvo que haya `biblicalCards` o se modifique la presentación.
 
 El comentario debe sentirse como una respuesta preparada para participar. Puede empezar con:
 

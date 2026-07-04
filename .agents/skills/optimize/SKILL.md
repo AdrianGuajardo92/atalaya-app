@@ -21,7 +21,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(npm run build)
 ## 3. Estructura de componentes
 
 Candidatos actuales por tamaño:
-- `QuestionCard.tsx` (~1900 líneas) — principal candidato a dividir
+- `QuestionCard.tsx` (~1500 líneas) — principal candidato a dividir
 - `CommentGuide.tsx` — lógica flip + comentarios
 
 Extraer hooks reutilizables de lógica duplicada entre QuestionCard y ReviewQuestionCard.

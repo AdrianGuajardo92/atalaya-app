@@ -1226,7 +1226,7 @@ def update_index(repo_root: Path, articles: list[ArticleDraft]) -> None:
         f"  study{study_export_suffix(sid)}, biblicalTexts{study_export_suffix(sid)},"
         for sid in ordered
     ) + "\n};"
-    text = re.sub(r"export \{\n\s*study\d+.*?\n\};", exports_block, text, flags=re.S)
+    text = re.sub(r"export \{[^;]*study\d+[^;]*\};", exports_block, text, flags=re.S)
     path.write_text(text, encoding="utf-8")
 
 
@@ -1249,7 +1249,7 @@ def update_config(repo_root: Path, articles: list[ArticleDraft]) -> None:
             comment = old_comment.group(1) if old_comment else "estudio existente"
             lines.append(f'    "{study_id}",  // {comment}')
     active_block = "activeStudyIds: [\n" + "\n".join(lines) + "\n  ],"
-    text = re.sub(r"activeStudyIds: \[\n.*?\n\s*\],", active_block, text, flags=re.S)
+    text = re.sub(r"activeStudyIds: \[[\s\S]*?\],", active_block, text, flags=re.S)
     first_article = sorted(articles, key=lambda article: article.study_id)[0]
     default_month = f"{first_article.year}-{MONTH_NUMBER.get(first_article.month, '01')}"
     text = re.sub(r'defaultMonth: "\d{4}-\d{2}"', f'defaultMonth: "{default_month}"', text)

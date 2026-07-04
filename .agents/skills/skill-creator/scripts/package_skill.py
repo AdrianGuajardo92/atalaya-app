@@ -3,11 +3,11 @@
 Skill Packager - Creates a distributable .skill file of a skill folder
 
 Usage:
-    python utils/package_skill.py <path/to/skill-folder> [output-directory]
+    .agents/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> [output-directory]
 
 Example:
-    python utils/package_skill.py skills/public/my-skill
-    python utils/package_skill.py skills/public/my-skill ./dist
+    .agents/skills/skill-creator/scripts/package_skill.py .agents/skills/my-skill
+    .agents/skills/skill-creator/scripts/package_skill.py .agents/skills/my-skill ./dist
 """
 
 import sys
@@ -84,10 +84,10 @@ def package_skill(skill_path, output_dir=None):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python utils/package_skill.py <path/to/skill-folder> [output-directory]")
+        print("Usage: .agents/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> [output-directory]")
         print("\nExample:")
-        print("  python utils/package_skill.py skills/public/my-skill")
-        print("  python utils/package_skill.py skills/public/my-skill ./dist")
+        print("  .agents/skills/skill-creator/scripts/package_skill.py .agents/skills/my-skill")
+        print("  .agents/skills/skill-creator/scripts/package_skill.py .agents/skills/my-skill ./dist")
         sys.exit(1)
 
     skill_path = sys.argv[1]

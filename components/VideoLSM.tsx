@@ -48,6 +48,11 @@ type LsmPlayerHandle = {
   restart: () => void;
 };
 
+type LsmPlayerApi = Pick<
+  LsmPlayerHandle,
+  'expand' | 'togglePlayPause' | 'markActive' | 'seekBy' | 'stepSpeed' | 'restart'
+>;
+
 const playerRegistry = new Set<LsmPlayerHandle>();
 let scrollPinnedPlayer: LsmPlayerHandle | null = null;
 let lastScrollPinnedLabel: string | null = null;
@@ -313,7 +318,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   const containerRef = useRef<HTMLDivElement>(null);
   const pendingSpacePlayRef = useRef(false);
   const isCollapsedRef = useRef(false);
-  const playerApiRef = useRef({
+  const playerApiRef = useRef<LsmPlayerApi>({
     expand: () => {},
     togglePlayPause: () => {},
     markActive: () => {},
@@ -687,7 +692,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   const controlBar = (
     <div className="flex items-center gap-1 px-3 py-1.5 bg-black/90 border-t border-white/10">
       <button
-        onClick={restartVideo}
+        onClick={() => restartVideo()}
         className={seekBtnClass}
         title="Reiniciar (Home)"
       >

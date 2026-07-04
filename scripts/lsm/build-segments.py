@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Build segments JSON from dump-scan.csv with robust smoothing."""
+"""Build legacy paragraph segments JSON from dump-scan.csv with robust smoothing.
+
+The generated questions[] use old OCR/br heuristics for orientation only.
+Do not use them as the source of truth for questionVideoLSM; use
+detect-questions.sh + build-question-segments.py, which detect the ? icon.
+"""
 import csv
 import json
 import sys
@@ -111,7 +116,8 @@ else:
 # Fix last end to duration
 paragraphs[-1]["end"] = DURATION
 
-# Question segments: 12 study questions
+# Legacy question segments: kept for old/manual orientation only.
+# Do not use this br > 500 heuristic for questionVideoLSM.
 Q_LABELS = ["1", "2", "3-4", "5", "6-7", "8-9", "10", "11", "12-13", "14-15", "16", "17"]
 questions = []
 for i, label in enumerate(Q_LABELS):

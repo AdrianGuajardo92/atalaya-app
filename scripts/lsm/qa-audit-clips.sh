@@ -17,48 +17,40 @@ if [[ ! -f "$SCRIPT_DIR/clip-at-time" ]]; then
     -framework AVFoundation -framework AppKit
 fi
 
-python3 - "$SEGMENTS" "$OUT_DIR" "$QA_DIR" "$REPORT" "$SCRIPT_DIR/clip-at-time" <<'PY'
+python3 - "$SEGMENTS" "$OUT_DIR" "$QA_DIR" "$REPORT" "$SCRIPT_DIR/clip-at-time" "$STUDY_ID" "$SCRIPT_DIR" <<'PY'
 import json, os, subprocess, sys
 
-segments_path, out_dir, qa_dir, report_path, clip_at_time = sys.argv[1:6]
+segments_path, out_dir, qa_dir, report_path, clip_at_time, study_id, script_dir = sys.argv[1:8]
+sys.path.insert(0, script_dir)
+from lsm_config import load_study_config, question_filename, question_key_map
 
 with open(segments_path) as f:
     data = json.load(f)
 
 paras = {p["num"]: p for p in data["paragraphs"]}
 questions = {q["num"]: q for q in data["questions"]}
-
-JOINED = [(3,4),(6,7),(8,9),(12,13),(14,15)]
-Q_KEYS = {
-    1:"1",2:"2",3:"3-4",4:"3-4",5:"5",6:"6-7",7:"6-7",
-    8:"8-9",9:"8-9",10:"10",11:"11",12:"12-13",13:"12-13",
-    14:"14-15",15:"14-15",16:"16",17:"17",
-}
-
-def q_fname(n):
-    key = Q_KEYS[n]
-    if "-" in key:
-        a,b = key.split("-")
-        return f"study-{STUDY_ID}-q{a}-q{b}-lsm.mp4"
-    return f"study-{STUDY_ID}-q{n:02d}-lsm.mp4"
-
-STUDY_ID = "2026-06-29"
+config = load_study_config(study_id, script_dir)
+paragraph_count = config["expectedParagraphCount"]
+joined = [tuple(pair) for pair in config["joinedParagraphs"]]
+q_keys = question_key_map(config["questionLabels"])
 
 clips = []
-for n in range(1, 18):
-    clips.append((f"p{n:02d}", f"study-{STUDY_ID}-p{n:02d}-lsm.mp4", paras[n]["end"]-paras[n]["start"]))
-for a,b in JOINED:
+for n in range(1, paragraph_count + 1):
+    clips.append((f"p{n:02d}", f"study-{study_id}-p{n:02d}-lsm.mp4", paras[n]["end"]-paras[n]["start"]))
+for a,b in joined:
     start = paras[a]["start"]
     end = paras[b]["end"]
-    clips.append((f"p{a:02d}-p{b:02d}", f"study-{STUDY_ID}-p{a:02d}-p{b:02d}-lsm.mp4", end-start))
+    clips.append((f"p{a:02d}-p{b:02d}", f"study-{study_id}-p{a:02d}-p{b:02d}-lsm.mp4", end-start))
 seen_q = set()
-for n in range(1, 18):
-    key = Q_KEYS[n]
+for n in range(1, max(q_keys) + 1):
+    key = q_keys.get(n)
+    if not key:
+        continue
     if key in seen_q:
         continue
     seen_q.add(key)
     q = questions[key]
-    fname = q_fname(n)
+    fname = question_filename(study_id, key)
     clips.append((f"q-{key}", fname, q["end"]-q["start"]))
 
 rows = ["clip,expected_dur,file_dur,delta,status"]

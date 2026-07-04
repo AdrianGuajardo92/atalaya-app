@@ -8,7 +8,12 @@ from pathlib import Path
 CSV = Path(sys.argv[1] if len(sys.argv) > 1 else "question-scan.csv")
 SEGMENTS = Path(sys.argv[2] if len(sys.argv) > 2 else "segments-2026-06-29.json")
 
-Q_LABELS = ["1", "2", "3-4", "5", "6-7", "8-9", "10", "11", "12-13", "14-15", "16", "17"]
+SCRIPT_DIR = Path(__file__).parent
+sys.path.insert(0, str(SCRIPT_DIR))
+from lsm_config import load_study_config, study_id_from_segments
+
+STUDY_ID = study_id_from_segments(SEGMENTS) or "2026-06-29"
+Q_LABELS = load_study_config(STUDY_ID, SCRIPT_DIR)["questionLabels"]
 
 rows = []
 with CSV.open() as f:
@@ -48,8 +53,8 @@ print(f"Found {len(segments)} question segments:")
 for s in segments:
     print(f"  {s['start']:.1f}-{s['end']:.1f} ({s['end']-s['start']:.1f}s)")
 
-if len(segments) != 12:
-    print(f"WARN: expected 12 segments, got {len(segments)}", file=sys.stderr)
+if len(segments) != len(Q_LABELS):
+    print(f"WARN: expected {len(Q_LABELS)} segments, got {len(segments)}", file=sys.stderr)
 
 questions = []
 for idx, label in enumerate(Q_LABELS[: len(segments)]):

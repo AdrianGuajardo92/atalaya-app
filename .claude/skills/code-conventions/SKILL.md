@@ -14,6 +14,8 @@ description: Convenciones de código del proyecto atalaya-app. Referencia sobre 
 - Vercel KV (`lib/kv-store.ts`) con fallback en memoria
 - PWA (`next-pwa` en `next.config.ts`; deshabilitada en dev)
 - Dev server: **`npm run dev`** → `http://localhost:9000`
+- Dev inspector: `components/DevClickToSource.tsx` + APIs `app/api/dev-inspector-*`
+- Videos LSM: assets en `public/videos/study-YYYY-MM-DD/` y URLs en `questionVideoLSM` / `paragraph.videoLSM`
 
 ## Estructura de datos
 
@@ -31,21 +33,24 @@ description: Convenciones de código del proyecto atalaya-app. Referencia sobre 
 | `lib/formatSidebarRichText.tsx` | Marcado `**` / `***` y refs bíblicas azules en recuadros |
 | `lib/resolveScriptureRef.ts` | Resuelve refs parentéticas TNM (sidebar → `BibleVerseModal`) |
 | `components/ParagraphSidebarBox.tsx` | UI del recuadro `boxSupplement` |
+| `lib/studyNavigationState.ts` | Estado persistido de vista/modo/posición del estudio |
+| `public/videos/study-YYYY-MM-DD/` | Clips LSM por estudio (`q*`, `p*`, `p*-p*`) |
 
 ## Componentes principales
 
 | Componente | Rol |
 |------------|-----|
-| `QuestionCard.tsx` | Tarjeta de pregunta (~1900 líneas, diseño unificado con tokens) |
+| `QuestionCard.tsx` | Tarjeta de pregunta grande (~1560 líneas), diseño unificado con tokens |
 | `ReviewQuestionCard.tsx` | Preguntas de repaso |
 | `CommentGuide.tsx` | "Cómo comentarlo" + flip cards bíblicas |
 | `AnswerItemsList.tsx` | Respuestas para el conductor |
 | `VideoLSM.tsx` | Reproductor LSM |
-| `StudyHeader.tsx` | Header (sin `'use client'` explícito) |
+| `StudyHeader.tsx` | Header del estudio; usa hooks y se monta desde `app/page.tsx` cliente |
 | `SummaryView.tsx` | Vista imprimible |
 | `ThemeProvider.tsx` / `ThemeToggle.tsx` | Dark mode |
 | `Timer.tsx`, `PlaylistModal.tsx` | Utilidades de estudio |
 | `ParagraphSidebarBox.tsx` | Recuadros laterales (`boxSupplement`) |
+| `DevClickToSource.tsx` | Inspector visual de desarrollo |
 
 ## Diseño ejecutivo (artículos 43+)
 
@@ -92,6 +97,7 @@ description: Convenciones de código del proyecto atalaya-app. Referencia sobre 
 | `/api/lsm` | Textos LSM editables |
 | `/api/hidden-cards` | Visibilidad de tarjetas |
 | `/api/used-items` | Items marcados como usados |
+| `/api/dev-inspector-*` | Herramientas locales de desarrollo; no persistencia de usuario |
 
 ## Scripts npm útiles
 
@@ -100,17 +106,23 @@ npm run dev          # puerto 9000
 npm run build
 npm run lint         # eslint
 npm run study:validate
+npm run study:validate:active
+npm run study:audit:bible-modals
 npm run skills:validate
+npm run skills:sync
+npm run skills:diff
+npm run skills:check
+npm run test
 npm run article:list
 npm run article:remove
 npm run cleanup-kv
-./scripts/sync-skills.sh   # .agents/skills → .claude/skills
 ```
 
 ## Skills del proyecto
 
 - Canónica: `.agents/skills/`
-- Espejo Cursor: `.claude/skills/` (sincronizar con `sync-skills.sh`)
+- Espejo Cursor: `.claude/skills/`; tras editar `.agents/skills/`, usar `npm run skills:check`
+- Tras editar `.agents/skills/`, usar `npm run skills:check` para validar, sincronizar y confirmar diff limpio.
 
 ## Breakpoints responsive
 

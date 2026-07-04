@@ -60,9 +60,9 @@ Tests: `lib/answerItems.test.ts`
 - **Lista unificada:** sin caja “Del párrafo”; una sola columna
 - **Numeración continua:** `[1…n]` principales, luego `[n+1…]` secundarias
 - **Pill “Detalle”** junto al número en secundarias; tipografía más pequeña
-- **Colapsable:** si hay 2+ secundarias, bloque “Detalles del párrafo” abierto por defecto; el usuario puede ocultarlo
+- **Sin colapsable:** las secundarias se muestran en la misma lista plana; no documentar ni esperar bloque “Detalles del párrafo” ocultable.
 - **followUp:** se conserva en datos para respaldo del conductor, pero no se renderiza en la UI del estudio
-- **Marcar usado:** click en fila (✅/🔖), IDs KV por índice global
+- **Marcar usado:** click en fila (✅/⬜) solo en preguntas normales, cuando `QuestionCard` pasa `itemIdPrefix`, `usedItems` y `onToggleUsed`; `ReviewQuestionCard` y `SummaryView` no lo usan.
 
 `SummaryView` imprime la misma numeración continua con prefijo “Detalle” en secundarias (sin followUp).
 

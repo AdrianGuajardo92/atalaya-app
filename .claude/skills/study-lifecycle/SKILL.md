@@ -25,7 +25,7 @@ description: Crear, registrar, activar y eliminar estudios de La Atalaya por stu
 npm run study:remove 2026-06-29
 ```
 
-**Obligatorio:** eliminar videos en `public/videos/study-YYYY-MM-DD/` (o carpeta legacy `article-XX/`).
+El script actualiza archivos de datos y **solo avisa** si existe `public/videos/study-YYYY-MM-DD/` (o carpeta legacy `article-XX/`); no borra los `.mp4`. Si el usuario pidió eliminar el estudio completo, borrar manualmente los videos asociados o ampliar el script antes de cerrar.
 
 ## Listar estudios
 
@@ -42,5 +42,5 @@ npm run cleanup-kv -- --study=2026-06-29
 ## Sincronizar skills tras editar
 
 ```bash
-npm run skills:sync
+npm run skills:check
 ```

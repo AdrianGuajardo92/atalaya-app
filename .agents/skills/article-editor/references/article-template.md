@@ -39,8 +39,20 @@ export const study20260629: ArticleData = {
   },
   song: "Canción 131: Título",
   title: "...",
+  titleLSM: "", // opcional; /api/lsm puede sobrescribir con clave "title"
   biblicalText: "...",
   theme: "...",
+  headerInfographic: "", // opcional; imagen superior del StudyHeader
+  overview: {
+    previousArticle: {
+      number: 42,
+      topic: "Tema anterior",
+      keywords: ["palabra clave"],
+    },
+    whatWellSee: [
+      { section: "Lo que veremos", keywords: ["idea clave"] },
+    ],
+  }, // opcional
   questions: [
     {
       number: "1",
@@ -124,6 +136,6 @@ Este comando detecta refs faltantes, texto vacío y duplicados como el caso de d
 ## Responsabilidades de contenido
 
 - `answers`, principales, secundarias y `followUp`: ver `../../respuestas-conductor/SKILL.md`.
-- `question.commentSuggestion`, `reviewQuestions.commentSuggestion` y `biblicalCards.purpose`: ver `../../como-comentarlo/SKILL.md`.
+- `question.commentSuggestion`, `reviewQuestions.commentSuggestion` y `biblicalCards.purpose`: ver `../../como-comentarlo/SKILL.md`. Hoy `question.commentSuggestion` se ve en `SummaryView` y copiado; la tarjeta principal muestra `biblicalCards.purpose`; `reviewQuestions.commentSuggestion` no tiene salida fiable por sí solo salvo que haya `biblicalCards`.
 - `paragraph.sidebar` y refs de recuadros: ver `../../box-supplement/SKILL.md`.
 - No usar `biblicalCards.commentSuggestion`.

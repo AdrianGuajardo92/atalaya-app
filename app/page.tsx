@@ -10,8 +10,15 @@ import Timer from '@/components/Timer';
 import LsmBulkImport from '@/components/LsmBulkImport';
 
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
-import { getDefaultArticleId, isStudyActive } from '@/data/articles-config';
+import { articlesConfig, getDefaultArticleId } from '@/data/articles-config';
 import { countUniqueSections, isFirstQuestionInSection, sectionIndexAt } from '@/lib/sectionUtils';
+import {
+  AUTO_STUDY_STORAGE_KEY,
+  CURRENT_ARTICLE_STORAGE_KEY,
+  getCurrentStudyIdForDate,
+  getMillisecondsUntilNextLocalDay,
+  resolveInitialStudyId,
+} from '@/lib/currentStudy';
 import {
   NAVIGATION_MODE_STORAGE_KEY,
   VIEW_MODE_STORAGE_KEY,
@@ -46,21 +53,33 @@ const getSavedNavigationPosition = (articleId: string, article: ArticleData | nu
 export default function Home() {
   // Estado para manejo de artículos (usa la configuración centralizada)
   const [currentArticleId, setCurrentArticleId] = useState<string>(() => {
-    // Intentar recuperar el artículo guardado en localStorage
+    const actualStudyId = getCurrentStudyIdForDate(articlesConfig.activeStudyIds);
+    const fallbackStudyId = getDefaultArticleId();
+
     if (typeof window !== 'undefined') {
-      const savedArticleId = localStorage.getItem('atalaya_current_article');
-      if (savedArticleId) {
-        // Verificar que el artículo guardado todavía existe y sigue activo
-        const savedArticle = getArticleById(savedArticleId);
-        if (savedArticle && isStudyActive(savedArticleId)) {
-          return savedArticleId;
-        }
-        // Si no existe, limpiar localStorage
-        localStorage.removeItem('atalaya_current_article');
+      const resolvedStudyId = resolveInitialStudyId({
+        activeStudyIds: articlesConfig.activeStudyIds,
+        fallbackStudyId,
+        storedArticleId: localStorage.getItem(CURRENT_ARTICLE_STORAGE_KEY),
+        storedAutoStudyId: localStorage.getItem(AUTO_STUDY_STORAGE_KEY),
+        currentStudyId: actualStudyId,
+      });
+
+      if (actualStudyId) {
+        localStorage.setItem(AUTO_STUDY_STORAGE_KEY, actualStudyId);
       }
+      if (resolvedStudyId) {
+        localStorage.setItem(CURRENT_ARTICLE_STORAGE_KEY, resolvedStudyId);
+      }
+
+      return resolvedStudyId;
     }
-    return getDefaultArticleId();
+
+    return actualStudyId ?? fallbackStudyId;
   });
+  const [actualStudyId, setActualStudyId] = useState<string | null>(() =>
+    getCurrentStudyIdForDate(articlesConfig.activeStudyIds),
+  );
   const [currentArticle, setCurrentArticle] = useState<ArticleData | null>(null);
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
@@ -101,6 +120,32 @@ export default function Home() {
 
   const saveUsedItemsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const resetArticlePosition = useCallback((articleId: string) => {
+    setCurrentQuestionIndex(0);
+    setCurrentReviewIndex(-1);
+    localStorage.setItem(
+      studyNavigationPositionKey(articleId),
+      JSON.stringify({ currentQuestionIndex: 0, currentReviewIndex: -1 }),
+    );
+  }, []);
+
+  const applyAutomaticStudySelection = useCallback(() => {
+    if (typeof window === 'undefined') return;
+
+    const nextActualStudyId = getCurrentStudyIdForDate(articlesConfig.activeStudyIds);
+    setActualStudyId(nextActualStudyId);
+
+    if (!nextActualStudyId) return;
+
+    const storedAutoStudyId = localStorage.getItem(AUTO_STUDY_STORAGE_KEY);
+    if (storedAutoStudyId === nextActualStudyId) return;
+
+    localStorage.setItem(AUTO_STUDY_STORAGE_KEY, nextActualStudyId);
+    localStorage.setItem(CURRENT_ARTICLE_STORAGE_KEY, nextActualStudyId);
+    setCurrentArticleId(nextActualStudyId);
+    resetArticlePosition(nextActualStudyId);
+  }, [resetArticlePosition]);
+
   useEffect(() => {
     usedItemsRef.current = usedItems;
   }, [usedItems]);
@@ -108,6 +153,23 @@ export default function Home() {
   useEffect(() => {
     articleIdRef.current = currentArticleId;
   }, [currentArticleId]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const scheduleNextLocalDayCheck = () => {
+      timeout = setTimeout(() => {
+        applyAutomaticStudySelection();
+        scheduleNextLocalDayCheck();
+      }, getMillisecondsUntilNextLocalDay());
+    };
+
+    scheduleNextLocalDayCheck();
+
+    return () => clearTimeout(timeout);
+  }, [applyAutomaticStudySelection]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || hasRestoredViewState || !currentArticle) return;
@@ -283,14 +345,8 @@ export default function Home() {
   // Función para cambiar de artículo
   const handleArticleChange = (articleId: string) => {
     setCurrentArticleId(articleId);
-    setCurrentQuestionIndex(0);
-    setCurrentReviewIndex(-1);
-    // Guardar en localStorage para persistir entre recargas
-    localStorage.setItem('atalaya_current_article', articleId);
-    localStorage.setItem(
-      studyNavigationPositionKey(articleId),
-      JSON.stringify({ currentQuestionIndex: 0, currentReviewIndex: -1 }),
-    );
+    localStorage.setItem(CURRENT_ARTICLE_STORAGE_KEY, articleId);
+    resetArticlePosition(articleId);
   };
 
   const handlePrevious = () => {
@@ -612,6 +668,7 @@ export default function Home() {
                 year={currentArticle.metadata.year}
                 articles={monthArticles}
                 currentArticleId={currentArticleId}
+                currentStudyId={actualStudyId ?? undefined}
                 onArticleChange={handleArticleChange}
                 titleLSM={lsmData['title']}
                 onTitleLSMUpdate={handleTitleLSMUpdate}

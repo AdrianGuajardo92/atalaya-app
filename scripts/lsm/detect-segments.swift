@@ -21,8 +21,13 @@ struct SegmentsOutput: Codable {
     let questions: [QuestionSegment]
 }
 
+struct StudyConfig: Codable {
+    let expectedParagraphCount: Int?
+    let questionLabels: [String]?
+}
+
 func usage() -> Never {
-    fputs("Usage: detect-segments <source.mp4> <output.json>\n", stderr)
+    fputs("Usage: detect-segments <source.mp4> <output.json> [study-config.json]\n", stderr)
     exit(1)
 }
 
@@ -30,7 +35,22 @@ guard CommandLine.arguments.count >= 3 else { usage() }
 
 let sourcePath = CommandLine.arguments[1]
 let outputPath = CommandLine.arguments[2]
+let configPath = CommandLine.arguments.count >= 4 ? CommandLine.arguments[3] : nil
 let sourceURL = URL(fileURLWithPath: sourcePath)
+
+let defaultQuestionLabels = ["1", "2", "3-4", "5", "6-7", "8-9", "10", "11", "12-13", "14-15", "16", "17"]
+let studyConfig: StudyConfig? = {
+    guard let configPath else { return nil }
+    do {
+        let data = try Data(contentsOf: URL(fileURLWithPath: configPath))
+        return try JSONDecoder().decode(StudyConfig.self, from: data)
+    } catch {
+        fputs("Warning: could not read study config \(configPath): \(error)\n", stderr)
+        return nil
+    }
+}()
+let expectedParagraphCount = studyConfig?.expectedParagraphCount ?? 17
+let configuredQuestionLabels = studyConfig?.questionLabels ?? defaultQuestionLabels
 
 let asset = AVURLAsset(url: sourceURL)
 let durationSeconds = CMTimeGetSeconds(asset.duration)
@@ -88,7 +108,7 @@ func classifyTopLeft(_ text: String) -> FrameKind {
     let letters = text.filter { $0.isLetter }
     let digits = text.filter { $0.isNumber }
 
-    if letters.isEmpty, let n = Int(String(digits.prefix(2))), n >= 1, n <= 17 {
+    if letters.isEmpty, let n = Int(String(digits.prefix(2))), n >= 1, n <= expectedParagraphCount {
         return .paragraph(n)
     }
     if bookKeywords.contains(where: { lower.contains($0) }) {
@@ -97,7 +117,7 @@ func classifyTopLeft(_ text: String) -> FrameKind {
     if digits.isEmpty && letters.count > 2 {
         return .question
     }
-    if let n = Int(String(digits.prefix(2))), n >= 1, n <= 17, letters.count <= 2 {
+    if let n = Int(String(digits.prefix(2))), n >= 1, n <= expectedParagraphCount, letters.count <= 2 {
         return .paragraph(n)
     }
     return .unknown
@@ -189,9 +209,9 @@ for second in 1...totalSeconds {
 }
 paragraphSegments.append(ParagraphSegment(num: currentPara, start: paraStart, end: durationSeconds))
 
-// Normalize to exactly 17 paragraphs by merging/splitting if needed
-if paragraphSegments.count != 17 {
-    fputs("Post-process: \(paragraphSegments.count) segments -> normalize to 17\n", stderr)
+// Normalize to the configured paragraph count by merging/splitting if needed
+if paragraphSegments.count != expectedParagraphCount {
+    fputs("Post-process: \(paragraphSegments.count) segments -> normalize to \(expectedParagraphCount)\n", stderr)
     // Rebuild from change points with shorter min duration
     paragraphSegments = []
     currentPara = smoothed[0]
@@ -205,22 +225,22 @@ if paragraphSegments.count != 17 {
     }
     paragraphSegments.append(ParagraphSegment(num: currentPara, start: paraStart, end: durationSeconds))
 
-    // Fix numbering to 1..17 sequentially by order
+    // Fix numbering to 1..N sequentially by order
     var fixed: [ParagraphSegment] = []
     for (i, seg) in paragraphSegments.enumerated() {
-        let num = min(i + 1, 17)
+        let num = min(i + 1, expectedParagraphCount)
         fixed.append(ParagraphSegment(num: num, start: seg.start, end: seg.end))
     }
     paragraphSegments = fixed
 
-    if paragraphSegments.count > 17 {
-        paragraphSegments = Array(paragraphSegments.prefix(17))
+    if paragraphSegments.count > expectedParagraphCount {
+        paragraphSegments = Array(paragraphSegments.prefix(expectedParagraphCount))
         if var last = paragraphSegments.last {
-            last = ParagraphSegment(num: 17, start: last.start, end: durationSeconds)
-            paragraphSegments[16] = last
+            last = ParagraphSegment(num: expectedParagraphCount, start: last.start, end: durationSeconds)
+            paragraphSegments[expectedParagraphCount - 1] = last
         }
     }
-    while paragraphSegments.count < 17 {
+    while paragraphSegments.count < expectedParagraphCount {
         let idx = paragraphSegments.count
         let prevEnd = paragraphSegments.last?.end ?? 0
         paragraphSegments.append(ParagraphSegment(num: idx + 1, start: prevEnd, end: durationSeconds))
@@ -230,21 +250,13 @@ if paragraphSegments.count != 17 {
 // Question segments: book ref in top-left OR ? icon in bottom-right
 let qThreshold = 480
 var questionSegments: [QuestionSegment] = []
-let qKeys = ["1", "2", "3-4", "5", "6-7", "8-9", "10", "11", "12-13", "14-15", "16", "17"]
-// Actually 17 questions - map after detection
 var inQuestion = false
 var qStart = 0.0
 var qIdx = 0
 
 func questionLabel(_ index: Int) -> String {
-    switch index {
-    case 2: return "3-4"
-    case 4: return "6-7"
-    case 6: return "8-9"
-    case 10: return "12-13"
-    case 12: return "14-15"
-    default: return "\(index + 1)"
-    }
+    if index < configuredQuestionLabels.count { return configuredQuestionLabels[index] }
+    return "\(index + 1)"
 }
 
 for second in 0...totalSeconds {
@@ -258,13 +270,13 @@ for second in 0...totalSeconds {
         qStart = Double(second)
     } else if !isQ && inQuestion {
         inQuestion = false
-        if qIdx < 17 {
+        if qIdx < configuredQuestionLabels.count {
             questionSegments.append(QuestionSegment(num: questionLabel(qIdx), start: qStart, end: Double(second)))
             qIdx += 1
         }
     }
 }
-if inQuestion && qIdx < 17 {
+if inQuestion && qIdx < configuredQuestionLabels.count {
     questionSegments.append(QuestionSegment(num: questionLabel(qIdx), start: qStart, end: durationSeconds))
     qIdx += 1
 }
@@ -274,9 +286,10 @@ if questionSegments.count < 10 {
     fputs("Deriving question segments from paragraph starts\n", stderr)
     questionSegments = []
     let paraStarts = paragraphSegments.map { $0.start }
-    for i in 0..<17 {
-        let start = i == 0 ? 0.0 : max(0, paraStarts[i] - 15.0)
-        let end = i < paraStarts.count ? paraStarts[i] : (i + 1 < paraStarts.count ? paraStarts[i + 1] : durationSeconds)
+    for i in 0..<configuredQuestionLabels.count {
+        let paraStart = i < paraStarts.count ? paraStarts[i] : durationSeconds
+        let start = i == 0 ? 0.0 : max(0, paraStart - 15.0)
+        let end = i < paraStarts.count ? paraStart : durationSeconds
         let qEnd = min(end, start + 18.0)
         if qEnd - start >= 2 {
             questionSegments.append(QuestionSegment(num: questionLabel(i), start: start, end: qEnd))

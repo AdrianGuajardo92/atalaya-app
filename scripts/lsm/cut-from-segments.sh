@@ -6,9 +6,17 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-SEGMENTS="${1:-$SCRIPT_DIR/segments-2026-06-29.json}"
+SEGMENTS="${1:-}"
 SOURCE="${2:-/Users/adrianguajardo/Downloads/w_LSM_202604_05_r720P.mp4}"
-STUDY_ID="2026-06-29"
+STUDY_ID="${STUDY_ID:-}"
+if [[ -z "$STUDY_ID" && -n "$SEGMENTS" ]]; then
+  segment_file="$(basename "$SEGMENTS")"
+  if [[ "$segment_file" =~ ^segments-([0-9]{4}-[0-9]{2}-[0-9]{2})\.json$ ]]; then
+    STUDY_ID="${BASH_REMATCH[1]}"
+  fi
+fi
+STUDY_ID="${STUDY_ID:-2026-06-29}"
+SEGMENTS="${SEGMENTS:-$SCRIPT_DIR/segments-${STUDY_ID}.json}"
 OUT_DIR="$REPO_ROOT/public/videos/study-$STUDY_ID"
 ONLY="all"
 
@@ -27,34 +35,28 @@ fi
 
 mkdir -p "$OUT_DIR"
 
-python3 - "$SEGMENTS" "$SOURCE" "$OUT_DIR" "$STUDY_ID" "$ONLY" <<'PY'
+python3 - "$SEGMENTS" "$SOURCE" "$OUT_DIR" "$STUDY_ID" "$ONLY" "$SCRIPT_DIR" <<'PY'
 import json, sys, subprocess, os
 
-segments_path, source, out_dir, study_id, only = sys.argv[1:6]
+segments_path, source, out_dir, study_id, only, script_dir = sys.argv[1:7]
+sys.path.insert(0, script_dir)
+from lsm_config import (
+    load_study_config,
+    parse_number_range,
+    question_filename,
+    question_key_map,
+)
 
 with open(segments_path) as f:
     data = json.load(f)
 
 paras = {p["num"]: p for p in data["paragraphs"]}
 questions = {q["num"]: q for q in data["questions"]}
-
-JOINED = [(3, 4), (6, 7), (8, 9), (12, 13), (14, 15)]
-
-# Map question index to segment key in JSON
-Q_KEYS = {
-    1: "1", 2: "2", 3: "3-4", 4: "3-4",
-    5: "5", 6: "6-7", 7: "6-7",
-    8: "8-9", 9: "8-9", 10: "10", 11: "11",
-    12: "12-13", 13: "12-13", 14: "14-15", 15: "14-15",
-    16: "16", 17: "17",
-}
-
-def q_filename(n):
-    key = Q_KEYS[n]
-    if "-" in key:
-        a, b = key.split("-")
-        return f"study-{study_id}-q{a}-q{b}-lsm.mp4"
-    return f"study-{study_id}-q{n:02d}-lsm.mp4"
+config = load_study_config(study_id, script_dir)
+paragraph_count = config["expectedParagraphCount"]
+joined = [tuple(pair) for pair in config["joinedParagraphs"]]
+q_keys = question_key_map(config["questionLabels"])
+question_high = max(q_keys)
 
 def cut(start, end, fname):
     dur = end - start
@@ -76,38 +78,32 @@ def cut(start, end, fname):
         return False
     return True
 
-def parse_range(s, lo, hi):
-    if s == "all":
-        return list(range(lo, hi + 1))
-    if "-" in s:
-        a, b = s.split("-", 1)
-        return list(range(int(a), int(b) + 1))
-    return [int(s)]
-
 tasks = []
 
 if only == "all" or only.startswith("p:"):
-    r = only.split(":", 1)[1] if only.startswith("p:") else "1-17"
-    for n in parse_range(r, 1, 17):
+    r = only.split(":", 1)[1] if only.startswith("p:") else f"1-{paragraph_count}"
+    for n in parse_number_range(r, 1, paragraph_count):
         if n in paras:
             p = paras[n]
             tasks.append((p["start"], p["end"], f"study-{study_id}-p{n:02d}-lsm.mp4"))
 
 if only == "all" or only.startswith("q:"):
-    r = only.split(":", 1)[1] if only.startswith("q:") else "1-17"
+    r = only.split(":", 1)[1] if only.startswith("q:") else f"1-{question_high}"
     seen = set()
-    for n in parse_range(r, 1, 17):
-        key = Q_KEYS[n]
+    for n in parse_number_range(r, 1, question_high):
+        key = q_keys.get(n)
+        if not key:
+            continue
         if key in seen:
             continue
         seen.add(key)
         if key in questions:
             q = questions[key]
-            tasks.append((q["start"], q["end"], q_filename(n)))
+            tasks.append((q["start"], q["end"], question_filename(study_id, key)))
 
 if only == "all" or only.startswith("j:"):
     r = only.split(":", 1)[1] if only.startswith("j:") else "all"
-    for a, b in JOINED:
+    for a, b in joined:
         key = f"{a}-{b}"
         if r != "all" and r != key:
             continue

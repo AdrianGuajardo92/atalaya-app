@@ -40,7 +40,12 @@ function getActiveStudyIds(): string[] {
 async function cleanup() {
   console.log('\n🧹 Limpiando datos de Vercel KV...\n');
 
-  const prefixes = ['atalaya-favorites', 'atalaya-lsm', 'atalaya-hidden-cards', 'atalaya-used-items'];
+  const prefixes = [
+    'atalaya-favorites-data',
+    'atalaya-lsm-data',
+    'atalaya-hidden-cards',
+    'atalaya-used-items',
+  ];
   let deletedCount = 0;
   const activeStudyIds = getActiveStudyIds();
 

@@ -47,10 +47,10 @@ const BOOK_ABBREVIATIONS: Record<string, string[]> = {
   Juan: ['Juan'],
   Hechos: ['Hech.'],
   Romanos: ['Rom.'],
-  '1 Corintios': ['1 Cor.'],
-  '2 Corintios': ['2 Cor.'],
+  '1 Corintios': ['1 Cor.', '1Co'],
+  '2 Corintios': ['2 Cor.', '2Co'],
   Gálatas: ['Gál.', 'Gal.'],
-  Efesios: ['Efes.'],
+  Efesios: ['Efes.', 'Ef'],
   Filipenses: ['Filip.'],
   Colosenses: ['Col.'],
   '1 Tesalonicenses': ['1 Tes.'],
@@ -88,23 +88,33 @@ function resolveBookName(raw: string): string {
 }
 
 function splitVerseList(versesPart: string): string[] {
-  return versesPart.split(/\s*,\s*/).map((v) => v.trim()).filter(Boolean);
+  return versesPart.split(/\s*,\s*/).flatMap((part) => {
+    const value = part.trim();
+    const range = value.match(/^(\d+)\s*-\s*(\d+)$/);
+    if (!range) return value ? [value] : [];
+
+    const start = Number(range[1]);
+    const end = Number(range[2]);
+    if (!Number.isInteger(start) || !Number.isInteger(end) || end < start) return [value];
+
+    return Array.from({ length: end - start + 1 }, (_, index) => String(start + index));
+  });
 }
 
 export function parseScriptureReferences(inner: string): string[] {
   const text = inner
-    .replace(/^compare\s+con\s+/i, '')
-    .replace(/^lea\s+/i, '')
+    .replace(/^comp(?:are|ara)\s+con\s+/i, '')
+    .replace(/^le[ae]\s+/i, '')
     .trim();
   const segments = text.split(/\s*;\s*/);
   const refs: string[] = [];
   let currentBook = '';
 
   for (const segment of segments) {
-    const trimmed = segment.trim().replace(/^compare\s+con\s+/i, '');
+    const trimmed = segment.trim().replace(/^comp(?:are|ara)\s+con\s+/i, '').replace(/^le[ae]\s+/i, '');
     if (!trimmed) continue;
 
-    const fullMatch = trimmed.match(/^(.+?)\s+(\d+):(\d+(?:\s*,\s*\d+)*)/);
+    const fullMatch = trimmed.match(/^(.+?)\s+(\d+):(\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*)/);
     if (fullMatch) {
       const book = resolveBookName(fullMatch[1]);
       currentBook = book;
@@ -115,7 +125,7 @@ export function parseScriptureReferences(inner: string): string[] {
       continue;
     }
 
-    const contMatch = trimmed.match(/^(\d+):(\d+(?:\s*,\s*\d+)*)/);
+    const contMatch = trimmed.match(/^(\d+):(\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*)/);
     if (contMatch && currentBook) {
       const chapter = contMatch[1];
       for (const verse of splitVerseList(contMatch[2])) {
@@ -156,7 +166,7 @@ export function buildReferenceLookup(sources: ScriptureVerse[]): Map<string, Scr
   for (const card of sources) {
     register(card.reference, card);
 
-    const rangeMatch = card.reference.match(/^(.+?)\s+(\d+):(\d+(?:\s*,\s*\d+)*)/);
+    const rangeMatch = card.reference.match(/^(.+?)\s+(\d+):(\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*)/);
     if (rangeMatch) {
       const book = resolveBookName(rangeMatch[1]);
       const chapter = rangeMatch[2];
@@ -198,7 +208,7 @@ export function resolveScriptureFromParenthetical(
     }
     if (matched.length) {
       return {
-        title: matched.length === 1 ? matched[0].reference : inner.replace(/^compare\s+con\s+/i, '').trim(),
+        title: matched.length === 1 ? matched[0].reference : inner.replace(/^comp(?:are|ara)\s+con\s+/i, '').trim(),
         verses: matched,
       };
     }
@@ -225,7 +235,7 @@ export function resolveScriptureFromParenthetical(
 
     if (!fallbackToReference) return null;
 
-    const reference = inner.replace(/^compare con\s+/i, '').trim();
+    const reference = inner.replace(/^comp(?:are|ara) con\s+/i, '').trim();
     return {
       title: reference,
       verses: [{ reference, text: '' }],

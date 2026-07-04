@@ -46,8 +46,10 @@ Espejo Cursor: `.claude/skills/`. No editarlo manualmente.
 Tras editar cualquier skill en `.agents/skills/`, ejecutar:
 
 ```bash
-npm run skills:sync
+npm run skills:check
 ```
+
+`skills:check` valida, sincroniza `.agents/skills/` hacia `.claude/skills/` y revisa que no quede diff entre ambos árboles. Si sólo necesitas sincronizar, usa `npm run skills:sync`; si sólo necesitas inspeccionar drift, usa `npm run skills:diff`.
 
 Mantener `AGENTS.md` como raíz de gobernanza. Las reglas largas de dominio, flujos de artículos, LSM, diseño, KV, recuadros, comentarios y respuestas deben vivir en skills específicas.
 
@@ -64,20 +66,35 @@ Reglas mínimas:
 ## Comandos Base
 
 ```bash
-npm run dev      # servidor local en puerto 9000
-npm run build    # build de producción
-npm run start    # servidor de producción
-npm run lint     # ESLint
+npm run dev                         # servidor local en puerto 9000
+npm run build                       # build de producción
+npm run start                       # servidor de producción
+npm run lint                        # ESLint
+npm run test                        # Vitest
+npm run skills:validate             # valida skills locales
+npm run skills:sync                 # sincroniza .agents/skills -> .claude/skills
+npm run skills:diff                 # compara .agents/skills y .claude/skills
+npm run skills:check                # validate + sync + diff del espejo
+npm run study:validate              # valida datos de estudios
+npm run study:validate:active       # valida sólo estudios activos
+npm run study:audit:bible-modals    # audita refs bíblicas/modales
+npm run study:list                  # lista estudios por studyId
+npm run study:remove <studyId>      # quita estudio del registro; borrar videos LSM aparte
+npm run cleanup-kv -- --study=<id>  # limpia KV de un estudio eliminado
 ```
 
 ## Arquitectura Breve
 
-- Next.js con App Router, React, TypeScript y Tailwind.
+- Next.js 16 con App Router, React 19, TypeScript 5 y Tailwind CSS 4.
+- App principal en `app/page.tsx`; layout, tema y PWA en `app/layout.tsx`, `next.config.ts` y `public/manifest.json`.
 - Datos de estudios en `data/articles/study-YYYY-MM-DD.ts`.
 - Registro de estudios en `data/articles/index.ts`.
 - Estudios activos en `data/articles-config.ts`.
-- Componentes principales en `components/`.
-- APIs de persistencia en `app/api/`.
+- Componentes principales en `components/`; lógica compartida en `lib/`; hooks en `hooks/`; tipos en `types/atalaya.ts`.
+- Persistencia con Vercel KV vía `lib/kv-store.ts`, con fallback en memoria si faltan `KV_REST_API_URL` / `KV_REST_API_TOKEN`; rutas en `app/api/favorites`, `app/api/hidden-cards`, `app/api/used-items` y `app/api/lsm`.
+- Rutas `app/api/dev-inspector-*` son herramientas locales de desarrollo, no persistencia de usuario.
+- PWA con `next-pwa` en `next.config.ts`; deshabilitada en desarrollo y con caches para videos LSM, APIs e imágenes.
+- Videos LSM en `public/videos/study-YYYY-MM-DD/`, referenciados desde `questionVideoLSM` y `paragraph.videoLSM`.
 
 ## Reglas de Contenido y Dominio
 
@@ -92,6 +109,13 @@ Usar la skill local correspondiente antes de trabajar en flujos de dominio:
 - `box-supplement`: recuadros laterales.
 - `kv-maintenance`: limpieza de Vercel KV.
 - `build-check`: verificación ligera antes de cerrar.
+- `atalaya-quality-gate`: auditoría final de estudios antes de cerrar cambios.
+- `fix-bug`: errores de compilación, consola o comportamiento.
+- `ui-review`: auditoría visual/responsiva/accesibilidad, respetando la regla de no navegador salvo permiso explícito.
+- `code-conventions`: estructura, patrones, tipos, APIs y estilo del proyecto.
+- `clean-code`, `optimize`: limpieza, refactor y rendimiento.
+- `deploy`: commit/push sólo por pedido explícito.
+- `vercel`: despliegue a producción sólo por pedido explícito.
 
 ## Videos LSM al Eliminar Estudios
 

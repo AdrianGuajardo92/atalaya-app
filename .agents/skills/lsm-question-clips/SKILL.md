@@ -5,7 +5,7 @@ description: Detectar, recortar y validar clips cortos de pregunta LSM (question
 
 # Clips de pregunta LSM (`questionVideoLSM`)
 
-Pipeline probado para generar los 12 clips cortos de pregunta señada a partir del video fuente LSM de un estudio. Los scripts viven en [`scripts/lsm/`](../../../scripts/lsm/) — no duplicar en esta carpeta.
+Pipeline para generar los clips cortos de pregunta señada a partir del video fuente LSM de un estudio. La cantidad de clips no es fija: se deriva de `questionLabels` en la configuración del estudio. Los scripts viven en [`scripts/lsm/`](../../../scripts/lsm/) — no duplicar en esta carpeta.
 
 ## Regla crítica
 
@@ -23,7 +23,8 @@ Errores frecuentes y diagnóstico: [`references/pitfalls.md`](references/pitfall
 - Video fuente local (no commitear), ej. `~/Downloads/w_LSM_*.mp4`
 - macOS con `swiftc`, `python3`, **`avconvert`** (ffmpeg opcional)
 - `studyId` conocido (ej. `2026-06-29`)
-- [`segments-{STUDY_ID}.json`](../../../scripts/lsm/segments-2026-06-29.json) con `paragraphs[]` (párrafos ya detectados o en curso)
+- `scripts/lsm/study-configs/{STUDY_ID}.json` para cualquier estudio que no siga el default legacy
+- `scripts/lsm/segments-{STUDY_ID}.json` con `paragraphs[]` (párrafos ya detectados o en curso)
 - Carpeta destino: `public/videos/study-{STUDY_ID}/`
 
 ## Pipeline
@@ -48,10 +49,42 @@ export SEGMENTS="scripts/lsm/segments-${STUDY_ID}.json"
 export OUT_DIR="public/videos/study-${STUDY_ID}"
 ```
 
+### Configuración por estudio
+
+Antes de detectar o recortar preguntas, confirmar la configuración del estudio:
+
+```json
+{
+  "studyId": "2026-07-06",
+  "expectedParagraphCount": 18,
+  "questionLabels": ["1-2", "3", "4", "...", "18"],
+  "joinedParagraphs": [[1, 2]]
+}
+```
+
+`questionLabels` es la fuente de verdad para `questions[]`, nombres de archivo y conteos de QA.
+
+| Label | Archivo |
+|-------|---------|
+| `"1"` | `study-${STUDY_ID}-q01-lsm.mp4` |
+| `"18"` | `study-${STUDY_ID}-q18-lsm.mp4` |
+| `"1-2"` | `study-${STUDY_ID}-q1-q2-lsm.mp4` |
+| `"12-13"` | `study-${STUDY_ID}-q12-q13-lsm.mp4` |
+
+Regla de conteo: clips esperados de pregunta = `questionLabels.length`. No asumir 12, 17 ni 18.
+
 ### 1. Detectar tramos y actualizar JSON
 
 ```bash
-# Editar SEGMENTS en detect-questions.sh si hace falta otro estudio
+bash scripts/lsm/detect-questions.sh "$SOURCE"
+```
+
+`detect-questions.sh` usa por defecto `STUDY_ID=2026-06-29`, pero acepta variables de entorno:
+
+```bash
+STUDY_ID="$STUDY_ID" \
+SEGMENTS="$SEGMENTS" \
+CALIBRATE_SECOND=18 \
 bash scripts/lsm/detect-questions.sh "$SOURCE"
 ```
 
@@ -66,11 +99,15 @@ scripts/lsm/detect-question-icon "$SOURCE" scripts/lsm/question-scan.csv 18
 python3 scripts/lsm/build-question-segments.py scripts/lsm/question-scan.csv "$SEGMENTS"
 ```
 
+No usar `scripts/lsm/build-segments.py` para `questionVideoLSM`. Ese script es legacy: crea `questions[]` con OCR/`br > 500` cerca de párrafos y puede detectar intro, referencias bíblicas o cambios de párrafo en vez del icono `?`.
+
+`build-question-segments.py` toma los tramos detectados por icono `?` y asigna labels desde `questionLabels`; si el número de tramos no coincide con la config, revisar calibración, CSV o límites manuales antes de recortar.
+
 ### 2. Recortar clips de pregunta
 
 ```bash
 rm -f "${OUT_DIR}"/*q*.mp4   # obligatorio si re-recortas (cut-from-segments omite existentes)
-bash scripts/lsm/cut-from-segments.sh "$SEGMENTS" "$SOURCE" --only q:1-17
+bash scripts/lsm/cut-from-segments.sh "$SEGMENTS" "$SOURCE" --only q:all
 ```
 
 Recorte parcial:
@@ -78,6 +115,8 @@ Recorte parcial:
 ```bash
 bash scripts/lsm/cut-from-segments.sh "$SEGMENTS" "$SOURCE" --only q:12-13
 ```
+
+`q:all` recorta una vez por cada label de `questionLabels`. Los rangos parciales (`q:N` o `q:N-M`) se interpretan contra los números impresos y el mapeo de labels: si existe `"12-13"`, pedir `q:12` o `q:12-13` genera el mismo archivo `q12-q13`.
 
 ### 3. QA visual
 
@@ -89,15 +128,19 @@ scripts/lsm/clip-frame "${OUT_DIR}/study-${STUDY_ID}-q01-lsm.mp4" /tmp/q01-qa.pn
 # Debe verse el ? en esquina inferior-derecha
 ```
 
+También se puede correr `STUDY_ID="$STUDY_ID" bash scripts/lsm/qa-audit-clips.sh` para extraer `start.png`, `mid.png`, `end.png` y `report.csv` de todos los clips del estudio. Importante: `qa-audit-clips.sh` **no genera contact sheets**; si hacen falta láminas comparativas, hay que armarlas aparte desde esos PNG o revisar las carpetas directamente.
+
 ## Tabla de scripts
 
 | Script | Entrada | Salida | Propósito |
 |--------|---------|--------|-----------|
 | `detect-question-icon.swift` | `SOURCE.mp4`, CSV, `[calibrateSecond]` | `question-scan.csv` | Escanea cada 0,5 s buscando `?` en bottom-right |
-| `detect-questions.sh` | `SOURCE.mp4` | CSV + JSON actualizado | Compila, escanea, fusiona y valida duraciones 3–25 s |
-| `build-question-segments.py` | CSV, `segments.json` | `questions[]` en JSON | Fusiona tramos consecutivos; asigna labels Q1…Q12 |
+| `detect-questions.sh` | `SOURCE.mp4`; env `STUDY_ID`, `SEGMENTS`, `CSV`, `CALIBRATE_SECOND` opcionales | CSV + JSON actualizado | Compila, escanea, fusiona y valida duraciones 3–25 s |
+| `build-question-segments.py` | CSV, `segments.json` | `questions[]` en JSON | Fusiona tramos consecutivos; asigna labels desde `questionLabels` |
+| `build-segments.py` | `dump-scan.csv` | `paragraphs[]` + `questions[]` legacy | Solo orientación/arranque de párrafos; no usar sus `questions[]` para `questionVideoLSM` |
 | `cut-from-segments.sh` | JSON, `SOURCE`, `[--only q:N-M]` | `q*.mp4` en `OUT_DIR` | Recorta con `avconvert` |
 | `clip-frame.swift` | clip `.mp4`, PNG | imagen QA | Frame al 50 % para verificar `?` |
+| `qa-audit-clips.sh` | env `STUDY_ID`; clips existentes | `report.csv` + PNG por clip | Auditoría masiva; no genera contact sheets |
 
 ### Detalles del detector
 
@@ -109,48 +152,25 @@ scripts/lsm/clip-frame "${OUT_DIR}/study-${STUDY_ID}-q01-lsm.mp4" /tmp/q01-qa.pn
 | Exclusión intro | Segundos 0–13,5 ignorados (panel lateral) |
 | Validación | Cada tramo debe durar **3–25 s** |
 
-## Enjambre de agentes (9 subagentes)
+## Orquestación para lotes grandes
 
-El agente principal **orquesta** subagentes `Task`. Usar este desglose en estudios nuevos o re-recortes masivos.
+Si el estudio requiere muchos clips o re-recortes masivos, dividir el trabajo por fases. El número de clips y los rangos salen de `questionLabels`, no de una plantilla fija.
 
-| Agente | Rol | Entregable | Dependencias |
-|--------|-----|------------|--------------|
-| **Q1** | Compilar detector y ejecutar `detect-questions.sh` | `question-scan.csv` | — |
-| **Q2** | Validar 12 tramos y duraciones 3–25 s | Reporte OK/BAD por pregunta | Q1 |
-| **Q3** | Verificar `questions[]` vs preguntas en `study-*.ts` | JSON + tabla start/end | Q2 |
-| **Q4** | Recortar `q01`–`q03` | 3 mp4 | Q3 |
-| **Q5** | Recortar `q04`–`q06` | 3 mp4 | Q3 |
-| **Q6** | Recortar `q07`–`q09` | 3 mp4 | Q3 |
-| **Q7** | Recortar `q10`–`q12` | 3 mp4 | Q3 |
-| **Q8** | QA visual: `clip-frame.swift` al 50 % de cada clip | 12 pass/fail | Q4–Q7 |
-| **Q9** | Inventario, `npm run build`, rutas `questionVideoLSM` | Checklist cerrado | Q8 |
+| Fase | Rol | Entregable |
+|------|-----|------------|
+| Detección | Compilar detector y ejecutar `detect-questions.sh` | `question-scan.csv` + `questions[]` actualizado |
+| Validación | Comparar `questions.length` contra `questionLabels.length` | Tabla label/start/end/duración con OK/BAD |
+| Cableado | Comparar labels del JSON con `question.number` en `study-*.ts` | Lista de rutas `questionVideoLSM` esperadas |
+| Recorte | Cortar `q:all` o rangos parciales por bloques | `q*.mp4` generados en `OUT_DIR` |
+| QA | Revisar `start.png`, `mid.png`, `end.png` o frames al 50 % | Cada clip muestra `?`, sin párrafo ni referencia bíblica |
+| Cierre | Inventario, `study:validate`, build si aplica | Checklist sin commit automático |
 
-### Reglas de orquestación
+Reglas:
 
-1. **Q1 → Q2 → Q3** secuenciales. Detener si ≠12 tramos o algún `[BAD]`.
-2. **Q4 + Q5 + Q6 + Q7** en **un solo mensaje** (4 Task paralelos) tras Q3.
-3. **Q8 → Q9** al final, secuenciales.
-4. Antes de Q4–Q7: `rm -f "${OUT_DIR}"/*q*.mp4` si re-recortas.
-
-### Prompts tipo (copiar al lanzar Task)
-
-**Q1:** Compila `detect-question-icon` y ejecuta `detect-questions.sh` con SOURCE para `{STUDY_ID}`. Devuelve ruta del CSV.
-
-**Q2:** Valida `questions[]` en `segments-{STUDY_ID}.json`: deben ser 12 tramos, cada uno 3–25 s. Tabla inicio/fin/duración con OK/BAD.
-
-**Q3:** Compara los 12 tramos del JSON con las preguntas en `data/articles/study-{STUDY_ID}.ts`. Confirma mapeo Q_LABELS.
-
-**Q4:** `rm` clips q viejos si aplica. `cut-from-segments.sh --only q:1-3`. Lista archivos generados.
-
-**Q5:** `cut-from-segments.sh --only q:4-6`. Lista archivos.
-
-**Q6:** `cut-from-segments.sh --only q:7-9`. Lista archivos.
-
-**Q7:** `cut-from-segments.sh --only q:10-12`. Lista archivos (incluye q12-q13, q14-q15, q16, q17 según convención).
-
-**Q8:** Extrae frame al 50 % de cada `q*.mp4`. Confirma `?` visible; marca FAIL si hay párrafo o ref bíblica sin `?`.
-
-**Q9:** Inventario final (12 clips), verifica `questionVideoLSM` en TS, ejecuta `npm run build`. Resumen listo para commit (sin commitear).
+1. Detener si `questions.length !== questionLabels.length` o aparece algún `[BAD]` sin explicación.
+2. Antes de recortar en lote: `rm -f "${OUT_DIR}"/*q*.mp4`.
+3. Para paralelizar recortes, repartir rangos reales del estudio: por ejemplo `q:1-6`, `q:7-12`, `q:13-18`; ajustar según `questionLabels`.
+4. Marcar como FAIL cualquier clip cuyo frame medio no muestre el `?` en bottom-right.
 
 ## Cableado en datos
 
@@ -177,28 +197,27 @@ Pregunta agrupada (convive con `videoLSM` unido de párrafos):
 | `question.videoLSM` | Clip unido de párrafos (2+ párrafos) |
 | `paragraph.videoLSM` | Clip individual por párrafo |
 
-### Mapeo clip ↔ pregunta (`Q_LABELS`)
+### Mapeo clip ↔ pregunta
 
-12 archivos cubren 17 preguntas impresas cuando hay bloques agrupados:
+El mapeo se genera desde `questionLabels`.
 
-| Clip | Label JSON | `number` en TS | Archivo |
+| Caso | Label JSON | `number` en TS | Archivo |
 |------|------------|----------------|---------|
-| q01 | `"1"` | `"1"` | `…-q01-lsm.mp4` |
-| q02 | `"2"` | `"2"` | `…-q02-lsm.mp4` |
-| q03 | `"3-4"` | `"3, 4"` | `…-q3-q4-lsm.mp4` |
-| q04 | `"5"` | `"5"` | `…-q05-lsm.mp4` |
-| q05 | `"6-7"` | `"6, 7"` | `…-q6-q7-lsm.mp4` |
-| q06 | `"8-9"` | `"8, 9"` | `…-q8-q9-lsm.mp4` |
-| q07 | `"10"` | `"10"` | `…-q10-lsm.mp4` |
-| q08 | `"11"` | `"11"` | `…-q11-lsm.mp4` |
-| q09 | `"12-13"` | `"12, 13"` | `…-q12-q13-lsm.mp4` |
-| q10 | `"14-15"` | `"14, 15"` | `…-q14-q15-lsm.mp4` |
-| q11 | `"16"` | `"16"` | `…-q16-lsm.mp4` |
-| q12 | `"17"` | `"17"` | `…-q17-lsm.mp4` |
+| Pregunta individual | `"3"` | `"3"` | `…-q03-lsm.mp4` |
+| Pregunta individual de dos dígitos | `"18"` | `"18"` | `…-q18-lsm.mp4` |
+| Pregunta agrupada | `"1-2"` | `"1, 2"` | `…-q1-q2-lsm.mp4` |
+| Pregunta agrupada | `"12-13"` | `"12, 13"` | `…-q12-q13-lsm.mp4` |
 
-Rutas en TS: prefijo `/videos/…` (sin `public/`). Preguntas agrupadas: `q{N}-q{M}` sin cero inicial.
+Rutas en TS: prefijo `/videos/...` (sin `public/`). Preguntas agrupadas: `q{N}-q{M}` sin cero inicial.
+
+Ejemplos específicos:
+
+- `study-2026-06-29`: 12 labels cubren 17 preguntas impresas (`"3-4"`, `"6-7"`, `"8-9"`, `"12-13"`, `"14-15"`).
+- `study-2026-07-06`: 17 labels cubren 18 párrafos/preguntas impresas porque `"1-2"` se agrupa y luego siguen `"3"`...`"18"`.
 
 ## Ejemplo real: `study-2026-06-29`
+
+Patrón específico de ese estudio, no regla universal:
 
 | Pregunta | Inicio | Fin | Duración | Archivo |
 |----------|--------|-----|----------|---------|
@@ -217,11 +236,13 @@ Rutas en TS: prefijo `/videos/…` (sin `public/`). Preguntas agrupadas: `q{N}-q
 
 ## Checklist de cierre
 
-- [ ] `detect-questions.sh` reporta 12 segmentos; validación 3–25 s sin `[BAD]`
-- [ ] 12 archivos `q*.mp4` en `OUT_DIR` (sin clips viejos tras re-corte)
+- [ ] `scripts/lsm/study-configs/${STUDY_ID}.json` existe o se confirmó que el default legacy aplica
+- [ ] `detect-questions.sh` reporta `questionLabels.length` segmentos; validación 3–25 s sin `[BAD]`
+- [ ] `questions[]` tiene labels iguales a `questionLabels`
+- [ ] Hay un archivo `q*.mp4` por cada label de `questionLabels` en `OUT_DIR` (sin clips viejos tras re-corte)
 - [ ] Cada clip muestra `?` en frame al 50 %
-- [ ] Las 17 preguntas tienen `questionVideoLSM` según tabla de mapeo
-- [ ] Clips de párrafo (`p01`…`p17`) siguen presentes
+- [ ] Cada pregunta en `study-*.ts` tiene `questionVideoLSM` según el mapeo de labels
+- [ ] Clips de párrafo (`p01`...`pNN`) siguen presentes según `expectedParagraphCount`
 - [ ] `npm run build` sin errores
 - [ ] No commitear video fuente ni mp4 salvo orden explícita del usuario
 
