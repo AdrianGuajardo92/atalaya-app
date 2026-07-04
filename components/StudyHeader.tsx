@@ -36,7 +36,6 @@ export default function StudyHeader({
   title,
   biblicalText,
   theme,
-  articleNumber,
   week,
   month,
   year,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function Timer() {
   const [totalSeconds, setTotalSeconds] = useState(60 * 60); // 60 minutos por defecto
@@ -81,22 +81,22 @@ export default function Timer() {
     }
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (isDragging) {
       setPosition({
         x: e.clientX - dragOffset.x,
         y: e.clientY - dragOffset.y
       });
     }
-  };
+  }, [dragOffset.x, dragOffset.y, isDragging]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
     // Guardar posición en localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem('atalaya-timer-position', JSON.stringify(position));
     }
-  };
+  }, [position]);
 
   // Manejar drag con touch (tableta/móvil)
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -112,7 +112,7 @@ export default function Timer() {
     }
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     if (isDragging) {
       const touch = e.touches[0];
       setPosition({
@@ -120,15 +120,15 @@ export default function Timer() {
         y: touch.clientY - dragOffset.y
       });
     }
-  };
+  }, [dragOffset.x, dragOffset.y, isDragging]);
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
     // Guardar posición en localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem('atalaya-timer-position', JSON.stringify(position));
     }
-  };
+  }, [position]);
 
   useEffect(() => {
     if (isDragging) {
@@ -143,7 +143,7 @@ export default function Timer() {
         window.removeEventListener('touchend', handleTouchEnd);
       };
     }
-  }, [isDragging, dragOffset]);
+  }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
     <div

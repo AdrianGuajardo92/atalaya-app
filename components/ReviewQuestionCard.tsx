@@ -11,9 +11,6 @@ interface ReviewQuestionCardProps {
   index: number;
   lsmText?: string;
   onLSMUpdate?: (index: number, text: string) => void;
-  allLsmData?: Record<string, string>;
-  hiddenCards?: Record<string, boolean>;
-  onToggleHidden?: (cardId: string) => void;
   articleId: string;
 }
 
@@ -22,9 +19,6 @@ export default function ReviewQuestionCard({
   index,
   lsmText,
   onLSMUpdate,
-  allLsmData = {},
-  hiddenCards = {},
-  onToggleHidden = () => { },
   articleId
 }: ReviewQuestionCardProps) {
   const [isEditingLSM, setIsEditingLSM] = useState(false);

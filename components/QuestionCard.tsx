@@ -96,9 +96,6 @@ interface QuestionCardProps {
   sectionLsmText?: string;
   onLSMUpdate?: (questionNumber: string, text: string) => void;
   isNavigationMode?: boolean; // Nueva prop para saber si estamos en modo navegación
-  hiddenCards: Record<string, boolean>;
-  onToggleHidden: (cardId: string) => void;
-  allLsmData?: Record<string, string>;
   usedItems: Record<string, boolean>;
   onToggleUsedItem: (itemId: string) => void; // Callback para marcar/desmarcar item
   articleId: string; // ID del artículo actual
@@ -108,7 +105,7 @@ interface QuestionCardProps {
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, hiddenCards, onToggleHidden, allLsmData = {}, usedItems, onToggleUsedItem, articleId, showSectionHeader = true }: QuestionCardProps) {
+export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, usedItems, onToggleUsedItem, articleId, showSectionHeader = true }: QuestionCardProps) {
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [paragraphsModalClosing, setParagraphsModalClosing] = useState(false);
   const [showParagraphImageModal, setShowParagraphImageModal] = useState<string | null>(null);
@@ -129,28 +126,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [isSaving, setIsSaving] = useState(false);
   const [isSavingSection, setIsSavingSection] = useState(false);
 
-  // Estado para editar puntos clave
-  const [editingBulletIndex, setEditingBulletIndex] = useState<number | null>(null);
-  const [editedBulletText, setEditedBulletText] = useState('');
+  // Estado para puntos clave personalizados guardados en KV
   const [customBullets, setCustomBullets] = useState<string[]>([]);
-  const [isAddingBullet, setIsAddingBullet] = useState(false);
-  const [newBulletText, setNewBulletText] = useState('');
-  // Estado para marcar bullets como respuesta directa o entrelazados
-  const [bulletTypes, setBulletTypes] = useState<Record<number, 'direct' | 'interlaced'>>({});
-
-  // Estado para preguntas de reflexión
-  const [editingReflectionIndex, setEditingReflectionIndex] = useState<number | null>(null);
-  const [editedReflectionText, setEditedReflectionText] = useState('');
-  const [customReflections, setCustomReflections] = useState<string[]>([]);
-  const [isAddingReflection, setIsAddingReflection] = useState(false);
-  const [newReflectionText, setNewReflectionText] = useState('');
-
-  // Estado para aplicaciones prácticas
-  const [editingApplicationIndex, setEditingApplicationIndex] = useState<number | null>(null);
-  const [editedApplicationText, setEditedApplicationText] = useState('');
-  const [customApplications, setCustomApplications] = useState<string[]>([]);
-  const [isAddingApplication, setIsAddingApplication] = useState(false);
-  const [newApplicationText, setNewApplicationText] = useState('');
 
   // Estado para videos LSM de párrafos
   const [videoUrls, setVideoUrls] = useState<Record<number, string>>({});
@@ -242,74 +219,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     };
     loadCustomBullets();
   }, [articleId, question.number, question.answerBullets]);
-
-  // Cargar tipos de bullets (directo/entrelazado) desde Vercel KV
-  useEffect(() => {
-    const loadBulletTypes = async () => {
-      try {
-        const response = await fetch(`/api/lsm?articleId=${articleId}&questionNumber=bullet-types-${question.number}`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.lsmText !== undefined && data.lsmText !== null && data.lsmText !== '') {
-            setBulletTypes(JSON.parse(data.lsmText));
-          }
-        }
-      } catch (error) {
-        console.error('Error loading bullet types:', error);
-      }
-    };
-    loadBulletTypes();
-  }, [articleId, question.number]);
-
-
-
-  // Cargar preguntas de reflexión personalizadas desde Vercel KV
-  useEffect(() => {
-    const loadCustomReflections = async () => {
-      try {
-        const response = await fetch(`/api/lsm?articleId=${articleId}&questionNumber=reflections-${question.number}`);
-        if (response.ok) {
-          const data = await response.json();
-          // Check if lsmText exists and is not empty string
-          if (data.lsmText !== undefined && data.lsmText !== null && data.lsmText !== '') {
-            const parsed = JSON.parse(data.lsmText);
-            setCustomReflections(parsed);
-          } else {
-            // Solo usar originales si nunca se ha guardado nada
-            setCustomReflections(question.reflectionQuestions || []);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading custom reflections:', error);
-        setCustomReflections(question.reflectionQuestions || []);
-      }
-    };
-    loadCustomReflections();
-  }, [articleId, question.number, question.reflectionQuestions]);
-
-  // Cargar aplicaciones prácticas personalizadas desde Vercel KV
-  useEffect(() => {
-    const loadCustomApplications = async () => {
-      try {
-        const response = await fetch(`/api/lsm?articleId=${articleId}&questionNumber=applications-${question.number}`);
-        if (response.ok) {
-          const data = await response.json();
-          // Check if lsmText exists and is not empty string
-          if (data.lsmText !== undefined && data.lsmText !== null && data.lsmText !== '') {
-            const parsed = JSON.parse(data.lsmText);
-            setCustomApplications(parsed);
-          } else {
-            // Solo usar originales si nunca se ha guardado nada
-            setCustomApplications(question.practicalApplications || []);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading custom applications:', error);
-        setCustomApplications(question.practicalApplications || []);
-      }
-    };
-    loadCustomApplications();
-  }, [articleId, question.number, question.practicalApplications]);
 
   // Obtener los párrafos relacionados con esta pregunta
   const relatedParagraphs = useMemo(() =>
@@ -588,290 +497,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     }
   };
 
-  // Funciones para editar puntos clave
-  const saveBulletsToKV = async (bullets: string[]) => {
-    try {
-      const response = await fetch('/api/lsm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleId: articleId,
-          questionNumber: `bullets-${question.number}`,
-          lsmText: JSON.stringify(bullets)
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al guardar');
-      }
-      return true;
-    } catch (error) {
-      console.error('Error saving bullets:', error);
-      alert('Error al guardar. Intenta de nuevo.');
-      return false;
-    }
-  };
-
-  const saveBulletTypesToKV = async (types: Record<number, 'direct' | 'interlaced'>) => {
-    try {
-      await fetch('/api/lsm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleId: articleId,
-          questionNumber: `bullet-types-${question.number}`,
-          lsmText: JSON.stringify(types)
-        })
-      });
-    } catch (error) {
-      console.error('Error saving bullet types:', error);
-    }
-  };
-
-  const handleSaveBullet = async () => {
-    if (editingBulletIndex === null) return;
-
-    const newBullets = [...customBullets];
-    newBullets[editingBulletIndex] = editedBulletText.trim();
-
-    const success = await saveBulletsToKV(newBullets);
-    if (success) {
-      setCustomBullets(newBullets);
-      setEditingBulletIndex(null);
-      setEditedBulletText('');
-    }
-  };
-
-  const handleCancelEditBullet = () => {
-    setEditingBulletIndex(null);
-    setEditedBulletText('');
-  };
-
-  const handleDeleteBullet = async (index: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!confirm('¿Eliminar este punto clave?')) return;
-
-    const newBullets = customBullets.filter((_, i) => i !== index);
-    const success = await saveBulletsToKV(newBullets);
-    if (success) {
-      setCustomBullets(newBullets);
-
-      // Reajustar los índices de bulletTypes
-      const newTypes: Record<number, 'direct' | 'interlaced'> = {};
-      Object.keys(bulletTypes).forEach(key => {
-        const oldIndex = parseInt(key);
-        if (oldIndex < index) {
-          // Los índices menores al eliminado se mantienen igual
-          newTypes[oldIndex] = bulletTypes[oldIndex];
-        } else if (oldIndex > index) {
-          // Los índices mayores al eliminado se mueven una posición hacia atrás
-          newTypes[oldIndex - 1] = bulletTypes[oldIndex];
-        }
-        // El índice eliminado simplemente no se copia
-      });
-
-      setBulletTypes(newTypes);
-      await saveBulletTypesToKV(newTypes);
-    }
-  };
-
-  const handleAddBullet = async () => {
-    if (!newBulletText.trim()) return;
-
-    const newBullets = [...customBullets, newBulletText.trim()];
-    const success = await saveBulletsToKV(newBullets);
-    if (success) {
-      setCustomBullets(newBullets);
-      setNewBulletText('');
-      setIsAddingBullet(false);
-    }
-  };
-
-  const handleBulletKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (editingBulletIndex !== null) {
-        handleSaveBullet();
-      } else if (isAddingBullet) {
-        handleAddBullet();
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      if (editingBulletIndex !== null) {
-        handleCancelEditBullet();
-      } else if (isAddingBullet) {
-        setIsAddingBullet(false);
-        setNewBulletText('');
-      }
-    }
-  };
-
-  // Funciones para manejar preguntas de reflexión
-  const saveReflectionsToKV = async (reflections: string[]) => {
-    try {
-      const response = await fetch('/api/lsm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleId: articleId,
-          questionNumber: `reflections-${question.number}`,
-          lsmText: JSON.stringify(reflections)
-        })
-      });
-      if (!response.ok) throw new Error('Error al guardar');
-      return true;
-    } catch (error) {
-      console.error('Error saving reflections:', error);
-      alert('Error al guardar. Intenta de nuevo.');
-      return false;
-    }
-  };
-
-  const handleStartEditReflection = (index: number, text: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setEditingReflectionIndex(index);
-    setEditedReflectionText(text);
-  };
-
-  const handleSaveReflection = async () => {
-    if (editingReflectionIndex === null) return;
-    const newReflections = [...customReflections];
-    newReflections[editingReflectionIndex] = editedReflectionText.trim();
-    const success = await saveReflectionsToKV(newReflections);
-    if (success) {
-      setCustomReflections(newReflections);
-      setEditingReflectionIndex(null);
-      setEditedReflectionText('');
-    }
-  };
-
-  const handleCancelEditReflection = () => {
-    setEditingReflectionIndex(null);
-    setEditedReflectionText('');
-  };
-
-  const handleDeleteReflection = async (index: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!confirm('¿Eliminar esta pregunta de reflexión?')) return;
-    const newReflections = customReflections.filter((_, i) => i !== index);
-    const success = await saveReflectionsToKV(newReflections);
-    if (success) setCustomReflections(newReflections);
-  };
-
-  const handleAddReflection = async () => {
-    if (!newReflectionText.trim()) return;
-    const newReflections = [...customReflections, newReflectionText.trim()];
-    const success = await saveReflectionsToKV(newReflections);
-    if (success) {
-      setCustomReflections(newReflections);
-      setNewReflectionText('');
-      setIsAddingReflection(false);
-    }
-  };
-
-  const handleReflectionKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (editingReflectionIndex !== null) {
-        handleSaveReflection();
-      } else if (isAddingReflection) {
-        handleAddReflection();
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      if (editingReflectionIndex !== null) {
-        handleCancelEditReflection();
-      } else if (isAddingReflection) {
-        setIsAddingReflection(false);
-        setNewReflectionText('');
-      }
-    }
-  };
-
-  // Funciones para manejar aplicaciones prácticas
-  const saveApplicationsToKV = async (applications: string[]) => {
-    try {
-      const response = await fetch('/api/lsm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          articleId: articleId,
-          questionNumber: `applications-${question.number}`,
-          lsmText: JSON.stringify(applications)
-        })
-      });
-      if (!response.ok) throw new Error('Error al guardar');
-      return true;
-    } catch (error) {
-      console.error('Error saving applications:', error);
-      alert('Error al guardar. Intenta de nuevo.');
-      return false;
-    }
-  };
-
-  const handleStartEditApplication = (index: number, text: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setEditingApplicationIndex(index);
-    setEditedApplicationText(text);
-  };
-
-  const handleSaveApplication = async () => {
-    if (editingApplicationIndex === null) return;
-    const newApplications = [...customApplications];
-    newApplications[editingApplicationIndex] = editedApplicationText.trim();
-    const success = await saveApplicationsToKV(newApplications);
-    if (success) {
-      setCustomApplications(newApplications);
-      setEditingApplicationIndex(null);
-      setEditedApplicationText('');
-    }
-  };
-
-  const handleCancelEditApplication = () => {
-    setEditingApplicationIndex(null);
-    setEditedApplicationText('');
-  };
-
-  const handleDeleteApplication = async (index: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!confirm('¿Eliminar esta aplicación práctica?')) return;
-    const newApplications = customApplications.filter((_, i) => i !== index);
-    const success = await saveApplicationsToKV(newApplications);
-    if (success) setCustomApplications(newApplications);
-  };
-
-  const handleAddApplication = async () => {
-    if (!newApplicationText.trim()) return;
-    const newApplications = [...customApplications, newApplicationText.trim()];
-    const success = await saveApplicationsToKV(newApplications);
-    if (success) {
-      setCustomApplications(newApplications);
-      setNewApplicationText('');
-      setIsAddingApplication(false);
-    }
-  };
-
-  const handleApplicationKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (editingApplicationIndex !== null) {
-        handleSaveApplication();
-      } else if (isAddingApplication) {
-        handleAddApplication();
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      if (editingApplicationIndex !== null) {
-        handleCancelEditApplication();
-      } else if (isAddingApplication) {
-        setIsAddingApplication(false);
-        setNewApplicationText('');
-      }
-    }
-  };
-
-  const currentLSMText = lsmText || question.textLSM;
   const currentSectionLSMText = sectionLsmText || question.sectionLSM;
+
+  const answerBullets = useMemo(() => {
+    if (customBullets.length > 0) return customBullets;
+    if (!question.answerBullets) return [];
+    return Array.isArray(question.answerBullets)
+      ? question.answerBullets
+      : question.answerBullets.split('\n').filter(bullet => bullet.trim());
+  }, [customBullets, question.answerBullets]);
 
   // RENDERIZADO PREMIUM/EJECUTIVO
   const studyId = articleId;
@@ -1015,7 +649,11 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                                 const isOpening = !expandedParaImages.has(paragraph.number);
                                 setExpandedParaImages(prev => {
                                   const next = new Set(prev);
-                                  next.has(paragraph.number) ? next.delete(paragraph.number) : next.add(paragraph.number);
+                                  if (next.has(paragraph.number)) {
+                                    next.delete(paragraph.number);
+                                  } else {
+                                    next.add(paragraph.number);
+                                  }
                                   return next;
                                 });
                                 if (isOpening) {
@@ -1830,9 +1468,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     )}
 
                     {/* Puntos Clave */}
-                    {(question.answerBullets || customBullets.length > 0) && (
+                    {answerBullets.length > 0 && (
                       <div className="mt-6 space-y-3">
-                        {(customBullets.length > 0 ? customBullets : question.answerBullets as string[]).map((bullet, idx) => (
+                        {answerBullets.map((bullet, idx) => (
                           <div key={idx} className="flex gap-3 group/bullet">
                             <div className="w-1.5 h-1.5 rounded-full bg-border-strong mt-2.5 group-hover/bullet:bg-blue-500 dark:group-hover/bullet:bg-[#D97757] transition-colors"></div>
                             <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>

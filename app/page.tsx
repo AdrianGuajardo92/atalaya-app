@@ -68,20 +68,6 @@ export default function Home() {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
   const [hasRestoredViewState, setHasRestoredViewState] = useState(false);
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
-  const [favorites, setFavorites] = useState<Record<string, boolean>>(() => {
-    if (typeof window !== 'undefined') {
-      const cached = localStorage.getItem(`atalaya-favorites-cache:${currentArticleId}`);
-      return cached ? JSON.parse(cached) : {};
-    }
-    return {};
-  });
-  const [hiddenCards, setHiddenCards] = useState<Record<string, boolean>>(() => {
-    if (typeof window !== 'undefined') {
-      const cached = localStorage.getItem(`atalaya-hidden-cache:${currentArticleId}`);
-      return cached ? JSON.parse(cached) : {};
-    }
-    return {};
-  });
   const [usedItems, setUsedItems] = useState<Record<string, boolean>>(() => {
     if (typeof window !== 'undefined') {
       const cached = localStorage.getItem(`atalaya-used-items-cache:${currentArticleId}`);
@@ -104,25 +90,13 @@ export default function Home() {
 
   // Refs para debounced sync — evita race conditions en read-modify-write del KV
   const usedItemsRef = useRef(usedItems);
-  const favoritesRef = useRef(favorites);
-  const hiddenCardsRef = useRef(hiddenCards);
   const articleIdRef = useRef(currentArticleId);
 
   const saveUsedItemsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const saveFavoritesTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const saveHiddenCardsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     usedItemsRef.current = usedItems;
   }, [usedItems]);
-
-  useEffect(() => {
-    favoritesRef.current = favorites;
-  }, [favorites]);
-
-  useEffect(() => {
-    hiddenCardsRef.current = hiddenCards;
-  }, [hiddenCards]);
 
   useEffect(() => {
     articleIdRef.current = currentArticleId;
@@ -182,8 +156,6 @@ export default function Home() {
   useEffect(() => {
     return () => {
       if (saveUsedItemsTimer.current) clearTimeout(saveUsedItemsTimer.current);
-      if (saveFavoritesTimer.current) clearTimeout(saveFavoritesTimer.current);
-      if (saveHiddenCardsTimer.current) clearTimeout(saveHiddenCardsTimer.current);
     };
   }, []);
 
@@ -199,43 +171,6 @@ export default function Home() {
       } catch { /* localStorage cache serves as fallback */ }
     }, 300);
   }, []);
-
-  const syncFavorites = useCallback(() => {
-    if (saveFavoritesTimer.current) clearTimeout(saveFavoritesTimer.current);
-    saveFavoritesTimer.current = setTimeout(async () => {
-      try {
-        await fetch('/api/favorites', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ articleId: articleIdRef.current, data: favoritesRef.current })
-        });
-      } catch { /* localStorage cache serves as fallback */ }
-    }, 300);
-  }, []);
-
-  const syncHiddenCards = useCallback(() => {
-    if (saveHiddenCardsTimer.current) clearTimeout(saveHiddenCardsTimer.current);
-    saveHiddenCardsTimer.current = setTimeout(async () => {
-      try {
-        await fetch('/api/hidden-cards', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ articleId: articleIdRef.current, data: hiddenCardsRef.current })
-        });
-      } catch { /* localStorage cache serves as fallback */ }
-    }, 300);
-  }, []);
-
-  // Función para renderizar **negrita** en texto
-  const renderBoldText = (text: string) => {
-    const parts = text.split(/(\*\*[^*]+\*\*)/g);
-    return parts.map((part, i) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={i}>{part.slice(2, -2)}</strong>;
-      }
-      return <span key={i}>{part}</span>;
-    });
-  };
 
   // Cargar artículos activos al iniciar
   useEffect(() => {
@@ -255,48 +190,28 @@ export default function Home() {
 
   // Persistir estado en localStorage como caché (solo si hay datos)
   useEffect(() => {
-    if (typeof window !== 'undefined' && currentArticleId && Object.keys(favorites).length > 0) {
-      localStorage.setItem(`atalaya-favorites-cache:${currentArticleId}`, JSON.stringify(favorites));
-    }
-  }, [favorites, currentArticleId]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && currentArticleId && Object.keys(hiddenCards).length > 0) {
-      localStorage.setItem(`atalaya-hidden-cache:${currentArticleId}`, JSON.stringify(hiddenCards));
-    }
-  }, [hiddenCards, currentArticleId]);
-
-  useEffect(() => {
     if (typeof window !== 'undefined' && currentArticleId && Object.keys(usedItems).length > 0) {
       localStorage.setItem(`atalaya-used-items-cache:${currentArticleId}`, JSON.stringify(usedItems));
     }
   }, [usedItems, currentArticleId]);
 
-  // Cargar datos LSM, favoritos y tarjetas ocultas cuando cambia el artículo
+  // Cargar datos LSM y elementos usados cuando cambia el artículo
   useEffect(() => {
     if (!currentArticleId) return;
 
     // Primero: cargar caché local del artículo para mostrar datos inmediatamente
     if (typeof window !== 'undefined') {
-      const cachedFavorites = localStorage.getItem(`atalaya-favorites-cache:${currentArticleId}`);
-      const cachedHidden = localStorage.getItem(`atalaya-hidden-cache:${currentArticleId}`);
       const cachedUsed = localStorage.getItem(`atalaya-used-items-cache:${currentArticleId}`);
-      if (cachedFavorites) setFavorites(JSON.parse(cachedFavorites));
-      if (cachedHidden) setHiddenCards(JSON.parse(cachedHidden));
       if (cachedUsed) setUsedItems(JSON.parse(cachedUsed));
     }
 
     // Luego: sincronizar con API en background (null = fallo, no sobrescribir)
     Promise.all([
       fetch(`/api/lsm?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null),
-      fetch(`/api/favorites?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null),
-      fetch(`/api/hidden-cards?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null),
       fetch(`/api/used-items?articleId=${currentArticleId}`).then(res => res.ok ? res.json() : null).catch(() => null)
     ])
-      .then(([lsmDataResult, favoritesResult, hiddenCardsResult, usedItemsResult]) => {
+      .then(([lsmDataResult, usedItemsResult]) => {
         if (lsmDataResult !== null) setLsmData(lsmDataResult);
-        if (favoritesResult !== null) setFavorites(favoritesResult);
-        if (hiddenCardsResult !== null) setHiddenCards(hiddenCardsResult);
         if (usedItemsResult !== null) setUsedItems(usedItemsResult);
       });
   }, [currentArticleId]);
@@ -435,27 +350,6 @@ export default function Home() {
     } catch {
       // Error silencioso
     }
-  };
-
-  const handleToggleFavorite = (favoriteId: string) => {
-    setFavorites(prev => {
-      const next = { ...prev };
-      if (!prev[favoriteId]) {
-        next[favoriteId] = true;
-      } else {
-        delete next[favoriteId];
-      }
-      return next;
-    });
-    syncFavorites();
-  };
-
-  const handleToggleHidden = (cardId: string) => {
-    setHiddenCards(prev => ({
-      ...prev,
-      [cardId]: true
-    }));
-    syncHiddenCards();
   };
 
   const handleToggleUsedItem = (itemId: string) => {
@@ -710,9 +604,6 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${question.number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={false}
-                  hiddenCards={hiddenCards}
-                  onToggleHidden={handleToggleHidden}
-                  allLsmData={lsmData}
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
                   articleId={currentArticleId}
@@ -743,9 +634,6 @@ export default function Home() {
                     index={index}
                     lsmText={lsmData[`review-${index}`]}
                     onLSMUpdate={handleReviewLSMUpdate}
-                    allLsmData={lsmData}
-                    hiddenCards={hiddenCards}
-                    onToggleHidden={handleToggleHidden}
                     articleId={currentArticleId}
                   />
                 ))}
@@ -774,9 +662,6 @@ export default function Home() {
                   sectionLsmText={lsmData[`section-${currentArticle.questions[currentQuestionIndex].number}`]}
                   onLSMUpdate={handleLSMUpdate}
                   isNavigationMode={true}
-                  hiddenCards={hiddenCards}
-                  onToggleHidden={handleToggleHidden}
-                  allLsmData={lsmData}
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
                   articleId={currentArticleId}
@@ -791,9 +676,6 @@ export default function Home() {
                   index={currentReviewIndex}
                   lsmText={lsmData[`review-${currentReviewIndex}`]}
                   onLSMUpdate={handleReviewLSMUpdate}
-                  allLsmData={lsmData}
-                  hiddenCards={hiddenCards}
-                  onToggleHidden={handleToggleHidden}
                   articleId={currentArticleId}
                 />
 
