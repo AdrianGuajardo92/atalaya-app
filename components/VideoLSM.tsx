@@ -23,18 +23,11 @@ const FEEDBACK_ICONS: Record<string, string> = {
 const formatPlaybackRate = (rate: number) => (rate === 1 ? '1x' : `${rate}x`);
 
 const seekBtnClass = "text-white/70 hover:text-white hover:bg-white/15 px-1.5 py-0.5 rounded text-[11px] font-bold transition-all";
-const LSM_VIDEO_SELECTOR = 'video[controls][aria-label^="Video LSM"]';
 
 let activeVideoContainer: HTMLDivElement | null = null;
 let activeVideoScrollGeneration = 0;
 let scrollGeneration = 0;
 let scrollGenerationListenerAttached = false;
-
-type VisibleVideoCandidate = {
-  video: HTMLVideoElement;
-  visibleRatio: number;
-  score: number;
-};
 
 type VisibleElementCandidate = {
   element: HTMLElement;
@@ -50,40 +43,58 @@ type LsmPlayerHandle = {
   expand: () => void;
   togglePlayPause: () => void;
   markActive: () => void;
+  seekBy: (seconds: number) => void;
+  stepSpeed: (direction: 'up' | 'down') => void;
+  restart: () => void;
 };
 
 const playerRegistry = new Set<LsmPlayerHandle>();
 let scrollPinnedPlayer: LsmPlayerHandle | null = null;
 let lastScrollPinnedLabel: string | null = null;
+let lastInteractedPlayer: LsmPlayerHandle | null = null;
+
+const isSpaceKeyEvent = (e: KeyboardEvent | React.KeyboardEvent<Element>) => (
+  e.key === ' ' || e.key === 'Space' || e.key === 'Spacebar' || e.code === 'Space'
+);
+
+const isLsmShortcutKeyEvent = (e: KeyboardEvent | React.KeyboardEvent<Element>) => (
+  isSpaceKeyEvent(e)
+  || e.key === 'ArrowUp'
+  || e.key === 'ArrowDown'
+  || e.key === 'ArrowLeft'
+  || e.key === 'ArrowRight'
+  || e.key === 'Home'
+);
 
 type AtalayaLsmWindow = Window & {
-  __atalayaLsmSpaceBridge__?: { onSpace: (e: KeyboardEvent) => void };
-  __atalayaLsmSpaceListener__?: (e: KeyboardEvent) => void;
-  __atalayaLsmSpaceListenersAttached__?: boolean;
+  __atalayaLsmKeyBridge__?: { onKeyDown: (e: KeyboardEvent) => void };
+  __atalayaLsmKeyListener__?: (e: KeyboardEvent) => void;
+  __atalayaLsmKeyListenersAttached__?: boolean;
 };
 
 /** Puente en window para sobrevivir HMR: el listener siempre lee el mismo objeto. */
-const getSpaceKeyBridge = (): { onSpace: (e: KeyboardEvent) => void } => {
+const getLsmKeyBridge = (): { onKeyDown: (e: KeyboardEvent) => void } => {
   const win = window as AtalayaLsmWindow;
-  if (!win.__atalayaLsmSpaceBridge__) {
-    win.__atalayaLsmSpaceBridge__ = { onSpace: () => {} };
+  if (!win.__atalayaLsmKeyBridge__) {
+    win.__atalayaLsmKeyBridge__ = { onKeyDown: () => {} };
   }
-  return win.__atalayaLsmSpaceBridge__;
+  return win.__atalayaLsmKeyBridge__;
 };
 
-const getSpaceListener = (): ((e: KeyboardEvent) => void) => {
+const getLsmKeyListener = (): ((e: KeyboardEvent) => void) => {
   const win = window as AtalayaLsmWindow;
-  if (!win.__atalayaLsmSpaceListener__) {
-    win.__atalayaLsmSpaceListener__ = (e: KeyboardEvent) => {
-      if (!isSpaceKeyEvent(e)) return;
-      getSpaceKeyBridge().onSpace(e);
+  if (!win.__atalayaLsmKeyListener__) {
+    win.__atalayaLsmKeyListener__ = (e: KeyboardEvent) => {
+      if (!isLsmShortcutKeyEvent(e)) return;
+      getLsmKeyBridge().onKeyDown(e);
     };
   }
-  return win.__atalayaLsmSpaceListener__;
+  return win.__atalayaLsmKeyListener__;
 };
 
 const runPlayerPlayPause = (targetPlayer: LsmPlayerHandle) => {
   targetPlayer.markActive();
+  lastInteractedPlayer = targetPlayer;
 
   if (targetPlayer.isCollapsed()) {
     targetPlayer.expand();
@@ -101,20 +112,77 @@ const runPlayerPlayPause = (targetPlayer: LsmPlayerHandle) => {
   }
 };
 
-const handleDocumentSpaceKey = (e: KeyboardEvent) => {
+const findPlayerHandleFromTarget = (target: EventTarget | null): LsmPlayerHandle | null => {
+  if (!(target instanceof Node)) return null;
+  for (const handle of playerRegistry) {
+    if (handle.container.contains(target)) return handle;
+  }
+  return null;
+};
+
+const findPlayerHandleFromLsmVideo = (target: EventTarget | null): LsmPlayerHandle | null => {
+  if (!(target instanceof HTMLVideoElement)) return null;
+  const label = target.getAttribute('aria-label');
+  if (!label?.startsWith('Video LSM')) return null;
+
+  const fromContainer = findPlayerHandleFromTarget(target);
+  if (fromContainer) return fromContainer;
+
+  for (const handle of playerRegistry) {
+    if (handle.getVideo() === target) return handle;
+  }
+  return null;
+};
+
+const resolveLsmTargetPlayer = (e: KeyboardEvent): LsmPlayerHandle | null => (
+  findPlayerHandleFromTarget(e.target)
+  ?? findPlayerHandleFromLsmVideo(e.target)
+  ?? lastInteractedPlayer
+  ?? getKeyboardTargetPlayer()
+  ?? scrollPinnedPlayer
+);
+
+const handleDocumentLsmKeydown = (e: KeyboardEvent) => {
+  if (!isLsmShortcutKeyEvent(e)) return;
   if (isTextEntryTargetElement(e.target)) return;
 
-  const targetPlayer = getKeyboardTargetPlayer() ?? scrollPinnedPlayer;
+  const targetPlayer = resolveLsmTargetPlayer(e);
   if (!targetPlayer) return;
+  if (!getVisibleElementCandidate(targetPlayer.container)) return;
 
   e.preventDefault();
   e.stopPropagation();
   e.stopImmediatePropagation();
-  runPlayerPlayPause(targetPlayer);
+
+  targetPlayer.markActive();
+  lastInteractedPlayer = targetPlayer;
+
+  if (isSpaceKeyEvent(e)) {
+    runPlayerPlayPause(targetPlayer);
+    return;
+  }
+
+  switch (e.key) {
+    case 'ArrowUp':
+      targetPlayer.stepSpeed('up');
+      break;
+    case 'ArrowDown':
+      targetPlayer.stepSpeed('down');
+      break;
+    case 'ArrowLeft':
+      if (!e.ctrlKey) targetPlayer.seekBy(-5);
+      break;
+    case 'ArrowRight':
+      if (!e.ctrlKey) targetPlayer.seekBy(5);
+      break;
+    case 'Home':
+      targetPlayer.restart();
+      break;
+  }
 };
 
-const refreshSpaceKeyBridge = () => {
-  getSpaceKeyBridge().onSpace = handleDocumentSpaceKey;
+const refreshLsmKeyBridge = () => {
+  getLsmKeyBridge().onKeyDown = handleDocumentLsmKeydown;
 };
 
 const updateScrollPinnedPlayer = () => {
@@ -157,10 +225,6 @@ const getVisibleElementCandidate = (element: HTMLElement): VisibleElementCandida
     score: visibleRatio * 2 + centerScore,
   };
 };
-
-const isSpaceKeyEvent = (e: KeyboardEvent | React.KeyboardEvent<Element>) => (
-  e.key === ' ' || e.key === 'Space' || e.key === 'Spacebar' || e.code === 'Space'
-);
 
 const isTextEntryTargetElement = (target: EventTarget | null) => {
   if (!(target instanceof HTMLElement)) return false;
@@ -216,13 +280,13 @@ const getKeyboardTargetPlayer = (): LsmPlayerHandle | null => {
 const ensureGlobalKeyboardListener = () => {
   if (typeof document === 'undefined') return;
 
-  refreshSpaceKeyBridge();
+  refreshLsmKeyBridge();
 
   const win = window as AtalayaLsmWindow;
-  const listener = getSpaceListener();
-  if (!win.__atalayaLsmSpaceListenersAttached__) {
+  const listener = getLsmKeyListener();
+  if (!win.__atalayaLsmKeyListenersAttached__) {
     document.addEventListener('keydown', listener, { capture: true });
-    win.__atalayaLsmSpaceListenersAttached__ = true;
+    win.__atalayaLsmKeyListenersAttached__ = true;
   }
 };
 
@@ -236,69 +300,6 @@ const ensureScrollGenerationListener = () => {
 
   scrollGenerationListenerAttached = true;
   requestAnimationFrame(updateScrollPinnedPlayer);
-};
-
-const getVisibleVideoCandidate = (video: HTMLVideoElement): VisibleVideoCandidate | null => {
-  const rect = video.getBoundingClientRect();
-  if (rect.width <= 0 || rect.height <= 0) return null;
-
-  const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const visibleLeft = Math.max(0, rect.left);
-  const visibleRight = Math.min(viewportWidth, rect.right);
-  const visibleTop = Math.max(0, rect.top);
-  const visibleBottom = Math.min(viewportHeight, rect.bottom);
-  const visibleWidth = Math.max(0, visibleRight - visibleLeft);
-  const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-  if (visibleWidth < 80 || visibleHeight < 80) return null;
-
-  const visibleArea = visibleWidth * visibleHeight;
-  const totalArea = rect.width * rect.height;
-  const visibleRatio = visibleArea / totalArea;
-  const hasMeaningfulVisibility = visibleRatio >= 0.12 || visibleHeight >= Math.min(160, rect.height * 0.2);
-  if (!hasMeaningfulVisibility) return null;
-
-  const videoCenterY = rect.top + rect.height / 2;
-  const viewportCenterY = viewportHeight / 2;
-  const centerDistance = Math.abs(videoCenterY - viewportCenterY);
-  const centerScore = 1 - Math.min(centerDistance / Math.max(viewportCenterY, 1), 1);
-
-  return {
-    video,
-    visibleRatio,
-    score: visibleRatio * 2 + centerScore,
-  };
-};
-
-const getKeyboardTargetVideo = (): HTMLVideoElement | null => {
-  const player = getKeyboardTargetPlayer();
-  if (player) {
-    const video = player.getVideo();
-    if (video) return video;
-  }
-
-  if (typeof document === 'undefined') return null;
-
-  const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(LSM_VIDEO_SELECTOR));
-  const candidates = videos
-    .map(getVisibleVideoCandidate)
-    .filter((candidate): candidate is VisibleVideoCandidate => Boolean(candidate))
-    .sort((a, b) => b.score - a.score);
-
-  if (candidates.length === 0) return null;
-
-  const activeVideo = activeVideoContainer?.querySelector<HTMLVideoElement>(LSM_VIDEO_SELECTOR);
-  const activeCandidate = candidates.find((candidate) => candidate.video === activeVideo);
-  if (activeCandidate && activeVideoScrollGeneration === scrollGeneration) {
-    return activeCandidate.video;
-  }
-
-  const playingCandidate = candidates.find((candidate) => (
-    !candidate.video.paused && !candidate.video.ended
-  ));
-  if (playingCandidate) return playingCandidate.video;
-
-  return candidates[0].video;
 };
 
 export default function VideoLSM({ src, paragraphNumber, onRemove, compact = false }: VideoLSMProps) {
@@ -316,8 +317,11 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     expand: () => {},
     togglePlayPause: () => {},
     markActive: () => {},
+    seekBy: () => {},
+    stepSpeed: () => {},
+    restart: () => {},
   });
-  const [isVisible, setIsVisible] = useState(false);
+  const playerHandleRef = useRef<LsmPlayerHandle | null>(null);
   const twoFingerStartTime = useRef<number | null>(null);
   const singleTouchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const lastTouchLikeInteractionRef = useRef(false);
@@ -395,8 +399,8 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   // Cleanup timer on unmount
   useEffect(() => () => clearTimeout(feedbackTimerRef.current), []);
 
-  const isSpaceKey = useCallback((e: KeyboardEvent | React.KeyboardEvent<Element>) => (
-    isSpaceKeyEvent(e)
+  const isLsmShortcutKey = useCallback((e: KeyboardEvent | React.KeyboardEvent<Element>) => (
+    isLsmShortcutKeyEvent(e)
   ), []);
 
   const isTextEntryTarget = useCallback((target: EventTarget | null) => (
@@ -407,6 +411,9 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     if (containerRef.current) {
       activeVideoContainer = containerRef.current;
       activeVideoScrollGeneration = scrollGeneration;
+    }
+    if (playerHandleRef.current) {
+      lastInteractedPlayer = playerHandleRef.current;
     }
   }, []);
 
@@ -433,6 +440,44 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     }
   }, [showFeedback]);
 
+  const seekVideo = useCallback((seconds: number, options: { showVisualFeedback?: boolean } = {}) => {
+    const { showVisualFeedback = true } = options;
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = Math.max(0, Math.min(video.duration || 0, video.currentTime + seconds));
+    if (showVisualFeedback) showFeedback(seconds < 0 ? 'back' : 'forward');
+  }, [showFeedback]);
+
+  const restartVideo = useCallback((options: { showVisualFeedback?: boolean } = {}) => {
+    const { showVisualFeedback = true } = options;
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    void video.play().catch(() => undefined);
+    if (showVisualFeedback) showFeedback('restart');
+  }, [showFeedback]);
+
+  const changeSpeed = useCallback((rate: number) => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = rate;
+      setPlaybackRate(rate);
+    }
+  }, []);
+
+  const stepSpeed = useCallback((direction: 'up' | 'down', options: { showVisualFeedback?: boolean } = {}) => {
+    const { showVisualFeedback = true } = options;
+    const currentRate = videoRef.current?.playbackRate ?? playbackRate;
+    const currentIndex = SPEED_OPTIONS.indexOf(currentRate as typeof SPEED_OPTIONS[number]);
+    const idx = currentIndex >= 0 ? currentIndex : 0;
+    const newIndex = direction === 'up'
+      ? Math.min(idx + 1, SPEED_OPTIONS.length - 1)
+      : Math.max(idx - 1, 0);
+    const newRate = SPEED_OPTIONS[newIndex];
+
+    changeSpeed(newRate);
+    if (showVisualFeedback) showFeedback(formatPlaybackRate(newRate));
+  }, [changeSpeed, playbackRate, showFeedback]);
+
   useEffect(() => {
     playerApiRef.current = {
       expand: () => {
@@ -442,8 +487,11 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
       },
       togglePlayPause: () => togglePlayPause({ showVisualFeedback: false }),
       markActive: markActivePlayer,
+      seekBy: (seconds: number) => seekVideo(seconds, { showVisualFeedback: false }),
+      stepSpeed: (direction: 'up' | 'down') => stepSpeed(direction, { showVisualFeedback: false }),
+      restart: () => restartVideo({ showVisualFeedback: false }),
     };
-  }, [markActivePlayer, togglePlayPause]);
+  }, [markActivePlayer, togglePlayPause, seekVideo, stepSpeed, restartVideo]);
 
   useEffect(() => {
     let cancelled = false;
@@ -464,7 +512,11 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
         expand: () => playerApiRef.current.expand(),
         togglePlayPause: () => playerApiRef.current.togglePlayPause(),
         markActive: () => playerApiRef.current.markActive(),
+        seekBy: (seconds: number) => playerApiRef.current.seekBy(seconds),
+        stepSpeed: (direction: 'up' | 'down') => playerApiRef.current.stepSpeed(direction),
+        restart: () => playerApiRef.current.restart(),
       };
+      playerHandleRef.current = handle;
       playerRegistry.add(handle);
     };
 
@@ -472,22 +524,58 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     const raf = requestAnimationFrame(() => {
       tryRegister();
       updateScrollPinnedPlayer();
-      refreshSpaceKeyBridge();
+      refreshLsmKeyBridge();
     });
 
     return () => {
       cancelled = true;
       cancelAnimationFrame(raf);
-      if (handle) playerRegistry.delete(handle);
+      if (handle) {
+        playerRegistry.delete(handle);
+        if (lastInteractedPlayer === handle) {
+          lastInteractedPlayer = null;
+        }
+        if (playerHandleRef.current === handle) {
+          playerHandleRef.current = null;
+        }
+      }
     };
   }, [paragraphNumber, compact, src]);
 
+  const runLocalLsmShortcut = useCallback((e: React.KeyboardEvent<Element>) => {
+    markActivePlayer();
+    if (isSpaceKeyEvent(e)) {
+      togglePlayPause({ showVisualFeedback: false });
+      return;
+    }
+    switch (e.key) {
+      case 'ArrowUp':
+        stepSpeed('up', { showVisualFeedback: false });
+        break;
+      case 'ArrowDown':
+        stepSpeed('down', { showVisualFeedback: false });
+        break;
+      case 'ArrowLeft':
+        if (!e.ctrlKey) seekVideo(-5, { showVisualFeedback: false });
+        break;
+      case 'ArrowRight':
+        if (!e.ctrlKey) seekVideo(5, { showVisualFeedback: false });
+        break;
+      case 'Home':
+        restartVideo({ showVisualFeedback: false });
+        break;
+    }
+  }, [markActivePlayer, togglePlayPause, stepSpeed, seekVideo, restartVideo]);
+
   const handleVideoKeyDown = useCallback((e: React.KeyboardEvent<HTMLVideoElement>) => {
-    if (!isSpaceKey(e)) return;
+    if (isTextEntryTarget(e.target)) return;
+    if (!isLsmShortcutKey(e)) return;
+    if (e.defaultPrevented) return;
+
     e.preventDefault();
     e.stopPropagation();
-    togglePlayPause({ showVisualFeedback: false });
-  }, [isSpaceKey, togglePlayPause]);
+    runLocalLsmShortcut(e);
+  }, [isLsmShortcutKey, isTextEntryTarget, runLocalLsmShortcut]);
 
   const focusPlayerContainer = useCallback(() => {
     markActivePlayer();
@@ -517,58 +605,34 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     focusPlayerContainer();
   }, [focusPlayerContainer, markActivePlayer]);
 
-  const handleVideoClick = useCallback(() => {
+  const handleVideoClick = useCallback((e: React.MouseEvent<HTMLVideoElement>) => {
     if (lastTouchLikeInteractionRef.current) {
       lastTouchLikeInteractionRef.current = false;
       return;
     }
+    const video = e.currentTarget;
+    const inNativeControls = e.nativeEvent.offsetY > video.clientHeight * 0.8;
+    if (inNativeControls) {
+      markActivePlayer();
+      return;
+    }
     window.setTimeout(() => focusPlayerContainer(), 0);
-  }, [focusPlayerContainer]);
+  }, [focusPlayerContainer, markActivePlayer]);
+
+  const handleVideoSeeked = useCallback(() => {
+    markActivePlayer();
+    videoRef.current?.focus({ preventScroll: true });
+  }, [markActivePlayer]);
 
   const handlePlayerKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
     if (isTextEntryTarget(e.target)) return;
-    if (!isSpaceKey(e)) return;
+    if (!isLsmShortcutKey(e)) return;
     if (e.defaultPrevented) return;
 
     e.preventDefault();
     e.stopPropagation();
-    togglePlayPause({ showVisualFeedback: false });
-  }, [isSpaceKey, isTextEntryTarget, togglePlayPause]);
-
-  const seekVideo = useCallback((seconds: number) => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = Math.max(0, Math.min(video.duration || 0, video.currentTime + seconds));
-    showFeedback(seconds < 0 ? 'back' : 'forward');
-  }, [showFeedback]);
-
-  const restartVideo = useCallback(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = 0;
-    void video.play().catch(() => undefined);
-    showFeedback('restart');
-  }, [showFeedback]);
-
-  const changeSpeed = useCallback((rate: number) => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = rate;
-      setPlaybackRate(rate);
-    }
-  }, []);
-
-  const stepSpeed = useCallback((direction: 'up' | 'down') => {
-    const currentRate = videoRef.current?.playbackRate ?? playbackRate;
-    const currentIndex = SPEED_OPTIONS.indexOf(currentRate as typeof SPEED_OPTIONS[number]);
-    const idx = currentIndex >= 0 ? currentIndex : 0;
-    const newIndex = direction === 'up'
-      ? Math.min(idx + 1, SPEED_OPTIONS.length - 1)
-      : Math.max(idx - 1, 0);
-    const newRate = SPEED_OPTIONS[newIndex];
-
-    changeSpeed(newRate);
-    showFeedback(formatPlaybackRate(newRate));
-  }, [changeSpeed, playbackRate, showFeedback]);
+    runLocalLsmShortcut(e);
+  }, [isLsmShortcutKey, isTextEntryTarget, runLocalLsmShortcut]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     if (e.touches.length === 2) {
@@ -611,52 +675,6 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     e.preventDefault();
     stepSpeed(deltaY < 0 ? 'up' : 'down');
   }, [stepSpeed, togglePlayPause]);
-
-  // Atajos de teclado solo cuando el reproductor es visible en pantalla
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting && entry.intersectionRatio > 0.25),
-      { threshold: [0, 0.25, 0.5] }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isSpaceKey(e)) return;
-
-      const video = videoRef.current;
-      if (!video || !isVisible) return;
-      if (isTextEntryTarget(e.target)) return;
-      if (getKeyboardTargetVideo() !== video) return;
-
-      switch (e.key) {
-        case 'Home':
-          e.preventDefault();
-          restartVideo();
-          break;
-        case 'ArrowLeft':
-          if (!e.ctrlKey) { e.preventDefault(); seekVideo(-5); }
-          break;
-        case 'ArrowRight':
-          if (!e.ctrlKey) { e.preventDefault(); seekVideo(5); }
-          break;
-        case 'ArrowUp':
-          e.preventDefault();
-          stepSpeed('up');
-          break;
-        case 'ArrowDown':
-          e.preventDefault();
-          stepSpeed('down');
-          break;
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown, { capture: true });
-    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
-  }, [isSpaceKey, isTextEntryTarget, restartVideo, seekVideo, stepSpeed, isVisible]);
 
   const feedbackOverlay = tapFeedback && (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -757,6 +775,8 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             style={{ touchAction: 'pan-x' }}
             onError={() => setFailedVideoSrc(src)}
             onPlay={markActivePlayer}
+            onPause={markActivePlayer}
+            onSeeked={handleVideoSeeked}
             onKeyDown={handleVideoKeyDown}
             onPointerDown={handleVideoPointerDown}
             onClick={handleVideoClick}
@@ -837,6 +857,8 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               style={{ touchAction: 'pan-x' }}
               onError={() => setFailedVideoSrc(src)}
               onPlay={markActivePlayer}
+              onPause={markActivePlayer}
+              onSeeked={handleVideoSeeked}
               onKeyDown={handleVideoKeyDown}
               onPointerDown={handleVideoPointerDown}
               onClick={handleVideoClick}

@@ -496,10 +496,6 @@ export const study20260629: ArticleData = {
           "followUp": "¿Qué conviene preguntar con tacto antes de decidir?"
         },
         {
-          "text": "Si hay **dudas serias** o preocupaciones de **amigos maduros**, conviene tomarlas en serio antes de casarse.",
-          "followUp": "¿Por qué debemos tomar en serio las dudas?"
-        },
-        {
           "text": "**Sarah** (Guayana Francesa) pidió opiniones sobre Daniel a un anciano, su compañero de precursorado, amigos en común y hermanas.",
           "secondary": true
         },
@@ -997,6 +993,8 @@ export const study20260629: ArticleData = {
   "reviewQuestions": [
     {
       "question": "¿Qué ayudará a un cristiano soltero a elegir bien la persona que será su mejor amiga el resto de su vida?",
+      "image": "/images/study-2026-06-29/review-01.png",
+      "imageCaption": "Durante el noviazgo, trate de averiguar cómo es en realidad la persona.",
       "answers": [
         {
           "text": "Seguir la **guía de Jehová** y los **principios bíblicos** al tomar una decisión tan importante.",
@@ -1027,6 +1025,8 @@ export const study20260629: ArticleData = {
     },
     {
       "question": "¿Qué pueden hacer el esposo y la esposa para fortalecer su amistad?",
+      "image": "/images/study-2026-06-29/review-02.png",
+      "imageCaption": "Fortalezcan su amistad pasando tiempo juntos con regularidad. (Vea los párrafos 12 y 13).",
       "answers": [
         {
           "text": "Sacar **tiempo para estar juntos** con regularidad, aunque estén muy ocupados.",
@@ -1061,6 +1061,8 @@ export const study20260629: ArticleData = {
     },
     {
       "question": "¿Qué puede ayudar a un matrimonio a permanecer unido a pesar de los problemas?",
+      "image": "/images/study-2026-06-29/review-03.png",
+      "imageCaption": "Permanezcan unidos a pesar de los problemas. (Vea el párrafo 16).",
       "answers": [
         {
           "text": "Esforzarse por **permanecer unidos**; los problemas son normales, pero el matrimonio **puede restaurarse**.",

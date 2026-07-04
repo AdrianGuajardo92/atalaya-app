@@ -76,10 +76,10 @@ Flip: transition-transform duration-700 ease-in-out (rotateY 180deg)
 
 ```
 Principales: numeración [n], text-lg text-text-body
-Secundarias: border-l-2 border-border bg-surface-alt, label "Del párrafo"
+Secundarias: text-lg text-text-secondary, badge "Detalle"
 followUp: datos de respaldo, oculto en la UI del estudio
-Detalles secundarios: visibles por defecto; colapsables solo para ocultar
-Click para marcar usado: ✅/🔖 en QuestionCard
+Detalles secundarios: siempre visibles
+Click para marcar usado: ✅ en QuestionCard
 ```
 
 ## Badges (StudyHeader)

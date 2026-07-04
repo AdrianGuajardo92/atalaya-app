@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { prepareLSMEditText } from '@/lib/lsmEdit';
 
 interface UseLSMEditOptions {
   articleId: string;
@@ -15,7 +16,7 @@ export function useLSMEdit({ articleId, questionNumber, initialText, onSuccess }
   const [isSaving, setIsSaving] = useState(false);
 
   const startEdit = () => {
-    setEditedText(initialText);
+    setEditedText(prepareLSMEditText(initialText));
     setIsEditing(true);
   };
 

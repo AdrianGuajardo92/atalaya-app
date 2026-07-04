@@ -5,6 +5,8 @@ import { ReviewQuestion } from '@/types/atalaya';
 import CommentGuide from './CommentGuide';
 import AnswerItemsList from './AnswerItemsList';
 import { getReviewAnswerItems } from '@/lib/answerItems';
+import { prepareLSMEditText } from '@/lib/lsmEdit';
+import { useLSMTextareaFocus } from '@/hooks/useLSMTextareaFocus';
 
 interface ReviewQuestionCardProps {
   reviewQuestion: ReviewQuestion;
@@ -23,6 +25,7 @@ export default function ReviewQuestionCard({
 }: ReviewQuestionCardProps) {
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || reviewQuestion.questionLSM || '');
+  const lsmTextareaRef = useLSMTextareaFocus(isEditingLSM);
   const [isSaving, setIsSaving] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true); // Expandido por defecto siempre
 
@@ -95,6 +98,11 @@ export default function ReviewQuestionCard({
     }
   };
 
+  const handleStartLSMEdit = () => {
+    setEditedLSM(prepareLSMEditText(lsmText || reviewQuestion.questionLSM || ''));
+    setIsEditingLSM(true);
+  };
+
   const currentLSMText = lsmText || reviewQuestion.questionLSM;
 
   return (
@@ -142,6 +150,7 @@ export default function ReviewQuestionCard({
               {isEditingLSM ? (
                 <div className="bg-surface p-2 rounded-lg border border-blue-200 dark:border-[#3E2E28] shadow-sm animate-fadeIn">
                   <textarea
+                    ref={lsmTextareaRef}
                     value={editedLSM}
                     onChange={(e) => setEditedLSM(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -149,7 +158,6 @@ export default function ReviewQuestionCard({
                     className="w-full p-2 text-text-body border-none focus:ring-0 text-sm resize-none bg-surface"
                     rows={2}
                     placeholder="Escribe la traducción LSM..."
-                    autoFocus
                   />
                   <div className="flex justify-end gap-2 mt-2">
                     <button onMouseDown={handleSaveLSM} className="text-xs bg-blue-600 dark:bg-[#D97757] text-white px-2 py-1 rounded">
@@ -160,7 +168,7 @@ export default function ReviewQuestionCard({
                 </div>
               ) : (
                 <div
-                  onClick={() => setIsEditingLSM(true)}
+                  onClick={handleStartLSMEdit}
                   className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-surface hover:border-border hover:shadow-sm transition-all"
                 >
                   <div className="flex items-center gap-2 mb-1">

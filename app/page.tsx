@@ -25,6 +25,9 @@ import {
 } from '@/lib/studyNavigationState';
 import { ArticleData } from '@/types/atalaya';
 import ThemeToggle from '@/components/ThemeToggle';
+import StudyParagraphNav from '@/components/StudyParagraphNav';
+import { useIsDesktopNav, useStudyNavSidebar } from '@/hooks/useStudyNavSidebar';
+import type { StudyNavTarget } from '@/lib/studyParagraphNav';
 
 const getSavedNavigationPosition = (articleId: string, article: ArticleData | null) => {
   if (typeof window === 'undefined' || !articleId) {
@@ -81,6 +84,10 @@ export default function Home() {
   const [showLsmImport, setShowLsmImport] = useState(false);
   const [showViewOptions, setShowViewOptions] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
+
+  const isDesktopNav = useIsDesktopNav();
+  const sidebarEnabled = isDesktopNav && viewMode === 'study' && navigationMode === 'paginated';
+  const { isOpen: isNavSidebarOpen, toggle: toggleNavSidebar } = useStudyNavSidebar(sidebarEnabled);
 
   // Referencia para hacer scroll al contenido
   const contentRef = useRef<HTMLDivElement>(null);
@@ -318,6 +325,19 @@ export default function Home() {
       setCurrentReviewIndex(0);
     }
   };
+
+  const handleNavTarget = useCallback((target: StudyNavTarget) => {
+    if (!currentArticle) return;
+
+    if (target.kind === 'question') {
+      setCurrentReviewIndex(-1);
+      setCurrentQuestionIndex(target.questionIndex);
+      return;
+    }
+
+    setCurrentQuestionIndex(Math.max(currentArticle.questions.length - 1, 0));
+    setCurrentReviewIndex(target.reviewIndex);
+  }, [currentArticle]);
 
   const handleLSMUpdate = (questionNumber: string, text: string) => {
     setLsmData(prev => ({
@@ -559,6 +579,19 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      {sidebarEnabled && (
+        <StudyParagraphNav
+          paragraphs={currentArticle.paragraphs}
+          questions={currentArticle.questions}
+          reviewCount={currentArticle.reviewQuestions.length}
+          currentQuestionIndex={currentQuestionIndex}
+          currentReviewIndex={currentReviewIndex}
+          isOpen={isNavSidebarOpen}
+          onToggle={toggleNavSidebar}
+          onNavigate={handleNavTarget}
+        />
+      )}
 
       {/* Contenido principal */}
       <div className="max-w-5xl mx-auto px-6 py-12" data-dev-inspector-main-scope>

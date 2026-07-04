@@ -14,6 +14,8 @@ import VideoLSM from './VideoLSM';
 import CommentGuide from './CommentGuide';
 import AnswerItemsList from './AnswerItemsList';
 import { getAnswerItems, hasAnswerContent } from '@/lib/answerItems';
+import { prepareLSMEditText } from '@/lib/lsmEdit';
+import { useLSMTextareaFocus } from '@/hooks/useLSMTextareaFocus';
 import ParagraphSidebarBox from './ParagraphSidebarBox';
 
 // ─── Componente compartido para mostrar versículos bíblicos ───────────────────
@@ -79,11 +81,6 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
           ))}
           <p className="text-xs text-text-tertiary text-center pt-2 border-t border-border-subtle">Traducción del Nuevo Mundo — 2019</p>
         </div>
-        <div className="px-7 py-3.5 border-t border-border-subtle bg-surface-alt flex justify-end">
-          <button onClick={onClose} className="px-5 py-2 bg-slate-800 dark:bg-[#1C1919] text-white rounded-lg hover:bg-slate-900 dark:hover:bg-[#141212] transition-colors font-medium text-sm">
-            Cerrar
-          </button>
-        </div>
       </div>
     </div>
   );
@@ -119,10 +116,10 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [isEditingLSM, setIsEditingLSM] = useState(false);
   const [editedLSM, setEditedLSM] = useState(lsmText || question.textLSM || '');
-  const lsmTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const lsmTextareaRef = useLSMTextareaFocus(isEditingLSM);
   const [isEditingSectionLSM, setIsEditingSectionLSM] = useState(false);
   const [editedSectionLSM, setEditedSectionLSM] = useState(sectionLsmText || question.sectionLSM || '');
-  const sectionLsmTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const sectionLsmTextareaRef = useLSMTextareaFocus(isEditingSectionLSM);
   const [isSaving, setIsSaving] = useState(false);
   const [isSavingSection, setIsSavingSection] = useState(false);
 
@@ -272,23 +269,15 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     setIsExpanded(isNavigationMode);
   }, [question.number, lsmText, sectionLsmText, isNavigationMode, question.textLSM, question.sectionLSM]);
 
-  // Enfocar y posicionar cursor al final SOLO al entrar en modo edición LSM
-  useEffect(() => {
-    if (isEditingLSM && lsmTextareaRef.current) {
-      const el = lsmTextareaRef.current;
-      el.focus();
-      el.setSelectionRange(el.value.length, el.value.length);
-    }
-  }, [isEditingLSM]);
+  const handleStartLSMEdit = () => {
+    setEditedLSM(prepareLSMEditText(lsmText || question.textLSM || ''));
+    setIsEditingLSM(true);
+  };
 
-  // Enfocar y posicionar cursor al final SOLO al entrar en modo edición sección LSM
-  useEffect(() => {
-    if (isEditingSectionLSM && sectionLsmTextareaRef.current) {
-      const el = sectionLsmTextareaRef.current;
-      el.focus();
-      el.setSelectionRange(el.value.length, el.value.length);
-    }
-  }, [isEditingSectionLSM]);
+  const handleStartSectionLSMEdit = () => {
+    setEditedSectionLSM(prepareLSMEditText(sectionLsmText || question.sectionLSM || ''));
+    setIsEditingSectionLSM(true);
+  };
 
   // Cerrar modal de párrafos con animación de salida
   const closeParagraphsModal = useCallback(() => {
@@ -1096,7 +1085,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
               </div>
             ) : (
               <div
-                onClick={() => setIsEditingSectionLSM(true)}
+                onClick={handleStartSectionLSMEdit}
                 className="group/section cursor-pointer px-6 py-3 rounded-lg border border-transparent hover:bg-surface-alt hover:border-border transition-all max-w-xl w-full"
               >
                 <div className="flex items-center justify-center gap-2 mb-1">
@@ -1372,7 +1361,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                 </div>
               ) : (
                 <div
-                  onClick={() => setIsEditingLSM(true)}
+                  onClick={handleStartLSMEdit}
                   className="group/lsm cursor-pointer p-3 rounded-lg border border-transparent hover:bg-surface hover:border-border hover:shadow-sm transition-all"
                 >
                   <div className="flex items-center gap-2 mb-1">
