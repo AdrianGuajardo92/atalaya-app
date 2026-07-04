@@ -295,7 +295,7 @@ export default function SummaryView({ article }: SummaryViewProps) {
                   <>
                     <div className="w-12 h-px bg-amber-300 dark:bg-[#D97757] my-3"></div>
                     <p className="text-sm text-amber-700 dark:text-[#E09070] mb-1 font-semibold">🤟 LSM</p>
-                    <p className="text-amber-900 dark:text-[#F0D0C0] font-bold uppercase">{rq.questionLSM}</p>
+                    <p className="text-amber-900 dark:text-[#F0D0C0] font-bold uppercase whitespace-pre-line break-words">{rq.questionLSM}</p>
                   </>
                 )}
                 {getReviewAnswerItems(rq).length > 0 && (

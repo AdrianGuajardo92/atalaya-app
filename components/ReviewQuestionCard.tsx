@@ -173,7 +173,7 @@ export default function ReviewQuestionCard({
                     <span className="text-lg">🤟</span>
                     <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-[#D97757]">LSM</span>
                   </div>
-                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
+                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase whitespace-pre-line break-words">
                     {currentLSMText || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
                   </p>
                 </div>

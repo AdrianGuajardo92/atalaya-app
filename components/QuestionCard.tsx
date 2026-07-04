@@ -1467,7 +1467,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider group-hover/section:text-blue-600 dark:group-hover/section:text-[#D97757]">LSM</span>
                   <span className="opacity-0 group-hover/section:opacity-100 text-blue-500 dark:text-[#D97757] text-xs transition-opacity">✏️</span>
                 </div>
-                <p className="text-text-secondary font-medium text-lg text-center uppercase">
+                <p className="text-text-secondary font-medium text-lg text-center uppercase whitespace-pre-line break-words">
                   {currentSectionLSMText || <span className="text-text-muted italic font-normal text-sm normal-case">Toca para agregar traducción LSM...</span>}
                 </p>
               </div>
@@ -1742,7 +1742,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                     <span className="text-lg">🤟</span>
                     <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-[#D97757]">LSM</span>
                   </div>
-                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase">
+                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase whitespace-pre-line break-words">
                     {lsmText || question.textLSM || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
                   </p>
                 </div>

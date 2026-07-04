@@ -307,7 +307,7 @@ export default function StudyHeader({
                     Título LSM
                   </p>
                   {titleLSM ? (
-                    <p className="text-xl lg:text-2xl font-bold text-text-body leading-relaxed break-words uppercase">
+                    <p className="text-xl lg:text-2xl font-bold text-text-body leading-relaxed break-words uppercase whitespace-pre-line">
                       {titleLSM}
                     </p>
                   ) : (
