@@ -3,6 +3,69 @@ import { kvGet, kvSet, usingMemoryStore } from '@/lib/kv-store';
 
 // Base key para LSM data - se concatena con el articleId
 const LSM_KEY_PREFIX = 'atalaya-lsm-data';
+const DEFAULT_REMOTE_LSM_ORIGIN = 'https://atalaya-app.vercel.app';
+
+function getRemoteLSMOrigin(): string | null {
+  if (!usingMemoryStore()) return null;
+  if (process.env.NODE_ENV === 'production') return null;
+
+  const configuredOrigin = process.env.LSM_REMOTE_API_ORIGIN || DEFAULT_REMOTE_LSM_ORIGIN;
+
+  try {
+    const url = new URL(configuredOrigin);
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') return null;
+    return url.origin;
+  } catch {
+    return null;
+  }
+}
+
+async function proxyRemoteLSM(
+  request: NextRequest,
+  method: 'GET' | 'POST' | 'PUT',
+  body?: unknown
+): Promise<NextResponse | null> {
+  const remoteOrigin = getRemoteLSMOrigin();
+  if (!remoteOrigin) return null;
+
+  try {
+    const remoteUrl = new URL('/api/lsm', remoteOrigin);
+    if (method === 'GET') {
+      request.nextUrl.searchParams.forEach((value, key) => {
+        remoteUrl.searchParams.set(key, value);
+      });
+    }
+
+    const response = await fetch(remoteUrl, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: method === 'GET' ? undefined : JSON.stringify(body),
+      cache: 'no-store',
+    });
+
+    const text = await response.text();
+    return new NextResponse(text, {
+      status: response.status,
+      headers: {
+        'Content-Type': response.headers.get('Content-Type') || 'application/json',
+        'X-LSM-Source': 'remote-production',
+      },
+    });
+  } catch (error) {
+    console.error('Error proxying LSM data to remote production:', error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'No se pudo sincronizar LSM con producción. Revisa la conexión e intenta de nuevo.',
+      },
+      {
+        status: 502,
+        headers: { 'X-LSM-Source': 'remote-production-error' },
+      }
+    );
+  }
+}
 
 // Funcion helper para construir la clave
 function getLSMKey(articleId?: string): string {
@@ -15,6 +78,9 @@ function getLSMKey(articleId?: string): string {
 
 export async function GET(request: NextRequest) {
   try {
+    const remoteResponse = await proxyRemoteLSM(request, 'GET');
+    if (remoteResponse) return remoteResponse;
+
     const searchParams = request.nextUrl.searchParams;
     const articleId = searchParams.get('articleId') || undefined;
     const questionNumber = searchParams.get('questionNumber') || undefined;
@@ -36,6 +102,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const remoteResponse = await proxyRemoteLSM(request, 'POST', body);
+    if (remoteResponse) return remoteResponse;
+
     const { articleId, questionNumber, lsmText } = body;
 
     // Validar que se proporcione articleId
@@ -67,6 +136,9 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
+    const remoteResponse = await proxyRemoteLSM(request, 'PUT', body);
+    if (remoteResponse) return remoteResponse;
+
     const { articleId, data, mode = 'merge' } = body;
 
     if (!articleId) {

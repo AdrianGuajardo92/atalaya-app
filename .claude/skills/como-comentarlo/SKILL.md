@@ -1,6 +1,6 @@
 ---
 name: como-comentarlo
-description: Especialista local de atalaya-app para crear, mejorar y mantener comentarios naturales de "Cómo comentarlo", "Yo podría comentar" y comentarios sencillos para textos bíblicos. Úsalo cuando el usuario pida comentarios humanos, claros, fáciles de entender y no copiados para preguntas, párrafos, biblicalCards, commentSuggestion o preparación de respuestas de estudios de La Atalaya.
+description: Especialista local de atalaya-app para crear, mejorar y mantener comentarios naturales de "Cómo comentarlo", "Yo podría comentar" y propósitos breves para textos bíblicos (`biblicalCards.purpose`). Úsalo cuando el usuario pida comentarios humanos, claros, fáciles de entender y no copiados para preguntas, párrafos, biblicalCards, commentSuggestion o preparación de respuestas de estudios de La Atalaya.
 ---
 
 # Cómo Comentarlo
@@ -8,6 +8,16 @@ description: Especialista local de atalaya-app para crear, mejorar y mantener co
 ## Propósito
 
 Esta skill sirve para ayudar al usuario a preparar comentarios reales para el estudio de La Atalaya. El objetivo no es resumir el artículo ni repetir el campo `answer`, sino convertir el contenido del estudio en una respuesta natural que una persona podría decir en la reunión.
+
+## Propiedad de esta skill
+
+Esta skill es la fuente canónica para:
+
+- `question.commentSuggestion`
+- `reviewQuestions.commentSuggestion`
+- `biblicalCards.purpose`
+
+No redacta `answers`, `AnswerItem` ni `followUp`; eso pertenece a `.agents/skills/respuestas-conductor/SKILL.md`.
 
 ## Cuándo usarla
 
@@ -45,7 +55,7 @@ En `lib/commentGuidance.ts`, `buildQuestionComment()` usa este orden:
 
 **Importante:** Si no pones `commentSuggestion` en el artículo, la UI puede mostrar texto copiado del `answer`. Eso viola las reglas de esta skill. Siempre escribe `commentSuggestion` explícito en estudios nuevos.
 
-Para textos bíblicos, `buildBiblicalComment()` usa el campo `purpose` de la `biblicalCard` como contexto enriquecido; si falta, genera texto explicativo desde el párrafo y el versículo.
+Para textos bíblicos, `buildBiblicalComment()` usa el campo `purpose` de la `biblicalCard` como explicación breve; si falta, genera texto explicativo desde el párrafo y el versículo.
 
 ## Flujo de trabajo
 
@@ -53,12 +63,12 @@ Para textos bíblicos, `buildBiblicalComment()` usa el campo `purpose` de la `bi
 2. Lee la pregunta (`textEs`) y todos sus párrafos relacionados (`paragraphs`).
 3. Revisa el contenido de cada párrafo, su `summary`, el `answer`, las `biblicalCards` y cualquier `commentSuggestion` existente.
 4. Escribe el comentario con palabras propias. No copies el `answer` ni recortes frases del párrafo.
-5. Si hay textos bíblicos, escribe también cómo podría comentarse cada texto de forma sencilla.
+5. Si hay textos bíblicos, redacta o mejora `biblicalCards.purpose` con una explicación breve, directa y útil para la tarjeta.
 6. Guarda el resultado siguiendo el patrón actual del proyecto:
    - **Preferir** `commentSuggestion` en `data/articles/study-YYYY-MM-DD.ts` (preguntas y `reviewQuestions`).
    - Solo usar `QUESTION_COMMENT_SUGGESTIONS` en `lib/commentGuidance.ts` si el proyecto mantiene overrides centralizados.
    - No crees una arquitectura paralela si ya existe un camino claro.
-7. Verifica cobertura: ninguna pregunta, repaso ni texto bíblico solicitado debe quedar sin comentario.
+7. Verifica cobertura: ninguna pregunta, repaso ni `biblicalCards.purpose` solicitado debe quedar incompleto.
 8. Ejecuta verificación técnica sobre los archivos tocados y reporta cualquier falla con claridad.
 
 ## Reglas de calidad
@@ -119,9 +129,11 @@ Por qué está bien: explica la idea, usa la comparación del estudio y suena co
 
 Para cada `biblicalCard`, la UI muestra **un solo bloque**: "Por qué está en este párrafo". Todo el contenido va en el campo **`purpose`**.
 
+Estas tarjetas deben ser **resumidas**. No son mini-comentarios ni explicaciones largas; deben caber cómodamente en la tarjeta y leerse rápido.
+
 | Campo | Etiqueta en UI | Contenido |
 |-------|---------------|-----------|
-| `purpose` | Por qué está en este párrafo | 3–4 oraciones de contexto enriquecido |
+| `purpose` | Por qué está en este párrafo | 1–2 oraciones breves y específicas |
 
 **No usar** `commentSuggestion` en `biblicalCard` (obsoleto para flip cards). Las frases tipo *"Yo podría comentar..."* van solo en `question.commentSuggestion` o `reviewQuestions.commentSuggestion`.
 
@@ -138,6 +150,13 @@ Un buen `purpose` debe responder:
 - ¿Por qué el versículo está citado en este párrafo?
 - ¿Qué enseña el texto bíblico?
 - ¿Cómo eso ayuda a entender o aplicar lo que dice el párrafo?
+
+Reglas de longitud y estilo:
+
+- Normalmente debe tener 1 oración; usa 2 solo si el texto necesita una conexión adicional.
+- Debe mencionar la enseñanza del texto y por qué se usa en el párrafo.
+- Debe evitar detalles secundarios, aplicaciones largas o tono de discurso.
+- Debe sentirse como una nota clara para ubicar el texto, no como una respuesta preparada para comentar.
 
 ### Ejemplo incorrecto
 
@@ -160,12 +179,12 @@ Por qué está mal: estilo oral en primera persona; eso no va en flip cards bíb
 ```typescript
 {
   reference: "Santiago 1:17",
-  purpose: "El párrafo presenta a los buenos amigos como un regalo de Jehová. Santiago 1:17 enseña que todo don bueno y perfecto viene de arriba, del Padre de las luces celestes. Esto nos ayuda a ver que un amigo leal no es solo casualidad: Jehová puede darnos personas que nos consuelan, aconsejan y alegran el corazón, tal como describe el párrafo.",
+  purpose: "Enseña que todo regalo bueno viene de Jehová. Se cita para mostrar que los buenos amigos son un regalo suyo, no algo que debamos dar por sentado.",
   text: "Todos los regalos buenos...",
 }
 ```
 
-Por qué está bien: conecta párrafo y versículo, explica la enseñanza y muestra cómo ayuda, sin frases orales.
+Por qué está bien: conecta párrafo y versículo, explica la enseñanza central en una forma breve y evita frases orales.
 
 ## Cómo mejorar comentarios existentes
 

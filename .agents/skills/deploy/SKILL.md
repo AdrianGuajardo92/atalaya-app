@@ -1,7 +1,6 @@
 ---
 name: deploy
 description: Prepara commit y push de cambios al repositorio remoto. Úsalo SOLO cuando el usuario pida explícitamente "haz commit", "push", "sube los cambios" o "guarda en git". NO usar para desplegar a Vercel (usa la skill vercel).
-disable-model-invocation: true
 allowed-tools: Bash(git *)
 ---
 

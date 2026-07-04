@@ -35,17 +35,6 @@ function HoverHint() {
   );
 }
 
-function FollowUpBlock({ followUp }: { followUp: string }) {
-  return (
-    <div className="mt-2 ml-6 rounded-lg border border-amber-200/60 dark:border-[#8B5A40]/50 bg-amber-50/50 dark:bg-[#332520]/40 px-3 py-2">
-      <span className="text-[10px] font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em]">
-        Si no lo mencionan
-      </span>
-      <p className="text-sm text-text-body italic mt-1">{followUp}</p>
-    </div>
-  );
-}
-
 function DetailPill() {
   return (
     <span className="inline-flex items-center rounded-md border border-border bg-surface-alt px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-text-tertiary">
@@ -75,8 +64,6 @@ function AnswerRow({
   textClassName: string;
   showDetailPill?: boolean;
 }) {
-  const displayItem = showDetailPill ? { ...item, followUp: undefined } : item;
-
   return (
     <div
       className={enableMarking ? `mb-1 py-1 ${usedItemClass(isUsed)}` : 'mb-1 py-1'}
@@ -84,12 +71,17 @@ function AnswerRow({
       role={enableMarking ? 'button' : undefined}
     >
       {enableMarking && (isUsed ? <UsedBadge /> : <HoverHint />)}
-      <p className={`${textClassName} leading-relaxed m-0 flex flex-wrap items-baseline gap-2`}>
+      <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-2">
         <span className="text-text-tertiary font-medium">[{label}]</span>
-        {showDetailPill && <DetailPill />}
-        <span>{renderBoldText(displayItem.text)}</span>
-      </p>
-      {displayItem.followUp && <FollowUpBlock followUp={displayItem.followUp} />}
+        <p className={`${textClassName} leading-relaxed m-0 min-w-0`}>
+          <span>{renderBoldText(item.text)}</span>
+          {showDetailPill && (
+            <span className="ml-2 inline-flex align-middle">
+              <DetailPill />
+            </span>
+          )}
+        </p>
+      </div>
     </div>
   );
 }
@@ -101,7 +93,7 @@ function SecondaryCollapsible({
   children: ReactNode;
   count: number;
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   if (count < 2) {
     return <>{children}</>;
@@ -114,7 +106,7 @@ function SecondaryCollapsible({
         onClick={() => setOpen((prev) => !prev)}
         className="mb-2 text-xs font-semibold text-text-secondary hover:text-text-primary transition-colors"
       >
-        {open ? '▾' : '▸'} Ver más detalles del párrafo ({count})
+        {open ? '▾ Ocultar detalles' : '▸ Ver más detalles del párrafo'} ({count})
       </button>
       {open && <div className="space-y-3">{children}</div>}
     </div>

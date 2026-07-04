@@ -1,750 +1,98 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+Reglas raíz para trabajar en `atalaya-app`. Los detalles de dominio viven en skills locales; no dupliques aquí procedimientos extensos.
 
-## Agent Skills
+## Regla Crítica: Chrome / Browser / Playwright
 
-**Fuente canónica:** [`.agents/skills/`](.agents/skills/) — edita siempre aquí.
+No usar `@Chrome`, `@Navegador`/Browser ni `$playwright` por iniciativa propia.
 
-**Espejo Cursor:** [`.claude/skills/`](.claude/skills/) — se sincroniza con `./scripts/sync-skills.sh` (no editar manualmente).
+Estas herramientas NO deben usarse automáticamente para:
+- fixes o cambios de código.
+- cambios visuales o de UI.
+- screenshots.
+- pruebas en `localhost`.
+- pruebas en Google Chrome.
+- Playground.
+- verificar que algo "quedó bien".
 
-Skills exclusivas del dominio: `article-editor`, `atalaya-revista-importer`, `como-comentarlo`, `respuestas-conductor`, `design-system`, `study-lifecycle`, `lsm-video`, `lsm-question-clips`, `lsm-translations`, `kv-maintenance`, `box-supplement`, etc.
+La validación visual por defecto la hace el usuario. Codex debe implementar el cambio, revisar el diff y usar verificaciones ligeras cuando aplique (`git diff`, `git diff --check`, lint/test puntual). Si cree que hace falta ver la pantalla o automatizar un navegador, debe pedir permiso antes.
 
-Tras editar skills en `.agents/skills/`, ejecutar `npm run skills:sync`.
+Sólo usar `@Chrome`, `@Navegador`/Browser o `$playwright` cuando el usuario lo pida explícitamente en ese turno, por ejemplo:
+- "usa Chrome"
+- "usa Playwright"
+- "abre el Navegador"
+- "pruébalo con Browser"
+- "saca screenshot"
+- "valídalo en localhost"
+
+También pueden usarse si el usuario invoca explícitamente una skill operativa que las requiere y donde la sesión real del navegador sea parte del trabajo.
+
+No cuenta como permiso que la herramienta esté disponible, que parezca útil, que el cambio sea visual, que haya un servidor local corriendo, que la app esté abierta o que Codex quiera confirmar por su cuenta el resultado.
+
+Si no hay permiso explícito, cerrar el trabajo explicando qué cambió, qué verificación ligera se hizo y qué parte puede revisar visualmente el usuario.
 
 ## Git Policy
 
-**NO hacer commit ni push automáticamente.** Esperar a que el usuario lo ordene explícitamente.
+No hacer commit ni push automáticamente. Esperar a que el usuario lo ordene explícitamente.
 
-## Ortografía y Acentos (OBLIGATORIO)
+No revertir cambios ajenos. El repositorio puede estar sucio por trabajo del usuario u otros agentes; trabajar sólo dentro del alcance pedido.
 
-**SIEMPRE escribir con ortografía correcta en español, incluyendo todos los acentos.** Esto aplica a TODOS los textos en archivos de datos (`data/`), componentes, y cualquier contenido visible al usuario.
+## Skills Locales
 
-**Reglas:**
-1. **Usar acentos correctamente** en todas las palabras: á, é, í, ó, ú, ü, ñ
-2. **Signos de interrogación y exclamación** de apertura y cierre: ¿...? ¡...!
-3. **Nombres propios bíblicos** con acentos: Jehová, Satanás, Moisés, Josué, Edén, etc.
-4. **Verificar la ortografía** antes de guardar cualquier texto en español
-5. **No usar transliteraciones sin acentos** (❌ "Jehova" → ✅ "Jehová", ❌ "Satanas" → ✅ "Satanás")
+Fuente canónica: `.agents/skills/`.
 
-**Ejemplos:**
-```
-❌ "Jehova permitio que Job sufriera"
-✅ "Jehová permitió que Job sufriera"
+Espejo Cursor: `.claude/skills/`. No editarlo manualmente.
 
-❌ "¿Por que permite Dios el sufrimiento?"
-✅ "¿Por qué permite Dios el sufrimiento?"
-
-❌ "Moises escribio este libro"
-✅ "Moisés escribió este libro"
-```
-
-## Gestión de Artículos y Videos LSM (Regla Crítica)
-
-**Cuando se elimine un artículo de estudio antiguo, ES OBLIGATORIO eliminar también todos los videos LSM asociados a ese artículo.**
-- Los videos de la aplicación se alojan localmente y se envían a GitHub/Vercel (usualmente en la ruta `public/videos/`).
-- Al borrar el archivo de datos principal del artículo (ej. `article-43.ts`), debes **SIEMPRE** buscar y eliminar los archivos de video `.mp4` correspondientes a esa semana.
-- **Propósito:** Evitar que el repositorio crezca indefinidamente, ya que GitHub y Vercel tienen límites estrictos de almacenamiento y ancho de banda. No dejar videos "fantasma".
-
-## Development Commands
+Tras editar cualquier skill en `.agents/skills/`, ejecutar:
 
 ```bash
-npm run dev      # Start dev server on port 9000
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint
+npm run skills:sync
 ```
 
-## Architecture Overview
+Mantener `AGENTS.md` como raíz de gobernanza. Las reglas largas de dominio, flujos de artículos, LSM, diseño, KV, recuadros, comentarios y respuestas deben vivir en skills específicas.
 
-### Tech Stack
-- **Next.js 16** with App Router
-- **React 19** with Client Components (`'use client'`)
-- **TypeScript 5** with strict mode
-- **Tailwind CSS 4** for styling
-- **Vercel KV** (Redis) for persistence
-- **PWA** with next-pwa and Workbox
+## Ortografía y Acentos
 
-### Project Structure
+Siempre escribir con ortografía correcta en español en todo texto visible al usuario y en datos de estudios.
 
-```
-app/
-├── api/                  # REST API endpoints
-│   ├── favorites/        # Bookmark management
-│   ├── hidden-cards/     # Card visibility
-│   ├── lsm/              # Mexican Sign Language texts
-│   └── used-items/       # Tracking de ítems usados en reunión
-├── page.tsx              # Main study page
-└── layout.tsx            # Root layout with PWA config
+Reglas mínimas:
+- Usar acentos: á, é, í, ó, ú, ü, ñ.
+- Usar signos de apertura y cierre: ¿...? ¡...!
+- Escribir nombres bíblicos con acentos: Jehová, Satanás, Moisés, Josué, Edén.
+- No usar transliteraciones sin acentos: "Jehova", "Satanas", "Moises".
 
-components/
-├── QuestionCard.tsx      # Primary study card (largest component)
-├── SummaryView.tsx       # Print-friendly summary view
-├── AnswerItemsList.tsx   # Respuestas principales/secundarias con followUp
-├── CommentGuide.tsx      # "Cómo comentarlo" + flip bíblico
-├── ParagraphSidebarBox.tsx  # Recuadros laterales (boxSupplement)
-├── ReviewQuestionCard.tsx
-├── StudyHeader.tsx
-├── Timer.tsx
-├── VideoLSM.tsx
-├── PlaylistModal.tsx
-└── InstructionsButton.tsx
-
-data/
-├── articles/             # Estudios individuales
-│   ├── study-YYYY-MM-DD.ts  # Un estudio por semana (studyId = fecha inicio)
-│   └── index.ts          # studiesMap + biblicalTextsMap + getBiblicalTextsForStudy()
-├── articles-config.ts    # activeStudyIds, defaultStudyId
-└── design-config.ts      # isExecutiveDesign()
-
-lib/
-├── kv-store.ts
-├── answerItems.ts        # Normalizador AnswerItem → UI
-├── commentGuidance.ts
-├── sidebarPlacement.ts
-├── formatSidebarRichText.tsx
-├── resolveScriptureRef.ts
-├── sectionUtils.ts
-└── generatePlaylist.ts
-
-types/
-└── atalaya.ts            # Core TypeScript interfaces
-```
-
-### Data Flow
-
-1. Cada estudio vive en `data/articles/study-YYYY-MM-DD.ts` con `metadata.studyId`
-2. Registro en `data/articles/index.ts` (`studiesMap`, `biblicalTextsMap`)
-3. Estudios activos en `data/articles-config.ts` (`activeStudyIds`)
-4. User selections persist to localStorage (study ID)
-5. Favorites, LSM texts, hidden cards persist to Vercel KV via API routes
-6. Components fetch/update via `/api/*` endpoints
-
-### Key Type Interfaces
-
-```typescript
-interface AnswerItem {
-  text: string;                      // Respuesta con **negritas**
-  followUp?: string;                 // Pregunta si nadie menciona la idea
-  secondary?: boolean;               // true = detalle del párrafo
-}
-
-interface Question {
-  number: string;                    // ej: "1, 2" o "3"
-  textEs: string;                    // Pregunta en español
-  textLSM?: string;                  // Pregunta en LSM
-  paragraphs: number[];              // Números de párrafos relacionados
-  section?: string;                  // Subtítulo de sección en español
-  sectionLSM?: string;               // Subtítulo de sección en LSM
-  readText?: string;                 // Texto bíblico a leer (ej: "LEE Salmo 119:145")
-  videoLSM?: string;                 // Video LSM unido para preguntas con varios párrafos
-  image?: string;                    // URL de imagen ilustrativa
-  imageCaption?: string;             // Leyenda de la imagen
-  answers?: AnswerItem[];            // Respuestas para el conductor (preferido)
-  answer?: string | string[];        // legacy — solo lectura
-  answerContext?: string[];          // legacy — solo lectura
-  biblicalCards?: BiblicalCard[];    // Tarjetas bíblicas
-  reflectionQuestions?: string[];    // Preguntas de reflexión personal
-  practicalApplications?: string[];  // Aplicaciones prácticas
-  infographic?: string;              // URL de infografía (botón en UI)
-}
-
-interface Paragraph {
-  number: number;
-  content: string;                   // Contenido con textos bíblicos
-  summary?: string;                  // Oraciones clave para el conductor
-  image?: string;                    // URL de imagen ilustrativa
-  imageCaption?: string;             // Leyenda de la imagen
-  videoLSM?: string;                 // URL del video LSM individual para este párrafo
-}
-
-interface ReviewQuestion {
-  question: string;                  // Pregunta de repaso en español
-  questionLSM?: string;              // Pregunta en LSM
-  answers?: AnswerItem[];            // Respuestas para el conductor (preferido)
-  answer?: string | string[];        // legacy — solo lectura
-  biblicalCards?: BiblicalCard[];
-}
-
-interface BiblicalCard {
-  reference: string;                 // ej: "Proverbios 28:13"
-  purpose: string;                   // Por qué está este texto
-  text: string;                      // Texto completo TNM
-}
-
-interface ArticleData {
-  metadata: { studyId: string; articleNumber?: number; week, month, year };
-  song: string;
-  title: string;
-  titleLSM?: string;                 // Título en LSM
-  biblicalText: string;              // Texto bíblico principal
-  theme: string;                     // Tema del artículo
-  questions: Question[];
-  paragraphs: Paragraph[];
-  reviewQuestions: ReviewQuestion[];
-  finalSong: string;                 // Canción final
-}
-```
-
-### Component Patterns
-
-- All components use `'use client'` directive
-- State managed with React hooks (useState, useEffect)
-- API calls use fetch with JSON responses
-- Tailwind classes for all styling (no CSS modules)
-
-### UI Features
-
-**Modal de Párrafos:**
-- Encabezado: "Párrafos X, Y" con botones copiar/cerrar
-- Sección "RESUMEN" al inicio muestra `summary` de cada párrafo con su número
-- Contenido completo de cada párrafo debajo
-- Soporte para imágenes en párrafos
-
-**Infografías:**
-- Botón azul circular junto a la pregunta cuando tiene `infographic`
-- Click abre modal con imagen ampliada
-- Botón para copiar enlace de la infografía
-- **IMPORTANTE:** Las URLs de Imgur deben usar el formato directo:
-  - ✅ Correcto: `https://i.imgur.com/XXXXX.png`
-  - ❌ Incorrecto: `https://imgur.com/XXXXX`
-
-**Textos Bíblicos (readText):**
-- El campo `readText` en las preguntas indica qué texto bíblico leer (ej: "LEE Jeremías 12:1")
-- El **contenido** se exporta desde el archivo del estudio como `biblicalTextsYYYYMMDD` y se registra en `biblicalTextsMap` (`data/articles/index.ts`)
-- Incluir también refs del recuadro lateral (`sidebar`) para clics en `ParagraphSidebarBox`
-- Usar texto de la **Traducción del Nuevo Mundo (edición 2019)**
-- La clave debe coincidir **exactamente** con el valor de `readText` o la referencia del recuadro
-
-**Secciones LSM:**
-- Campo `sectionLSM` para subtítulos en Lengua de Señas Mexicana
-- Se muestra junto al subtítulo en español
-
-**Traducciones LSM en Preguntas:**
-- El usuario proporciona las traducciones LSM en el archivo `preguntas-LSM.md`
-- El campo `textLSM` en cada pregunta contiene la traducción en Lengua de Señas Mexicana
-- Agregar el campo `textLSM` a cada pregunta en `data/articles/study-YYYY-MM-DD.ts`
-
-```typescript
-// En data/articles/study-2026-06-29.ts
-{
-  number: "1, 2",
-  textEs: "¿Qué piensa Jehová de sus esfuerzos por cuidar de un ser querido?",
-  textLSM: "JEHOVÁ ¿QUÉ PENSAR ESFUERZO TUYO CUIDAR PERSONA QUERER?",
-  paragraphs: [1, 2],
-}
-```
-
-- Las traducciones LSM se muestran en MAYÚSCULAS (convención de glosas)
-- Se muestra debajo de la pregunta en español con el icono 🤟
-- Si no hay `textLSM`, se muestra "AGREGAR TRADUCCIÓN" como placeholder editable
-
-### API Endpoints
-
-| Endpoint | GET | POST | PUT |
-|----------|-----|------|-----|
-| `/api/favorites` | Get favorites | Toggle favorite | Update |
-| `/api/lsm` | Get LSM texts | Save LSM text | Update |
-| `/api/hidden-cards` | Get hidden cards | Toggle visibility | Update |
-| `/api/used-items` | Get used items | Toggle used state | Update |
-
-### Videos LSM por Párrafo y Preguntas Agrupadas
-
-Cada párrafo puede tener su clip individual en `paragraph.videoLSM`. Si una pregunta cubre 2 o más párrafos (por ejemplo, `1, 2`), también debe tener un video unido en `question.videoLSM` para que el usuario lo vea de corrido.
-
-**Reglas:**
-- Guardar videos en una carpeta por artículo: `public/videos/article-XX/`.
-- Nombrar clips individuales como `article-XX-p01-lsm.mp4`, `article-XX-p02-lsm.mp4`, etc.
-- Nombrar clips unidos como `article-XX-p01-p02-lsm.mp4` o `article-XX-p06-p08-lsm.mp4`.
-- Mantener los clips individuales en `paragraph.videoLSM`.
-- Poner el clip unido solo en `question.videoLSM`.
-- El modal debe preferir `question.videoLSM`; si no existe, usa `paragraph.videoLSM`.
-
-**Ejemplo:**
-```typescript
-{
-  number: "1, 2",
-  textEs: "¿...?",
-  paragraphs: [1, 2],
-  videoLSM: "/videos/article-59/article-59-p01-p02-lsm.mp4",
-}
-
-{ number: 1, content: "...", summary: "...", videoLSM: "/videos/article-59/article-59-p01-lsm.mp4" }
-{ number: 2, content: "...", summary: "...", videoLSM: "/videos/article-59/article-59-p02-lsm.mp4" }
-```
-
-Cuando se recorta desde un video fuente y `ffmpeg/ffprobe` no están instalados, usar `avconvert` si está disponible:
+## Comandos Base
 
 ```bash
-avconvert --source SOURCE.mp4 \
-  --preset PresetPassthrough \
-  --start START \
-  --duration DURATION \
-  --output public/videos/article-XX/article-XX-p01-p02-lsm.mp4 \
-  --replace
+npm run dev      # servidor local en puerto 9000
+npm run build    # build de producción
+npm run start    # servidor de producción
+npm run lint     # ESLint
 ```
 
-### PWA Configuration
-
-Service worker caching strategies:
-- API routes: NetworkFirst (24h TTL)
-- Images: CacheFirst (30 days)
-- Static assets: StaleWhileRevalidate
-
----
-
-## Content Guidelines
-
-### Formato de Respuestas (`answers`)
-
-Usar `answers: AnswerItem[]` — ver skill `.agents/skills/respuestas-conductor/SKILL.md`.
-
-**Reglas:**
-1. 2–3 respuestas **principales** + 1–3 **secundarias** (`secondary: true`)
-2. Cada item = **una idea completa** (1–2 líneas)
-3. `followUp`: pregunta breve si nadie menciona la idea (~12 palabras)
-4. **Negritas** solo en el concepto clave de `text`
-
-**Ejemplo CORRECTO:**
-```typescript
-answers: [
-  { text: "Los buenos amigos son un **regalo de Jehová** (Sant. 1:17).", followUp: "¿Qué dice Santiago sobre todo don bueno?" },
-  { text: "Son **leales** y nos consuelan cuando estamos tristes.", followUp: "¿Qué hacen cuando estamos felices?" },
-  { text: "Los amigos así “**alegran el corazón**” (Prov. 27:9).", secondary: true },
-],
-```
-
-### Negritas en Contenido (OBLIGATORIO para artículos nuevos)
-
-**TODOS los artículos nuevos DEBEN usar negritas (`**texto**`) para resaltar palabras y frases clave.** Esto mejora la lectura rápida y ayuda al conductor del estudio a identificar los puntos principales de un vistazo.
-
-#### Dónde aplicar negritas
-
-| Campo | Usa Negritas | Propósito |
-|-------|:---:|-----------|
-| `answers[].text` (respuestas) | ✅ | Conceptos clave de cada respuesta |
-| `summary` (resumen de párrafo) | ✅ | Datos, nombres y eventos principales |
-| `reviewQuestions.answers` | ✅ | Conceptos finales de repaso |
-| `content` (párrafo completo) | ❌ | El texto completo se deja sin negritas |
-
-#### Qué resaltar en negritas
-
-1. **Conceptos teológicos centrales**: `**la santificación del nombre de Jehová**`
-2. **Citas o paráfrasis bíblicas**: `**'No hay nadie como él en la tierra'**`
-3. **Números y datos específicos**: `**3.500 años**`, `**10 hijos**`, `**140 años**`
-4. **Nombres propios importantes**: `**Satanás**`, `**Moisés**`, `**Job**`
-5. **Cualidades o atributos**: `**amor**`, `**sabiduría**`, `**justicia**`, `**poder**`
-6. **Acciones o decisiones clave**: `**se mantuvo fiel**`, `**adoraban ídolos**`
-7. **Contrastes importantes**: `**Satanás, no Dios**`
-8. **Comparaciones o analogías**: `**subir a lo alto de una montaña**`
-
-#### Ejemplo CORRECTO con negritas
-
-```typescript
-// ✅ answer con negritas en palabras clave
-answer: [
-  "Nos ayuda a entender **por qué permite Dios el sufrimiento** y responde otras grandes preguntas de la vida.",
-  "Trata la cuestión más importante: **la santificación del nombre de Jehová**.",
-  "Nos enseña sobre las **cualidades de Dios**, como el **amor**, la **sabiduría** y la **justicia**.",
-]
-
-// ✅ summary con negritas en datos y nombres
-summary: "**Satanás** afirmó que Job le daría la espalda a Jehová si sufría. Jehová le **permitió** ponerlo a prueba. El Diablo le quitó sus **rebaños**, mató a sus **10 hijos** y le envió una **terrible enfermedad**. Pero Job se mantuvo **leal**."
-
-// ✅ reviewQuestions.answer con negritas
-answer: [
-  "Nos ayuda a entender quién es el principal causante del sufrimiento: **Satanás, no Dios**.",
-  "Comprendemos mejor **por qué permite Dios el sufrimiento**.",
-  "Aprendemos lo importantes que son para Jehová **la integridad y la fidelidad**.",
-]
-```
-
-#### Ejemplo INCORRECTO
-
-```typescript
-// ❌ Sin negritas - difícil de escanear visualmente
-answer: [
-  "Nos ayuda a entender por qué permite Dios el sufrimiento.",
-  "Trata la cuestión más importante: la santificación del nombre de Jehová.",
-]
-
-// ❌ Demasiadas negritas - pierde el propósito
-answer: [
-  "**Nos ayuda a entender por qué permite Dios el sufrimiento y responde otras grandes preguntas de la vida.**",
-]
-
-// ❌ Negritas en content del párrafo - NO hacer esto
-content: "Job fue un hombre **fiel** que vivió en **Uz**..."  // El content va sin negritas
-```
-
-#### Regla de oro para negritas
-
-> Pregúntate: "Si el conductor solo leyera las palabras en negrita, ¿captaría la idea principal?"
-> - SÍ → Las negritas están bien aplicadas
-> - NO → Falta resaltar el concepto clave o se resaltó lo incorrecto
-
-### Respuestas secundarias — Reglas
-
-Los detalles del párrafo van en `answers` con `secondary: true` — ver skill `respuestas-conductor`.
-
-**SÍ incluir como secundarias:**
-- Ejemplos y experiencias mencionadas en el párrafo
-- Detalles que enriquecen pero no contestan directamente la pregunta
-- Datos específicos que vale la pena recordar
-
-**NO duplicar:**
-- La respuesta principal (pregunta impresa)
-- Información que no está en el párrafo
-
-### Textos Clave (biblicalCards) - OBLIGATORIO
-
-**ABSOLUTAMENTE TODOS los textos bíblicos citados en los párrafos de cada pregunta deben tener un `biblicalCard` correspondiente.** Cero excepciones. Si un párrafo cita 5 textos bíblicos, la pregunta debe tener 5 biblicalCards.
-
-#### Proceso paso a paso
-
-1. **Leer el párrafo** (campo `content` en los datos del artículo)
-2. **Extraer TODAS las referencias bíblicas** del texto:
-   - Entre paréntesis: `(Sal. 113:5-8)`, `(Luc. 15:17-20)`
-   - Con "lea": `(lea Salmo 62:8)`
-   - Múltiples separadas por punto y coma: `(Gen. 3:4, 5; Job 1:11; Apoc. 12:10)`
-3. **Buscar el texto TNM 2019** en jw.org para cada referencia
-4. **Crear un `biblicalCard`** para cada una con texto real y propósito
-5. **Verificar** que no falte ninguna referencia
-
-#### Fuente de los textos bíblicos
-
-Buscar en la **Traducción del Nuevo Mundo 2019** desde jw.org:
-```
-https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/{libro}/{capítulo}/
-```
-
-Ejemplos de URLs:
-- Génesis 3: `.../genesis/3/`
-- 1 Timoteo 3: `.../1-timoteo/3/`
-- 2 Samuel 22: `.../2-samuel/22/`
-- Apocalipsis 12: `.../apocalipsis/12/`
-
-#### Formato de cada biblicalCard
-
-```typescript
-{
-  reference: "Libro capítulo:versículos",  // ej: "Génesis 3:4, 5"
-  purpose: "Descripción breve de por qué es texto clave en este párrafo",
-  text: "Texto exacto de la TNM 2019 (versículos clave)"
-}
-```
-
-#### Reglas importantes
-
-| Regla | Detalle |
-|-------|---------|
-| **Cobertura** | TODOS los textos del párrafo, sin excepción |
-| **Texto** | TNM 2019 real, NUNCA resúmenes propios |
-| **Pasajes largos** | Incluir solo versículos clave (ej: Núm. 12:1-15 → usar v.9, 10, 13) |
-| **Orden** | Seguir el orden en que aparecen en el párrafo |
-| **Purpose** | Frase breve que explique por qué este texto es relevante aquí |
-| **Preguntas múltiples** | Si una pregunta cubre párrafos 6 y 7, incluir textos de AMBOS párrafos |
-
-#### Ejemplo CORRECTO
-
-Párrafo menciona: `Gen. 3:4, 5; Job 1:11; Apoc. 12:10`, `1 Juan 3:8`, `Hech. 1:7`
-
-```typescript
-biblicalCards: [
-  {
-    reference: "Génesis 3:4, 5",
-    purpose: "Satanás esparció mentiras terribles sobre Dios",
-    text: "La serpiente le dijo a la mujer: 'De ningún modo morirán. De hecho, Dios sabe que el mismo día en que coman de él se les abrirán los ojos y serán como Dios: conocerán lo bueno y lo malo'."
-  },
-  {
-    reference: "Job 1:11",
-    purpose: "Satanás acusó a los siervos fieles de Dios",
-    text: "'Pero ahora extiende tu mano y golpea todo lo que tiene, y seguro que te maldice en tu misma cara'."
-  },
-  {
-    reference: "Apocalipsis 12:10",
-    purpose: "Satanás acusa a los siervos de Dios día y noche",
-    text: "Ha sido arrojado hacia abajo el acusador de nuestros hermanos, que los acusa día y noche delante de nuestro Dios."
-  },
-  {
-    reference: "1 Juan 3:8",
-    purpose: "Jesús deshará las obras del Diablo",
-    text: "El que practica el pecado se origina del Diablo... Para esto se manifestó el Hijo de Dios: para deshacer las obras del Diablo."
-  },
-  {
-    reference: "Hechos 1:7",
-    purpose: "Le corresponde a Jehová decidir cuándo actuar",
-    text: "Él les dijo: 'No les corresponde a ustedes conocer los tiempos ni las épocas que el Padre ha colocado en su propia jurisdicción'."
-  }
-]
-```
-
-#### Ejemplo INCORRECTO
-
-```typescript
-// ❌ Solo 2 de 5 textos del párrafo
-biblicalCards: [
-  { reference: "1 Juan 3:8", purpose: "...", text: "..." },
-  { reference: "Hechos 1:7", purpose: "...", text: "..." }
-]
-// Faltan Génesis 3:4,5 · Job 1:11 · Apocalipsis 12:10
-
-// ❌ Resumen propio en vez de texto TNM
-{ reference: "Números 12:1-15", text: "Miriam fue castigada con lepra y Moisés le rogó a Jehová que la curara." }
-// Debe ser el texto real de la Biblia, no un resumen
-```
-
----
-
-## Diseño "Ejecutivo" - Sistema de Diseño Premium
-
-Todos los estudios usan un **diseño ejecutivo unificado** con tokens semánticos (`bg-surface`, `text-text-primary`, etc.) definidos en `app/globals.css`. Ver `.agents/skills/design-system/SKILL.md`.
-
-### Cuándo Aplicar el Diseño Ejecutivo
-
-`isExecutiveDesign(articleNumber)` en `data/design-config.ts` devuelve `true` si `articleNumber >= 43` **o si es `undefined`** (estudios por `studyId` sin número legacy).
-
-| Componente | Estado |
-|------------|--------|
-| `QuestionCard.tsx` | Un solo bloque de render con tokens |
-| `ReviewQuestionCard.tsx` | Mismo estilo ejecutivo |
-| `StudyHeader.tsx` | Badges, barra lateral, selector |
-| `CommentGuide.tsx` | Flip cards bíblicas integradas |
-
-**Al agregar funcionalidades nuevas en UI**, implementarlas una sola vez siguiendo `design-system` (no hay bloque legacy duplicado en tarjetas).
-
-### IMPORTANTE: Imágenes en Preguntas vs Párrafos
-
-**Las imágenes ilustrativas van en las PREGUNTAS, no en los párrafos.**
-
-| Campo | Ubicación | Uso |
-|-------|-----------|-----|
-| `question.image` | En el objeto de la pregunta | ✅ Imagen visible en la tarjeta de pregunta |
-| `paragraph.image` | En el objeto del párrafo | Solo visible en el modal de párrafos |
-
-**Ejemplo CORRECTO** - Agregar imagen a pregunta 10:
-```typescript
-{
-  number: "10",
-  textEs: "¿Por qué...? (Vea también la imagen).",
-  paragraphs: [10],
-  image: "https://i.imgur.com/XXXXX.png",  // ✅ Va aquí
-  answer: [...]
-}
-```
-
-**Ejemplo INCORRECTO** - NO agregar a párrafos:
-```typescript
-// ❌ Esto solo se verá en el modal de párrafos, no en la tarjeta
-{ number: 10, content: "...", image: "https://..." }
-```
-
-### Recuadros laterales (`sidebar` / boxSupplement)
-
-- Datos en `paragraph.sidebar` (`title`, `intro?`, `items?`)
-- UI: `ParagraphSidebarBox.tsx` con refs bíblicas clicables
-- Colocación: `lib/sidebarPlacement.ts` (imagen de pregunta → recuadro en tarjeta; sin imagen → flujo de párrafo)
-
-### Paleta de Colores Ejecutivo
-
-```
-Fondos:
-- Principal: white / bg-white
-- Secundario: #F8FAFC / bg-slate-50
-- Hover: #F1F5F9 / bg-slate-100
-
-Textos:
-- Principal: #1E293B / text-slate-800
-- Secundario: #475569 / text-slate-600
-- Terciario: #94A3B8 / text-slate-400
-
-Bordes:
-- Normal: #E2E8F0 / border-slate-200
-- Hover: #CBD5E1 / border-slate-300
-- Activo: #94A3B8 / border-slate-400
-
-Acentos:
-- Barra lateral: bg-gradient-to-b from-slate-300 to-slate-400
-- Línea divisoria: bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200
-```
-
-### Tipografía Ejecutivo
-
-```css
-/* Títulos principales */
-font-serif font-bold text-slate-800
-
-/* Labels y etiquetas */
-text-xs font-bold text-slate-400 uppercase tracking-[0.2em]
-
-/* Texto de pregunta */
-text-2xl md:text-3xl font-serif text-slate-800
-
-/* Respuestas */
-text-slate-700 leading-relaxed
-```
-
-### Componentes del Diseño Ejecutivo
-
-#### 1. Contenedor Principal
-```jsx
-<div className="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden relative">
-  {/* Barra lateral decorativa */}
-  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-300 to-slate-400"></div>
-
-  {/* Contenido */}
-</div>
-```
-
-#### 2. Cabecera de Pregunta
-```jsx
-<div className="p-8 pb-4">
-  <span className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">
-    Pregunta {number}
-  </span>
-  <h2 className="text-2xl md:text-3xl font-serif text-slate-800 leading-tight mt-4">
-    {texto}
-  </h2>
-</div>
-```
-
-#### 3. Sección LSM Editable
-```jsx
-<div className="px-8 py-4 bg-slate-50 border-y border-slate-100">
-  <div className="flex items-center gap-2 mb-1">
-    <span className="text-lg">🤟</span>
-    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">LSM</span>
-  </div>
-  <p className="text-slate-700 font-medium text-lg uppercase">
-    {textoLSM}
-  </p>
-</div>
-```
-
-#### 4. Respuestas con Numeración
-```jsx
-<div className="space-y-3">
-  {answers.map((answer, index) => (
-    <div key={index} className="flex gap-3">
-      <span className="text-slate-400 font-mono text-sm flex-shrink-0 mt-0.5">
-        [{index + 1}]
-      </span>
-      <p className="text-slate-700 leading-relaxed flex-1">
-        {answer}
-      </p>
-    </div>
-  ))}
-</div>
-```
-
-#### 5. Línea Divisoria Decorativa
-```jsx
-<div className="my-6 flex items-center gap-4">
-  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
-  <span className="text-amber-400 text-sm">✦</span>
-  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
-</div>
-```
-
-#### 6. Subtítulos de Sección
-```jsx
-<div className="mb-8 mt-12">
-  <div className="relative">
-    <div className="absolute inset-0 flex items-center">
-      <div className="w-full border-t border-slate-200"></div>
-    </div>
-    <div className="relative flex justify-center">
-      <div className="bg-slate-800 px-8 py-4 rounded-lg shadow-lg">
-        <h2 className="text-xl md:text-2xl font-bold text-white text-center uppercase tracking-[0.15em]">
-          {section}
-        </h2>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-#### 7. Badges de Información
-```jsx
-<div className="flex flex-wrap items-center justify-center gap-3">
-  <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold text-sm shadow-sm">
-    Artículo {number}
-  </span>
-  <span className="text-slate-300">•</span>
-  <span className="px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-600 font-medium text-sm shadow-sm">
-    {week}
-  </span>
-</div>
-```
-
-#### 8. Selector de Artículos
-```jsx
-<div className="relative">
-  <select className="appearance-none pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-200 cursor-pointer hover:border-slate-300 hover:shadow-md transition-all text-sm shadow-sm min-w-[320px]">
-    {/* opciones */}
-  </select>
-  {/* Flecha SVG personalizada */}
-  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-    <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  </div>
-</div>
-```
-
-#### 9. Tarjetas (CommentGuide — flip bíblico)
-```jsx
-{/* Tarjeta con flip */}
-<div className="min-h-[250px]" style={{ perspective: '1000px' }}>
-  {/* Frente */}
-  <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-    {/* contenido */}
-  </div>
-  {/* Reverso */}
-  <div className="bg-slate-800 rounded-xl shadow-lg border border-slate-700 p-6">
-    {/* contenido */}
-  </div>
-</div>
-```
-
-### Comparación Visual: Normal vs Ejecutivo
-
-| Elemento | Diseño Normal | Diseño Ejecutivo |
-|----------|---------------|------------------|
-| Contenedor | `rounded-lg shadow-sm` | `rounded-xl shadow-lg` + barra lateral |
-| Títulos | `font-semibold` | `font-serif font-bold` |
-| Labels | `text-sm text-slate-600` | `text-xs uppercase tracking-[0.2em] text-slate-400` |
-| Fondos | Azul/púrpura gradientes | Blanco/slate sobrios |
-| Bordes | Colores variados | `border-slate-200` consistente |
-| Sombras | Básicas | Suaves y profesionales |
-| Hover | Cambio de color | Sombra + borde sutil |
-
-### Animaciones del Diseño Ejecutivo
-
-```css
-/* En globals.css - ya incluidas */
-@keyframes slideDown {
-  from { opacity: 0; max-height: 0; }
-  to { opacity: 1; max-height: 2000px; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-slideDown { animation: slideDown 0.4s ease-out forwards; }
-.animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
-```
-
-### Checklist para Nuevos Artículos con Diseño Ejecutivo
-
-Al crear un nuevo artículo (44, 45, etc.) verificar:
-
-- [ ] `StudyHeader.tsx`: Header con barra lateral y badges separados
-- [ ] `QuestionCard.tsx`: Tipografía serif, numeración [1][2][3], línea divisoria ✦
-- [ ] `ReviewQuestionCard.tsx`: Mismo estilo ejecutivo
-- [ ] Subtítulos con fondo `slate-800` centrados
-- [ ] Selector de artículos con flecha SVG personalizada
-- [ ] LSM con fondo `slate-50` y borde sutil
-- [ ] Tarjetas con `min-h-[250px]` y headers alineados
+## Arquitectura Breve
+
+- Next.js con App Router, React, TypeScript y Tailwind.
+- Datos de estudios en `data/articles/study-YYYY-MM-DD.ts`.
+- Registro de estudios en `data/articles/index.ts`.
+- Estudios activos en `data/articles-config.ts`.
+- Componentes principales en `components/`.
+- APIs de persistencia en `app/api/`.
+
+## Reglas de Contenido y Dominio
+
+Usar la skill local correspondiente antes de trabajar en flujos de dominio:
+- `article-editor`: agregar o editar estudios.
+- `atalaya-revista-importer`: importar revistas completas.
+- `respuestas-conductor`: respuestas enriquecidas `answers`.
+- `como-comentarlo`: comentarios naturales.
+- `design-system`: cambios visuales o componentes.
+- `study-lifecycle`: crear, registrar, activar o eliminar estudios.
+- `lsm-video`, `lsm-question-clips`, `lsm-translations`: videos y glosas LSM.
+- `box-supplement`: recuadros laterales.
+- `kv-maintenance`: limpieza de Vercel KV.
+- `build-check`: verificación ligera antes de cerrar.
+
+## Videos LSM al Eliminar Estudios
+
+Cuando se elimine un artículo de estudio antiguo, eliminar también los videos LSM asociados en `public/videos/`. No dejar videos huérfanos en el repositorio.

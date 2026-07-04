@@ -113,7 +113,7 @@ export default function ReviewQuestionCard({
           {/* Cabecera de la Pregunta */}
           <div className="p-8 pb-4">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-[#8B8980]">
+              <span className="text-xs font-bold text-[#E8A68B] tracking-[0.2em] uppercase">
                 Pregunta de Repaso {index + 1}
               </span>
             </div>

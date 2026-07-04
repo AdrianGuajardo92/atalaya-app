@@ -1,7 +1,6 @@
 ---
 name: vercel
 description: Despliega la aplicación a producción en Vercel. Úsalo cuando el usuario pida explícitamente "vercel", "sube a producción", "despliega a producción" o "deploy a vercel".
-disable-model-invocation: true
 allowed-tools: Bash(npm run build), Bash(vercel *)
 ---
 

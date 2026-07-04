@@ -23,19 +23,13 @@ export function useTheme() {
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'light';
+    const stored = window.localStorage.getItem('atalaya-theme') as Theme | null;
+    return stored === 'dark' ? 'dark' : 'light';
+  });
 
   useEffect(() => {
-    const stored = localStorage.getItem('atalaya-theme') as Theme | null;
-    const initial = stored === 'dark' ? 'dark' : 'light';
-    setThemeState(initial);
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
@@ -49,7 +43,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     if (metaTheme) {
       metaTheme.setAttribute('content', theme === 'dark' ? '#262624' : '#3b82f6');
     }
-  }, [theme, mounted]);
+  }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);

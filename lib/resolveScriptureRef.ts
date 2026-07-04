@@ -92,13 +92,16 @@ function splitVerseList(versesPart: string): string[] {
 }
 
 export function parseScriptureReferences(inner: string): string[] {
-  const text = inner.replace(/^compare\s+con\s+/i, '').trim();
+  const text = inner
+    .replace(/^compare\s+con\s+/i, '')
+    .replace(/^lea\s+/i, '')
+    .trim();
   const segments = text.split(/\s*;\s*/);
   const refs: string[] = [];
   let currentBook = '';
 
   for (const segment of segments) {
-    const trimmed = segment.trim();
+    const trimmed = segment.trim().replace(/^compare\s+con\s+/i, '');
     if (!trimmed) continue;
 
     const fullMatch = trimmed.match(/^(.+?)\s+(\d+):(\d+(?:\s*,\s*\d+)*)/);

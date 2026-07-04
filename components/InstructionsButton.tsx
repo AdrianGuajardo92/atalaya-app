@@ -10,965 +10,149 @@ export default function InstructionsButton() {
 
   const promptInstructions = `# Instrucciones - Aplicación Atalaya
 
-## ¿Qué es esta aplicación?
+App Next.js para dirigir estudios de La Atalaya en español con apoyo LSM.
 
-Una app Next.js para dirigir el estudio de La Atalaya. Tiene soporte bilingüe: **Español y LSM** (Lengua de Señas Mexicana).
+## Fuente de verdad
 
-## 🗂️ Archivos importantes
+Antes de editar, lee \`AGENTS.md\` y la skill que corresponda:
+- \`.agents/skills/article-editor/SKILL.md\` para artículos.
+- \`.agents/skills/respuestas-conductor/SKILL.md\` para \`answers\`.
+- \`.agents/skills/como-comentarlo/SKILL.md\` para \`commentSuggestion\`.
+- \`.agents/skills/box-supplement/SKILL.md\` para recuadros laterales.
+- \`.agents/skills/lsm-translations/SKILL.md\` para glosas LSM.
 
-**ARCHIVO QUE CAMBIAS MENSUALMENTE:**
-- \`data/atalaya-data.ts\` - Contiene la base de datos con múltiples artículos organizados por mes
+## Archivos actuales
 
-**ARCHIVOS QUE NUNCA MODIFICAS:**
-- \`components/QuestionCard.tsx\` - Muestra las preguntas con diseño de tarjetas
-- \`components/ReviewQuestionCard.tsx\` - Muestra las preguntas de repaso
-- \`components/AnswerItemsList.tsx\` - Respuestas principales/secundarias con followUp para el conductor
-- \`components/StudyHeader.tsx\` - Encabezado del estudio
-- \`components/Timer.tsx\` - Temporizador flotante
-- \`app/page.tsx\` - Página principal
-- \`types/atalaya.ts\` - Tipos de TypeScript
-- \`app/api/lsm/route.ts\` - Guarda traducciones LSM en Vercel KV
+- Un estudio por archivo: \`data/articles/study-YYYY-MM-DD.ts\`.
+- Registro: \`data/articles/index.ts\` con \`studiesMap\`, \`biblicalTextsMap\` y \`getBiblicalTextsForStudy()\`.
+- Activación: \`data/articles-config.ts\` con \`activeStudyIds\` y \`defaultStudyId\`.
+- Tipos: \`types/atalaya.ts\`.
 
-## 📝 Organización de artículos
+No uses modelos legacy ni campos antiguos como camino nuevo.
 
-⚡ **IMPORTANTE: NO HAY LÍMITES** ⚡
-
-La app puede manejar **CUALQUIER cantidad de artículos** que agregues:
-- ✅ Puedes agregar 5, 10, 50, 100+ artículos por mes
-- ✅ Puedes agregar todos los meses que necesites (2025, 2026, 2027...)
-- ✅ El dropdown automáticamente mostrará TODOS los artículos
-- ✅ Cada artículo tiene su propia data LSM, favoritos y tarjetas ocultas
-
-### Estructura de la base de datos:
+## Modelo de datos
 
 \`\`\`typescript
-export const atalayaDatabase: AtalayaDatabase = {
-  "2025-08": {  // Año-Mes
-    articles: [
-      // Artículo 34
-      {
-        metadata: {
-          articleNumber: 34,
-          week: "27 Oct - 2 Nov",
-          month: "Agosto",
-          year: 2025
-        },
-        song: "...",
-        title: "...",
-        // ... contenido del artículo
-      },
-      // Artículo 35, 36, 37, 38...
-    ]
-  }
-};
-\`\`\`
-
-### Cómo agregar un nuevo artículo:
-
-Agrega un nuevo objeto al array \`articles\` del mes correspondiente:
-
-\`\`\`typescript
-{
+export const studyYYYYMMDD: ArticleData = {
   metadata: {
-    articleNumber: 35,
-    week: "4-10 Nov",
-    month: "Agosto",
-    year: 2025
+    studyId: "YYYY-MM-DD",
+    articleNumber: 44,
+    week: "Semana del estudio",
+    month: "Mes",
+    year: 2026,
   },
-  song: "Canción 123",
-  title: "Título del estudio",
-  biblicalText: "\"Texto bíblico\" (Referencia)",
-  theme: "Tema del estudio",
-
+  song: "Canción 1",
+  title: "Título",
+  titleLSM: "GLOSA LSM",
+  biblicalText: "Texto bíblico principal",
+  theme: "Tema",
   questions: [
     {
       number: "1, 2",
-      textEs: "¿Pregunta en español?",
-      textLSM: "",              // Dejar VACÍO - se traduce en la app
+      textEs: "¿Pregunta?",
+      textLSM: "GLOSA LSM",
       paragraphs: [1, 2],
-      answer: "Respuesta directa en lenguaje sencillo",
-      answerBullets: "• Punto 1\\n• Punto 2\\n• Punto 3"
-    }
+      readText: "LEE Salmo 119:145",
+      answers: [
+        {
+          text: "Una respuesta con **concepto clave**.",
+          followUp: "¿Qué detalle ayuda a verlo?",
+        },
+        {
+          text: "Un detalle del párrafo con **valor para conducir**.",
+          secondary: true,
+        },
+      ],
+      commentSuggestion: "Yo podría comentar que...",
+      biblicalCards: [],
+    },
   ],
-
   paragraphs: [
     {
       number: 1,
-      content: "Contenido completo del párrafo..."
-    }
+      content: "Texto completo del párrafo sin negritas añadidas.",
+      summary: "Resumen con **ideas clave** para el conductor.",
+      sidebar: {
+        title: "Título del recuadro",
+        intro: "Introducción opcional",
+        items: [],
+      },
+    },
   ],
-
-  reviewQuestions: [
-    {
-      question: "¿Pregunta de repaso?"
-    }
-  ],
-
-  finalSong: "Canción 45 y oración"
-}
+  reviewQuestions: [],
+  finalSong: "Canción final y oración",
+};
 \`\`\`
 
-### Selector de artículos:
+## Reglas de contenido
 
-En la interfaz verás un **dropdown en el header** para seleccionar entre los artículos del mes. Muestra:
-- Número de artículo
-- Título del artículo
-- Semana correspondiente
+- Usa \`answers: AnswerItem[]\` en estudios nuevos: 2-3 principales y 1-3 secundarias con \`secondary: true\`.
+- Cada respuesta principal debe tener \`followUp\` breve para ayudar si nadie menciona la idea.
+- Usa \`commentSuggestion\` para comentarios naturales, cortos y listos para decir.
+- Usa \`biblicalCards\` para todos los textos citados en los párrafos de la pregunta, con texto TNM 2019 real.
+- Registra textos de \`readText\` y referencias de recuadros en \`biblicalTextsMap\`.
+- Usa \`paragraph.sidebar\` para recuadros laterales / \`boxSupplement\`; no improvises otro formato.
+- Mantén ortografía correcta en español: acentos, signos de apertura y nombres bíblicos.
+- No agregues \`flashcards\` ni nuevos campos legacy.
 
-Al cambiar de artículo, se cargan automáticamente:
-- Las traducciones LSM específicas de ese artículo
-- Los favoritos de ese artículo
-- Las tarjetas ocultas de ese artículo
+## LSM
 
-## 🔤 Campos LSM (Lengua de Señas Mexicana)
+- \`textLSM\`, \`sectionLSM\`, \`titleLSM\` y \`questionLSM\` usan glosas en MAYÚSCULAS.
+- Si hay un archivo \`preguntas-LSM.md\`, úsalo como fuente para las glosas.
+- Para videos LSM, sigue las skills \`lsm-video\` y \`lsm-question-clips\`.
 
-Hay campos LSM en la app que se traducen desde la interfaz:
+## Imágenes y videos
 
-1. **\`textLSM\`** - Traducción de preguntas principales
-2. **\`sectionLSM\`** - Traducción de subtítulos de sección (cuando existen)
+- Las imágenes visibles en tarjetas van en \`question.image\`, no en \`paragraph.image\`.
+- Para Imgur usa enlace directo: \`https://i.imgur.com/XXXXX.png\`.
+- Los videos LSM se guardan por artículo en la carpeta correspondiente de \`public/videos/\`.
+- Si eliminas un artículo antiguo, elimina también sus videos LSM asociados.
 
-**IMPORTANTE:**
-- Siempre déjalos vacíos (\`""\`) en el archivo de datos
-- Se traducen haciendo click en el área LSM azul en la interfaz
-- Las traducciones se guardan automáticamente en Vercel KV
-- El texto LSM siempre se muestra en MAYÚSCULAS
+## Verificación ligera
 
-## 📖 Preguntas con subtítulos
+Después de editar, revisa el diff y usa una validación ligera apropiada, por ejemplo \`git diff --check\`, \`npm run lint\` o \`npm run build\` según el alcance. No abras Browser, Chrome ni Playwright salvo que el usuario lo pida explícitamente.`;
 
-Algunas preguntas tienen subtítulos de sección:
+  const studyProtocol = `# Protocolo de estudio por párrafos
 
-\`\`\`typescript
-{
-  number: "6",
-  textEs: "¿Pregunta?",
-  textLSM: "",
-  paragraphs: [6],
-  section: "SUBTÍTULO EN MAYÚSCULAS",
-  sectionLSM: ""              // Se traduce en la app
-}
-\`\`\`
+Usa este protocolo como guía breve. La fuente de verdad sigue siendo \`AGENTS.md\` y las skills locales.
 
-## 🖼️ Imágenes ilustrativas (opcional)
+## Al recibir un estudio nuevo
 
-Puedes agregar imágenes a las preguntas para ilustrarlas:
+1. Crea o edita el archivo \`data/articles/study-YYYY-MM-DD.ts\`.
+2. Usa \`metadata.studyId\` con la fecha de inicio de semana.
+3. Registra el estudio en \`data/articles/index.ts\`.
+4. Actívalo en \`data/articles-config.ts\` solo si el usuario lo pide o el flujo lo requiere.
+5. Si hay textos de lectura o recuadros, registra sus textos reales en \`biblicalTextsMap\`.
 
-\`\`\`typescript
-{
-  number: "1, 2",
-  textEs: "¿Pregunta?",
-  textLSM: "",
-  paragraphs: [1, 2],
-  image: "https://i.imgur.com/xxxxx.jpg"  // URL directa de la imagen
-}
-\`\`\`
+No agregues contenido en archivos legacy; usa el modelo actual por \`studyId\`.
 
-**IMPORTANTE:**
-- Usa URLs directas de imágenes (que terminen en .jpg, .png, etc.)
-- Para imgur: usa \`https://i.imgur.com/xxxxx.jpg\` (no \`https://imgur.com/xxxxx\`)
-- Las imágenes se muestran después de las preguntas ES/LSM
-- Son opcionales, solo agrégalas cuando realmente aporten valor
+## Para cada pregunta
 
-## 💬 Respuestas: dos niveles
+1. Lee todos los párrafos vinculados en \`question.paragraphs\`.
+2. Redacta \`answers\` siguiendo la skill \`respuestas-conductor\`:
+   - 2-3 principales que contesten la pregunta.
+   - 1-3 secundarias con \`secondary: true\` para detalles útiles.
+   - \`followUp\` breve en las principales.
+3. Agrega \`commentSuggestion\` si el usuario pidió comentarios o si el estudio lo requiere.
+4. Crea \`biblicalCards\` para todos los textos bíblicos citados en esos párrafos.
+5. Mantén \`summary\` en los párrafos con las ideas clave en negritas.
 
-Cada pregunta tiene dos tipos de respuesta:
+## Textos bíblicos
 
-**1. Respuesta directa (\`answer\`):**
-\`\`\`typescript
-answer: "Explicación sencilla que responde la pregunta directamente"
-\`\`\`
+- Usa TNM 2019 real, no resúmenes propios.
+- Si la pregunta tiene \`readText\`, la clave de \`biblicalTextsMap\` debe coincidir exactamente.
+- Incluye referencias de \`paragraph.sidebar\` / boxSupplement para que sean clicables.
+- En pasajes largos, usa los versículos clave según la guía del proyecto.
 
-**2. Puntos clave (\`answerBullets\`):**
-\`\`\`typescript
-answerBullets: "**Título opcional**\\n• Punto 1\\n• Punto 2\\n• Punto 3"
-\`\`\`
+## Recuadros laterales
 
-## 💡 Respuestas para el conductor (\`answers\`)
+- Usa \`paragraph.sidebar\` para boxSupplement.
+- Lee la skill \`box-supplement\` antes de crear o ajustar recuadros.
+- No dupliques el recuadro en otro campo improvisado.
 
-Campo **obligatorio** en estudios nuevos. Ver skill \`respuestas-conductor\`.
+## Cierre
 
-**Estructura:**
-\`\`\`typescript
-answers: [
-  {
-    text: "Los buenos amigos son un **regalo de Jehová** (Sant. 1:17).",
-    followUp: "¿Qué dice Santiago sobre todo don bueno?",
-  },
-  {
-    text: "Son **leales** y nos consuelan cuando estamos tristes.",
-    followUp: "¿Qué hacen cuando estamos felices?",
-  },
-  {
-    text: "Los amigos así “**alegran el corazón**” (Prov. 27:9).",
-    secondary: true,
-  },
-],
-\`\`\`
-
-**Reglas:**
-- 2–3 respuestas **principales** (contestan la pregunta impresa) + 1–3 **secundarias** (\`secondary: true\`)
-- Cada principal lleva \`followUp\` (~12 palabras): pregunta si nadie menciona la idea
-- Secundarias = detalles, ejemplos y experiencias del párrafo
-- **Negritas** solo en el concepto clave de \`text\`
-- **Prohibido** \`flashcards\` — modelo eliminado
-
-**UI:** \`AnswerItemsList.tsx\` — principales numeradas, secundarias en bloque "Del párrafo", followUp ámbar "Si no lo mencionan".
-
-## 📖 Tarjetas de textos bíblicos
-
-Las tarjetas bíblicas se muestran **después de las answers**.
-
-**Características:**
-- Color morado/púrpura
-- Grid de 2 columnas (desktop) o 1 columna (móvil)
-- Frente: referencia + propósito
-- Reverso: referencia + texto completo TNM
-- Click para voltear
-
-**Estructura:**
-\`\`\`typescript
-biblicalCards: [
-  {
-    reference: "2 Samuel 12:13",
-    purpose: "David confesó su pecado y Jehová lo perdonó",
-    text: "Entonces David le dijo a Natán: \\"He pecado contra Jehová\\". Natán le dijo a David: \\"Jehová, por su parte, te perdona tu pecado. No morirás\\"."
-  }
-]
-\`\`\`
-
-**IMPORTANTE - Cómo escribir el propósito:**
-- ✅ Lenguaje simple y directo
-- ✅ Fácil de escanear rápido al dirigir
-- ✅ Una frase corta (máximo 10-12 palabras)
-- ❌ NO usar: "Muestra que...", "Nos enseña que...", "Explica que..."
-- ✅ SÍ usar: "David confesó y fue perdonado", "Hay que confesar y abandonar"
-
-**Textos bíblicos:**
-- SIEMPRE de la Traducción del Nuevo Mundo (TNM)
-- Texto completo y exacto
-- Incluir TODOS los textos mencionados en el párrafo
-
-## 🎨 Cómo funciona la interfaz
-
-### Dos modos de visualización:
-1. **Modo Scroll** - Todas las preguntas en una página
-2. **Modo Navegación** - Una pregunta a la vez con botones Anterior/Siguiente
-
-### Funcionalidades:
-- Click en el **círculo azul** con el número → abre modal con los párrafos
-- Click en **área LSM** (azul) → editar traducción LSM
-- **Enter** → guardar traducción LSM
-- **Escape** → cancelar edición LSM o cerrar modal de párrafos
-- **Shift+Enter** → nueva línea en el editor LSM
-- **Temporizador** flotante y arrastrable
-- Las traducciones LSM se guardan automáticamente en Vercel KV
-
-### Diseño de tarjetas:
-- Círculo azul con número (clickeable)
-- Pregunta en español: caja gris
-- Pregunta en LSM: caja azul (más grande y destacado)
-- Respuestas: fondo verde claro
-- AnswerItemsList: principales numeradas + secundarias "Del párrafo" + followUp ámbar
-- Tarjetas bíblicas: moradas con flip al hacer click
-
-## 🔄 Flujo de trabajo semanal
-
-### 🚨 PASO INICIAL - CUANDO RECIBES UN NUEVO ARTÍCULO
-
-**IMPORTANTE:** Ya no se borra contenido anterior. Los artículos se mantienen organizados por mes.
-
-**Agregar un nuevo artículo**
-
-Cuando el usuario proporciona un nuevo artículo de La Atalaya:
-
-1. Identifica el mes correcto en \`atalayaDatabase\` (ej: "2025-08")
-2. Agrega el nuevo artículo al array \`articles\` de ese mes
-3. Si el mes no existe, créalo primero
-
-SOLO debes agregar:
-
-✅ **Estructura básica de preguntas normales:**
-- number
-- textEs
-- paragraphs
-- section (si existe)
-- image (si existe)
-- textLSM: "" (siempre vacío)
-
-✅ **Estructura básica de párrafos:**
-- number
-- content
-
-✅ **Estructura básica de preguntas de repaso:**
-- question (solo este campo)
-
-❌ **NO agregar en este paso inicial:**
-- answer
-- answerBullets
-- answers
-- biblicalCards
-- questionLSM en reviewQuestions
-- sectionLSM (siempre vacío)
-
-**Razón:** Estos campos se agregarán después, durante la fase de estudio párrafo por párrafo.
-
-### Flujo semanal normal:
-
-1. Obtén el nuevo estudio de jw.org
-2. Abre \`data/atalaya-data.ts\`
-3. **PRIMERA VEZ:** Agrega el artículo al array del mes con metadata (número, semana, mes, año)
-4. Agrega solo preguntas y párrafos (estructura básica)
-5. Deja vacíos los campos LSM (\`textLSM\`, \`sectionLSM\`)
-6. Prueba en localhost: \`npm run dev\`
-7. Selecciona el artículo en el dropdown del header
-8. **FASE DE ESTUDIO:** Agrega answer, answers y biblicalCards párrafo por párrafo
-9. Traduce a LSM usando la interfaz (click en áreas azules)
-10. Las traducciones se guardan automáticamente en Vercel KV con clave por artículo
-
-**NOTA:** El usuario maneja git manualmente cuando esté listo (add, commit, push).
-
-## 🗄️ Base de datos
-
-- **Vercel KV** (Redis)
-- **Nombre**: biblioteca-db
-- **Claves por artículo**:
-  - LSM: \`atalaya-lsm-data:{articleId}\` (ej: \`atalaya-lsm-data:2025-08-article-35\`)
-  - Favoritos: \`atalaya-favorites-data:{articleId}\`
-  - Ocultos: \`atalaya-hidden-cards:{articleId}\`
-- **Sincronización**: localhost y producción usan la misma base de datos
-- **Credenciales**: en \`.env.local\` (no se sube a git)
-- **Separación**: Cada artículo tiene sus propios datos LSM, favoritos y tarjetas ocultas
-
-## 📦 Comandos
-
-\`\`\`bash
-npm run dev          # Desarrollo (localhost:9000)
-npm run build        # Construir para producción
-npm run start        # Producción local
-\`\`\`
-
-## ⚠️ Reglas importantes
-
-- **NUNCA modificar** componentes ni archivos de configuración
-- **SOLO modificar** \`data/atalaya-data.ts\` para agregar/actualizar artículos
-- **Dejar vacíos** los campos LSM (\`textLSM\`, \`sectionLSM\`) - se traducen en la app
-- Las traducciones LSM se guardan en Vercel KV automáticamente por artículo
-- Cada artículo tiene datos separados (LSM, favoritos, ocultos)
-- El usuario hace commits manualmente
-
-## 💡 Tips
-
-- Los subtítulos de sección son opcionales
-- Las preguntas de repaso van separadas al final
-- Las referencias bíblicas entre paréntesis se resaltan automáticamente en azul
-- Las answers y tarjetas bíblicas son opcionales - agrégalas según sea necesario
-
----
-
----
-
-# 📚 PROTOCOLO COMPLETO DE ESTUDIO PÁRRAFO POR PÁRRAFO
-
-## 🎯 Objetivo
-Estudiar cada párrafo del artículo de La Atalaya de forma sistemática, generando automáticamente respuestas, answers y textos bíblicos para cada pregunta.
-
-## 🚀 Inicio de sesión de estudio
-
-### Paso 1: Activar modo estudio
-Di cualquiera de estas frases:
-- "Ayúdame a estudiar"
-- "Ayúdame a estudiar el artículo"
-- "Vamos a estudiar"
-- "Comenzamos el estudio"
-
-### Paso 2: Indicar el párrafo
-Simplemente di el número del párrafo:
-- "párrafo 5"
-- "párrafos 3 y 4"
-- "siguiente" (para avanzar)
-
-## 📋 Lo que recibirás AUTOMÁTICAMENTE
-
-Para cada párrafo, recibirás:
-
-### 1. ❓ LA PREGUNTA
-La pregunta exacta del estudio tal como aparece en La Atalaya.
-- Si el párrafo tiene un texto para leer, aparecerá: **📖 LEE [referencia bíblica]** en azul
-
-### 2. ✅ RESPUESTA DIRECTA
-- Lenguaje sencillo y directo
-- 2-4 oraciones máximo
-- Basada SOLO en los párrafos correspondientes
-- Sin información extra
-
-### 3. 🔑 PUNTOS CLAVE
-- Formato visual con tarjetas individuales en grid responsivo
-- Estructura: primeros 2-3 puntos = respuesta directa, resto = información entrelazada
-- Títulos opcionales con **negrita**
-- **Sistema de marcado con botones independientes:**
-  - Botón ✓ verde: Marca/desmarca como "Respuesta Directa"
-  - Botón 🔗 naranja: Marca/desmarca como "Entrelazado"
-  - Un punto puede tener ambas marcas, una, o ninguna
-  - Las marcas se guardan automáticamente en Vercel KV
-- Se pueden editar, agregar y eliminar puntos individuales
-- Click en el punto para marcarlo como completado durante el estudio
-
-### 4. 🎴 RESPUESTAS SECUNDARIAS SUGERIDAS (2-4 tarjetas)
-**CRITERIOS ESTRICTOS:**
-
-🚨 **REGLA CRÍTICA #1: ANALIZAR PROFUNDAMENTE EL CONTENIDO**
-Antes de crear answers, debes:
-1. **Leer cuidadosamente** el contenido completo de los párrafos
-2. **Analizar los textos bíblicos** citados y su contenido específico
-3. **Identificar detalles específicos**: listas, cualidades, números, nombres, ejemplos
-4. **Buscar información adicional** que NO esté en la pregunta ni en la respuesta directa
-
-**Ejemplo de análisis profundo:**
-Párrafos 7, 8 mencionan:
-- Éxodo 34:6, 7: Jehová es "misericordioso y compasivo"
-- Salmo 31:5: Jehová es el "Dios de la verdad"
-- Resultado: 3 cualidades de Jehová
-- Respuesta secundaria: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?"
-
-🚨 **REGLA CRÍTICA #2:**
-❌ Las answers NO deben parafrasear la pregunta principal
-❌ Las answers NO deben repetir lo que ya está en la respuesta directa
-
-✅ **SÍ crear answers sobre:**
-- Detalles ADICIONALES específicos del párrafo (números, listas, datos)
-- **Cualidades, características o atributos mencionados** (muy importante)
-- Eventos bíblicos mencionados con nombres específicos
-- Conceptos o vocabulario técnico del párrafo
-- Relaciones causa-efecto explicadas en el párrafo
-- Citas textuales importantes del párrafo o de textos bíblicos
-- Información que NO esté en la pregunta ni en la respuesta directa
-
-❌ **NO crear answers sobre:**
-- Reformulaciones de la pregunta principal
-- Información que ya está en la respuesta directa
-- Preguntas genéricas que parafrasean el título
-- Referencias bíblicas (esas van en tarjetas bíblicas)
-- Nombres de ejemplos modernos
-- Información obvia
-- **Detalles triviales sin valor espiritual** (ubicaciones geográficas, datos irrelevantes)
-- Preguntas que no aportan nada al entendimiento espiritual
-
-**Ejemplo 1 - Párrafo 5:**
-
-**Pregunta del párrafo:** "¿Qué quiere Satanás que creamos? Pon un ejemplo."
-**Respuesta directa:** "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar..."
-
-**❌ SECUNDARIA MALA (parafrasea la pregunta):**
-- "¿Qué trampa usa Satanás para que dejemos de servir?" ← Esto es lo mismo que la pregunta
-
-**❌ SECUNDARIA MALA (repite la respuesta directa):**
-- "¿Qué quiere Satanás que creamos sobre nuestros pecados?" ← Ya está en la respuesta directa
-
-**✅ RESPUESTAS SECUNDARIAS BUENAS (detalles adicionales específicos):**
-- "¿Qué pecado cometió el hombre de Corinto según 1 Corintios 5:1?"
-- "Según 2 Corintios 2:7, ¿qué podría pasar si el hermano no es perdonado?"
-- "¿Qué frase usa Pablo en 2 Corintios 2:11 sobre las tácticas de Satanás?"
-
-**Ejemplo 2 - Párrafo 6:**
-
-**Pregunta del párrafo:** "¿Qué nos ayudará a liberarnos del peso de la culpa?"
-**Respuesta directa:** "Convencernos de que Jehová nos ha perdonado... dejar la culpa atrás y pasar la página..."
-
-**❌ SECUNDARIA MALA (repite la respuesta directa):**
-- "¿Qué logramos hacer cuando nos convencemos de que Jehová nos ha perdonado?" ← Ya está en la respuesta
-
-**✅ RESPUESTAS SECUNDARIAS BUENAS (detalles adicionales):**
-- "¿Qué texto muestra que es natural sentirse mal cuando pecamos?" (Salmo 51:17)
-- "¿Por qué es bueno sentirse mal cuando pecamos?" (2 Corintios 7:10, 11)
-- "¿Qué puede pasar si nos sentimos demasiado culpables después de arrepentirnos?"
-
-**🚨 REGLA DE LENGUAJE SENCILLO:**
-Las answers DEBEN ser **fáciles de entender**:
-- ✅ Preguntas claras y directas
-- ✅ Sin construcciones complicadas
-- ❌ Evitar términos confusos
-
-**Ejemplos:**
-- ❌ Complicado: "¿Para qué sirve que la conciencia nos haga sentir mal?"
-- ✅ Sencillo: "¿Por qué es bueno sentirse mal cuando pecamos?"
-
-**🚨 REGLA CRÍTICA: PREGUNTAS DE REFLEXIÓN, NO DE TRIVIA**
-
-Las answers deben invitar a la **reflexión personal y aplicación práctica**, NO ser preguntas de trivia bíblica.
-
-**❌ EVITAR preguntas tipo trivia:**
-- "¿Qué texto muestra que Jehová siempre dice la verdad?" → Solo memorización
-- "¿Dónde estaba Moisés cuando Jehová se describió?" → Detalle irrelevante
-
-**✅ USAR preguntas de reflexión:**
-- "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?"
-- "Si Jehová eligió presentarse como misericordioso, ¿qué te dice eso sobre su personalidad?"
-- "¿Cómo te ayuda personalmente saber que Jehová perdona completamente?"
-
-**Tipos de preguntas efectivas:**
-1. **"¿Cómo te ayuda [texto] a...?"** → Aplicación personal
-2. **"Según [texto], ¿qué aprendemos sobre...?"** → Reflexión
-3. **"¿Qué te dice esto sobre...?"** → Análisis
-4. **"¿Por qué podemos estar seguros de que...?"** → Razonamiento
-
-Estas preguntas permiten que el auditorio participe mejor con comentarios más profundos.
-
-### 5. 📖 TEXTOS BÍBLICOS SUGERIDOS
-
-**CRITERIOS:**
-✅ Incluir TODOS los textos citados en el párrafo
-✅ Incluir textos mencionados aunque no estén entre paréntesis
-✅ Texto completo de la Traducción del Nuevo Mundo (TNM)
-
-**Estructura de cada tarjeta:**
-\`\`\`typescript
-{
-  reference: "2 Corintios 2:5-11",
-  purpose: "Perdonar evita que Satanás nos venza",  // ← Máx 10-12 palabras, directo
-  text: "[Texto completo TNM]"
-}
-\`\`\`
-
-**Formato del "purpose":**
-- ✅ Directo: "Perdonar evita que Satanás nos venza"
-- ✅ Específico: "David fue perdonado completamente"
-- ❌ Evitar: "Muestra que...", "Enseña que...", "Explica que..."
-
-## 🔄 Flujo de trabajo completo
-
-### Inicio
-\`\`\`
-Tú: "Ayúdame a estudiar"
-Claude: "✅ Modo estudio activado. ¿Qué párrafo quieres revisar?"
-\`\`\`
-
-### Por cada párrafo
-\`\`\`
-Tú: "párrafo 5"
-
-Claude:
-## 📖 Párrafo 5
-
-### ❓ PREGUNTA
-[La pregunta]
-
-### ✅ RESPUESTA DIRECTA
-[Respuesta en lenguaje sencillo]
-
-### 🔑 PUNTOS CLAVE (En tarjetas visuales)
-[Puntos organizados en tarjetas - con botones ✓ y 🔗 para marcar]
-
-### 🎴 RESPUESTAS SECUNDARIAS SUGERIDAS (3 tarjetas)
-[Lista de answers sobre DETALLES específicos]
-
-### 📖 TEXTOS BÍBLICOS SUGERIDOS (2 textos)
-[Lista de textos bíblicos del párrafo]
-
----
-✅ Todo agregado automáticamente al archivo
----
-
-¿Qué párrafo revisamos ahora?
-\`\`\`
-
-## ⚡ Automatización - MUY IMPORTANTE
-
-**🚨 REGLA CRÍTICA DE AUTOMATIZACIÓN:**
-
-Cuando el usuario dice **"sigamos con el párrafo X"** o **"párrafo X"**, Claude DEBE:
-
-1. ✅ Proporcionar la respuesta directa, answers y textos bíblicos
-2. ✅ **AGREGAR TODO AUTOMÁTICAMENTE** al archivo \`data/atalaya-data.ts\`
-3. ✅ **NO esperar aprobación del usuario**
-4. ✅ **NO preguntar** "¿quieres que los agregue?"
-
-**TODO se agrega automáticamente:**
-- ✅ Respuesta directa
-- ✅ Puntos clave (en tarjetas visuales, con botones ✓ y 🔗 para marcar)
-- ✅ Respuesta secundarias (2-4 tarjetas)
-- ✅ Textos bíblicos (todos los del párrafo)
-- ✅ Textos con "LEE" cuando aplique
-- ✅ Sin necesidad de aprobar
-- ✅ Inmediatamente después de presentar la información
-
-**Tú solo necesitas:**
-1. Decir "ayúdame a estudiar"
-2. Indicar el párrafo → Claude responde Y agrega automáticamente
-3. Avanzar al siguiente → Claude responde Y agrega automáticamente
-
-## 🎯 Comandos rápidos
-
-| Comando | Acción |
-|---------|--------|
-| \`ayúdame a estudiar\` | Inicia modo estudio |
-| \`párrafo 5\` | Estudia el párrafo 5 |
-| \`párrafos 3 y 4\` | Estudia párrafos 3 y 4 |
-| \`siguiente\` | Avanza al siguiente párrafo |
-| \`terminamos el estudio\` | Sale del modo estudio |
-
-## 📊 Ejemplo completo de sesión
-
-\`\`\`
-Tú: Ayúdame a estudiar
-
-Claude: ✅ Modo estudio activado. ¿Qué párrafo quieres revisar?
-
-Tú: párrafo 1
-
-Claude: [Presenta pregunta, respuesta, puntos clave, answers y textos]
-✅ Respuesta secundarias y textos agregados automáticamente
-¿Qué párrafo revisamos ahora?
-
-Tú: siguiente
-
-Claude: [Presenta párrafo 2...]
-
-... [continúa hasta terminar todos los párrafos]
-
-Tú: terminamos el estudio
-
-Claude: ✅ Estudio completado
-\`\`\`
-
-## 💡 Recordatorios importantes
-
-1. **Respuesta secundarias NO deben parafrasear la pregunta** - deben enfocarse en detalles
-2. **Textos bíblicos** - incluir TODOS los mencionados en el párrafo
-3. **Puntos Clave** - NO marcar tipos al agregar, el usuario los marca después en la interfaz
-4. **Todo es automático** - no necesitas aprobar, solo revisar
-5. **Recarga localhost:9000** para ver los cambios en la app
-
----
-
-**¿Necesitas ayuda?** Pregunta lo que necesites sobre la app.`;
-
-  const studyProtocol = `# 📚 PROTOCOLO COMPLETO DE ESTUDIO PÁRRAFO POR PÁRRAFO
-
-## 🚨 PASO INICIAL - CUANDO RECIBES UN NUEVO ARTÍCULO
-
-**IMPORTANTE:** Ya no se borra contenido anterior. Los artículos se mantienen organizados por mes en \`atalayaDatabase\`.
-
-**Agregar un nuevo artículo**
-
-Cuando el usuario proporciona un nuevo artículo de La Atalaya:
-
-1. Identifica el mes correcto en \`atalayaDatabase\` (ej: "2025-08" para Agosto 2025)
-2. Agrega el nuevo artículo al array \`articles\` de ese mes
-3. Si el mes no existe, créalo primero con su estructura
-
-Cada artículo debe incluir \`metadata\` con:
-- articleNumber (número del artículo)
-- week (semana correspondiente)
-- month (nombre del mes)
-- year (año)
-
-SOLO debes agregar:
-
-✅ **Estructura básica de preguntas normales:**
-- number
-- textEs
-- paragraphs
-- section (si existe)
-- image (si existe)
-- textLSM: "" (siempre vacío)
-
-✅ **Estructura básica de párrafos:**
-- number
-- content
-
-✅ **Estructura básica de preguntas de repaso:**
-- question (solo este campo)
-
-❌ **NO agregar en este paso inicial:**
-- answer
-- answerBullets
-- answers
-- biblicalCards
-- questionLSM en reviewQuestions
-- sectionLSM (siempre vacío)
-
-**Razón:** Estos campos se agregarán después, durante la fase de estudio párrafo por párrafo que se describe a continuación.
-
----
-
-## 🎯 Objetivo
-Estudiar cada párrafo del artículo de La Atalaya de forma sistemática, generando automáticamente respuestas, answers y textos bíblicos para cada pregunta.
-
-## 🚀 Inicio de sesión de estudio
-
-### Paso 1: Activar modo estudio
-Di cualquiera de estas frases:
-- "Ayúdame a estudiar"
-- "Ayúdame a estudiar el artículo"
-- "Vamos a estudiar"
-- "Comenzamos el estudio"
-
-### Paso 2: Indicar el párrafo
-Simplemente di el número del párrafo:
-- "párrafo 5"
-- "párrafos 3 y 4"
-- "siguiente" (para avanzar)
-
-## 📋 Lo que recibirás AUTOMÁTICAMENTE
-
-Para cada párrafo, recibirás:
-
-### 1. ❓ LA PREGUNTA
-La pregunta exacta del estudio tal como aparece en La Atalaya.
-- Si el párrafo tiene un texto para leer, aparecerá: **📖 LEE [referencia bíblica]** en azul
-
-### 2. ✅ RESPUESTA DIRECTA
-- Lenguaje sencillo y directo
-- 2-4 oraciones máximo
-- Basada SOLO en los párrafos correspondientes
-- Sin información extra
-
-### 3. 🔑 PUNTOS CLAVE
-- Formato visual con tarjetas individuales en grid responsivo
-- Estructura: primeros 2-3 puntos = respuesta directa, resto = información entrelazada
-- Títulos opcionales con **negrita**
-- **Sistema de marcado con botones independientes:**
-  - Botón ✓ verde: Marca/desmarca como "Respuesta Directa"
-  - Botón 🔗 naranja: Marca/desmarca como "Entrelazado"
-  - Un punto puede tener ambas marcas, una, o ninguna
-  - Las marcas se guardan automáticamente en Vercel KV
-- Se pueden editar, agregar y eliminar puntos individuales
-- Click en el punto para marcarlo como completado durante el estudio
-
-### 4. 🎴 RESPUESTAS SECUNDARIAS SUGERIDAS (2-4 tarjetas)
-**CRITERIOS ESTRICTOS:**
-
-🚨 **REGLA CRÍTICA #1: ANALIZAR PROFUNDAMENTE EL CONTENIDO**
-Antes de crear answers, debes:
-1. **Leer cuidadosamente** el contenido completo de los párrafos
-2. **Analizar los textos bíblicos** citados y su contenido específico
-3. **Identificar detalles específicos**: listas, cualidades, números, nombres, ejemplos
-4. **Buscar información adicional** que NO esté en la pregunta ni en la respuesta directa
-
-**Ejemplo de análisis profundo:**
-Párrafos 7, 8 mencionan:
-- Éxodo 34:6, 7: Jehová es "misericordioso y compasivo"
-- Salmo 31:5: Jehová es el "Dios de la verdad"
-- Resultado: 3 cualidades de Jehová
-- Respuesta secundaria: "En estos párrafos se mencionan 3 cualidades de Jehová, ¿cuáles son?"
-
-🚨 **REGLA CRÍTICA #2:**
-❌ Las answers NO deben parafrasear la pregunta principal
-❌ Las answers NO deben repetir lo que ya está en la respuesta directa
-
-✅ **SÍ crear answers sobre:**
-- Detalles ADICIONALES específicos del párrafo (números, listas, datos)
-- **Cualidades, características o atributos mencionados** (muy importante)
-- Eventos bíblicos mencionados con nombres específicos
-- Conceptos o vocabulario técnico del párrafo
-- Relaciones causa-efecto explicadas en el párrafo
-- Citas textuales importantes del párrafo o de textos bíblicos
-- Información que NO esté en la pregunta ni en la respuesta directa
-
-❌ **NO crear answers sobre:**
-- Reformulaciones de la pregunta principal
-- Información que ya está en la respuesta directa
-- Preguntas genéricas que parafrasean el título
-- Referencias bíblicas (esas van en tarjetas bíblicas)
-- Nombres de ejemplos modernos
-- Información obvia
-- **Detalles triviales sin valor espiritual** (ubicaciones geográficas, datos irrelevantes)
-- Preguntas que no aportan nada al entendimiento espiritual
-
-**Ejemplo 1 - Párrafo 5:**
-
-**Pregunta del párrafo:** "¿Qué quiere Satanás que creamos? Pon un ejemplo."
-**Respuesta directa:** "Satanás quiere que creamos que hemos cometido un pecado tan grave que Jehová nunca nos va a perdonar..."
-
-**❌ SECUNDARIA MALA (parafrasea la pregunta):**
-- "¿Qué trampa usa Satanás para que dejemos de servir?" ← Esto es lo mismo que la pregunta
-
-**❌ SECUNDARIA MALA (repite la respuesta directa):**
-- "¿Qué quiere Satanás que creamos sobre nuestros pecados?" ← Ya está en la respuesta directa
-
-**✅ RESPUESTAS SECUNDARIAS BUENAS (detalles adicionales específicos):**
-- "¿Qué pecado cometió el hombre de Corinto según 1 Corintios 5:1?"
-- "Según 2 Corintios 2:7, ¿qué podría pasar si el hermano no es perdonado?"
-- "¿Qué frase usa Pablo en 2 Corintios 2:11 sobre las tácticas de Satanás?"
-
-**Ejemplo 2 - Párrafo 6:**
-
-**Pregunta del párrafo:** "¿Qué nos ayudará a liberarnos del peso de la culpa?"
-**Respuesta directa:** "Convencernos de que Jehová nos ha perdonado... dejar la culpa atrás y pasar la página..."
-
-**❌ SECUNDARIA MALA (repite la respuesta directa):**
-- "¿Qué logramos hacer cuando nos convencemos de que Jehová nos ha perdonado?" ← Ya está en la respuesta
-
-**✅ RESPUESTAS SECUNDARIAS BUENAS (detalles adicionales):**
-- "¿Qué texto muestra que es natural sentirse mal cuando pecamos?" (Salmo 51:17)
-- "¿Por qué es bueno sentirse mal cuando pecamos?" (2 Corintios 7:10, 11)
-- "¿Qué puede pasar si nos sentimos demasiado culpables después de arrepentirnos?"
-
-**🚨 REGLA DE LENGUAJE SENCILLO:**
-Las answers DEBEN ser **fáciles de entender**:
-- ✅ Preguntas claras y directas
-- ✅ Sin construcciones complicadas
-- ❌ Evitar términos confusos
-
-**Ejemplos:**
-- ❌ Complicado: "¿Para qué sirve que la conciencia nos haga sentir mal?"
-- ✅ Sencillo: "¿Por qué es bueno sentirse mal cuando pecamos?"
-
-**🚨 REGLA CRÍTICA: PREGUNTAS DE REFLEXIÓN, NO DE TRIVIA**
-
-Las answers deben invitar a la **reflexión personal y aplicación práctica**, NO ser preguntas de trivia bíblica.
-
-**❌ EVITAR preguntas tipo trivia:**
-- "¿Qué texto muestra que Jehová siempre dice la verdad?" → Solo memorización
-- "¿Dónde estaba Moisés cuando Jehová se describió?" → Detalle irrelevante
-
-**✅ USAR preguntas de reflexión:**
-- "Según Salmo 31:5, ¿cómo te ayuda saber que Jehová es el Dios de la verdad?"
-- "Si Jehová eligió presentarse como misericordioso, ¿qué te dice eso sobre su personalidad?"
-- "¿Cómo te ayuda personalmente saber que Jehová perdona completamente?"
-
-**Tipos de preguntas efectivas:**
-1. **"¿Cómo te ayuda [texto] a...?"** → Aplicación personal
-2. **"Según [texto], ¿qué aprendemos sobre...?"** → Reflexión
-3. **"¿Qué te dice esto sobre...?"** → Análisis
-4. **"¿Por qué podemos estar seguros de que...?"** → Razonamiento
-
-Estas preguntas permiten que el auditorio participe mejor con comentarios más profundos.
-
-### 5. 📖 TEXTOS BÍBLICOS SUGERIDOS
-
-**CRITERIOS:**
-✅ Incluir TODOS los textos citados en el párrafo
-✅ Incluir textos mencionados aunque no estén entre paréntesis
-✅ Texto completo de la Traducción del Nuevo Mundo (TNM)
-
-**Estructura de cada tarjeta:**
-\`\`\`typescript
-{
-  reference: "2 Corintios 2:5-11",
-  purpose: "Perdonar evita que Satanás nos venza",  // ← Máx 10-12 palabras, directo
-  text: "[Texto completo TNM]"
-}
-\`\`\`
-
-**Formato del "purpose":**
-- ✅ Directo: "Perdonar evita que Satanás nos venza"
-- ✅ Específico: "David fue perdonado completamente"
-- ❌ Evitar: "Muestra que...", "Enseña que...", "Explica que..."
-
-## 🔄 Flujo de trabajo completo
-
-### Inicio
-\`\`\`
-Tú: "Ayúdame a estudiar"
-Claude: "✅ Modo estudio activado. ¿Qué párrafo quieres revisar?"
-\`\`\`
-
-### Por cada párrafo
-\`\`\`
-Tú: "párrafo 5"
-
-Claude:
-## 📖 Párrafo 5
-
-### ❓ PREGUNTA
-[La pregunta]
-
-### ✅ RESPUESTA DIRECTA
-[Respuesta en lenguaje sencillo]
-
-### 🔑 PUNTOS CLAVE (En tarjetas visuales)
-[Puntos organizados en tarjetas - con botones ✓ y 🔗 para marcar]
-
-### 🎴 RESPUESTAS SECUNDARIAS SUGERIDAS (3 tarjetas)
-[Lista de answers sobre DETALLES específicos]
-
-### 📖 TEXTOS BÍBLICOS SUGERIDOS (2 textos)
-[Lista de textos bíblicos del párrafo]
-
----
-✅ Todo agregado automáticamente al archivo
----
-
-¿Qué párrafo revisamos ahora?
-\`\`\`
-
-## ⚡ Automatización - MUY IMPORTANTE
-
-**🚨 REGLA CRÍTICA DE AUTOMATIZACIÓN:**
-
-Cuando el usuario dice **"sigamos con el párrafo X"** o **"párrafo X"**, Claude DEBE:
-
-1. ✅ Proporcionar la respuesta directa, answers y textos bíblicos
-2. ✅ **AGREGAR TODO AUTOMÁTICAMENTE** al archivo \`data/atalaya-data.ts\`
-3. ✅ **NO esperar aprobación del usuario**
-4. ✅ **NO preguntar** "¿quieres que los agregue?"
-
-**TODO se agrega automáticamente:**
-- ✅ Respuesta directa
-- ✅ Puntos clave (en tarjetas visuales, con botones ✓ y 🔗 para marcar)
-- ✅ Respuesta secundarias (2-4 tarjetas)
-- ✅ Textos bíblicos (todos los del párrafo)
-- ✅ Textos con "LEE" cuando aplique
-- ✅ Sin necesidad de aprobar
-- ✅ Inmediatamente después de presentar la información
-
-**Tú solo necesitas:**
-1. Decir "ayúdame a estudiar"
-2. Indicar el párrafo → Claude responde Y agrega automáticamente
-3. Avanzar al siguiente → Claude responde Y agrega automáticamente
-
-## 🎯 Comandos rápidos
-
-| Comando | Acción |
-|---------|--------|
-| \`ayúdame a estudiar\` | Inicia modo estudio |
-| \`párrafo 5\` | Estudia el párrafo 5 |
-| \`párrafos 3 y 4\` | Estudia párrafos 3 y 4 |
-| \`siguiente\` | Avanza al siguiente párrafo |
-| \`terminamos el estudio\` | Sale del modo estudio |
-
-## 📊 Ejemplo completo de sesión
-
-\`\`\`
-Tú: Ayúdame a estudiar
-
-Claude: ✅ Modo estudio activado. ¿Qué párrafo quieres revisar?
-
-Tú: párrafo 1
-
-Claude: [Presenta pregunta, respuesta, puntos clave, answers y textos]
-✅ Respuesta secundarias y textos agregados automáticamente
-¿Qué párrafo revisamos ahora?
-
-Tú: siguiente
-
-Claude: [Presenta párrafo 2...]
-
-... [continúa hasta terminar todos los párrafos]
-
-Tú: terminamos el estudio
-
-Claude: ✅ Estudio completado
-\`\`\`
-
-## 📝 PREGUNTAS DE REPASO
-
-Al final del estudio, hay **3 preguntas de repaso** que resumen los puntos principales:
-- Cada pregunta tiene su **respuesta directa** y **puntos clave en tarjetas visuales**
-- Las respuestas se muestran **expandidas por defecto** (no necesitas hacer clic)
-- Los puntos clave aparecen como **tarjetas individuales** con formato visual
-- Puedes agregar y editar la versión en LSM de las preguntas
-
-## 💡 Recordatorios importantes
-
-1. **Respuesta secundarias NO deben parafrasear la pregunta** - deben enfocarse en detalles
-2. **Textos bíblicos** - incluir TODOS los mencionados en el párrafo
-3. **Puntos Clave** - Se muestran como tarjetas visuales en grid
-4. **Marcado independiente** - Botones separados para "Respuesta Directa" y "Entrelazado"
-5. **Textos con LEE** - Se muestran automáticamente en azul bajo la pregunta
-6. **Preguntas de repaso** - Al final, con respuestas y puntos clave expandidos
-7. **Todo es automático** - no necesitas aprobar, solo revisar
-8. **Recarga localhost:9000** para ver los cambios en la app`;
+Antes de entregar, revisa \`git diff\` y una validación ligera razonable. No uses Browser, Chrome ni Playwright a menos que el usuario lo pida explícitamente en ese turno.`;
 
   const handleCopy = async () => {
     try {

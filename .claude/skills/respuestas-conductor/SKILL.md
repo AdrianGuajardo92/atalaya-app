@@ -1,22 +1,35 @@
 ---
 name: respuestas-conductor
-description: Respuestas enriquecidas para conducir el estudio — AnswerItem con principales, secundarias y followUp. Úsalo al redactar o migrar answers en estudios de La Atalaya. Prohibido flashcards.
+description: Respuestas enriquecidas para conducir el estudio — AnswerItem con respuestas principales y detalles secundarios visibles para formular preguntas de apoyo. Úsalo al redactar, enriquecer o migrar answers en estudios de La Atalaya. Prohibido flashcards.
 ---
 
 # Respuestas para el conductor
 
 ## Propósito
 
-Las respuestas ayudan al **conductor** a guiar la congregación: ideas principales que contestan la pregunta impresa, detalles secundarios del párrafo y una pregunta de seguimiento si nadie menciona cada idea.
+Las respuestas ayudan al **conductor** a guiar la congregación: ideas principales que contestan la pregunta impresa y detalles secundarios visibles que salen del párrafo para formular preguntas de apoyo si alguien no menciona un punto.
 
 **No usar tarjetas didácticas (`flashcards`).** Ese modelo fue eliminado.
+
+## Propiedad de esta skill
+
+Esta skill es la fuente canónica para:
+
+- `answers`
+- `AnswerItem`
+- respuestas principales
+- respuestas secundarias (`secondary: true`)
+- `followUp`
+- migración desde `answer` / `answerContext` legacy hacia `answers`
+
+No redacta `commentSuggestion` ni `biblicalCards.purpose`; eso pertenece a `.agents/skills/como-comentarlo/SKILL.md`.
 
 ## Modelo de datos
 
 ```typescript
 export interface AnswerItem {
   text: string;        // 1–2 líneas con **negritas** en el concepto clave
-  followUp?: string;   // Pregunta si nadie menciona esta idea (~12 palabras máx.)
+  followUp?: string;   // Respaldo/compatibilidad; no se renderiza en la UI principal
   secondary?: boolean; // true = detalle/ejemplo del párrafo
 }
 
@@ -47,8 +60,8 @@ Tests: `lib/answerItems.test.ts`
 - **Lista unificada:** sin caja “Del párrafo”; una sola columna
 - **Numeración continua:** `[1…n]` principales, luego `[n+1…]` secundarias
 - **Pill “Detalle”** junto al número en secundarias; tipografía más pequeña
-- **Colapsable:** si hay 2+ secundarias, bloque “Ver más detalles del párrafo” (cerrado por defecto)
-- **followUp:** solo en principales, etiqueta ámbar “Si no lo mencionan”
+- **Colapsable:** si hay 2+ secundarias, bloque “Detalles del párrafo” abierto por defecto; el usuario puede ocultarlo
+- **followUp:** se conserva en datos para respaldo del conductor, pero no se renderiza en la UI del estudio
 - **Marcar usado:** click en fila (✅/🔖), IDs KV por índice global
 
 `SummaryView` imprime la misma numeración continua con prefijo “Detalle” en secundarias (sin followUp).
@@ -60,7 +73,8 @@ Tests: `lib/answerItems.test.ts`
 | Tipo | Cantidad |
 |------|----------|
 | Principales | 2–3 |
-| Secundarias | 0–2 (solo si aportan algo único) |
+| Secundarias | 1–4 si aportan algo único |
+| Agrupadas / recuadro | 4–8 secundarias si cada una aporta algo distinto |
 
 ### Principales
 
@@ -72,16 +86,19 @@ Tests: `lib/answerItems.test.ts`
 ### Secundarias (`secondary: true`)
 
 - Detalles, ejemplos y experiencias del párrafo
+- Textos bíblicos, advertencias, consecuencias, aplicaciones y frases clave
 - Datos que enriquecen pero no son la respuesta central
-- **No duplicar** lo que ya cubre un followUp de una principal
+- **No duplicar** una idea principal ya cubierta
 - **No** incluir frases meta del artículo (“En este artículo veremos…”)
+- Como el `followUp` no se muestra en la UI, estas secundarias son el material visible para formular preguntas si nadie menciona un punto
+- Prohibido meter “relleno”: si no ayuda a conducir, no va
 - Ejemplos: Sarah (p.8), Leah/Roxanne/Damien/Katie (p.12), Myriam (p.13)
 
 ### followUp
 
-- Máximo ~12 palabras
-- Pregunta natural que el conductor puede hacer si la congregación no mencionó la idea
-- Anclada al párrafo o al texto bíblico citado
+- Mantenerlo solo como respaldo/compatibilidad en respuestas principales
+- No depender de `followUp` para que el conductor vea el material de apoyo
+- Si se redacta, debe ser breve y anclado al párrafo o texto bíblico citado
 - **No** usar estilo "Yo podría comentar" (eso va en `commentSuggestion`)
 
 ### Ejemplo
@@ -89,15 +106,19 @@ Tests: `lib/answerItems.test.ts`
 ```typescript
 answers: [
   {
-    text: "Los buenos amigos son un **regalo de Jehová** (Sant. 1:17).",
-    followUp: "¿Qué dice Santiago sobre todo don bueno?",
+    text: "Sacar **tiempo para estar juntos** fortalece la amistad y el matrimonio aunque estén muy ocupados.",
+    followUp: "¿Qué fortalece el tiempo que pasan juntos?",
   },
   {
-    text: "Son **leales** y confiables; nos consuelan y aconsejan con franqueza.",
-    followUp: "¿Qué hacen cuando estamos tristes?",
+    text: "Ese tiempo les permite **hablar de lo que pasó durante el día** y mantenerse cerca.",
+    followUp: "¿Qué pueden compartir cuando apartan tiempo juntos?",
   },
   {
-    text: "Sin duda, los amigos así “**alegran el corazón**” (Prov. 27:9).",
+    text: "También les permite contarse sus **pensamientos y sentimientos más profundos**.",
+    secondary: true,
+  },
+  {
+    text: "Pueden mostrarse **cariño** y hacer cosas divertidas juntos.",
     secondary: true,
   },
 ],
@@ -106,10 +127,12 @@ answers: [
 ## Flujo para estudios nuevos
 
 1. Leer párrafos de la pregunta
-2. Redactar 2–3 principales con followUp
-3. Extraer 1–3 secundarias (experiencias, detalles)
+2. Redactar 2–3 principales que contesten directamente la pregunta
+3. Extraer detalles secundarios relevantes: textos bíblicos, ejemplos, advertencias, consecuencias, aplicaciones y frases clave
 4. Usar solo `answers` — **no** `answer`, `answerContext` ni `flashcards`
-5. Mantener `keyPoint` y `guidingQuestion` como respaldo global
+5. Mantener `keyPoint` y `guidingQuestion` solo como respaldo de datos; no se muestran en la UI principal
+6. Revisar que ningún detalle secundario sea relleno ni repita una principal
+7. Si hace falta una frase oral tipo "Yo podría comentar", pasar a `como-comentarlo`; no mezclarla en `answers`.
 
 ## Migración de estudios legacy
 
@@ -132,7 +155,7 @@ answers: [
 
 ## Checklist
 
-- [ ] `answers` con 2–3 principales + 0–2 secundarias únicas
+- [ ] `answers` con 2–3 principales + secundarias útiles, sin ruido visual
 - [ ] followUp en cada principal (no en secundarias)
 - [ ] Negritas en conceptos clave
 - [ ] Acentos y signos correctos en español

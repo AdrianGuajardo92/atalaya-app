@@ -1,7 +1,7 @@
 import { ArticleData, ArticleOverview, Question, ReviewQuestion, Paragraph } from '@/types/atalaya';
 import { getArticleId } from '@/data/articles';
 import { copyToClipboard } from '@/lib/clipboard';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface StudyHeaderProps {
   song: string;
@@ -146,10 +146,10 @@ export default function StudyHeader({
   const [isEditingTitleLSM, setIsEditingTitleLSM] = useState(false);
   const [titleLSMEdit, setTitleLSMEdit] = useState(titleLSM || '');
 
-  // Actualizar el estado local cuando cambia el prop
-  useEffect(() => {
+  const handleStartEditTitleLSM = () => {
     setTitleLSMEdit(titleLSM || '');
-  }, [titleLSM]);
+    setIsEditingTitleLSM(true);
+  };
 
   const handleSaveTitleLSM = async () => {
     if (onTitleLSMUpdate) {
@@ -297,7 +297,7 @@ export default function StudyHeader({
         <div className="mb-8">
           {!isEditingTitleLSM ? (
             <div
-              onClick={() => setIsEditingTitleLSM(true)}
+              onClick={handleStartEditTitleLSM}
               className="cursor-pointer bg-surface border border-border rounded-xl p-6 hover:border-border-strong hover:shadow-md transition-all group"
             >
               <div className="flex items-start gap-4">

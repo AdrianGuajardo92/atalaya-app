@@ -77,7 +77,8 @@ Flip: transition-transform duration-700 ease-in-out (rotateY 180deg)
 ```
 Principales: numeración [n], text-lg text-text-body
 Secundarias: border-l-2 border-border bg-surface-alt, label "Del párrafo"
-followUp: text-[10px] uppercase text-amber-700 "Si no lo mencionan"
+followUp: datos de respaldo, oculto en la UI del estudio
+Detalles secundarios: visibles por defecto; colapsables solo para ocultar
 Click para marcar usado: ✅/🔖 en QuestionCard
 ```
 

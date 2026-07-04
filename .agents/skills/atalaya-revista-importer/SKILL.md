@@ -17,7 +17,7 @@ Esta skill reproduce el flujo usado para importar la revista de estudio de marzo
   - Imágenes oficiales en `question.image`, no en párrafos.
   - `biblicalTexts` para cada `readText` **y** refs TNM del recuadro (`sidebar`).
   - `biblicalCards` con textos reales de la Traducción del Nuevo Mundo.
-  - Comentarios naturales de "Cómo comentarlo" para preguntas y textos bíblicos.
+  - Comentarios naturales de "Cómo comentarlo" para preguntas y `biblicalCards.purpose` enriquecido para textos bíblicos.
   - `data/articles/index.ts` actualizado (`studiesMap`, `biblicalTextsMap`).
   - `data/articles-config.ts` actualizado (`activeStudyIds`, `defaultStudyId`).
 
@@ -27,13 +27,23 @@ Esta skill reproduce el flujo usado para importar la revista de estudio de marzo
 2. Usa siempre ortografía correcta en español: Jehová, Satanás, Moisés, Josué, Edén, ¿...?, ¡...!
 3. No inventes textos bíblicos. Si falta un texto, vuelve a consultarlo en jw.org.
 4. Las imágenes visibles van en `question.image`. Usa la URL directa de mayor tamaño disponible, normalmente `data-zoom` con `_xl.jpg`.
-5. Las respuestas (`answer`) deben ser arrays de oraciones breves con negritas en conceptos clave.
+5. Las respuestas del conductor usan `answers: AnswerItem[]` según `.agents/skills/respuestas-conductor/SKILL.md`.
 6. Los resúmenes de párrafo (`summary`) deben ser resúmenes reales, no copias ni recortes del párrafo.
 7. El contenido completo del párrafo (`content`) no lleva negritas.
-8. Al crear estudios nuevos, es obligatorio leer y aplicar `.agents/skills/como-comentarlo/SKILL.md`.
+8. Al crear estudios nuevos, es obligatorio leer y aplicar las skills dueñas de contenido: `respuestas-conductor`, `como-comentarlo` y `box-supplement` si hay recuadros.
 9. Si una revista incluye material que no sea artículo de estudio, como “Personaje bíblico”, no lo importes como artículo de estudio.
 
-## Cómo Comentarlo en Artículos Nuevos
+## Skills dueñas durante la importación
+
+El importador genera borradores y estructura. El pulido de contenido se delega así:
+
+| Contenido | Skill dueña |
+|-----------|-------------|
+| `answers`, principales, secundarias y `followUp` | `.agents/skills/respuestas-conductor/SKILL.md` |
+| `question.commentSuggestion`, `reviewQuestions.commentSuggestion` y `biblicalCards.purpose` | `.agents/skills/como-comentarlo/SKILL.md` |
+| `paragraph.sidebar`, refs clicables de recuadros y reglas de `boxSupplement` | `.agents/skills/box-supplement/SKILL.md` |
+
+## Cómo comentarlo en artículos nuevos
 
 Después de generar preguntas, respuestas, párrafos, resúmenes y `biblicalCards`, lee:
 
@@ -46,7 +56,8 @@ Aplica esa skill antes de cerrar la importación:
 - Crea comentarios naturales de "Yo podría comentar" para cada pregunta del artículo.
 - Si el proyecto está usando `commentSuggestion` en los datos, guarda ahí los comentarios.
 - Si el proyecto está usando `lib/commentGuidance.ts` como mapa central, actualiza ese mapa sin crear otra arquitectura.
-- Para cada `biblicalCard`, agrega o mejora el comentario sencillo de cómo usar ese texto bíblico, si el tipo y el patrón actual lo permiten.
+- Para cada `biblicalCard`, agrega o mejora `purpose` con contexto enriquecido.
+- No uses `biblicalCards.commentSuggestion`.
 - No copies el `answer`, el `summary` ni frases largas del `content`.
 - El comentario debe ayudar al usuario a participar en la reunión con palabras claras y humanas.
 - Verifica cobertura: ninguna pregunta del artículo nuevo debe quedar sin "Cómo comentarlo".
@@ -60,7 +71,7 @@ Reglas obligatorias:
 - Escribe cada `summary` en lenguaje sencillo, como explicación para estudiar, no como copia editorial.
 - Hazlo de 1 oración clara; usa 2 solo si el párrafo tiene dos ideas fuertes.
 - Manténlo normalmente entre 20 y 40 palabras.
-- Conecta el resumen con la pregunta y con el `answer` de esa tarjeta.
+- Conecta el resumen con la pregunta y con las ideas principales de `answers`.
 - En preguntas con varios párrafos, cada `summary` debe explicar qué aporta ese párrafo específico, no repetir el mismo resumen general.
 - Usa negritas útiles en 1 a 3 conceptos clave: `**Jehová**`, `**confianza**`, `**Palabra de Dios**`, etc.
 - No copies las primeras frases del párrafo como resumen.
@@ -183,11 +194,12 @@ Cuando la pregunta dice «Vea también la imagen» y «Vea el recuadro…», el 
 5. Revisa y pule el resultado antes de cerrar:
    - Abre cada archivo `study-YYYY-MM-DD.ts` y confirma título, semana, canción, tema, preguntas, párrafos, imágenes y repaso.
    - Asegúrate de que todos los `readText` tengan entrada en `biblicalTexts`.
-   - **Completa entradas TNM** para refs del recuadro (warnings del script).
+   - **Completa entradas TNM** para refs del recuadro (warnings del script) y aplica `box-supplement`.
    - Asegúrate de que todos los textos citados en los párrafos estén en `biblicalCards`.
    - Reescribe todos los `summary` como resúmenes reales: sencillos, breves, ligados a la respuesta y con negritas útiles.
    - Verifica que ningún `summary` sea una copia larga del `content`, una pregunta, una frase cortada o un recorte con `...`.
-   - Aplica `.agents/skills/como-comentarlo/SKILL.md` y agrega comentarios naturales para las preguntas y textos bíblicos nuevos.
+   - Aplica `respuestas-conductor` para `answers`.
+   - Aplica `como-comentarlo` para comentarios naturales de preguntas y `biblicalCards.purpose`.
 
 ## Post-import obligatorio (el script NO genera todo)
 
@@ -200,12 +212,13 @@ El script `import_watchtower_issue.py` produce borradores. **Completar manualmen
 | `answers` | Sí | Ver skill `respuestas-conductor` — principales + secundarias + followUp |
 | `commentSuggestion` | No | Aplicar skill `como-comentarlo` |
 | `summary` | Borrador genérico | Reescribir (20–40 palabras, no copia del párrafo) |
-| `biblicalCards.purpose` | Genérico | Reescribir propósito específico |
+| `biblicalCards.purpose` | Genérico | Reescribir propósito específico con `como-comentarlo` |
 | `paragraph.sidebar` | Sí (`parse_box_supplement`) | Verificar título, intro, items; prefijos `***` en ítems; imagen en `question.image` |
 | Videos LSM | No | Agregar en `public/videos/` si aplica |
 
-6. Ejecuta verificación técnica:
+6. Ejecuta verificación técnica automatizada:
    ```bash
+   npm run study:validate
    npx tsc --noEmit
    npm run build
    npm run lint
@@ -235,24 +248,37 @@ Generar solo archivos en una carpeta temporal para inspección:
 python3 .agents/skills/atalaya-revista-importer/scripts/import_watchtower_issue.py --month marzo --year 2026 --write --output-dir /tmp/atalaya-import-test --no-integrate
 ```
 
-## Checklist Final
+## Checks automatizados
+
+Estos checks se pueden ejecutar con comandos o scripts y deben reportarse como verificación técnica:
+
+- [ ] `npx tsc --noEmit` pasa.
+- [ ] `npm run study:validate` no reporta errores estructurales.
+- [ ] `npm run build` pasa.
+- [ ] `npm run lint` pasa o se reportan errores preexistentes no relacionados.
+- [ ] El script no sobrescribió estudios existentes ni cambios del usuario.
+- [ ] `index.ts` importa, mapea en `studiesMap` / `biblicalTextsMap` y reexporta.
+- [ ] `articles-config.ts` tiene `activeStudyIds` y `defaultStudyId` correctos.
+- [ ] Cada archivo nuevo exporta `biblicalTextsYYYYMMDD` y `studyYYYYMMDD` con `metadata.studyId`.
+
+## Checklist humano final
+
+Este checklist requiere lectura y criterio editorial; no lo declares como "pasó" solo porque compiló:
 
 - [ ] Se agregaron solo artículos de estudio (`docClass-40`).
 - [ ] Se omitieron artículos no estudiables (`docClass-79` u otros).
 - [ ] No se sobrescribieron cambios del usuario.
-- [ ] Cada archivo nuevo exporta `biblicalTextsYYYYMMDD` y `studyYYYYMMDD` con `metadata.studyId`.
 - [ ] Cada ref bíblica del recuadro tiene entrada TNM en `biblicalTexts` (claves como `"Filipenses 1:10"`).
 - [ ] Cada párrafo tiene un `summary` real, breve, sencillo y conectado con su pregunta.
 - [ ] Ningún `summary` es una copia de las primeras frases del párrafo ni termina con `...`.
+- [ ] Se leyó y aplicó `.agents/skills/respuestas-conductor/SKILL.md`.
 - [ ] Se leyó y aplicó `.agents/skills/como-comentarlo/SKILL.md`.
+- [ ] Si hubo recuadros, se leyó y aplicó `.agents/skills/box-supplement/SKILL.md`.
 - [ ] Cada pregunta nueva tiene `guidingQuestion` y `answers` (skill `respuestas-conductor`).
 - [ ] Cada pregunta nueva tiene `commentSuggestion` (comentario natural).
-- [ ] Los textos bíblicos nuevos tienen comentarios sencillos cuando el patrón actual del proyecto lo permite.
-- [ ] `index.ts` importa, mapea en `studiesMap` / `biblicalTextsMap` y reexporta.
-- [ ] `articles-config.ts` tiene `activeStudyIds` y `defaultStudyId` correctos.
-- [ ] `npx tsc --noEmit` pasa.
-- [ ] `npm run build` pasa.
-- [ ] Se reportan con honestidad errores de lint preexistentes si aparecen.
+- [ ] Cada `biblicalCards.purpose` explica por qué el texto está en el párrafo.
+- [ ] No existe `biblicalCards.commentSuggestion`.
+- [ ] Los textos bíblicos nuevos tienen `biblicalCards.purpose` enriquecido según `como-comentarlo`.
 - [ ] Cada `boxSupplement` de jw.org tiene `paragraph.sidebar` en el párrafo correcto (no en `note`).
 - [ ] Si la pregunta referencia imagen + recuadro, `question.image` está asignada y el recuadro no se duplica en modal.
 - [ ] Prefijos de lista del recuadro conservan `***texto***` cuando jw.org usa negrita+cursiva.

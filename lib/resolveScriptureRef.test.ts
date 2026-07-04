@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseScriptureReferences } from './resolveScriptureRef';
+import { buildReferenceLookup, parseScriptureReferences, resolveScriptureFromParenthetical } from './resolveScriptureRef';
 
 describe('resolveScriptureRef', () => {
   it('parsea referencia simple', () => {
@@ -15,5 +15,41 @@ describe('resolveScriptureRef', () => {
   it('parsea compare con', () => {
     const refs = parseScriptureReferences('compare con Génesis 2:16, 17; 3:6');
     expect(refs.length).toBeGreaterThan(0);
+  });
+
+  it('parsea compare con después de otra referencia', () => {
+    expect(parseScriptureReferences('Hech. 5:29; compare con Génesis 2:16, 17; 3:6')).toEqual([
+      'Hechos 5:29',
+      'Génesis 2:16',
+      'Génesis 2:17',
+      'Génesis 3:6',
+    ]);
+  });
+
+  it('parsea referencias compuestas con lea', () => {
+    expect(parseScriptureReferences('lea Proverbios 18:22; Is. 48:17, 18')).toEqual([
+      'Proverbios 18:22',
+      'Isaías 48:17',
+      'Isaías 48:18',
+    ]);
+  });
+
+  it('prefiere textos individuales exactos sobre una tarjeta combinada', () => {
+    const lookup = buildReferenceLookup([
+      { reference: 'Isaías 48:17', text: 'Texto del versículo 17.' },
+      { reference: 'Isaías 48:18', text: 'Texto del versículo 18.' },
+      { reference: 'Isaías 48:17, 18', text: 'Texto combinado que no debe duplicarse.' },
+    ]);
+    const resolved = resolveScriptureFromParenthetical(
+      'lea Proverbios 18:22; Is. 48:17, 18',
+      new Map(),
+      {},
+      lookup
+    );
+
+    expect(resolved?.verses).toEqual([
+      { reference: 'Isaías 48:17', text: 'Texto del versículo 17.' },
+      { reference: 'Isaías 48:18', text: 'Texto del versículo 18.' },
+    ]);
   });
 });

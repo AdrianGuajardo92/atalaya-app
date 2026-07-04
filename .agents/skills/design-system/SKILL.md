@@ -1,7 +1,6 @@
 ---
 name: design-system
 description: Sistema de diseño del proyecto atalaya-app. Úsalo al crear o modificar componentes visuales, modales, tarjetas, botones, dark mode o cualquier UI. Referencia obligatoria para consistencia visual.
-user-invocable: false
 ---
 
 # Sistema de Diseño — Atalaya App
@@ -56,7 +55,7 @@ Dark mode: paleta cálida (`#262624`, `#D97757`, `#C2C0B6`). Negritas en `.dark 
 | `QuestionCard.tsx` | Tarjeta principal; tokens semánticos; expansión `animate-slideDown` |
 | `ReviewQuestionCard.tsx` | Mismo lenguaje visual |
 | `CommentGuide.tsx` | Flip cards bíblicas `h-[250px]`, grid `md:grid-cols-2` |
-| `AnswerItemsList.tsx` | Respuestas principales/secundarias con followUp |
+| `AnswerItemsList.tsx` | Respuestas principales/secundarias; `followUp` queda oculto en la UI |
 | `VideoLSM.tsx` | Reproductor LSM (compact + full) |
 | `ThemeToggle.tsx` | Toggle dark/light |
 | `StudyHeader.tsx` | Header del estudio |

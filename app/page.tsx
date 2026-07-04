@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -9,10 +10,35 @@ import Timer from '@/components/Timer';
 import LsmBulkImport from '@/components/LsmBulkImport';
 
 import { getArticleById, getAllActiveArticles } from '@/data/articles';
-import { getDefaultArticleId } from '@/data/articles-config';
+import { getDefaultArticleId, isStudyActive } from '@/data/articles-config';
 import { countUniqueSections, isFirstQuestionInSection, sectionIndexAt } from '@/lib/sectionUtils';
+import {
+  NAVIGATION_MODE_STORAGE_KEY,
+  VIEW_MODE_STORAGE_KEY,
+  clampStudyPosition,
+  parseNavigationMode,
+  parseStoredStudyPosition,
+  parseViewMode,
+  studyNavigationPositionKey,
+  type StudyNavigationMode,
+  type StudyViewMode,
+} from '@/lib/studyNavigationState';
 import { ArticleData } from '@/types/atalaya';
 import ThemeToggle from '@/components/ThemeToggle';
+
+const getSavedNavigationPosition = (articleId: string, article: ArticleData | null) => {
+  if (typeof window === 'undefined' || !articleId) {
+    return { currentQuestionIndex: 0, currentReviewIndex: -1 };
+  }
+
+  const savedArticle = article ?? getArticleById(articleId) ?? null;
+
+  return clampStudyPosition(
+    parseStoredStudyPosition(localStorage.getItem(studyNavigationPositionKey(articleId))),
+    savedArticle?.questions.length ?? 0,
+    savedArticle?.reviewQuestions.length ?? 0,
+  );
+};
 
 export default function Home() {
   // Estado para manejo de artículos (usa la configuración centralizada)
@@ -21,9 +47,9 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const savedArticleId = localStorage.getItem('atalaya_current_article');
       if (savedArticleId) {
-        // Verificar que el artículo guardado todavía existe
+        // Verificar que el artículo guardado todavía existe y sigue activo
         const savedArticle = getArticleById(savedArticleId);
-        if (savedArticle) {
+        if (savedArticle && isStudyActive(savedArticleId)) {
           return savedArticleId;
         }
         // Si no existe, limpiar localStorage
@@ -36,10 +62,11 @@ export default function Home() {
   const [monthArticles, setMonthArticles] = useState<ArticleData[]>([]);
 
   // Estados existentes
-  const [viewMode, setViewMode] = useState<'study' | 'summary'>('study');
-  const [navigationMode, setNavigationMode] = useState<'scroll' | 'paginated'>('scroll');
+  const [viewMode, setViewMode] = useState<StudyViewMode>('study');
+  const [navigationMode, setNavigationMode] = useState<StudyNavigationMode>('scroll');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(-1);
+  const [hasRestoredViewState, setHasRestoredViewState] = useState(false);
   const [lsmData, setLsmData] = useState<Record<string, string>>({});
   const [favorites, setFavorites] = useState<Record<string, boolean>>(() => {
     if (typeof window !== 'undefined') {
@@ -77,17 +104,79 @@ export default function Home() {
 
   // Refs para debounced sync — evita race conditions en read-modify-write del KV
   const usedItemsRef = useRef(usedItems);
-  usedItemsRef.current = usedItems;
   const favoritesRef = useRef(favorites);
-  favoritesRef.current = favorites;
   const hiddenCardsRef = useRef(hiddenCards);
-  hiddenCardsRef.current = hiddenCards;
   const articleIdRef = useRef(currentArticleId);
-  articleIdRef.current = currentArticleId;
 
   const saveUsedItemsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const saveFavoritesTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const saveHiddenCardsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    usedItemsRef.current = usedItems;
+  }, [usedItems]);
+
+  useEffect(() => {
+    favoritesRef.current = favorites;
+  }, [favorites]);
+
+  useEffect(() => {
+    hiddenCardsRef.current = hiddenCards;
+  }, [hiddenCards]);
+
+  useEffect(() => {
+    articleIdRef.current = currentArticleId;
+  }, [currentArticleId]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || hasRestoredViewState || !currentArticle) return;
+
+    const savedPosition = getSavedNavigationPosition(currentArticleId, currentArticle);
+
+    setViewMode(parseViewMode(localStorage.getItem(VIEW_MODE_STORAGE_KEY)));
+    setNavigationMode(parseNavigationMode(localStorage.getItem(NAVIGATION_MODE_STORAGE_KEY)));
+    setCurrentQuestionIndex(savedPosition.currentQuestionIndex);
+    setCurrentReviewIndex(savedPosition.currentReviewIndex);
+    setHasRestoredViewState(true);
+  }, [currentArticle, currentArticleId, hasRestoredViewState]);
+
+  useEffect(() => {
+    if (!hasRestoredViewState) return;
+    if (typeof window === 'undefined') return;
+    localStorage.setItem(VIEW_MODE_STORAGE_KEY, viewMode);
+  }, [hasRestoredViewState, viewMode]);
+
+  useEffect(() => {
+    if (!hasRestoredViewState) return;
+    if (typeof window === 'undefined') return;
+    localStorage.setItem(NAVIGATION_MODE_STORAGE_KEY, navigationMode);
+  }, [hasRestoredViewState, navigationMode]);
+
+  useEffect(() => {
+    if (!hasRestoredViewState) return;
+    if (typeof window === 'undefined' || !currentArticleId) return;
+    localStorage.setItem(
+      studyNavigationPositionKey(currentArticleId),
+      JSON.stringify({ currentQuestionIndex, currentReviewIndex }),
+    );
+  }, [currentArticleId, currentQuestionIndex, currentReviewIndex, hasRestoredViewState]);
+
+  useEffect(() => {
+    if (!currentArticle) return;
+
+    const nextPosition = clampStudyPosition(
+      { currentQuestionIndex, currentReviewIndex },
+      currentArticle.questions.length,
+      currentArticle.reviewQuestions.length,
+    );
+
+    if (nextPosition.currentQuestionIndex !== currentQuestionIndex) {
+      setCurrentQuestionIndex(nextPosition.currentQuestionIndex);
+    }
+    if (nextPosition.currentReviewIndex !== currentReviewIndex) {
+      setCurrentReviewIndex(nextPosition.currentReviewIndex);
+    }
+  }, [currentArticle, currentQuestionIndex, currentReviewIndex]);
 
   // Cleanup timers on unmount
   useEffect(() => {
@@ -214,13 +303,17 @@ export default function Home() {
 
   // Hacer scroll al inicio cuando cambia la pregunta en modo paginado
   useEffect(() => {
-    if (navigationMode === 'paginated' && contentRef.current) {
-      // Scroll suave hacia el principio del contenido
-      contentRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+    if (navigationMode !== 'paginated' || !contentRef.current) return;
+
+    const scrollFrame = requestAnimationFrame(() => {
+      const target = contentRef.current;
+      if (!target) return;
+
+      const top = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+
+    return () => cancelAnimationFrame(scrollFrame);
   }, [currentQuestionIndex, currentReviewIndex, navigationMode]);
 
   // Detectar scroll y calcular progreso (solo en modo scroll)
@@ -272,6 +365,10 @@ export default function Home() {
     setCurrentReviewIndex(-1);
     // Guardar en localStorage para persistir entre recargas
     localStorage.setItem('atalaya_current_article', articleId);
+    localStorage.setItem(
+      studyNavigationPositionKey(articleId),
+      JSON.stringify({ currentQuestionIndex: 0, currentReviewIndex: -1 }),
+    );
   };
 
   const handlePrevious = () => {
@@ -374,7 +471,7 @@ export default function Home() {
     syncUsedItems();
   };
 
-  if (isLoading) {
+  if (isLoading || (currentArticle && !hasRestoredViewState)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[var(--gradient-page-from)] to-[var(--gradient-page-to)] flex items-center justify-center">
         <div className="text-xl text-text-secondary">Cargando...</div>
@@ -570,7 +667,7 @@ export default function Home() {
       </div>
 
       {/* Contenido principal */}
-      <div className="max-w-5xl mx-auto px-6 py-12">
+      <div className="max-w-5xl mx-auto px-6 py-12" data-dev-inspector-main-scope>
         {viewMode === 'summary' ? (
           <SummaryView article={currentArticle} />
         ) : (

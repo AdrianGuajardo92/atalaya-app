@@ -19,6 +19,126 @@ export const biblicalTexts20260629: Record<string, { reference: string; text: st
       "text": "El amor es paciente y bondadoso. El amor no es celoso. No presume, no es arrogante, no se porta de forma indecente, no busca sus propios intereses, no se irrita con facilidad. No lleva cuenta del daño. No se alegra por la injusticia, sino que se alegra con la verdad. Todo lo soporta, todo lo cree, todo lo espera, todo lo aguanta. El amor nunca falla."
     }
   ],
+  "Santiago 1:17": [
+    {
+      "reference": "Santiago 1:17",
+      "text": "Todos los regalos buenos y todos los dones perfectos vienen de arriba, descienden del Padre de las luces celestes. Él no varía ni cambia, como sí cambian las sombras."
+    }
+  ],
+  "Proverbios 27:9": [
+    {
+      "reference": "Proverbios 27:9",
+      "text": "Aceite e incienso alegran el corazón, igual que la dulce amistad que nace de un consejo sincero."
+    }
+  ],
+  "Isaías 48:17": [
+    {
+      "reference": "Isaías 48:17",
+      "text": "Esto es lo que dice Jehová, tu Recomprador, el Santo de Israel: “Yo, Jehová, soy tu Dios, el que te enseña por tu propio bien, el que te guía por el camino en que debes andar."
+    }
+  ],
+  "Isaías 48:18": [
+    {
+      "reference": "Isaías 48:18",
+      "text": "¡Si tan solo prestaras atención a mis mandamientos! Entonces, tu paz llegaría a ser igual que un río, y tu justicia, como las olas del mar."
+    }
+  ],
+  "Salmos 25:14": [
+    {
+      "reference": "Salmos 25:14",
+      "text": "La amistad íntima con Jehová es para quienes le temen, y él les da a conocer su pacto."
+    }
+  ],
+  "1 Corintios 7:39": [
+    {
+      "reference": "1 Corintios 7:39",
+      "text": "La esposa está atada a su esposo mientras él esté vivo. Pero, si su esposo se duerme en la muerte, está libre para casarse con quien quiera, siempre que sea en el Señor."
+    }
+  ],
+  "Proverbios 19:14": [
+    {
+      "reference": "Proverbios 19:14",
+      "text": "Casa y riquezas se heredan de los padres, pero la esposa prudente viene de Jehová."
+    }
+  ],
+  "2 Corintios 6:14": [
+    {
+      "reference": "2 Corintios 6:14",
+      "text": "No se pongan bajo un yugo desigual con los no creyentes. Porque ¿qué relación tienen la justicia y la maldad? ¿O qué tienen en común la luz y la oscuridad?"
+    }
+  ],
+  "Colosenses 3:9": [
+    {
+      "reference": "Colosenses 3:9",
+      "text": "No se mientan unos a otros. Quítense la vieja personalidad y sus prácticas,"
+    }
+  ],
+  "Colosenses 3:10": [
+    {
+      "reference": "Colosenses 3:10",
+      "text": "y vístanse con la nueva personalidad, que por medio del conocimiento exacto se va renovando según la imagen del que la creó"
+    }
+  ],
+  "1 Corintios 11:3": [
+    {
+      "reference": "1 Corintios 11:3",
+      "text": "Pero quiero que sepan que la cabeza de todo hombre es el Cristo, que la cabeza de la mujer es el hombre y que la cabeza del Cristo es Dios."
+    }
+  ],
+  "Amós 3:3": [
+    {
+      "reference": "Amós 3:3",
+      "text": "¿Andarán juntas dos personas a menos que hayan acordado encontrarse?"
+    }
+  ],
+  "Mateo 7:12": [
+    {
+      "reference": "Mateo 7:12",
+      "text": "Por eso, hagan por los demás todo lo que les gustaría que hicieran por ustedes. De hecho, en eso se resumen la Ley y los Profetas."
+    }
+  ],
+  "Proverbios 27:17": [
+    {
+      "reference": "Proverbios 27:17",
+      "text": "Así como el hierro afila el hierro, un hombre hace mejor a su amigo."
+    }
+  ],
+  "1 Corintios 7:28": [
+    {
+      "reference": "1 Corintios 7:28",
+      "text": "Pero, si te casas, no cometes ningún pecado. Y, si alguien virgen se casa, no comete ningún pecado. Sin embargo, los que lo hagan tendrán dificultades en la vida. Yo intento ahorrarles eso."
+    }
+  ],
+  "Malaquías 2:16": [
+    {
+      "reference": "Malaquías 2:16",
+      "text": "Porque yo odio el divorcio —dice Jehová, el Dios de Israel— y al que actúa con violencia —dice Jehová de los ejércitos—. Estén atentos a su actitud y no sean traicioneros."
+    }
+  ],
+  "1 Corintios 7:10": [
+    {
+      "reference": "1 Corintios 7:10",
+      "text": "A los casados les doy la orden —no yo, sino el Señor— de que la esposa no se separe de su esposo."
+    }
+  ],
+  "1 Corintios 7:11": [
+    {
+      "reference": "1 Corintios 7:11",
+      "text": "Pero, si ella se separa, que permanezca sin casarse o, si no, que se reconcilie con su esposo. Y el esposo no debe dejar a su esposa."
+    }
+  ],
+  "Eclesiastés 4:12": [
+    {
+      "reference": "Eclesiastés 4:12",
+      "text": "Además, uno que anda solo puede ser vencido, pero dos juntos pueden hacerle frente al agresor. Y una cuerda triple no se rompe fácilmente."
+    }
+  ],
+  "Eclesiastés 9:9": [
+    {
+      "reference": "Eclesiastés 9:9",
+      "text": "Disfruta de la vida con tu amada esposa todos los días de la vida fugaz que Dios te ha dado bajo el sol, todos tus días vanos. Porque esa es tu suerte en la vida por el duro trabajo en el que tanto te esfuerzas bajo el sol."
+    }
+  ],
   "Filipenses 1:10": [
     {
       "reference": "Filipenses 1:10",
@@ -117,11 +237,19 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Los buenos amigos son un **regalo de Jehová** (Sant. 1:17).",
-          "followUp": "¿Qué dice Santiago sobre todo don bueno?"
+          "followUp": "¿De dónde vienen todos los regalos buenos?"
         },
         {
-          "text": "Lo aman a **Jehová** y a nosotros; son **leales**, nos consuelan, aconsejan con franqueza y se alegran cuando estamos felices.",
-          "followUp": "¿Qué hacen cuando estamos tristes?"
+          "text": "Lo aman a **Jehová** y también nos aman a nosotros.",
+          "followUp": "¿Cómo muestran amor los buenos amigos?"
+        },
+        {
+          "text": "Se alegran cuando estamos felices y nos **consuelan** cuando estamos tristes.",
+          "secondary": true
+        },
+        {
+          "text": "Nos aconsejan con **franqueza** cuando lo necesitamos; son **leales** y confiables.",
+          "secondary": true
         },
         {
           "text": "Sin duda, los amigos así “**alegran el corazón**” (Prov. 27:9).",
@@ -131,12 +259,12 @@ export const study20260629: ArticleData = {
       "biblicalCards": [
         {
           "reference": "Santiago 1:17",
-          "purpose": "El párrafo 1 afirma que los buenos amigos son un regalo de Jehová y respalda la idea con este texto. Santiago 1:17 enseña que todo don bueno y perfecto desciende de arriba, del Padre de las luces celestes. Así se entiende por qué la pregunta llama a los buenos amigos un regalo divino: no aparecen por casualidad, sino que provienen de Jehová, la fuente de todo lo bueno.",
+          "purpose": "Enseña que todo regalo bueno viene de Jehová. Se cita para mostrar que los buenos amigos son un regalo suyo, no algo que debamos dar por sentado.",
           "text": "Todos los regalos buenos y todos los dones perfectos vienen de arriba, descienden del Padre de las luces celestes. Él no varía ni cambia, como sí cambian las sombras.",
         },
         {
           "reference": "Proverbios 27:9",
-          "purpose": "El párrafo 1 dice que los buenos amigos son leales, aconsejan con franqueza y 'alegran el corazón', y cierra con este proverbio. Proverbios 27:9 compara el consejo sincero de un amigo con el aceite y el incienso que alegran el corazón. Esa imagen ayuda a ver por qué los buenos amigos son un regalo tan valioso: nos animan y nos dan consejos sinceros que reconfortan.",
+          "purpose": "Enseña que el consejo sincero de un amigo alegra el corazón. Se usa para destacar que los buenos amigos animan, consuelan y aconsejan con lealtad.",
           "text": "Aceite e incienso alegran el corazón, igual que la dulce amistad que nace de un consejo sincero.",
         }
       ],
@@ -154,19 +282,27 @@ export const study20260629: ArticleData = {
       "keyPoint": "Pues bien, el esposo y la esposa deben esforzarse por ser mejores amigos.",
       "answers": [
         {
-          "text": "El esposo y la esposa deben esforzarse por ser **mejores amigos** y no descuidar su amistad.",
-          "followUp": "¿Qué puede pasar si descuidan su amistad?"
+          "text": "Porque el esposo y la esposa deben esforzarse por ser **mejores amigos**.",
+          "followUp": "¿Qué pasa si descuidan su amistad?"
         },
         {
-          "text": "Si fortalecen su amistad, disfrutarán de la relación más estrecha posible (**Mateo 19:6**).",
-          "followUp": "¿Qué enseña Mateo 19:6 sobre el matrimonio?"
+          "text": "Si siguen fortaleciendo su amistad, disfrutarán de **la relación más estrecha posible** (Mat. 19:6).",
+          "followUp": "Según Mateo 19:6, ¿qué tan unidos llegan a ser?"
+        },
+        {
+          "text": "No deberían **descuidar su amistad**, sino fortalecerla todo el tiempo.",
+          "secondary": true
+        },
+        {
+          "text": "Si la descuidan, podrían empezar a sentirse **solos, frustrados y hasta enojados**.",
+          "secondary": true
         }
       ],
       "readText": "LEE Mateo 19:6",
       "biblicalCards": [
         {
           "reference": "Mateo 19:6",
-          "purpose": "El párrafo 2 anima al esposo y a la esposa a no descuidar su amistad, sino a seguir fortaleciéndola para disfrutar la relación más estrecha posible. Mateo 19:6 enseña que los casados ya no son dos, sino 'una sola carne', y que nadie debe separar lo que Dios unió. Por eso fortalecer la amistad conyugal cobra tanta importancia: cuida y protege el vínculo que el propio Jehová formó.",
+          "purpose": "Enseña que el matrimonio une a dos personas como “una sola carne”. Se cita para mostrar que fortalecer la amistad protege la unión que Jehová formó.",
           "text": "Así que ya no son dos, sino una sola carne. Por lo tanto, lo que Dios ha unido, que no lo separe ningún hombre”.",
         }
       ],
@@ -187,14 +323,22 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "**Jehová** quiere que encontremos un buen esposo o esposa y siempre sabe lo mejor para nosotros (Prov. 18:22).",
-          "followUp": "¿Por qué debemos seguir su guía al elegir?"
+          "followUp": "¿Por qué podemos confiar en Jehová al elegir pareja?"
         },
         {
           "text": "Como Jehová **creó el matrimonio**, lo más lógico es seguir su **guía** y los principios de su Palabra.",
-          "followUp": "¿Qué principios bíblicos nos ayudan a elegir?"
+          "followUp": "¿Por qué es lógico seguir los principios de Jehová?"
         },
         {
           "text": "Elegir pareja es una gran decisión; debemos **analizar con cuidado** pros y contras.",
+          "secondary": true
+        },
+        {
+          "text": "Las grandes decisiones pueden afectar el resto de nuestra vida **para bien o para mal**.",
+          "secondary": true
+        },
+        {
+          "text": "Los principios de la Palabra de Dios ayudan a encontrar una persona **adecuada**.",
           "secondary": true
         }
       ],
@@ -203,13 +347,13 @@ export const study20260629: ArticleData = {
       "biblicalCards": [
         {
           "reference": "Proverbios 18:22",
-          "purpose": "Los párrafos 3 y 4 explican que elegir con quién casarse es una de las grandes decisiones de la vida y que conviene seguir la guía de Jehová. Proverbios 18:22 enseña que quien encuentra una buena esposa halla un tesoro y recibe la aprobación de Jehová. Esto responde a la pregunta sobre qué nos ayudará a encontrar un buen cónyuge: Jehová valora y bendice esa decisión cuando seguimos su dirección.",
+          "purpose": "Enseña que encontrar un buen cónyuge es algo valioso y cuenta con la aprobación de Jehová. Se cita para recordar que elegir pareja requiere su guía.",
           "text": "El que encuentra una buena esposa encuentra un tesoro y recibe la aprobación de Jehová.",
         },
         {
           "reference": "Isaías 48:17, 18",
-          "purpose": "El párrafo 4 afirma que Jehová sabe lo que es mejor para nosotros al elegir pareja. Isaías 48:17, 18 enseña que Jehová nos instruye para nuestro propio bien y nos guía por el camino en que debemos andar, prometiendo paz a quienes le prestan atención. Así se comprende por qué conviene seguir su guía en esta decisión: él conoce lo que de verdad nos conviene y nos dirige hacia una vida feliz.",
-          "text": "Esto es lo que dice Jehová, tu Recomprador, el Santo de Israel: “Yo, Jehová, soy tu Dios,el que te enseña por tu propio bien,el que te guía por el camino en que debes andar. ¡Si tan solo prestaras atención a mis mandamientos! Entonces, tu paz llegaría a ser igual que un río,y tu justicia, como las olas del mar.",
+          "purpose": "Enseña que Jehová nos guía para nuestro bien y nos da paz cuando lo escuchamos. Se usa para mostrar que sus principios ayudan a elegir bien con quién casarse.",
+          "text": "Esto es lo que dice Jehová, tu Recomprador, el Santo de Israel: “Yo, Jehová, soy tu Dios, el que te enseña por tu propio bien, el que te guía por el camino en que debes andar. ¡Si tan solo prestaras atención a mis mandamientos! Entonces, tu paz llegaría a ser igual que un río, y tu justicia, como las olas del mar.",
         }
       ],
       "guidingQuestion": "¿Por qué debemos seguir la guía de Jehová al elegir pareja?",
@@ -227,40 +371,48 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Al bautizarnos llegamos a ser **amigos de Dios**; debemos elegir quien ya lo sea (1 Cor. 7:39).",
-          "followUp": "¿Qué significa casarse «en el Señor»?"
+          "followUp": "¿Por qué debe ser amigo de Jehová la persona elegida?"
         },
         {
           "text": "Casarse con un Testigo bautizado evita quedar bajo un **yugo desigual** (2 Cor. 6:14).",
-          "followUp": "¿Por qué no conviene salir con un no Testigo?"
+          "followUp": "¿Qué problemas evita no estar bajo un yugo desigual?"
         },
         {
           "text": "Así podremos ver a nuestro cónyuge como una **bendición** que viene de Jehová (Prov. 19:14).",
-          "followUp": "¿Qué dice Proverbios 19:14?"
+          "followUp": "¿Por qué veríamos al cónyuge como una bendición?"
+        },
+        {
+          "text": "Así demostramos que **respetamos las normas de Jehová**.",
+          "secondary": true
         },
         {
           "text": "Sería **insensato** salir con un no Testigo solo porque no encontramos a nadie adecuado en el **pueblo de Jehová**.",
+          "secondary": true
+        },
+        {
+          "text": "No conviene justificarse pensando que, con el tiempo, la persona **aceptará la verdad**.",
           "secondary": true
         }
       ],
       "biblicalCards": [
         {
           "reference": "Salmos 25:14",
-          "purpose": "El párrafo 5 explica que al bautizarnos llegamos a ser amigos de Dios, y respalda la idea con este salmo. Salmos 25:14 enseña que la amistad íntima con Jehová es para quienes le temen y lo respetan. Esto ayuda a entender por qué conviene elegir a un Testigo bautizado: esa persona ya disfruta de la amistad con Jehová que sostiene un buen matrimonio.",
-          "text": "La amistad íntima con Jehová es para quienes le temen,y él les da a conocer su pacto.",
+          "purpose": "Enseña que la amistad íntima con Jehová es para quienes lo temen. Se cita para mostrar que el cónyuge ideal debe ser alguien que ya sea amigo de Jehová.",
+          "text": "La amistad íntima con Jehová es para quienes le temen, y él les da a conocer su pacto.",
         },
         {
           "reference": "1 Corintios 7:39",
-          "purpose": "El párrafo 5 aconseja que quien desea casarse elija a alguien que ya sea amigo de Jehová. Primera de Corintios 7:39 enseña que quien queda libre para casarse debe hacerlo 'solo en el Señor', es decir, con un compañero de fe. Esto refuerza la respuesta a la pregunta: casarse 'en el Señor' significa escoger a un Testigo bautizado que sirva a Jehová.",
+          "purpose": "Enseña que el cristiano debe casarse “en el Señor”. Se usa para apoyar la idea de elegir a un Testigo bautizado que comparta la misma fe.",
           "text": "La esposa está atada a su esposo mientras él esté vivo. Pero, si su esposo se duerme en la muerte, está libre para casarse con quien quiera, siempre que sea en el Señor.",
         },
         {
           "reference": "Proverbios 19:14",
-          "purpose": "El párrafo dice que podemos ver a nuestro cónyuge como una bendición que viene de Jehová. Proverbios 19:14 muestra que la esposa prudente viene de Jehová.",
-          "text": "Casa y riquezas se heredan de los padres,pero la esposa prudente viene de Jehová.",
+          "purpose": "Enseña que un cónyuge prudente puede verse como una bendición de Jehová. Se cita para mostrar el valor de elegir a alguien que respeta sus normas.",
+          "text": "Casa y riquezas se heredan de los padres, pero la esposa prudente viene de Jehová.",
         },
         {
           "reference": "2 Corintios 6:14",
-          "purpose": "El párrafo 5 advierte que elegir a un no creyente supone quedar 'bajo un yugo desigual'. Segunda de Corintios 6:14 enseña a no unirse en yugo desigual con los no creyentes y muestra que la justicia y la maldad, la luz y la oscuridad, no tienen nada en común. Así se entiende por qué la pregunta insiste en elegir a un Testigo bautizado: un yugo desigual causa serios problemas en el matrimonio.",
+          "purpose": "Enseña a no formar un yugo desigual con no creyentes. Se usa para mostrar que casarse con quien no sirve a Jehová puede traer problemas espirituales.",
           "text": "No se pongan bajo un yugo desigual con los no creyentes. Porque ¿qué relación tienen la justicia y la maldad? ¿O qué tienen en común la luz y la oscuridad?",
         }
       ],
@@ -280,27 +432,43 @@ export const study20260629: ArticleData = {
       "keyPoint": "Si está interesado en alguien, pregúntese: \"¿Cómo trata a su familia?\", \"¿Es considerado?\" y \"¿Ama a Jehová?\".",
       "answers": [
         {
-          "text": "No basta con que alguien esté bautizado; hay que evaluar su **carácter** con preguntas prácticas.",
-          "followUp": "¿Cómo trata a su familia y a los demás?"
+          "text": "No basta con que alguien esté bautizado; hay que evaluar si realmente será una persona **adecuada**.",
+          "followUp": "¿Qué preguntas revelan mejor su carácter?"
         },
         {
-          "text": "Conviene saber si ama a **Jehová**, se esfuerza por ponerse **la nueva personalidad** y comparte nuestras metas espirituales (Col. 3:9, 10).",
-          "followUp": "¿Me ayudará a servir más a Jehová?"
+          "text": "Debe fijarse en si ama a **Jehová**, se esfuerza por ponerse **la nueva personalidad** y comparte sus metas espirituales (Col. 3:9, 10).",
+          "followUp": "¿Qué demuestra que ama a Jehová y cultiva la nueva personalidad?"
+        },
+        {
+          "text": "Conviene preguntarse cómo trata a su **familia**, si es considerado y respetuoso, y qué clase de **amigos** tiene.",
+          "secondary": true
+        },
+        {
+          "text": "También hay que observar cómo actúa en un **desacuerdo**: si insiste en salirse con la suya o sabe ceder cuando no se viola ningún principio.",
+          "secondary": true
+        },
+        {
+          "text": "Su actitud hacia el **dinero** también puede revelar mucho de su carácter.",
+          "secondary": true
         },
         {
           "text": "La hermana debe valorar si él será buen **cabeza de familia**; el hermano, si ella aceptará su autoridad (1 Cor. 11:3).",
+          "secondary": true
+        },
+        {
+          "text": "Responder estas preguntas **toma tiempo**; por eso hay que aprovechar el noviazgo para conocer bien a la persona.",
           "secondary": true
         }
       ],
       "biblicalCards": [
         {
           "reference": "Colosenses 3:9, 10",
-          "purpose": "El párrafo 7 anima a preguntarse si la persona ama profundamente a Jehová y se esfuerza por ponerse 'la nueva personalidad'. Colosenses 3:9, 10 enseña que hay que quitarse la vieja personalidad con sus prácticas y vestirse con la nueva, que se va renovando mediante el conocimiento exacto. Durante el noviazgo, este texto ayuda a fijarse en si la persona de verdad se está esforzando por cambiar e imitar a Dios, y no solo en que esté bautizada. Así se puede evaluar con más claridad si ambos comparten las mismas metas espirituales.",
+          "purpose": "Enseña que la persona debe abandonar la vieja personalidad y cultivar la nueva. Se cita para evaluar si alguien realmente está creciendo espiritualmente.",
           "text": "No se mientan unos a otros. Quítense la vieja personalidad y sus prácticas, y vístanse con la nueva personalidad, que por medio del conocimiento exacto se va renovando según la imagen del que la creó",
         },
         {
           "reference": "1 Corintios 11:3",
-          "purpose": "El párrafo 7 indica que la hermana debe preguntarse si el hermano podrá ser un buen cabeza de familia y que el hermano debe evaluar si ella aceptará su autoridad. Primera de Corintios 11:3 explica el orden de autoridad que estableció Jehová: Cristo es cabeza del hombre, el hombre es cabeza de la mujer y Dios es cabeza de Cristo. Entender este principio ayuda a los novios a valorar con realismo si están dispuestos a respetar el arreglo divino en su futuro matrimonio. De ese modo pueden decidir si formarán un equipo unido y pacífico.",
+          "purpose": "Enseña el orden de autoridad que Jehová estableció. Se usa para pensar si ambos respetarán ese arreglo en el matrimonio.",
           "text": "Pero quiero que sepan que la cabeza de todo hombre es el Cristo, que la cabeza de la mujer es el hombre y que la cabeza del Cristo es Dios.",
         }
       ],
@@ -321,18 +489,26 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Durante el noviazgo conviene **observar con cuidado**, preguntar a otros sobre su reputación y averiguar si es **humilde, amable y razonable**.",
-          "followUp": "¿A quién conviene consultar?"
+          "followUp": "¿Cómo podemos averiguar su reputación real?"
         },
         {
           "text": "También ayuda preguntar **con tacto** si hay algo del pasado o presente que debamos saber.",
-          "followUp": "¿Por qué ciertas cosas del pasado pueden causar problemas?"
+          "followUp": "¿Qué conviene preguntar con tacto antes de decidir?"
         },
         {
           "text": "Si hay **dudas serias** o preocupaciones de **amigos maduros**, conviene tomarlas en serio antes de casarse.",
-          "followUp": "¿Qué ayuda eso a decidir?"
+          "followUp": "¿Por qué debemos tomar en serio las dudas?"
         },
         {
           "text": "**Sarah** (Guayana Francesa) pidió opiniones sobre Daniel a un anciano, su compañero de precursorado, amigos en común y hermanas.",
+          "secondary": true
+        },
+        {
+          "text": "Conviene averiguar si la persona tiene fama de ser **humilde, amable y razonable**.",
+          "secondary": true
+        },
+        {
+          "text": "Algunas cosas del pasado o del presente podrían causar **graves problemas** en el matrimonio si no se hablan a tiempo.",
           "secondary": true
         }
       ],
@@ -353,11 +529,19 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Sacar **tiempo para estar juntos** fortalece la amistad y el matrimonio aunque estén muy ocupados.",
-          "followUp": "¿Qué logran cuando pasan tiempo juntos?"
+          "followUp": "¿Qué fortalece el tiempo que pasan juntos?"
         },
         {
-          "text": "Eso les permite hablar del día, compartir pensamientos y sentimientos, mostrar cariño y hacer cosas divertidas.",
-          "followUp": "¿Por qué fortalece la comunicación?"
+          "text": "Ese tiempo les permite **hablar de lo que pasó durante el día** y mantenerse cerca.",
+          "followUp": "¿Qué pueden compartir cuando apartan tiempo juntos?"
+        },
+        {
+          "text": "También les permite contarse sus **pensamientos y sentimientos más profundos**.",
+          "secondary": true
+        },
+        {
+          "text": "Pueden mostrarse **cariño** y hacer cosas divertidas juntos.",
+          "secondary": true
         }
       ],
       "section": "PASEN TIEMPO JUNTOS",
@@ -376,11 +560,19 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Estar **alejados por largos periodos** puede ser peligroso; un **trabajo en el extranjero** puede causar **graves daños** aunque traiga beneficios económicos.",
-          "followUp": "¿Por qué no conviene estar lejos mucho tiempo?"
+          "followUp": "¿Qué daño puede causar una separación prolongada?"
         },
         {
           "text": "Los buenos amigos **preferirán estar juntos**, aunque a veces **temporalmente** no sea posible.",
-          "followUp": "¿Qué pasa si descuidan este principio?"
+          "followUp": "¿Qué prefieren hacer los buenos amigos?"
+        },
+        {
+          "text": "La separación temporal puede ser inevitable, pero vivir separados por mucho tiempo puede **debilitar la amistad**.",
+          "secondary": true
+        },
+        {
+          "text": "Una decisión que parece traer beneficios económicos puede terminar causando **daños graves** al matrimonio.",
+          "secondary": true
         }
       ],
       "guidingQuestion": "¿Qué riesgo hay cuando la pareja pasa mucho tiempo separada?",
@@ -400,22 +592,46 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "a) Algunos matrimonios **programan tiempo juntos** en su horario, como con otros asuntos importantes.",
-          "followUp": "¿Qué hace Roxanne para no descuidar su tiempo en pareja?"
+          "followUp": "¿Por qué conviene programar tiempo juntos en el horario?"
         },
         {
           "text": "b) Nuestra relación conyugal ocupa un lugar **muy importante**, justo después de nuestra amistad con **Jehová**.",
-          "followUp": "¿Quién debe ocupar el primer lugar en nuestra vida?"
+          "followUp": "Después de Jehová, ¿qué lugar debe ocupar nuestro cónyuge?"
         },
         {
           "text": "Pasar tiempo juntos en **actividades espirituales** —estudio, oración y predicación— fortalece mucho el vínculo.",
-          "followUp": "¿Qué hace Myriam al empezar el día?"
+          "followUp": "¿Qué actividades espirituales pueden fortalecer más la amistad matrimonial?"
         },
         {
-          "text": "**Leah** (Guam) comparte casi todas sus actividades con su esposo; **Roxanne** programa ratos juntos; **Damien** se interesa en los gustos del otro y **Katie** guarda los teléfonos.",
+          "text": "**Leah** (Guam) comparte una gran variedad de actividades con su esposo y pocas veces va a actividades sociales sin él.",
           "secondary": true
         },
         {
-          "text": "**Myriam** lee la Biblia y ora con su esposo; a **Katie** le encanta **predicar juntos** con el suyo.",
+          "text": "**Roxanne** programa ratos juntos en su horario, igual que con otros asuntos importantes.",
+          "secondary": true
+        },
+        {
+          "text": "**Damien** se interesa en las cosas que le gusta hacer a su esposa y con el tiempo también llega a disfrutarlas.",
+          "secondary": true
+        },
+        {
+          "text": "**Katie** a veces guarda los teléfonos para que no los distraigan.",
+          "secondary": true
+        },
+        {
+          "text": "**Myriam** lee la Biblia con su esposo y comentan lo que les gustó y cómo aplicarlo.",
+          "secondary": true
+        },
+        {
+          "text": "Orar juntos permite escuchar cuánto ama el cónyuge a **Jehová**.",
+          "secondary": true
+        },
+        {
+          "text": "Predicar juntos une mucho porque ambos oyen cómo el otro habla de **Jehová** y siguen aprendiendo.",
+          "secondary": true
+        },
+        {
+          "text": "El recuadro recuerda que, después de Jehová, nada debe estar por encima del **bienestar y la felicidad** del cónyuge.",
           "secondary": true
         }
       ],
@@ -424,62 +640,62 @@ export const study20260629: ArticleData = {
       "biblicalCards": [
         {
           "reference": "Amós 3:3",
-          "purpose": "El párrafo 12 cuenta que Roxanne y su esposo tuvieron que incluir en su horario ratos para estar juntos, igual que con otros asuntos importantes. Amós 3:3 pregunta si dos personas pueden andar juntas a menos que hayan acordado encontrarse. El texto enseña que la buena compañía requiere ponerse de acuerdo y planear. Aplicarlo ayuda a la pareja a apartar tiempo de calidad de forma intencional, en vez de esperar a que 'sobre' tiempo.",
+          "purpose": "Enseña que dos personas caminan juntas cuando se ponen de acuerdo. Se cita para mostrar que el tiempo en pareja debe planearse, no dejarse al azar.",
           "text": "¿Andarán juntas dos personas a menos que hayan acordado encontrarse?",
         },
         {
           "reference": "Mateo 7:12",
-          "purpose": "El párrafo 12 menciona a Damien, quien vio que es bueno interesarse en las cosas que le gusta hacer al otro. Mateo 7:12 presenta la Regla de Oro: hacer por los demás lo que nos gustaría que hicieran por nosotros. En el matrimonio, este principio invita a esforzarse por disfrutar los gustos del cónyuge en lugar de esperar que él siempre ceda. Ponerlo en práctica hace que ambos se sientan valorados y fortalece su amistad.",
+          "purpose": "Enseña a tratar a los demás como queremos que nos traten. Se usa para animar a interesarse en los gustos del cónyuge y hacerlo sentir valorado.",
           "text": "”Por eso, hagan por los demás todo lo que les gustaría que hicieran por ustedes. De hecho, en eso se resumen la Ley y los Profetas.",
         },
         {
           "reference": "Proverbios 27:17",
-          "purpose": "El párrafo 13 relata que Katie y su esposo disfrutan predicar juntos y siguen aprendiendo cosas nuevas el uno del otro. Proverbios 27:17 compara esa influencia con el hierro que afila al hierro: un amigo hace mejor a su amigo. El texto muestra que las actividades espirituales en pareja pulen el carácter de ambos. Predicar y estudiar juntos ayuda al matrimonio a crecer espiritualmente y a unirse más.",
+          "purpose": "Enseña que un buen amigo ayuda a mejorar al otro. Se cita para mostrar que estudiar, orar y predicar juntos fortalece espiritualmente al matrimonio.",
           "text": "Así como el hierro afila el hierro, un hombre hace mejor a su amigo.",
         },
         {
           "reference": "Filipenses 1:10",
-          "purpose": "La introducción del recuadro del párrafo 13 pregunta qué lugar ocupa nuestro esposo o esposa entre todas nuestras amistades. Filipenses 1:10 anima a asegurarnos de cuáles cosas son las más importantes. Este texto enseña a poner en orden nuestras prioridades en la vida. Reflexionar en él ayuda a la pareja a darle a su relación el lugar correcto, sin descuidarla ni ponerla por encima de Jehová.",
+          "purpose": "Enseña a distinguir qué cosas son más importantes. Se usa para revisar si el cónyuge ocupa el lugar correcto entre nuestras prioridades.",
           "text": "que se aseguren de qué cosas son las más importantes para que no tengan ningún defecto y no hagan tropezar a otros hasta el día de Cristo",
         },
         {
           "reference": "Mateo 6:33",
-          "purpose": "El recuadro del párrafo 13 señala que nuestra amistad con Jehová debe ocupar el primer lugar en nuestra vida. Mateo 6:33 nos exhorta a seguir buscando primero el Reino y la justicia de Dios. El texto enseña que, cuando ponemos a Dios en primer lugar, él se encarga de darnos lo demás. Recordarlo ayuda al esposo y a la esposa a mantener sus actividades espirituales por encima de cualquier otra cosa, incluso de su propia relación.",
+          "purpose": "Enseña que el Reino y la justicia de Dios van primero. Se cita para recordar que Jehová debe estar por encima de cualquier relación humana.",
           "text": "Por lo tanto, sigan buscando primero el Reino y la justicia de Dios, y entonces recibirán también todas esas cosas.",
         },
         {
           "reference": "Marcos 12:30",
-          "purpose": "El recuadro del párrafo 13 recalca que Jehová ocupa el primer lugar entre todas nuestras relaciones. Marcos 12:30 manda amar a Jehová con todo el corazón, con toda el alma, con toda la mente y con todas las fuerzas. Este texto muestra que nuestro amor a Dios debe ser completo y sin reservas. Tenerlo presente ayuda a la pareja a demostrar, con sus decisiones diarias, que nada compite con su amor a Jehová.",
+          "purpose": "Enseña a amar a Jehová con todo el corazón, alma, mente y fuerzas. Se usa para reforzar que nuestro amor a Dios debe ser completo.",
           "text": "Ama a Jehová tu Dios con todo tu corazón, con toda tu alma, con toda tu mente y con todas tus fuerzas.",
         },
         {
           "reference": "Hechos 5:29",
-          "purpose": "El recuadro del párrafo 13 advierte que jamás seremos desleales a Jehová por complacer a nuestro esposo o esposa. Hechos 5:29 establece que debemos obedecer a Dios como gobernante más bien que a los hombres. El texto enseña que la obediencia a Jehová está por encima de cualquier presión humana. Recordarlo protege al matrimonio de tomar decisiones que agraden al cónyuge pero desagraden a Dios.",
+          "purpose": "Enseña que obedecer a Dios está por encima de complacer a cualquier persona. Se cita para no ser desleales a Jehová por agradar al cónyuge.",
           "text": "Tenemos que obedecer a Dios como gobernante más bien que a los hombres.",
         },
         {
           "reference": "Génesis 2:16, 17",
-          "purpose": "El recuadro del párrafo 13 remite al ejemplo de Adán para mostrar que no debemos ser desleales a Jehová por complacer al cónyuge. Génesis 2:16, 17 registra la orden clara que Jehová le dio a Adán de no comer del árbol del conocimiento de lo bueno y lo malo. El texto muestra que Adán conocía perfectamente la voluntad de Dios. Tenerlo presente ayuda a la pareja a recordar que ningún ser querido debe llevarnos a desobedecer un mandato divino.",
+          "purpose": "Muestra que Jehová le dio a Adán un mandato claro. Se usa para recordar que la obediencia a Dios debe mantenerse aunque alguien cercano presione.",
           "text": "Puedes comer de todos los árboles del jardín hasta quedar satisfecho. Pero no debes comer del árbol del conocimiento de lo bueno y lo malo, porque el día en que comas de él sin falta morirás.",
         },
         {
           "reference": "Génesis 3:6",
-          "purpose": "El recuadro del párrafo 13 usa el caso de Adán y Eva como advertencia de lo que pasa al poner a alguien por encima de Jehová. Génesis 3:6 relata que Eva comió del fruto prohibido y luego se lo dio a su esposo, quien también comió. El texto muestra que Adán obedeció a su esposa en lugar de a Dios, con consecuencias trágicas. Recordarlo ayuda al esposo y a la esposa a no ceder ante peticiones que los aparten de la obediencia a Jehová.",
+          "purpose": "Muestra que Adán cedió ante Eva y desobedeció a Jehová. Se cita como advertencia de no poner al cónyuge por encima de Dios.",
           "text": "Así que la mujer vio que el fruto del árbol era bueno para comer y que era deseable a los ojos. Así es, el árbol era agradable a la vista. De modo que ella agarró de su fruto y empezó a comer. Después, estando ya con su esposo, le dio a él del fruto y él se puso a comerlo.",
         },
         {
           "reference": "Génesis 2:24",
-          "purpose": "El recuadro del párrafo 13 explica que, después de Jehová, nuestro esposo o esposa ocupa un lugar muy especial porque los dos somos 'una sola carne'. Génesis 2:24 enseña que el hombre dejará a su padre y a su madre, se unirá a su esposa y los dos serán una sola carne. El texto muestra la unidad tan estrecha que Dios quiso para el matrimonio. Tenerlo presente ayuda a la pareja a cuidar su relación como algo sagrado, por encima de cualquier otra relación humana.",
+          "purpose": "Enseña que el esposo y la esposa llegan a ser “una sola carne”. Se usa para mostrar que, después de Jehová, el cónyuge ocupa un lugar especial.",
           "text": "Por esa razón, el hombre dejará a su padre y a su madre, se unirá a su esposa y ellos serán una sola carne.",
         },
         {
           "reference": "Efesios 5:28, 29, 33",
-          "purpose": "El recuadro del párrafo 13 dice que cuidamos de nuestro cónyuge con tanto cariño como de nosotros mismos. Efesios 5:28, 29, 33 exhorta a los esposos a amar a sus esposas como a sus propios cuerpos y a las esposas a tenerles profundo respeto a sus esposos. El texto enseña que el amor y el respeto son la base de la unión matrimonial. Aplicarlo ayuda a la pareja a tratarse con el mismo cuidado con que cada uno se atiende a sí mismo.",
+          "purpose": "Enseña que el esposo debe amar con cariño y la esposa mostrar profundo respeto. Se cita para definir cómo cuidar la unión matrimonial.",
           "text": "Del mismo modo, los esposos deben amar a sus esposas como a sus propios cuerpos... Sin embargo, cada uno de ustedes debe amar a su esposa tal como se ama a sí mismo. A su vez, la esposa debe tenerle profundo respeto a su esposo.",
         },
         {
           "reference": "1 Timoteo 5:8",
-          "purpose": "El recuadro del párrafo 13 aclara que, aparte de Jehová, nada ni nadie debe estar por encima del bienestar y la felicidad de nuestro cónyuge. Primera de Timoteo 5:8 recuerda que quien no mantiene a los suyos, y en especial a los de su casa, ha rechazado la fe. El texto enseña que atender a nuestra familia es una responsabilidad sagrada ante Dios. Tenerlo presente ayuda a equilibrar el trato a padres, familiares y hermanos sin descuidar jamás a nuestro esposo o esposa.",
+          "purpose": "Enseña que atender a la familia es una responsabilidad seria ante Jehová. Se usa para mostrar que no debemos descuidar el bienestar del cónyuge.",
           "text": "Porque, si alguien no mantiene a los suyos, y en especial a los miembros de su casa, ha rechazado la fe y es peor que una persona sin fe.",
         }
       ],
@@ -500,22 +716,34 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Cuando surgen problemas, deben esforzarse por **permanecer unidos** y resolverlos, no rendirse.",
-          "followUp": "¿Qué deben hacer cuando aparecen problemas?"
-        },
-        {
-          "text": "Por la imperfección, todos los matrimonios enfrentarán **problemas y desacuerdos** (1 Cor. 7:28).",
-          "followUp": "¿Qué dice la Biblia sobre las dificultades?"
+          "followUp": "Cuando surgen problemas, ¿por qué no deben rendirse?"
         },
         {
           "text": "Como una **obra de arte** valiosa dañada, un matrimonio con problemas graves **puede restaurarse**.",
-          "followUp": "¿Qué ejemplo usa el artículo?"
+          "followUp": "¿Por qué un matrimonio dañado todavía puede restaurarse?"
+        },
+        {
+          "text": "Por la imperfección, todos los matrimonios enfrentarán **problemas y desacuerdos** (1 Cor. 7:28).",
+          "followUp": "¿Por qué no deben sorprendernos los desacuerdos en el matrimonio?"
+        },
+        {
+          "text": "Incluso en los matrimonios más unidos pueden surgir **desacuerdos**.",
+          "secondary": true
         },
         {
           "text": "La restauración requerirá **tiempo y empeño**, pero vale la pena.",
           "secondary": true
         },
         {
-          "text": "**Jehová** odia el divorcio y se alegra cuando la pareja lucha por fortalecer su vínculo (Mal. 2:16).",
+          "text": "Quien restaura una obra valiosa puede dedicar **años, dinero y recursos** porque reconoce su valor.",
+          "secondary": true
+        },
+        {
+          "text": "**Jehová** se alegra cuando la pareja lucha por fortalecer su vínculo y permanecer unida (Mal. 2:16).",
+          "secondary": true
+        },
+        {
+          "text": "Al esforzarse por resolver problemas, la pareja demuestra amor y respeto no solo entre ellos, sino también por **Jehová**, quien creó el matrimonio.",
           "secondary": true
         }
       ],
@@ -523,12 +751,12 @@ export const study20260629: ArticleData = {
       "biblicalCards": [
         {
           "reference": "1 Corintios 7:28",
-          "purpose": "El párrafo 14 explica que, por la imperfección, todos los matrimonios pasarán por problemas y desacuerdos. Primera de Corintios 7:28 lo confirma al advertir de manera realista que quienes se casan “tendrán dificultades en la vida”. Entender esto ayuda al esposo y a la esposa a no sorprenderse ni desanimarse cuando surjan conflictos, sino a verlos como algo normal que pueden superar juntos.",
+          "purpose": "Enseña que los casados tendrán dificultades. Se cita para ayudar a la pareja a no sorprenderse por los problemas y enfrentarlos juntos.",
           "text": "Pero, si te casas, no cometes ningún pecado. Y, si alguien virgen se casa, no comete ningún pecado. Sin embargo, los que lo hagan tendrán dificultades en la vida. Yo intento ahorrarles eso.",
         },
         {
           "reference": "Malaquías 2:16",
-          "purpose": "El párrafo 15 compara un matrimonio dañado con una obra de arte valiosa que vale la pena restaurar con tiempo y empeño. Malaquías 2:16 revela el punto de vista de Jehová: él odia el divorcio y se alegra cuando la pareja lucha por permanecer unida. Recordar esto anima al esposo y a la esposa a esforzarse por salvar su matrimonio en lugar de rendirse, sabiendo que así honran a quien creó el matrimonio.",
+          "purpose": "Muestra que Jehová odia el divorcio y rechaza la traición. Se usa para animar a restaurar el matrimonio en vez de rendirse rápido.",
           "text": "Porque yo odio el divorcio —dice Jehová, el Dios de Israel— y al que actúa con violencia —dice Jehová de los ejércitos—. Estén atentos a su actitud y no sean traicioneros.",
         }
       ],
@@ -547,15 +775,19 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Ante problemas graves, **no se apresure a separarse** de su pareja (1 Cor. 7:10, 11).",
-          "followUp": "¿Qué no debemos apresurarnos a hacer?"
+          "followUp": "Si hay problemas graves, ¿qué decisión no conviene apresurar?"
         },
         {
           "text": "Pregúntese: **«¿Puedo hacer más?»** y mejore en las cualidades del **amor** (1 Cor. 13:4-8).",
-          "followUp": "¿Qué pasaje conviene repasar?"
+          "followUp": "¿Qué cualidades del amor puedo mejorar en mi matrimonio?"
         },
         {
           "text": "Céntrese en lo que **usted puede hacer** para reparar la relación y pida la **guía de Jehová**.",
-          "followUp": "¿En qué debe centrarse la pareja?"
+          "followUp": "¿Qué puedo hacer yo para reparar la relación?"
+        },
+        {
+          "text": "En lugar de buscar una salida del matrimonio, busque una manera de volver a entrar en el **corazón** de su esposo o esposa.",
+          "secondary": true
         },
         {
           "text": "El matrimonio cristiano es una **cuerda triple**; **Jehová** es el hilo más fuerte (Ecl. 4:12).",
@@ -564,6 +796,14 @@ export const study20260629: ArticleData = {
         {
           "text": "Busque ayuda en **publicaciones**, videos y **ancianos** maduros (vea el recuadro).",
           "secondary": true
+        },
+        {
+          "text": "Repasar **1 Corintios 13** ayuda a ver si necesitamos mejorar en paciencia, bondad, aguante o dejar de llevar cuenta del daño.",
+          "secondary": true
+        },
+        {
+          "text": "Si los dos se apoyan en **Jehová**, el matrimonio no se romperá fácilmente.",
+          "secondary": true
         }
       ],
       "image": "https://cms-imgp.jw-cdn.org/img/p/2026368/univ/art/2026368_univ_cnt_3_xl.jpg",
@@ -571,17 +811,17 @@ export const study20260629: ArticleData = {
       "biblicalCards": [
         {
           "reference": "1 Corintios 13:4-8",
-          "purpose": "El párrafo 16 aconseja repasar lo que la Biblia enseña sobre el amor y mejorar en las facetas que ahí se mencionan. Primera de Corintios 13:4-8 describe cualidades como la paciencia, la bondad y el aguante, que fortalecen cualquier relación. Analizar cada cualidad ayuda al esposo y a la esposa a ver en qué pueden crecer para reparar su amistad en vez de buscar la separación.",
+          "purpose": "Describe el amor paciente, bondadoso y perseverante. Se cita para que cada cónyuge vea qué cualidad necesita fortalecer para reparar la relación.",
           "text": "El amor es paciente y bondadoso. El amor no es celoso. No presume, no es arrogante, no se porta de forma indecente, no busca sus propios intereses, no se irrita con facilidad. No lleva cuenta del daño. No se alegra por la injusticia, sino que se alegra con la verdad. Todo lo soporta, todo lo cree, todo lo espera, todo lo aguanta. El amor nunca falla. Pero, en cuanto a los dones de profetizar, serán eliminados; los dones de lenguas desaparecerán; los dones de conocimiento serán eliminados.",
         },
         {
           "reference": "1 Corintios 7:10, 11",
-          "purpose": "El párrafo 16 advierte que, ante los problemas, no debemos apresurarnos a separarnos de nuestra pareja. Primera de Corintios 7:10, 11 da la orden clara de que la esposa no se separe del esposo y de que el esposo no deje a su esposa. Tener presente este mandato ayuda a la pareja a esforzarse primero por reparar su relación antes de siquiera pensar en una separación.",
+          "purpose": "Enseña que la separación no debe tomarse a la ligera. Se usa para animar a buscar reconciliación y trabajar por el matrimonio.",
           "text": "A los casados les doy la orden —no yo, sino el Señor— de que la esposa no se separe de su esposo. Pero, si ella se separa, que permanezca sin casarse o, si no, que se reconcilie con su esposo. Y el esposo no debe dejar a su esposa.",
         },
         {
           "reference": "Eclesiastés 4:12",
-          "purpose": "El párrafo 16 compara el matrimonio cristiano con “una cuerda triple” cuyo hilo más fuerte es Jehová. Eclesiastés 4:12 explica que una cuerda de tres hilos no se rompe fácilmente. Esta ilustración ayuda al esposo y a la esposa a ver que, si los dos se apoyan en Jehová, su matrimonio resistirá aunque enfrente problemas graves.",
+          "purpose": "Enseña que una cuerda triple no se rompe fácilmente. Se cita para mostrar que un matrimonio apoyado en Jehová puede resistir problemas graves.",
           "text": "Además, uno que anda solo puede ser vencido, pero dos juntos pueden hacerle frente al agresor. Y una cuerda triple no se rompe fácilmente.",
         }
       ],
@@ -601,15 +841,19 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "**Jehová** desea que todos sus siervos sean **felices**, solteros o casados.",
-          "followUp": "¿Qué desea Jehová para sus siervos?"
+          "followUp": "¿Qué desea Jehová tanto para solteros como para casados?"
         },
         {
           "text": "Si está **soltero**, elija con cuidado a su **amigo y compañero** para toda la vida.",
-          "followUp": "¿Qué debe hacer quien piensa casarse?"
+          "followUp": "Si alguien quiere casarse, ¿qué debe elegir con cuidado?"
         },
         {
           "text": "Si está **casado**, siga **fortaleciendo su amistad** y resuelva problemas con la ayuda de Jehová.",
-          "followUp": "¿Qué deben hacer quienes ya están casados?"
+          "followUp": "Si ya estamos casados, ¿cómo cuidamos esa amistad?"
+        },
+        {
+          "text": "Apoyarse siempre en la **ayuda de Jehová** permite enfrentar los problemas del matrimonio.",
+          "secondary": true
         },
         {
           "text": "Disfrutará de la vida con su **amado esposo o esposa** (Ecl. 9:9).",
@@ -619,7 +863,7 @@ export const study20260629: ArticleData = {
       "biblicalCards": [
         {
           "reference": "Eclesiastés 9:9",
-          "purpose": "El párrafo 17 concluye que Jehová desea que todos sus siervos sean felices, tanto quienes piensan casarse como quienes ya están casados. Eclesiastés 9:9 anima a disfrutar la vida junto al amado esposo o esposa. Recordar esta invitación motiva a los solteros a elegir bien a su pareja y a los casados a seguir fortaleciendo su amistad para alcanzar esa felicidad.",
+          "purpose": "Anima a disfrutar la vida con el esposo o la esposa. Se usa para cerrar con la idea de que Jehová quiere matrimonios felices y amigos cercanos.",
           "text": "Disfruta de la vida con tu amada esposa todos los días de la vida fugaz que Dios te ha dado bajo el sol, todos tus días vanos. Porque esa es tu suerte en la vida por el duro trabajo en el que tanto te esfuerzas bajo el sol.",
         }
       ],
@@ -668,7 +912,7 @@ export const study20260629: ArticleData = {
       "number": 7,
       "videoLSM": "/videos/study-2026-06-29/study-2026-06-29-p07-lsm.mp4",
       "content": "También es bueno que se pregunte: “¿Se nota que ama profundamente a Jehová? ¿Se está esforzando por ponerse ‘la nueva personalidad’? ¿Me ayudará a servir más a Jehová? ¿Tenemos las mismas metas espirituales? ¿Veo posible que cada uno llegue a convertirse en el mejor amigo del otro?” (Col. 3:9, 10). La hermana debe preguntarse si él podrá ser, además de su mejor amigo, un buen cabeza de familia (1 Cor. 11:3). Y el hermano debe preguntarse si ella estará dispuesta a aceptar su autoridad como cabeza a pesar de las imperfecciones de él. Claro está, toma tiempo responder estas preguntas. Así que aproveche el noviazgo para conocer bien a la persona.",
-      "summary": "Durante el noviazgo hay que evaluar metas espirituales, respeto y disposición para el matrimonio."
+      "summary": "Durante el noviazgo hay que evaluar **metas espirituales**, **respeto** y disposición para el matrimonio."
     },
     {
       "number": 8,
@@ -756,15 +1000,27 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Seguir la **guía de Jehová** y los **principios bíblicos** al tomar una decisión tan importante.",
-          "followUp": "¿De dónde debe sacar la guía?"
+          "followUp": "¿Qué guía debe seguir al tomar una decisión tan importante?"
         },
         {
           "text": "Elegir a un Testigo bautizado que sea **amigo de Jehová** y evaluar su **carácter** en el noviazgo.",
-          "followUp": "¿A quién debe elegir?"
+          "followUp": "¿Qué debe observar, además de que esté bautizado?"
         },
         {
           "text": "Consultar a **hermanos maduros** y tomar en serio las **dudas serias** antes de casarse.",
-          "followUp": "¿Qué hacer si hay dudas?"
+          "followUp": "Si hay dudas serias, ¿por qué conviene tomarlas en cuenta?"
+        },
+        {
+          "text": "Analizar con cuidado los **pros y contras**, porque elegir pareja afecta el resto de la vida.",
+          "secondary": true
+        },
+        {
+          "text": "No pensar que cualquier persona bautizada será adecuada; hay que observar su trato, amistades, **metas espirituales** y actitud ante los desacuerdos.",
+          "secondary": true
+        },
+        {
+          "text": "Durante el noviazgo conviene averiguar su **reputación real** y si es humilde, amable y razonable.",
+          "secondary": true
         }
       ],
       "commentSuggestion": "Yo podría comentar que seguir los principios bíblicos y observar el carácter real de la persona ayuda a elegir bien."
@@ -774,18 +1030,30 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Sacar **tiempo para estar juntos** con regularidad, aunque estén muy ocupados.",
-          "followUp": "¿Qué deben hacer aunque estén ocupados?"
+          "followUp": "Aunque estén ocupados, ¿qué deben apartar con regularidad?"
         },
         {
           "text": "Dedicar tiempo a **actividades espirituales** en pareja: estudio, oración y predicación.",
-          "followUp": "¿Qué actividades los unen más?"
+          "followUp": "¿Qué actividades espirituales pueden hacer juntos como pareja?"
         },
         {
           "text": "Evitar estar **separados por largos periodos** y dar a la pareja un lugar **muy importante** (después de Jehová).",
-          "followUp": "¿Qué puede poner en peligro la amistad?"
+          "followUp": "¿Qué puede debilitar la amistad aunque parezca práctico?"
         },
         {
           "text": "Programar ratos juntos e **interesarse** en lo que le gusta al otro.",
+          "secondary": true
+        },
+        {
+          "text": "Hablar de lo que pasó durante el día, compartir **sentimientos**, mostrar cariño y hacer cosas divertidas juntos.",
+          "secondary": true
+        },
+        {
+          "text": "Proteger ese tiempo de **distracciones**, como hicieron algunos matrimonios al guardar los teléfonos.",
+          "secondary": true
+        },
+        {
+          "text": "Recordar que, después de Jehová, nada debe estar por encima del **bienestar y la felicidad** del cónyuge.",
           "secondary": true
         }
       ],
@@ -796,18 +1064,30 @@ export const study20260629: ArticleData = {
       "answers": [
         {
           "text": "Esforzarse por **permanecer unidos**; los problemas son normales, pero el matrimonio **puede restaurarse**.",
-          "followUp": "¿Se puede salvar un matrimonio dañado?"
+          "followUp": "¿Por qué vale la pena intentar restaurar el matrimonio?"
         },
         {
           "text": "**No apresurarse** a separarse; preguntarse: **«¿Puedo hacer más?»** (1 Cor. 7:10, 11).",
-          "followUp": "¿Qué pregunta debe hacerse?"
+          "followUp": "Antes de separarme, ¿qué debería preguntarme con sinceridad?"
         },
         {
           "text": "Apoyarse en **Jehová** —el hilo más fuerte de la **cuerda triple**— y cultivar el **amor bíblico**.",
-          "followUp": "¿En quién debe apoyarse la pareja?"
+          "followUp": "¿Por qué Jehová es esencial para que la pareja resista?"
         },
         {
           "text": "Buscar **ayuda espiritual** en publicaciones, videos y ancianos maduros cuando haga falta.",
+          "secondary": true
+        },
+        {
+          "text": "Aceptar que, por la **imperfección**, incluso los matrimonios más unidos pueden tener desacuerdos.",
+          "secondary": true
+        },
+        {
+          "text": "Centrarse en lo que uno puede hacer para **reparar la relación** y volver a entrar en el corazón del cónyuge.",
+          "secondary": true
+        },
+        {
+          "text": "Demostrar amor y respeto por **Jehová**, quien creó el matrimonio, luchando por fortalecer el vínculo.",
           "secondary": true
         }
       ],

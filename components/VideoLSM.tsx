@@ -7,7 +7,7 @@ interface VideoLSMProps {
   paragraphNumber: number | string;
   onRemove?: () => void;
   compact?: boolean; // Para usar dentro del panel lateral en desktop
-  questionTextLSM?: string; // Pregunta en LSM (o español como fallback) para mostrar en el header
+  questionTextLSM?: string; // Compatibilidad: la pregunta LSM ya se muestra arriba del reproductor.
 }
 
 const SPEED_OPTIONS = [1, 1.1, 1.2, 1.4, 1.75, 2] as const;
@@ -19,6 +19,8 @@ const FEEDBACK_ICONS: Record<string, string> = {
   forward: '⏩ +5s',
   restart: '⏮️',
 };
+
+const formatPlaybackRate = (rate: number) => (rate === 1 ? '1x' : `${rate}x`);
 
 const seekBtnClass = "text-white/70 hover:text-white hover:bg-white/15 px-1.5 py-0.5 rounded text-[11px] font-bold transition-all";
 const LSM_VIDEO_SELECTOR = 'video[controls][aria-label^="Video LSM"]';
@@ -166,6 +168,16 @@ const isTextEntryTargetElement = (target: EventTarget | null) => {
   return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target.isContentEditable;
 };
 
+const blurFocusedTextEntry = () => {
+  if (typeof document === 'undefined') return;
+  const activeElement = document.activeElement;
+  if (activeElement instanceof HTMLElement && isTextEntryTargetElement(activeElement)) {
+    activeElement.blur();
+  }
+};
+
+const isTouchLikePointer = (pointerType: string) => pointerType === 'touch' || pointerType === 'pen';
+
 const getKeyboardTargetPlayer = (): LsmPlayerHandle | null => {
   if (typeof document === 'undefined') return null;
 
@@ -289,12 +301,12 @@ const getKeyboardTargetVideo = (): HTMLVideoElement | null => {
   return candidates[0].video;
 };
 
-export default function VideoLSM({ src, paragraphNumber, onRemove, compact = false, questionTextLSM}: VideoLSMProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+export default function VideoLSM({ src, paragraphNumber, onRemove, compact = false }: VideoLSMProps) {
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [failedVideoSrc, setFailedVideoSrc] = useState<string | null>(null);
   const [tapFeedback, setTapFeedback] = useState<string | null>(null);
   const [playbackRate, setPlaybackRate] = useState(1);
-  const [shouldPreload, setShouldPreload] = useState(compact);
+  const [hasRequestedPreload, setHasRequestedPreload] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const preloadVideoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -307,14 +319,20 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   });
   const [isVisible, setIsVisible] = useState(false);
   const twoFingerStartTime = useRef<number | null>(null);
+  const singleTouchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const lastTouchLikeInteractionRef = useRef(false);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-
-  isCollapsedRef.current = !compact && !isExpanded;
+  const hasError = failedVideoSrc === src;
+  const shouldPreload = compact || isExpanded || hasRequestedPreload;
 
   useEffect(() => {
     ensureScrollGenerationListener();
     ensureGlobalKeyboardListener();
   }, []);
+
+  useEffect(() => {
+    isCollapsedRef.current = !compact && !isExpanded;
+  }, [compact, isExpanded]);
 
   useEffect(() => {
     if (!isExpanded || !pendingSpacePlayRef.current) return;
@@ -336,16 +354,9 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     return () => cancelAnimationFrame(raf);
   }, [isExpanded, paragraphNumber, shouldPreload]);
 
-  // Reset error when src changes
-  useEffect(() => {
-    setHasError(false);
-    setShouldPreload(compact);
-  }, [src, compact]);
-
   // Precargar videos que ya son visibles o que están cerca de entrar en pantalla.
   useEffect(() => {
     if (compact || isExpanded) {
-      setShouldPreload(true);
       return;
     }
 
@@ -355,7 +366,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldPreload(true);
+          setHasRequestedPreload(true);
           observer.disconnect();
         }
       },
@@ -374,15 +385,6 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
 
     video.load();
   }, [shouldPreload, src, isExpanded, compact]);
-
-  // Auto-scroll para centrar el dropdown cuando se expande en móvil
-  useEffect(() => {
-    if (isExpanded && !compact && containerRef.current) {
-      setTimeout(() => {
-        containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 100);
-    }
-  }, [isExpanded, compact]);
 
   const showFeedback = useCallback((type: string) => {
     clearTimeout(feedbackTimerRef.current);
@@ -431,13 +433,17 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     }
   }, [showFeedback]);
 
-  playerApiRef.current.expand = () => {
-    pendingSpacePlayRef.current = true;
-    setShouldPreload(true);
-    setIsExpanded(true);
-  };
-  playerApiRef.current.togglePlayPause = () => togglePlayPause({ showVisualFeedback: false });
-  playerApiRef.current.markActive = markActivePlayer;
+  useEffect(() => {
+    playerApiRef.current = {
+      expand: () => {
+        pendingSpacePlayRef.current = true;
+        setHasRequestedPreload(true);
+        setIsExpanded(true);
+      },
+      togglePlayPause: () => togglePlayPause({ showVisualFeedback: false }),
+      markActive: markActivePlayer,
+    };
+  }, [markActivePlayer, togglePlayPause]);
 
   useEffect(() => {
     let cancelled = false;
@@ -488,11 +494,34 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     containerRef.current?.focus({ preventScroll: true });
   }, [markActivePlayer]);
 
-  const handleVideoPointerDown = useCallback(() => {
+  const handlePlayerPointerDownCapture = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    markActivePlayer();
+    lastTouchLikeInteractionRef.current = isTouchLikePointer(e.pointerType);
+    if (lastTouchLikeInteractionRef.current) {
+      blurFocusedTextEntry();
+    }
+  }, [markActivePlayer]);
+
+  const handlePlayerTouchStartCapture = useCallback(() => {
+    markActivePlayer();
+    lastTouchLikeInteractionRef.current = true;
+    blurFocusedTextEntry();
+  }, [markActivePlayer]);
+
+  const handleVideoPointerDown = useCallback((e: React.PointerEvent<HTMLVideoElement>) => {
+    if (isTouchLikePointer(e.pointerType)) {
+      markActivePlayer();
+      blurFocusedTextEntry();
+      return;
+    }
     focusPlayerContainer();
-  }, [focusPlayerContainer]);
+  }, [focusPlayerContainer, markActivePlayer]);
 
   const handleVideoClick = useCallback(() => {
+    if (lastTouchLikeInteractionRef.current) {
+      lastTouchLikeInteractionRef.current = false;
+      return;
+    }
     window.setTimeout(() => focusPlayerContainer(), 0);
   }, [focusPlayerContainer]);
 
@@ -505,23 +534,6 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     e.stopPropagation();
     togglePlayPause({ showVisualFeedback: false });
   }, [isSpaceKey, isTextEntryTarget, togglePlayPause]);
-
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (e.touches.length === 2) {
-      twoFingerStartTime.current = Date.now();
-    } else {
-      twoFingerStartTime.current = null;
-    }
-  }, []);
-
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-    if (twoFingerStartTime.current === null) return;
-    const elapsed = Date.now() - twoFingerStartTime.current;
-    twoFingerStartTime.current = null;
-    if (elapsed < 300 && e.changedTouches.length > 0) {
-      togglePlayPause();
-    }
-  }, [togglePlayPause]);
 
   const seekVideo = useCallback((seconds: number) => {
     const video = videoRef.current;
@@ -546,18 +558,59 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
   }, []);
 
   const stepSpeed = useCallback((direction: 'up' | 'down') => {
-    setPlaybackRate((current) => {
-      const idx = Math.max(0, SPEED_OPTIONS.indexOf(current as typeof SPEED_OPTIONS[number]));
-      const newIndex = direction === 'up'
-        ? Math.min(idx + 1, SPEED_OPTIONS.length - 1)
-        : Math.max(idx - 1, 0);
-      const newRate = SPEED_OPTIONS[newIndex];
-      if (videoRef.current) {
-        videoRef.current.playbackRate = newRate;
-      }
-      return newRate;
-    });
+    const currentRate = videoRef.current?.playbackRate ?? playbackRate;
+    const currentIndex = SPEED_OPTIONS.indexOf(currentRate as typeof SPEED_OPTIONS[number]);
+    const idx = currentIndex >= 0 ? currentIndex : 0;
+    const newIndex = direction === 'up'
+      ? Math.min(idx + 1, SPEED_OPTIONS.length - 1)
+      : Math.max(idx - 1, 0);
+    const newRate = SPEED_OPTIONS[newIndex];
+
+    changeSpeed(newRate);
+    showFeedback(formatPlaybackRate(newRate));
+  }, [changeSpeed, playbackRate, showFeedback]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      twoFingerStartTime.current = Date.now();
+      singleTouchStartRef.current = null;
+    } else if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      twoFingerStartTime.current = null;
+      singleTouchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+    } else {
+      twoFingerStartTime.current = null;
+      singleTouchStartRef.current = null;
+    }
   }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (twoFingerStartTime.current !== null) {
+      const elapsed = Date.now() - twoFingerStartTime.current;
+      twoFingerStartTime.current = null;
+      singleTouchStartRef.current = null;
+      if (elapsed < 300 && e.changedTouches.length > 0) {
+        togglePlayPause();
+      }
+      return;
+    }
+
+    const start = singleTouchStartRef.current;
+    singleTouchStartRef.current = null;
+    if (!start || e.changedTouches.length === 0) return;
+
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    const elapsed = Date.now() - start.time;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (elapsed > 800 || absY < 48 || absY < absX * 1.3) return;
+
+    e.preventDefault();
+    stepSpeed(deltaY < 0 ? 'up' : 'down');
+  }, [stepSpeed, togglePlayPause]);
 
   // Atajos de teclado solo cuando el reproductor es visible en pantalla
   useEffect(() => {
@@ -592,10 +645,12 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
           if (!e.ctrlKey) { e.preventDefault(); seekVideo(5); }
           break;
         case 'ArrowUp':
-          if (e.ctrlKey) { e.preventDefault(); stepSpeed('up'); }
+          e.preventDefault();
+          stepSpeed('up');
           break;
         case 'ArrowDown':
-          if (e.ctrlKey) { e.preventDefault(); stepSpeed('down'); }
+          e.preventDefault();
+          stepSpeed('down');
           break;
       }
     };
@@ -605,8 +660,8 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
 
   const feedbackOverlay = tapFeedback && (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <div className="bg-black/50 rounded-full p-4 animate-fadeIn">
-        <span className="text-4xl">{FEEDBACK_ICONS[tapFeedback]}</span>
+      <div className="bg-black/60 rounded-full px-5 py-4 animate-fadeIn">
+        <span className="text-4xl font-bold text-white">{FEEDBACK_ICONS[tapFeedback] ?? tapFeedback}</span>
       </div>
     </div>
   );
@@ -631,7 +686,6 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
 
       <div className="w-px h-4 bg-white/20 mx-1" />
 
-      <span className="text-[10px] text-white/50 font-medium mr-0.5 uppercase tracking-wider">Vel</span>
       {SPEED_OPTIONS.map((rate) => (
         <button
           key={rate}
@@ -642,10 +696,20 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               : 'text-white/70 hover:text-white hover:bg-white/15'
           }`}
         >
-          {rate === 1 ? '1x' : `${rate}x`}
+          {formatPlaybackRate(rate)}
         </button>
       ))}
     </div>
+  );
+
+  const removeButton = onRemove && (
+    <button
+      onClick={onRemove}
+      className="absolute right-2 top-2 z-10 rounded-md bg-black/45 px-2 py-1 text-xs text-white/70 shadow-sm transition-colors hover:bg-black/65 hover:text-red-300"
+      title="Eliminar video"
+    >
+      🗑️
+    </button>
   );
 
   if (hasError) {
@@ -673,34 +737,14 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
         tabIndex={0}
         onMouseEnter={markActivePlayer}
         onMouseLeave={clearActivePlayer}
-        onPointerDownCapture={markActivePlayer}
+        onPointerDownCapture={handlePlayerPointerDownCapture}
+        onTouchStartCapture={handlePlayerTouchStartCapture}
         onFocusCapture={markActivePlayer}
         onKeyDown={handlePlayerKeyDown}
-        className="rounded-xl overflow-hidden border border-border shadow-sm bg-surface"
+        className="rounded-xl overflow-hidden border border-border shadow-sm bg-surface outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
       >
-        <div className="px-3 py-2 bg-surface-alt border-b border-border-subtle">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-base">🤟</span>
-              <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider">
-                LSM — {String(paragraphNumber).includes(',') ? 'Párrafos' : 'Párrafo'} {paragraphNumber}
-              </span>
-            </div>
-            {onRemove && (
-              <button
-                onClick={onRemove}
-                className="text-text-tertiary hover:text-red-500 dark:hover:text-red-400 transition-colors text-xs"
-                title="Eliminar video"
-              >
-                🗑️
-              </button>
-            )}
-          </div>
-          {questionTextLSM && (
-            <p className="text-xs text-text-secondary mt-1 leading-snug whitespace-pre-line break-words">{questionTextLSM}</p>
-          )}
-        </div>
         <div className="relative">
+          {removeButton}
           <video
             ref={videoRef}
             src={src}
@@ -709,8 +753,9 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             preload="auto"
             tabIndex={0}
             aria-label={`Video LSM ${paragraphNumber}`}
-            className="w-full aspect-video bg-black"
-            onError={() => setHasError(true)}
+            className="w-full aspect-video bg-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
+            style={{ touchAction: 'pan-x' }}
+            onError={() => setFailedVideoSrc(src)}
             onPlay={markActivePlayer}
             onKeyDown={handleVideoKeyDown}
             onPointerDown={handleVideoPointerDown}
@@ -727,15 +772,16 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     );
   }
 
-  // Modo normal: colapsable (para inline debajo de párrafos)
+  // Modo normal: siempre visible debajo de párrafos.
   return (
     <div
-      className="mt-4"
+      className="mt-4 outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
       ref={containerRef}
       tabIndex={0}
       onMouseEnter={markActivePlayer}
       onMouseLeave={clearActivePlayer}
-      onPointerDownCapture={markActivePlayer}
+      onPointerDownCapture={handlePlayerPointerDownCapture}
+      onTouchStartCapture={handlePlayerTouchStartCapture}
       onFocusCapture={markActivePlayer}
       onKeyDown={handlePlayerKeyDown}
     >
@@ -743,9 +789,9 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
         <>
           {/* Botón colapsado */}
           <button
-            onMouseEnter={() => setShouldPreload(true)}
-            onFocus={() => setShouldPreload(true)}
-            onTouchStart={() => setShouldPreload(true)}
+            onMouseEnter={() => setHasRequestedPreload(true)}
+            onFocus={() => setHasRequestedPreload(true)}
+            onTouchStart={() => setHasRequestedPreload(true)}
             onClick={() => setIsExpanded(true)}
             className="group/video w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-border bg-surface-alt hover:bg-surface-raised hover:border-border-strong transition-all shadow-sm hover:shadow-md"
           >
@@ -770,58 +816,26 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               aria-hidden="true"
               tabIndex={-1}
               className="absolute h-0 w-0 opacity-0 pointer-events-none"
-              onError={() => setHasError(true)}
+              onError={() => setFailedVideoSrc(src)}
             />
           )}
         </>
       ) : (
         // Video expandido
         <div className="rounded-xl overflow-hidden border border-border shadow-lg bg-surface animate-fadeIn">
-          <div className="px-4 py-2.5 bg-surface-alt border-b border-border-subtle">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-base">🤟</span>
-                <span className="text-xs font-bold text-text-tertiary uppercase tracking-wider">
-                  LSM — {String(paragraphNumber).includes(',') ? 'Párrafos' : 'Párrafo'} {paragraphNumber}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-              {onRemove && (
-                <button
-                  onClick={onRemove}
-                  className="text-text-tertiary hover:text-red-500 dark:hover:text-red-400 transition-colors text-xs"
-                  title="Eliminar video"
-                >
-                  🗑️
-                </button>
-              )}
-              <button
-                onClick={() => setIsExpanded(false)}
-                className="text-text-tertiary hover:text-text-secondary transition-colors"
-                title="Colapsar video"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                </svg>
-              </button>
-            </div>
-            </div>
-            {questionTextLSM && (
-              <p className="text-xs text-text-secondary mt-1 leading-snug whitespace-pre-line break-words">{questionTextLSM}</p>
-            )}
-          </div>
           <div className="relative">
+            {removeButton}
             <video
               ref={videoRef}
               src={src}
               controls
               playsInline
-              autoPlay
               preload="auto"
               tabIndex={0}
               aria-label={`Video LSM ${paragraphNumber}`}
-              className="w-full aspect-video bg-black"
-              onError={() => setHasError(true)}
+              className="w-full aspect-video bg-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
+              style={{ touchAction: 'pan-x' }}
+              onError={() => setFailedVideoSrc(src)}
               onPlay={markActivePlayer}
               onKeyDown={handleVideoKeyDown}
               onPointerDown={handleVideoPointerDown}

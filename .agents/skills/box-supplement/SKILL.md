@@ -22,7 +22,9 @@ Campo en `paragraph.sidebar` (no en pregunta).
 1. Extraer refs de `intro` e `items`
 2. Agregar entradas en `biblicalTextsYYYYMMDD` (clave = referencia normalizada)
 3. Agregar `biblicalCards` en la pregunta relacionada (cobertura completa)
-4. Comentarios naturales en `commentSuggestion` de cada tarjeta
+4. Redactar o mejorar `biblicalCards.purpose` con la skill `como-comentarlo`
+
+No usar `biblicalCards.commentSuggestion`. Las frases tipo "Yo podría comentar..." pertenecen a `question.commentSuggestion` o `reviewQuestions.commentSuggestion`; los textos bíblicos usan `purpose`.
 
 ## Colocación UI — `lib/sidebarPlacement.ts`
 

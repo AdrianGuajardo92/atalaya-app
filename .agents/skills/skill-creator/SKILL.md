@@ -6,7 +6,26 @@ license: Complete terms in LICENSE.txt
 
 # Skill Creator
 
-> **Atalaya-app:** La fuente canónica de skills del proyecto es `.agents/skills/`. Tras editar skills o features UI de estudio (recuadros, modales, importador), ejecuta `./scripts/sync-skills.sh` para actualizar el espejo `.claude/skills/`. Para convenciones de formato Cursor, consulta también la skill global `create-skill` en `~/.cursor/skills-cursor/`.
+## Gobernanza Local de Atalaya-App
+
+La fuente canónica de skills del proyecto es `.agents/skills/`. No editar manualmente `.claude/skills/`; es un espejo.
+
+Tras editar una skill local, ejecutar:
+
+```bash
+npm run skills:sync
+```
+
+Mantener `AGENTS.md` corto: sólo reglas raíz, política de herramientas, Git, ortografía, comandos base y rutas de skills. No duplicar en `AGENTS.md` instrucciones largas que pertenezcan a una skill.
+
+Mantener cada skill corta y accionable:
+- incluir sólo el flujo esencial y reglas que se necesitan al ejecutar esa tarea.
+- mover detalles largos a referencias dentro de la skill si realmente hacen falta.
+- evitar copiar secciones enteras de `AGENTS.md` o de otras skills.
+- describir cuándo usar la skill en el `description` del frontmatter.
+- conservar ejemplos mínimos y directamente reutilizables.
+
+Si una regla aplica a todo el repositorio, resumirla en `AGENTS.md`. Si aplica a un dominio concreto, ponerla en la skill correspondiente y sincronizar.
 
 This skill provides guidance for creating effective skills.
 

@@ -420,17 +420,16 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     });
   };
 
-  // Índice de versículos: biblicalCards + textos del estudio + catálogo global
+  // Índice de versículos: textos exactos del estudio primero; biblicalCards como respaldo.
   const { verseIndex, refLookup } = useMemo(() => {
-    const sources: { reference: string; text: string }[] = [
-      ...(question.biblicalCards ?? []),
-    ];
+    const sources: { reference: string; text: string }[] = [];
     for (const verses of Object.values(getBiblicalTextsForStudy(articleId))) {
       sources.push(...verses);
     }
     for (const verses of Object.values(biblicalTexts)) {
       sources.push(...verses);
     }
+    sources.push(...(question.biblicalCards ?? []));
     return {
       verseIndex: buildVerseIndex(sources),
       refLookup: buildReferenceLookup(sources),
@@ -1659,7 +1658,7 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
           {/* Cabecera de la Pregunta */}
           <div className="p-6 md:p-8 pb-4">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-xs font-bold text-text-tertiary tracking-[0.2em] uppercase dark:text-[#8B8980]">
+              <span className="text-xs font-bold text-[#E8A68B] tracking-[0.2em] uppercase">
                 Pregunta {question.number}
               </span>
               <div className="flex items-center gap-2">
@@ -1839,17 +1838,6 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                             <p className="text-text-secondary group-hover/bullet:text-text-primary transition-colors">{bullet}</p>
                           </div>
                         ))}
-                      </div>
-                    )}
-
-                    {question.guidingQuestion && (
-                      <div className="mt-6 rounded-lg border border-amber-200/60 dark:border-[#8B5A40]/50 bg-amber-50/50 dark:bg-[#332520]/40 p-4">
-                        <p className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-2">
-                          Si no lo mencionan
-                        </p>
-                        <p className="text-base text-text-body leading-relaxed italic">
-                          {question.guidingQuestion}
-                        </p>
                       </div>
                     )}
 

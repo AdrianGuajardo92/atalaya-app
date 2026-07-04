@@ -28,7 +28,7 @@ Al borrar `data/articles/study-YYYY-MM-DD.ts`:
 - Quitar de `studiesMap` / `biblicalTextsMap` en `data/articles/index.ts`
 - Quitar de `activeStudyIds` en `data/articles-config.ts`
 - Limpiar entradas en `lib/commentGuidance.ts`
-- **Eliminar** videos LSM asociados en `public/videos/` (convención actual `article-XX/`)
+- **Eliminar** videos LSM asociados en `public/videos/` (preferido `study-YYYY-MM-DD/`; revisar también legacy `article-XX/`)
 
 ## Scripts útiles
 

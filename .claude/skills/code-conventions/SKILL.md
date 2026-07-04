@@ -1,7 +1,6 @@
 ---
 name: code-conventions
 description: Convenciones de código del proyecto atalaya-app. Referencia sobre patrones, estructura, tipos, APIs y estilo. Úsalo para entender cómo está organizado el proyecto o qué patrones seguir.
-user-invocable: false
 ---
 
 # Convenciones del Proyecto Atalaya-App
@@ -63,7 +62,7 @@ user-invocable: false
 
 ## Formato de texto en datos
 
-- `**negritas**` en `answer`, `summary`, `answerContext`, `reviewQuestions.answer`
+- `**negritas**` en `answers[].text`, `summary` y `reviewQuestions.answers[].text`
 - Ortografía con acentos: Jehová, Satanás, Moisés, Josué, Edén
 - `content` de párrafos **sin** negritas
 - `paragraph.sidebar` (`ParagraphSidebar`): `title`, `intro?`, `items?` — recuadros de jw.org; `**` / `***` en intro/items; imagen en `question.image`, no en párrafo
@@ -100,6 +99,8 @@ user-invocable: false
 npm run dev          # puerto 9000
 npm run build
 npm run lint         # eslint
+npm run study:validate
+npm run skills:validate
 npm run article:list
 npm run article:remove
 npm run cleanup-kv
