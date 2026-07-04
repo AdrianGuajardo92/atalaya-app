@@ -659,7 +659,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
       twoFingerStartTime.current = null;
       singleTouchStartRef.current = null;
       if (elapsed < 300 && e.changedTouches.length > 0) {
-        togglePlayPause();
+        togglePlayPause({ showVisualFeedback: false });
       }
       return;
     }
@@ -675,10 +675,10 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
     const absX = Math.abs(deltaX);
     const absY = Math.abs(deltaY);
 
-    if (elapsed > 800 || absY < 48 || absY < absX * 1.3) return;
+    if (elapsed > 800 || absX < 48 || absX < absY * 1.3) return;
 
     e.preventDefault();
-    stepSpeed(deltaY < 0 ? 'up' : 'down');
+    stepSpeed(deltaX > 0 ? 'up' : 'down');
   }, [stepSpeed, togglePlayPause]);
 
   const feedbackOverlay = tapFeedback && (
@@ -777,7 +777,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             tabIndex={0}
             aria-label={`Video LSM ${paragraphNumber}`}
             className="w-full aspect-video bg-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
-            style={{ touchAction: 'pan-x' }}
+            style={{ touchAction: 'pan-y' }}
             onError={() => setFailedVideoSrc(src)}
             onPlay={markActivePlayer}
             onPause={markActivePlayer}
@@ -859,7 +859,7 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               tabIndex={0}
               aria-label={`Video LSM ${paragraphNumber}`}
               className="w-full aspect-video bg-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
-              style={{ touchAction: 'pan-x' }}
+              style={{ touchAction: 'pan-y' }}
               onError={() => setFailedVideoSrc(src)}
               onPlay={markActivePlayer}
               onPause={markActivePlayer}
