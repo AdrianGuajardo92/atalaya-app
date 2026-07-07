@@ -70,6 +70,10 @@ Contenedor: relative h-[250px] cursor-pointer (perspective: 1000px)
 Frente: absolute w-full h-[250px] bg-surface rounded-xl shadow-sm border border-border
 Reverso: absolute w-full h-[250px] bg-slate-800 dark:bg-surface-raised rounded-xl shadow-lg border border-border-strong
 Flip: transition-transform duration-700 ease-in-out (rotateY 180deg)
+Favorito (frente y reverso): border-amber-400/80 bg-amber-50/40 ring-2 ring-amber-400/50 dark:border-amber-500/70 dark:bg-amber-900/15 dark:ring-amber-500/40
+Botón favorito: corazón outline → relleno ámbar; stopPropagation para no voltear la tarjeta
+Persistencia: localStorage atalaya-favorites-cache:{studyId} + /api/favorites (clave biblical-comment:{questionNumber}:{reference})
+Orden: favoritos primero en el grid
 ```
 
 ## AnswerItemsList
