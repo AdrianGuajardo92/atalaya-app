@@ -13,6 +13,7 @@ import {
 import VideoLSM from './VideoLSM';
 import CommentGuide from './CommentGuide';
 import AnswerItemsList from './AnswerItemsList';
+import PersonalAnswersList from './PersonalAnswersList';
 import { getAnswerItems, hasAnswerContent } from '@/lib/answerItems';
 import { prepareLSMEditText } from '@/lib/lsmEdit';
 import { useLSMTextareaFocus } from '@/hooks/useLSMTextareaFocus';
@@ -88,6 +89,7 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
 
 interface QuestionCardProps {
   question: Question;
+  questionIndex: number;
   paragraphs: Paragraph[];
   lsmText?: string;
   sectionLsmText?: string;
@@ -102,7 +104,9 @@ interface QuestionCardProps {
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, usedItems, onToggleUsedItem, articleId, showSectionHeader = true }: QuestionCardProps) {
+export default function QuestionCard({ question, questionIndex, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, usedItems, onToggleUsedItem, articleId, showSectionHeader = true }: QuestionCardProps) {
+  const personalAnswersStorageKey = `personal-answers-q${questionIndex}`;
+  const personalAnswerItemPrefix = `personal-answer-${articleId}-q${questionIndex}`;
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
   const [paragraphsModalClosing, setParagraphsModalClosing] = useState(false);
   const [showParagraphImageModal, setShowParagraphImageModal] = useState<string | null>(null);
@@ -125,6 +129,9 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
 
   // Estado para puntos clave personalizados guardados en KV
   const [customBullets, setCustomBullets] = useState<string[]>([]);
+
+  // Respuestas/notas personales del conductor (persistidas en KV)
+  const [personalAnswers, setPersonalAnswers] = useState<string[]>([]);
 
   // Estado para videos LSM de párrafos
   const [videoUrls, setVideoUrls] = useState<Record<number, string>>({});
@@ -216,6 +223,75 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
     };
     loadCustomBullets();
   }, [articleId, question.number, question.answerBullets]);
+
+  // Cargar respuestas personales desde Vercel KV
+  useEffect(() => {
+    let cancelled = false;
+
+    const parsePersonalAnswers = (lsmText: string): string[] | null => {
+      try {
+        const parsed = JSON.parse(lsmText);
+        if (Array.isArray(parsed)) {
+          return parsed.filter((item): item is string => typeof item === 'string');
+        }
+      } catch {
+        return null;
+      }
+      return null;
+    };
+
+    const fetchPersonalAnswers = async (questionNumber: string): Promise<string[] | null> => {
+      const response = await fetch(
+        `/api/lsm?articleId=${encodeURIComponent(articleId)}&questionNumber=${encodeURIComponent(questionNumber)}`,
+      );
+      if (!response.ok) return null;
+
+      const data = await response.json();
+      if (typeof data.lsmText !== 'string' || data.lsmText === '') return null;
+      return parsePersonalAnswers(data.lsmText);
+    };
+
+    const loadPersonalAnswers = async () => {
+      setPersonalAnswers([]);
+
+      try {
+        let answers = await fetchPersonalAnswers(personalAnswersStorageKey);
+        if (!answers) {
+          answers = await fetchPersonalAnswers(`personal-answers-${question.number}`);
+        }
+        if (!cancelled) {
+          setPersonalAnswers(answers ?? []);
+        }
+      } catch (error) {
+        console.error('Error loading personal answers:', error);
+        if (!cancelled) {
+          setPersonalAnswers([]);
+        }
+      }
+    };
+
+    void loadPersonalAnswers();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [articleId, personalAnswersStorageKey, question.number]);
+
+  const savePersonalAnswers = useCallback(async (answers: string[]) => {
+    try {
+      await fetch('/api/lsm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          articleId,
+          questionNumber: personalAnswersStorageKey,
+          lsmText: JSON.stringify(answers),
+        }),
+      });
+    } catch (error) {
+      console.error('Error saving personal answers:', error);
+    }
+  }, [articleId, personalAnswersStorageKey]);
 
   // Obtener los párrafos relacionados con esta pregunta
   const relatedParagraphs = useMemo(() =>
@@ -495,6 +571,8 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
       ? question.answerBullets
       : question.answerBullets.split('\n').filter(bullet => bullet.trim());
   }, [customBullets, question.answerBullets]);
+
+  const answerItems = useMemo(() => getAnswerItems(question), [question]);
 
   // RENDERIZADO PREMIUM/EJECUTIVO
   const studyId = articleId;
@@ -1448,13 +1526,24 @@ export default function QuestionCard({ question, paragraphs, lsmText, sectionLsm
                   <div className="flex-1 space-y-4">
                     {hasAnswerContent(question) && (
                       <AnswerItemsList
-                        items={getAnswerItems(question)}
+                        items={answerItems}
                         renderBoldText={renderBoldText}
                         itemIdPrefix={`answer-${articleId}-${question.number}`}
                         usedItems={usedItems}
                         onToggleUsed={toggleUsedItem}
                       />
                     )}
+
+                    <PersonalAnswersList
+                      answers={personalAnswers}
+                      startNumber={answerItems.length}
+                      itemIdPrefix={personalAnswerItemPrefix}
+                      usedItems={usedItems}
+                      onToggleUsed={toggleUsedItem}
+                      onChange={setPersonalAnswers}
+                      onPersist={savePersonalAnswers}
+                      renderBoldText={renderBoldText}
+                    />
 
                     {/* Puntos Clave */}
                     {answerBullets.length > 0 && (

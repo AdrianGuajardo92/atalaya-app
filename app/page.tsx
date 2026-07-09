@@ -688,6 +688,7 @@ export default function Home() {
               {currentArticle.questions.map((question, index) => (
                 <QuestionCard
                   key={index}
+                  questionIndex={index}
                   question={question}
                   paragraphs={currentArticle.paragraphs}
                   lsmText={lsmData[question.number]}
@@ -746,6 +747,8 @@ export default function Home() {
               /* Mostrar pregunta normal */
               <>
                 <QuestionCard
+                  key={currentQuestionIndex}
+                  questionIndex={currentQuestionIndex}
                   question={currentArticle.questions[currentQuestionIndex]}
                   paragraphs={currentArticle.paragraphs}
                   lsmText={lsmData[currentArticle.questions[currentQuestionIndex].number]}
@@ -897,7 +900,7 @@ export default function Home() {
                   className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
                     currentQuestionIndex === 0 && currentReviewIndex === -1
                       ? 'bg-surface-alt text-text-tertiary cursor-not-allowed border border-border-subtle'
-                      : 'bg-surface text-text-secondary border border-border hover:bg-surface-alt hover:border-border-strong'
+                      : 'bg-surface text-text-secondary border border-border hover:bg-surface-alt hover:border-border-strong cursor-pointer'
                   }`}
                 >
                   ← Anterior
@@ -908,7 +911,7 @@ export default function Home() {
                   className={`flex-1 px-5 py-3 rounded-lg font-medium transition-all ${
                     currentReviewIndex === currentArticle.reviewQuestions.length - 1
                       ? 'bg-surface-raised text-text-tertiary cursor-not-allowed'
-                      : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#4A4A45] shadow-sm'
+                      : 'bg-slate-700 dark:bg-[#4A4A45] text-white hover:bg-slate-800 dark:hover:bg-[#5A5A55] shadow-sm cursor-pointer'
                   }`}
                 >
                   Siguiente →

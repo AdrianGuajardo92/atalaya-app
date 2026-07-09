@@ -99,7 +99,7 @@ export default function LsmBulkImport({ isOpen, onClose, articleId, currentLsmDa
     // Filtrar solo las claves de preguntas LSM (no bullets, flashcards, etc.)
     const lsmOnly: Record<string, string> = {};
     for (const [k, v] of Object.entries(currentLsmData)) {
-      if (v && !k.startsWith('bullets-') && !k.startsWith('bullet-types-') && !k.startsWith('flashcards-') && !k.startsWith('reflections-') && !k.startsWith('applications-')) {
+      if (v && !k.startsWith('bullets-') && !k.startsWith('bullet-types-') && !k.startsWith('flashcards-') && !k.startsWith('reflections-') && !k.startsWith('applications-') && !k.startsWith('personal-answers-')) {
         lsmOnly[k] = v;
       }
     }

@@ -247,6 +247,10 @@ const blurFocusedTextEntry = () => {
 
 const isTouchLikePointer = (pointerType: string) => pointerType === 'touch' || pointerType === 'pen';
 
+const isInNativeVideoControls = (video: HTMLVideoElement, offsetY: number) => (
+  offsetY > video.clientHeight * 0.8
+);
+
 const getKeyboardTargetPlayer = (): LsmPlayerHandle | null => {
   if (typeof document === 'undefined') return null;
 
@@ -616,13 +620,30 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
       return;
     }
     const video = e.currentTarget;
-    const inNativeControls = e.nativeEvent.offsetY > video.clientHeight * 0.8;
-    if (inNativeControls) {
+    if (isInNativeVideoControls(video, e.nativeEvent.offsetY)) {
       markActivePlayer();
       return;
     }
     window.setTimeout(() => focusPlayerContainer(), 0);
   }, [focusPlayerContainer, markActivePlayer]);
+
+  const handleVideoContextMenu = useCallback((e: React.MouseEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    if (isInNativeVideoControls(video, e.nativeEvent.offsetY)) return;
+    e.preventDefault();
+  }, []);
+
+  const handleVideoAuxClick = useCallback((e: React.MouseEvent<HTMLVideoElement>) => {
+    if (e.button !== 2) return;
+    const video = e.currentTarget;
+    if (isInNativeVideoControls(video, e.nativeEvent.offsetY)) {
+      markActivePlayer();
+      return;
+    }
+    e.preventDefault();
+    markActivePlayer();
+    togglePlayPause({ showVisualFeedback: false });
+  }, [markActivePlayer, togglePlayPause]);
 
   const handleVideoSeeked = useCallback(() => {
     markActivePlayer();
@@ -785,6 +806,8 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
             onKeyDown={handleVideoKeyDown}
             onPointerDown={handleVideoPointerDown}
             onClick={handleVideoClick}
+            onAuxClick={handleVideoAuxClick}
+            onContextMenu={handleVideoContextMenu}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -867,6 +890,8 @@ export default function VideoLSM({ src, paragraphNumber, onRemove, compact = fal
               onKeyDown={handleVideoKeyDown}
               onPointerDown={handleVideoPointerDown}
               onClick={handleVideoClick}
+              onAuxClick={handleVideoAuxClick}
+              onContextMenu={handleVideoContextMenu}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
