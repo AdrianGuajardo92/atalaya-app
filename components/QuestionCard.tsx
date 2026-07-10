@@ -20,6 +20,10 @@ import { useLSMTextareaFocus } from '@/hooks/useLSMTextareaFocus';
 import ParagraphSidebarBox from './ParagraphSidebarBox';
 
 // ─── Componente compartido para mostrar versículos bíblicos ───────────────────
+function formatBibleVersesForCopy(verses: { reference: string; text: string }[]): string {
+  return verses.map((verse) => `${verse.reference}\n${verse.text}`).join('\n\n');
+}
+
 function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
   title: string;
   label: string;
@@ -27,6 +31,8 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
   onClose: () => void;
   zIndex?: number;
 }) {
+  const [copied, setCopied] = useState(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -34,6 +40,14 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+
+  const handleCopy = async () => {
+    const success = await copyToClipboard(formatBibleVersesForCopy(verses));
+    if (success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <div
@@ -55,11 +69,34 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
               <p className="text-xs font-bold text-amber-600 dark:text-amber-500 uppercase tracking-[0.2em] mb-1.5">{label}</p>
               <h3 id="bible-verse-modal-title" className="text-xl font-sans font-bold text-text-primary leading-snug tracking-tight">{title}</h3>
             </div>
-            <button type="button" onClick={onClose} aria-label="Cerrar" className="flex-shrink-0 mt-0.5 p-1.5 rounded-lg text-text-tertiary hover:text-text-secondary hover:bg-surface-raised transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <div className="flex flex-shrink-0 items-center gap-1 mt-0.5">
+              <button
+                type="button"
+                onClick={handleCopy}
+                aria-label={copied ? 'Copiado' : 'Copiar texto'}
+                title={copied ? 'Copiado' : 'Copiar texto'}
+                className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-all ${
+                  copied
+                    ? 'border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-400'
+                    : 'border-border bg-surface text-text-tertiary hover:border-border-strong hover:bg-surface-raised hover:text-text-body'
+                }`}
+              >
+                {copied ? (
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                )}
+              </button>
+              <button type="button" onClick={onClose} aria-label="Cerrar" className="p-1.5 rounded-lg text-text-tertiary hover:text-text-secondary hover:bg-surface-raised transition-colors">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
         <div className="flex-1 overflow-y-auto custom-scrollbar overscroll-contain px-7 py-6 space-y-5 bg-surface">
@@ -116,6 +153,7 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
   const [showReadTextModal, setShowReadTextModal] = useState(false);
   const [inlineRefModal, setInlineRefModal] = useState<{ title: string; verses: { reference: string; text: string }[] } | null>(null);
   const [paragraphCopied, setParagraphCopied] = useState(false);
+  const [inlineParagraphCopied, setInlineParagraphCopied] = useState(false);
   const [infographicCopied, setInfographicCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isNavigationMode); // Expandido por defecto en modo navegación
   const [isEditingLSM, setIsEditingLSM] = useState(false);
@@ -298,6 +336,22 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
     paragraphs.filter(p => question.paragraphs.includes(p.number)),
     [paragraphs, question.paragraphs]
   );
+
+  const buildRelatedParagraphsPlainText = useCallback(() => {
+    return relatedParagraphs.map(p => {
+      let text = `[${p.number}] ${p.content}`;
+      if (p.note) text += `\n\nNota: ${p.note}`;
+      return text;
+    }).join('\n\n');
+  }, [relatedParagraphs]);
+
+  const handleCopyInlineParagraphs = useCallback(async () => {
+    const success = await copyToClipboard(buildRelatedParagraphsPlainText());
+    if (success) {
+      setInlineParagraphCopied(true);
+      setTimeout(() => setInlineParagraphCopied(false), 2000);
+    }
+  }, [buildRelatedParagraphsPlainText]);
 
   // Cargar URLs de videos LSM desde Vercel KV cuando se abre el modal de párrafos
   useEffect(() => {
@@ -1187,12 +1241,33 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
         {isNavigationMode && (
           <div className="bg-surface-alt border border-border rounded-xl overflow-hidden mb-6">
             {/* Header */}
-            <div className="bg-surface border-b border-border px-6 md:px-8 py-4 md:py-5">
+            <div className="bg-surface border-b border-border px-6 md:px-8 py-4 md:py-5 flex items-center justify-between gap-4">
               <span className="text-sm md:text-base font-bold text-text-secondary uppercase tracking-[0.15em]">
                 {relatedParagraphs.length === 1
                   ? `Párrafo ${relatedParagraphs[0].number}`
                   : `Párrafos ${question.paragraphs.join(', ')}`}
               </span>
+              <button
+                type="button"
+                onClick={handleCopyInlineParagraphs}
+                aria-label={inlineParagraphCopied ? 'Copiado' : 'Copiar párrafo(s)'}
+                title={inlineParagraphCopied ? '¡Copiado!' : 'Copiar párrafo(s)'}
+                className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border transition-all ${
+                  inlineParagraphCopied
+                    ? 'border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-400'
+                    : 'border-border bg-surface text-text-tertiary hover:border-border-strong hover:bg-surface-raised hover:text-text-body'
+                }`}
+              >
+                {inlineParagraphCopied ? (
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                )}
+              </button>
             </div>
 
             {/* Resumen (si algún párrafo tiene summary) */}
