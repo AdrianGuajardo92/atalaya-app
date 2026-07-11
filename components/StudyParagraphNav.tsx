@@ -107,7 +107,7 @@ export default function StudyParagraphNav({
         <button
           type="button"
           onClick={onToggle}
-          className="fixed left-0 top-1/2 z-50 hidden -translate-y-1/2 rounded-r-xl border border-l-0 border-slate-200/50 bg-white/95 px-2 py-4 shadow-lg backdrop-blur-sm transition-all hover:bg-slate-50 dark:border-[#3A3A37]/50 dark:bg-[#30302E]/95 dark:hover:bg-[#3A3A37]/80 lg:block"
+          className="fixed left-0 top-1/2 z-50 hidden -translate-y-1/2 rounded-r-xl border border-l-0 border-slate-200/50 bg-white/95 px-2 py-4 shadow-lg backdrop-blur-sm transition-all hover:bg-slate-50 dark:border-[#3A3A37]/50 dark:bg-[#30302E]/95 dark:hover:bg-[#3A3A37]/80 md:block"
           title="Abrir navegación (Ctrl+B)"
           aria-label="Abrir navegación"
         >
@@ -128,9 +128,18 @@ export default function StudyParagraphNav({
         </button>
       )}
 
+      {isOpen && (
+        <button
+          type="button"
+          onClick={onToggle}
+          className="tablet-portrait-nav-backdrop fixed inset-0 z-40 cursor-default bg-transparent"
+          aria-label="Cerrar navegación"
+        />
+      )}
+
       {/* Panel lateral */}
       <aside
-        className={`fixed left-4 top-4 z-50 hidden w-[240px] transition-all duration-300 lg:block ${
+        className={`fixed left-4 top-4 z-50 hidden w-[240px] transition-all duration-300 md:block ${
           isOpen ? 'translate-x-0 opacity-100' : '-translate-x-[calc(100%+1rem)] opacity-0 pointer-events-none'
         }`}
         aria-hidden={!isOpen}

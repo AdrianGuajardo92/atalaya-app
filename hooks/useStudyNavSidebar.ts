@@ -5,7 +5,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { NAV_SIDEBAR_OPEN_STORAGE_KEY } from '@/lib/studyParagraphNav';
 
-const DESKTOP_NAV_QUERY = '(min-width: 1024px)';
+const DESKTOP_NAV_QUERY = '(min-width: 768px)';
 
 function readSidebarOpenFromStorage(): boolean {
   if (typeof window === 'undefined') return false;
