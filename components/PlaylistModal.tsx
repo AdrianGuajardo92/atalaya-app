@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ArticleData } from '@/types/atalaya';
-import { generatePlaylist, playlistToText, PlaylistItem } from '@/lib/generatePlaylist';
+import {
+  generatePlaylist,
+  playlistItemToText,
+  playlistToText,
+  PlaylistItem,
+} from '@/lib/generatePlaylist';
 import { copyToClipboard } from '@/lib/clipboard';
 
 interface PlaylistModalProps {
@@ -92,70 +97,9 @@ export default function PlaylistModal({ isOpen, onClose, article }: PlaylistModa
 }
 
 function PlaylistRow({ item }: { item: PlaylistItem }) {
-  switch (item.type) {
-    case 'song':
-      return (
-        <div className="flex items-center gap-2 py-2">
-          <span className="text-amber-500 text-sm">🎵</span>
-          <span className="text-text-primary font-medium text-sm">{item.content}</span>
-        </div>
-      );
-
-    case 'title':
-      return (
-        <div className="py-2">
-          <span className="font-serif font-bold text-text-primary text-base">{item.content}</span>
-        </div>
-      );
-
-    case 'biblical-text':
-      return (
-        <div className="py-1.5">
-          <span className="italic text-text-secondary text-sm">{item.content}</span>
-        </div>
-      );
-
-    case 'theme':
-      return (
-        <div className="py-1.5 flex items-start gap-2">
-          <span className="text-sm">💡</span>
-          <span className="text-text-tertiary text-xs leading-relaxed">{item.content}</span>
-        </div>
-      );
-
-    case 'section':
-      return (
-        <div className="pt-3 pb-1">
-          <div className="bg-slate-800 dark:bg-slate-700 text-white text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-lg">
-            {item.content}
-          </div>
-        </div>
-      );
-
-    case 'paragraph':
-      return (
-        <div className={`flex items-center gap-2 py-1 ${item.indent ? 'ml-5 border-l-2 border-slate-200 dark:border-slate-600 pl-3' : ''}`}>
-          <span className="text-text-primary text-sm">{item.content}</span>
-        </div>
-      );
-
-    case 'read-text':
-      return (
-        <div className="flex items-center gap-2 py-1">
-          <span className="text-sm">📖</span>
-          <span className="text-blue-600 dark:text-[var(--accent-dark)] font-medium text-sm">{item.content}</span>
-        </div>
-      );
-
-    case 'image':
-      return (
-        <div className="flex items-center gap-2 py-1">
-          <span className="text-sm">🖼️</span>
-          <span className="text-text-tertiary text-sm">Imagen</span>
-        </div>
-      );
-
-    default:
-      return null;
-  }
+  return (
+    <div className="whitespace-pre-line py-1.5 text-sm text-text-body">
+      {playlistItemToText(item)}
+    </div>
+  );
 }

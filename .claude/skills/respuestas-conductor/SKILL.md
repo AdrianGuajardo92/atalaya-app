@@ -94,6 +94,14 @@ Tests: `lib/answerItems.test.ts`
 - Prohibido meter “relleno”: si no ayuda a conducir, no va
 - Ejemplos: Sarah (p.8), Leah/Roxanne/Damien/Katie (p.12), Myriam (p.13)
 
+### Límite de la fuente (obligatorio)
+
+- Cada respuesta principal, secundaria y `followUp` debe poder justificarse con una frase o idea explícita de los párrafos asignados en `question.paragraphs`, o con un texto bíblico citado dentro de esos mismos párrafos.
+- No adelantar detalles que aparecen por primera vez en párrafos posteriores, aunque sean correctos dentro del artículo completo o expliquen un anuncio como “veamos tres ejemplos”.
+- No completar listas, ejemplos, nombres, resultados o aplicaciones usando conocimiento general, el repaso, el título, una imagen o el contexto de preguntas posteriores si el párrafo asignado todavía no los menciona.
+- Antes de conservar una respuesta, hacer la comprobación: “¿Qué oración del párrafo asignado sostiene esta idea?”. Si no se puede señalar una, eliminarla o moverla a la pregunta cuyos párrafos sí la sostienen.
+- Cuando el párrafo solo anuncia lo que se verá después, la respuesta puede repetir el anuncio general, pero no revelar por anticipado el contenido de esos ejemplos.
+
 ### followUp
 
 - Mantenerlo solo como respaldo/compatibilidad en respuestas principales
@@ -127,12 +135,14 @@ answers: [
 ## Flujo para estudios nuevos
 
 1. Leer párrafos de la pregunta
-2. Redactar 2–3 principales que contesten directamente la pregunta
-3. Extraer detalles secundarios relevantes: textos bíblicos, ejemplos, advertencias, consecuencias, aplicaciones y frases clave
-4. Usar solo `answers` — **no** `answer`, `answerContext` ni `flashcards`
-5. Mantener `keyPoint` y `guidingQuestion` solo como respaldo de datos; no se muestran en la UI principal
-6. Revisar que ningún detalle secundario sea relleno ni repita una principal
-7. Si hace falta una frase oral tipo "Yo podría comentar", pasar a `como-comentarlo`; no mezclarla en `answers`.
+2. Delimitar la fuente a `question.paragraphs` y a los textos bíblicos citados dentro de esos párrafos
+3. Redactar 2–3 principales que contesten directamente la pregunta
+4. Extraer detalles secundarios relevantes: textos bíblicos, ejemplos, advertencias, consecuencias, aplicaciones y frases clave
+5. Verificar cada `text` y `followUp` contra una oración concreta de la fuente delimitada; quitar cualquier adelanto de párrafos posteriores
+6. Usar solo `answers` — **no** `answer`, `answerContext` ni `flashcards`
+7. Mantener `keyPoint` y `guidingQuestion` solo como respaldo de datos; no se muestran en la UI principal
+8. Revisar que ningún detalle secundario sea relleno ni repita una principal
+9. Si hace falta una frase oral tipo "Yo podría comentar", pasar a `como-comentarlo`; no mezclarla en `answers`.
 
 ## Migración de estudios legacy
 
@@ -161,3 +171,5 @@ answers: [
 - [ ] Acentos y signos correctos en español
 - [ ] Sin `flashcards`
 - [ ] Experiencias del párrafo como secundarias cuando aplique
+- [ ] Cada respuesta y `followUp` está respaldado por los párrafos de `question.paragraphs` o por un texto bíblico citado allí
+- [ ] Sin detalles adelantados desde párrafos o preguntas posteriores

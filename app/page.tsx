@@ -638,9 +638,7 @@ export default function Home() {
 
       {sidebarEnabled && (
         <StudyParagraphNav
-          paragraphs={currentArticle.paragraphs}
-          questions={currentArticle.questions}
-          reviewCount={currentArticle.reviewQuestions.length}
+          article={currentArticle}
           currentQuestionIndex={currentQuestionIndex}
           currentReviewIndex={currentReviewIndex}
           isOpen={isNavSidebarOpen}

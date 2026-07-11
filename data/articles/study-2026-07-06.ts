@@ -505,8 +505,8 @@ export const study20260706: ArticleData = {
           "followUp": "¿Cuál es la primera pregunta que responderá el artículo?"
         },
         {
-          "text": "**Explicar**á por qué esos principios son importantes para nosotros.",
-          "followUp": "¿Por qué no basta con saber que existen principios?"
+          "text": "**Explicará** por qué esos principios son importantes para nosotros.",
+          "followUp": "¿Cuál es la segunda pregunta que contestará el artículo?"
         },
         {
           "text": "Mostrará cómo identificarlos al leer la Biblia y cómo **Jesús** destacó su valor.",
@@ -617,7 +617,7 @@ export const study20260706: ArticleData = {
       "keyPoint": "Jehová nos guía con leyes y principios, y nos dignifica al permitirnos tomar decisiones que demuestran amor por él.",
       "answers": [
         {
-          "text": "**Jehov**á nos guía con leyes específicas que nos protegen de muchos peligros.",
+          "text": "**Jehová** nos guía con leyes específicas que nos protegen de muchos peligros.",
           "followUp": "¿Por qué son una muestra de amor las leyes de Jehová?"
         },
         {
@@ -629,7 +629,7 @@ export const study20260706: ArticleData = {
           "followUp": "¿Cómo demuestra Jehová que nos trata con dignidad?"
         },
         {
-          "text": "**Santiago** 2:11 muestra que las leyes de Dios tienen una razón moral detrás, no son mandatos arbitrarios.",
+          "text": "**Santiago** 2:11 menciona leyes específicas contra el adulterio y el asesinato.",
           "secondary": true
         },
         {
@@ -680,7 +680,7 @@ export const study20260706: ArticleData = {
           "secondary": true
         },
         {
-          "text": "El **cristiano maduro** no solo evita lo condenado directamente; también evita lo que podría llevarlo a caer.",
+          "text": "El **cristiano** no solo evita lo condenado específicamente; también evita pensamientos o acciones que podrían llevarlo a desobedecer.",
           "secondary": true
         }
       ],
@@ -713,7 +713,7 @@ export const study20260706: ArticleData = {
           "followUp": "Según Romanos 12:1, 2, ¿qué capacidad usamos para servir a Jehová?"
         },
         {
-          "text": "No leemos la **Biblia** solo para conocer datos; buscamos por qué Jehová incluyó esas lecciones.",
+          "text": "Al leer los relatos bíblicos, nos preguntamos **por qué se incluyeron** esas lecciones y cómo aplicarlas.",
           "secondary": true
         },
         {
@@ -751,11 +751,11 @@ export const study20260706: ArticleData = {
           "followUp": "¿Qué capacidad se entrena con la práctica?"
         },
         {
-          "text": "Nuestra relación con Jehová mejora, y nuestras decisiones tomadas por **amor** pueden alegrar su corazón.",
+          "text": "Nuestra relación con Jehová mejora, y las decisiones en armonía con su **voluntad** pueden alegrar su corazón.",
           "followUp": "¿Cómo se siente Jehová cuando decidimos con sabiduría?"
         },
         {
-          "text": "**Jehov**á no nos trata como niños pequeños que necesitan una regla para cada situación.",
+          "text": "**Jehová** no nos trata como niños pequeños que necesitan una regla para cada situación.",
           "secondary": true
         },
         {
@@ -859,12 +859,8 @@ export const study20260706: ArticleData = {
           "followUp": "¿Por qué necesitamos meditar en lo que enseñó Jesús?"
         },
         {
-          "text": "Sus ejemplos muestran beneficios prácticos para cristianos que quieren decidir con **madurez**.",
-          "followUp": "¿Qué veremos en los tres ejemplos?"
-        },
-        {
-          "text": "Los tres ejemplos tratan sobre el odio, los deseos inmorales y el **amor** al prójimo.",
-          "secondary": true
+          "text": "También veremos los **beneficios prácticos** de estas lecciones.",
+          "followUp": "Además de aprender a aplicar los principios, ¿qué veremos?"
         }
       ],
       "image": "https://cms-imgp.jw-cdn.org/img/p/2026400/univ/art/2026400_univ_cnt_3_xl.jpg",
@@ -1257,7 +1253,7 @@ export const study20260706: ArticleData = {
           "followUp": "¿De qué hablaremos en el próximo artículo?"
         },
         {
-          "text": "**Jehov**á nos trata como adultos, no como niños pequeños que solo obedecen por miedo.",
+          "text": "**Jehová** nos trata como adultos, no como niños pequeños que solo obedecen por miedo.",
           "secondary": true
         }
       ],
@@ -1431,7 +1427,7 @@ export const study20260706: ArticleData = {
           "followUp": "¿Qué permanece aunque cambie una ley?"
         },
         {
-          "text": "**Jehov**á usa leyes para protegernos de peligros específicos y principios para guiarnos donde no hay una ley directa.",
+          "text": "**Jehová** usa leyes para protegernos de peligros específicos y principios para guiarnos donde no hay una ley directa.",
           "secondary": true
         },
         {

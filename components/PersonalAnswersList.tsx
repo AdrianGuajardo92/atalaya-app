@@ -262,11 +262,24 @@ export default function PersonalAnswersList({
         type="button"
         onClick={handleAdd}
         disabled={isSaving}
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 transition-colors disabled:opacity-50"
+        aria-label={isSaving ? 'Guardando respuesta personal' : 'Agregar respuesta personal'}
+        title="Agregar respuesta personal"
+        className="inline-flex size-9 items-center justify-center rounded-lg text-text-tertiary hover:bg-surface-raised hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-strong transition-colors disabled:opacity-50"
       >
-        <span className="text-base">+</span>
-        Agregar respuesta personal
-        {isSaving && <span className="text-xs text-text-tertiary">(guardando…)</span>}
+        <svg
+          aria-hidden="true"
+          className="size-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.8}
+            d="M13.5 4.5H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V10.5m-3-6 3 3m-8.25 6.75 1.06-3.18 5.94-5.94a1.591 1.591 0 0 1 2.25 2.25l-5.94 5.94-3.18 1.06Z"
+          />
+        </svg>
       </button>
     </div>
   );

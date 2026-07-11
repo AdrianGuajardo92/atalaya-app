@@ -1,131 +1,132 @@
 import { ArticleData } from '@/types/atalaya';
+import { parseScriptureReferences } from '@/lib/resolveScriptureRef';
 
-export type PlaylistItemType = 'song' | 'title' | 'biblical-text' | 'theme' | 'section' | 'paragraph' | 'read-text' | 'image' | 'sidebar' | 'review';
+export type PlaylistItemType = 'biblical-text' | 'paragraph' | 'read-text' | 'image';
 
 export interface PlaylistItem {
   type: PlaylistItemType;
-  content: string;
-  indent: boolean;
-  imageUrl?: string;
+  label: string;
+  detail?: string;
+}
+
+function joinNumbers(numbers: number[]): string {
+  if (numbers.length <= 1) return String(numbers[0] ?? '');
+  if (numbers.length === 2) return `${numbers[0]} y ${numbers[1]}`;
+  return `${numbers.slice(0, -1).join(', ')} y ${numbers.at(-1)}`;
+}
+
+function getThematicReference(biblicalText: string): string {
+  const match = biblicalText.match(/\(([^()]+)\)\.?\s*$/);
+  const rawReference = match?.[1] ?? biblicalText;
+  return parseScriptureReferences(rawReference)[0] ?? rawReference.trim();
+}
+
+function sentenceCase(text: string): string {
+  return text
+    .toLocaleLowerCase('es-MX')
+    .replace(/^([¿¡]?)(\p{L})/u, (_, punctuation: string, letter: string) => (
+      `${punctuation}${letter.toLocaleUpperCase('es-MX')}`
+    ));
+}
+
+function getImageParagraphs(caption: string | undefined, fallback: number[]): number[] {
+  const paragraphMatch = caption?.match(
+    /párrafos?\s+(\d+(?:\s*(?:,|y|al|[-–—])\s*\d+)*)/i,
+  );
+  const numbers = paragraphMatch?.[1].match(/\d+/g)?.map(Number);
+  return numbers?.length ? numbers : fallback;
+}
+
+function paragraphReference(paragraphs: number[]): string {
+  return paragraphs.length === 1
+    ? `párrafo ${paragraphs[0]}`
+    : `párrafos ${joinNumbers(paragraphs)}`;
+}
+
+function paragraphLabel(paragraphs: number[]): string {
+  const reference = paragraphReference(paragraphs);
+  const label = `${reference[0].toLocaleUpperCase('es-MX')}${reference.slice(1)}`;
+  return paragraphs.length === 1 ? label : `${label} — JUNTOS`;
+}
+
+function imageLabel(paragraphs: number[]): string {
+  if (paragraphs.length === 1) return `Imagen del párrafo ${paragraphs[0]}`;
+  return `Imagen correspondiente a los párrafos ${joinNumbers(paragraphs)}`;
 }
 
 /**
- * Genera la lista de reproducción ordenada a partir de los datos del artículo.
- * El orden sigue la estructura del estudio de La Atalaya:
- * Canción → Título → Texto bíblico → Preguntas/Párrafos → Canción final
+ * Genera la secuencia necesaria para preparar la playlist LSM en JW Library.
+ * Solo incluye el texto temático, bloques de párrafos, lecturas e imágenes.
  */
 export function generatePlaylist(article: ArticleData): PlaylistItem[] {
-  const items: PlaylistItem[] = [];
+  const items: PlaylistItem[] = [
+    {
+      type: 'biblical-text',
+      label: `${getThematicReference(article.biblicalText)} — texto temático`,
+    },
+  ];
 
-  // 1. Canción inicial
-  items.push({ type: 'song', content: article.song, indent: false });
+  const imagesByQuestionIndex = new Map<number, PlaylistItem[]>();
 
-  // 2. Título
-  items.push({ type: 'title', content: article.title, indent: false });
+  article.questions.forEach((question, ownerQuestionIndex) => {
+    if (!question.image) return;
 
-  // 3. Texto bíblico
-  items.push({ type: 'biblical-text', content: article.biblicalText, indent: false });
+    const relatedParagraphs = getImageParagraphs(question.imageCaption, question.paragraphs);
+    const lastRelatedParagraph = Math.max(...relatedParagraphs);
+    const targetQuestionIndex = article.questions.findIndex((candidate) => (
+      candidate.paragraphs.includes(lastRelatedParagraph)
+    ));
+    const placementIndex = targetQuestionIndex === -1 ? ownerQuestionIndex : targetQuestionIndex;
+    const pendingImages = imagesByQuestionIndex.get(placementIndex) ?? [];
 
-  // 4. Tema del artículo
-  if (article.theme) {
-    items.push({ type: 'theme', content: article.theme, indent: false });
-  }
-
-  // 5. Recorrer preguntas en orden
-  let isFirstAfterSection = false;
-  let prevSection = '';
-
-  for (const question of article.questions) {
-    // Si la pregunta inicia un subtítulo de sección nuevo
-    if (question.section && question.section !== prevSection) {
-      items.push({ type: 'section', content: question.section, indent: false });
-      prevSection = question.section;
-      isFirstAfterSection = true;
-    }
-
-    // Párrafos de esta pregunta
-    const paragraphLabel = question.paragraphs.length === 1
-      ? `Párrafo ${question.paragraphs[0]}`
-      : `Párrafos ${question.paragraphs.join(', ')}`;
-
-    items.push({
-      type: 'paragraph',
-      content: paragraphLabel,
-      indent: isFirstAfterSection,
+    pendingImages.push({
+      type: 'image',
+      label: imageLabel(relatedParagraphs),
     });
+    imagesByQuestionIndex.set(placementIndex, pendingImages);
+  });
 
-    if (isFirstAfterSection) isFirstAfterSection = false;
+  let sectionNumber = 0;
 
-    // Texto bíblico para leer (LEE...)
-    if (question.readText) {
-      items.push({ type: 'read-text', content: question.readText, indent: false });
-    }
-
-    // Imagen de la pregunta (NO del párrafo)
-    if (question.image) {
+  article.questions.forEach((question, questionIndex) => {
+    if (question.section) {
+      sectionNumber += 1;
       items.push({
-        type: 'image',
-        content: question.imageCaption || 'Imagen',
-        indent: false,
-        imageUrl: question.image,
+        type: 'paragraph',
+        label: `Subtítulo ${sectionNumber} + ${paragraphReference(question.paragraphs)} — JUNTOS`,
+        detail: sentenceCase(question.section),
+      });
+    } else {
+      items.push({
+        type: 'paragraph',
+        label: paragraphLabel(question.paragraphs),
       });
     }
 
-    for (const paraNum of question.paragraphs) {
-      const paragraph = article.paragraphs.find((p) => p.number === paraNum);
-      if (paragraph?.sidebar) {
-        items.push({
-          type: 'sidebar',
-          content: `Recuadro p.${paraNum}: ${paragraph.sidebar.title}`,
-          indent: true,
-        });
-      }
+    if (question.readText) {
+      items.push({ type: 'read-text', label: question.readText });
     }
-  }
 
-  if (article.reviewQuestions?.length) {
-    items.push({ type: 'review', content: '¿Qué responderías?', indent: false });
-    for (const rq of article.reviewQuestions) {
-      items.push({ type: 'review', content: rq.question, indent: true });
-    }
-  }
-
-  // Canción final
-  items.push({ type: 'song', content: article.finalSong, indent: false });
+    items.push(...(imagesByQuestionIndex.get(questionIndex) ?? []));
+  });
 
   return items;
 }
 
-/**
- * Convierte la playlist a texto plano para copiar al portapapeles.
- */
-export function playlistToText(items: PlaylistItem[]): string {
-  return items.map((item) => {
-    const prefix = item.indent ? '   - ' : '';
+/** Texto canónico de un elemento, compartido por la UI y el portapapeles. */
+export function playlistItemToText(item: PlaylistItem): string {
+  const prefix = item.type === 'read-text'
+    ? '📖 '
+    : item.type === 'image'
+      ? '🖼️ '
+      : '';
+  const detail = item.detail ? `\n“${item.detail}”` : '';
+  return `${prefix}${item.label}${detail}`;
+}
 
-    switch (item.type) {
-      case 'song':
-        return `🎵 ${item.content}`;
-      case 'title':
-        return item.content;
-      case 'biblical-text':
-        return item.content;
-      case 'theme':
-        return `💡 ${item.content}`;
-      case 'section':
-        return `\n📌 ${item.content}`;
-      case 'paragraph':
-        return `${prefix}${item.content}`;
-      case 'read-text':
-        return `📖 ${item.content}`;
-      case 'image':
-        return `🖼️ Imagen`;
-      case 'sidebar':
-        return `${prefix}📦 ${item.content}`;
-      case 'review':
-        return item.indent ? `${prefix}❓ ${item.content}` : `\n❓ ${item.content}`;
-      default:
-        return item.content;
-    }
-  }).join('\n');
+/** Convierte la playlist visible completa a texto plano numerado. */
+export function playlistToText(items: PlaylistItem[]): string {
+  return items
+    .map((item, index) => `${index + 1}. ${playlistItemToText(item)}`)
+    .join('\n');
 }
