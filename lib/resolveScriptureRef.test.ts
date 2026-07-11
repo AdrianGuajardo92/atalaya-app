@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { buildReferenceLookup, parseScriptureReferences, resolveScriptureFromParenthetical } from './resolveScriptureRef';
+import {
+  buildReferenceLookup,
+  groupScriptureVerses,
+  parseScriptureReferences,
+  resolveScriptureFromParenthetical,
+} from './resolveScriptureRef';
 
 describe('resolveScriptureRef', () => {
   it('parsea referencia simple', () => {
@@ -87,5 +92,35 @@ describe('resolveScriptureRef', () => {
 
     expect(lookup.get('2 Corintios 6:14')?.text).toBe('Texto combinado.');
     expect(lookup.get('2 Corintios 6:18')?.text).toBe('Texto combinado.');
+  });
+
+  it('agrupa versículos consecutivos del mismo pasaje para el modal', () => {
+    expect(groupScriptureVerses([
+      { reference: '2 Samuel 11:2', text: 'Versículo 2.' },
+      { reference: '2 Samuel 11:3', text: 'Versículo 3.' },
+      { reference: '2 Samuel 11:4', text: 'Versículo 4.' },
+      { reference: 'Job 31:1', text: 'Versículo 1.' },
+      { reference: 'Job 31:2', text: 'Versículo 2.' },
+      { reference: 'Job 31:3', text: 'Versículo 3.' },
+    ])).toEqual([
+      {
+        key: '2 Samuel 11',
+        title: '2 Samuel 11:2-4',
+        verses: [
+          { reference: '2 Samuel 11:2', text: 'Versículo 2.', verseNumber: '2' },
+          { reference: '2 Samuel 11:3', text: 'Versículo 3.', verseNumber: '3' },
+          { reference: '2 Samuel 11:4', text: 'Versículo 4.', verseNumber: '4' },
+        ],
+      },
+      {
+        key: 'Job 31',
+        title: 'Job 31:1-3',
+        verses: [
+          { reference: 'Job 31:1', text: 'Versículo 1.', verseNumber: '1' },
+          { reference: 'Job 31:2', text: 'Versículo 2.', verseNumber: '2' },
+          { reference: 'Job 31:3', text: 'Versículo 3.', verseNumber: '3' },
+        ],
+      },
+    ]);
   });
 });

@@ -3,7 +3,12 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Question, Paragraph } from '@/types/atalaya';
 import { getAllBiblicalTexts, getBiblicalTextsForStudy } from '@/data/articles';
-import { buildReferenceLookup, buildVerseIndex, resolveScriptureFromParenthetical } from '@/lib/resolveScriptureRef';
+import {
+  buildReferenceLookup,
+  buildVerseIndex,
+  groupScriptureVerses,
+  resolveScriptureFromParenthetical,
+} from '@/lib/resolveScriptureRef';
 import { copyToClipboard } from '@/lib/clipboard';
 import {
   getParagraphsWithSidebar,
@@ -11,6 +16,7 @@ import {
   shouldShowSidebarOnQuestionCard,
 } from '@/lib/sidebarPlacement';
 import VideoLSM from './VideoLSM';
+import LsmQuestionText from './LsmQuestionText';
 import CommentGuide from './CommentGuide';
 import AnswerItemsList from './AnswerItemsList';
 import PersonalAnswersList from './PersonalAnswersList';
@@ -32,6 +38,7 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
   zIndex?: number;
 }) {
   const [copied, setCopied] = useState(false);
+  const verseGroups = useMemo(() => groupScriptureVerses(verses), [verses]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -99,23 +106,46 @@ function BibleVerseModal({ title, label, verses, onClose, zIndex = 50 }: {
             </div>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto custom-scrollbar overscroll-contain px-7 py-6 space-y-5 bg-surface">
-          {verses.map((verse, i) => (
-            <div key={i}>
-              <p className="text-xs font-bold text-amber-600 dark:text-amber-500 uppercase tracking-widest mb-2">{verse.reference}</p>
-              <p className="font-sans text-lg md:text-xl leading-[1.8] text-text-primary tracking-[0.01em]">
-                <span className="text-amber-500 dark:text-amber-400 mr-1 select-none">&ldquo;</span>
-                {verse.text}
-                {i === verses.length - 1 && <span className="text-amber-500 dark:text-amber-400 ml-0.5 select-none">&rdquo;</span>}
-              </p>
-              {i < verses.length - 1 && (
-                <div className="mt-5 flex items-center gap-3">
+        <div className="flex-1 overflow-y-auto custom-scrollbar overscroll-contain px-7 py-6 space-y-7 bg-surface">
+          {verseGroups.map((group, groupIndex) => (
+            <section key={group.key} aria-labelledby={`bible-passage-${groupIndex}`}>
+              <h4
+                id={`bible-passage-${groupIndex}`}
+                className="text-sm font-bold text-amber-600 dark:text-amber-500 uppercase tracking-widest"
+              >
+                {group.title}
+              </h4>
+              <div className="mt-4 space-y-4">
+                {group.verses.map((verse, verseIndex) => (
+                  <div
+                    key={`${verse.reference}-${verseIndex}`}
+                    className={verse.verseNumber ? 'grid grid-cols-[2rem_minmax(0,1fr)] gap-3' : undefined}
+                  >
+                    {verse.verseNumber && (
+                      <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-amber-50 text-sm font-bold tabular-nums text-amber-700 dark:bg-amber-950/50 dark:text-amber-400">
+                        {verse.verseNumber}
+                      </span>
+                    )}
+                    <p className="font-sans text-lg md:text-xl leading-[1.8] text-text-primary tracking-[0.01em]">
+                      {verseIndex === 0 && (
+                        <span className="text-amber-500 dark:text-amber-400 mr-1 select-none">&ldquo;</span>
+                      )}
+                      {verse.text}
+                      {verseIndex === group.verses.length - 1 && (
+                        <span className="text-amber-500 dark:text-amber-400 ml-0.5 select-none">&rdquo;</span>
+                      )}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {groupIndex < verseGroups.length - 1 && (
+                <div className="mt-7 flex items-center gap-3" aria-hidden="true">
                   <div className="flex-1 h-px bg-border-subtle" />
                   <span className="text-amber-400 dark:text-amber-500 text-xs opacity-60">✦</span>
                   <div className="flex-1 h-px bg-border-subtle" />
                 </div>
               )}
-            </div>
+            </section>
           ))}
           <p className="text-xs text-text-tertiary text-center pt-2 border-t border-border-subtle">Traducción del Nuevo Mundo — 2019</p>
         </div>
@@ -1521,9 +1551,13 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
                     <span className="text-lg">🤟</span>
                     <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-[#D97757]">LSM</span>
                   </div>
-                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase whitespace-pre-line break-words">
-                    {lsmText || question.textLSM || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
-                  </p>
+                  <div className="min-h-[1.5rem] uppercase">
+                    <LsmQuestionText
+                      text={lsmText || question.textLSM}
+                      className="text-text-body font-medium text-lg leading-snug"
+                      placeholder={<span className="text-text-muted italic font-normal text-sm normal-case">Agregar traducción...</span>}
+                    />
+                  </div>
                 </div>
               )}
             </div>

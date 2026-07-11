@@ -7,6 +7,7 @@ import AnswerItemsList from './AnswerItemsList';
 import { getReviewAnswerItems } from '@/lib/answerItems';
 import { prepareLSMEditText } from '@/lib/lsmEdit';
 import { useLSMTextareaFocus } from '@/hooks/useLSMTextareaFocus';
+import LsmQuestionText from './LsmQuestionText';
 
 interface ReviewQuestionCardProps {
   reviewQuestion: ReviewQuestion;
@@ -175,9 +176,13 @@ export default function ReviewQuestionCard({
                     <span className="text-lg">🤟</span>
                     <span className="text-xs font-bold text-text-muted uppercase tracking-wider group-hover/lsm:text-blue-600 dark:group-hover/lsm:text-[#D97757]">LSM</span>
                   </div>
-                  <p className="text-text-body font-medium text-lg leading-snug min-h-[1.5rem] uppercase whitespace-pre-line break-words">
-                    {currentLSMText || <span className="text-text-muted italic font-normal text-sm">Agregar traducción...</span>}
-                  </p>
+                  <div className="min-h-[1.5rem] uppercase">
+                    <LsmQuestionText
+                      text={currentLSMText}
+                      className="text-text-body font-medium text-lg leading-snug"
+                      placeholder={<span className="text-text-muted italic font-normal text-sm normal-case">Agregar traducción...</span>}
+                    />
+                  </div>
                 </div>
               )}
             </div>

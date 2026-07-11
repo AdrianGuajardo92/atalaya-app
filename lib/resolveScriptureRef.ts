@@ -1,5 +1,92 @@
 export type ScriptureVerse = { reference: string; text: string };
 
+export type ScriptureVerseGroup = {
+  key: string;
+  title: string;
+  verses: Array<ScriptureVerse & { verseNumber?: string }>;
+};
+
+type ParsedSingleVerseReference = {
+  book: string;
+  chapter: string;
+  verseNumber: string;
+};
+
+function parseSingleVerseReference(reference: string): ParsedSingleVerseReference | null {
+  const match = reference.trim().match(/^(.+?)\s+(\d+):(\d+)$/);
+  if (!match) return null;
+
+  return {
+    book: match[1],
+    chapter: match[2],
+    verseNumber: match[3],
+  };
+}
+
+function formatVerseSequence(verseNumbers: string[]): string {
+  if (verseNumbers.length === 1) return verseNumbers[0];
+
+  const numericVerses = verseNumbers.map(Number);
+  const isConsecutive = numericVerses.every(
+    (verseNumber, index) => index === 0 || verseNumber === numericVerses[index - 1] + 1
+  );
+
+  return isConsecutive
+    ? `${verseNumbers[0]}-${verseNumbers[verseNumbers.length - 1]}`
+    : verseNumbers.join(', ');
+}
+
+export function groupScriptureVerses(verses: ScriptureVerse[]): ScriptureVerseGroup[] {
+  const groups: Array<{
+    key: string;
+    book?: string;
+    chapter?: string;
+    verses: Array<ScriptureVerse & { verseNumber?: string }>;
+  }> = [];
+
+  for (const verse of verses) {
+    const parsed = parseSingleVerseReference(verse.reference);
+    if (!parsed) {
+      groups.push({
+        key: `${verse.reference}-${groups.length}`,
+        verses: [verse],
+      });
+      continue;
+    }
+
+    const groupKey = `${parsed.book} ${parsed.chapter}`;
+    const previousGroup = groups[groups.length - 1];
+    const group = previousGroup?.key === groupKey
+      ? previousGroup
+      : {
+          key: groupKey,
+          book: parsed.book,
+          chapter: parsed.chapter,
+          verses: [],
+        };
+
+    if (group !== previousGroup) groups.push(group);
+    group.verses.push({ ...verse, verseNumber: parsed.verseNumber });
+  }
+
+  return groups.map((group) => {
+    if (!group.book || !group.chapter) {
+      return {
+        key: group.key,
+        title: group.verses[0].reference,
+        verses: group.verses,
+      };
+    }
+
+    const verseNumbers = group.verses.flatMap((verse) => verse.verseNumber ? [verse.verseNumber] : []);
+    return {
+      key: group.key,
+      title: `${group.book} ${group.chapter}:${formatVerseSequence(verseNumbers)}`,
+      verses: group.verses,
+    };
+  });
+}
+
 const BOOK_ABBREVIATIONS: Record<string, string[]> = {
   Génesis: ['Gén.', 'Gen.'],
   Éxodo: ['Éx.', 'Ex.'],

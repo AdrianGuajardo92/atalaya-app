@@ -14,6 +14,7 @@ import {
   shouldShowSidebarOnQuestionCard,
 } from '@/lib/sidebarPlacement';
 import ParagraphSidebarBox from './ParagraphSidebarBox';
+import LsmQuestionText from './LsmQuestionText';
 
 interface SummaryViewProps {
   article: ArticleData;
@@ -295,7 +296,13 @@ export default function SummaryView({ article }: SummaryViewProps) {
                   <>
                     <div className="w-12 h-px bg-amber-300 dark:bg-[#D97757] my-3"></div>
                     <p className="text-sm text-amber-700 dark:text-[#E09070] mb-1 font-semibold">🤟 LSM</p>
-                    <p className="text-amber-900 dark:text-[#F0D0C0] font-bold uppercase whitespace-pre-line break-words">{rq.questionLSM}</p>
+                    <div className="uppercase">
+                      <LsmQuestionText
+                        text={rq.questionLSM}
+                        className="text-amber-900 dark:text-[#F0D0C0] font-bold"
+                        numberClassName="text-amber-700 dark:text-[#E09070]"
+                      />
+                    </div>
                   </>
                 )}
                 {getReviewAnswerItems(rq).length > 0 && (

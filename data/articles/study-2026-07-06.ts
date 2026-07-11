@@ -908,8 +908,6 @@ export const study20260706: ArticleData = {
         }
       ],
       "readText": "LEE Mateo 5:21, 22",
-      "image": "https://cms-imgp.jw-cdn.org/img/p/2026400/S/art/2026400_S_cnt_4_xl.jpg",
-      "imageCaption": "(Vea los párrafos 12 y 13).",
       "biblicalCards": [
         {
           "reference": "Mateo 5:21, 22",
@@ -960,6 +958,8 @@ export const study20260706: ArticleData = {
           "secondary": true
         }
       ],
+      "image": "https://cms-imgp.jw-cdn.org/img/p/2026400/S/art/2026400_S_cnt_4_xl.jpg",
+      "imageCaption": "(Vea los párrafos 12 y 13).",
       "biblicalCards": [
         {
           "reference": "Mateo 5:21, 22",
@@ -1027,8 +1027,6 @@ export const study20260706: ArticleData = {
         }
       ],
       "readText": "LEE Mateo 5:27, 28",
-      "image": "https://cms-imgp.jw-cdn.org/img/p/2026400/S/art/2026400_S_cnt_5_xl.jpg",
-      "imageCaption": "(Vea los párrafos 14 y 15).",
       "biblicalCards": [
         {
           "reference": "Mateo 5:27, 28",
@@ -1079,6 +1077,8 @@ export const study20260706: ArticleData = {
           "secondary": true
         }
       ],
+      "image": "https://cms-imgp.jw-cdn.org/img/p/2026400/S/art/2026400_S_cnt_5_xl.jpg",
+      "imageCaption": "(Vea los párrafos 14 y 15).",
       "biblicalCards": [
         {
           "reference": "Mateo 5:27, 28",
