@@ -1448,15 +1448,15 @@ export const study20260706: ArticleData = {
       "question": "¿Cuáles son algunos principios que Jesús enseñó en el Sermón del Monte?",
       "answers": [
         {
-          "text": "Detrás de «no asesines», **Jesús** enseñó a rechazar el odio, la furia y el abuso verbal.",
+          "text": "Detrás de **«no asesines»**, Jesús enseñó a rechazar el odio, la furia y el abuso verbal.",
           "followUp": "¿Qué actitud interior condenó Jesús además del asesinato?"
         },
         {
-          "text": "**Detrás** de «no cometas adulterio», enseñó a evitar pensamientos y deseos inmorales.",
+          "text": "Detrás de **«no cometas adulterio»**, enseñó a evitar pensamientos y deseos inmorales.",
           "followUp": "¿Qué debemos cortar antes de que llegue a una acción?"
         },
         {
-          "text": "Detrás de «ama a tu **prójimo**», enseñó a amar incluso a enemigos y tratar a todos con bondad.",
+          "text": "Detrás de **«ama a tu prójimo»**, enseñó a amar incluso a enemigos y tratar a todos con bondad.",
           "followUp": "¿Hasta dónde debe llegar el amor al prójimo?"
         },
         {
