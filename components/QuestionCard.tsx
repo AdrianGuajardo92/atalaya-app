@@ -1612,6 +1612,28 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
             </div>
           )}
 
+          {question.supportingImages && question.supportingImages.length > 0 && (
+            <div className="px-8 pb-6 bg-surface space-y-4">
+              {question.supportingImages.map((image) => (
+                <figure
+                  key={image.src}
+                  className="rounded-xl overflow-hidden shadow-lg border border-border"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-auto object-cover"
+                  />
+                  {image.caption && (
+                    <figcaption className="text-sm text-text-secondary italic p-4 bg-surface-alt text-center border-t border-border-subtle">
+                      {image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          )}
+
           {showSidebarOnCard && (
             <div className="px-8 pb-6 bg-surface space-y-4">
               {paragraphsWithSidebar.map((p) => (

@@ -17,6 +17,11 @@ export interface Question {
   questionVideoLSM?: string; // URL del video corto que muestra SOLO la pregunta señada en LSM
   image?: string; // URL de imagen ilustrativa (opcional)
   imageCaption?: string; // Leyenda de la imagen (opcional)
+  supportingImages?: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>; // Imágenes complementarias que se muestran después de la imagen principal
   answer?: string | string[]; // Legacy: oraciones clave (usar answers)
   answers?: AnswerItem[]; // Respuestas principales y secundarias con followUp
   commentSuggestion?: string; // Sugerencia sencilla para comentar la pregunta central

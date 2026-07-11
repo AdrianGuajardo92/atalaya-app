@@ -186,6 +186,28 @@ export default function SummaryView({ article }: SummaryViewProps) {
                   </div>
                 )}
 
+                {question.supportingImages && question.supportingImages.length > 0 && (
+                  <div className="px-4 py-3 border-b border-border bg-surface space-y-3">
+                    {question.supportingImages.map((image) => (
+                      <figure
+                        key={image.src}
+                        className="rounded-lg overflow-hidden border border-border shadow-sm"
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-auto object-cover"
+                        />
+                        {image.caption && (
+                          <figcaption className="text-sm text-text-secondary italic p-3 bg-surface-alt text-center border-t border-border-subtle">
+                            {image.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                )}
+
                 {showSidebarOnCard && (
                   <div className="px-4 py-3 border-b border-border bg-surface space-y-3">
                     {paragraphsWithSidebar.map((paragraph) => (

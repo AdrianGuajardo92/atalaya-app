@@ -686,6 +686,18 @@ export const study20260706: ArticleData = {
       ],
       "image": "https://cms-imgp.jw-cdn.org/img/p/2026400/univ/art/2026400_univ_cnt_2_xl.jpg",
       "imageCaption": "Muchas señales de tránsito avisan de posibles peligros. Los principios bíblicos nos ayudan de forma parecida. (Vea el párrafo 7).",
+      "supportingImages": [
+        {
+          "src": "/images/study-2026-07-06/senalamientos-reglas.png",
+          "alt": "Señales de tránsito que indican alto, límite de velocidad y vuelta prohibida",
+          "caption": "Señales que indican reglas específicas: detenerse, respetar el límite de velocidad y no dar vuelta."
+        },
+        {
+          "src": "/images/study-2026-07-06/senalamientos-advertencias.png",
+          "alt": "Señales de tránsito que advierten de una curva, cruce de venados y camino resbaloso",
+          "caption": "Señales que advierten de posibles peligros y ayudan al conductor a actuar con precaución."
+        }
+      ],
       "guidingQuestion": "¿Cómo nos ayudan los principios cuando una situación no tiene una regla exacta?",
       "commentSuggestion": "Yo podría comentar que los principios son como señales que nos advierten del peligro. No solo nos dicen qué está prohibido, también nos ayudan a ver hacia dónde podría llevarnos una decisión.",
       "biblicalCards": []
