@@ -193,7 +193,7 @@ export default function StudyHeader({
   };
 
   const handleKeyPressTitleLSM = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && !e.shiftKey) {
       e.preventDefault();
       handleSaveTitleLSM();
     }
@@ -401,7 +401,7 @@ export default function StudyHeader({
               <textarea
                 value={titleLSMEdit}
                 onChange={(e) => setTitleLSMEdit(e.target.value)}
-                onKeyPress={handleKeyPressTitleLSM}
+                onKeyDown={handleKeyPressTitleLSM}
                 onBlur={handleBlurTitleLSM}
                 placeholder="Escribe el título en LSM..."
                 className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-border-strong focus:border-border-strong text-xl lg:text-2xl font-bold text-text-body resize-none uppercase bg-surface"

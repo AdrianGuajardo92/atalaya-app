@@ -579,9 +579,9 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // Si presiona Enter sin Shift, guardar
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault(); // Evitar salto de línea
+    // Command+Enter (o Ctrl+Enter) guarda; Enter queda libre para saltos de línea.
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && !e.shiftKey) {
+      e.preventDefault();
       handleSaveLSM();
     }
     // Si presiona Escape, cancelar
@@ -589,7 +589,6 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
       e.preventDefault();
       handleCancelEdit();
     }
-    // Shift+Enter permite salto de línea normal
   };
 
   // Guardar al perder foco (clic fuera)
@@ -641,7 +640,7 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
   };
 
   const handleSectionKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && !e.shiftKey) {
       e.preventDefault();
       handleSaveSectionLSM();
     }

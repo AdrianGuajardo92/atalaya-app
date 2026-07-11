@@ -77,7 +77,7 @@ export default function ReviewQuestionCard({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && !e.shiftKey) {
       e.preventDefault();
       handleSaveLSM();
     }
