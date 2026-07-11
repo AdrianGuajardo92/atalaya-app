@@ -338,16 +338,6 @@ body {
   }
 }
 
-.tablet-portrait-nav-backdrop {
-  display: none;
-}
-
-@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
-  .tablet-portrait-nav-backdrop {
-    display: block;
-  }
-}
-
 /* Timer range slider */
 .timer-slider::-webkit-slider-runnable-track {
   height: 6px;

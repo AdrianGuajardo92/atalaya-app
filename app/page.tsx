@@ -33,7 +33,11 @@ import {
 import { ArticleData } from '@/types/atalaya';
 import ThemeToggle from '@/components/ThemeToggle';
 import StudyParagraphNav from '@/components/StudyParagraphNav';
-import { useIsDesktopNav, useStudyNavSidebar } from '@/hooks/useStudyNavSidebar';
+import {
+  useIsDesktopNav,
+  useIsTabletPortraitNav,
+  useStudyNavSidebar,
+} from '@/hooks/useStudyNavSidebar';
 import type { StudyNavTarget } from '@/lib/studyParagraphNav';
 
 const getSavedNavigationPosition = (articleId: string, article: ArticleData | null) => {
@@ -105,6 +109,7 @@ export default function Home() {
   const [showTimer, setShowTimer] = useState(false);
 
   const isDesktopNav = useIsDesktopNav();
+  const isTabletPortraitNav = useIsTabletPortraitNav();
   const sidebarEnabled = isDesktopNav && viewMode === 'study' && navigationMode === 'paginated';
   const { isOpen: isNavSidebarOpen, toggle: toggleNavSidebar } = useStudyNavSidebar(sidebarEnabled);
 
@@ -642,6 +647,7 @@ export default function Home() {
           currentQuestionIndex={currentQuestionIndex}
           currentReviewIndex={currentReviewIndex}
           isOpen={isNavSidebarOpen}
+          dismissOnOutsideClick={isTabletPortraitNav}
           onToggle={toggleNavSidebar}
           onNavigate={handleNavTarget}
         />

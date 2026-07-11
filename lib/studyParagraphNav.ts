@@ -6,6 +6,10 @@ export type StudyNavTarget =
 
 export const NAV_SIDEBAR_OPEN_STORAGE_KEY = 'atalaya-nav-sidebar-open';
 
+export function isTabletPortraitViewport(width: number, height: number): boolean {
+  return width >= 768 && width <= 1023 && height >= width;
+}
+
 export function findQuestionIndexForParagraph(
   questions: Question[],
   paragraphNumber: number,

@@ -3,6 +3,7 @@ import type { Question } from '@/types/atalaya';
 import {
   findQuestionIndexForParagraph,
   getActiveParagraphNumbers,
+  isTabletPortraitViewport,
   isParagraphNavItemDisabled,
 } from './studyParagraphNav';
 
@@ -13,6 +14,15 @@ const questions: Question[] = [
 ];
 
 describe('studyParagraphNav', () => {
+  it('limita el cierre al tocar fuera a tablets en orientación vertical', () => {
+    expect(isTabletPortraitViewport(768, 1024)).toBe(true);
+    expect(isTabletPortraitViewport(1023, 1366)).toBe(true);
+    expect(isTabletPortraitViewport(1024, 1366)).toBe(false);
+    expect(isTabletPortraitViewport(1023, 768)).toBe(false);
+    expect(isTabletPortraitViewport(1440, 900)).toBe(false);
+    expect(isTabletPortraitViewport(767, 1024)).toBe(false);
+  });
+
   it('resuelve el índice de pregunta para un párrafo', () => {
     expect(findQuestionIndexForParagraph(questions, 1)).toBe(0);
     expect(findQuestionIndexForParagraph(questions, 2)).toBe(0);

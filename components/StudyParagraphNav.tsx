@@ -20,6 +20,7 @@ interface StudyParagraphNavProps {
   currentQuestionIndex: number;
   currentReviewIndex: number;
   isOpen: boolean;
+  dismissOnOutsideClick: boolean;
   onToggle: () => void;
   onNavigate: (target: StudyNavTarget) => void;
 }
@@ -61,6 +62,7 @@ export default function StudyParagraphNav({
   currentQuestionIndex,
   currentReviewIndex,
   isOpen,
+  dismissOnOutsideClick,
   onToggle,
   onNavigate,
 }: StudyParagraphNavProps) {
@@ -128,11 +130,11 @@ export default function StudyParagraphNav({
         </button>
       )}
 
-      {isOpen && (
+      {isOpen && dismissOnOutsideClick && (
         <button
           type="button"
           onClick={onToggle}
-          className="tablet-portrait-nav-backdrop fixed inset-0 z-40 cursor-default bg-transparent"
+          className="fixed inset-0 z-40 cursor-default bg-transparent"
           aria-label="Cerrar navegación"
         />
       )}

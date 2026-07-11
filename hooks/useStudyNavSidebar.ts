@@ -3,7 +3,10 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 
 import { useCallback, useEffect, useState } from 'react';
-import { NAV_SIDEBAR_OPEN_STORAGE_KEY } from '@/lib/studyParagraphNav';
+import {
+  isTabletPortraitViewport,
+  NAV_SIDEBAR_OPEN_STORAGE_KEY,
+} from '@/lib/studyParagraphNav';
 
 const DESKTOP_NAV_QUERY = '(min-width: 768px)';
 
@@ -37,6 +40,24 @@ export function useIsDesktopNav(): boolean {
   }, []);
 
   return isDesktop;
+}
+
+export function useIsTabletPortraitNav(): boolean {
+  const [isTabletPortrait, setIsTabletPortrait] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const update = () => {
+      setIsTabletPortrait(isTabletPortraitViewport(window.innerWidth, window.innerHeight));
+    };
+
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  return isTabletPortrait;
 }
 
 export function useStudyNavSidebar(enabled: boolean) {
