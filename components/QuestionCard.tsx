@@ -165,13 +165,14 @@ interface QuestionCardProps {
   usedItems: Record<string, boolean>;
   onToggleUsedItem: (itemId: string) => void; // Callback para marcar/desmarcar item
   articleId: string; // ID del artículo actual
+  paragraphSummaryMode?: 'summary' | 'objective';
   showSectionHeader?: boolean; // false cuando el subtítulo ya se mostró en la pregunta anterior
 }
 
 // Textos bíblicos cargados desde el sistema centralizado de artículos
 const biblicalTexts = getAllBiblicalTexts();
 
-export default function QuestionCard({ question, questionIndex, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, usedItems, onToggleUsedItem, articleId, showSectionHeader = true }: QuestionCardProps) {
+export default function QuestionCard({ question, questionIndex, paragraphs, lsmText, sectionLsmText, onLSMUpdate, isNavigationMode = false, usedItems, onToggleUsedItem, articleId, paragraphSummaryMode = 'summary', showSectionHeader = true }: QuestionCardProps) {
   const personalAnswersStorageKey = `personal-answers-q${questionIndex}`;
   const personalAnswerItemPrefix = `personal-answer-${articleId}-q${questionIndex}`;
   const [showParagraphsModal, setShowParagraphsModal] = useState(false);
@@ -366,6 +367,11 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
     paragraphs.filter(p => question.paragraphs.includes(p.number)),
     [paragraphs, question.paragraphs]
   );
+  const paragraphSummaryLabel = paragraphSummaryMode === 'objective'
+    ? relatedParagraphs.length === 1
+      ? 'Objetivo del párrafo'
+      : 'Objetivos de los párrafos'
+    : 'Resumen';
 
   const buildRelatedParagraphsPlainText = useCallback(() => {
     return relatedParagraphs.map(p => {
@@ -747,10 +753,10 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
             <div className="flex-1 overflow-y-auto custom-scrollbar bg-surface md:overflow-hidden md:flex md:gap-6">
               {/* Panel izquierdo: Párrafos */}
               <div className="flex-1 min-w-0 md:overflow-y-auto md:custom-scrollbar md:overscroll-contain p-6">
-                {/* Sección RESUMEN (si algún párrafo tiene summary) */}
+                {/* Sección de resumen u objetivo (si algún párrafo tiene summary) */}
                 {relatedParagraphs.some(p => p.summary) && (
                   <div className="mb-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
-                    <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                    <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">{paragraphSummaryLabel}</h4>
                     <div className="space-y-2">
                       {relatedParagraphs
                         .filter(p => p.summary)
@@ -1300,10 +1306,10 @@ export default function QuestionCard({ question, questionIndex, paragraphs, lsmT
               </button>
             </div>
 
-            {/* Resumen (si algún párrafo tiene summary) */}
+            {/* Resumen u objetivo (si algún párrafo tiene summary) */}
             {relatedParagraphs.some(p => p.summary) && (
               <div className="mx-6 md:mx-8 mt-6 bg-amber-50 dark:bg-[#332520] border border-amber-200 dark:border-[#5C3828] rounded-xl p-5">
-                <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">Resumen</h4>
+                <h4 className="text-xs font-bold text-amber-700 dark:text-[#E09070] uppercase tracking-[0.15em] mb-3">{paragraphSummaryLabel}</h4>
                 <div className="space-y-2">
                   {relatedParagraphs
                     .filter(p => p.summary)

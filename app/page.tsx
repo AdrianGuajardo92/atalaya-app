@@ -698,6 +698,7 @@ export default function Home() {
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
                   articleId={currentArticleId}
+                  paragraphSummaryMode={currentArticle.paragraphSummaryMode}
                   showSectionHeader={isFirstQuestionInSection(currentArticle.questions, index)}
                 />
               ))}
@@ -758,6 +759,7 @@ export default function Home() {
                   usedItems={usedItems}
                   onToggleUsedItem={handleToggleUsedItem}
                   articleId={currentArticleId}
+                  paragraphSummaryMode={currentArticle.paragraphSummaryMode}
                   showSectionHeader={isFirstQuestionInSection(currentArticle.questions, currentQuestionIndex)}
                 />
               </>

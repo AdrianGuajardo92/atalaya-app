@@ -430,6 +430,7 @@ export const study20260706: ArticleData = {
   "title": "¿Por qué son importantes los principios bíblicos?",
   "biblicalText": "“Darán un servicio sagrado con su capacidad de razonar” (ROM. 12:1).",
   "theme": "Qué son los principios bíblicos y cómo podemos identificarlos cuando leemos la Biblia.",
+  "paragraphSummaryMode": "objective",
   "questions": [
     {
       "number": "1, 2",
@@ -510,10 +511,6 @@ export const study20260706: ArticleData = {
         {
           "text": "Mostrará cómo identificarlos al leer la Biblia y cómo **Jesús** destacó su valor.",
           "followUp": "¿Qué papel tendrán las enseñanzas de Jesús en el estudio?"
-        },
-        {
-          "text": "El **párrafo funciona** como una guía del estudio para seguir el razonamiento del artículo.",
-          "secondary": true
         }
       ],
       "guidingQuestion": "¿Qué tres asuntos principales va a aclarar el artículo?",
@@ -547,7 +544,7 @@ export const study20260706: ArticleData = {
           "secondary": true
         },
         {
-          "text": "El **mandato** de amar a Jehová muestra una verdad básica que orienta muchas decisiones.",
+          "text": "**Mateo 22:37** es un ejemplo de una ley que expresa claramente el principio de amar a Jehová con todo el ser.",
           "secondary": true
         }
       ],
@@ -824,7 +821,7 @@ export const study20260706: ArticleData = {
           "followUp": "¿Qué necesitamos además de leer?"
         },
         {
-          "text": "**Preguntas** como “¿Por qué estableció Dios esta ley?” ayudan a entender la forma de pensar de Jehová.",
+          "text": "Podemos preguntarnos **por qué Jehová dio una ley**, qué pensará de una conducta parecida, qué lección enseña un relato y cómo aplicarla.",
           "secondary": true
         },
         {
@@ -1138,6 +1135,10 @@ export const study20260706: ArticleData = {
         {
           "text": "**Jesús** reveló el propósito de la ley: reflejar el amor amplio e imparcial de su Padre celestial.",
           "secondary": true
+        },
+        {
+          "text": "Amar a los enemigos también incluye **orar por quienes nos persiguen**.",
+          "secondary": true
         }
       ],
       "readText": "LEE Mateo 5:43, 44",
@@ -1241,26 +1242,22 @@ export const study20260706: ArticleData = {
         18
       ],
       "questionVideoLSM": "/videos/study-2026-07-06/study-2026-07-06-q18-lsm.mp4",
-      "keyPoint": "Debemos estar decididos a vivir según los principios bíblicos, comprender la voluntad de Jehová y dejar que el amor guíe nuestras decisiones.",
+      "keyPoint": "Debemos vivir según los principios bíblicos, comprender la voluntad de Jehová y recordar que el próximo artículo hablará de la conciencia.",
       "answers": [
         {
-          "text": "Debemos estar decididos a usar los **principios bíblicos** para tomar buenas decisiones todos los días.",
-          "followUp": "¿Qué deberíamos usar al tomar decisiones diarias?"
-        },
-        {
-          "text": "**También debemos** esforzarnos por comprender cuál es la voluntad de Jehová.",
-          "followUp": "Según Efesios 5:17, ¿qué debemos comprender?"
+          "text": "Debemos usar los **principios bíblicos** para tomar buenas decisiones y esforzarnos por comprender la voluntad de Jehová.",
+          "followUp": "¿Qué deberíamos usar al tomar decisiones y qué debemos esforzarnos por comprender?"
         },
         {
           "text": "El **amor** a Jehová, no el miedo al castigo, debe ayudarnos a decidir de acuerdo con su voluntad.",
           "followUp": "¿Qué motivación debe guiarnos?"
         },
         {
-          "text": "**Jehov**á nos trata como adultos, no como niños pequeños que solo obedecen por miedo.",
-          "secondary": true
+          "text": "El próximo artículo hablará de otro regalo de Jehová: nuestra **conciencia**.",
+          "followUp": "¿De qué hablaremos en el próximo artículo?"
         },
         {
-          "text": "El próximo artículo hablará de otro regalo de Jehová: nuestra **conciencia**.",
+          "text": "**Jehov**á nos trata como adultos, no como niños pequeños que solo obedecen por miedo.",
           "secondary": true
         }
       ],
@@ -1285,109 +1282,109 @@ export const study20260706: ArticleData = {
     {
       "number": 1,
       "content": "LA Biblia es un libro muy antiguo. Se comenzó a escribir hace unos 3.500 años y se completó hace casi 2.000. Sin embargo, en sus páginas se encuentra “la palabra de Dios”, que está viva y actúa con poder (Heb. 4:12; 2 Tim. 3:16, 17). Millones de personas dan testimonio de que la Biblia los ayuda a enfrentarse a los problemas de la vida actual.",
-      "summary": "Aunque la **Biblia** comenzó a escribirse hace milenios, sigue viva y poderosa; millones comprueban que sus consejos ayudan con problemas actuales.",
+      "summary": "Entender por qué la **Biblia**, aunque fue escrita hace miles de años, sigue teniendo poder y ofrece ayuda práctica para enfrentar los problemas de la vida actual.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p01-lsm.mp4"
     },
     {
       "number": 2,
       "content": "Pero ¿cómo es posible que un libro tan antiguo sea práctico hoy día? Por dos razones. En primer lugar, porque el mensaje de la Biblia viene del “Dios vivo”, que es nuestro Creador y el ser más sabio del universo (1 Tim. 4:10; Rom. 16:26, 27). Y, en segundo lugar, porque la Biblia contiene principios que nunca cambian con el tiempo. Estos principios son siempre útiles, sin importar la época en la que vivan las personas ni los desafíos a los que se enfrenten.",
-      "summary": "La Biblia sigue siendo práctica porque viene del **Dios vivo** y contiene **principios** que no cambian con el tiempo ni con las circunstancias.",
+      "summary": "Identificar las dos razones por las que la Biblia sigue siendo práctica: proviene del **Dios vivo** y contiene **principios permanentes** que sirven en cualquier época.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p02-lsm.mp4"
     },
     {
       "number": 3,
       "content": "¿Qué son los principios bíblicos? ¿Por qué son tan importantes para nosotros? ¿Cómo podemos identificarlos cuando leemos la Biblia? Este artículo contestará estas preguntas. También mostrará cómo se destaca en las enseñanzas de Jesús el valor de los principios.",
-      "summary": "El artículo explicará qué son los **principios bíblicos**, por qué importan y cómo identificarlos, destacando el valor que les dio **Jesús**.",
+      "summary": "Reconocer las preguntas centrales del artículo: qué son los **principios bíblicos**, por qué importan, cómo identificarlos y qué enseñó **Jesús** sobre su valor.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p03-lsm.mp4"
     },
     {
       "number": 4,
       "content": "Los principios bíblicos son verdades fundamentales que sirven de base para las leyes de Dios. Podría decirse que son las razones detrás de las leyes. En el caso de las leyes de Jehová, siempre tienen detrás una razón justificada. En ocasiones, un principio puede estar indicado claramente en una ley (Mat. 22:37). Sin embargo, los principios son siempre superiores a las leyes. Las leyes suelen ser más específicas y tener una aplicación limitada. Puede que se den para un momento o una situación en concreto. En cambio, los principios bíblicos reflejan la manera de pensar de Jehová de forma más amplia y se pueden aplicar a diferentes circunstancias y épocas (Sal. 119:111). Es posible que haya que cambiar las leyes. Pero los principios nunca caducan ni se quedan anticuados (Is. 40:8).",
-      "summary": "Los **principios bíblicos** revelan la forma de pensar de **Jehová**; a diferencia de leyes específicas, se aplican ampliamente y nunca caducan.",
+      "summary": "Entender qué son los **principios bíblicos**, cómo reflejan la manera de pensar de **Jehová** y por qué tienen una aplicación más amplia y permanente que las leyes.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p04-lsm.mp4"
     },
     {
       "number": 5,
       "content": "Para entender mejor la diferencia entre leyes y principios, veamos un ejemplo. Una madre tal vez le diga a su hijo pequeño: “¡No toques el fuego de la cocina!”. Esto es un mandato, o una ley. Pero el principio, o la idea, que hay detrás de esta ley es que no toque nada que esté caliente porque se puede hacer daño. Ese principio no solo es aplicable al fuego de la cocina. También puede aplicarse a la plancha de la ropa, a un calefactor o a cualquier otro aparato caliente que pueda causar quemaduras. Además, este principio no solo es aplicable dentro del hogar, sino también en otros lugares. Por supuesto, cuando el hijo crezca, seguramente use el fuego de la cocina. Aun así, deberá seguir teniendo cuidado para no quemarse. De modo que la ley puede cambiar, pero el principio básico que hay detrás no varía.",
-      "summary": "El ejemplo del **fuego** muestra que una ley puede cambiar, pero el principio que protege del peligro sigue aplicando en muchas situaciones.",
+      "summary": "Distinguir una **ley** de un **principio** mediante el ejemplo del fuego y comprender por qué el principio sigue protegiendo aunque cambien las circunstancias o la regla específica.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p05-lsm.mp4"
     },
     {
       "number": 6,
       "content": "Motivado por el amor que nos tiene, Jehová nos da guía mediante leyes específicas que nos permiten evitar muchos peligros (Sant. 2:11). Además, nos ayuda a entender los principios, o las ideas, que hay detrás de las leyes. Y en su Palabra también nos da guía en diferentes ámbitos de la vida para los que no existen leyes específicas. Los principios bíblicos nos ayudan a tomar buenas decisiones y a hacer lo que está bien. Al darnos estos principios, Jehová nos dignifica concediéndonos la libertad de tomar decisiones que demuestren que lo queremos y que respetamos sus normas (Gál. 5:13).",
-      "summary": "Jehová nos guía con **leyes** y **principios**; al darnos libertad para decidir bien, nos dignifica y nos permite demostrar amor por él.",
+      "summary": "Reconocer cómo **Jehová** usa leyes y principios para protegernos, ayudarnos a decidir bien y concedernos la dignidad de demostrar libremente que lo amamos y respetamos.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p06-lsm.mp4"
     },
     {
       "number": 7,
       "content": "Para entender mejor cómo nos ayudan los principios bíblicos, pensemos en las señales de tránsito de diversos países. Muchas informan a los conductores de las leyes que deben obedecer para no ser penalizados. Por ejemplo, pueden indicar el límite de velocidad permitido o cuándo hay que detenerse. Ahora bien, otras señales advierten de posibles peligros. Quizás avisen de que la carretera puede estar resbaladiza o de la posible presencia de animales. Al ver estas señales, el conductor experimentado usa buen juicio y maneja su vehículo con precaución. Así, si llueve o nieva, se adapta a estas condiciones climáticas. De igual modo, el cristiano no solo evita con mucho cuidado cualquier conducta condenada específicamente en la Biblia, sino también cualquier pensamiento o acción que pueda llevarlo a desobedecer las leyes de Dios. Para esto necesita demostrar buen juicio.",
-      "summary": "Como señales que advierten peligros, los **principios bíblicos** ayudan al cristiano maduro a usar buen juicio y evitar caminos que llevan a desobedecer.",
+      "summary": "Aprender a usar los **principios bíblicos** como señales de advertencia que desarrollan el buen juicio y ayudan a evitar pensamientos o acciones que podrían llevar a desobedecer.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p07-lsm.mp4"
     },
     {
       "number": 8,
       "content": "Sin embargo, cuando nos esforzamos por encontrar los principios que contiene la Biblia y vivimos de acuerdo con ellos, conseguimos otros beneficios importantes. Por ejemplo, aprendemos a pensar como Jehová sobre ciertos asuntos. Al leer los relatos de las Escrituras, tratamos de extraer lecciones prácticas. Luego nos preguntamos por qué se incluyeron estas lecciones en la Biblia y cómo podemos aplicarlas en nuestra vida. De este modo, aprendemos a usar nuestra “capacidad de razonar” para servir a Jehová. También comprobamos por nosotros mismos “cuál es la buena, agradable y perfecta voluntad de Dios” (lea Romanos 12:1, 2).",
-      "summary": "Buscar principios nos enseña a **pensar como Jehová**, sacar lecciones prácticas y usar nuestra **capacidad de razonar** para hacer su voluntad.",
+      "summary": "Entender que buscar y aplicar **principios bíblicos** nos enseña a pensar como **Jehová**, extraer lecciones prácticas y usar nuestra capacidad de razonar para hacer su voluntad.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p08-lsm.mp4"
     },
     {
       "number": 9,
       "content": "Aprender a vivir de acuerdo con los principios bíblicos nos ayuda a convertirnos en cristianos maduros. Al aplicar estos principios, nuestra relación con Jehová mejora (lea Hebreos 5:13, 14). Puede que los niños pequeños necesiten una larga lista de leyes o reglas para saber cómo actuar en distintas situaciones. Tal vez las obedezcan simplemente por miedo al castigo. Pero Jehová no nos trata como niños pequeños, sino como adultos maduros. Confía en que tomaremos decisiones que estén en armonía con su voluntad. Y, si así lo hacemos, alegraremos muchísimo su corazón (Sal. 147:11; Prov. 23:15, 26; 27:11).",
-      "summary": "Vivir por principios nos ayuda a hacernos **cristianos maduros**, entrenar el discernimiento y alegrar a **Jehová** con decisiones tomadas por amor.",
+      "summary": "Reconocer que vivir de acuerdo con **principios bíblicos** fortalece nuestra relación con Jehová, entrena el discernimiento y nos ayuda a tomar decisiones como cristianos maduros.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p09-lsm.mp4"
     },
     {
       "number": 10,
       "content": "Cuando tratamos de extraer lecciones de la Biblia, encontramos principios que nos ayudan a entender cómo ve Jehová las cosas. Y, cuando nos esforzamos por descubrir las razones que hay detrás de ciertas leyes, también podemos identificar principios. Cuanto mejor entendemos las razones, mejor entendemos la forma de pensar de Jehová. Pero, para lograr esto, debemos pedirle que nos ayude y, además, desarrollar nuestra propia capacidad de pensar (Prov. 2:10-12). Podríamos hacernos preguntas como estas: “¿Por qué estableció Dios esta ley? Si Jehová no aprueba esta conducta, ¿qué pensará de otra parecida? ¿Qué lección saco del relato bíblico que estoy leyendo? ¿Y cómo puedo aplicarla en mi vida?”. Una vez que identifiquemos las razones y lecciones que hay detrás de las leyes y los relatos de la Biblia, conseguiremos tomar mejores decisiones en la vida, decisiones que estén en armonía con la voluntad de Jehová.",
-      "summary": "Identificamos principios al buscar las **razones** detrás de leyes y relatos bíblicos, pedir ayuda a Jehová y desarrollar nuestra capacidad de pensar.",
+      "summary": "Aprender a identificar **principios bíblicos** investigando las razones detrás de leyes y relatos, pidiendo ayuda a Jehová y formulando preguntas que conduzcan a mejores decisiones.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p10-lsm.mp4"
     },
     {
       "number": 11,
       "content": "En su Sermón del Monte, Jesús nos enseñó a identificar principios bíblicos. Veamos tres ejemplos. En cada caso, Jesús mencionó primero la ley, y luego reveló la idea o principio que había detrás. Al meditar en lo que él reveló, entenderemos cómo aplicar estos principios hoy día en nuestra vida. Y, al mismo tiempo, veremos los beneficios prácticos de estas lecciones.",
-      "summary": "En el **Sermón del Monte**, Jesús mostró cómo mirar más allá de una ley y descubrir el principio que permite aplicarla hoy.",
+      "summary": "Analizar cómo **Jesús** enseñó a descubrir principios en el Sermón del Monte, revelando la idea detrás de cada ley y su aplicación práctica en la actualidad.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p11-lsm.mp4"
     },
     {
       "number": 12,
       "content": "(Lea Mateo 5:21, 22). “No asesines”. ¿Cuál es uno de los principios detrás de esta ley? Jehová no quiere que odiemos a los demás, tanto si ese odio se refleja en nuestras acciones o palabras como si solo se limita a nuestros pensamientos. Jesús indicó que, aunque una persona no llegue a asesinar a nadie, si odia a su hermano, todavía podría estar violando el principio o razón que hay detrás de esta ley. “Todo el que siga furioso con su hermano” o abuse verbalmente de él también “tendrá que responder” ante Dios. ¿Por qué? Porque esas son las mismas actitudes y acciones que llevan al asesinato (1 Juan 3:15).",
-      "summary": "Jesús reveló que el mandato **«no asesines»** también condena el odio, la furia y el abuso verbal que pueden llevar a hacer daño.",
+      "summary": "Identificar el principio detrás de **«no asesines»** y entender por qué el odio, la furia y el abuso verbal también violan el propósito de esa ley.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p12-lsm.mp4"
     },
     {
       "number": 13,
       "content": "¿Cómo podemos aplicar el principio de Mateo 5:21, 22 en nuestros días? Luchando contra el resentimiento y el rencor (Lev. 19:18; Job 36:13). ¿Por qué? Porque estos sentimientos pueden avivar el odio en nuestro corazón y desembocar en palabras o acciones hirientes (Prov. 10:12). Entre estas se encuentran los chismes y las calumnias, que pueden dañar o arruinar la reputación de otros (Prov. 20:19; 25:23). Así que, mucho antes de que existieran herramientas como las redes sociales, los blogs, internet o las aplicaciones de mensajería, Jesús ya dio un principio que ayudaría a los cristianos maduros a usarlas sin caer en los peligros que encierran. En todas las facetas de la vida, siempre debemos evitar cualquier tipo de lenguaje que fomente el odio y que pueda llevar a lo que algunos llaman “asesinato de la reputación”.",
-      "summary": "Aplicamos Mateo 5 al combatir el **rencor**, evitar chismes y rechazar cualquier lenguaje que fomente odio o destruya la reputación.",
+      "summary": "Aplicar el principio de Mateo 5:21, 22 combatiendo el **rencor**, los chismes y cualquier lenguaje que alimente el odio o destruya la reputación de otras personas.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p13-lsm.mp4"
     },
     {
       "number": 14,
       "content": "(Lea Mateo 5:27, 28). “No cometas adulterio”. ¿Qué principio hay detrás de esta ley? Jehová no solo odia la conducta sexual inmoral, sino también los pensamientos que pueden llevar a ella. Jesús explicó que, si un hombre casado sigue mirando a una mujer (que no sea su esposa) con la intención de sentir pasión por ella, ya ha pecado. Así que hay que evitar a toda costa, por difícil que sea, los pensamientos inmorales (Mat. 5:29, 30). Este principio también es aplicable a los cristianos solteros.",
-      "summary": "El mandato **«no cometas adulterio»** revela que Jehová también rechaza los pensamientos inmorales; por eso hay que cortarlos de raíz.",
+      "summary": "Identificar el principio detrás de **«no cometas adulterio»** y comprender por qué Jehová exige rechazar no solo la conducta inmoral, sino también los pensamientos que conducen a ella.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p14-lsm.mp4"
     },
     {
       "number": 15,
       "content": "¿Cómo podemos aplicar el principio de Mateo 5:27, 28 en nuestros días? No recreándonos en deseos inmorales (2 Sam. 11:2-4; Job 31:1-3). Por eso, es obvio que los cristianos que son maduros evitan cualquier tipo de pornografía. No se justifican diciendo que solo están mirando pero que no hacen nada inmoral. Tampoco excusan su conducta diciendo que solo miran “porno blando”, que no suele considerarse tan ofensivo como otros tipos de pornografía más explícita. En los tiempos de Jesús, no había dispositivos electrónicos ni películas ni fotografías. Aun así, el principio que él nos dio muestra qué piensa Jehová del contenido inmoral que se distribuye a través de estos medios. Esto nos permite comprender que a Jehová le desagradan enormemente prácticas modernas como el sexteo o las actividades virtuales que simulan actos inmorales. El principio que dio Jesús ayuda a los casados a no traicionar a su pareja (Mal. 2:15). En realidad, ayuda a todos los cristianos —sean casados o solteros— a evitar cualquier cosa que pueda hacerles caer en la inmoralidad sexual (Prov. 5:3-14).",
-      "summary": "El principio de Jesús nos ayuda a rechazar **pornografía**, deseos inmorales y prácticas virtuales que podrían llevar a traicionar a Jehová o al cónyuge.",
+      "summary": "Aplicar el principio de Jesús rechazando la **pornografía**, el sexteo, los deseos inmorales y cualquier práctica que pueda llevar a la inmoralidad o a traicionar al cónyuge.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p15-lsm.mp4"
     },
     {
       "number": 16,
       "content": "(Lea Mateo 5:43, 44). “Ama a tu prójimo”. ¿Qué principio hay detrás de esta ley? Jehová quiere que veamos a todos como nuestro prójimo y los tratemos con amor. Por desgracia, en tiempos de Jesús, los judíos aplicaban mal este mandato y enseñaban que podían odiar a sus enemigos. Pero Jesús tenía claro que ese no era el propósito de esa ley. Sabía que su cariñoso Padre celestial esperaba que consideráramos a los demás como nuestro prójimo, sin importar su raza ni su nacionalidad (Mat. 5:45-48).",
-      "summary": "Jesús corrigió una interpretación equivocada: Jehová quiere que tratemos a todos como **prójimo**, incluso a enemigos y personas de otra nación.",
+      "summary": "Entender que el mandato de amar al **prójimo** incluye tratar con amor a todas las personas, sin importar su raza, nacionalidad o la forma en que nos traten.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p16-lsm.mp4"
     },
     {
       "number": 17,
       "content": "¿Cómo podemos aplicar el principio de Mateo 5:43, 44 en nuestros días? El amor al prójimo nos motiva a no implicarnos en las guerras y conflictos de este mundo (Is. 2:4; Miq. 4:3). También nos mueve a tratar con bondad a los que sean de una raza, nacionalidad o religión diferente a la nuestra (Hech. 10:34, 35). Y, por último, nos impulsa a perdonar a los que nos hacen daño a nosotros o a nuestros seres queridos (Mat. 18:21, 22; Mar. 11:25; Luc. 17:3, 4).",
-      "summary": "El **amor al prójimo** se demuestra siendo neutrales, tratando con bondad a personas diferentes y perdonando a quienes nos hacen daño.",
+      "summary": "Aplicar el **amor al prójimo** manteniendo la neutralidad, tratando con bondad a personas diferentes y perdonando a quienes nos causan daño a nosotros o a nuestros seres queridos.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p17-lsm.mp4"
     },
     {
       "number": 18,
       "content": "¡Cuánto le agradecemos a Jehová que nos trate como adultos y no como niños pequeños! Él quiere que usemos los principios bíblicos para tomar buenas decisiones todos los días (1 Cor. 14:20). Y, cuando lo hagamos, debemos estar decididos a comprender “cuál es la voluntad de Jehová” (Efes. 5:17). Es el amor a Jehová, y no el miedo al castigo, lo que nos ayudará a tomar decisiones que estén de acuerdo con su voluntad. Pero, para conseguir este objetivo, él nos ha dado otro regalo: nuestra conciencia. Y de eso hablaremos en el próximo artículo.",
-      "summary": "Jehová nos trata como **adultos espirituales**; por amor a él, queremos entender su voluntad y tomar decisiones guiadas por principios.",
+      "summary": "Reconocer que Jehová espera que decidamos como **adultos espirituales**, guiados por amor y por principios, y entender cómo la **conciencia** nos ayudará a lograrlo en el siguiente artículo.",
       "videoLSM": "/videos/study-2026-07-06/study-2026-07-06-p18-lsm.mp4"
     }
   ],

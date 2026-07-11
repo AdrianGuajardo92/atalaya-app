@@ -93,6 +93,7 @@ export interface AtalayaStudy {
   titleLSM?: string; // Título en LSM (se agregará después)
   biblicalText: string; // Texto bíblico principal
   theme: string;
+  paragraphSummaryMode?: 'summary' | 'objective'; // Etiqueta y propósito editorial de paragraph.summary
   headerInfographic?: string; // URL de infografía principal del artículo (aparece debajo del texto bíblico)
   overview?: ArticleOverview; // Vista previa: conexión con el anterior + lo que veremos
   questions: Question[];
